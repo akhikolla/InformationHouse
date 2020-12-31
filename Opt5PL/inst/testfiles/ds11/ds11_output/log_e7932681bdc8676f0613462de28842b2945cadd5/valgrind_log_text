@@ -1,0 +1,30 @@
+WARNING: No test specified, defaulting to first test defined (Opt5PL_deepstate_test_ds11_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/Opt5PL/inst/testfiles/ds11/ds11_output/e7932681bdc8676f0613462de28842b2945cadd5.crash`
+TRACE: Running: Opt5PL_deepstate_test_ds11_test from /home/akhila/fuzzer_packages/fuzzedpackages/Opt5PL/inst/testfiles/ds11/ds11_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+T values: 8.18711e+299 0.00468189 9.28697e-257 -4.47314e+269 -1.08462e-247 -1.0696e+114 -3.47955e-216 -8.95181e+215 1.38348e-136 6.24605e+181 -4.11368e+80 -nan 2.79008e+291 -2.43673e+290 1.13722e+165 1.24929e+186 -9.06014e-190 1.24372e-163 1.07357e-51 -6.7207e-236 3.93269e-254 -3.45571e+99 8.95779e+89 -1.04429e+114 2.77225e+43 -2.18557e+139 -2.63808e-55 -1.77674e-44
+x values: -2.03911e+240
+inv values: 1.92056e-182
+1.10966e+192
+4.42315e+80
+1.54664e-118
+5.07882e+283
+1.74133e+63
+
+Missing value
+inv1 values: 2.79761e-19 4.05909e-90 5.30629e+96 1.37001e+227 9.42685e+205 2.74922e+150
+9.15176e-141 5.75714e-126 5.29534e-219 1.54296e+211 1.00455e-20 8.59248e+198
+1.91851e-134 2.81754e-125     nan 5.52605e-63 7.91189e-214 3.00557e+184
+2.86008e-50 2.94390e-273 5.02389e+170 4.51946e+163 1.18575e-151 9.04945e-236
+2.32797e+145 3.69649e+59 3.14313e-44 1.98386e-123 2.63871e-98 5.32788e-209
+4.84344e-188 2.79036e+70 1.20419e-302 2.43609e-237    -inf 2.96489e-27
+1.52871e-30 8.81499e-78 1.14814e+292 1.20525e-216 4.51946e+163 3.88844e+259
+6.17509e+202 1.23373e-286 5.31901e+30 4.51946e+163 7.34702e+70 1.18903e+219
+1.64371e+109 4.99855e+39 3.36183e+44 4.96121e+38 1.04307e-111 4.40546e+256
+
+order values: 1743529022
+input ends
+ERROR: Crashed: Opt5PL_deepstate_test_ds11_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/Opt5PL/inst/testfiles/ds11/ds11_output/e7932681bdc8676f0613462de28842b2945cadd5.crash crashed

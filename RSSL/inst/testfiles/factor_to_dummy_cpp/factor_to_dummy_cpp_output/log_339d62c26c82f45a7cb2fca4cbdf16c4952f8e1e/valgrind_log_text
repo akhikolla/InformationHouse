@@ -1,0 +1,15 @@
+WARNING: No test specified, defaulting to first test defined (RSSL_deepstate_test_factor_to_dummy_cpp_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp/factor_to_dummy_cpp_output/339d62c26c82f45a7cb2fca4cbdf16c4952f8e1e.fail`
+TRACE: Running: RSSL_deepstate_test_factor_to_dummy_cpp_test from /home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp/factor_to_dummy_cpp_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+y values: 603497922 -2065975987 -1981852649 900590154 -2076391578 -2146136927 -9428150 1520036990 -1852751851 1844863990 -709423862 1693996265 874270644 819746351 1283029671 308684195 -127551131 1528585009 -748078280 1636835733 -1401926948 1285557401 428228651 -328872220 -897103578 -1549445257 244494191 584058062 1078897549 -289987065 1030107689 -889123179 -2007516372 -65887478 -1521321529 578721378 -868094021 -132791755 2079678022 -160637826 -996693312 -1437742257 -1622927679 -1028905841 -317502747 688659108 24767479 -439912791 1579182600 1848989453 2037305148 452184840 102100271 554226723 -2118182298 -2037378844 -1317343969
+c values: -1354486744
+input ends
+
+error: Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+terminate called after throwing an instance of 'std::logic_error'
+  what():  Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+ERROR: Failed: RSSL_deepstate_test_factor_to_dummy_cpp_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp/factor_to_dummy_cpp_output/339d62c26c82f45a7cb2fca4cbdf16c4952f8e1e.fail failed

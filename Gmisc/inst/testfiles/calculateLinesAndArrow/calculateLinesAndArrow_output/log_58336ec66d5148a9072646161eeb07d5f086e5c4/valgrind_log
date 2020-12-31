@@ -1,0 +1,360 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./calculateLinesAndArrow_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow/calculateLinesAndArrow_output/58336ec66d5148a9072646161eeb07d5f086e5c4.fail</line>
+</preamble>
+
+<pid>270249</pid>
+<ppid>270248</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow/calculateLinesAndArrow_output/log_58336ec66d5148a9072646161eeb07d5f086e5c4/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./calculateLinesAndArrow_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow/calculateLinesAndArrow_output/58336ec66d5148a9072646161eeb07d5f086e5c4.fail</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.025 </time>
+</status>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:09.525 </time>
+</status>
+
+<error>
+  <unique>0x9</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>8 bytes in 1 blocks are definitely lost in loss record 10 of 1,323</text>
+    <leakedbytes>8</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D060F7</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::initialize(int, char const* const*, bool, bool, bool)</fn>
+      <dir>/tmp/RtmpAPDRvx/R.INSTALL2c66eb2c3545f3/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>198</line>
+    </frame>
+    <frame>
+      <ip>0x4D06483</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/tmp/RtmpAPDRvx/R.INSTALL2c66eb2c3545f3/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x409B73</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow/calculateLinesAndArrow_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Gmisc_deepstate_test_calculateLinesAndArrow_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow</dir>
+      <file>calculateLinesAndArrow_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow/calculateLinesAndArrow_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Gmisc_deepstate_test_calculateLinesAndArrow_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow</dir>
+      <file>calculateLinesAndArrow_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DC78</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow/calculateLinesAndArrow_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DF19</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow/calculateLinesAndArrow_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DFF4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow/calculateLinesAndArrow_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow/calculateLinesAndArrow_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x1f</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>66 bytes in 1 blocks are possibly lost in loss record 32 of 1,323</text>
+    <leakedbytes>66</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E23308</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator&lt;char&gt; const&amp;)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E24FB8</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>char* std::string::_S_construct&lt;char const*&gt;(char const*, char const*, std::allocator&lt;char&gt; const&amp;, std::forward_iterator_tag)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E25484</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::basic_string(char const*, std::allocator&lt;char&gt; const&amp;)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E06188</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::logic_error::logic_error(char const*)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E0620C</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::length_error::length_error(char const*)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D21EDF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/src/Gmisc.so</obj>
+      <fn>calculateLinesAndArrow(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double, double, double, int) [clone .cold]</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/src</dir>
+      <file>bezierArrowFn.cpp</file>
+      <line>85</line>
+    </frame>
+    <frame>
+      <ip>0x40A974</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow/calculateLinesAndArrow_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Gmisc_deepstate_test_calculateLinesAndArrow_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow</dir>
+      <file>calculateLinesAndArrow_DeepState_TestHarness.cpp</file>
+      <line>50</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow/calculateLinesAndArrow_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Gmisc_deepstate_test_calculateLinesAndArrow_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow</dir>
+      <file>calculateLinesAndArrow_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DC78</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow/calculateLinesAndArrow_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DF19</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow/calculateLinesAndArrow_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DFF4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow/calculateLinesAndArrow_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x33</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>144 bytes in 1 blocks are possibly lost in loss record 52 of 1,323</text>
+    <leakedbytes>144</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4DDE2E3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>__cxa_allocate_exception</fn>
+    </frame>
+    <frame>
+      <ip>0x4D21ECD</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/src/Gmisc.so</obj>
+      <fn>calculateLinesAndArrow(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double, double, double, int) [clone .cold]</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/src</dir>
+      <file>bezierArrowFn.cpp</file>
+      <line>85</line>
+    </frame>
+    <frame>
+      <ip>0x40A974</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow/calculateLinesAndArrow_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Gmisc_deepstate_test_calculateLinesAndArrow_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow</dir>
+      <file>calculateLinesAndArrow_DeepState_TestHarness.cpp</file>
+      <line>50</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow/calculateLinesAndArrow_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Gmisc_deepstate_test_calculateLinesAndArrow_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow</dir>
+      <file>calculateLinesAndArrow_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DC78</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow/calculateLinesAndArrow_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DF19</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow/calculateLinesAndArrow_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DFF4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow/calculateLinesAndArrow_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow/calculateLinesAndArrow_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xb3</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>1,025 bytes in 1 blocks are definitely lost in loss record 180 of 1,323</text>
+    <leakedbytes>1025</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E783AF</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::reserve(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D04C55</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>MemBuf::MemBuf(int)</fn>
+      <dir>/tmp/RtmpAPDRvx/R.INSTALL2c66eb2c3545f3/RInside/src</dir>
+      <file>MemBuf.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x4D06467</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/tmp/RtmpAPDRvx/R.INSTALL2c66eb2c3545f3/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>56</line>
+    </frame>
+    <frame>
+      <ip>0x409B73</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow/calculateLinesAndArrow_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Gmisc_deepstate_test_calculateLinesAndArrow_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow</dir>
+      <file>calculateLinesAndArrow_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow/calculateLinesAndArrow_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Gmisc_deepstate_test_calculateLinesAndArrow_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow</dir>
+      <file>calculateLinesAndArrow_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DC78</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow/calculateLinesAndArrow_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DF19</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow/calculateLinesAndArrow_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DFF4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow/calculateLinesAndArrow_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Gmisc/inst/testfiles/calculateLinesAndArrow/calculateLinesAndArrow_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:10.318 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

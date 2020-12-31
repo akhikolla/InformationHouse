@@ -1,0 +1,243 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./cdm_rcpp_irt_predict_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/CDM/inst/testfiles/cdm_rcpp_irt_predict/cdm_rcpp_irt_predict_output/844c4ca1333e8d869b5b271438a7aa32e7e23836.crash</line>
+</preamble>
+
+<pid>300705</pid>
+<ppid>300704</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/CDM/inst/testfiles/cdm_rcpp_irt_predict/cdm_rcpp_irt_predict_output/log_844c4ca1333e8d869b5b271438a7aa32e7e23836/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./cdm_rcpp_irt_predict_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/CDM/inst/testfiles/cdm_rcpp_irt_predict/cdm_rcpp_irt_predict_output/844c4ca1333e8d869b5b271438a7aa32e7e23836.crash</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.026 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D4728C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CDM/src/CDM.so</obj>
+      <fn>cdm_rcpp_irt_predict(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CDM/src</dir>
+      <file>cdm_rcpp_irt_predict.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x40A3B3</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CDM/inst/testfiles/cdm_rcpp_irt_predict/cdm_rcpp_irt_predict_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_CDM_deepstate_test_cdm_rcpp_irt_predict_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CDM/inst/testfiles/cdm_rcpp_irt_predict</dir>
+      <file>cdm_rcpp_irt_predict_DeepState_TestHarness.cpp</file>
+      <line>36</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CDM/inst/testfiles/cdm_rcpp_irt_predict/cdm_rcpp_irt_predict_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_CDM_deepstate_test_cdm_rcpp_irt_predict_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CDM/inst/testfiles/cdm_rcpp_irt_predict</dir>
+      <file>cdm_rcpp_irt_predict_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E0D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CDM/inst/testfiles/cdm_rcpp_irt_predict/cdm_rcpp_irt_predict_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E379</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CDM/inst/testfiles/cdm_rcpp_irt_predict/cdm_rcpp_irt_predict_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E454</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CDM/inst/testfiles/cdm_rcpp_irt_predict/cdm_rcpp_irt_predict_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CDM/inst/testfiles/cdm_rcpp_irt_predict/cdm_rcpp_irt_predict_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x8b5ba88 is 0 bytes after a block of size 440 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x40F70D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CDM/inst/testfiles/cdm_rcpp_irt_predict/cdm_rcpp_irt_predict_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector(int const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>130</line>
+    </frame>
+    <frame>
+      <ip>0x407DC5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CDM/inst/testfiles/cdm_rcpp_irt_predict/cdm_rcpp_irt_predict_DeepState_TestHarness</obj>
+      <fn>RcppDeepState_NumericVector()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppDeepState/include/RcppDeepState.h</file>
+      <line>43</line>
+    </frame>
+    <frame>
+      <ip>0x409D84</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CDM/inst/testfiles/cdm_rcpp_irt_predict/cdm_rcpp_irt_predict_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_CDM_deepstate_test_cdm_rcpp_irt_predict_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CDM/inst/testfiles/cdm_rcpp_irt_predict</dir>
+      <file>cdm_rcpp_irt_predict_DeepState_TestHarness.cpp</file>
+      <line>20</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CDM/inst/testfiles/cdm_rcpp_irt_predict/cdm_rcpp_irt_predict_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_CDM_deepstate_test_cdm_rcpp_irt_predict_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CDM/inst/testfiles/cdm_rcpp_irt_predict</dir>
+      <file>cdm_rcpp_irt_predict_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E0D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CDM/inst/testfiles/cdm_rcpp_irt_predict/cdm_rcpp_irt_predict_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E379</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CDM/inst/testfiles/cdm_rcpp_irt_predict/cdm_rcpp_irt_predict_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E454</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CDM/inst/testfiles/cdm_rcpp_irt_predict/cdm_rcpp_irt_predict_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CDM/inst/testfiles/cdm_rcpp_irt_predict/cdm_rcpp_irt_predict_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<fatal_signal>
+  <tid>1</tid>
+  <signo>11</signo>
+  <signame>SIGSEGV</signame>
+  <sicode>2</sicode>
+  <event>Bad permissions for mapped region</event>
+  <siaddr>0xA659028</siaddr>
+  <stack>
+    <frame>
+      <ip>0x4D4728C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CDM/src/CDM.so</obj>
+      <fn>cdm_rcpp_irt_predict(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CDM/src</dir>
+      <file>cdm_rcpp_irt_predict.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x40A3B3</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CDM/inst/testfiles/cdm_rcpp_irt_predict/cdm_rcpp_irt_predict_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_CDM_deepstate_test_cdm_rcpp_irt_predict_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CDM/inst/testfiles/cdm_rcpp_irt_predict</dir>
+      <file>cdm_rcpp_irt_predict_DeepState_TestHarness.cpp</file>
+      <line>36</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CDM/inst/testfiles/cdm_rcpp_irt_predict/cdm_rcpp_irt_predict_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_CDM_deepstate_test_cdm_rcpp_irt_predict_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CDM/inst/testfiles/cdm_rcpp_irt_predict</dir>
+      <file>cdm_rcpp_irt_predict_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E0D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CDM/inst/testfiles/cdm_rcpp_irt_predict/cdm_rcpp_irt_predict_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E379</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CDM/inst/testfiles/cdm_rcpp_irt_predict/cdm_rcpp_irt_predict_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E454</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CDM/inst/testfiles/cdm_rcpp_irt_predict/cdm_rcpp_irt_predict_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CDM/inst/testfiles/cdm_rcpp_irt_predict/cdm_rcpp_irt_predict_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</fatal_signal>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:24.319 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>251831</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:52.554 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

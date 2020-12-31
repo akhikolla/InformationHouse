@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>Quick Start Guide - jiebaR</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#header {
+text-align: center;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Quick Start Guide - jiebaR</h1>
+
+
+
+<p><a href="https://github.com/qinwf/jiebaR">Chinese Version</a></p>
+<p>This is a package for Chinese text segmentation, keyword extraction and speech tagging.</p>
+<div id="example" class="section level2">
+<h2>Example</h2>
+<div id="text-segmentation" class="section level3">
+<h3>Text Segmentation</h3>
+<p>You can use <code>worker()</code> to initialize a worker, and then use <code>[]</code> or <code>segment()</code> to do the segmentation.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(jiebaR)</a></code></pre></div>
+<pre><code>## Loading required package: jiebaRD</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co">##  Using default settings to initialize a worker.</span></a>
+<a class="sourceLine" id="cb3-2" title="2">cutter =<span class="st"> </span><span class="kw">worker</span>()</a>
+<a class="sourceLine" id="cb3-3" title="3"></a>
+<a class="sourceLine" id="cb3-4" title="4"><span class="co">###  Note: Can not display Chinese characters here.</span></a>
+<a class="sourceLine" id="cb3-5" title="5"></a>
+<a class="sourceLine" id="cb3-6" title="6"><span class="kw">segment</span>( <span class="st">&quot;This is a good day!&quot;</span> , cutter )</a></code></pre></div>
+<pre><code>## [1] &quot;This&quot; &quot;is&quot;   &quot;a&quot;    &quot;good&quot; &quot;day&quot;</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co">## OR cutter[&quot;This is a good day!&quot;]</span></a></code></pre></div>
+<p>You can use file path as input.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">segment</span>( <span class="st">&quot;./temp.dat&quot;</span> , cutter ) <span class="co">### Auto encoding detection.</span></a></code></pre></div>
+<pre><code>## [1] &quot;temp&quot; &quot;dat&quot;</code></pre>
+<p>You can initialize multiple engines simultaneously.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">cutter2 =<span class="st"> </span><span class="kw">worker</span>(<span class="dt">type  =</span> <span class="st">&quot;mix&quot;</span>,</a>
+<a class="sourceLine" id="cb8-2" title="2">                 <span class="dt">dict =</span> <span class="st">&quot;some_path/jieba.dict.utf8&quot;</span>,</a>
+<a class="sourceLine" id="cb8-3" title="3">                 <span class="dt">hmm   =</span> <span class="st">&quot;some_path/hmm_model.utf8&quot;</span>,</a>
+<a class="sourceLine" id="cb8-4" title="4">                 <span class="dt">user  =</span> <span class="st">&quot;some_path/test.dict.utf8&quot;</span>,</a>
+<a class="sourceLine" id="cb8-5" title="5">                 <span class="dt">detect=</span>T,      <span class="dt">symbol =</span> F,</a>
+<a class="sourceLine" id="cb8-6" title="6">                 <span class="dt">lines =</span> <span class="fl">1e+05</span>, <span class="dt">output =</span> <span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb8-7" title="7">                 )</a>
+<a class="sourceLine" id="cb8-8" title="8">cutter2   <span class="co">### Print information of worker</span></a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">Worker Type<span class="op">:</span><span class="st">  </span>Mix Segment</a>
+<a class="sourceLine" id="cb9-2" title="2"></a>
+<a class="sourceLine" id="cb9-3" title="3">Detect Encoding <span class="op">:</span><span class="st">  </span><span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb9-4" title="4">Default Encoding<span class="op">:</span><span class="st">  </span>UTF<span class="dv">-8</span></a>
+<a class="sourceLine" id="cb9-5" title="5">Keep Symbols    <span class="op">:</span><span class="st">  </span><span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb9-6" title="6">Output Path     <span class="op">:</span></a>
+<a class="sourceLine" id="cb9-7" title="7">Write File      <span class="op">:</span><span class="st">  </span><span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb9-8" title="8">Max Read Lines  <span class="op">:</span><span class="st">  </span><span class="fl">1e+05</span></a>
+<a class="sourceLine" id="cb9-9" title="9"></a>
+<a class="sourceLine" id="cb9-10" title="10">Fixed Model Components<span class="op">:</span></a>
+<a class="sourceLine" id="cb9-11" title="11"></a>
+<a class="sourceLine" id="cb9-12" title="12"><span class="er">$</span>dict</a>
+<a class="sourceLine" id="cb9-13" title="13">[<span class="dv">1</span>] <span class="st">&quot;dict/jieba.dict.utf8&quot;</span></a>
+<a class="sourceLine" id="cb9-14" title="14"></a>
+<a class="sourceLine" id="cb9-15" title="15"><span class="op">$</span>hmm</a>
+<a class="sourceLine" id="cb9-16" title="16">[<span class="dv">1</span>] <span class="st">&quot;dict/hmm_model.utf8&quot;</span></a>
+<a class="sourceLine" id="cb9-17" title="17"></a>
+<a class="sourceLine" id="cb9-18" title="18"><span class="op">$</span>user</a>
+<a class="sourceLine" id="cb9-19" title="19">[<span class="dv">1</span>] <span class="st">&quot;dict/test.dict.utf8&quot;</span></a>
+<a class="sourceLine" id="cb9-20" title="20"></a>
+<a class="sourceLine" id="cb9-21" title="21"><span class="op">$</span>detect <span class="op">$</span>encoding <span class="op">$</span>symbol <span class="op">$</span>output <span class="op">$</span>write <span class="op">$</span>lines can be reset.</a></code></pre></div>
+<p>The public settings of the model can be modified by <code>$</code> <code>cutter$symbol = T</code>. Private settings are fixed when the engine is initialized, and you can get them by <code>cutter$PrivateVarible</code>.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">cutter<span class="op">$</span>encoding</a></code></pre></div>
+<pre><code>## [1] &quot;UTF-8&quot;</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">cutter<span class="op">$</span>detect</a></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">cutter<span class="op">$</span>detect =<span class="st"> </span>F</a>
+<a class="sourceLine" id="cb14-2" title="2">cutter<span class="op">$</span>detect</a></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<p>You can use custom dictionar. jiebaR is able to identify new words, but adding your own new words can ensure a higher accuracy. <a href="https://github.com/studyzy/imewlconverter">imewlconverter</a> is a good tools for dictionary construction.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">show_dictpath</span>() <span class="co">### Show path</span></a></code></pre></div>
+<pre><code>## [1] &quot;/Library/Frameworks/R.framework/Versions/3.6/Resources/library/jiebaRD/dict&quot;</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">?<span class="kw">edit_dict</span>()   <span class="co">### For more information</span></a></code></pre></div>
+</div>
+<div id="speech-tagging" class="section level3">
+<h3>Speech Tagging</h3>
+<p>Speech Tagging function <code>[.tagger</code> and <code>tagging</code> tag each word in a sentence after segmentation, using labels compatible with ictclas.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">words =<span class="st"> &quot;hello world&quot;</span></a>
+<a class="sourceLine" id="cb19-2" title="2">tagger =<span class="st"> </span><span class="kw">worker</span>(<span class="st">&quot;tag&quot;</span>)</a>
+<a class="sourceLine" id="cb19-3" title="3">tagger[words]</a></code></pre></div>
+<pre><code>##     eng     eng 
+## &quot;hello&quot; &quot;world&quot;</code></pre>
+</div>
+<div id="keyword-extraction" class="section level3">
+<h3>Keyword Extraction</h3>
+<p>Keyword Extraction worker use MixSegment model to cut word and use TF-IDF algorithm to find the keywords.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">keys =<span class="st"> </span><span class="kw">worker</span>(<span class="st">&quot;keywords&quot;</span>, <span class="dt">topn =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb21-2" title="2">keys <span class="op">&lt;=</span><span class="st"> &quot;words of fun&quot;</span></a></code></pre></div>
+<pre><code>## 11.7392 
+##   &quot;fun&quot;</code></pre>
+</div>
+<div id="simhash-distance" class="section level3">
+<h3>Simhash Distance</h3>
+<p>Simhash worker can do keyword extraction and find the keywords from two inputs, and then computes Hamming distance between them.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"> words =<span class="st"> &quot;hello world&quot;</span></a>
+<a class="sourceLine" id="cb23-2" title="2"> simhasher =<span class="st"> </span><span class="kw">worker</span>(<span class="st">&quot;simhash&quot;</span>,<span class="dt">topn=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb23-3" title="3"> simhasher[words]</a></code></pre></div>
+<pre><code>## $simhash
+## [1] &quot;3804341492420753273&quot;
+## 
+## $keyword
+## 11.7392 
+## &quot;hello&quot;</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw">distance</span>(<span class="st">&quot;hello world&quot;</span> , <span class="st">&quot;hello world!&quot;</span> , simhasher)</a></code></pre></div>
+<pre><code>## $distance
+## [1] 0
+## 
+## $lhs
+## 11.7392 
+## &quot;hello&quot; 
+## 
+## $rhs
+## 11.7392 
+## &quot;hello&quot;</code></pre>
+</div>
+</div>
+<div id="more-docs" class="section level2">
+<h2>More Docs</h2>
+<p>See <a href="https://jiebaR.qinwf.com/" class="uri">https://jiebaR.qinwf.com/</a></p>
+</div>
+<div id="more-information-and-issues" class="section level2">
+<h2>More Information and Issues</h2>
+<p><a href="https://github.com/qinwf/jiebaR">https://github.com/qinwf/jiebaR</a></p>
+<p><a href="https://github.com/yanyiwu/cppjieba">https://github.com/yanyiwu/cppjieba</a></p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

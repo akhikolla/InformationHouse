@@ -1,0 +1,52 @@
+Changes in robmixglm version 1.2-0
+
+  o added negative binomial distribution
+
+  o fixed bug causing too many displays of failure to find starting values message
+
+  o increased number of random starting values to 50 to make finding the global maximum more likely
+
+  o improved calculation of standard errors
+
+Changes in robmixglm version 1.1-1
+  
+  o use multiple cores for determining starting values (if this causes problems then set cores=1)
+
+  o tidied up code for testing outliers
+
+  o improved error handling in outlier test
+
+  o fixed bug in starting values for gaussian models
+
+Changes in robmixglm version 1.1-0
+
+  o added predict method
+
+  o implemented bootstrap for testing for outliers using multiple cores (if this causes problems then set cores=1)
+
+  o removed progress show from outlier test (this won't work properly with multiple cores)
+  
+  o set examples to donttest to satisfy CRAN checks
+ 
+Changes in robmixglm version 1.0-4
+
+  o fixed numerical problems
+
+  o improved selection of starting values, especially with small number of observations
+
+Changes in robmixglm version 1.0-3
+
+  o fixed error due to changes in class() behaviour by replacing with inherits when appropriate
+
+Changes in robmixglm version 1.0-2
+
+  o added extra sentences in description
+
+  o changed dontrun to donttest
+
+  o changed several examples to allow running as part of check
+
+Changes in robmixglm version 1.0-1
+
+  o first release
+

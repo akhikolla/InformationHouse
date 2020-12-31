@@ -1,0 +1,361 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./fssf_b_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b/fssf_b_output/9fd0220b592c3fe6a3d0f95a3bf363af27f5900e.fail</line>
+</preamble>
+
+<pid>410403</pid>
+<ppid>410402</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b/fssf_b_output/log_9fd0220b592c3fe6a3d0f95a3bf363af27f5900e/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./fssf_b_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b/fssf_b_output/9fd0220b592c3fe6a3d0f95a3bf363af27f5900e.fail</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.041 </time>
+</status>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.086 </time>
+</status>
+
+<error>
+  <unique>0x9</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>8 bytes in 1 blocks are definitely lost in loss record 10 of 1,321</text>
+    <leakedbytes>8</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D060F7</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::initialize(int, char const* const*, bool, bool, bool)</fn>
+      <dir>/tmp/RtmpAPDRvx/R.INSTALL2c66eb2c3545f3/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>198</line>
+    </frame>
+    <frame>
+      <ip>0x4D06483</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/tmp/RtmpAPDRvx/R.INSTALL2c66eb2c3545f3/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x409B73</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b/fssf_b_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_FSSF_deepstate_test_fssf_b_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b</dir>
+      <file>fssf_b_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b/fssf_b_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_FSSF_deepstate_test_fssf_b_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b</dir>
+      <file>fssf_b_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D388</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b/fssf_b_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D629</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b/fssf_b_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D704</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b/fssf_b_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b/fssf_b_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x31</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>136 bytes in 1 blocks are possibly lost in loss record 50 of 1,321</text>
+    <leakedbytes>136</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4E9E2E3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>__cxa_allocate_exception</fn>
+    </frame>
+    <frame>
+      <ip>0x4E93401</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>__cxa_throw_bad_array_new_length</fn>
+    </frame>
+    <frame>
+      <ip>0x4D25069</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/src/FSSF.so</obj>
+      <fn>annAllocPts(int, int) [clone .cold]</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/src</dir>
+      <file>ANN.cpp</file>
+      <line>126</line>
+    </frame>
+    <frame>
+      <ip>0x4D2ABA0</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/src/FSSF.so</obj>
+      <fn>fssf_b(int, int, int, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/src</dir>
+      <file>FSSF-b.cpp</file>
+      <line>78</line>
+    </frame>
+    <frame>
+      <ip>0x40A420</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b/fssf_b_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_FSSF_deepstate_test_fssf_b_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b</dir>
+      <file>fssf_b_DeepState_TestHarness.cpp</file>
+      <line>38</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b/fssf_b_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_FSSF_deepstate_test_fssf_b_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b</dir>
+      <file>fssf_b_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D388</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b/fssf_b_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D629</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b/fssf_b_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D704</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b/fssf_b_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b/fssf_b_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xb0</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>1,025 bytes in 1 blocks are definitely lost in loss record 177 of 1,321</text>
+    <leakedbytes>1025</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4F383AF</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::reserve(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D04C55</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>MemBuf::MemBuf(int)</fn>
+      <dir>/tmp/RtmpAPDRvx/R.INSTALL2c66eb2c3545f3/RInside/src</dir>
+      <file>MemBuf.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x4D06467</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/tmp/RtmpAPDRvx/R.INSTALL2c66eb2c3545f3/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>56</line>
+    </frame>
+    <frame>
+      <ip>0x409B73</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b/fssf_b_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_FSSF_deepstate_test_fssf_b_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b</dir>
+      <file>fssf_b_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b/fssf_b_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_FSSF_deepstate_test_fssf_b_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b</dir>
+      <file>fssf_b_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D388</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b/fssf_b_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D629</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b/fssf_b_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D704</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b/fssf_b_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b/fssf_b_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x528</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>10,189,255,952 bytes in 1 blocks are possibly lost in loss record 1,321 of 1,321</text>
+    <leakedbytes>10189255952</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483C583</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new[](unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D281E2</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/src/FSSF.so</obj>
+      <fn>annAllocPts(int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/src</dir>
+      <file>ANN.cpp</file>
+      <line>126</line>
+    </frame>
+    <frame>
+      <ip>0x4D2ABA0</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/src/FSSF.so</obj>
+      <fn>fssf_b(int, int, int, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/src</dir>
+      <file>FSSF-b.cpp</file>
+      <line>78</line>
+    </frame>
+    <frame>
+      <ip>0x40A420</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b/fssf_b_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_FSSF_deepstate_test_fssf_b_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b</dir>
+      <file>fssf_b_DeepState_TestHarness.cpp</file>
+      <line>38</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b/fssf_b_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_FSSF_deepstate_test_fssf_b_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b</dir>
+      <file>fssf_b_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D388</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b/fssf_b_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D629</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b/fssf_b_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D704</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b/fssf_b_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b/fssf_b_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:12.143 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

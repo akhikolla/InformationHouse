@@ -1,0 +1,16 @@
+WARNING: No test specified, defaulting to first test defined (EFAtools_deepstate_test_parallel_sim_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/EFAtools/inst/testfiles/parallel_sim/parallel_sim_output/0955e9db358bf8f287aaf481982aa4dad3fbcd6f.fail`
+TRACE: Running: EFAtools_deepstate_test_parallel_sim_test from /home/akhila/fuzzer_packages/fuzzedpackages/EFAtools/inst/testfiles/parallel_sim/parallel_sim_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+n_datasets values: 954479852
+n_vars values: -194229631
+N values: -1020009618
+eigen_type values: 1482512518
+maxit values: 1767585227
+input ends
+terminate called after throwing an instance of 'std::logic_error'
+  what():  Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+ERROR: Failed: EFAtools_deepstate_test_parallel_sim_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/EFAtools/inst/testfiles/parallel_sim/parallel_sim_output/0955e9db358bf8f287aaf481982aa4dad3fbcd6f.fail failed

@@ -1,0 +1,27 @@
+Package: fastAdaboost
+Type: Package
+Title: a Fast Implementation of Adaboost
+Description: Implements Adaboost based on C++ backend code.
+             This is blazingly fast and especially useful for large, in memory data sets. 
+             The package uses decision trees as weak classifiers. Once the classifiers
+             have been trained, they can be used to predict new data. 
+             Currently, we support only binary classification tasks.
+             The package implements the Adaboost.M1 algorithm and the real
+             Adaboost(SAMME.R) algorithm.
+Version: 1.0.0
+Date: 2016-02-23
+Author: Sourav Chatterjee [aut, cre]
+Maintainer: Sourav Chatterjee <souravc83@gmail.com>
+License: MIT + file LICENSE
+URL: https://github.com/souravc83/fastAdaboost
+BugReports: https://github.com/souravc83/fastAdaboost/issues
+Depends: R (>= 3.1.2)
+Imports: Rcpp, rpart
+Suggests: testthat, knitr, MASS
+LazyData: yes
+LinkingTo: Rcpp (>= 0.12.0)
+RoxygenNote: 5.0.1
+NeedsCompilation: yes
+Packaged: 2016-02-26 04:51:01 UTC; sourav
+Repository: CRAN
+Date/Publication: 2016-02-28 09:59:32

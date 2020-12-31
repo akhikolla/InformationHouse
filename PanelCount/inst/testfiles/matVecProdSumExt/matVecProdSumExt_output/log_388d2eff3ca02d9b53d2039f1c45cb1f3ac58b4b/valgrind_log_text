@@ -1,0 +1,22 @@
+WARNING: No test specified, defaulting to first test defined (PanelCount_deepstate_test_matVecProdSumExt_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/PanelCount/inst/testfiles/matVecProdSumExt/matVecProdSumExt_output/388d2eff3ca02d9b53d2039f1c45cb1f3ac58b4b.fail`
+TRACE: Running: PanelCount_deepstate_test_matVecProdSumExt_test from /home/akhila/fuzzer_packages/fuzzedpackages/PanelCount/inst/testfiles/matVecProdSumExt/matVecProdSumExt_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+m values:     nan    -inf    -inf     nan    -inf 1.55275e+40
+
+Missing value
+ext values: -5.02292e+117 -5.72942e+144 3.57164e+306 5.10745e-90 -2.60609e-23 -1.01324e-174 1.23214e-272 -2.47343e+92 1.60774e-28 -2.46712e+282 1.54163e+153 1.27627e-286 nan 5.05724e-294 2.124e-163 -9.51323e-197 3.19247e-184 nan nan 1.80254e+45 -1.19985e-167 nan -2.85375e-285 -4.96182e+212 2.93453e+51 -3.48461e-264 -2.09115e-209 2.70315e+165 -4.35123e-245 -4.7888e-91 -6.15607e-134 1.58392e+299 1.75992e-188 2.92513e-276 2.05444e-194 -8.74339e-139 3.22331e-237 6.20752 8.27412e+256 6.6726e+42 1.74061e+94 -1.04615e+10 8.21606e-152 2.27705e+266 1.32765e-258 -6.58791e-221 -4.94509e-161 8.46075e+220 0
+ext2 values: -1.34852e+122 1.76776e+51 6.26373 -9.96287e-111 -8.23755e+198 -9.01896e-271 7.90107e-59 -7.51099e-234 -9.32149e-62 2.66297e-21 2.85695e-49 4.90458e-204 -1.3085e-253 -1.07333e-20 -8.85386e+100 -5.65013e+262 3.67043e+302
+v values: -1.75246e-12 2.55794e-126 2.14792e-37 1.00923e+150 -2.10253e+301 4.60655e+48
+Missing value
+group values: -4.24328e-178 -1.1818e+60 1.39605e-232 1.38165e+132 -3.09313e-292 -5.95911e+123 -8.81075e+220 2.98751e-128 -4.14203e+177 1.16556e-185 -3.07168e-291 -1.09793e+07 -1.81481e+239 1.91904e+115 11596.7 8.39713e-79 -2.01498e+245 nan -1.64586e-294 -2.3902e-229 -2.7598e-36 6.88627e-81 8.14517e-29 nan -5.55964e+86 3.9963e+126 2.79426e-119 5.60965e-130 2.09906e+276 1.3265e-76 -8.82048e+18 5.0246e-302 -1.20202e-224 6.40738e+283 1.3285e-98 -3.96912e-144 -2.45962e+150 -2.83475e+92 2.11904e-258 2.57947e-127 2.29866e+40 -8.75105e+35 1.60369e+187 4.83099e+106 3.52563e-126 4.91556e+38 -3.63523e+91 -2.36985e-12 8.6167e+103 inf
+input ends
+
+error: Mat::col(): index out of bounds
+terminate called after throwing an instance of 'std::logic_error'
+  what():  Mat::col(): index out of bounds
+ERROR: Failed: PanelCount_deepstate_test_matVecProdSumExt_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/PanelCount/inst/testfiles/matVecProdSumExt/matVecProdSumExt_output/388d2eff3ca02d9b53d2039f1c45cb1f3ac58b4b.fail failed

@@ -1,0 +1,35 @@
+forecastSNSTS 1.3-0
+===================
+
+ o Fixed a bug in YW estimator. 1/(n-k) instead of 1/n was used.
+ o Updated the documentation of predCoef to reflect the recent fix.
+ o Updated references to the paper.
+
+
+forecastSNSTS 1.2-0
+===================
+
+ o Added MAPE function.
+ o Added parameters trimLo and trimUp to MSPE function.
+
+
+forecastSNSTS 1.1-1
+===================
+
+ o Fixed a small bug in function f and corresponding example.
+
+
+forecastSNSTS 1.1-0
+===================
+
+ o Added function acfARp to compute autocovariances of AR(p) processes.
+ o Added function f that can be used to verify assumption (10) from
+   Theorem 3.1 in Kley et al. (2016).
+
+
+forecastSNSTS 1.0-0
+===================
+
+ o two functions to compute linear prediction coefficients and mean squared
+   prediction errors.
+ o demo on how to analyse, using a simulated tvARMA(1,1) time series

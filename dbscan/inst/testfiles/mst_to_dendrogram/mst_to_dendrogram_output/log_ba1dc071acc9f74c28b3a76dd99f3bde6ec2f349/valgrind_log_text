@@ -1,0 +1,18 @@
+WARNING: No test specified, defaulting to first test defined (dbscan_deepstate_test_mst_to_dendrogram_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/dbscan/inst/testfiles/mst_to_dendrogram/mst_to_dendrogram_output/ba1dc071acc9f74c28b3a76dd99f3bde6ec2f349.fail`
+TRACE: Running: dbscan_deepstate_test_mst_to_dendrogram_test from /home/akhila/fuzzer_packages/fuzzedpackages/dbscan/inst/testfiles/mst_to_dendrogram/mst_to_dendrogram_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+mst values:     inf
+   -inf
+2.46562e-85
+    nan
+1.78433e+169
+
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Column index is out of bounds: [index=1; column extent=1].
+ERROR: Failed: dbscan_deepstate_test_mst_to_dendrogram_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/dbscan/inst/testfiles/mst_to_dendrogram/mst_to_dendrogram_output/ba1dc071acc9f74c28b3a76dd99f3bde6ec2f349.fail failed

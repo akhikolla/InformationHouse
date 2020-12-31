@@ -1,0 +1,93 @@
+INFO: Starting fuzzing
+WARNING: No test specified, defaulting to first test defined (bartBMA_deepstate_test_secondKindStirlingNumber_test)
+input starts
+EXTERNAL: qs v0.23.4.
+
+n values: 467495432
+k values: 1827680409
+input ends
+terminate called after throwing an instance of 'std::range_error'
+  what():  Sterling number undefined for k>n
+ERROR: Failed: bartBMA_deepstate_test_secondKindStirlingNumber_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/bartBMA/inst/testfiles/secondKindStirlingNumber/secondKindStirlingNumber_output/f4f026bb661df3eec5ce7ad1eeb21d1010136cec.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+n values: -498905818
+k values: 569042049
+input ends
+terminate called after throwing an instance of 'std::range_error'
+  what():  Sterling number undefined for k>n
+ERROR: Failed: bartBMA_deepstate_test_secondKindStirlingNumber_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/bartBMA/inst/testfiles/secondKindStirlingNumber/secondKindStirlingNumber_output/16c2090b03ee7eada3a5aea115178da936c3fcff.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+n values: -293123844
+k values: -555281357
+input ends
+
+error: Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+terminate called after throwing an instance of 'std::logic_error'
+  what():  Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+ERROR: Failed: bartBMA_deepstate_test_secondKindStirlingNumber_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/bartBMA/inst/testfiles/secondKindStirlingNumber/secondKindStirlingNumber_output/5ea61616a202ea9c4369e2aa65bf512afc00226d.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+n values: -1105761949
+k values: 304498753
+input ends
+terminate called after throwing an instance of 'std::range_error'
+  what():  Sterling number undefined for k>n
+ERROR: Failed: bartBMA_deepstate_test_secondKindStirlingNumber_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/bartBMA/inst/testfiles/secondKindStirlingNumber/secondKindStirlingNumber_output/31772692d69db257a0f6688505d9c67f7f6950b2.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+n values: 954479852
+k values: -194229631
+input ends
+
+error: Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+terminate called after throwing an instance of 'std::logic_error'
+  what():  Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+ERROR: Failed: bartBMA_deepstate_test_secondKindStirlingNumber_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/bartBMA/inst/testfiles/secondKindStirlingNumber/secondKindStirlingNumber_output/f5a6fb7e40866a4c9d01bfd1b01cfcbf25510cf4.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+n values: 1344097580
+k values: -1433424706
+input ends
+
+error: Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+terminate called after throwing an instance of 'std::logic_error'
+  what():  Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+ERROR: Failed: bartBMA_deepstate_test_secondKindStirlingNumber_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/bartBMA/inst/testfiles/secondKindStirlingNumber/secondKindStirlingNumber_output/bd705027e809952cc82c1814c78ce9ca63ac3d31.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+n values: -823343871
+k values: -1944840741
+input ends
+
+error: Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+terminate called after throwing an instance of 'std::logic_error'
+  what():  Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+ERROR: Failed: bartBMA_deepstate_test_secondKindStirlingNumber_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/bartBMA/inst/testfiles/secondKindStirlingNumber/secondKindStirlingNumber_output/eae8d42f8fee11d248881616f928ae289016536d.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+n values: -469638059
+k values: -912555523
+input ends
+
+error: Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+terminate called after throwing an instance of 'std::logic_error'
+  what():  Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+ERROR: Failed: bartBMA_deepstate_test_secondKindStirlingNumber_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/bartBMA/inst/testfiles/secondKindStirlingNumber/secondKindStirlingNumber_output/4f2665f96b628f321dd7d2f2e2f632d71fd74d0a.fail`
+INFO: Done fuzzing! Ran 8 tests (4 tests/second) with 8 failed/0 passed/0 abandoned tests

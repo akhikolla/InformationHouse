@@ -1,0 +1,3 @@
+useDynLib(cgAUC)
+exportPattern("^[[:alpha:]]+")
+importFrom(Rcpp, evalCpp)

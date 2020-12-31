@@ -1,0 +1,259 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./ebb_crossprob_cor_R_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/GBJ/inst/testfiles/ebb_crossprob_cor_R/ebb_crossprob_cor_R_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash</line>
+</preamble>
+
+<pid>432016</pid>
+<ppid>432015</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/inst/testfiles/ebb_crossprob_cor_R/ebb_crossprob_cor_R_output/log_d54768b7cb0aa48ca59c3cb777a9613367bd064c/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./ebb_crossprob_cor_R_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/inst/testfiles/ebb_crossprob_cor_R/ebb_crossprob_cor_R_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.041 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D28A38</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/src/GBJ.so</obj>
+      <fn>push_back</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>stl_vector.h</file>
+      <line>1189</line>
+    </frame>
+    <frame>
+      <ip>0x4D28A38</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/src/GBJ.so</obj>
+      <fn>ebb_crossprob_cor_R(int, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/src</dir>
+      <file>ebb_crossprob_cor_R.cpp</file>
+      <line>555</line>
+    </frame>
+    <frame>
+      <ip>0x40A148</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/inst/testfiles/ebb_crossprob_cor_R/ebb_crossprob_cor_R_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_GBJ_deepstate_test_ebb_crossprob_cor_R_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/inst/testfiles/ebb_crossprob_cor_R</dir>
+      <file>ebb_crossprob_cor_R_DeepState_TestHarness.cpp</file>
+      <line>31</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/inst/testfiles/ebb_crossprob_cor_R/ebb_crossprob_cor_R_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_GBJ_deepstate_test_ebb_crossprob_cor_R_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/inst/testfiles/ebb_crossprob_cor_R</dir>
+      <file>ebb_crossprob_cor_R_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D108</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/inst/testfiles/ebb_crossprob_cor_R/ebb_crossprob_cor_R_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D3A9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/inst/testfiles/ebb_crossprob_cor_R/ebb_crossprob_cor_R_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D484</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/inst/testfiles/ebb_crossprob_cor_R/ebb_crossprob_cor_R_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/inst/testfiles/ebb_crossprob_cor_R/ebb_crossprob_cor_R_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x92c20b0 is 0 bytes after a block of size 640 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x40F3ED</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/inst/testfiles/ebb_crossprob_cor_R/ebb_crossprob_cor_R_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector(int const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>130</line>
+    </frame>
+    <frame>
+      <ip>0x407D75</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/inst/testfiles/ebb_crossprob_cor_R/ebb_crossprob_cor_R_DeepState_TestHarness</obj>
+      <fn>RcppDeepState_NumericVector()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppDeepState/include/RcppDeepState.h</file>
+      <line>43</line>
+    </frame>
+    <frame>
+      <ip>0x409D77</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/inst/testfiles/ebb_crossprob_cor_R/ebb_crossprob_cor_R_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_GBJ_deepstate_test_ebb_crossprob_cor_R_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/inst/testfiles/ebb_crossprob_cor_R</dir>
+      <file>ebb_crossprob_cor_R_DeepState_TestHarness.cpp</file>
+      <line>21</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/inst/testfiles/ebb_crossprob_cor_R/ebb_crossprob_cor_R_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_GBJ_deepstate_test_ebb_crossprob_cor_R_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/inst/testfiles/ebb_crossprob_cor_R</dir>
+      <file>ebb_crossprob_cor_R_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D108</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/inst/testfiles/ebb_crossprob_cor_R/ebb_crossprob_cor_R_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D3A9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/inst/testfiles/ebb_crossprob_cor_R/ebb_crossprob_cor_R_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D484</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/inst/testfiles/ebb_crossprob_cor_R/ebb_crossprob_cor_R_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/inst/testfiles/ebb_crossprob_cor_R/ebb_crossprob_cor_R_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<fatal_signal>
+  <tid>1</tid>
+  <signo>11</signo>
+  <signame>SIGSEGV</signame>
+  <sicode>2</sicode>
+  <event>Bad permissions for mapped region</event>
+  <siaddr>0xA629000</siaddr>
+  <stack>
+    <frame>
+      <ip>0x4D28A38</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/src/GBJ.so</obj>
+      <fn>push_back</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>stl_vector.h</file>
+      <line>1189</line>
+    </frame>
+    <frame>
+      <ip>0x4D28A38</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/src/GBJ.so</obj>
+      <fn>ebb_crossprob_cor_R(int, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/src</dir>
+      <file>ebb_crossprob_cor_R.cpp</file>
+      <line>555</line>
+    </frame>
+    <frame>
+      <ip>0x40A148</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/inst/testfiles/ebb_crossprob_cor_R/ebb_crossprob_cor_R_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_GBJ_deepstate_test_ebb_crossprob_cor_R_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/inst/testfiles/ebb_crossprob_cor_R</dir>
+      <file>ebb_crossprob_cor_R_DeepState_TestHarness.cpp</file>
+      <line>31</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/inst/testfiles/ebb_crossprob_cor_R/ebb_crossprob_cor_R_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_GBJ_deepstate_test_ebb_crossprob_cor_R_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/inst/testfiles/ebb_crossprob_cor_R</dir>
+      <file>ebb_crossprob_cor_R_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D108</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/inst/testfiles/ebb_crossprob_cor_R/ebb_crossprob_cor_R_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D3A9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/inst/testfiles/ebb_crossprob_cor_R/ebb_crossprob_cor_R_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D484</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/inst/testfiles/ebb_crossprob_cor_R/ebb_crossprob_cor_R_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GBJ/inst/testfiles/ebb_crossprob_cor_R/ebb_crossprob_cor_R_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</fatal_signal>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:12.702 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>960866</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:18.621 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

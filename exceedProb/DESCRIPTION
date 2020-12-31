@@ -1,0 +1,19 @@
+Package: exceedProb
+Version: 0.0.1
+Date: 2019-08-25
+Title: Confidence Intervals for Exceedance Probability
+Description: Computes confidence intervals for the exceedance probability of normally distributed estimators. Currently only supports general linear models. Please see Segal (2019) <arXiv:1803.03356> for more information.
+Depends: R (>= 3.1)
+Imports: Rcpp (>= 1.0.2)
+LinkingTo: Rcpp, BH
+Authors@R: person(given = "Brian D.", family = "Segal", email = "segal.brian@gmail.com", role = c("aut", "cre"))
+Author: Brian D. Segal [aut, cre]
+Maintainer: Brian D. Segal <segal.brian@gmail.com>
+License: GPL (>= 3)
+URL: https://github.com/bdsegal/exceedProb
+LazyData: true
+RoxygenNote: 6.1.1
+NeedsCompilation: yes
+Packaged: 2019-08-25 13:41:30 UTC; bsegal
+Repository: CRAN
+Date/Publication: 2019-08-27 07:50:02 UTC

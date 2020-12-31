@@ -1,0 +1,1639 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./ViterbiPP_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_output/7ba657b74c4a07f6114ae151f832884f3f59610a.pass</line>
+</preamble>
+
+<pid>685939</pid>
+<ppid>685938</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_output/log_7ba657b74c4a07f6114ae151f832884f3f59610a/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./ViterbiPP_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_output/7ba657b74c4a07f6114ae151f832884f3f59610a.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.025 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D36052</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>whichmax(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>54</line>
+    </frame>
+    <frame>
+      <ip>0x4D3F866</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>ViterbiPP(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>831</line>
+    </frame>
+    <frame>
+      <ip>0x40AABB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>52</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41EB98</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EE39</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EF14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x1</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D36058</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>whichmax(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x4D3F866</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>ViterbiPP(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>831</line>
+    </frame>
+    <frame>
+      <ip>0x40AABB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>52</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41EB98</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EE39</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EF14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x2</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D3605A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>whichmax(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x4D3F866</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>ViterbiPP(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>831</line>
+    </frame>
+    <frame>
+      <ip>0x40AABB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>52</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41EB98</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EE39</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EF14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x9</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D36052</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>whichmax(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>54</line>
+    </frame>
+    <frame>
+      <ip>0x4D3F980</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>ViterbiPP(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>833</line>
+    </frame>
+    <frame>
+      <ip>0x40AABB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>52</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41EB98</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EE39</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EF14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xa</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D36058</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>whichmax(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x4D3F980</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>ViterbiPP(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>833</line>
+    </frame>
+    <frame>
+      <ip>0x40AABB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>52</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41EB98</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EE39</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EF14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xb</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D3605A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>whichmax(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x4D3F980</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>ViterbiPP(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>833</line>
+    </frame>
+    <frame>
+      <ip>0x40AABB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>52</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41EB98</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EE39</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EF14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x15</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D36052</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>whichmax(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>54</line>
+    </frame>
+    <frame>
+      <ip>0x4D3F765</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>ViterbiPP(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>829</line>
+    </frame>
+    <frame>
+      <ip>0x40AABB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>52</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41EB98</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EE39</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EF14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x16</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D36058</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>whichmax(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x4D3F765</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>ViterbiPP(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>829</line>
+    </frame>
+    <frame>
+      <ip>0x40AABB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>52</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41EB98</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EE39</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EF14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x2c</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D36052</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>whichmax(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>54</line>
+    </frame>
+    <frame>
+      <ip>0x4D3F8F3</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>ViterbiPP(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>832</line>
+    </frame>
+    <frame>
+      <ip>0x40AABB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>52</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41EB98</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EE39</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EF14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x2d</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D36058</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>whichmax(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x4D3F8F3</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>ViterbiPP(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>832</line>
+    </frame>
+    <frame>
+      <ip>0x40AABB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>52</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41EB98</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EE39</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EF14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x32</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D3605A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>whichmax(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x4D3F765</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>ViterbiPP(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>829</line>
+    </frame>
+    <frame>
+      <ip>0x40AABB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>52</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41EB98</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EE39</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EF14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x43</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D36052</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>whichmax(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>54</line>
+    </frame>
+    <frame>
+      <ip>0x4D3F7DC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>ViterbiPP(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>830</line>
+    </frame>
+    <frame>
+      <ip>0x40AABB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>52</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41EB98</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EE39</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EF14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x44</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D36058</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>whichmax(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x4D3F7DC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>ViterbiPP(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>830</line>
+    </frame>
+    <frame>
+      <ip>0x40AABB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>52</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41EB98</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EE39</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EF14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xa0</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D3605A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>whichmax(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x4D3F8F3</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>ViterbiPP(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>832</line>
+    </frame>
+    <frame>
+      <ip>0x40AABB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>52</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41EB98</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EE39</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EF14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xa6</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D3605A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>whichmax(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x4D3F7DC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>ViterbiPP(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>830</line>
+    </frame>
+    <frame>
+      <ip>0x40AABB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>52</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41EB98</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EE39</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EF14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xde</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D36052</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>whichmax(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>54</line>
+    </frame>
+    <frame>
+      <ip>0x4D4019E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>ViterbiPP(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>954</line>
+    </frame>
+    <frame>
+      <ip>0x40AABB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>52</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41EB98</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EE39</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EF14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xdf</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D36058</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>whichmax(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x4D4019E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>ViterbiPP(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>954</line>
+    </frame>
+    <frame>
+      <ip>0x40AABB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>52</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41EB98</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EE39</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EF14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xe6</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D3605A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>whichmax(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x4D4019E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>ViterbiPP(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>954</line>
+    </frame>
+    <frame>
+      <ip>0x40AABB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>52</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41EB98</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EE39</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EF14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xf6</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 4</what>
+  <stack>
+    <frame>
+      <ip>0x4D4024D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>ViterbiPP(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>986</line>
+    </frame>
+    <frame>
+      <ip>0x40AABB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>52</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41EB98</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EE39</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EF14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xa7420dc is 28 bytes after a block of size 240 in arena "client"</auxwhat>
+</error>
+
+<error>
+  <unique>0xf7</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 4</what>
+  <stack>
+    <frame>
+      <ip>0x4D402CF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>ViterbiPP(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>969</line>
+    </frame>
+    <frame>
+      <ip>0x40AABB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>52</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41EB98</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EE39</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EF14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xa5e389c is 28 bytes after a block of size 16 in arena "client"</auxwhat>
+</error>
+
+<error>
+  <unique>0xf8</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 4</what>
+  <stack>
+    <frame>
+      <ip>0x4D402D2</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>ViterbiPP(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>971</line>
+    </frame>
+    <frame>
+      <ip>0x40AABB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>52</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41EB98</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EE39</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EF14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xa5e3898 is 24 bytes after a block of size 16 in arena "client"</auxwhat>
+</error>
+
+<error>
+  <unique>0xfb</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 4</what>
+  <stack>
+    <frame>
+      <ip>0x4D40247</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>ViterbiPP(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>984</line>
+    </frame>
+    <frame>
+      <ip>0x40AABB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>52</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41EB98</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EE39</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EF14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xa7420d4 is 20 bytes after a block of size 240 in arena "client"</auxwhat>
+</error>
+
+<error>
+  <unique>0x13f</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D4027B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>ViterbiPP(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>960</line>
+    </frame>
+    <frame>
+      <ip>0x40AABB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>52</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41EB98</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EE39</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EF14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x140</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D402A3</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>ViterbiPP(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>963</line>
+    </frame>
+    <frame>
+      <ip>0x40AABB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>52</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41EB98</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EE39</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EF14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x141</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D402B1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src/aphid.so</obj>
+      <fn>ViterbiPP(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/src</dir>
+      <file>ViterbiC.cpp</file>
+      <line>964</line>
+    </frame>
+    <frame>
+      <ip>0x40AABB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>52</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_aphid_deepstate_test_ViterbiPP_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP</dir>
+      <file>ViterbiPP_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41EB98</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EE39</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EF14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/aphid/inst/testfiles/ViterbiPP/ViterbiPP_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:07.937 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>24</count>
+    <unique>0xf6</unique>
+  </pair>
+  <pair>
+    <count>23</count>
+    <unique>0xfb</unique>
+  </pair>
+  <pair>
+    <count>76</count>
+    <unique>0x141</unique>
+  </pair>
+  <pair>
+    <count>77</count>
+    <unique>0x140</unique>
+  </pair>
+  <pair>
+    <count>75</count>
+    <unique>0x13f</unique>
+  </pair>
+  <pair>
+    <count>84</count>
+    <unique>0xf8</unique>
+  </pair>
+  <pair>
+    <count>86</count>
+    <unique>0xf7</unique>
+  </pair>
+  <pair>
+    <count>4</count>
+    <unique>0xe6</unique>
+  </pair>
+  <pair>
+    <count>10</count>
+    <unique>0xdf</unique>
+  </pair>
+  <pair>
+    <count>10</count>
+    <unique>0xde</unique>
+  </pair>
+  <pair>
+    <count>3</count>
+    <unique>0xb</unique>
+  </pair>
+  <pair>
+    <count>8</count>
+    <unique>0xa</unique>
+  </pair>
+  <pair>
+    <count>8</count>
+    <unique>0x9</unique>
+  </pair>
+  <pair>
+    <count>2</count>
+    <unique>0xa0</unique>
+  </pair>
+  <pair>
+    <count>5</count>
+    <unique>0x2d</unique>
+  </pair>
+  <pair>
+    <count>5</count>
+    <unique>0x2c</unique>
+  </pair>
+  <pair>
+    <count>19</count>
+    <unique>0x2</unique>
+  </pair>
+  <pair>
+    <count>55</count>
+    <unique>0x1</unique>
+  </pair>
+  <pair>
+    <count>55</count>
+    <unique>0x0</unique>
+  </pair>
+  <pair>
+    <count>14</count>
+    <unique>0x44</unique>
+  </pair>
+  <pair>
+    <count>14</count>
+    <unique>0x43</unique>
+  </pair>
+  <pair>
+    <count>14</count>
+    <unique>0x16</unique>
+  </pair>
+  <pair>
+    <count>15</count>
+    <unique>0x15</unique>
+  </pair>
+  <pair>
+    <count>3</count>
+    <unique>0xa6</unique>
+  </pair>
+  <pair>
+    <count>2</count>
+    <unique>0x32</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.454 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

@@ -1,0 +1,17 @@
+WARNING: No test specified, defaulting to first test defined (DStree_deepstate_test_hazard_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/DStree/inst/testfiles/hazard/hazard_output/030593686800662d8998e00cc0c6e98ed846bae2.fail`
+TRACE: Running: DStree_deepstate_test_hazard_test from /home/akhila/fuzzer_packages/fuzzedpackages/DStree/inst/testfiles/hazard/hazard_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+y1 values: -3.0881e-28 4.97837e+216 1.62351e-105 1.66113e-251 1.25552e-154 5.25631e+101 -6.36353e+84 -3.0881e-28 inf -6.31872e-114 9.06725e+20 8.30478e+149 inf 7.93563e+263 -3.0881e-28 3.22641e-90 -5.6564e-263 3.86298e-169 2.72223e+148 0
+Missing value
+y2 values: 3.67388e+221 nan -inf
+lev values: 4.4202e+53
+wt values: 2.73719e+295 2.929e-216 -4.51288e+77 1.86243e+99 7.80182e+131 -8.18906e+239 1.09008e+278 -1.4229e+104 5.3524e+139 -2.8703e-179 -9.53879e+43 -1.26981e-297 2.64174e+59 -2.75303e-99 -5.35863e-81 3.96757e+68 -3.87894e-243 1.23896e+181 -1.42642e-07 1.93579e+263 5.45571e-204 -4.83473e+108 -2.60297e+251 7.08385e-307 -6.96323e-63 -1.50858e-58 -1.81174e-187 -1.84569e+173 2.54157e-235 2.16145e-294 3.08732e-260 6.51075e+264 1.53645e+212 -2.33737e+205 -9.51909e+245 -9.0269e-30 5.3689e+99 -5.62559e-126 -3.716e-37 -5.2824e+130 1.03569e-128 -1.76406e+268 1.15664e+197 -1.07502e+295 1.03825e-298 -1.80005e-37 -2.76628e-250 5.28746e+32 -4.78835e+06 -1.49297e+75 -1.66386e+15 1.38967e+152 3.95962e+288 3.14084e+241 -5.16065e+24 -2.7303e+31 1.18809e+259 1.38018e-195 -1.33728e-205 2.76599e-55 -1.7198e+168 -4.37749e+10 1.10654e-260 9.63724e-288 1.13258e-144 2.68853e-82 5.11517e+134 5.73746e-49 4.59649e+292 4.97727e-232 8.12683e-142 -6.33404e-217 4.19306e-37 -4.44815e+250 2.44203e+55 -6.95688e-75 8.263e-36 -28773.7 -1.48567e+265 -2.04821e+164 -8.78434e-88 2.9659e-223 1.70405e-41 -1.82423e+270 -9.03657e+132 6.35746e-171 -4.66518e+283 9.44825e+44 -1.88868e+42 3.47038e+267 -3.32004e-143 2.16623e-50 20.7713 -5.69429e-78 3.02745e-58 3.18508e-35 -5.48048e+205 -5.81729e-239 -3.17429e+88 -2.35581e+261
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Index out of bounds: [index=3; extent=3].
+ERROR: Failed: DStree_deepstate_test_hazard_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/DStree/inst/testfiles/hazard/hazard_output/030593686800662d8998e00cc0c6e98ed846bae2.fail failed

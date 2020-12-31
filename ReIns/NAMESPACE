@@ -1,0 +1,136 @@
+# Make C code recognisable
+useDynLib("ReIns", .registration=TRUE)
+
+importFrom("stats", "approxfun", "cor", "dexp", "dgamma", "dlnorm", "dnorm", "dweibull", "ecdf", "knots",
+            "nlm", "optim", "optimise", "pexp", "pgamma", "plnorm", "pnorm", "pweibull", 
+            "quantile", "qexp", "qgamma", "qlnorm", "qnorm", "qweibull", "runif", "stepfun", "uniroot", "var")
+importFrom("graphics", "abline", "legend", "lines", "par", "plot")
+importFrom("survival", "Surv", "survfit")
+importFrom("utils", "tail")
+# Import function from Rcpp to import registered functions
+importFrom("Rcpp", "sourceCpp")
+
+# Splicing
+importFrom("parallel", "detectCores", "makePSOCKcluster", "stopCluster")
+importFrom("doParallel", "registerDoParallel")
+importFrom("foreach", "%do%", "%dopar%", "foreach")
+
+#########################
+# Random
+
+export("dpareto","ppareto","qpareto","rpareto") 
+export("dtpareto","ptpareto","qtpareto","rtpareto") 
+
+export("dgpd","pgpd","qgpd","rgpd") 
+export("dtgpd","ptgpd","qtgpd","rtgpd")
+
+export("depd","pepd","qepd","repd")
+
+export("dburr","pburr", "qburr", "rburr")
+export("dtburr","ptburr", "qtburr", "rtburr")
+
+export("dfrechet","pfrechet", "qfrechet", "rfrechet")
+export("dtfrechet","ptfrechet", "qtfrechet", "rtfrechet")
+
+export("dtexp","ptexp", "qtexp", "rtexp")
+export("dtlnorm","ptlnorm", "qtlnorm", "rtlnorm")
+export("dtweibull","ptweibull", "qtweibull", "rtweibull")
+
+#########################
+# Plots
+
+export("ExpQQ", "MeanExcess") 
+export("ParetoQQ","ParetoQQ_der")
+export("LognormalQQ","LognormalQQ_der") 
+export("WeibullQQ","WeibullQQ_der") 
+
+#########################
+# Estimators for EVI for Pareto-type tails
+
+export("Hill","Prob", "Quant", "Return")
+export("Weissman.p", "Weissman.q", "Weissman.r")
+
+export("Hill.2oQV", "Hill.kopt", "Quant.2oQV", "Weissman.q.2oQV") 
+export("EPD","EPDfit","ProbEPD","ReturnEPD")
+
+export("Scale", "Scale.2o", "ScaleEPD") 
+
+
+
+#########################
+# General estimators for EVI
+
+export("genQQ", "generalizedQQ") 
+export("genHill", "ProbGH", "QuantGH", "ReturnGH")
+
+export("Moment", "ProbMOM", "QuantMOM", "ReturnMOM")
+
+export("LStail", "TSfraction")
+
+export("POT", "GPDmle", "GPDfit", "GPDresiduals")
+export("ProbGPD", "QuantGPD","ReturnGPD")
+
+
+#########################
+# Regression estimators
+
+export("ScaleReg")
+export("ProbReg", "QuantReg")
+export("crHill", "crSurv", "crParetoQQ")
+
+#########################
+# Censoring estimators
+
+export("KaplanMeier", "Turnbull")
+
+export("cExpQQ","cLognormalQQ","cParetoQQ","cWeibullQQ")
+
+export("cHill","cProb","cQuant","cReturn")
+export("cEPD","cProbEPD","cReturnEPD")
+
+export("cgenHill", "cProbGH", "cQuantGH", "cReturnGH")
+export("cMoment", "cProbMOM", "cQuantMOM", "cReturnMOM")
+export("cGPDmle", "cPOT", "cProbGPD", "cQuantGPD", "cReturnGPD")
+
+export("icHill", "icParetoQQ")
+
+#########################
+# Truncation estimators
+
+export("trHill", "trDT", "trEndpoint", "trQuant", "trQuantW", "trProb")
+export("trTest")
+export("trParetoQQ")
+
+export("trMLE", "trDTMLE", "trEndpointMLE", "trQuantMLE", "trProbMLE")
+export("trTestMLE")
+
+
+#####################################
+# Splicing
+
+export("SpliceFitPareto", "SpliceFitHill", "SpliceFiticPareto", "SpliceFitGPD")
+export("dSplice", "pSplice", "qSplice", "rSplice")
+export("SpliceECDF", "SpliceTB", "SplicePP", "SplicePP_TB", 
+       "SpliceQQ", "SpliceQQ_TB", "SpliceLL", "SpliceLL_TB", "MeanExcess_TB")
+# S3
+export("MEfit", "EVTfit", "SpliceFit")
+S3method(summary, SpliceFit)
+S3method(tex, SpliceFit)
+
+#####################################
+# Risk measures
+
+export("ExcessPareto", "ExcessHill", "ExcessEPD", "ExcessGPD")
+export("ExcessSplice")
+export("VaR", "CTE", "ES")
+
+######################################
+# Approximations
+
+export("pClas", "pGC", "pEdge")
+
+
+######################################
+# Multivariate
+
+export("stdf", "stdf2")

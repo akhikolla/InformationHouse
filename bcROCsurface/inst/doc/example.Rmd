@@ -1,0 +1,349 @@
+---
+title: "Guide for Use bcROCsurface"
+author: "Khanh To Duc"
+date: '`r Sys.Date()`'
+vignette: >
+  %\VignetteIndexEntry{Guide for Use bcROCsurface}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+output: html_document
+---
+
+# Install and Load the package
+
+To install the package from CRAN, type:
+```{r, eval=FALSE, install_cran}
+install.packages("bcROCsurface")
+```
+
+Next, load the package. 
+
+```{r, eval=TRUE, loadlib}
+library(bcROCsurface)
+```
+
+# Diagnosis of EOC
+
+To illustrate the use of the package `bcROCsurface`, we consisder an example, which presents the evaluation process for biomaker `CA125` in the diagnosis of epithelial ovarian cancer (EOC). 
+
+## Load the data set
+```{r, eval=FALSE, loaddat}
+data(EOC)
+```
+
+The data have 278 observations on the following 6 variables:
+
+```{r, eval=FALSE, loaddat2}
+head(EOC)
+```
+
+```
+##   D.full V  D        CA125       CA153 Age
+## 1      3 1  3  3.304971965  1.42822875  41
+## 2      1 0 NA  0.112479444  0.11665310  52
+## 3      2 1  2  2.375011262 -0.04096794  50
+## 4      1 0 NA -0.001545381  0.32111633  66
+## 5      1 0 NA  0.278200345 -0.14283052  52
+## 6      2 0 NA  0.167645382  0.81470563  50
+```
+
+In data set, `CA125` and `CA153` are two biomarkers, `Age` is the age of the patients. The variable `V` is the verification status; 1 and 0 indicates verified and non-verified subject, respectively. `D.full` is disease status, which consist of three classes, says, 1, 2, 3. These levels correspond to benign disease, early stage (I and II) and late stage (III and IV). On the other hand, `D` is missing disease status. 
+
+## Obtaining ROC surface and VUS
+### FULL Estimator
+The ROC surface and VUS are only applied when an monotone increasing ordering is of interest. Thus, before estimate ROC and also VUS, we have to be sure that the ordering of disease classes is monotone incresasing (with respect to the diagnostic test values). In order to do that, the function `preDATA()` is usefull. 
+
+```{r preDiseaseFULL, eval=TRUE}
+Dfull <- preDATA(EOC$D.full, EOC$CA125)
+```
+
+On the other hand, we describe the full diease status `D.full` as the binary matrix having three columns, correspondings to three classes of the disease status. Each row corresponds to a trinomial vector, in which, 1 indicates the subject belongs to class j with j = 1,2,3. The function `preDATA()` also done this work.
+```{r, eval=FALSE}
+head(Dfull$D)
+```
+
+```
+## [1] 3 1 2 1 1 2
+```
+
+```{r, eval=FALSE}
+head(Dfull$Dvec)
+```
+
+```
+##      D1 D2 D3
+## [1,]  0  0  1
+## [2,]  1  0  0
+## [3,]  0  1  0
+## [4,]  1  0  0
+## [5,]  1  0  0
+## [6,]  0  1  0
+```
+
+We construct the ROC surface of full data, and estimate the VUS.
+
+```{r setup, echo=FALSE}
+library(knitr)
+library(rgl)
+knit_hooks$set(webgl = hook_webgl)
+```
+
+```{r ROCsFULL, webGL = TRUE}
+Dvec.full <- Dfull$Dvec
+ROCs(method = "full", T = EOC$CA125, Dvec = Dvec.full, ncp = 30, ellipsoid = TRUE,
+     cpst = c(-0.56, 2.31))
+```
+
+Here, we consider the full data, so we only need to put the arguments `T` and `Dvec`, and method is `full`.
+
+The FULL estimator of VUS is obtained by the following command:
+```{r vusfull, eval = FALSE}
+vus("full", T = EOC$CA125, Dvec = Dvec.full, ci = TRUE)
+```
+
+```
+## Hmm, look likes the full data
+## The verification status is not available
+## You are working on FULL or Complete Case approach
+## Number of observation: 278
+## The diagnostic test: CA125 
+## Processing .... 
+## DONE
+## 
+## CALL: vus(method = "full", T = CA125, Dvec = Dvec.full, ci = TRUE, 
+##     parallel = TRUE)
+##  
+## Estimate of VUS: 0.5663 
+## Standard error: 0.0365 
+## 
+## Intervals :
+## Level        Normal                Logit        
+## 95%   ( 0.4946,  0.6379 )   ( 0.4937,  0.6360 ) 
+## Estimation of Standard Error and Intervals are based on Bootstrap with 250 replicates
+##
+## Testing the null hypothesis H0: VUS = 1/6 
+##             Test Statistic   P-value    
+## Normal-test         10.596 < 2.2e-16 ***
+## ---
+## Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+### FI and MSI Estimator
+Now, we compute the FI and MSI estimator with missing data. First, we need to estimate the disease probabilities by using multnomial logistic model. In bcROCsurface package, this work is done by using `rhoMLogit()` function.
+
+```{r disease, eval = TRUE}
+Dna <- preDATA(EOC$D, EOC$CA125)
+Dvec.na <- Dna$Dvec
+D.na <- Dna$D
+rho.out <- rhoMLogit(D.na ~ CA125 + CA153 + Age, data = EOC, test = TRUE, trace = TRUE)
+```
+
+The following command provides the ROC surface of FI esimator:
+```{r ROCsFI, webgl = TRUE}
+ROCs(method = "fi", T = EOC$CA125, Dvec = Dvec.na, V = EOC$V, rhoEst = rho.out, ncp = 30,
+     ellipsoid = TRUE, cpst = c(-0.56, 2.31))
+```
+And, for VUS:
+```{r vusfi,  eval=FALSE}
+vus(method = "fi", T = EOC$CA125, Dvec = Dvec.na, V = EOC$V, rhoEst = rho.out, ci = TRUE)
+```
+
+```
+## Hmm, look likes the incomplete data
+## Number of observation: 278
+## 64% of the subjects receive disease verification. 
+## You required estimate VUS using FI approach 
+## The diagnostic test: CA125 
+## Processing .... 
+## DONE
+## 
+## CALL: vus(method = "fi", T = CA125, Dvec = Dvec.na, V = V, rhoEst = rho.out, 
+##     ci = TRUE)
+##  
+## Estimate of VUS: 0.515 
+## Standard error: 0.0404 
+## 
+## Intervals :
+## Level        Normal                Logit        
+## 95%   ( 0.4357,  0.5942 )   ( 0.4360,  0.5932 ) 
+## Estimation of Standard Error and Intervals are based on Asymptotic Theory
+##
+## Testing the null hypothesis H0: VUS = 1/6 
+##             Test Statistic   P-value    
+## Normal-test         8.6168 < 2.2e-16 ***
+## ---
+## Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+For MSI estimator, we could do that to plot ROC surface
+```{r ROCsMSI, webgl = TRUE}
+ROCs(method = "msi", T = EOC$CA125, Dvec = Dvec.na, V = EOC$V, rhoEst = rho.out, ncp = 30,
+     ellipsoid = TRUE, cpst = c(-0.56, 2.31))
+```
+and compute VUS
+```{r vusmsi,  eval=FALSE}
+vus(method = "msi", T = EOC$CA125, Dvec = Dvec.na, V = EOC$V, rhoEst = rho.out, ci = TRUE)
+```
+
+```
+## Hmm, look likes the incomplete data
+## Number of observation: 278
+## 64% of the subjects receive disease verification. 
+## You required estimate VUS using MSI approach 
+## The diagnostic test: CA125 
+## Processing .... 
+## DONE
+## 
+## CALL: vus(method = "msi", T = CA125, Dvec = Dvec.na, V = V, rhoEst = rho.out, 
+##     ci = TRUE)
+##  
+## Estimate of VUS: 0.5183 
+## Standard error: 0.0415 
+## 
+## Intervals :
+## Level        Normal                Logit        
+## 95%   ( 0.4368,  0.5997 )   ( 0.4371,  0.5985 ) 
+## Estimation of Standard Error and Intervals are based on Asymptotic Theory
+##
+## Testing the null hypothesis H0: VUS = 1/6 
+##             Test Statistic   P-value    
+## Normal-test         8.4644 < 2.2e-16 ***
+## ---
+## Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+### IPW and SPE Estimator
+The IPW and SPE estimator require the estimation for verification probabilities. In order to do that we can employ some regression model for binary response, i.e. logistic, probit and may be threshold. Here, we consider the implementation of logistic model. In this package, the function `psglm()` is used to fit the verificaion model.
+
+```{r verification, eval = TRUE}
+pi.out <- psglm(V ~ CA125 + CA153 + Age, data = EOC, model = "logit", test = TRUE, trace = TRUE)
+```
+
+To plot the ROC surface and estimate VUS, we do
+```{r ROCsIPW, webgl = TRUE}
+ROCs(method = "ipw", T = EOC$CA125, Dvec = Dvec.na, V = EOC$V, piEst = pi.out, ncp = 30,
+     ellipsoid = TRUE, cpst = c(-0.56, 2.31))
+```
+
+```{r vusipw, eval=FALSE}
+vus(method = "ipw", T = EOC$CA125, Dvec = Dvec.na, V = EOC$V, piEst = pi.out, ci = TRUE)
+```
+
+```
+## Hmm, look likes the incomplete data
+## Number of observation: 278
+## 64% of the subjects receive disease verification. 
+## You required estimate VUS using IPW approach 
+## The diagnostic test: CA125 
+## Processing .... 
+## DONE
+##
+## CALL: vus(method = "ipw", T = CA125, Dvec = Dvec.na, V = V, piEst = pi.out, 
+##     ci = TRUE)
+## 
+## Estimate of VUS: 0.55 
+## Standard error: 0.0416 
+##
+## Intervals :
+## Level        Normal                Logit        
+## 95%   ( 0.4685,  0.6314 )   ( 0.4679,  0.6294 ) 
+## Estimation of Standard Error and Intervals are based on Asymptotic Theory
+## 
+## Testing the null hypothesis H0: VUS = 1/6 
+##             Test Statistic   P-value    
+## Normal-test         9.2212 < 2.2e-16 ***
+## ---
+## Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+For SPE estimator, we type
+
+```{r ROCsSPE, webgl = TRUE}
+ROCs(method = "spe", T = EOC$CA125, Dvec = Dvec.na, V = EOC$V, rhoEst = rho.out,
+     piEst = pi.out, ncp = 30, ellipsoid = TRUE, cpst = c(-0.56, 2.31))
+```
+to provide the plot of ROC surface, and 
+```{r vusspe, eval=FALSE}
+vus(method = "spe", T = EOC$CA125, Dvec = Dvec.na, V = EOC$V, rhoEst = rho.out,
+    piEst = pi.out, ci = TRUE)
+```
+```
+## Hmm, look likes the incomplete data
+## Number of observation: 278
+## 64% of the subjects receive disease verification. 
+## You required estimate VUS using SPE approach 
+## The diagnostic test: CA125 
+## Processing .... 
+## DONE
+##
+## CALL: vus(method = "spe", T = CA125, Dvec = Dvec.na, V = V, rhoEst = rho.out, 
+##     piEst = pi.out, ci = TRUE)
+##  
+## Estimate of VUS: 0.5581 
+## Standard error: 0.0443 
+## 
+## Intervals :
+## Level        Normal                Logit        
+## 95%   ( 0.4712,  0.6450 )   ( 0.4703,  0.6424 ) 
+## Estimation of Standard Error and Intervals are based on Asymptotic Theory
+##
+## Testing the null hypothesis H0: VUS = 1/6 
+##            Test Statistic   P-value    
+## Normal-test          8.827 < 2.2e-16 ***
+## ---
+## Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+for VUS.
+
+Note that, the asymptotic variances of bias-corrected estimators (FI, MSI, IPW, SPE) of the VUS presented in previous parts could be obtained by using the bootstrap process. This is done in a simple way, in fact, the users only need to use the option `BOOT = TRUE` and select the number of bootstrap replication `nR` (default 250). In addition, to save the computation time, the option of parallel computing could be allowed by `parallel = TRUE`. In this case, the users may design the number of cpus by option `ncpus`, however, if this argument is ignored, then the defaut (a half of available cpus) will be supplied.
+
+### KNN estimator
+Like the MSI estimator, the KNN approach is based on the estimate of disease probabilities. However, in this framework, we will use K nearest-neighbor estimators.
+
+#### 1NN estimator
+```{r 1nn, eval = TRUE}
+XX <- cbind(EOC$CA125, EOC$CA153, EOC$Age)
+rho.1nn <- rhoKNN(XX, Dvec = Dvec.na, V = EOC$V, K = 1, type = "mahala")
+```
+```{r ROCs1NN, webgl = TRUE}
+ROCs("knn", T = EOC$CA125, Dvec.na, V = EOC$V, rhoEst = rho.1nn, ncp = 30, ellipsoid = TRUE,
+     cpst = c(-0.56, 2.31))
+```
+
+```{r vus1nn, eval = FALSE}
+vus(method = "knn", T = EOC$CA125, Dvec = Dvec.na, V = EOC$V, rhoEst = rho.1nn, ci = TRUE,
+    parallel = TRUE)
+```
+
+```
+## Hmm, look likes the incomplete data
+## Number of observation: 278
+## 64% of the subjects receive disease verification. 
+## You required estimate VUS using KNN approach 
+## The diagnostic test: CA125 
+## Processing .... 
+## DONE
+##
+## CALL: vus(method = "knn", T = CA125, Dvec = Dvec.na, V = V, rhoEst = rho.1nn, 
+##     ci = TRUE, parallel = TRUE)
+##  
+## Estimate of VUS: 0.5123 
+## Standard error: 0.0433 
+## 
+## Intervals :
+## Level        Normal                Logit        
+## 95%   ( 0.4275,  0.5970 )   ( 0.4279,  0.5959 )
+## Estimation of Standard Error and Intervals are based on Bootstrap with 250 replicates
+##
+## Testing the null hypothesis H0: VUS = 1/6 
+##             Test Statistic   P-value    
+## Normal-test         7.3048 1.388e-13 ***
+## ---
+## Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+To find the good choice for the number of nearest-neighbor, we use the following command:
+
+```{r cvKnn, eval = TRUE}
+CVknn(XX, Dvec.na, EOC$V, type = "mahala", plot = TRUE)
+```

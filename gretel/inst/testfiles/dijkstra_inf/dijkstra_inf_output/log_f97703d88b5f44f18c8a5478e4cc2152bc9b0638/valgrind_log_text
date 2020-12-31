@@ -1,0 +1,25 @@
+WARNING: No test specified, defaulting to first test defined (gretel_deepstate_test_dijkstra_inf_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf/dijkstra_inf_output/f97703d88b5f44f18c8a5478e4cc2152bc9b0638.crash`
+TRACE: Running: gretel_deepstate_test_dijkstra_inf_test from /home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf/dijkstra_inf_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+dist values: 2.01769e+47 1.43678e-133 3.24864e+70 1.20447e-16
+5.91096e+64 7.46115e-258 6.40668e-255 1.62054e+203
+4.71376e-48 5.01413e+184 4.51599e-206 1.34759e+170
+1.75062e-260 1.58739e-68 1.92056e-182 1.67897e-132
+4.13273e+261 29072.6 1.10966e+192 2.30932e+295
+7.50348e-71 1.41003e-86 4.42315e+80 1.54458e+60
+1.28334e+144 1.93644e+180 1.54664e-118 3.41101e+171
+2.90402e-286 1.99326e-62 5.07882e+283 3.58420e+261
+3.56215e-230 1.39816e-16 1.74133e+63 1.53532e+63
+
+src values: -767861348
+input ends
+==834505==  If you believe this happened as a result of a stack
+==834505==  overflow in your program's main thread (unlikely but
+==834505==  possible), you can try to increase the size of the
+==834505==  main thread stack using the --main-stacksize= flag.
+==834505==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: gretel_deepstate_test_dijkstra_inf_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf/dijkstra_inf_output/f97703d88b5f44f18c8a5478e4cc2152bc9b0638.crash crashed

@@ -1,0 +1,375 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./c_score_intslogloss_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_output/8ffa20ff08889074904cac198fe624cb3b55b44c.pass</line>
+</preamble>
+
+<pid>526408</pid>
+<ppid>526407</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_output/log_8ffa20ff08889074904cac198fe624cb3b55b44c/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./c_score_intslogloss_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_output/8ffa20ff08889074904cac198fe624cb3b55b44c.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.026 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D2AE9C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/src/mlr3proba.so</obj>
+      <fn>c_score_intslogloss(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/src</dir>
+      <file>survival_scores.cpp</file>
+      <line>69</line>
+    </frame>
+    <frame>
+      <ip>0x40A35C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_mlr3proba_deepstate_test_c_score_intslogloss_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss</dir>
+      <file>c_score_intslogloss_DeepState_TestHarness.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_mlr3proba_deepstate_test_c_score_intslogloss_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss</dir>
+      <file>c_score_intslogloss_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DE78</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E119</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E1F4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x1</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D2AE9E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/src/mlr3proba.so</obj>
+      <fn>c_score_intslogloss(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/src</dir>
+      <file>survival_scores.cpp</file>
+      <line>69</line>
+    </frame>
+    <frame>
+      <ip>0x40A35C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_mlr3proba_deepstate_test_c_score_intslogloss_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss</dir>
+      <file>c_score_intslogloss_DeepState_TestHarness.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_mlr3proba_deepstate_test_c_score_intslogloss_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss</dir>
+      <file>c_score_intslogloss_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DE78</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E119</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E1F4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x2</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F5C1BC</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>log@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_log_template.c</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D2AEB1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/src/mlr3proba.so</obj>
+      <fn>c_score_intslogloss(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/src</dir>
+      <file>survival_scores.cpp</file>
+      <line>73</line>
+    </frame>
+    <frame>
+      <ip>0x40A35C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_mlr3proba_deepstate_test_c_score_intslogloss_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss</dir>
+      <file>c_score_intslogloss_DeepState_TestHarness.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_mlr3proba_deepstate_test_c_score_intslogloss_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss</dir>
+      <file>c_score_intslogloss_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DE78</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E119</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E1F4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x3</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F9BF3C</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_log_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_log.c</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x4D2AEB1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/src/mlr3proba.so</obj>
+      <fn>c_score_intslogloss(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/src</dir>
+      <file>survival_scores.cpp</file>
+      <line>73</line>
+    </frame>
+    <frame>
+      <ip>0x40A35C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_mlr3proba_deepstate_test_c_score_intslogloss_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss</dir>
+      <file>c_score_intslogloss_DeepState_TestHarness.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_mlr3proba_deepstate_test_c_score_intslogloss_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss</dir>
+      <file>c_score_intslogloss_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DE78</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E119</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E1F4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x4</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F9C01D</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_log_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_log.c</file>
+      <line>65</line>
+    </frame>
+    <frame>
+      <ip>0x4D2AEB1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/src/mlr3proba.so</obj>
+      <fn>c_score_intslogloss(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/src</dir>
+      <file>survival_scores.cpp</file>
+      <line>73</line>
+    </frame>
+    <frame>
+      <ip>0x40A35C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_mlr3proba_deepstate_test_c_score_intslogloss_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss</dir>
+      <file>c_score_intslogloss_DeepState_TestHarness.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_mlr3proba_deepstate_test_c_score_intslogloss_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss</dir>
+      <file>c_score_intslogloss_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DE78</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E119</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E1F4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/mlr3proba/inst/testfiles/c_score_intslogloss/c_score_intslogloss_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.003 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>19</count>
+    <unique>0x4</unique>
+  </pair>
+  <pair>
+    <count>19</count>
+    <unique>0x3</unique>
+  </pair>
+  <pair>
+    <count>19</count>
+    <unique>0x2</unique>
+  </pair>
+  <pair>
+    <count>32</count>
+    <unique>0x1</unique>
+  </pair>
+  <pair>
+    <count>32</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.522 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

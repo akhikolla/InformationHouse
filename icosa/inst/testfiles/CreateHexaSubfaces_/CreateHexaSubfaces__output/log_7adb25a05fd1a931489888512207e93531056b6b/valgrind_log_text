@@ -1,0 +1,20 @@
+WARNING: No test specified, defaulting to first test defined (icosa_deepstate_test_CreateHexaSubfaces__test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/icosa/inst/testfiles/CreateHexaSubfaces_/CreateHexaSubfaces__output/7adb25a05fd1a931489888512207e93531056b6b.fail`
+TRACE: Running: icosa_deepstate_test_CreateHexaSubfaces__test from /home/akhila/fuzzer_packages/fuzzedpackages/icosa/inst/testfiles/CreateHexaSubfaces_/CreateHexaSubfaces__DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+n values: 3.60909e+224 9.37481e+280 1.27048e-62 4.71376e-48     nan 7.46115e-258 1.41003e-86
+1.11742e+83 3.07504e-136 2.13410e-145 1.75062e-260 2.90402e-286 5.01413e+184 1.93644e+180
+1.97870e+143 1.01645e-124 2.01769e+47 4.13273e+261 3.56215e-230     nan 1.99326e-62
+    nan 1.00679e-73     nan 7.50348e-71 1.43678e-133 29072.6 1.39816e-16
+
+f values: 4.71727e-75 2.98963e-36 1.44019e-33 2.16906e-76
+
+nV values: -1007985803
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Row index is out of bounds: [index=-2147483648; row extent=1].
+ERROR: Failed: icosa_deepstate_test_CreateHexaSubfaces__test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/icosa/inst/testfiles/CreateHexaSubfaces_/CreateHexaSubfaces__output/7adb25a05fd1a931489888512207e93531056b6b.fail failed

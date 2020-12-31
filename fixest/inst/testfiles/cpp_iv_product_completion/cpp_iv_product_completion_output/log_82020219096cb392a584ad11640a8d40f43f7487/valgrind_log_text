@@ -1,0 +1,50 @@
+WARNING: No test specified, defaulting to first test defined (fixest_deepstate_test_cpp_iv_product_completion_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/fixest/inst/testfiles/cpp_iv_product_completion/cpp_iv_product_completion_output/82020219096cb392a584ad11640a8d40f43f7487.crash`
+TRACE: Running: fixest_deepstate_test_cpp_iv_product_completion_test from /home/akhila/fuzzer_packages/fuzzedpackages/fixest/inst/testfiles/cpp_iv_product_completion/cpp_iv_product_completion_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+XtX values: 1.05926e+69 1.18796e-216 2.06460e-90     nan 5.23732e-77 1.92872e-182 1.65258e+117 2.16571e-153
+2.42002e+54 2.24371e+115 2.85353e-137 8.82760e+208 1.40525e+109 2.29111e-102     inf 7.64575e+09
+2.26741e+104 1.55723e+234 1.24664e-33 6.32727e+43 0.00274153 1.10377e+42 -3.79864e-121 4.41492e+242
+   -inf 2.40647e-78 5.07853e+212     inf 7.47790e-305 1.10241e+303 4.25306e-218 2.42546e+143
+2.66027e-251 2.96154e-179 4.27062e+251 3.25350e-58 0.000847739 1.85220e-70 9.54687e-196 4.59244e-129
+
+Missing value
+Xty values: 4.78099e+272 -5.14745e+145 9.04691e+271 3.85855e-120 3.17594e+283 -5.62044e-129 -3.25672e+58 -2.04362e-260 6.03076e+189 2.62988e-104 -8.56642e+260 -6.50413e-267 2.04092e-105 -1.96924e-16 4.5056e+104 -1.10404e+289 nan -inf 3.60422e+146 -5.09855e-185 5.55447e+227 nan -1.21404e-110 -8.29464e-75 -3.61086e+112 2.34212e-88 -3.65991e+49 2.65147e-259 -5.14024e+224 2.15408e-10 -2.58912e+95 1.58182e-177 -5.08553e-257 8.3992e+143 0.195821 -9.42344e-297 6.71993e+128 3.20188e+15 nan -5.3769e-158 5.72837e+218 7.43113e+194 -3.64935e+79 8.87238e-218 6.69505e-254 0
+Missing value
+X values: 9.34101e-289 3.18485e-108     inf 3.27955e+127 8.32793e+91 2.79287e-294 1.18014e-58 2.23074e-207 6.99827e-107
+1.55401e-231 8.49037e+218 7.81415e+105 4.90807e-92 1.39506e+126 1.37485e+68 2.29363e+162 9.17251e-279 2.50677e+13
+3.61888e-237 4.32614e-143     inf 4.91457e-110 4.74662e-94 3.68161e-91 3.80974e-22 1.94934e-43    -inf
+923.433 2.20002e-38     nan 4.08505e+86 1.41088e+147 8.23949e+13     inf 1.42196e-234 1.21892e+161
+
+Missing value
+y values: nan nan
+U values: 0.364594 2.05780e+264 2.08596e+249
+2.00399e-54 1.86690e+84 6.39004e+13
+1.84267e+132 3.14498e-274 1.03007e-256
+7.40160e-55 1.59974e-216 6.13273e-140
+1.05816e-225 89.5897 2.22355e-299
+7.12601e-252 9.49343e-178 8.73557e+277
+
+Missing value
+w values: inf 2.80561e+132 1.1647e+152 nan nan nan -2.64847e+193 0
+nthreads values: 40486122
+input ends
+==811298== Stack overflow in thread #1: can't grow stack to 0x1ffe801000
+==811298== Stack overflow in thread #1: can't grow stack to 0x1ffe801000
+==811298==  If you believe this happened as a result of a stack
+==811298==  overflow in your program's main thread (unlikely but
+==811298==  possible), you can try to increase the size of the
+==811298==  main thread stack using the --main-stacksize= flag.
+==811298==  The main thread stack size used in this run was 8388608.
+==811298== Stack overflow in thread #1: can't grow stack to 0x1ffe801000
+==811298== Stack overflow in thread #1: can't grow stack to 0x1ffe801000
+==811298==  If you believe this happened as a result of a stack
+==811298==  overflow in your program's main thread (unlikely but
+==811298==  possible), you can try to increase the size of the
+==811298==  main thread stack using the --main-stacksize= flag.
+==811298==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: fixest_deepstate_test_cpp_iv_product_completion_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/fixest/inst/testfiles/cpp_iv_product_completion/cpp_iv_product_completion_output/82020219096cb392a584ad11640a8d40f43f7487.crash crashed

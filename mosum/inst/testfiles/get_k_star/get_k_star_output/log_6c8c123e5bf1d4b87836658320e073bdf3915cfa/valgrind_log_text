@@ -1,0 +1,15 @@
+WARNING: No test specified, defaulting to first test defined (mosum_deepstate_test_get_k_star_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/mosum/inst/testfiles/get_k_star/get_k_star_output/6c8c123e5bf1d4b87836658320e073bdf3915cfa.fail`
+TRACE: Running: mosum_deepstate_test_get_k_star_test from /home/akhila/fuzzer_packages/fuzzedpackages/mosum/inst/testfiles/get_k_star/get_k_star_DeepState_TestHarness.cpp(10)
+input starts
+EXTERNAL: qs v0.23.4.
+
+x_star values: -5.18418e+61 -9.09282e+28 -2.4944e+291 -inf 2.33243e-272 2.5462e+41 1.91011e+297 2.37315e+219 7.45514e-215 nan -3.30356e+67 1.06884e+220 -inf -5.47722e-165 4.92877e+249 7.11066e-197 -1.65921e-99 -1.30486e+201 1.46583e+13 0
+k_hat values: 268438988
+G_l values: -1888032526
+G_r values: 370694595
+input ends
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Expecting l<=r
+ERROR: Failed: mosum_deepstate_test_get_k_star_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/mosum/inst/testfiles/get_k_star/get_k_star_output/6c8c123e5bf1d4b87836658320e073bdf3915cfa.fail failed

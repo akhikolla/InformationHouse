@@ -1,0 +1,23 @@
+WARNING: No test specified, defaulting to first test defined (ibmcraftr_deepstate_test_stateT_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/ibmcraftr/inst/testfiles/stateT/stateT_output/987089cdae5196870696476284f680218a103eed.fail`
+TRACE: Running: ibmcraftr_deepstate_test_stateT_test from /home/akhila/fuzzer_packages/fuzzedpackages/ibmcraftr/inst/testfiles/stateT/stateT_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+origin values: -293123844
+newstates values: -1331494887 1854878590 314985932 1361933119 -1262797933 -1571830262 1834345543 1176038391 -1125445590 2051319948 183851356 600611799 -2015925719 640758675 -2045256755 818332908 -1294723540 415152419 -1290633258 -568676763 -250049000 1237429200
+cumuprobs values: -2.43673e+290 1.13722e+165 1.24929e+186 -9.06014e-190 1.24372e-163 1.07357e-51 -6.7207e-236 3.93269e-254 -3.45571e+99 8.95779e+89 -1.04429e+114 2.77225e+43 -2.18557e+139 -2.63808e-55 -1.77674e-44
+Missing value
+sMatrix values: 4.51599e-206 1.20447e-16 3.58420e+261 1.53702e+156 2.60853e-188 1.61912e+290 5.90018e+57
+1.92056e-182 1.62054e+203 1.53532e+63 3.46126e-48 3.44463e-245     inf    -inf
+1.10966e+192     nan 3.24147e-88 -2.03911e+240 1.23472e-200 1.24256e+270 4.37865e-122
+4.42315e+80 1.67897e-132 2.73319e+200 3.44324e+163 7.18043e+169 4.96338e-152 6.23975e-66
+1.54664e-118 2.30932e+295 1.17371e-116 7.03859e+213 1.01771e-199 5.68880e-64 1.65605e+150
+5.07882e+283     inf 6.34121e+223 2.82752e+125 4.71907e+229 3.92888e+208 1.25277e+94
+1.74133e+63 3.41101e+171 1.49843e+54 1.87776e+242 1.07100e-300 8.90918e+241 3.84271e-256
+
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Column index is out of bounds: [index=-293123845; column extent=7].
+ERROR: Failed: ibmcraftr_deepstate_test_stateT_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/ibmcraftr/inst/testfiles/stateT/stateT_output/987089cdae5196870696476284f680218a103eed.fail failed

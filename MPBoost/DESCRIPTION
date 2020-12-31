@@ -1,0 +1,19 @@
+Package: MPBoost
+Type: Package
+Title: Treatment Allocation in Clinical Trials by the Maximal Procedure
+Version: 0.1-3
+Date: 2019-10-02
+Author: Ignacio López-de-Ullibarri [aut, cre]
+Maintainer: Ignacio López-de-Ullibarri <ignacio.lopezdeullibarri@udc.es>
+Description: Performs treatment allocation in two-arm clinical trials by the maximal procedure described by Berger et al. (2003) <doi:10.1002/sim.1538>. To that end, the algorithm provided by Salama et al. (2008) <doi:10.1002/sim.3014> is implemented.
+License: GPL (>= 2)
+Imports: Rcpp (>= 1.0.1)
+LinkingTo: Rcpp, BH
+Depends: R (>= 3.6.0)
+Suggests: knitr, pinp, rmarkdown
+VignetteBuilder: knitr
+NeedsCompilation: yes
+Encoding: UTF-8
+Packaged: 2019-10-02 10:54:22 UTC; ilu
+Repository: CRAN
+Date/Publication: 2019-10-06 12:50:08 UTC

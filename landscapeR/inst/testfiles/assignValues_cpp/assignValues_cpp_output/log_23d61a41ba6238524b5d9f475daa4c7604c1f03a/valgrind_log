@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./assignValues_cpp_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/landscapeR/inst/testfiles/assignValues_cpp/assignValues_cpp_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash</line>
+</preamble>
+
+<pid>920120</pid>
+<ppid>920119</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/landscapeR/inst/testfiles/assignValues_cpp/assignValues_cpp_output/log_23d61a41ba6238524b5d9f475daa4c7604c1f03a/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./assignValues_cpp_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/landscapeR/inst/testfiles/assignValues_cpp/assignValues_cpp_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.025 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>InvalidWrite</kind>
+  <what>Invalid write of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D276CD</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/landscapeR/src/landscapeR.so</obj>
+      <fn>assignValues_cpp(int, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/landscapeR/src</dir>
+      <file>hidden.cpp</file>
+      <line>46</line>
+    </frame>
+    <frame>
+      <ip>0x40A19F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/landscapeR/inst/testfiles/assignValues_cpp/assignValues_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_landscapeR_deepstate_test_assignValues_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/landscapeR/inst/testfiles/assignValues_cpp</dir>
+      <file>assignValues_cpp_DeepState_TestHarness.cpp</file>
+      <line>31</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/landscapeR/inst/testfiles/assignValues_cpp/assignValues_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_landscapeR_deepstate_test_assignValues_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/landscapeR/inst/testfiles/assignValues_cpp</dir>
+      <file>assignValues_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DC58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/landscapeR/inst/testfiles/assignValues_cpp/assignValues_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DEF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/landscapeR/inst/testfiles/assignValues_cpp/assignValues_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DFD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/landscapeR/inst/testfiles/assignValues_cpp/assignValues_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/landscapeR/inst/testfiles/assignValues_cpp/assignValues_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xefb9e428 is not stack'd, malloc'd or (recently) free'd</auxwhat>
+</error>
+
+<fatal_signal>
+  <tid>1</tid>
+  <signo>11</signo>
+  <signame>SIGSEGV</signame>
+  <sicode>1</sicode>
+  <event>Access not within mapped region</event>
+  <siaddr>0xEFB9E428</siaddr>
+  <stack>
+    <frame>
+      <ip>0x4D276CD</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/landscapeR/src/landscapeR.so</obj>
+      <fn>assignValues_cpp(int, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/landscapeR/src</dir>
+      <file>hidden.cpp</file>
+      <line>46</line>
+    </frame>
+    <frame>
+      <ip>0x40A19F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/landscapeR/inst/testfiles/assignValues_cpp/assignValues_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_landscapeR_deepstate_test_assignValues_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/landscapeR/inst/testfiles/assignValues_cpp</dir>
+      <file>assignValues_cpp_DeepState_TestHarness.cpp</file>
+      <line>31</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/landscapeR/inst/testfiles/assignValues_cpp/assignValues_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_landscapeR_deepstate_test_assignValues_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/landscapeR/inst/testfiles/assignValues_cpp</dir>
+      <file>assignValues_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DC58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/landscapeR/inst/testfiles/assignValues_cpp/assignValues_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DEF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/landscapeR/inst/testfiles/assignValues_cpp/assignValues_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DFD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/landscapeR/inst/testfiles/assignValues_cpp/assignValues_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/landscapeR/inst/testfiles/assignValues_cpp/assignValues_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</fatal_signal>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:07.681 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>1</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.303 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

@@ -1,0 +1,1156 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./VAR_logLik_C_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_output/0879a4b035da33db38a1cc79ef410f8170a24627.pass</line>
+</preamble>
+
+<pid>828193</pid>
+<ppid>828192</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_output/log_0879a4b035da33db38a1cc79ef410f8170a24627/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./VAR_logLik_C_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_output/0879a4b035da33db38a1cc79ef410f8170a24627.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.027 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x52ACD20</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0</obj>
+      <fn>dgemv_</fn>
+    </frame>
+    <frame>
+      <ip>0x4D2617E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>gemv&lt;double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>translate_blas.hpp</file>
+      <line>36</line>
+    </frame>
+    <frame>
+      <ip>0x4D2617E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>apply_blas_type&lt;double, arma::Mat&lt;double&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>mul_gemv.hpp</file>
+      <line>382</line>
+    </frame>
+    <frame>
+      <ip>0x4D2617E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>apply&lt;arma::Mat&lt;double&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>mul_gemv.hpp</file>
+      <line>449</line>
+    </frame>
+    <frame>
+      <ip>0x4D2617E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>void arma::glue_times::apply&lt;double, true, false, false, arma::Mat&lt;double&gt;, arma::Mat&lt;double&gt; &gt;(arma::Mat&lt;double&gt;&amp;, arma::Mat&lt;double&gt; const&amp;, arma::Mat&lt;double&gt; const&amp;, double)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>glue_times_meat.hpp</file>
+      <line>728</line>
+    </frame>
+    <frame>
+      <ip>0x4D31317</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>apply&lt;double, true, false, false, false, arma::Mat&lt;double&gt;, arma::Mat&lt;double&gt;, arma::Mat&lt;double&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>glue_times_meat.hpp</file>
+      <line>811</line>
+    </frame>
+    <frame>
+      <ip>0x4D31317</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>apply&lt;arma::Op&lt;arma::eGlue&lt;arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::Glue&lt;arma::Mat&lt;double&gt;, arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::glue_times&gt;, arma::eglue_minus&gt;, arma::op_htrans&gt;, arma::Mat&lt;double&gt;, arma::eGlue&lt;arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::Glue&lt;arma::Mat&lt;double&gt;, arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::glue_times&gt;, arma::eglue_minus&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>glue_times_meat.hpp</file>
+      <line>231</line>
+    </frame>
+    <frame>
+      <ip>0x4D31317</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>apply&lt;arma::Op&lt;arma::eGlue&lt;arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::Glue&lt;arma::Mat&lt;double&gt;, arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::glue_times&gt;, arma::eglue_minus&gt;, arma::op_htrans&gt;, arma::Mat&lt;double&gt;, arma::eGlue&lt;arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::Glue&lt;arma::Mat&lt;double&gt;, arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::glue_times&gt;, arma::eglue_minus&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>glue_times_meat.hpp</file>
+      <line>367</line>
+    </frame>
+    <frame>
+      <ip>0x4D31317</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>apply&lt;arma::Op&lt;arma::eGlue&lt;arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::Glue&lt;arma::Mat&lt;double&gt;, arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::glue_times&gt;, arma::eglue_minus&gt;, arma::op_htrans&gt;, arma::Mat&lt;double&gt;, arma::eGlue&lt;arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::Glue&lt;arma::Mat&lt;double&gt;, arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::glue_times&gt;, arma::eglue_minus&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>glue_times_meat.hpp</file>
+      <line>449</line>
+    </frame>
+    <frame>
+      <ip>0x4D31317</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>apply&lt;arma::Glue&lt;arma::Op&lt;arma::eGlue&lt;arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::Glue&lt;arma::Mat&lt;double&gt;, arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::glue_times&gt;, arma::eglue_minus&gt;, arma::op_htrans&gt;, arma::Mat&lt;double&gt;, arma::glue_times&gt;, arma::eGlue&lt;arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::Glue&lt;arma::Mat&lt;double&gt;, arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::glue_times&gt;, arma::eglue_minus&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>glue_times_meat.hpp</file>
+      <line>528</line>
+    </frame>
+    <frame>
+      <ip>0x4D31317</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>Mat&lt;arma::Glue&lt;arma::Op&lt;arma::eGlue&lt;arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::Glue&lt;arma::Mat&lt;double&gt;, arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::glue_times&gt;, arma::eglue_minus&gt;, arma::op_htrans&gt;, arma::Mat&lt;double&gt;, arma::glue_times&gt;, arma::eGlue&lt;arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::Glue&lt;arma::Mat&lt;double&gt;, arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::glue_times&gt;, arma::eglue_minus&gt;, arma::glue_times&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>Mat_meat.hpp</file>
+      <line>5433</line>
+    </frame>
+    <frame>
+      <ip>0x4D31317</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>VAR_logLik_C(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src</dir>
+      <file>Rothmana.cpp</file>
+      <line>151</line>
+    </frame>
+    <frame>
+      <ip>0x40A2FB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_graphicalVAR_deepstate_test_VAR_logLik_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C</dir>
+      <file>VAR_logLik_C_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_graphicalVAR_deepstate_test_VAR_logLik_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C</dir>
+      <file>VAR_logLik_C_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DC48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DEE9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DFC4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xb0c1bf8 is 0 bytes after a block of size 552 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x41835F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector(Rcpp::Dimension const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>135</line>
+    </frame>
+    <frame>
+      <ip>0x40F816</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;::Matrix(int const&amp;, int const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Matrix.h</file>
+      <line>59</line>
+    </frame>
+    <frame>
+      <ip>0x408BAF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>RcppDeepState_NumericMatrix()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppDeepState/include/RcppDeepState.h</file>
+      <line>137</line>
+    </frame>
+    <frame>
+      <ip>0x409F20</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_graphicalVAR_deepstate_test_VAR_logLik_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C</dir>
+      <file>VAR_logLik_C_DeepState_TestHarness.cpp</file>
+      <line>24</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_graphicalVAR_deepstate_test_VAR_logLik_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C</dir>
+      <file>VAR_logLik_C_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DC48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DEE9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DFC4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x2</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x52ACD37</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0</obj>
+      <fn>dgemv_</fn>
+    </frame>
+    <frame>
+      <ip>0x4D2617E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>gemv&lt;double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>translate_blas.hpp</file>
+      <line>36</line>
+    </frame>
+    <frame>
+      <ip>0x4D2617E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>apply_blas_type&lt;double, arma::Mat&lt;double&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>mul_gemv.hpp</file>
+      <line>382</line>
+    </frame>
+    <frame>
+      <ip>0x4D2617E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>apply&lt;arma::Mat&lt;double&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>mul_gemv.hpp</file>
+      <line>449</line>
+    </frame>
+    <frame>
+      <ip>0x4D2617E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>void arma::glue_times::apply&lt;double, true, false, false, arma::Mat&lt;double&gt;, arma::Mat&lt;double&gt; &gt;(arma::Mat&lt;double&gt;&amp;, arma::Mat&lt;double&gt; const&amp;, arma::Mat&lt;double&gt; const&amp;, double)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>glue_times_meat.hpp</file>
+      <line>728</line>
+    </frame>
+    <frame>
+      <ip>0x4D31317</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>apply&lt;double, true, false, false, false, arma::Mat&lt;double&gt;, arma::Mat&lt;double&gt;, arma::Mat&lt;double&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>glue_times_meat.hpp</file>
+      <line>811</line>
+    </frame>
+    <frame>
+      <ip>0x4D31317</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>apply&lt;arma::Op&lt;arma::eGlue&lt;arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::Glue&lt;arma::Mat&lt;double&gt;, arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::glue_times&gt;, arma::eglue_minus&gt;, arma::op_htrans&gt;, arma::Mat&lt;double&gt;, arma::eGlue&lt;arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::Glue&lt;arma::Mat&lt;double&gt;, arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::glue_times&gt;, arma::eglue_minus&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>glue_times_meat.hpp</file>
+      <line>231</line>
+    </frame>
+    <frame>
+      <ip>0x4D31317</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>apply&lt;arma::Op&lt;arma::eGlue&lt;arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::Glue&lt;arma::Mat&lt;double&gt;, arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::glue_times&gt;, arma::eglue_minus&gt;, arma::op_htrans&gt;, arma::Mat&lt;double&gt;, arma::eGlue&lt;arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::Glue&lt;arma::Mat&lt;double&gt;, arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::glue_times&gt;, arma::eglue_minus&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>glue_times_meat.hpp</file>
+      <line>367</line>
+    </frame>
+    <frame>
+      <ip>0x4D31317</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>apply&lt;arma::Op&lt;arma::eGlue&lt;arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::Glue&lt;arma::Mat&lt;double&gt;, arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::glue_times&gt;, arma::eglue_minus&gt;, arma::op_htrans&gt;, arma::Mat&lt;double&gt;, arma::eGlue&lt;arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::Glue&lt;arma::Mat&lt;double&gt;, arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::glue_times&gt;, arma::eglue_minus&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>glue_times_meat.hpp</file>
+      <line>449</line>
+    </frame>
+    <frame>
+      <ip>0x4D31317</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>apply&lt;arma::Glue&lt;arma::Op&lt;arma::eGlue&lt;arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::Glue&lt;arma::Mat&lt;double&gt;, arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::glue_times&gt;, arma::eglue_minus&gt;, arma::op_htrans&gt;, arma::Mat&lt;double&gt;, arma::glue_times&gt;, arma::eGlue&lt;arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::Glue&lt;arma::Mat&lt;double&gt;, arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::glue_times&gt;, arma::eglue_minus&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>glue_times_meat.hpp</file>
+      <line>528</line>
+    </frame>
+    <frame>
+      <ip>0x4D31317</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>Mat&lt;arma::Glue&lt;arma::Op&lt;arma::eGlue&lt;arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::Glue&lt;arma::Mat&lt;double&gt;, arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::glue_times&gt;, arma::eglue_minus&gt;, arma::op_htrans&gt;, arma::Mat&lt;double&gt;, arma::glue_times&gt;, arma::eGlue&lt;arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::Glue&lt;arma::Mat&lt;double&gt;, arma::Op&lt;arma::subview_row&lt;double&gt;, arma::op_htrans&gt;, arma::glue_times&gt;, arma::eglue_minus&gt;, arma::glue_times&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>Mat_meat.hpp</file>
+      <line>5433</line>
+    </frame>
+    <frame>
+      <ip>0x4D31317</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>VAR_logLik_C(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src</dir>
+      <file>Rothmana.cpp</file>
+      <line>151</line>
+    </frame>
+    <frame>
+      <ip>0x40A2FB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_graphicalVAR_deepstate_test_VAR_logLik_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C</dir>
+      <file>VAR_logLik_C_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_graphicalVAR_deepstate_test_VAR_logLik_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C</dir>
+      <file>VAR_logLik_C_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DC48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DEE9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DFC4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xb0c1c08 is 16 bytes after a block of size 552 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x41835F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector(Rcpp::Dimension const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>135</line>
+    </frame>
+    <frame>
+      <ip>0x40F816</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;::Matrix(int const&amp;, int const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Matrix.h</file>
+      <line>59</line>
+    </frame>
+    <frame>
+      <ip>0x408BAF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>RcppDeepState_NumericMatrix()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppDeepState/include/RcppDeepState.h</file>
+      <line>137</line>
+    </frame>
+    <frame>
+      <ip>0x409F20</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_graphicalVAR_deepstate_test_VAR_logLik_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C</dir>
+      <file>VAR_logLik_C_DeepState_TestHarness.cpp</file>
+      <line>24</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_graphicalVAR_deepstate_test_VAR_logLik_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C</dir>
+      <file>VAR_logLik_C_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DC48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DEE9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DFC4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x37</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4842A97</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>memmove</fn>
+    </frame>
+    <frame>
+      <ip>0x4D31D6F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>memcpy</fn>
+      <dir>/usr/include/x86_64-linux-gnu/bits</dir>
+      <file>string_fortified.h</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x4D31D6F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>copy&lt;double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>arrayops_meat.hpp</file>
+      <line>36</line>
+    </frame>
+    <frame>
+      <ip>0x4D31D6F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>Mat</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>Mat_meat.hpp</file>
+      <line>792</line>
+    </frame>
+    <frame>
+      <ip>0x4D31D6F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>det_lapack&lt;double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>auxlib_meat.hpp</file>
+      <line>503</line>
+    </frame>
+    <frame>
+      <ip>0x4D31D6F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>det&lt;double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>auxlib_meat.hpp</file>
+      <line>405</line>
+    </frame>
+    <frame>
+      <ip>0x4D31D6F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>det&lt;arma::Mat&lt;double&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>fn_det.hpp</file>
+      <line>39</line>
+    </frame>
+    <frame>
+      <ip>0x4D31D6F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>VAR_logLik_C(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src</dir>
+      <file>Rothmana.cpp</file>
+      <line>155</line>
+    </frame>
+    <frame>
+      <ip>0x40A2FB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_graphicalVAR_deepstate_test_VAR_logLik_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C</dir>
+      <file>VAR_logLik_C_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_graphicalVAR_deepstate_test_VAR_logLik_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C</dir>
+      <file>VAR_logLik_C_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DC48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DEE9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DFC4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xb0c1bf8 is 0 bytes after a block of size 552 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x41835F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector(Rcpp::Dimension const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>135</line>
+    </frame>
+    <frame>
+      <ip>0x40F816</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;::Matrix(int const&amp;, int const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Matrix.h</file>
+      <line>59</line>
+    </frame>
+    <frame>
+      <ip>0x408BAF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>RcppDeepState_NumericMatrix()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppDeepState/include/RcppDeepState.h</file>
+      <line>137</line>
+    </frame>
+    <frame>
+      <ip>0x409F20</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_graphicalVAR_deepstate_test_VAR_logLik_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C</dir>
+      <file>VAR_logLik_C_DeepState_TestHarness.cpp</file>
+      <line>24</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_graphicalVAR_deepstate_test_VAR_logLik_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C</dir>
+      <file>VAR_logLik_C_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DC48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DEE9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DFC4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x38</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4842A7C</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>memmove</fn>
+    </frame>
+    <frame>
+      <ip>0x4D31D6F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>memcpy</fn>
+      <dir>/usr/include/x86_64-linux-gnu/bits</dir>
+      <file>string_fortified.h</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x4D31D6F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>copy&lt;double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>arrayops_meat.hpp</file>
+      <line>36</line>
+    </frame>
+    <frame>
+      <ip>0x4D31D6F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>Mat</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>Mat_meat.hpp</file>
+      <line>792</line>
+    </frame>
+    <frame>
+      <ip>0x4D31D6F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>det_lapack&lt;double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>auxlib_meat.hpp</file>
+      <line>503</line>
+    </frame>
+    <frame>
+      <ip>0x4D31D6F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>det&lt;double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>auxlib_meat.hpp</file>
+      <line>405</line>
+    </frame>
+    <frame>
+      <ip>0x4D31D6F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>det&lt;arma::Mat&lt;double&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>fn_det.hpp</file>
+      <line>39</line>
+    </frame>
+    <frame>
+      <ip>0x4D31D6F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>VAR_logLik_C(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src</dir>
+      <file>Rothmana.cpp</file>
+      <line>155</line>
+    </frame>
+    <frame>
+      <ip>0x40A2FB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_graphicalVAR_deepstate_test_VAR_logLik_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C</dir>
+      <file>VAR_logLik_C_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_graphicalVAR_deepstate_test_VAR_logLik_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C</dir>
+      <file>VAR_logLik_C_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DC48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DEE9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DFC4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xb0c1c00 is 8 bytes after a block of size 552 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x41835F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector(Rcpp::Dimension const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>135</line>
+    </frame>
+    <frame>
+      <ip>0x40F816</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;::Matrix(int const&amp;, int const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Matrix.h</file>
+      <line>59</line>
+    </frame>
+    <frame>
+      <ip>0x408BAF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>RcppDeepState_NumericMatrix()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppDeepState/include/RcppDeepState.h</file>
+      <line>137</line>
+    </frame>
+    <frame>
+      <ip>0x409F20</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_graphicalVAR_deepstate_test_VAR_logLik_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C</dir>
+      <file>VAR_logLik_C_DeepState_TestHarness.cpp</file>
+      <line>24</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_graphicalVAR_deepstate_test_VAR_logLik_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C</dir>
+      <file>VAR_logLik_C_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DC48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DEE9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DFC4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x39</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4842A87</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>memmove</fn>
+    </frame>
+    <frame>
+      <ip>0x4D31D6F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>memcpy</fn>
+      <dir>/usr/include/x86_64-linux-gnu/bits</dir>
+      <file>string_fortified.h</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x4D31D6F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>copy&lt;double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>arrayops_meat.hpp</file>
+      <line>36</line>
+    </frame>
+    <frame>
+      <ip>0x4D31D6F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>Mat</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>Mat_meat.hpp</file>
+      <line>792</line>
+    </frame>
+    <frame>
+      <ip>0x4D31D6F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>det_lapack&lt;double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>auxlib_meat.hpp</file>
+      <line>503</line>
+    </frame>
+    <frame>
+      <ip>0x4D31D6F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>det&lt;double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>auxlib_meat.hpp</file>
+      <line>405</line>
+    </frame>
+    <frame>
+      <ip>0x4D31D6F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>det&lt;arma::Mat&lt;double&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>fn_det.hpp</file>
+      <line>39</line>
+    </frame>
+    <frame>
+      <ip>0x4D31D6F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>VAR_logLik_C(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src</dir>
+      <file>Rothmana.cpp</file>
+      <line>155</line>
+    </frame>
+    <frame>
+      <ip>0x40A2FB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_graphicalVAR_deepstate_test_VAR_logLik_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C</dir>
+      <file>VAR_logLik_C_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_graphicalVAR_deepstate_test_VAR_logLik_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C</dir>
+      <file>VAR_logLik_C_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DC48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DEE9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DFC4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xb0c1c08 is 16 bytes after a block of size 552 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x41835F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector(Rcpp::Dimension const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>135</line>
+    </frame>
+    <frame>
+      <ip>0x40F816</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;::Matrix(int const&amp;, int const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Matrix.h</file>
+      <line>59</line>
+    </frame>
+    <frame>
+      <ip>0x408BAF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>RcppDeepState_NumericMatrix()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppDeepState/include/RcppDeepState.h</file>
+      <line>137</line>
+    </frame>
+    <frame>
+      <ip>0x409F20</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_graphicalVAR_deepstate_test_VAR_logLik_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C</dir>
+      <file>VAR_logLik_C_DeepState_TestHarness.cpp</file>
+      <line>24</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_graphicalVAR_deepstate_test_VAR_logLik_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C</dir>
+      <file>VAR_logLik_C_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DC48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DEE9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DFC4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x3a</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4842A8F</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>memmove</fn>
+    </frame>
+    <frame>
+      <ip>0x4D31D6F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>memcpy</fn>
+      <dir>/usr/include/x86_64-linux-gnu/bits</dir>
+      <file>string_fortified.h</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x4D31D6F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>copy&lt;double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>arrayops_meat.hpp</file>
+      <line>36</line>
+    </frame>
+    <frame>
+      <ip>0x4D31D6F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>Mat</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>Mat_meat.hpp</file>
+      <line>792</line>
+    </frame>
+    <frame>
+      <ip>0x4D31D6F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>det_lapack&lt;double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>auxlib_meat.hpp</file>
+      <line>503</line>
+    </frame>
+    <frame>
+      <ip>0x4D31D6F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>det&lt;double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>auxlib_meat.hpp</file>
+      <line>405</line>
+    </frame>
+    <frame>
+      <ip>0x4D31D6F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>det&lt;arma::Mat&lt;double&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>fn_det.hpp</file>
+      <line>39</line>
+    </frame>
+    <frame>
+      <ip>0x4D31D6F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>VAR_logLik_C(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src</dir>
+      <file>Rothmana.cpp</file>
+      <line>155</line>
+    </frame>
+    <frame>
+      <ip>0x40A2FB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_graphicalVAR_deepstate_test_VAR_logLik_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C</dir>
+      <file>VAR_logLik_C_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_graphicalVAR_deepstate_test_VAR_logLik_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C</dir>
+      <file>VAR_logLik_C_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DC48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DEE9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DFC4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/VAR_logLik_C/VAR_logLik_C_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xb0c1c10 is 0 bytes after a block of size 576 in arena "client"</auxwhat>
+</error>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.394 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>3</count>
+    <unique>0x39</unique>
+  </pair>
+  <pair>
+    <count>3</count>
+    <unique>0x38</unique>
+  </pair>
+  <pair>
+    <count>3</count>
+    <unique>0x37</unique>
+  </pair>
+  <pair>
+    <count>2</count>
+    <unique>0x3a</unique>
+  </pair>
+  <pair>
+    <count>35</count>
+    <unique>0x0</unique>
+  </pair>
+  <pair>
+    <count>20</count>
+    <unique>0x2</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.939 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

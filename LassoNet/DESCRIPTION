@@ -1,0 +1,16 @@
+Package: LassoNet
+Type: Package
+Title: 3CoSE Algorithm
+Version: 0.8.3
+Date: 2019-12-17
+Author: Jonas Striaukas [aut, trl, cre] and Matthias Weber [aut]
+Maintainer: Jonas Striaukas <jonas.striaukas@gmail.com>
+Description: Contains functions to estimate a penalized regression model using 3CoSE algorithm, see Weber, Striaukas, Schumacher Binder (2018) <doi:10.2139/ssrn.3211163>.
+License: GPL (>= 2)
+Imports: Rcpp (>= 0.11.5)
+Suggests: snowfall
+LinkingTo: Rcpp
+NeedsCompilation: yes
+Packaged: 2020-01-14 12:37:39 UTC; striaukas
+Repository: CRAN
+Date/Publication: 2020-01-19 15:30:08 UTC

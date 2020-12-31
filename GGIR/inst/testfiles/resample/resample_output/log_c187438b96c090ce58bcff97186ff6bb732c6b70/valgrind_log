@@ -1,0 +1,438 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./resample_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_output/c187438b96c090ce58bcff97186ff6bb732c6b70.fail</line>
+</preamble>
+
+<pid>436054</pid>
+<ppid>436053</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_output/log_c187438b96c090ce58bcff97186ff6bb732c6b70/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./resample_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_output/c187438b96c090ce58bcff97186ff6bb732c6b70.fail</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.088 </time>
+</status>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:17.712 </time>
+</status>
+
+<error>
+  <unique>0x9</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>8 bytes in 1 blocks are definitely lost in loss record 10 of 1,323</text>
+    <leakedbytes>8</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D060F7</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::initialize(int, char const* const*, bool, bool, bool)</fn>
+      <dir>/tmp/RtmpAPDRvx/R.INSTALL2c66eb2c3545f3/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>198</line>
+    </frame>
+    <frame>
+      <ip>0x4D06483</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/tmp/RtmpAPDRvx/R.INSTALL2c66eb2c3545f3/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x409BC3</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_GGIR_deepstate_test_resample_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample</dir>
+      <file>resample_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_GGIR_deepstate_test_resample_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample</dir>
+      <file>resample_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DFF8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E299</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E374</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x19</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>53 bytes in 1 blocks are possibly lost in loss record 26 of 1,323</text>
+    <leakedbytes>53</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E70E7D</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::_M_mutate(unsigned long, unsigned long, char const*, unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E71DB5</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::_M_replace(unsigned long, unsigned long, char const*, unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D27D29</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/src/GGIR.so</obj>
+      <fn>replace</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>basic_string.h</file>
+      <line>1941</line>
+    </frame>
+    <frame>
+      <ip>0x4D27D29</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/src/GGIR.so</obj>
+      <fn>replace</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>basic_string.h</file>
+      <line>2130</line>
+    </frame>
+    <frame>
+      <ip>0x4D27D29</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/src/GGIR.so</obj>
+      <fn>assign&lt;char*&gt;</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>basic_string.h</file>
+      <line>1471</line>
+    </frame>
+    <frame>
+      <ip>0x4D27D29</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/src/GGIR.so</obj>
+      <fn>str</fn>
+      <dir>/usr/include/c++/9</dir>
+      <file>sstream</file>
+      <line>185</line>
+    </frame>
+    <frame>
+      <ip>0x4D27D29</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/src/GGIR.so</obj>
+      <fn>str</fn>
+      <dir>/usr/include/c++/9</dir>
+      <file>sstream</file>
+      <line>678</line>
+    </frame>
+    <frame>
+      <ip>0x4D27D29</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/src/GGIR.so</obj>
+      <fn>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; tinyformat::format&lt;long, long&gt;(char const*, long const&amp;, long const&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/utils/tinyformat</dir>
+      <file>tinyformat.h</file>
+      <line>976</line>
+    </frame>
+    <frame>
+      <ip>0x4D28846</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/src/GGIR.so</obj>
+      <fn>Rcpp::index_out_of_bounds::index_out_of_bounds&lt;long const&amp;, long&gt;(char const*, long const&amp;, long&amp;&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp</dir>
+      <file>exceptions.h</file>
+      <line>231</line>
+    </frame>
+    <frame>
+      <ip>0x4D20436</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/src/GGIR.so</obj>
+      <fn>offset</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector</dir>
+      <file>Vector.h</file>
+      <line>306</line>
+    </frame>
+    <frame>
+      <ip>0x4D20436</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/src/GGIR.so</obj>
+      <fn>operator()</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector</dir>
+      <file>Vector.h</file>
+      <line>345</line>
+    </frame>
+    <frame>
+      <ip>0x4D20436</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/src/GGIR.so</obj>
+      <fn>resample(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int) [clone .cold]</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/src</dir>
+      <file>resample.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x40A355</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_GGIR_deepstate_test_resample_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample</dir>
+      <file>resample_DeepState_TestHarness.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_GGIR_deepstate_test_resample_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample</dir>
+      <file>resample_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DFF8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E299</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E374</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x3a</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>168 bytes in 1 blocks are possibly lost in loss record 59 of 1,323</text>
+    <leakedbytes>168</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4DD72E3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>__cxa_allocate_exception</fn>
+    </frame>
+    <frame>
+      <ip>0x4D2040C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/src/GGIR.so</obj>
+      <fn>offset</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector</dir>
+      <file>Vector.h</file>
+      <line>306</line>
+    </frame>
+    <frame>
+      <ip>0x4D2040C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/src/GGIR.so</obj>
+      <fn>operator()</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector</dir>
+      <file>Vector.h</file>
+      <line>345</line>
+    </frame>
+    <frame>
+      <ip>0x4D2040C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/src/GGIR.so</obj>
+      <fn>resample(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int) [clone .cold]</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/src</dir>
+      <file>resample.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x40A355</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_GGIR_deepstate_test_resample_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample</dir>
+      <file>resample_DeepState_TestHarness.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_GGIR_deepstate_test_resample_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample</dir>
+      <file>resample_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DFF8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E299</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E374</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xb3</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>1,025 bytes in 1 blocks are definitely lost in loss record 180 of 1,323</text>
+    <leakedbytes>1025</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E713AF</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::reserve(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D04C55</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>MemBuf::MemBuf(int)</fn>
+      <dir>/tmp/RtmpAPDRvx/R.INSTALL2c66eb2c3545f3/RInside/src</dir>
+      <file>MemBuf.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x4D06467</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/tmp/RtmpAPDRvx/R.INSTALL2c66eb2c3545f3/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>56</line>
+    </frame>
+    <frame>
+      <ip>0x409BC3</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_GGIR_deepstate_test_resample_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample</dir>
+      <file>resample_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_GGIR_deepstate_test_resample_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample</dir>
+      <file>resample_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DFF8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E299</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E374</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:18.895 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

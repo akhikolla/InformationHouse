@@ -1,0 +1,33 @@
+WARNING: No test specified, defaulting to first test defined (selectiveInference_deepstate_test_solve_QP_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/selectiveInference/inst/testfiles/solve_QP/solve_QP_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash`
+TRACE: Running: selectiveInference_deepstate_test_solve_QP_test from /home/akhila/fuzzer_packages/fuzzedpackages/selectiveInference/inst/testfiles/solve_QP/solve_QP_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+Sigma values: 1.05415e-68 1.86447e-211 4.49059e+17 2.72551e-214 6.53679e-70 2.42643e+241 1.65687e+24
+
+bound values: -2.10159e+110
+max_iter values: -859175003
+Missing value
+theta values: nan inf nan -2.69316e-264 8.88375e+93 -1.2815e+192 -1.05379e+270 9.93485e-272 -4.49673e-166 -inf 0
+Missing value
+linear_func values: 1.08405e-287 inf -5.68765e-181 -1.13845e-199 1.96261e-252 5.33405e-300 2.59209e-42 -9.97307e-54 inf -3.62547e+168 -1.05877e+151 2.42724e-180 inf -2.99574e+172 -3.92218e+180 nan 2.8753e-21 nan -1.24268e+93 1.12959e-232 3.9216e-79 -15667.2 4.57085e-49 -1.25757e+73 -8.79374e+217 -9.77937e+240 -6.91902e+224 -1.16799e+232 0
+Missing value
+gradient values: -3.80098e-13 4.66046e-69 1.5295e-61 2.3442e-253 -1.2448e-108 -1.64218e+131 -2.84707e-150 4.23067e+207 2.48183e+47 1.06125e+36 1.06125e+36 -7.75062e+242 5.782e-237 6.23201e-30 -2.11814e-273 -1.27001e-269 -inf -3.14298e+178 -2.74506e+143 nan 6.36261e-209 -8.98935e-156 2.33085e+48 3.00618e+174 -8.78388e+63 7.56033e-26 -1.25716e-14 2.25199e-184 4.80297e-280 2.79116e+80 -9.57805e-212 2.1019e-146 -3.03863e+111 1.00153e+155 5.48809e-286 -0.285797 3.04072e-162 1.06125e+36 -2.56101e-166 -3.89638e-120 -4.91734e+205 0
+ever_active values: -867995896 -1558897762 1578686262 450143643 -152708421 2147047681 -1799907847 967591685 -273281389 -886492886 1091067995 -603523374 -338588054 -890803362
+nactive values: 341854805 1756082245 -1314449508 2024080962 -1921933269 1928790815 -1780368406 -857011231 1263875764 15202737 -1911534330 -1236055997 -974623177 -546154892 1393647391 -60161976 -1086849856 519401900 96449211 318439127
+kkt_tol values: 7.93549e-67
+objective_tol values: -1.56904e-06
+parameter_tol values: -4.5134e-71
+max_active values: -1375376191
+kkt_stop values: -9725727
+objective_stop values: -660102473
+param_stop values: 198699393
+input ends
+==439912==  If you believe this happened as a result of a stack
+==439912==  overflow in your program's main thread (unlikely but
+==439912==  possible), you can try to increase the size of the
+==439912==  main thread stack using the --main-stacksize= flag.
+==439912==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: selectiveInference_deepstate_test_solve_QP_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/selectiveInference/inst/testfiles/solve_QP/solve_QP_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash crashed

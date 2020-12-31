@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./nRMSE_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/ldsr/inst/testfiles/nRMSE/nRMSE_output/8d9acb6c19ca0068b12b58833d2dd255fefba67b.pass</line>
+</preamble>
+
+<pid>967124</pid>
+<ppid>967123</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/ldsr/inst/testfiles/nRMSE/nRMSE_output/log_8d9acb6c19ca0068b12b58833d2dd255fefba67b/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./nRMSE_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/ldsr/inst/testfiles/nRMSE/nRMSE_output/8d9acb6c19ca0068b12b58833d2dd255fefba67b.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.024 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D50903</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ldsr/src/ldsr.so</obj>
+      <fn>get</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/sugar/functions</dir>
+      <file>mean.h</file>
+      <line>41</line>
+    </frame>
+    <frame>
+      <ip>0x4D50903</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ldsr/src/ldsr.so</obj>
+      <fn>operator double</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/sugar/functions</dir>
+      <file>Lazy.h</file>
+      <line>31</line>
+    </frame>
+    <frame>
+      <ip>0x4D50903</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ldsr/src/ldsr.so</obj>
+      <fn>nRMSE(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ldsr/src</dir>
+      <file>utils.cpp</file>
+      <line>37</line>
+    </frame>
+    <frame>
+      <ip>0x40A14A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ldsr/inst/testfiles/nRMSE/nRMSE_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_ldsr_deepstate_test_nRMSE_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ldsr/inst/testfiles/nRMSE</dir>
+      <file>nRMSE_DeepState_TestHarness.cpp</file>
+      <line>31</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ldsr/inst/testfiles/nRMSE/nRMSE_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_ldsr_deepstate_test_nRMSE_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ldsr/inst/testfiles/nRMSE</dir>
+      <file>nRMSE_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41CF88</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ldsr/inst/testfiles/nRMSE/nRMSE_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D229</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ldsr/inst/testfiles/nRMSE/nRMSE_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D304</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ldsr/inst/testfiles/nRMSE/nRMSE_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ldsr/inst/testfiles/nRMSE/nRMSE_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x1</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D5095C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ldsr/src/ldsr.so</obj>
+      <fn>nRMSE(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ldsr/src</dir>
+      <file>utils.cpp</file>
+      <line>37</line>
+    </frame>
+    <frame>
+      <ip>0x40A14A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ldsr/inst/testfiles/nRMSE/nRMSE_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_ldsr_deepstate_test_nRMSE_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ldsr/inst/testfiles/nRMSE</dir>
+      <file>nRMSE_DeepState_TestHarness.cpp</file>
+      <line>31</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ldsr/inst/testfiles/nRMSE/nRMSE_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_ldsr_deepstate_test_nRMSE_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ldsr/inst/testfiles/nRMSE</dir>
+      <file>nRMSE_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41CF88</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ldsr/inst/testfiles/nRMSE/nRMSE_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D229</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ldsr/inst/testfiles/nRMSE/nRMSE_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D304</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ldsr/inst/testfiles/nRMSE/nRMSE_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ldsr/inst/testfiles/nRMSE/nRMSE_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:07.652 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>1</count>
+    <unique>0x1</unique>
+  </pair>
+  <pair>
+    <count>1</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.140 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

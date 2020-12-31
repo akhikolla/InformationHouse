@@ -1,0 +1,100 @@
+export(allCombs, makeFuzzy, selectCases, selectCases1, 
+       configTable, csct, mvct, fsct, ct2df,
+       condition, cscond, mvcond, fscond,
+       msc, asf, csf, condTbl, as.condTbl, coherence, minimalizeCsf,
+       cna, cscna, mvcna, fscna,
+       group.by.outcome,
+       cyclic, full.ct, is.inus, is.submodel, identical.model, minimalize, 
+       redundant, randomAsf, randomCsf, 
+       some,
+       truthTab, cstt, fstt, mvtt, full.tt, tt2df
+)
+
+useDynLib(cna, .registration = TRUE)
+importFrom(Rcpp, sourceCpp)
+importFrom(utils, head, tail, combn, packageVersion, getFromNamespace)
+importFrom(stats, as.dist, cutree, hclust, setNames)
+importFrom(Matrix, Matrix)
+importFrom(matrixStats, rowMins, rowMaxs, rowAnys, rowAlls, 
+           colMins, colAnys, colAlls)
+importFrom(car, some)
+
+S3method(print, configTable)
+S3method("$<-", configTable)
+S3method("[", configTable)
+S3method("[[<-", configTable)
+S3method("[<-", configTable)
+S3method(as.data.frame, configTable) 
+S3method(some, data.frame)
+S3method(some, configTable)
+S3method(subset, configTable)
+S3method(head, configTable)
+S3method(tail, configTable)
+
+S3method(print, cna)
+S3method(print, cond)
+S3method(condition, default)
+
+S3method(as.condTbl, condList)
+S3method(as.condTbl, data.frame)
+
+S3method(print, condTbl)
+S3method(condition, condTbl)
+
+S3method(print, condString)
+S3method("[", condString)
+S3method(format, condString)
+S3method(print, outcomeString)
+S3method("[", outcomeString)
+S3method(format, outcomeString)
+S3method(print, stdBoolean)
+S3method("[", stdBoolean)
+S3method(format, stdBoolean)
+S3method(print, stdAtomic)
+S3method("[", stdAtomic)
+S3method(format, stdAtomic)
+S3method(print, stdComplex)
+S3method("[", stdComplex)
+S3method(format, stdComplex)
+
+S3method(print, condList)
+S3method(summary, condList)
+S3method("[", condList)
+S3method("[[", condList)
+S3method("$", condList)
+
+S3method(print, complexCond)
+S3method(print, invalidCond)
+S3method(print, groupedConds)
+S3method(print, groupedC)
+
+S3method(subset, cti)
+
+S3method(full.ct, default)
+S3method(full.ct, cti)
+S3method(full.ct, configTable)
+
+S3method(.det, default)
+S3method(.det, cti)
+
+S3method(.inus, default)
+S3method(.inus, cti)
+S3method(.inus, configTable)
+
+S3method(.redund, default)
+S3method(.redund, cti)
+S3method(.redund, configTable)
+
+S3method(exhaust1, default)
+S3method(exhaust1, cti)
+S3method(exhaust1, configTable)
+
+S3method(exff, default)
+S3method(exff, cti)
+S3method(exff, configTable)
+
+S3method(print, minimalizeCsf)
+S3method(minimalizeCsf, default)
+S3method(minimalizeCsf, cna)
+
+S3method(print, equivClass)

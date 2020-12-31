@@ -1,0 +1,45 @@
+WARNING: No test specified, defaulting to first test defined (RStoolbox_deepstate_test_spectralIndicesCpp_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/RStoolbox/inst/testfiles/spectralIndicesCpp/spectralIndicesCpp_output/b2a680a491c62b8e3c18e1b6a93cfd7bf1182ccb.crash`
+TRACE: Running: RStoolbox_deepstate_test_spectralIndicesCpp_test from /home/akhila/fuzzer_packages/fuzzedpackages/RStoolbox/inst/testfiles/spectralIndicesCpp/spectralIndicesCpp_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+x values: 3.91727e-283 1.03502e-277 3.80927e-156 3.02439e+234 1.66250e-250 2.88131e+218 1.83132e+43 5.35953e+194 4.79073e+75
+2.36534e+188 1.44330e+189     inf    -inf 7.25181e-123 7.60658e+07 2.30802e-243 1.83289e-105 6.20307e-218
+4.62887e+149 2.15561e+185 2.62539e+129 2.96592e-146 1.92200e-190 1.29769e+247 3.00755e+162 3.22121e-307 27.5113
+1.95532e-132 1.75933e-114 6.85769e-16 1.95817e-131 4.96534e+107 2.88161e+131 9.88725e+56 5.10253e-139 7.46244e+67
+2.24216e+243 8.24222e-287 1.98743e+154 1.17533e-122 1.35722e-292    -inf 6.83874e-277    -inf 2460.22
+3.15962e-133 6.79398e+55 1.51886e-282 1.09362e-194 3.18497e+232 7.79327e-189 4.07539e+27 2.06419e+82 1.04830e-244
+6.92527e+137 7.20263e+40 9.00123e+84 6.71963e-160 3.64104e-233 2.58069e+92 1.15617e+141 8.83203e-282 1.62607e+96
+
+indices values: "cwczrpsxfrjmyz" "NA" "gs" "ot" "NA" "xacupvudujke" "NA" "ttrfm" "grepkytllzrditpiyffv" "fui" "NA" "vebsketagamupskbh" "NA" "yzthal" "NA" "vfojfhwnraiydwkqtcvi" "NA" "fbsxxwjkggrgrxbdogeo" "kuvbdpnfrhiqgemfoaql" "gfxjwruegpkayewgdwau" "NA" "ozccpgcszh" "NA" "gejsjstpgcjuhfecazum" "" "ludvowuwooajpnnahzzy" "NA" "NA" "hbsazyeqwzxfio" "NA" "nhpqeaizxmcueiavfllf" "NA" "wfykvaodgqrnodebwtma" "NA" "yczosbhqb" "wbsfoofllevjmfrflqdt" "cmjeoxaj" "iirmtzayuztsrqhvpvts" "odbntc" "ufnnewbrgzovbqqoxzma" "gmqeub" "os" "hvakikmabwgaudslwetm" "NA" "dicohllleepfqpfxtmuf" "vclhiglyvyj" "wlykuugtafbexuiuofbz" "NA" "NA" "NA" "NA" "NA" "tblmzekknhlxspecgnvu" "NA" "NA" "pnkxeuazolxozwllxdre" "lvespsvbtppypzhgvjua" "NA" "NA" "NA" "NA" "oxho" "dvxodbhtuindxjbszxol" "mtrswycygawfloy" "NA" "ezxvgndkfspolxyofkck" "koatslahdkfjuijhmyzv" "apkt" "NA" "hbfrnqjfmijwsdg" "NA" "fmccirhhylryhlifrs" "NA" "NA" "lxcnkgseczdtoehaaite" "qxlgsglgroyjjbemuuge" "" "fegjgax" "cvaqsnahtiekfbesktaa" "NA" "NA" "hcqjstcgaavtmfsvlo" "NA" "qxsj" "vqhcheqzbzxxthmiermu" "eyxdhw" "cyxyheidgvwjfcpzmrpa" "wplksrcdngmzcmmv" "qknigymohptezplvumyt" "ipbkxmlesxymqeiuuvlo" "NA" "ujvddsfqfvsdaamuazty" "zlxopxcolmtkqaply"
+redBand values: -2098337171
+blueBand values: 498462803
+greenBand values: -1642380957
+nirBand values: -11984294
+redEdge1Band values: 1516378865
+redEdge2Band values: 717752926
+redEdge3Band values: -1868914449
+swir1Band values: 204696974
+swir2Band values: 542636861
+swir3Band values: 233541803
+maskLayer values: 114429445
+maskValue values: 456154997
+L values: -3.41145e+87
+s values: 2.66543e-233
+G values: -5.77727e-216
+C1 values: 2.05928e-230
+C2 values: 5.46798e-152
+Levi values: -1.01071e+302
+swir2ccc values: 4.33028e+282
+swir2cdiff values: -4.2991e-156
+sf values: 2.33576e-268
+input ends
+==593265==  If you believe this happened as a result of a stack
+==593265==  overflow in your program's main thread (unlikely but
+==593265==  possible), you can try to increase the size of the
+==593265==  main thread stack using the --main-stacksize= flag.
+==593265==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: RStoolbox_deepstate_test_spectralIndicesCpp_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/RStoolbox/inst/testfiles/spectralIndicesCpp/spectralIndicesCpp_output/b2a680a491c62b8e3c18e1b6a93cfd7bf1182ccb.crash crashed

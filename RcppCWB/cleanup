@@ -1,0 +1,15 @@
+#!/bin/sh
+
+rm -r src/Makevars
+rm -f src/*.o
+rm -f src/*.so
+rm -f src/cwb/cl/*.a
+rm -f src/cwb/cl/*.o
+# rm -f src/cwb/cl/depend.mk
+rm -f src/cwb/cqp/*.a
+rm -f src/cwb/cqp/*.o
+# rm -f src/cwb/cqp/depend.mk
+rm -f src/cwb/CQi/*.o
+rm -r src/cwb/utils/libcwb.a
+rm -r src/cwb/utils/*.a
+rm -r src/cwb/utils/*.o

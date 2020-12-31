@@ -1,0 +1,28 @@
+Package: biClassify
+Type: Package
+Title: Binary Classification Using Extensions of Discriminant Analysis
+Version: 1.0
+Date: 2020-12-11
+Authors@R: c(
+    person("Alexander F.", "Lapanowski", email = "aflapan@gmail.com", role = c("aut", "cre")),
+    person("Irina", "Gaynanova", email = "irinag@stat.tamu.edu", role = "aut"))
+Maintainer: Alexander F. Lapanowski <aflapan@gmail.com>
+Description: Implements methods for sample size 
+  reduction within Linear and Quadratic Discriminant Analysis in Lapanowski and Gaynanova (2020) <arXiv:2005.03858>.
+  Also includes methods for non-linear discriminant analysis with simultaneous sparse feature selection in Lapanowski and Gaynanova (2019) PMLR 89:1704-1713. 
+License: GPL-3
+Imports: Rcpp (>= 1.0.1), Matrix, stats, fields, MASS, datasets,
+        mvtnorm, expm, DAAG
+Depends: R (>= 2.10)
+LinkingTo: Rcpp, RcppArmadillo
+Suggests: testthat, knitr, rmarkdown
+RoxygenNote: 6.1.1
+LazyData: true
+VignetteBuilder: knitr
+Encoding: UTF-8
+NeedsCompilation: yes
+Packaged: 2020-12-11 14:35:09 UTC; aflap
+Author: Alexander F. Lapanowski [aut, cre],
+  Irina Gaynanova [aut]
+Repository: CRAN
+Date/Publication: 2020-12-14 10:10:02 UTC

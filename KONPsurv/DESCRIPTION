@@ -1,0 +1,22 @@
+Package: KONPsurv
+Type: Package
+Title: KONP Tests: Powerful K-Sample Tests for Right-Censored Data
+Version: 1.0.3
+Date: 2020-03-02
+Author: Matan Schlesinger [cre, aut],
+  Malka Gorfine [aut]
+Maintainer: Matan Schlesinger <matan.schles@gmail.com>
+Description: The K-sample omnibus non-proportional hazards (KONP) tests are powerful non-parametric tests for comparing K (>=2) hazard functions based on right-censored data (Gorfine, Schlesinger and Hsu, 2019, <arXiv:1901.05739v1>). These tests are consistent against any differences between the hazard functions of the groups. The KONP tests are often more powerful than other existing tests, especially under non-proportional hazard functions.
+Authors@R: c(
+            person("Matan", "Schlesinger", email = "matan.schles@gmail.com", role = c("cre","aut")),
+            person("Malka", "Gorfine", email = "gorfinem@tauex.tau.ac.il", role = "aut"))
+License: GPL (>= 2)
+Imports: survival,Rcpp (>= 0.12.16)
+LinkingTo: Rcpp
+RoxygenNote: 7.0.0
+Encoding: UTF-8
+Suggests: testthat
+NeedsCompilation: yes
+Packaged: 2020-03-02 17:43:38 UTC; Matan
+Repository: CRAN
+Date/Publication: 2020-03-02 18:00:02 UTC

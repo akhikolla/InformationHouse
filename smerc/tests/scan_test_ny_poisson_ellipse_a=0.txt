@@ -1,0 +1,140 @@
+                                 _____________________________
+
+                                         SaTScan v9.6
+                                 _____________________________
+
+
+Program run on: Tue Sep 04 11:42:28 2018
+
+Purely Spatial analysis
+scanning for clusters with high rates
+using the Discrete Poisson model.
+_______________________________________________________________________________________________
+
+SUMMARY OF DATA
+
+Study period.......................: 2000/1/1 to 2000/12/31
+Number of locations................: 281
+Population, averaged over time.....: 1057673
+Total number of cases..............: 552
+Annual cases / 100000..............: 52.1
+_______________________________________________________________________________________________
+
+CLUSTERS DETECTED
+
+1.Location IDs included.: 10, 5, 4, 18, 12, 11, 9, 6, 17, 3, 35, 7, 26, 13, 14, 2, 34, 16, 8,
+                          1, 15, 20, 47, 33, 27, 49, 48, 50, 24, 51, 25, 36, 19, 32, 52, 37,
+                          22, 23, 21, 39, 40, 38, 90, 28, 53, 55, 44, 83, 43, 89, 42, 45, 84,
+                          46, 54, 91, 41, 31, 250, 88, 87, 251, 237, 85, 238, 29, 240, 252,
+                          241, 172, 171, 249, 169, 227, 170, 168, 86, 92, 165, 163, 167, 166,
+                          164, 162, 159, 242, 93, 161, 225, 160, 158, 153, 154, 152, 151, 150,
+                          157, 148, 149, 236, 140, 142, 141, 155, 143, 139, 138, 147, 134, 156,
+                          133, 144, 125, 146, 132, 126, 137, 226, 121, 124, 122, 131, 127, 123,
+                          145, 136, 117, 120, 114, 128, 116, 118, 115, 135, 210, 239, 113, 111,
+                          129, 130, 119, 110, 112, 220, 219, 208, 224
+  Overlap with clusters.: No Overlap
+  Coordinates...........: (42.1022,-75.8998)
+  Semiminor axis........: 0.26
+  Semimajor axis........: 1.02
+  Angle (degrees).......: -15.00
+  Shape.................: 4.00
+  Gini Cluster..........: Yes
+  Population............: 496712
+  Number of cases.......: 337
+  Expected cases........: 259.23
+  Annual cases / 100000.: 67.7
+  Observed / expected...: 1.30
+  Relative risk.........: 1.77
+  Log likelihood ratio..: 22.034279
+  Test statistic........: 22.034279
+  P-value...............: 0.0000034
+_______________________________________________________________________________________________
+
+PARAMETER SETTINGS
+
+Input
+-----
+  Case File        : C:\Users\joshu\Documents\Dropbox\Code\GitHub\smerc\tests\satscannycases.txt
+  Population File  : C:\Users\joshu\Documents\Dropbox\Code\GitHub\smerc\tests\satscannypop.txt
+  Time Precision   : Year
+  Start Time       : 2000/1/1
+  End Time         : 2000/12/31
+  Coordinates File : C:\Users\joshu\Documents\Dropbox\Code\GitHub\smerc\tests\satscannycoords.txt
+  Coordinates      : Cartesian
+
+Analysis
+--------
+  Type of Analysis    : Purely Spatial
+  Probability Model   : Discrete Poisson
+  Scan for Areas with : High Rates
+
+Output
+------
+  Main Results File : C:\Users\joshu\Documents\Dropbox\Code\GitHub\smerc\tests\satscannyout_ellipse.txt
+
+Data Checking
+-------------
+  Temporal Data Check     : Check to ensure that all cases and controls are within the specified temporal study period.
+  Geographical Data Check : Check to ensure that all observations (cases, controls and populations) are within the specified geographical area.
+
+Spatial Neighbors
+-----------------
+  Use Non-Euclidian Neighbors file : No
+  Use Meta Locations File          : No
+  Multiple Coordinates Type        : Allow only one set of coordinates per location ID.
+
+Spatial Window
+--------------
+  Maximum Spatial Cluster Size : 50 percent of population at risk
+  Window Shape                 : Elliptic
+  Non-Compactness Penalty      : None
+  Isotonic Scan                : No
+
+Cluster Restrictions
+--------------------
+  Minimum Cases in Cluster for High Rates : 2
+  Restrict High Rate Clusters             : No
+
+Space And Time Adjustments
+--------------------------
+  Adjust for known relative risks : No
+
+Inference
+---------
+  P-Value Reporting                  : Default Combination
+  Number of Replications             : 999
+  Adjusting for More Likely Clusters : No
+
+Border Analysis
+---------------
+  Report Oliveira's F : No
+
+Spatial Output
+--------------
+  Report Hierarchical Clusters              : Yes
+  Criteria for Reporting Secondary Clusters : No Geographical Overlap
+  Report Gini Optimized Cluster Collection  : Yes
+  Gini Index Based Collection Reporting     : Optimal Only
+  Report Gini Index Cluster Coefficents     : No
+  Restrict Reporting to Smaller Clusters    : No
+
+Other Output
+------------
+  Report Critical Values  : No
+  Report Monte Carlo Rank : No
+
+Elliptic Scan
+-------------
+  Ellipse Shapes                          : 1.5, 2, 3, 4, 5
+  Number of Angles for Each Ellipse Shape : 4, 6, 9, 12, 15
+
+Run Options
+-----------
+  Processor Usage   : All Available Processors
+  Suppress Warnings : No
+  Logging Analysis  : No
+_______________________________________________________________________________________________
+
+Program completed  : Tue Sep 04 11:42:33 2018
+Total Running Time : 5 seconds
+Processor Usage    : 4 processors

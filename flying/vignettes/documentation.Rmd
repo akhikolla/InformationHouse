@@ -1,0 +1,605 @@
+---
+title: "Predicting birds' flight range"
+author: "Brian Masinde"
+date: "`r Sys.Date()`"
+vignette: >
+  %\VignetteIndexEntry{documentation}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+citation_package: natbib
+bibliography: references.bib
+---
+
+# Introduction
+'Flight' is a computer program that accompanies @penny08 which in detail discusses
+the theory behind bird flight. However, there are two drawbacks with the program.
+First, it is only available for Windows OS, and second, it requires manual imputation
+of bird measurements which is a tedious process when one has thousands of birds to 
+analyse. Thus, the aim of this project is to implement in R, range estimation methods.
+
+The theory behind flight mechanism has evolved over time. @penny75 use Breguet equations
+intended for range estimation in fixed wing aircraft. This methods rely on studies
+that quantify each body part that contributes to lift and drag during flight.
+In @penny75, fat mass is assumed to be the only source of fuel.
+
+Later ornithologists had hypotheses that in long-distance bird migration a more complex process occurs. 
+And these were confirmed by field study where samples of birds were weighed for 
+fat mass and muscle mass before migration and after migration [@penny03]. 
+Considering the tremendous distances covered by migrating birds, at great cost,
+this branch of ornithology is more concerned with the mechanical and chemical
+process involved during migration.
+
+In the _Methods_ section, the various methods are discussed in a step by step 
+manner should the reader wish to implement the methods. Also included, are snippets
+of code on how to use the package and tables of results. Under _Future works_,
+a discussion of the road map for the package to incorporate more functionality
+from 'Flight'.
+
+# Methods
+## Mechanics of Flight
+Here we outline the methods in @penny75. Five body measurements are necessary
+in estimating the flight range of birds. These are:
+
+*   __All up mass__: The body mass (Kg.) including contents of the crop, 
+fuel (fat mass), and any other equipment the bird has to carry for the duration 
+of the flight.
+
+*   __Wing span__: In meters measured from tip to tip of the fully outstretched 
+wings.
+
+*   __Fat mass__: Mass of fat that is consumable as fuel.
+
+*   __Order__: The taxon the bird belongs to (Passerine vs non-passerine). These
+two taxon in theory have different metabolism rates. 
+
+*   __Wing area__: Area of both wings projected on a flat surface, including the 
+body part in-between the wings.
+
+
+### Outline method 1 based on Brequet equation.
+This method is intended for passerines with body mass less than 50 grams. Below is
+a list of constants or assumptions (variable definition within the package).
+
+*  Profile power constant $C_{pro}$ (ppc = 8.4). This can also be adjusted.
+
+*  Energy content of fuel per kg $e$ (eFat = 3.9 * 10 ^ 7)
+
+*  Acceleration due to gravity $g$ (g =  9.81)
+
+*  Mechanical conversion efficiency $\eta$ (mce= 0.23).
+
+*  Induced power factor $k$ (ipf= 1.20)
+
+*  Ventilation and circulation power $R$ (vcp = 1.10)
+
+*  Air density at flight height $\rho$. This can be changed
+according to altitude the bird species is known to fly (airDensity = 1.00). 
+
+*  Body drag coefficient $C_{Db}$(bdc = 0.10)
+
+*  Basal metabolic rate $\Pi_m$ empirical constants
+
+    *  alpha passerines = 6.25; alpha non-passerines = 3.79
+    
+    *  delta passerines = 0.724; delta non-passerines = 0.723
+    
+
+
+* Step1:
+With all-up mass and fat mass defined, the first step is to derive the fuel ratio.
+
+$$
+ F = \frac{fat \ mass}{all-up \ mass}
+$$
+
+Next calculate *profile power ratio* alternative to defining it as 1.20 for each
+bird, as was the case in the initially. Instead the profile power constant ($C_{pro}$) is used
+to derive the profile power ratio:
+
+$$
+ X_1 = \frac{C_{pro}}{R_a}
+$$
+
+Where the $C_{pro}= 8.4$ and $R_a$ is the _aspect ratio_:
+$$
+R_a = \frac{B^2}{wing \ area}
+$$
+
+where $B$ is the wing span.
+
+The box-plot below shows the distribution of profile power ratio of a sample of 28
+birds (preset birds) from 'Flight' program.
+
+```{r X1, echo=FALSE, fig.height=5, fig.width=6}
+#load("~/Documents/R projects/Flight project/flying/data/birds.rda")
+data("birds", package = "flying")
+prof.pow.ratio <- function(ws, wa) {
+  # ws = wing span
+  # wa = wing area
+  X1 <- 8.4 / (ws ^ 2 / wa)
+
+  return(X1)
+}
+
+boxplot(prof.pow.ratio(birds$Wing.span, birds$Wing.area),
+        main = "Profile power ratio distribution among preset birds",
+        col = "#58CCED")
+```
+
+In @penny75, a table is provided for interpolation of metabolic power ratio based on body mass (at start of flight) and the wing span. However, in this implementation, the metabolic power ratio is calculated using the formulas provided.
+
+$$
+X2 = \frac{6.03 \ \alpha \ \eta \ \rho^{0.5} \ B^{3/2} M ^{\delta - 5/3}}{k^{3/4}g^{5/3}}
+$$
+
+Where $\alpha \ \text{and} \ \delta$ are constants from basal metabolism (see equations below), $\rho$ as air density,  $B$ as wing span, and $M$ as body mass.
+
+*  Basal metabolism for passerines:
+
+$$
+  \Pi_m = \alpha M^{\delta}
+$$
+
+$$
+ \delta = 0.724
+$$
+
+$$
+  \alpha = 6.25
+$$
+
+*  Basal metabolism for non-passerines:
+
+$$
+  \Pi_m = \alpha M^{\delta}
+$$
+
+$$
+\delta = 0.723
+$$
+
+$$
+ \alpha = 3.79 
+$$
+
+With both metabolism power ratio and profile power ratio defined, enables interpolation of the drag factor (D) from Table 1 below.
+
+```{r factor_table2, echo=FALSE, message=FALSE, warning=FALSE}
+gen.table2 <- function() {
+  x1Plusx2 <- c(0.00, 0.25, 0.50, 0.75, 1.00, 1.25, 1.50, 1.75, 2.00,
+                2.25, 2.50, 2.75, 3.00, 3.25, 3.50, 3.75, 4.00, 4.25,
+                4.50, 4.75, 5.00)
+  B <- c(1.360, 1.386, 1.452, 1.515, 1.574, 1.631, 1.684, 1.735, 1.784, 1.830,
+         1.875, 1.918, 1.959, 1.999, 2.038, 2.075, 2.111, 2.146, 2.180, 2.213,
+         2.246)
+  C <- c(1.140, 1.458, 1.783, 2.115, 2.453, 2.795, 3.141, 3.490, 3.841, 4.195,
+         4.550, 4.907, 5.266, 5.625, 5.986, 6.348, 6.711, 7.074, 7.438,
+         7.803, 8.168)
+  D <- c(1.000, 0.824, 0.706, 0.621, 0.556, 0.506, 0.465, 0.431, 0.402, 0.378,
+         0.357, 0.339, 0.322, 0.308, 0.295, 0.283, 0.273, 0.263, 0.254, 0.246,
+         0.238)
+  table2 <- as.data.frame(cbind(x1Plusx2, B, C, D))
+
+  return(table2)
+}
+
+table1 <- knitr::kable(gen.table2(),format = "latex", label = "Table 1", caption = "Factor Table")
+
+kableExtra::kable_styling(table1, latex_options = "hold_position")
+```
+
+
+In calculating the lift:drag ratio, the disk and equivalent flat-plate areas of a bird are important. The disc area ($S_d$) is the area of complete circle under which the wing span is the diameter, while the equivalent flat-plate area ($A$)  is a product of the frontal area and drag coefficient of a bird.
+
+$$
+  S_d = \frac{\pi B^2}{4}
+$$
+
+$$
+  A = S_bC_{Db}
+$$
+
+$$
+S_b = 0.00813m^{0.666}
+$$
+
+$$
+ C_{Db} = 0.1
+$$
+
+\textit{Note that there is a difference in definition between} @penny75 and @penny08. In @penny75
+the equivalent flat-plate area is defined as below.
+
+$$
+  A = (2.85 \times 10^{-3})M^{2/3}
+$$
+In the package we use @penny08 definition instead ($A = S_b \times C_{Db}$).
+
+Next step calculate effective lift:drag ratio from the formula:
+
+$$
+  \bigg( \frac{L}{D}\bigg)' = \frac{D}{k^{0.5}R} \bigg( \frac{S_d}{A}\bigg)^{0.5}
+$$
+
+This method corrects for change in effective lift:drag ratio during flight by
+increasing the lift:drag ratio by $10F\%$.
+
+
+Finally, the range (in meters) is estimated using Breguet equation:
+
+$$
+  Y = \frac{e \eta}{g} \bigg( \frac{L}{D}\bigg)' ln \frac{1}{1 - F}
+$$
+
+### Outline method 2 based on Brequet equation.
+
+Method 2 is only appropriate for __non-passerines__ and or birds with 
+__body mass greater than 50 grams. Lift to drag ratio is calculated at the beginning and at the
+end of the flight. Lift to drag ratio at the start of flight is calculated using 
+the all-up mass at start, while at end of flight the mass of fuel to be used 
+during the flight is subtracted from the all up mass. Same assumptions are used
+as in Method 1.
+
+*Step 1*
+Fat fraction is computed as before (as a ratio of fat mass and all-up body mass). 
+
+*Step 2*
+An estimate of the body mass at end of flight is attained by subtracting fuel 
+mass to be consumed during flight from the all-up body mass.
+
+*Step 3*
+Calculate *metabolic power ratio* but this time using body mass at end of flight.
+
+$$
+X2_{end} = \frac{6.03 \ \alpha \ \eta \ \rho^{0.5} \ B^{3/2} M_2 ^{\delta - 5/3}}{k^{3/4}g^{5/3}} \\
+\\
+\text{where } M_2 = \ \text{body mass at end of flight}    
+$$
+
+*Profile power constant* calculation remains the same as in method 1.
+
+$$
+ X_1 = \frac{C_{pro}}{R_a}
+$$
+
+*Step 4*
+To find drag $(D_{end})$ at end of flight, metabolic power ratio and the profile power constant are summed and interpolation is done on Table 1.
+
+*Step 5*
+Disk area and flat plate area are components that contribute to lift. While disk area is independent of body mass, flat-plate area is not. Therefore, flat-plate area is computed using body mass at end of flight.
+
+$$
+  S_d = \frac{\pi B^2}{4}
+$$
+
+$$
+A_{end} = S_bC_{Db}
+$$
+$$
+S_b = 0.00813 \times \ M_2^{0.666} 
+$$
+$$
+C_{Db} = 0.1
+$$
+Where $M_2$ is body mass at end of flight.
+
+*Step 6*
+Proceed to calculate effective lift:drag ratio at end of flight.
+
+$$
+\bigg( \frac{L}{D}\bigg)'_{end} = \frac{D_{end}}{k^{0.5}R} \bigg( \frac{S_d}{A_{end}}\bigg)^{0.5}
+$$
+
+*Step 7*
+To avoid repetition, @penny75 demonstrates how to estimate metabolic power constant at start by dividing the estimate at end of flight by some factor of the fuel ratio.
+
+$$
+X2_{start} = \frac{X2_{end}}{\bigg(\frac{1}{1 - F}\bigg)^{7/4}}
+$$
+
+Followed by interpolation on Table 1 to get drag at start of flight $D_{start}$.
+
+*Step 8*
+Get square root of ratio between disk area and flat-plate area at beginning of flight as:
+
+$$
+\bigg(\frac{S_d}{A}\bigg)^{0.5}_{start} = \frac{\bigg(\frac{S_d}{A}\bigg)^{0.5}_{end}}{\bigg(\frac{M_1}{M_2} \bigg)^{0.5}}
+$$
+
+
+Where $M_1$ and $M_2$ are all-up mass at beginning and body mass at end of 
+flight respectively.
+
+
+*Step 9*
+Calculate lift to drag ratio using the start of flight estimates then get the 
+average of the two lift to drag ratios.
+
+*Step 10*
+Get range using the mean of the lift:drag ratio.
+
+$$
+ Y = \frac{e \eta}{g} \bigg( \frac{L}{D}\bigg)'_{avg} ln \frac{1}{1 - F}
+$$
+
+## Time-marching computation
+Breguet equation used in Method 1 and 2 outlined above assume that lift to drag
+ratio remains constant through out the flight. This is possible for fixed wing
+aircraft by manipulating flight speed. There is no evidence that birds try to maintain
+lift to drag ratio constant during flight @penny03. Furthermore, fat mass is assumed to be
+the only source of fuel while birds are known to consume part of the engine 
+(use protein in flight muscles and air-frame as supplementary fuel) [@penny98, @penny03,
+@penny08]. This leads to an increase in lift to drag ratio during the flight as result of the
+reduction in body mass and thus, an increase in flight range [@penny03]. In the 
+methods discussed above, compensation for change in lift to drag ratio is done 
+by adding 10% of fuel to the lift to drag ratio (Method 1) or averaging lift to 
+drag ratio before start of flight and at the end of flight (Method 2). @penny03 
+cites studies which found that protein is replenished faster during short stop-overs
+compared to fat mass. Furthermore, the constant ($e$) cannot be assumed to be 
+constant because of two different sources of fuel. Protein and fat have different
+energy content.
+
+Other than derive equations via ODE, @penny98 found it more useful to use the 
+time-marching computation. This simulation assumes that mechanical and chemical 
+powers of a bird are held constant for a short duration during flight (6
+minutes), fat and muscle mass are deducted by any one of the three criteria:
+
+* Constant specific work
+
+* Constant specific power
+
+* Constant muscle mass
+
+@penny03 describes time-marching as calculating amounts of fat and protein consumed
+during a short period (6 minutes) during which all variables including power and
+speed are assumed constant. After every 6 minute interval, the birds mass composition 
+is revised taking into account the small changes in fat and protein consumed 
+during the interval. In 'Flight' this is repeated until the required distance
+it achieved or it runs out of fat mass. This procedure places no restriction
+on speed. @penny03 points out that the remaining fat and mass at the end of the 
+flight can be compared with field observations. 
+
+The scope of this project involves implementing the time-marching simulation with
+the constant muscle mass criterion.
+
+### Constant Muscle Mass criterion.
+Time-marching simulations really on the speed, total mechanical power, and the 
+chemical power.
+
+#### Speed
+The minimum power speed $V_{mp}$ is central in time-marching computation. Note,
+it is dependent on the air density, and all-up body mass.
+
+$$
+  V_{mp} = \frac{0.807k^{1/4} m ^{1/2}g^{1/2}}{\rho^{1/2} B^{1/2} S_{b}^{1/4}C_{Db}^{1/4}}
+$$
+
+The true air-speed is then:
+$$
+  V_t = 1.2 \times V_{mp}
+$$
+
+#### Total mechanical power
+The total mechanical is a sum of three powers:
+
+* __Parasite power__: The rate at which power must be done to overcome drag of body [@penny08].
+For any streamlined body the drag is expressed as:
+
+$$
+D_b = \frac{\rho V_t^2 S_b C_{Db}}{2}
+$$
+And parasite power is found by multiplying the drag by the true airspeed $V_t$:
+
+$$
+P_{par} = \frac{\rho V_t^3 S_b C_{Db}}{2}
+$$
+
+where $\rho$ is the air density, $V_t$ is the true airspeed, $S_b$ is the frontal 
+area of the body and $C_{Db}$ is the body drag coefficient.
+
+* __Profile power__
+This is power needed to overcome the effects of the body drag. And this is a multiple
+of _profile power ratio_ (X1) and the absolute minimum power $P_{am}$:
+
+$$
+  P_{pro} = X1 \times P_{am}
+$$
+
+$$
+P_{am} = \frac{(1.05 k ^{3/4} m^{3/2} g^{3/2} S_b^{1/4} C_{Db}^{1/4})}{(\rho^{1/2}B^{3/2})}
+$$
+and $X_1$:
+
+$$
+  X_1 = \frac{C_{pro}}{R_a}
+$$
+
+* __Induced power__
+Power required to support a birds wight during forward flight.
+
+$$
+  P_{ind} = \frac{(mg^2)}{2V_{t}Sd\rho}
+$$
+
+The total mechanical power is found by summing the profile power, parasite power
+and induced power. Parasite power and induced power are depend on the true airspeed
+during flight. 
+
+$$
+P_{mech} = P_{pro} + P_{par} + P_{ind}
+$$
+
+#### Chemical power
+@penny08 states that mechanical power is derived from measurements made in unaccelerated
+flight (i.e from forces and speeds that do not involve physiology), however, the chemical power
+is derived using measurements from physiological experiments. These measurements include:
+
+* Rates of consumption of fuel
+
+* Rate of consumption of oxygen
+
+* Metabolism rate
+
+It is only useful to estimate this in long aerobic flight such as migration [@penny08].
+
+To estimate the chemical power during a flight interval, the mechanical power is
+first estimated (power required from muscles to support the weight against gravity
+). Then the mechanical power is divided by the mechanical conversion efficiency
+(between 0 and 1), in 'Flight' the default is 0.23. The basal metabolism rate is
+added because metabolism is a body function that occurs irrespective of what the bird 
+is doing. Estimate derived so far is increased by $10\%$ to account for heart and lungs.
+This chemical power expresses the total energy required by a bird to sustain flight
+during an interval.
+
+#### Range Estimation Constant Muscle Mass Criterion 
+To estimate the flight range, first true airspeed is 
+estimated from the minimum power speed and used to calculate the total mechanical 
+power. Total mechanical power is converted to chemical power then divided by the
+energy content of fat (since fat is the only source of fuel in this scenario).
+Multiplying this by the calculation interval (default 6 minutes or 360 seconds) 
+gives the range achieved during this interval in m/s. It was noted that decreasing
+the flight interval has no effect on range only that the simulation 
+is more fine grained. This procedure is iterated over until fat mass decreases 
+to zero. In 'Flight' there is an option to attribute a small percentage of the
+chemical power to protein from the muscle mass, usually $5\%$.
+
+# Results comparison.
+It is not fair comparison between the methods discussed in @penny75
+and the methods in @penny98 and @penny08 and therefore the tables with range 
+estimations are presented separately. Default constants are used for all the 
+observations and the air density was set to 1.00 which is about 
+2063 meters above sea level.
+
+## The Data
+Data used as an example, is from the program 'Flight' [@penny08] version
+1.2.5.2. For some observations the fat mass and muscle mass were zero, 'Flight' 
+requires that fat mass is non-zero to calculate range since it is the main source
+of fuel. To overcome this, fat mass was randomly generated between $18\%$ and 
+about $35\%$ of the all-up mass (empty mass because crop is empty). For muscle 
+mass, by default, 'Flight' uses the muscle fraction 0.17, and therefore this was 
+used to derive the muscle mass.
+
+$$
+ muscle \ fraction = \frac{muscle \ mass}{all-up \ mass}
+$$
+
+
+```{r data, echo = FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+data("birds", package = "flying")
+table2 <- knitr::kable(birds, format = "latex", caption = "Preset birds from Flight program")
+kableExtra::kable_styling(table2, latex_options = "hold_position")
+#birds
+```
+
+\newpage
+
+## Results based on @penny75
+```{r}
+results_fixed_wing <- flying::flysim(data = birds) 
+
+# range 
+results_fixed_wing$range
+```
+
+```{r}
+# constants used
+results_fixed_wing$constants
+```
+
+
+## Time-marching: Constant Muscle Mass
+In the simulation in Flight program, air density is set to 1 (Altitude 2063 
+meters above sea-level), muscle is held constant (Protein burn criterion), 
+fat energy at $3.9E+07$, continuous flapping style (Flight style), and minimum
+energy from protein at $0\%$ instead of the default $5\%$. Induced power factor
+is set to 1.20 for all birds. The mitochondrial fraction is set to hold constant.
+
+'Flight' provides two methods of speed control, true air-speed to minimum power 
+speed ratio is held constant or true air-speed is held constant. Both of these scenarios are compared to the output of this package below:
+
+See Table 3 and Table 4 for comparison with 'Flight'.
+
+```{r}
+# constant speed
+results_cmm_cs <- flying::migrate(data = birds, speed_control = "constant_speed")
+
+results_cmm_cs$range
+```
+
+
+```{r}
+# constant ratio between true air-speed and minimum power speed
+results_cmm_cratio <- flying::migrate(data = birds, speed_control = "vvmp_constant")
+
+results_cmm_cratio$range
+```
+
+\newpage
+```{r tables, echo=FALSE}
+# results simulated from flight true air-speed constant
+flight_cons_speed <- c(3090, 2670, 3702, 1115, 3821, 3519, 11418, 3383, 2922,
+                            NA ,2248, 1867, 2031, 5186, 9880, 5308, 5498, 2606, 
+                            6439, 5776, NA, NA, 2385, 2221, 2684, 5658, 5071, 6427)
+flight_cons_ratio <- c(3007, 2586, 3566, 1076, 3679, 3417, 10647, 3267, 2789,
+                       3016, 2146, 1798, 1975, 4946, 9499, 5120, 5378, 2541, 
+                       6140, 5544, NA, 3374, 2275, 2119, 2571, 5381, 4871, 6153
+                       )
+
+results_table1 <- as.data.frame(results_cmm_cs$range)
+
+results_table1$flight_results <- flight_cons_speed
+
+
+results_table2 <-  as.data.frame(results_cmm_cratio$range)
+results_table2$fight_results <- flight_cons_ratio  
+
+colnames(results_table1) <-  c("package_cons_speed", "flight_cons_speed")
+
+colnames(results_table2) <- c("package_cons_ratio","flight_cons_ratio")
+
+```
+
+```{r table1, echo=FALSE}
+table3 <- knitr::kable(results_table1, format = "latex", label = "Table 2", caption = "Comparison table constant speed")
+kableExtra::kable_styling(table3, latex_options = "hold_position")
+#results_table1
+```
+
+\newpage
+```{r table2, echo=FALSE}
+table4 <- knitr::kable(results_table2, format = "latex", label = "Table 3", caption = "Comparison table constant speed ratio")
+kableExtra::kable_styling(table4, latex_options = "hold_position")
+#results_table2
+```
+
+\newpage 
+# Future work
+In this section, aim is to discuss the future plan of the package so that it 
+incorporates as many features from Flight program as possible.
+
+## Protein withdrawal criterion
+@penny03 find that holding specific work constant is most realistic criteria for
+determining how  much fuel and protein to be withdrawn during 6 minute intervals
+of flight. This is in comparison with field observations. Specific work is defined
+as work done by unit mass of contractile tissue muscle. Further, @penny03, states
+that flight muscles contain myofibrils and mitochondria, which are treated separately
+in the simulation. To be exact enough mass of myofibrils is reduced by an amount
+sufficient to restore specific work to the value it had at beginning of flight. 
+In addition, fuel energy corresponding to mass of dry protein consumed is deducted
+from energy that would otherwise come from fuel/fat consumption.
+
+Holding the specific power constant is a third option in Flight program. In this
+scenario, just enough protein from muscle mass is used to maintain the specific
+power estimated at beginning of flight.
+
+## Supplemtary protein from air-frame
+In Flight program user has an option to specify minimum percentage of energy that
+should come from protein. It is possible that muscle mass alone would not be able
+sustain this, and therefore some of the protein can come from the air-frame.
+
+## Initial climb
+Initial climb, calculates the power required by the bird at start of flight. It
+is possible that a bird maybe to heavy to fly under some conditions. In Table 3 and 
+4 there were such cases.
+
+# References

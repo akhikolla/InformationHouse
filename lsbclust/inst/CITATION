@@ -1,0 +1,9 @@
+year <- sub("-.*", "", meta$Date)
+note <- sprintf("R package version %s", meta$Version)
+
+bibentry(bibtype = "Manual",
+         title = "{lsbclust}: Least-Squares Bilinear Clustering for Three-Way Data",
+         author = c(person(given = c("Pieter", "C."), family = "Schoonees")),
+         year = year,
+         note = note,
+         url = "https://CRAN.R-project.org/package=lsbclust")

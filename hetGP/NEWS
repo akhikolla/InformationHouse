@@ -1,0 +1,61 @@
+## hetGP 1.1.2
+
+## change / hetGP 1.1.1
+  * arguments factr and pgtol can now be passed to optim via settings
+  * prevent optim from returning values not strictly inside [0,1] with IMSPE
+  * update contour functions: MCU is now MEE, a new MCU is defined following updates in the paper
+  * parallel computation with mclapply available with IMSPE_optim and crit_optim
+  * add predictive variance to plot method
+  * add score function
+  * new 1d test function + noisy versions
+  * add generic loglikelihood function
+  * update vignette
+  
+## hetGP 1.1.1
+
+## change / hetGP 1.1.0
+  * add vignette describing the package
+  * precisions on noise.var with predict.hetGP in the documentation
+  * change print method to return summary
+  * add plot methods to GP and TP models
+  * catch optim errors when at least one likelihood evaluation worked
+  * lower and upper are now optional parameters
+  * IMSPE include the extra term with estimated beta0 (but not crit_IMSPE at this stage)
+  * IMSE.search and IMSE_nsteps_ahead are now a single function: IMSPE_optim
+  * update defaults of IMSE.search
+  * new functions crit_optim mimicking IMSPE_optim for contour/optim criteria
+  * catch numerical errors in updated variance in contour criteria
+  * improve partial derivatives wrt theta for Matern kernels
+  * add time slot in model fitting outputs
+  * faster trace computations in the symmetric case
+  * initial theta values when providing lower and upper is now 10% of the range
+  * fix strip and crit_EI methods (thanks to Rob Smith)
+
+## hetGP 1.1.0
+
+## change / hetGP 1.0.2
+  * better handling of the penalty term
+  * update the documentation, rename nu2_hat by nu_hat for consistency with JCGS paper
+  * several performance improvements (e.g., predict with xprime argument)
+  * contour finding infill criteria related to arXiv:1807.06712
+  * add Expected Improvement criterion (beta version)
+  * correct bug with known mean not used for initialization with mleHetGP/TP
+  * add leave one out predictions
+
+## hetGP 1.0.2
+
+## change / hetGP 1.0.1
+  * homTP/heTP update methods
+  * option settings$return.hom to return or not modHom models with hetGP and hetTP
+  * new functions to export/import hetGP objects, including a robust re-computation of inverse covariance matrices
+  * accordingly, predict now only threshold negative predictive variances occuring due to numerical instability with Cholesky inverse
+  * better initialization with mleHetTP
+  * improved warnings and error handling
+
+## hetGP 1.0.1
+
+## change / hetGP 1.0.0
+  * add Student-t modeling (equivalent of mleHetGP and mleHomGP, with predict functions)
+  * various typos and bugs corrections
+  * now works on Solaris
+  

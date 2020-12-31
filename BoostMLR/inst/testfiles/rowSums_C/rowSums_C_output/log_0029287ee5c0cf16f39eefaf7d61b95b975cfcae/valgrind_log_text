@@ -1,0 +1,20 @@
+WARNING: No test specified, defaulting to first test defined (BoostMLR_deepstate_test_rowSums_C_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/BoostMLR/inst/testfiles/rowSums_C/rowSums_C_output/0029287ee5c0cf16f39eefaf7d61b95b975cfcae.pass`
+TRACE: Running: BoostMLR_deepstate_test_rowSums_C_test from /home/akhila/fuzzer_packages/fuzzedpackages/BoostMLR/inst/testfiles/rowSums_C/rowSums_C_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+x values: 2.89112e-288 6.59006e-237 4.51478e+39
+8.93031e-138 1.18204e-124 3.78163e-303
+    inf 1.16887e+170 1.86179e+300
+    nan 9.29974e-68 1.22275e-262
+7.17390e-16 2.16410e+262 6.13509e+16
+1.60255e-102 2.75024e+292 6.81628e+56
+    nan 9.10698e-36 641.878
+6.14207e+13 8.01571e+97 -2.78938e+132
+5.72124e+97 1.82032e+286 1.67054e-245
+5.42839e-28 5.16166e+64 4.91623e+288
+
+input ends
+TRACE: Passed: BoostMLR_deepstate_test_rowSums_C_test

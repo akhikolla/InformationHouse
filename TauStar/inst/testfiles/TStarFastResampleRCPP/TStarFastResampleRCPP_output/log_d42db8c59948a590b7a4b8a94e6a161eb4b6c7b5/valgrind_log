@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./TStarFastResampleRCPP_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/TauStar/inst/testfiles/TStarFastResampleRCPP/TStarFastResampleRCPP_output/d42db8c59948a590b7a4b8a94e6a161eb4b6c7b5.pass</line>
+</preamble>
+
+<pid>604227</pid>
+<ppid>604226</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/TauStar/inst/testfiles/TStarFastResampleRCPP/TStarFastResampleRCPP_output/log_d42db8c59948a590b7a4b8a94e6a161eb4b6c7b5/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./TStarFastResampleRCPP_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/TauStar/inst/testfiles/TStarFastResampleRCPP/TStarFastResampleRCPP_output/d42db8c59948a590b7a4b8a94e6a161eb4b6c7b5.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.026 </time>
+</status>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:07.866 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.380 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

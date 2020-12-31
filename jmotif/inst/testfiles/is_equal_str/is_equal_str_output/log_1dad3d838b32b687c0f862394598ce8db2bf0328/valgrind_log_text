@@ -1,0 +1,13 @@
+WARNING: No test specified, defaulting to first test defined (jmotif_deepstate_test_is_equal_str_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/jmotif/inst/testfiles/is_equal_str/is_equal_str_output/1dad3d838b32b687c0f862394598ce8db2bf0328.fail`
+TRACE: Running: jmotif_deepstate_test_is_equal_str_test from /home/akhila/fuzzer_packages/fuzzedpackages/jmotif/inst/testfiles/is_equal_str/is_equal_str_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+a values: "dxzacqdxrb" "afoykrklhomoufedlot" "hfltbndpjtppqwzocxzk" "wrvwmnjhqkhmpltvcl" "fooexjrodohhsxee" "NA" "NA" "wkcsnahvixeejdkyhaqo" "xnpitiwyalvhnjmtfxin" "gutvlotwtrsvevfrkbs" "vjhdxpfahts"
+b values: "kycdudzzbmivxbiqiz" "NA" "or" "flgs" "NA" "nfbwpskgnll" "zvahfikvdqsmyewexsaf" "bspdkumvmfzzkkwrr" "NA" "rakxjeypfztk" "hownbgkubpitliu" "vjrzijktfzjnbzgkhrbd" "NA" "hesgekkqrrer" "an" "vcwk" "o" "rbulsiiwpekqhouhbuua" "grpzuvmwnqwceyfueppw" "fcozejddigvzcnrkrttv" "opmjxlhme" "jniorcozutxrwxdihlpn" "onleshy" "yehxwikhbqfkxeq" "NA" "xsdnqnhxpkwsb" "zrpiuqkmubuqngvwupip" "zozsmzpnpvyysoljnwwf" "NA" "bjtdbap" "rvuvmjvyfnfymqhaik" "askqkbpgnxevdvtckexc" "NA" "NA" "NA" "kmpmmsnwgypqxkxpqfsc" "NA" "NA" "mudrwfkahbghaffxxyma" "hlryacjdpqiftjkdtzfb" "NA" "uctnyvxfbjsvdnwcbd" "NA" "aaigv" "bb" "pbexarsazsfvqgheuqxc" "NA" "y" "NA" "zywi" "NA" "NA" "ihzpivcjrmpfghivk" "dsz" "ofpffkftqbaxrymskogs" "txjnbfpscqgkqhkwvjpc" "saybvvugjgefdquhzczv" "pvkkeqogyyosipknd" "NA" "NA" "eiyqnalnywovyupdaj" "sngfjfzyyqmeojtuqcj" "bjbmycbdngtwoyr" "srtx" "duumhmwuqkkrfbgahwne" "xggjszmvradmtzpcscbr" "piorizdqwdhfzqxh" "gygjpx" "hfdtskexpgzsjphkkpzv" "leilcdstilzpcawdtyas" "jjwxsqeqdhocdqglhwkm" "NA" "NA" "mfzmqxayqosf" "NA" "bslghgeub" "NA" "NA" "NA" "dayrrgnmvasts" "ovwcrgl" "NA" "NA" "gfbayvbpoamttiakgcfy" "wwhdnwrnpjsshotjkatw" "NA" "NA" "NA" "otsrnrytpzfymckscrvf" "kowvpvheheslerx" "rmasghfplluqr" "zqcbots" "uccjy" "nogmb" "gyroihgpnyu" "NA" "ojogjy" "wsiugpbazfheeewofora" "fsfsejqbiotwczqphrcb" "NA"
+input ends
+terminate called after throwing an instance of 'Rcpp::not_compatible'
+  what():  Expecting a single string value: [type=character; extent=11].
+ERROR: Failed: jmotif_deepstate_test_is_equal_str_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/jmotif/inst/testfiles/is_equal_str/is_equal_str_output/1dad3d838b32b687c0f862394598ce8db2bf0328.fail failed

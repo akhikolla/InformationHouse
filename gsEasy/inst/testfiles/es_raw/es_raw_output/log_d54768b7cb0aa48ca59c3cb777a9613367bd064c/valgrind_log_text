@@ -1,0 +1,16 @@
+WARNING: No test specified, defaulting to first test defined (gsEasy_deepstate_test_es_raw_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/gsEasy/inst/testfiles/es_raw/es_raw_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash`
+TRACE: Running: gsEasy_deepstate_test_es_raw_test from /home/akhila/fuzzer_packages/fuzzedpackages/gsEasy/inst/testfiles/es_raw/es_raw_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+S values: -709423862 1693996265 874270644 819746351 1283029671 308684195 -127551131 1528585009 -748078280 1636835733 -1401926948 1285557401 428228651 -328872220 -897103578 -1549445257 244494191 584058062 1078897549
+r values: -2.10374e+36 -5.29515e-20 9.81127e+30 -3403.88 -364840 -8.45394e+179
+input ends
+==831903==  If you believe this happened as a result of a stack
+==831903==  overflow in your program's main thread (unlikely but
+==831903==  possible), you can try to increase the size of the
+==831903==  main thread stack using the --main-stacksize= flag.
+==831903==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: gsEasy_deepstate_test_es_raw_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/gsEasy/inst/testfiles/es_raw/es_raw_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash crashed

@@ -1,0 +1,16 @@
+WARNING: No test specified, defaulting to first test defined (clogitboost_deepstate_test_seconddev_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/clogitboost/inst/testfiles/seconddev/seconddev_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash`
+TRACE: Running: clogitboost_deepstate_test_seconddev_test from /home/akhila/fuzzer_packages/fuzzedpackages/clogitboost/inst/testfiles/seconddev/seconddev_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+g values: -9.91228e-57 -1.64036e-118 1.05391e+182 8.05607e-38 -3.84354e+136 2.36082e-100 3.01724e-124 9.57301e+229 -7.99809e-243 3.0603e-110 3.27696e-93 -2.10374e+36 -5.29515e-20 9.81127e+30 -3403.88 -364840 -8.45394e+179 -4.53552e+269 3.95635e-268
+Missing value
+y values: 7.10346e+183 nan -6.90559e+64 -inf 1.69525e-11 -3.22009e+207 1.87679e-179 7.60266e-52 -inf -4.07828e-125 1.24681e+68 -2.7582e-295 5.67557e+224 -3.54965e-194 1.60096e-198 4.16403e-243 inf -inf 4.45587e-209 3.27437e+270 1.99018e+90 7.37432e-288 3.21585e+236 -4.62773e+76 5.0002e+07 -6.90296e+295 0
+w values: -3.19868e-152 9.01759e+269 1.38132e+189 4.87533e-255 6.46587e+299 7.95414e+131 -1.00073e+287
+n values: 1407195221
+group values: -1.70862e+300 -3.61832e+111
+theta values: -6.85014e+251
+input ends
+ERROR: Crashed: clogitboost_deepstate_test_seconddev_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/clogitboost/inst/testfiles/seconddev/seconddev_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash crashed

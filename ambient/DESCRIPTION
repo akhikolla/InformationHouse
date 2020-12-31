@@ -1,0 +1,38 @@
+Package: ambient
+Type: Package
+Title: A Generator of Multidimensional Noise
+Version: 1.0.0
+Authors@R: 
+    c(person(given = "Thomas Lin",
+             family = "Pedersen",
+             role = c("cre", "aut"),
+             email = "thomasp85@gmail.com",
+             comment = c(ORCID = "0000-0002-5147-4711")),
+      person(given = "Jordan",
+             family = "Peck",
+             role = "aut",
+             comment = "Developer of FastNoise"))
+Maintainer: Thomas Lin Pedersen <thomasp85@gmail.com>
+Description: Generation of natural looking noise has many application within 
+    simulation, procedural generation, and art, to name a few. The 'ambient' 
+    package provides an interface to the 'FastNoise' C++ library and allows for
+    efficient generation of perlin, simplex, worley, cubic, value, and white 
+    noise with optional pertubation in either 2, 3, or 4 (in case of simplex and
+    white noise) dimensions.
+License: MIT + file LICENSE
+Encoding: UTF-8
+SystemRequirements: C++11
+LazyData: true
+Imports: Rcpp (>= 0.12.18), rlang, grDevices, graphics
+LinkingTo: Rcpp
+RoxygenNote: 7.1.0
+URL: https://ambient.data-imaginist.com,
+        https://github.com/thomasp85/ambient
+BugReports: https://github.com/thomasp85/ambient/issues
+NeedsCompilation: yes
+Packaged: 2020-03-20 22:18:46 UTC; thomas
+Author: Thomas Lin Pedersen [cre, aut]
+    (<https://orcid.org/0000-0002-5147-4711>),
+  Jordan Peck [aut] (Developer of FastNoise)
+Repository: CRAN
+Date/Publication: 2020-03-21 17:50:12 UTC

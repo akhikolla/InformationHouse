@@ -1,0 +1,12 @@
+WARNING: No test specified, defaulting to first test defined (olctools_deepstate_test_decode_olc_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/olctools/inst/testfiles/decode_olc/decode_olc_output/8754f94ce84822a71f3014926763365bdafc3382.fail`
+TRACE: Running: olctools_deepstate_test_decode_olc_test from /home/akhila/fuzzer_packages/fuzzedpackages/olctools/inst/testfiles/decode_olc/decode_olc_DeepState_TestHarness.cpp(10)
+input starts
+EXTERNAL: qs v0.23.4.
+
+olcs values: "qlbjyndvnucdb" "NA" "xjycjpzsyyogibnsersu" "NA" "NA" "oxenyecotrubkc" "NA" "NA" "bdnooqhvotez" "vivomlghtfrwummzxpcm" "mchimixzvrnnhsdvvubk" "jffyngkyduhsvcwtkohl" "NA" "NA" "qonzbfpvdiay" "NA" "bqfqhkughncgjmdevjlq" "wzjntbtihwfqkofteiwj" "NA" "NA" "NA" "bynepuccdynmqxixz" "edqkmov" "nzdsqqbwvuvcpfzvokeb" "NA" "dbrqzkyhfmccinab" "NA" "echujhrxhzmy" "NA" "ktrhdtaxwkbhxjstdrut" "gmfpcfudrgiqnryodwsq" "mxjlai" "phxdlgaeihgxfgwybocn" "NA" "NA" "exyiymfgtttckexvqlst" "NA" "NA" "NA" "cjouvheivorouldxhqnh" "NA" "vkgndhyglhxysfaqrvrp" "dpqniefp" "xu" "lyhhugvddlryvkufdxjv" "fshspoyrbwprrrvoqfdv" "NA" "ckydfzqfvtgkgdmsykih" "NA" "NA" "pltygqvytsmfkhxvzch" "vvcmshteygmehsztitvl" "yspmflumeuzukgxpozc" "vsfpuwqthldrpzqfwrnj" "vvxqwwpdgwvslrsppsyz" "ungxvdsrtomcvepiydi" "ijzqc" "njsjgqphigflexuusibv" "" "NA" "lsmgzpxowvqo" "vrtzbwgqmafbvovopegh" "NA" "wkwtqookdfvizbisennb" "q" "wmiohr" "huchxvdipdfitpqaqsdx" "xkbkgjaibojlhjvcyuaf" "melzweiyirdsjzlsamiz" "NA" "trvgjlsd" "NA" "onymqfmathdwet" "txckkfocbvdmlz" "xlznrqmgivzmuoojamrj" "gp" "afruglfysludyqwsysoj" "vhodcpyblmrmvkglrvgs" "vfctjgnihqstb" "NA" "xgxvxlgifcxluhhejamb" "hxpfixejvjrqmaicqndp" "mjrhaigicyofvlyvsjzh" "dtxtpqpykccxgt" "NA" "ookafpqkhimkreu"
+input ends
+terminate called after throwing an instance of 'std::range_error'
+  what():  The Open Location Codes provided must be complete. Incomplete code: qlbjyndvnucdb
+ERROR: Failed: olctools_deepstate_test_decode_olc_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/olctools/inst/testfiles/decode_olc/decode_olc_output/8754f94ce84822a71f3014926763365bdafc3382.fail failed

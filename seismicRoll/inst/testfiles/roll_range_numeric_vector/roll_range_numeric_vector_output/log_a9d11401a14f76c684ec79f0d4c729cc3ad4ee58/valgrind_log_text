@@ -1,0 +1,18 @@
+WARNING: No test specified, defaulting to first test defined (seismicRoll_deepstate_test_roll_range_numeric_vector_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/seismicRoll/inst/testfiles/roll_range_numeric_vector/roll_range_numeric_vector_output/a9d11401a14f76c684ec79f0d4c729cc3ad4ee58.crash`
+TRACE: Running: seismicRoll_deepstate_test_roll_range_numeric_vector_test from /home/akhila/fuzzer_packages/fuzzedpackages/seismicRoll/inst/testfiles/roll_range_numeric_vector/roll_range_numeric_vector_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+x values: -1.0696e+114 -3.47955e-216 -8.95181e+215 1.38348e-136 6.24605e+181 -4.11368e+80
+n values: -645489399
+increment values: 1298265599
+alignCode values: 889924430
+input ends
+==436766==  If you believe this happened as a result of a stack
+==436766==  overflow in your program's main thread (unlikely but
+==436766==  possible), you can try to increase the size of the
+==436766==  main thread stack using the --main-stacksize= flag.
+==436766==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: seismicRoll_deepstate_test_roll_range_numeric_vector_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/seismicRoll/inst/testfiles/roll_range_numeric_vector/roll_range_numeric_vector_output/a9d11401a14f76c684ec79f0d4c729cc3ad4ee58.crash crashed

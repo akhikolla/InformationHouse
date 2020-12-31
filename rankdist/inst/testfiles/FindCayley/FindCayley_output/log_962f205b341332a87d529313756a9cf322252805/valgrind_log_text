@@ -1,0 +1,17 @@
+WARNING: No test specified, defaulting to first test defined (rankdist_deepstate_test_FindCayley_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/rankdist/inst/testfiles/FindCayley/FindCayley_output/962f205b341332a87d529313756a9cf322252805.fail`
+TRACE: Running: rankdist_deepstate_test_FindCayley_test from /home/akhila/fuzzer_packages/fuzzedpackages/rankdist/inst/testfiles/FindCayley/FindCayley_DeepState_TestHarness.cpp(10)
+input starts
+EXTERNAL: qs v0.23.4.
+
+obs values: 6.88767e+36 8.02616e-61 1.42120e-164 4.42409e-162 1.52703e-227 7.65386e+154 3.03859e-255 3.22705e+296 2.66985e+209 5.52676e-117
+1.82178e+145 6.95428e-36 7.55802e+213 1.14678e-257 6.28747e+217 1.01067e-94 3.61185e-36 2.52632e+06 6.47018e+09 6.12472e-202
+4.56323e-81 1.97443e+103 5.06023e-306 1.82064e-32 1.35208e-193 4.11708e+214 1.52718e-248 5.68902e+101 3.23362e+227 2.92759e+191
+1.90566e+294 1.13497e+197 8.97552e-145 7.00445e+172 2.32678e+291 1.61173e-107 3.15502e+114 2.52635e+12 3.18194e-83 1.43425e+211
+
+pi0 values: 2.14969e+70 -1.81639e-91 -2.45723e+108 -2.51209e+164 nan -1.616e+19 9.24812e-69 3.47685e-118 6.05092e+260 2.07119e+273 -2.49434e-43 -9.50347e-06 -1.46456e+41 -2.73659e-51 5.48251e+189 4.72849e+22 4.13944e+42 9.3767e+175 -4.76176e-284 -6.05451e+240 -2.71581e+203 -2.23035e-75 5.58779e+20 2.26572e+284 -1.9525e+89 3.9238e+302 7.17721e+208 -7.4603e-57 3.72751e-141 -1.04283e-64 -6.98042e+169 2.44182e+164 -4.67272e+216 3.02343e-56 5.59635e+114 -inf 2.02824e+270 -1.66668e-86 8.1018e-171 2.26655e-110 -5.35299e-294 -8.46589e+274 -3.14785e-154 2.05216e-99 nan -8.88957e+32 4.43773e-169 -2.67014e-143 -1.30228e+141 -2.87332e-271 2.17887e-147 2.24888e+48 2.5867e+209 -3.1648e+269 324713 -3.02962e-98 4.70309e-151 -2.66256e+256 2.09966e-284 -3.41522e+255 -2.31599e-252 -6.77456e-71 -8.97086e-204 2.949e-230 -1.20058e-166 -3.44627e-199 -8.24318e+98 nan
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Index out of bounds: [index=-1; extent=10].
+ERROR: Failed: rankdist_deepstate_test_FindCayley_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/rankdist/inst/testfiles/FindCayley/FindCayley_output/962f205b341332a87d529313756a9cf322252805.fail failed

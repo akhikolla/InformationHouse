@@ -1,0 +1,18 @@
+WARNING: No test specified, defaulting to first test defined (superml_deepstate_test_normalise2d_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/superml/inst/testfiles/normalise2d/normalise2d_output/6bd3f85143fe7734bbfba6f2564a756d0310b610.fail`
+TRACE: Running: superml_deepstate_test_normalise2d_test from /home/akhila/fuzzer_packages/fuzzedpackages/superml/inst/testfiles/normalise2d/normalise2d_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+mat values:     nan    -inf    -inf     nan    -inf 1.55275e+40
+
+pnorm values: 1649522050
+axis values: -879953637
+input ends
+
+error: normalise(): parameter 'dim' must be 0 or 1
+terminate called after throwing an instance of 'std::logic_error'
+  what():  normalise(): parameter 'dim' must be 0 or 1
+ERROR: Failed: superml_deepstate_test_normalise2d_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/superml/inst/testfiles/normalise2d/normalise2d_output/6bd3f85143fe7734bbfba6f2564a756d0310b610.fail failed

@@ -1,0 +1,204 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./sft_calc_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/forestControl/inst/testfiles/sft_calc/sft_calc_output/001f7ebce6e2e19ee4cf95a54d949ed9ee85c42a.pass</line>
+</preamble>
+
+<pid>67607</pid>
+<ppid>67606</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/forestControl/inst/testfiles/sft_calc/sft_calc_output/log_001f7ebce6e2e19ee4cf95a54d949ed9ee85c42a/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./sft_calc_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/forestControl/inst/testfiles/sft_calc/sft_calc_output/001f7ebce6e2e19ee4cf95a54d949ed9ee85c42a.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.030 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x42931D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/forestControl/inst/testfiles/sft_calc/sft_calc_DeepState_TestHarness</obj>
+      <fn>sft_calc(double, double, double, double, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/forestControl/src</dir>
+      <file>internals.cpp</file>
+      <line>109</line>
+    </frame>
+    <frame>
+      <ip>0x40CB96</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/forestControl/inst/testfiles/sft_calc/sft_calc_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_forestControl_deepstate_test_sft_calc_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/forestControl/inst/testfiles/sft_calc</dir>
+      <file>sft_calc_DeepState_TestHarness.cpp</file>
+      <line>43</line>
+    </frame>
+    <frame>
+      <ip>0x40C088</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/forestControl/inst/testfiles/sft_calc/sft_calc_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_forestControl_deepstate_test_sft_calc_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/forestControl/inst/testfiles/sft_calc</dir>
+      <file>sft_calc_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41FA18</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/forestControl/inst/testfiles/sft_calc/sft_calc_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41FCB9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/forestControl/inst/testfiles/sft_calc/sft_calc_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41FD94</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/forestControl/inst/testfiles/sft_calc/sft_calc_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x409655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/forestControl/inst/testfiles/sft_calc/sft_calc_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xa6d0870 is 0 bytes after a block of size 208 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x428D8B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/forestControl/inst/testfiles/sft_calc/sft_calc_DeepState_TestHarness</obj>
+      <fn>Vector&lt;long int&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector</dir>
+      <file>Vector.h</file>
+      <line>91</line>
+    </frame>
+    <frame>
+      <ip>0x428D8B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/forestControl/inst/testfiles/sft_calc/sft_calc_DeepState_TestHarness</obj>
+      <fn>get</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/sugar/functions</dir>
+      <file>cumsum.h</file>
+      <line>39</line>
+    </frame>
+    <frame>
+      <ip>0x428D8B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/forestControl/inst/testfiles/sft_calc/sft_calc_DeepState_TestHarness</obj>
+      <fn>operator Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/sugar/functions</dir>
+      <file>Lazy.h</file>
+      <line>31</line>
+    </frame>
+    <frame>
+      <ip>0x428D8B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/forestControl/inst/testfiles/sft_calc/sft_calc_DeepState_TestHarness</obj>
+      <fn>sft_calc(double, double, double, double, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/forestControl/src</dir>
+      <file>internals.cpp</file>
+      <line>98</line>
+    </frame>
+    <frame>
+      <ip>0x40CB96</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/forestControl/inst/testfiles/sft_calc/sft_calc_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_forestControl_deepstate_test_sft_calc_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/forestControl/inst/testfiles/sft_calc</dir>
+      <file>sft_calc_DeepState_TestHarness.cpp</file>
+      <line>43</line>
+    </frame>
+    <frame>
+      <ip>0x40C088</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/forestControl/inst/testfiles/sft_calc/sft_calc_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_forestControl_deepstate_test_sft_calc_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/forestControl/inst/testfiles/sft_calc</dir>
+      <file>sft_calc_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41FA18</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/forestControl/inst/testfiles/sft_calc/sft_calc_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41FCB9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/forestControl/inst/testfiles/sft_calc/sft_calc_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41FD94</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/forestControl/inst/testfiles/sft_calc/sft_calc_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x409655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/forestControl/inst/testfiles/sft_calc/sft_calc_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:07.774 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>1</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.269 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

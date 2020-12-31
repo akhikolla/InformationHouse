@@ -1,0 +1,42 @@
+#' sconduct: Generalized Path Analysis for Social Networks
+#' 
+#' This package contains two categories of functions. The first category is concerned
+#' with assigning values to user specified paths, while the second identifies
+#' paths of optimal value.
+#' 
+#' Key functions in the path value calculation category are
+#' - \code{gpv}, which calculates Generalized Path Value
+#' - \code{ppv}, which calculates Probabilistic Path Value
+#' - \code{binary_distance}, \code{peay_path_value}, \code{flament_path_length},
+#'   \code{peay_average_path_value}, and \code{flament_average_path_length}, which
+#'   calculate path value measures described in \emph{Yang, Knoke} (2001).
+#' - \code{generate_proximities}, which generates a matrix of values representing the
+#'   measures of optimal paths from each source node (row index) to each target node 
+#'   (column index).
+#'   
+#' Key functions in the optimal path identification category are
+#' - \code{opt_gpv}, which identifies the path of optimal Generalized Path Value from 
+#'   a particular source node to a particular target node
+#' - \code{opt_ppv}, which identifies the path of optimal Probabilistic Path Value from
+#'   a particular source node to a particular target node
+#' - \code{all_opt_gpv}, which identifies the 'gpv'-optimal paths from every source node 
+#'   to every target node
+#' - \code{all_opt_ppv}, which identifies the 'ppv'-optimal paths from every source node
+#'   to every target node
+#' - \code{unpack}, which unpacks the Dijkstra-format encoded shortest paths returned by
+#'   \code{all_opt_gpv} and \code{all_opt_ppv}. See their help pages for details.
+#'
+#' @docType package
+#' @name gretel
+NULL
+
+
+## usethis namespace: start
+#' @useDynLib gretel, .registration = TRUE
+## usethis namespace: end
+NULL
+
+## usethis namespace: start
+#' @importFrom Rcpp sourceCpp
+## usethis namespace: end
+NULL

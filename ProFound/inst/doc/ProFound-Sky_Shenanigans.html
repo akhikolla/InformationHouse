@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Aaron Robotham" />
+
+<meta name="date" content="2020-12-03" />
+
+<title>ProFound: Sky Shenanigans</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#header {
+text-align: center;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">ProFound: Sky Shenanigans</h1>
+<h4 class="author">Aaron Robotham</h4>
+<h4 class="date">2020-12-03</h4>
+
+
+
+<p>Get the latest version of <strong>ProFound</strong> and <strong>ProFit</strong>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(devtools)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">install_github</span>(<span class="st">'asgr/ProFound'</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">install_github</span>(<span class="st">'ICRAR/ProFit'</span>)</a></code></pre></div>
+<p>Set global evaluate (basically TRUE for GitHub version and FALSE for CRAN):</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">evalglobal=<span class="ot">FALSE</span></a></code></pre></div>
+<p>First load the libraries we need:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(ProFound)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">library</span>(ProFit)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">library</span>(LaplacesDemon)</a></code></pre></div>
+<div id="how-the-sky-is-estimated-in-profound" class="section level2">
+<h2>How the Sky is Estimated in ProFound</h2>
+<p>The sky is estimated mainly via the use of the <strong>profoundMakeSkyMap</strong> function. This basically does the following:</p>
+<ol style="list-style-type: decimal">
+<li>Divide the image into regions based on the requested box car and grid sampling, by default the grid sampling inherits the box car size, meaning each pixels used in every sampling region are unique and all pixels are used</li>
+<li>Each sub region is analysed separately in a large loop:
+<ol style="list-style-type: lower-alpha">
+<li>The masked pixels are removed from analysis, leaving a vector of fiducial sky pixels (<span class="math inline">\(sky_{fid-pix}\)</span>)</li>
+<li>Then the following is computed iteratively (either until the clipping is converged, or after 5 iterations):
+<ol style="list-style-type: lower-roman">
+<li>The sky value is estimated as <span class="math inline">\(sky=median(sky_{fid-pix})\)</span></li>
+<li>The dynamic sigma clip level is estimated to be <span class="math inline">\(\sigma_{clip}=Q_{norm}(1-2/N_{sky})\)</span></li>
+<li>The standard deviation of the sky pixels is estimated as <span class="math inline">\(sky_{RMS}=Quantile(sky_{fid-pix},0.5) - Quantile(sky_{fid-pix}, 0.159)\)</span></li>
+<li>The plausible sky pixels are dynamically sigma clipped such that pixels satisfying <span class="math inline">\(sky_{fid-pix} &gt; sky + sky_{RMS} \sigma_{clip} \lor sky_{fid-pix} &lt; sky - sky_{RMS} \sigma_{clip}\)</span> are removed</li>
+<li>The vector of <span class="math inline">\(sky_{fid-pix}\)</span> is updated and these new fiducial sky pixels are used for the next iteration</li>
+</ol></li>
+<li>Once convergence has been achieved the final computed <span class="math inline">\(sky\)</span> and <span class="math inline">\(sky_{RMS}\)</span> values are returned for the region under consideration</li>
+</ol></li>
+<li>With all regions having a unique estimate of the <span class="math inline">\(sky\)</span> and <span class="math inline">\(sky_{RMS}\)</span> a bilinear or bicubic interpolation scheme is used to calculate plausible <span class="math inline">\(sky\)</span> and <span class="math inline">\(sky_{RMS}\)</span> values for all pixels</li>
+<li>The <span class="math inline">\(sky\)</span> and <span class="math inline">\(sky_{RMS}\)</span> images are returned to the user or higher level function in a list</li>
+</ol>
+</div>
+<div id="testing-with-toy-data" class="section level2">
+<h2>Testing with Toy Data</h2>
+<p>We can easily create some toy sky with positive flux added in:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">666</span>)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">sky=<span class="kw">c</span>(<span class="kw">rnorm</span>(<span class="fl">5e5</span>,<span class="dt">mean=</span><span class="dv">0</span>,<span class="dt">sd=</span><span class="dv">1</span>),(<span class="kw">rnorm</span>(<span class="fl">5e5</span>,<span class="dt">mean=</span><span class="dv">0</span>,<span class="dt">sd=</span><span class="dv">1</span>)<span class="op">+</span><span class="kw">runif</span>(<span class="fl">5e5</span>,<span class="dv">0</span>,<span class="dv">100</span>)))</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">maghist</span>(sky, <span class="dt">xlab=</span><span class="st">'Pixel Value'</span>, <span class="dt">ylab=</span><span class="st">'Counts'</span>, <span class="dt">grid=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;Summary of used sample:&quot;
+##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+##  -4.62325  -0.01142   2.04147  25.01887  50.09346 103.34704 
+## [1] &quot;sd / MAD / 1-sig / 2-sig range:&quot;
+## [1] 32.313094  5.384653 34.408713 48.577137
+## [1] &quot;Using 1000000 out of 1000000&quot;</code></pre>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>From the text output of maghist we can see that the raw properties output would make very poor estimates of the sky. To do better we need to clip out non-Normal pixels. Luckily we already have access to a function that does exactly this - magclip.</p>
+<p>We can run magclip with the estimate set to both (the default) and lo:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">sky_clip_both=<span class="kw">magclip</span>(sky)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">sky_clip_lo=<span class="kw">magclip</span>(sky, <span class="dt">estimate=</span><span class="st">'lo'</span>)</a></code></pre></div>
+<p>Since we know the fake sources will have positive flux we would expect estimate=lo to work better:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">magplot</span>(<span class="kw">density</span>(sky_clip_both<span class="op">$</span>x), <span class="dt">col=</span><span class="st">'red'</span>, <span class="dt">grid=</span><span class="ot">TRUE</span>, <span class="dt">xlab=</span><span class="st">'Pixel Value'</span>, <span class="dt">ylab=</span><span class="st">'PDF'</span>)</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">lines</span>(<span class="kw">density</span>(sky_clip_lo<span class="op">$</span>x), <span class="dt">col=</span><span class="st">'blue'</span>)</a></code></pre></div>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwCAYAAAA+VemSAAAEGWlDQ1BrQ0dDb2xvclNwYWNlR2VuZXJpY1JHQgAAOI2NVV1oHFUUPrtzZyMkzlNsNIV0qD8NJQ2TVjShtLp/3d02bpZJNtoi6GT27s6Yyc44M7v9oU9FUHwx6psUxL+3gCAo9Q/bPrQvlQol2tQgKD60+INQ6Ium65k7M5lpurHeZe58853vnnvuuWfvBei5qliWkRQBFpquLRcy4nOHj4g9K5CEh6AXBqFXUR0rXalMAjZPC3e1W99Dwntf2dXd/p+tt0YdFSBxH2Kz5qgLiI8B8KdVy3YBevqRHz/qWh72Yui3MUDEL3q44WPXw3M+fo1pZuQs4tOIBVVTaoiXEI/MxfhGDPsxsNZfoE1q66ro5aJim3XdoLFw72H+n23BaIXzbcOnz5mfPoTvYVz7KzUl5+FRxEuqkp9G/Ajia219thzg25abkRE/BpDc3pqvphHvRFys2weqvp+krbWKIX7nhDbzLOItiM8358pTwdirqpPFnMF2xLc1WvLyOwTAibpbmvHHcvttU57y5+XqNZrLe3lE/Pq8eUj2fXKfOe3pfOjzhJYtB/yll5SDFcSDiH+hRkH25+L+sdxKEAMZahrlSX8ukqMOWy/jXW2m6M9LDBc31B9LFuv6gVKg/0Szi3KAr1kGq1GMjU/aLbnq6/lRxc4XfJ98hTargX++DbMJBSiYMIe9Ck1YAxFkKEAG3xbYaKmDDgYyFK0UGYpfoWYXG+fAPPI6tJnNwb7ClP7IyF+D+bjOtCpkhz6CFrIa/I6sFtNl8auFXGMTP34sNwI/JhkgEtmDz14ySfaRcTIBInmKPE32kxyyE2Tv+thKbEVePDfW/byMM1Kmm0XdObS7oGD/MypMXFPXrCwOtoYjyyn7BV29/MZfsVzpLDdRtuIZnbpXzvlf+ev8MvYr/Gqk4H/kV/G3csdazLuyTMPsbFhzd1UabQbjFvDRmcWJxR3zcfHkVw9GfpbJmeev9F08WW8uDkaslwX6avlWGU6NRKz0g/SHtCy9J30o/ca9zX3Kfc19zn3BXQKRO8ud477hLnAfc1/G9mrzGlrfexZ5GLdn6ZZrrEohI2wVHhZywjbhUWEy8icMCGNCUdiBlq3r+xafL549HQ5jH+an+1y+LlYBifuxAvRN/lVVVOlwlCkdVm9NOL5BE4wkQ2SMlDZU97hX86EilU/lUmkQUztTE6mx1EEPh7OmdqBtAvv8HdWpbrJS6tJj3n0CWdM6busNzRV3S9KTYhqvNiqWmuroiKgYhshMjmhTh9ptWhsF7970j/SbMrsPE1suR5z7DMC+P/Hs+y7ijrQAlhyAgccjbhjPygfeBTjzhNqy28EdkUh8C+DU9+z2v/oyeH791OncxHOs5y2AtTc7nb/f73TWPkD/qwBnjX8BoJ98VQNcC+8AAAA4ZVhJZk1NACoAAAAIAAGHaQAEAAAAAQAAABoAAAAAAAKgAgAEAAAAAQAAAPCgAwAEAAAAAQAAAPAAAAAA9iAI8QAAJchJREFUeAHtXQuQFNW5/meXXUDeT4kapHiYQr2K0ZviSqIYylgaE1CMlg/KNQZikbJIYgx6rcSkLsTSRJIoWFYQjCJiDMY8DEYroIkRND6CID6j+ABfLBJ2YXksO33/78z0MDvb0zOz3Wd6uv3+YpmZ7tPn8Z3z9X8e/zl/ylERChEgArFEoC6WuWamiQARMAiQwGwIRCDGCJDAMa48Zp0IkMBsA0QgxgiQwDGuPGadCJDAbANEIMYIkMAxrjxmnQiQwGwDRCDGCJDAMa48Zp0IkMBsA0QgxgiQwDGuPGadCJDAbANEIMYIkMAxrjxmnQiQwGwDRCDGCJDAMa48Zp0IkMBsA0QgxgiQwDGuPGadCJDAbANEIMYIkMAxrjxmnQiQwGwDRCDGCJDAMa48Zp0IkMBsA0QgxgiQwDGuPGadCJDAbANEIMYIkMAxrjxmnQiQwGwDRCDGCJDAMa48Zp0IkMBsA0QgxgiQwDGuPGadCJDAbANEIMYIkMAxrjxmnQj0sAXB7bffLnfeeaeMHz8+l8Svf/3r3Hf3y9KlS2Xw4MHS2NjoXur2Jzwdt7Y2SP/+7eK6PU6lUnqth/Trd6Db8VbyYDqdlrq66r4X88taSV6Dho2irMhzFOmGjTHKMGHCBDniiCMCVYM1Al9xxRWyY8cOufbaa30zeNddd8miRYuUYP18w5Vzc/9+kQcf7CsXXLBLdu/eLb169ZL6+nq91kcmTtxdThSBw7S2toZSlkoy0tHRIfv27ZNDDjmkkscCh42irMh0FOnu18YF0qFNhSF79+6VZ599tnYJjEKWIi/CQEMClCOPPBI/A4m2YRkyRDSuIbJr1y7p3bu3IfDQobim/1VBWlpatAfQvwopHUwCBEaD6NOnz8GLVfgWRVlRrCjSDZvAb7/9dii9TmsauLD9zJ8/X6677rrCy4ZoixcvlmHDhuXuzZo1K/e9ki8g8N69DVrB7UYjHThwwHRn29oy1yqJq7thQaRqCzQDygoiV1OiKCvKF0W6wBY4g8hhCHoRiC+oWCXw+vXrZcOGDTJixAiZM2eOZ1779u0rM2fOlLFjx3rer+QiCAwl1L9/704aGD1LXKuWfFI0MPCsdlndOqx2umFrYAwZw5grsTbbsnr1alm1apWMHDlSmpub5bLLLgvljeNWoNcnXmiYyCqUEF50hVHyNxGoCQSsaeA1a9ZIU1OTjBs3zhR07dq1pvsR1iRASfSUtY52K3UQ7Enqks8zABGIAQLWCHzVVVfJvHnzZNu2bTJw4ECZPn16aDN4frjqnJg47e1Sf/dy0Sk+kWlfIYH9AOO9WCNgjcBY212wYEFVwUH3GQSWHlosnSSQ7c0mfXOtqjlhYkSgOghYGwNXJ/tdUzE2FLqU44w4VGTffmPQwTFwV5x4JRkIRE5gWLhgij6MJZDcJFZbm0hPXXDvrX/63WtiKxnVx1J80hGInMBtSrD7779f7rjjjvDqYs+eDHn7qnUXCRweroyp5hCwNgYut6SwHrrwwgtDWQfOjYHb9oijVlhqzSGiZOYYuNzaYLi4IRA5gcMEDEQ1Y2BYQ/VR6w1c0HEwx8Bhosy4agmBRBE4NwYGgRsadByslh2qhTkGrqUmx7yEiUCiCAxgoHQddJ1hPwmrLCUzCRxmk2FctYRAogicGwPvb1ft2zPTn9ZJLI6Ba6nJMS9hIpA4AhtwdMeI06hdaBVoY46BDRT8L4EIRL6MhG1wW7ZskbfeeiswvNC0avqcmX1uVA2MUz5AZo8NDoETYwREoAYQiFwDg8BvvPGGrvbskVGjRgWCBJrWaNs0utBKXjAX3WkKEUgoApETGLuTTj311HDXgTGJBXvoRmW0bmygEIGkIhA5gcMENjeJBdJiGcloYK4Dh4kx46otBCIfA4cJR+YwSO02g7gYDGfHwGGmwbiIQC0hkCgCmyOhsIkf2hcCAutvLiNl4OD/yUMgUQQ2Xei0HuzmEhjjYJ2FhmbGPQoRSBoCiSIwKifVoRoYRhz4nulTS7pDj9chgQ0m/C9ZCEROYBxI/swzz8gTTzwRCrJ1jmpgaF5XVBunVCuTwC4g/EwSApETGEdrDhgwQAYNGhQYV7OZoV01MAkcGEtGEA8E8lRVNBluUA151FFHhbcOnD8GRpE0/jrR9WAKEUggAtYIvGnTJrn55puNc7MXXnhBjjvuOPn+979vH0JMRfeAPWVWlMDOAXahXTj4mSwErHWhly9fLvBQ+Pjjj8s999xjzryCOwmbYmyhoW2VtDnR7xwD59Dgl4QhYI3AcJ34ne98x/ixueGGG+TFF1+07rUPyheHuafyx8D6nQROWKtlcXIIWOtCn3/++catyquvvmr8FN166625RG196bIOjIS0O42ZaRpz2EKd8UaJgDUNDN9IcK8Ct6GYYf7mN79p3TcSgEyZMXDee0k1sHMgzT3BUbYypm0NgbyWHm4a5fpGco+VhQdDV6C9uyNtbSnZr0fotGk3Gi4o4b6xXpeV2vftUUcNu2BVaV2wrg3fxNUUlLNdN3C4XuSrlXYUZUXZokgX216BLz7DEDigD6O+rBG4XN9I2E54xhlnyOjRo3O4dNfTPEyfG+rUYbieh9WhP+Dgu07dlzbqxgbEiZNmbQsquLv5727ecCg+HKVXO90oygqMokg3bPeiaJthiDUCF/pG2rhxo2d+wzTkgOVknZOWOvXKgHjNnx6tUy9o4PjtmYVQL7rphhppicjwJo8i3SjSBBRRpIs03bTNl4D/IT68dINKFZp0JoubN28OmteSz+cmserzioUlJdpCl8SOAeKJgDUNvHPnTpk7d64Zr0BDTJo0yTpCIHAXW2gsKdEW2jr2TCAaBKwReOHChcY/8NChQ03J5syZIxi4w5WKLQGBMePc1ZCDu5FsYc54o0XAGoGPOeYYo4EnTpxoiIuJFpvkBYyZLrTOEpqjKbPA6vdUWj01UIhAAhGwRuBp06aZbvPLL78shx9+uIwZM6Yq8MHqqpMGhl20LrOA3BQikDQErBEYQA0bNsz8+YGGNVPYSg8fPlxmz57tF7TkPUzq1YHANKUsiRUDJAMBqwQuB6K+uk57ySWXhLKd0NhC64yz0cDYHAxRMpuJrcwv/k8EEoVA3npL/MtlxsA4UqdgDOwoqV0+x7+ULAEROIhAoghsutBOAYG5nfBgbfNb4hBIFIGNltX/Om0nNLPQOi6mEIEEIpAsAmtXOaW20J1ENXA9tDKFCCQQgUQR2MGBdvnjX1SYEthJOxwDJ7Dxski66pIoEHQauq6+QAPDaFwntrgOnKiaZmGyCEROYHcd+LbbbgtcKel2HesWaGAc7l4nTih7LwNnkBEQgZARSNQ6ME6fTOWfSJkFy6mrl/R+jIPzDrsLGUhGRwSiQCByDRxqoWHJUaCBEX+qh+pgjI8pRCBhCCSLwLqEVN+QdyZ0trJS2B9MS46ENV0WBwgkisDoJjt68kah1KkGrsqBWIUJ8zcRsIxA19ZuOUGr0WsX2mjbwkQwBsYEF4UIJAyBxBG4rqFgGQkVpl1ojoET1nJZHINAogicxmkcqm0LxXShMcFFIQIJQyByAmMdeNmyZbJo0aLA0DraTU55zEJjSyG70IHhZQQ1iEBNrAPPmDEjlP3AxdaBMa+FexQikDQErGlgHIT95ptvSnNzs9x7773ywQcfWMcuhTOhMeNcIPUNeo0ELkCFP5OAQNfWHlKp4Mzs448/FnhowJlY8+bNs27O6GVKaYqDWWiMjylEIGEIWCNwS0uLbgRqMI7NPve5zwmOzoFWtilOkWUkMy4OyaeNzfwzbiJQKQLWCHzNNdfIQw89JB999JFcffXVctZZZ0nPnj0rzV9l4XXbYKqx67Ces9CVwcjQ8UHAGoGhbd99911DWsw0w0+wbemAvbOHJRbsozkLbRt9xh8FAl3VVUi5iMQzA3Yj5ftFypYF1zgLHVLFMpqaQsAagcv1zADtvHjx4k7nR8+aNatbIO1pbZPUoH2C8Td8yMINJbzA7TuwT3arf2Bcty3wS1xtgX9glBXeL6opUZQV5YsiXWALnMOax2ltbTXxBa0vawQu1zMDJrdmzpwZyjpw756N0mNAX+nfv79xsg0frPXafe7dp6/0atxlrgcFrJznkX41BY0Ljdq26xqvMlW7rG4eqp0uiAsCw591GNKvXz+jXILGZW0MjIzBM8Mpp5xi3KrMnz8/aF5LPp/GWq+HJVZKtxiyC10SPgaIIQLWNDCwWL9+vWzYsEFGjBgh8E5oW3CAu9cY2MxCt3FDv238GX/1EbCmgVevXi2rVq2SkSNHGmusyy67LJQ+vy9EmMTyOFInMwtNQw5f7HgzlghY08Br1qyRpqYmGTdunAFm7dq1ZgIgrDGEF9pp+EXKd2yWDWRmoXGPQgQShoA1AsOEEuaT27Ztk4EDB8r06dNDmwAoVgdw7u3ZhcYxO1WeoS2WR14nAmEiYI3AgwcPlgULFoSZ19Jx6SxhqsGjSLqUREOO0vAxRPwQsDYGLheKMPcDix7g7rUbCeNizkKXWyMMFycEPNRVdbOPdeCw9gOn23Wc67GMVIcuNBx/U4hAwhCIXAOHiafxD6zd5S6ipO4AuSlEIGEIeLR27xKuW7fO3IjCjM07R52vOtguqET1UMCZbjU39HcGjL8SgUDZBF6+fLnZkP+DH/wgNHvQUBFUAqdTOtZ1usYKf8HpDo8bXYPyChGIFQJlE7jmS6UEhg+klMepsrjmaNcaG/4pRCBJCJRN4EMOOUQuvvhigYHGpZdear5v3ry5drAAOYt1oVFKHDeLbjaFCCQIgbJnoW+66SYrxcYOD4yr9+zZI9g91G3x60KrBk67BLZ9Kki3C8AHiUDlCJRNYGxZw4YEHJGDbWuTJ082mrjyJDs/AfLi6J1DDz1UYC/dbdH8OaqBvbrQmNhqr9OiUgN3G14+WJsIlE3glStXyjnnnCNTpkwxJYGpJE6dhMVVEEHX/Lzzzgu+H9h0oXvoHsuuucHEVpoE7goMr8QeAY/m7l2mp556KkdehDjxxBOlpsbA7e2ip0J7Zh6khnamPbQnPLwYYwTK1sA4muaiiy7KFXXLli3yy1/+Mvc78i+Yhdazr7y60EYrg8DsQkdeTcxAuAiUTeCbb77ZHFOD8W/KiyXh5qvy2LBdUCeqvLrQiKxDOAauHFQ+UesIePc5PXL96KOPyuWXXy5f+9rXrHtY8Ei+9CXMQmOc6yFQvsIthR7I8FLcESibwI888oisWLFCvvSlL8krr7xSe+VG91jPhC7WOYCVluDcaAoRSBACZRMY67XPPPOMbN26VZ5//nl5+umnZffu3YGhaNfJJ0yGvfbaa8HiAoFV1Xp1oUFqulcJBi+frk0Eyibw1KlTDWmHDBki27dvD43AeDG899578s477wRDSJeRoGW9NDCumTGwviwoRCBJCHgPGj1KOHnyZMFf2AJ/SZMmTQq+Dqwa2NcW2iwjkcBh1x/jixaBsglcaTafe+45ef/9981j8A+MJaizzz670mjKD28I7D0GNpNY+A/dbAoRSBACZXehKy0zHHrDRzBcfjhqCgUPCVZFu+LpVA/PLjTSxT1hF9pqFTDy6iNgjcBf/vKXZcmSJfLkk08aD4Vnnnmm1dI5Sk6cSOn1nsDEFrrX1MBWq4CRR4CAtS40ytLc3CxwcoYNEDi8DudfWRMlcIeaUnpu6MduJGz2196AfqUQgcQgYE0Du54ZRo0aJUcccYTZaYQZZ2sCSyxVv0U1MG5gwwOFCCQIAWsauFzPDHAD+thjj3VaBz7ttNMqhjila9J79eA67CvWf+bYH5h8Gvei+1J6r0P279otDm5aFKxrIw/VFLwY4T0PZa2mRFFWlC+KdDGXA5wxnxOGYBttGHFZI3C5nhnQ6A4//HDjQ8kFpoeHexT3XtFPBTbVo0Ea9GB3PI54MXGGv4YGVc4NjVIP8LsTd9FEu95Aut3Kf9eoyr6CvdpRpBtFmgAlinRBNiiEsOo2rEldawQu9MywceNGzwbZoOw66qijAq8Do3Ne39ioE2YgMXjaQz8bDIH1sl7IELgONy1K5oVhN43C7KNBg8QobzUlirKifFGkCwJDA4eFMeIJY1NQ1fpc1vcOaxenw/FeB9b2rVsN9V2lYShEIEkIWNPAO3fulLlz5wrGuHh7wdrKqoCcpsvcNRWYUmY2M9ASqys6vBJnBKwReOHChcY74dChQw0+OE8Lmx+wn9iKYJLByzewJoYJaK4DW0GdkUaMgDUCY/0XGnjixImGuBijWSMvQIQGbvTuQlMDR9zKmLw1BKwReNq0aabb/PLLL5tZ5jFjxlgrhJmO1wmGdJExMAjsYD+whqEQgSQhYI3AAGnYsGHmzw+wtrY2eeCBB8yxsk1NTX5Bi9+D9tVZZxAVE1aFYrrQWL7Tm8Yay/JSUmH6/E0EbCFglcDlZLpXr15y1llnSSANnSUwPkBiLzFGWFhmwYYGEtgLIl6LIQIe+qq6pcAaJjwy4HzobgtIadbVimtgE7dL4G4nxAeJQG0hEDmBQ4Ejq4GNlvWIEFq5kwb2CMNLRCCOCCSKwLCUxHi3UHLjYmhgkJ1CBBKCQHIIrOQsNskMApt77EInpNmyGC4CiSNwTtu6JdTPg11onbPDeJlCBBKCQDIIbGaWM31nLwLjGrrXmOiSA9wTnJC2y2IoApETGCd1LFu2TBYtWtT9CsGB7bo0VKwL7WrgFAis+2YpRCApCES+DoxjdmbMmBFsO6GZhcbWQe9qyV0ngb0B4tXYIhC5Bg4FOe1CO7qZv5hwEqsYMrwedwQSQ2A4Nstp2oJaQRfarB5hZz8nsQrQ4c84I5AYAvtpYFSQmdzSLjSOn6UQgaQgkAwCq3pN65E5XjPQbkVBO6dxKgcnsVxI+JkABBJBYAd2knqYXbEuNOrJELihJ5eREtBoWYSDCCSCwLJvv3So6xSz1nuwbJ2+maWkOp3o0uM8KUQgKQhETuBw1oF1XKsTVH67BNG97qjXSSx2oZPSdlkORSAZ68A6MdUB7eojIDcJ7AMQb8USAWsaGJ4Cfv/73+ccd69bt84eQJoWjo31GwObtWCd6KIGtlcNjLn6CFgj8G233abDzb1y/fXXy9atW2XlypX2SleuBq7jOrC9SmDMUSBgrQvtngUNt6LXXXedLvFYe1cY4wysA5fSwGZTf8+eZi3Y2EVHgTjTJAIhImCNVd/4xjfklltukQEDBsjs2bONi9EQ8905Kl0HdnSJyI/AGAPn9gTrYfMUIpAEBKxpYPiRaW1tNW5FoY2nTJliBS+cMokNv8WO03ETBbldDazuIkSdFbu3+EkEYouANQJXzTMDTCN1CanYcTpuzeQ0sHahuRbsosLPuCNgjcDlembAOvDixYs7nR89a9as8nHd2SL1ukl/585WVaz10tKSOfMKPpng09Ude+/ZUy87dqRlELrbzdvF6dev/DQqCImJu2oLejsoK7xfVFOiKCvKF0W6wBY4Y3UlDEHvFPEFFWsELtczA/YDz5w5s9v7gR04Sh44QN229NM/kf79M5DgxYDjal0/rLiuP6XP0CEiehZ1yg0YFEGP5/tbjNsjOUNcNGqrrmu8EtZr1S6rm41qpwvignA4xzwM6acKxFUuQeKzNomFTMEzwymnnGIObZ8/f36QfBZ/NtuFhvKBuWQxMafpQDljS6F6g6AQgSQgYE0DA5z169fLhg0bZMSIEQLvhFYEBO6ZGQP7mVIaSyz0MPEGjaCba6XsjPQTj4A1Dbx69WpZtWqVjBw5Upqbm81sdBh9/i41tldnlFWrYjjhp4ExC21Wj5TA6HZTiEASELCmgdesWSNNTU0ybtw4g9PatWvNBEBYY4gc+MrKVJbAIGkxweSzIXBvaGCuAxfDidfjhYA1Al911VXGwfe2bdtk4MCBMn369NAmADpBDFYqO7PLwZ1u5f9AF1rntTIzWYbJ+Xf5nQjEEwFrBB48eLAsWLDAPiogo74g0IUuNQbOaGCdijZMtp81pkAEbCNgbQxcbsaD7gd2shoYBPbrQmPy2SzhwQsiZ6HLrR6Gq3EErGngcssd+FxoHOreq6ekdV7Kb78ElpHA9ZSqaUdnu+jou9waYrhaRiByDRwYnN27zdIQ1oH9NDBWj1pasqlBC+M5ChGIOQLxJzCWhJSd6EL7aWAQePv2bG1hIwPHwTFvusw+EIg/gdEvVnZiFtpPA8P0+cMPs5XeV20ud1EDkwLxRyD+BFbmlrMOjKo67LDM/FUKbGYXOv6tlyWItwZ2suNf1GOpMTDCQFnrsrTZ8eD85z+4RCECsUYg3hp4z56MYYZWQakuNGrp7rtFfvUr9RWM3UItrbGuOGaeCACByAmMdeB77rlHcAhexYL1XMwoq0ADY6nIT+64Q+QnPxEZNH6EdGz72C8o7xGBWCBQE+vAl1xySff2A8OmuU+GwNiU5DeJhdo48shMnbS0pKS+sV4c1eApbBKmEIGYIhC5Bg6Em55qkMpqYHShS2lg3dUoGPouXarj4QHDRT74IFDyfJgIRI1AvAmMSSwcw6FSDoERTg/JNJraGX6oEthdV8IdChGIHwKxJrCzW8fA/TKnS4LAQ/S0nHLEeGn41GHivLulnOAMQwRqFoFYE1hPsssdDwuDrFJjYLcWsPE/PUS70HDJkjPPcu/ykwjEB4F4ExjGzegTq0ADlysgujnB49hjxFl0e7mPMRwRqDkEIp+FxjE7WEpqUTJWctKggyUk3ciP3UWQSk77NBpYbadTE44X5/0PJL18haTGjc0sSbk3sS6Fw6bdP6+qQ1jXADv7mdJxuTmyFvfwh5k1/TDfEQbxQfAG6dA//DZvEwRSQXnqss8hfLZ87nMInnL0OTwD0U8HO7J0Rt3BsSMmQDYu9zvyge/ub5QN1yDuNcTnvtnc6/hEHnAdwc1nNi4Nn9IjfR0YmSM+PO/GhWfwB0E6uAdx7+N7/n38zpd87N18Im08o79TWvcO7NkRn4aF44AU0nDDup8IjzDZ53J5QfwQNx2ERxhgjVUNHYvFZXUi0/ozxYnkfxyHivOzNm3aJBdffHH5efhY13F1I78rlRDYrVc8W3fmGeK8/m+R994TY50FUqGxojK10aQQGH8QbSRoLKZR4De+Q9wGg4ak43IHGyXQoPS86lwjcRuYGxcaZP6z+O7Gje6EeV4/0cjwHYJ0lDAOCus2aHymHanr0POusenZjd8NX/iJNBCPm/fC+3h5QExe9NNNH3lw84E0NY4UhiCwK8/+NvEiPOJHWOTFTc9Emo0P37PQmctumuZ6Nn+Iw/2NeBAvROvHENhd/kM4Lbfx0FGfrSeEc8uH+sSzbj4Q3mCX/URYCMKoo3izV/zDj/Ql3FdSJ0wQOf64TBvIhKq5/yMn8CG6DDR16tTK14F3/EdSQwYbQCvdn2/afJYTiCA1bqyI/mWbjG8llQqT1p5EXZXPhXa08aX1RViXnZH3LUCIN6MoK7JfjXQdXWJ01j0tsmGjyNSv5AyGQoQvlKjyXlmhxFe1SACwHjxt0sNqEnqPlYj7Qq/kGYb95CCQUqOBunOmSuq/TxLnvvtF0OOrQYktgc0a7qfUMkMFc1mV+CqDBnZ7WDVYJ8xSDSGQOnq8pE46UVJX/68Ihlo1JrEksBmr6ljGdY8C6yp3SFQOvhhSucO5csIzzCcbARDYueZ7UnfHneK8/XZNgRFLAsumlyR1VOa8aaD56KOVOVsoHAPXVI0wM7WJgM6RpK+cLc5Dq2qKxFYJDNcqd+sevkeVYVgqCkOcN94Q59XXRHQN15V//Uvks591f5X+BIErWTcuHSNDfCIQOOJwSZ13rjgPPyLp1WtqwsOHtVloLA09/fTTcvLJJ+sKzXvGtcpvfvMbXVno/M5o121EL730UieCH3300Zn2gB34mAXEgBVLMtuaJfXwX8S5cX5mmUeXMXqqXyTIkiX7O60Fw90m4vZyubljR8psati/P38tI5Nk0P+RblguKMvNC9bSo0g3ijSBSRTpoi0B57pBg0Rm6HLnk+tEYASElZChQzOTMFjGgnbAUhXaLP6O+y/PGVa0EbMkWW4lFwlnjcDlulYBKDt27OjktcF1x6IM1HU53bQPQGAQMXa0yA3/l5nS13vgty4C6gThbrPkiOCuuJXsuhd1r+PzK7oqAMkPn7kS/H+ki8qupuAlhTR7YO26ihJFWVG8KNIFviBcTgFN+h+RkydmNsRo+zXuerA+L1r3IC4mWdBu0RYKlJZbBnwGFWs1Xq5rlZ66/jNp0iTvdWCsa54+pWgZcRtYqflMlzAAO98/cJcAli6ATNX204s08aKKIt1qp4lqiwLjov6Bx2Y201TanGD/kALBA0rn/mzAyPIfd12rLFu2TG699VY57bTT8m9b//7b3/7WaHbrCRUksHjx4oIr9n/C++MDDzxgP6GCFH6F84kikCjSffHFF+Uf//hHBKX1T9Iagf2T5V0iQATCQKCmCYzJrb/97W9Fy7lo0aKi90rd8DuDyy/et3Ud8M9//nOp6D3v//GPf5QtW7Z43sPF7uapaITZG37xYrLx1VdfLRqF37NFH9Ibe3RzxZ133lk0iF+8Tz31lDz//PNFn/W7Ae2MLnYx8atbvzwVi8+97hfv8uXLzWYdN2yYn9bGwOVmEmPV3WoL+e9/d7VyAVk+VhM2r3uI/6OPPip67wM1tdy8ebPONquVh4f4Pet3b+vWrWZWvVie4E612L33339f3nrrLcEGDi/xS9fvHrrQH+qp9cXS9XsW5XHH0JXmya+sKGN38/Tuu+/qnGVD0d1pfum6ZfWavET53PuVlvWdd97R7ec7u4Ux2uKbb76p1oIHx8vABxO4QSWlBDLTQEEj6u7zV155pbzwwgsHZ/fyInKn7jHR5SVYW84HJT9Mm+5wgDPx3Kxh/k397ves3z3MgOKvmKNyv2dRaWiYxRqX37N+90DAfTolj4kRL/F7Fs8BI+TLS/ye9buHxonydidPmDDCBE938gRl4DdB5Jdnv3tht0Xg09TUJF//+te9YC/7WuQELjunDEgEiEAXBGp6DNwlt7xABIhAJwRI4E5w8AcRiBcCJHC86ou5JQKdEEgsgTFjWE3BbLkrmFTChEg1BLPsmCyCVKvMSAfLRK4Um+l374f1iRlkVzBJiYklm5Jfp4XYVqvMpcqXyEmsP/zhD/Lwww/rRoee8qMf/UgGwQDdosydO1dgeYYlop/97GfmbK/jjz9eTjrpJLW7zhpeW0gfL4rTTz9dfvrTn5r15WqUee3atXLXXXeZJRCU+yfqbOrTn/60DB8+XL71rW9ZKGUmytmzZ8uYMWPMMtDll18u1157rYwePVouvfRSOfbYY0NP99577xVYEQLTwvZ0++23m+VJzN7fcMMNoaddSYSJ1MAwo8Si/Be/+EVBg7MpINGUKVMEjRlv6SeffFLOOecc+fGPfyx/+tOfbCYtt9xyi9nthUSqVWYYJcB2/eyzzzZLeLCFRlmxFGhTgO1nPvMZ07NZuXKlSXPOnDnyu9/9zkqy2BHnvvgLsd24caPceOONZpkLa91RSiIJ7K7/onHZ7upgTRca4IorrpCZM2cai5tDD1W3LSo2txXCWglrnigrtmtWq8xIa+TIkfLKK6/I448/LiPgcErFZncWa9VYewdZ0HVvVZ9YwNhm/U6YMMH04FC2QmzdtW18YiddlJJIAh922GHyL93ljwZ2wgknWMUXC/JXX3216aqjy3ziiSfKqlWrjBUYutW2BNph1KhRAmu1119/XapV5lNPPdV0mdFtHqaHCkLzYmwahlVRMaww3kVaMHyA3RFwhjnrY489pgc5VHCSQ7EESlwvxBZGJjCJ3bBhg+S2vpaIw9btRI6BoQ1gEztQz42u6KzpbqAMDf+LX/wi9+T1118v0I4g8Xe/+91cNywXIOQveFFBCw7VTeXVKDO039KlS82Y94ILLjAvkCVLlsiMGTNMFzfk4uWiw1gUw6Fp06aZlyS60TBP/N739Kwqj/22uQcDfMHYF0ceF7Yn1PnChQvl85//vEyePDlACsEfTSSBg8PCGIhAPBBIZBc6HtAzl0QgOAIkcHAMGQMRiAwBEjgy6JkwEQiOAAkcHEPGQAQiQ4AEjgx6JkwEgiNAAgfHkDEQgcgQIIEjgz54wjAkuOiii+Tb3/62sQ2GtVKpUzHhJQPPQWCsD1tmV7BuXSiws6bULgIkcO3WTcmcYccTjAlgSILNBDB0gJkjDtWHyeMTTzxhPmFYAqLCFBHnZ8EYAwJLMRiCwIrqn//8p7F2gmngTTfdZFziIAw2aMDaCvHh2WeffVa2b98uP//5z+Wvf/0rglAiRIAEjhD8MJKGMT80J84thtnogw8+KOPHjzfXsGsIZn84DRNWUz/84Q+7JIndTDj5E+dKw2oN8eATfq3eUD9UkOeee05w0BwOk8PLYN68eXLhhRfKfffdZ14KXSLlhaohEPmplFUraUITOvfccwVb7fIFppWwH4ZfKhASdrsgMQz0C+X88883dtwt6mQZ2hsmoH//+9+NlkUcENeDgLvHedOmTbJixQpji43dWJToEKAGjg57ayljK+WsWbMERMOmA+yLhv2u14YD2Iuja/yFL3zB5AfdbITH9j2cyw0B8WH/7I6Hv/rVr5oXBDZRwAabEh0CtIWODvuqpoyxrbu/tVTC7vGq2MbnHukLg/78Y15B8H79+lnbSFAqj7yfQYAEZksgAjFGgF3oGFces04ESGC2ASIQYwRI4BhXHrNOBEhgtgEiEGMESOAYVx6zTgRIYLYBIhBjBEjgGFces04ESGC2ASIQYwRI4BhXHrNOBEhgtgEiEGMESOAYVx6zTgRIYLYBIhBjBEjgGFces04ESGC2ASIQYwRI4BhXHrNOBEhgtgEiEGME/h/mtqwOKTtsFgAAAABJRU5ErkJggg==" /><!-- --></p>
+<p>Now we can check how good our sky using the lo estimate is, where the black density line is the true sky we want to get back:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">magplot</span>(<span class="kw">density</span>(sky_clip_lo<span class="op">$</span>x), <span class="dt">col=</span><span class="st">'blue'</span>, <span class="dt">grid=</span><span class="ot">TRUE</span>, <span class="dt">xlab=</span><span class="st">'Sky Pixel Value'</span>, <span class="dt">ylab=</span><span class="st">'PDF'</span>)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">lines</span>(<span class="kw">seq</span>(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="dt">len=</span><span class="fl">1e3</span>), <span class="kw">dnorm</span>(<span class="kw">seq</span>(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="dt">len=</span><span class="fl">1e3</span>)), <span class="dt">col=</span><span class="st">'black'</span>)</a></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>Not bad! The actual sky estimates we end up with are:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">median</span>(sky_clip_lo<span class="op">$</span>x)</a></code></pre></div>
+<pre><code>## [1] 0.04501541</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">diff</span>(<span class="kw">quantile</span>(sky_clip_lo<span class="op">$</span>x, <span class="kw">pnorm</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>))))</a></code></pre></div>
+<pre><code>##      50% 
+## 1.019308</code></pre>
+<p>Where ideally we want to answer to be 0 and 1.</p>
+<p>We could instead use the mean and standard-deviation, but these tend to be less robust to contamination:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">mean</span>(sky_clip_lo<span class="op">$</span>x)</a></code></pre></div>
+<pre><code>## [1] 0.09501955</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">sd</span>(sky_clip_lo<span class="op">$</span>x)</a></code></pre></div>
+<pre><code>## [1] 1.120707</code></pre>
+<p>Both of these estimates are notably higher than using the more robust median and qunatile estimates.</p>
+<p>The main ProFound sky estimation routines eventually end up using magclip to do the clipping, in fact they call each other like this:</p>
+<pre><code>profoundMakeSkyMap (make a per pixel image)
+-profoundMarkSkyGrid (make a coarse sky grid)
+--profoundSkyEstLoc (estimate sky and sky_RMS values in a coarse region)
+---magclip (dynamically clip pixels within a coarse region)</code></pre>
+<p>In practice we also parse <strong>profoundMakeSkyMap</strong> (and all lower functions) a bas pixel mask and/or a binary object mask, so we remove from consideration all of the <em>clearly</em> non-sky pixels before even attempting to do the clipping on what is left.</p>
+</div>
+<div id="testing-with-more-realistic-data" class="section level2">
+<h2>Testing with More Realistic Data</h2>
+<p>We can do a more realistic test by using the sky estimate maps from the test VIKING Z-band data we include with <strong>ProFound</strong>:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">image=<span class="kw">readFITS</span>(<span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">'VIKING/mystery_VIKING_Z.fits'</span>, <span class="dt">package=</span><span class="st">&quot;ProFound&quot;</span>))</a>
+<a class="sourceLine" id="cb19-2" data-line-number="2">profound=<span class="kw">profoundProFound</span>(image, <span class="dt">skycut=</span><span class="dv">1</span>, <span class="dt">magzero=</span><span class="dv">30</span>, <span class="dt">plot=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<p>From this we get a reasonable sky and sky-RMS map:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">magimage</span>(profound<span class="op">$</span>sky)</a>
+<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="kw">magimage</span>(profound<span class="op">$</span>skyRMS)</a>
+<a class="sourceLine" id="cb20-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb20-4" data-line-number="4"><span class="kw">maghist</span>(profound<span class="op">$</span>sky, <span class="dt">xlab=</span><span class="st">'Pixel Value'</span>, <span class="dt">ylab=</span><span class="st">'Counts'</span>, <span class="dt">grid=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb20-5" data-line-number="5"><span class="kw">maghist</span>(profound<span class="op">$</span>skyRMS, <span class="dt">xlab=</span><span class="st">'Pixel Value'</span>, <span class="dt">ylab=</span><span class="st">'Counts'</span>, <span class="dt">grid=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<p>You can see in the sky-RMS histograms that there are two distinct depths in the test data. This is due to data being stacked to make the final image.</p>
+<p>We can now make a noise free simulated image with a mixture of stars and galaxies (the extraction found 67 sources, and we use <strong>ProFound</strong> properties where appropriate):</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">ExamplePSF=<span class="kw">profitMakeGaussianPSF</span>(<span class="dt">fwhm=</span><span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb21-2" data-line-number="2">ExamplePSF=ExamplePSF<span class="op">/</span><span class="kw">sum</span>(ExamplePSF)</a>
+<a class="sourceLine" id="cb21-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb21-4" data-line-number="4">model_test=<span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb21-5" data-line-number="5">    <span class="dt">sersic=</span><span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb21-6" data-line-number="6">        <span class="dt">xcen=</span><span class="kw">runif</span>(<span class="dv">67</span>,<span class="dv">0</span>,<span class="dv">356</span>),</a>
+<a class="sourceLine" id="cb21-7" data-line-number="7">        <span class="dt">ycen=</span><span class="kw">runif</span>(<span class="dv">67</span>,<span class="dv">0</span>,<span class="dv">356</span>),</a>
+<a class="sourceLine" id="cb21-8" data-line-number="8">        <span class="dt">mag=</span>profound<span class="op">$</span>segstats<span class="op">$</span>mag,</a>
+<a class="sourceLine" id="cb21-9" data-line-number="9">        <span class="dt">re=</span>profound<span class="op">$</span>segstats<span class="op">$</span>R50,</a>
+<a class="sourceLine" id="cb21-10" data-line-number="10">        <span class="dt">nser=</span><span class="kw">runif</span>(<span class="dv">67</span>,<span class="fl">0.5</span>,<span class="dv">4</span>),</a>
+<a class="sourceLine" id="cb21-11" data-line-number="11">        <span class="dt">ang=</span><span class="kw">runif</span>(<span class="dv">67</span>,<span class="dv">0</span>,<span class="dv">180</span>),</a>
+<a class="sourceLine" id="cb21-12" data-line-number="12">        <span class="dt">axrat=</span><span class="kw">runif</span>(<span class="dv">67</span>,<span class="fl">0.3</span>,<span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb21-13" data-line-number="13">        <span class="dt">box=</span><span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">67</span>)</a>
+<a class="sourceLine" id="cb21-14" data-line-number="14">    )</a>
+<a class="sourceLine" id="cb21-15" data-line-number="15">)</a>
+<a class="sourceLine" id="cb21-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb21-17" data-line-number="17">im_test&lt;-<span class="kw">profitMakeModel</span>(<span class="dt">modellist=</span>model_test, <span class="dt">psf=</span>ExamplePSF, <span class="dt">dim=</span><span class="kw">c</span>(<span class="dv">356</span>,<span class="dv">356</span>), <span class="dt">magzero =</span> <span class="dv">30</span>)<span class="op">$</span>z</a></code></pre></div>
+<p>Let’s take a look:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">magimage</span>(im_test)</a></code></pre></div>
+<p>We can now add back in the sky and sky-RMS we just calculated:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">im_test_noise=im_test<span class="op">+</span><span class="kw">rnorm</span>(<span class="dv">356</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">mean=</span>profound<span class="op">$</span>sky, <span class="dt">sd=</span>profound<span class="op">$</span>skyRMS)</a></code></pre></div>
+<p>Let’s take a look:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">magimage</span>(im_test_noise)</a></code></pre></div>
+<p>We can now run <strong>ProFound</strong> on this simualted data:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">profound_resim=<span class="kw">profoundProFound</span>(im_test_noise, <span class="dt">skycut=</span><span class="dv">1</span>, <span class="dt">magzero=</span><span class="dv">30</span>, <span class="dt">plot=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<p>So finally we can check our new sky estimates:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">magimage</span>(profound<span class="op">$</span>sky)</a>
+<a class="sourceLine" id="cb26-2" data-line-number="2"><span class="kw">magimage</span>(profound<span class="op">$</span>skyRMS)</a>
+<a class="sourceLine" id="cb26-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb26-4" data-line-number="4"><span class="kw">magimage</span>(profound_resim<span class="op">$</span>sky)</a>
+<a class="sourceLine" id="cb26-5" data-line-number="5"><span class="kw">magimage</span>(profound_resim<span class="op">$</span>skyRMS)</a>
+<a class="sourceLine" id="cb26-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb26-7" data-line-number="7"><span class="kw">magimage</span>(profound<span class="op">$</span>sky<span class="op">-</span>profound_resim<span class="op">$</span>sky)</a>
+<a class="sourceLine" id="cb26-8" data-line-number="8"><span class="kw">magimage</span>(profound<span class="op">$</span>skyRMS<span class="op">-</span>profound_resim<span class="op">$</span>skyRMS)</a></code></pre></div>
+<p>It is perhaps more useful to look at the histograms directly:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">maghist</span>(profound<span class="op">$</span>sky, <span class="dt">xlab=</span><span class="st">'Pixel Value'</span>, <span class="dt">ylab=</span><span class="st">'Counts'</span>, <span class="dt">grid=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb27-2" data-line-number="2"><span class="kw">maghist</span>(profound<span class="op">$</span>skyRMS, <span class="dt">xlab=</span><span class="st">'Pixel Value'</span>, <span class="dt">ylab=</span><span class="st">'Counts'</span>, <span class="dt">grid=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb27-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb27-4" data-line-number="4"><span class="kw">maghist</span>(profound_resim<span class="op">$</span>sky, <span class="dt">xlab=</span><span class="st">'Pixel Value'</span>, <span class="dt">ylab=</span><span class="st">'Counts'</span>, <span class="dt">grid=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb27-5" data-line-number="5"><span class="kw">maghist</span>(profound_resim<span class="op">$</span>skyRMS, <span class="dt">xlab=</span><span class="st">'Pixel Value'</span>, <span class="dt">ylab=</span><span class="st">'Counts'</span>, <span class="dt">grid=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb27-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb27-7" data-line-number="7"><span class="kw">maghist</span>(profound<span class="op">$</span>sky<span class="op">-</span>profound_resim<span class="op">$</span>sky, <span class="dt">xlab=</span><span class="st">'Pixel Value'</span>, <span class="dt">ylab=</span><span class="st">'Counts'</span>, <span class="dt">grid=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb27-8" data-line-number="8"><span class="kw">maghist</span>(profound<span class="op">$</span>skyRMS<span class="op">-</span>profound_resim<span class="op">$</span>skyRMS, <span class="dt">xlab=</span><span class="st">'Pixel Value'</span>, <span class="dt">ylab=</span><span class="st">'Counts'</span>, <span class="dt">grid=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<p>Broadly we can see many of the sky features are being found in the same places on the image.</p>
+<p>The simplest metric to decide whether we are, on average, doing the right thing is to compare the standard deviation in the input sky to that obtained from the input-estimated sky:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw">sd</span>(profound<span class="op">$</span>sky)</a>
+<a class="sourceLine" id="cb28-2" data-line-number="2"><span class="kw">sd</span>(profound<span class="op">$</span>sky<span class="op">-</span>profound_resim<span class="op">$</span>sky)</a>
+<a class="sourceLine" id="cb28-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb28-4" data-line-number="4"><span class="kw">sd</span>(profound<span class="op">$</span>skyRMS)</a>
+<a class="sourceLine" id="cb28-5" data-line-number="5"><span class="kw">sd</span>(profound<span class="op">$</span>skyRMS<span class="op">-</span>profound_resim<span class="op">$</span>skyRMS)</a></code></pre></div>
+<p>We can see there is a large reduction in the absolute sky variance, and a small reduction in the sky-RMS variance. The take-home here is that <strong>ProFound</strong> is at least bringing the sky and sky-RMS closer to the intrinsic values (i.e. better than doing nothing or using a fixed estimator), but it is not perfect.</p>
+</div>
+<div id="bias-as-a-function-of-number-of-sky-vs.object-pixels" class="section level2">
+<h2>Bias as a Function of Number of Sky vs. Object pixels</h2>
+<p>A good question is how contaminated the sky pixels can be (i.e. non-masked and non-object pixels) for us to still get a decent estimate of the true sky.</p>
+<p>We can do this experiment roughly by varying the number of pixels with object flux in our toy sky model from earlier:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">contam=<span class="kw">seq</span>(<span class="fl">1e5</span>, <span class="fl">2e6</span>, <span class="dt">by=</span><span class="fl">1e5</span>)</a>
+<a class="sourceLine" id="cb29-2" data-line-number="2">N=<span class="kw">length</span>(contam)</a>
+<a class="sourceLine" id="cb29-3" data-line-number="3">output=<span class="kw">cbind</span>(contam,<span class="kw">rep</span>(<span class="dv">0</span>,N), <span class="kw">rep</span>(<span class="dv">0</span>,N), <span class="kw">rep</span>(<span class="dv">0</span>,N), <span class="kw">rep</span>(<span class="dv">0</span>,N))</a>
+<a class="sourceLine" id="cb29-4" data-line-number="4"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>N){</a>
+<a class="sourceLine" id="cb29-5" data-line-number="5">  sky=<span class="kw">c</span>(<span class="kw">rnorm</span>(<span class="fl">5e5</span>,<span class="dt">mean=</span><span class="dv">0</span>,<span class="dt">sd=</span><span class="dv">1</span>),(<span class="kw">rnorm</span>(contam[i],<span class="dt">mean=</span><span class="dv">0</span>,<span class="dt">sd=</span><span class="dv">1</span>)<span class="op">+</span><span class="kw">runif</span>(contam[i],<span class="dv">0</span>,<span class="dv">100</span>)))</a>
+<a class="sourceLine" id="cb29-6" data-line-number="6">  sky_clip_lo=<span class="kw">magclip</span>(sky, <span class="dt">estimate=</span><span class="st">'lo'</span>)</a>
+<a class="sourceLine" id="cb29-7" data-line-number="7">  output[i,<span class="dv">2</span>]=<span class="kw">as.numeric</span>(<span class="kw">median</span>(sky_clip_lo<span class="op">$</span>x))</a>
+<a class="sourceLine" id="cb29-8" data-line-number="8">  output[i,<span class="dv">3</span>]=<span class="kw">as.numeric</span>(<span class="kw">diff</span>(<span class="kw">quantile</span>(sky_clip_lo<span class="op">$</span>x, <span class="kw">pnorm</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>)))))</a>
+<a class="sourceLine" id="cb29-9" data-line-number="9">  output[i,<span class="dv">4</span>]=<span class="kw">as.numeric</span>(<span class="kw">mean</span>(sky_clip_lo<span class="op">$</span>x))</a>
+<a class="sourceLine" id="cb29-10" data-line-number="10">  output[i,<span class="dv">5</span>]=<span class="kw">as.numeric</span>(<span class="kw">sd</span>(sky_clip_lo<span class="op">$</span>x))</a>
+<a class="sourceLine" id="cb29-11" data-line-number="11">}</a></code></pre></div>
+<p>We can plot how this behaves:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">magplot</span>(<span class="dv">1</span><span class="op">-</span>output[,<span class="dv">1</span>]<span class="op">/</span>(<span class="fl">5e5</span><span class="op">+</span>output[,<span class="dv">1</span>]),output[,<span class="dv">2</span>], <span class="dt">log=</span><span class="st">'y'</span>, <span class="dt">grid=</span><span class="ot">TRUE</span>, <span class="dt">xlab=</span><span class="st">'Nsky/Ntotal'</span>, <span class="dt">ylab=</span><span class="st">'(Sky Estimate) - (Sky Input)'</span>, <span class="dt">type=</span><span class="st">'l'</span>, <span class="dt">col=</span><span class="st">'red'</span>)</a>
+<a class="sourceLine" id="cb30-2" data-line-number="2"><span class="kw">lines</span>(<span class="dv">1</span><span class="op">-</span>output[,<span class="dv">1</span>]<span class="op">/</span>(<span class="fl">5e5</span><span class="op">+</span>output[,<span class="dv">1</span>]),output[,<span class="dv">4</span>], <span class="dt">col=</span><span class="st">'blue'</span>)</a>
+<a class="sourceLine" id="cb30-3" data-line-number="3"><span class="kw">legend</span>(<span class="st">'topright'</span>, <span class="dt">legend=</span><span class="kw">c</span>(<span class="st">'Median'</span>,<span class="st">'Mean'</span>), <span class="dt">lty=</span><span class="dv">1</span>, <span class="dt">col=</span><span class="kw">c</span>(<span class="st">'red'</span>,<span class="st">'blue'</span>))</a>
+<a class="sourceLine" id="cb30-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb30-5" data-line-number="5"><span class="kw">magplot</span>(<span class="dv">1</span><span class="op">-</span>output[,<span class="dv">1</span>]<span class="op">/</span>(<span class="fl">5e5</span><span class="op">+</span>output[,<span class="dv">1</span>]),output[,<span class="dv">3</span>]<span class="op">-</span><span class="dv">1</span>, <span class="dt">log=</span><span class="st">'y'</span>, <span class="dt">grid=</span><span class="ot">TRUE</span>, <span class="dt">xlab=</span><span class="st">'Nsky/Ntotal'</span>, <span class="dt">ylab=</span><span class="st">'(Sky-RMS Estimate) - (Sky-RMS Input)'</span>, <span class="dt">type=</span><span class="st">'l'</span>, <span class="dt">col=</span><span class="st">'red'</span>)</a>
+<a class="sourceLine" id="cb30-6" data-line-number="6"><span class="kw">lines</span>(<span class="dv">1</span><span class="op">-</span>output[,<span class="dv">1</span>]<span class="op">/</span>(<span class="fl">5e5</span><span class="op">+</span>output[,<span class="dv">1</span>]),output[,<span class="dv">5</span>]<span class="op">-</span><span class="dv">1</span>, <span class="dt">col=</span><span class="st">'blue'</span>)</a>
+<a class="sourceLine" id="cb30-7" data-line-number="7"><span class="kw">legend</span>(<span class="st">'topright'</span>, <span class="dt">legend=</span><span class="kw">c</span>(<span class="st">'Quantile Range'</span>,<span class="st">'Standard-Deviation'</span>), <span class="dt">lty=</span><span class="dv">1</span>, <span class="dt">col=</span><span class="kw">c</span>(<span class="st">'red'</span>,<span class="st">'blue'</span>))</a></code></pre></div>
+<p>We can see that both the sky and sky-RMS estimates behave best when the contamination level is small (i.e. they are pretty unbiased when the sky to object ration is 5:1). From this point they become gradually more biased (always positively), and then they fail spectacularly when the sky to object ration is 5:8 or above (i.e. less than 40% of pixels are sky pixels).</p>
+<p>The example above is only for a simple toy model, but it gives you some idea that you want comfortably more than half of the pixels to be real sky pixels in general. Obviously using the bad pixel mask and the objects mask helps a lot, but in detail very few pixels are pure sky pixels because there are always increasingly faint (sub surface brightness limit) sources that bias the flux positively and in a non-uniform manner. This is similar to saying that all images are <em>confused</em>, you just cannot always tell by looking at them. This fact is more obvious when you consider the earlier simulated image data before and after we add realistic sky noise. Those broad low-surface brightness wings are still there in the noisy image, they are just well below the applied noise level. However, those low surface brightness features are still able to bias our estimated sky away from the intrinsic values we would like to know.</p>
+<p>The difference between the sky level estimators (mean, median or mode) and sky-RMS level estimator (quantile vs. standard-deviation) is an interesting point to consider. In the toy situation described it is easy to convince yourself that you would want to use the median for the sky and the quantile for the sky-RMS, since these are both systematically nearer to the specified ‘intrinsic’ sky. However, what really matters is the origin of the positively biased flux that skews the distribution. There are a number of processes that generate the ‘sky’ and contribute to the extended area signal in a typical CCD image, in roughly descending order of importance:</p>
+<ol style="list-style-type: decimal">
+<li>The actual night sky caused by Earth’s atmosphere glowing. Can be quite spatially and temporally variable (in the NIR, distant artificial lights turning on and off etc)</li>
+<li>Flux scattered around the image due to telescope optics causing very broad ~Lorentzian wings</li>
+<li>Scattering of astronomical light by the Earth’s atmosphere, usually at very small scales (close to Gaussian usually)</li>
+<li>Intrinsically broad features caused by the Milky-Way foreground</li>
+<li>Intrinsically broad wings caused by extra-galactic sources (low surface brightness wings of galaxies)</li>
+<li>Undetectable faint sources, can be structured (Milky-Way stars) or effectively uniform in distribution (high redshift galaxies)</li>
+</ol>
+<p>The question is then: which of these do you want to remove? The answer clearly depends on what sources you are trying to extract photometry for. If you are doing stellar photometry of a bright star then you almost certainly want to remove 1/4/5/6, i.e. you actually want to model the light from the star that has been scattered by the atmosphere and the telescope (assuming it is the dominant contribution close to the star being modelled). If you want to profile a faint galaxy then you probably need to remove 1/2 (assuming it mostly caused by other source)/3 (assuming it mostly caused by other source)/4/6, i.e. you want to keep the faint wings of your target galaxy intact. There is not a trivially right answer, but <strong>ProFound</strong> does offer a few routes to compute these different types of sky. The basic message is you might prefer a median type sky or a mean type sky, depending on your use case. If your source sits <strong>on top of</strong> the sky (whatever makes it) then you probably want to use the more biased mean estimator. If your source <strong>is the dominant part</strong> of the observable background (e.g. when profiling the faint wings of galaxies) then you might prefer the less biased median estimator.</p>
+<p>An unresolved issue is whether you can extract better models by using <strong>ProFit</strong> to model the background for a given source. The three obvious options are:</p>
+<ul>
+<li>Use <strong>ProFound</strong> sky subtraction on the image and do not fit a sky background in <strong>ProFit</strong></li>
+<li>Use <strong>ProFound</strong> sky subtraction on the image and also fit a sky background in <strong>ProFit</strong></li>
+<li>Do not use the <strong>ProFound</strong> sky subtraction on the image and only fit a sky background in <strong>ProFit</strong></li>
+</ul>
+<p>For pragmatic reasons of needing to remove complex sky that cannot be fully generatively modelled with , options 1 or 2 are likely to be the best strategy with the majority of use cases.</p>
+</div>
+<div id="profound-sky-options" class="section level2">
+<h2>ProFound Sky Options</h2>
+<p>Below we will run the ProFound sky routine with and without sky clipping and using the three different estimators (mean, median, mode):</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">profound_median_clip=<span class="kw">profoundProFound</span>(image, <span class="dt">skycut=</span><span class="fl">1.0</span>, <span class="dt">magzero=</span><span class="dv">30</span>, <span class="dt">skytype=</span><span class="st">'median'</span>, <span class="dt">doclip=</span><span class="ot">TRUE</span>) <span class="co">#The default mode</span></a>
+<a class="sourceLine" id="cb31-2" data-line-number="2">profound_median_noclip=<span class="kw">profoundProFound</span>(image, <span class="dt">skycut=</span><span class="fl">1.0</span>, <span class="dt">magzero=</span><span class="dv">30</span>, <span class="dt">skytype=</span><span class="st">'median'</span>, <span class="dt">doclip=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb31-3" data-line-number="3">profound_mean_clip=<span class="kw">profoundProFound</span>(image, <span class="dt">skycut=</span><span class="fl">1.0</span>, <span class="dt">magzero=</span><span class="dv">30</span>, <span class="dt">skytype=</span><span class="st">'mean'</span>, <span class="dt">doclip=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb31-4" data-line-number="4">profound_mean_noclip=<span class="kw">profoundProFound</span>(image, <span class="dt">skycut=</span><span class="fl">1.0</span>, <span class="dt">magzero=</span><span class="dv">30</span>, <span class="dt">skytype=</span><span class="st">'mean'</span>, <span class="dt">doclip=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb31-5" data-line-number="5">profound_mode_clip=<span class="kw">profoundProFound</span>(image, <span class="dt">skycut=</span><span class="fl">1.0</span>, <span class="dt">magzero=</span><span class="dv">30</span>, <span class="dt">skytype=</span><span class="st">'mode'</span>, <span class="dt">doclip=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb31-6" data-line-number="6">profound_mode_noclip=<span class="kw">profoundProFound</span>(image, <span class="dt">skycut=</span><span class="fl">1.0</span>, <span class="dt">magzero=</span><span class="dv">30</span>, <span class="dt">skytype=</span><span class="st">'mode'</span>, <span class="dt">doclip=</span><span class="ot">FALSE</span>)</a></code></pre></div>
+<p>The difference between the clipped and non-clipped runs are tiny (meaning we have found pretty much all of the sources):</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw">maghist</span>(profound_median_clip<span class="op">$</span>sky<span class="op">-</span>profound_median_noclip<span class="op">$</span>sky, <span class="dt">grid=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb32-2" data-line-number="2"><span class="kw">maghist</span>(profound_mean_clip<span class="op">$</span>sky<span class="op">-</span>profound_mean_noclip<span class="op">$</span>sky, <span class="dt">grid=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb32-3" data-line-number="3"><span class="kw">maghist</span>(profound_mode_clip<span class="op">$</span>sky<span class="op">-</span>profound_mode_noclip<span class="op">$</span>sky, <span class="dt">grid=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<p>The differences between the different estimators are larger:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw">maghist</span>(profound_mean_clip<span class="op">$</span>sky<span class="op">-</span>profound_median_clip<span class="op">$</span>sky, <span class="dt">grid=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb33-2" data-line-number="2"><span class="kw">maghist</span>(profound_mode_clip<span class="op">$</span>sky<span class="op">-</span>profound_median_clip<span class="op">$</span>sky, <span class="dt">grid=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb33-3" data-line-number="3"><span class="kw">maghist</span>(profound_mean_clip<span class="op">$</span>sky<span class="op">-</span>profound_mode_clip<span class="op">$</span>sky, <span class="dt">grid=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<p>The median and the mode are the most similar, and for most people the choice will come down to using one of these two. We can check the impact this choice might have on the photometry:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="kw">magplot</span>(profound_median_clip<span class="op">$</span>segstats<span class="op">$</span>mag, profound_median_clip<span class="op">$</span>segstats<span class="op">$</span>mag<span class="op">-</span>profound_mean_clip<span class="op">$</span>segstats<span class="op">$</span>mag, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="fl">0.1</span>,<span class="fl">0.1</span>), <span class="dt">xlab=</span><span class="st">'Median mag'</span>, <span class="dt">ylab=</span><span class="st">'(Median mag) - (Mean mag)'</span>, <span class="dt">grid=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb34-2" data-line-number="2"><span class="kw">lines</span>(<span class="kw">magrun</span>(profound_median_clip<span class="op">$</span>segstats<span class="op">$</span>mag, profound_median_clip<span class="op">$</span>segstats<span class="op">$</span>mag<span class="op">-</span>profound_mean_clip<span class="op">$</span>segstats<span class="op">$</span>mag), <span class="dt">col=</span><span class="st">'red'</span>)</a></code></pre></div>
+<p>So even down to our detection limit the difference tends to be a few hundredths of a mag on average, with the average effect that subtracting a median sky leaves more flux in the image (on average) given us brighter measured magnitudes. For this reason it is probably a good check to always run <strong>ProFound</strong> with both types of sky and check there are not regions with pathelogically weird differences.</p>
+</div>
+<div id="improving-our-sky-map-with-ffts" class="section level2">
+<h2>Improving Our Sky Map with FFTs</h2>
+<p>By doing ProFound source detection on the FFT itself it tells us if there are significant sources of a certain common scale (usually small) still in the image to extract. We can improve the sky using <strong>profoundSkySplitFFT</strong>.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">profound=<span class="kw">profoundProFound</span>(image, <span class="dt">type=</span><span class="st">&quot;bicubic&quot;</span>)</a>
+<a class="sourceLine" id="cb35-2" data-line-number="2">newsky=<span class="kw">profoundSkySplitFFT</span>(image<span class="op">$</span>imDat, <span class="dt">objects=</span>profound<span class="op">$</span>objects_redo, <span class="dt">sky=</span>profound<span class="op">$</span>sky, <span class="dt">skyRMS=</span>profound<span class="op">$</span>skyRMS)</a></code></pre></div>
+<p>We can check the old versus new sky:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="kw">magimage</span>(profound<span class="op">$</span>sky)</a>
+<a class="sourceLine" id="cb36-2" data-line-number="2"><span class="kw">magimage</span>(newsky<span class="op">$</span>sky)</a></code></pre></div>
+<p>We can have a look at the original image, old sky subtraction and new sky subtraction (pretty subtle!):</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw">magimage</span>(image<span class="op">$</span>imDat)</a>
+<a class="sourceLine" id="cb37-2" data-line-number="2"><span class="kw">magimage</span>(image<span class="op">$</span>imDat<span class="op">-</span>profound<span class="op">$</span>sky)</a>
+<a class="sourceLine" id="cb37-3" data-line-number="3"><span class="kw">magimage</span>(image<span class="op">$</span>imDat<span class="op">-</span>newsky<span class="op">$</span>sky)</a></code></pre></div>
+<p>Be warned, you need a reasonable estimate of the sky and objects before running <strong>profoundSkySplitFFT</strong>.</p>
+<p>If we run on the original image that even the high/low k modes look very odd:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw">magimage</span>(<span class="kw">profoundSkySplitFFT</span>(image<span class="op">$</span>imDat)<span class="op">$</span>sky_lo)</a>
+<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="kw">magimage</span>(<span class="kw">profoundSkySplitFFT</span>(image<span class="op">$</span>imDat)<span class="op">$</span>sky_hi)</a></code></pre></div>
+</div>
+<div id="doing-better" class="section level2">
+<h2>Doing Better</h2>
+<p>I (ASGR) spent a bit of time looking at whether you can do better by attempting to fit a true generative model to the sky. Even when the model is exactly the type used to generate the sky (which will not true for real data of course, the toy setup here is only crudely realistic) there is such a degeneracy between betweent the sky level and the mode of the Normal sky / start of the uniform object distribution, that you rarely do better than the clipped estimate used in ProFound currently. By using medians and quantiles we are also more robust to Lorentzian wings of weirdness, bright star artefacts, and cosmic ray effects (which can even created negative signals depending on how the sky pedestal is implemented).</p>
+<p>All this said, I am all ears as to how we might be able to estimate the sky better. Any estimator must be pragmatic (be able to cope with the fact that real data is not perfect, not in detail Normal, etc), so I hope you can appreciate that this is not a trivial task.</p>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

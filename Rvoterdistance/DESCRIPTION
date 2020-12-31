@@ -1,0 +1,16 @@
+Package: Rvoterdistance
+Type: Package
+Title: Calculates the Distance Between Voter and Multiple Polling
+        Locations
+Version: 1.1
+Date: 2017-03-17
+Author: Loren Collingwood
+Maintainer: Loren Collingwood <loren.collingwood@ucr.edu>
+Description: Designed to calculate the distance between each voter in a voter file -- given lat/long coordinates -- and many potential (early) polling or vote by mail drop box locations, then return the minimum distance.
+License: GPL (>= 2)
+Imports: Rcpp (>= 0.12.9)
+LinkingTo: Rcpp
+NeedsCompilation: yes
+Packaged: 2017-03-20 07:40:33 UTC; lorencollingwood
+Repository: CRAN
+Date/Publication: 2017-03-20 08:38:54 UTC

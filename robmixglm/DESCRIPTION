@@ -1,0 +1,24 @@
+Package: robmixglm
+Type: Package
+Title: Robust Generalized Linear Models (GLM) using Mixtures
+Version: 1.2-0
+Date: 2020-08-21
+Authors@R: c(person("Ken","Beath",email="ken.beath@mq.edu.au", role=c("aut","cre")))
+Maintainer: Ken Beath <ken.beath@mq.edu.au>
+Contact: Ken Beath <ken.beath@mq.edu.au>
+Author: Ken Beath [aut, cre]
+Description: Robust generalized linear models (GLM) using a mixture method, as described in Beath (2018) <doi:10.1080/02664763.2017.1414164>. This assumes that the data are a mixture of standard observations, being a generalised linear model, and outlier observations from an overdispersed generalized linear model. The overdispersed linear model is obtained by including a normally distributed random effect in the linear predictor of the generalized linear model.
+Depends: R(>= 3.2.0)
+Suggests: R.rsp, robustbase, lattice, forward
+VignetteBuilder: R.rsp
+Imports: fastGHQuad, stats, bbmle, MASS, VGAM, actuar, Rcpp (>=
+        0.12.15), methods, boot, numDeriv, parallel, doParallel,
+        foreach, doRNG
+LazyLoad: yes
+LazyData: yes
+NeedsCompilation: yes
+License: GPL (>= 2)
+LinkingTo: Rcpp
+Packaged: 2020-08-22 08:02:00 UTC; kjbeath1
+Repository: CRAN
+Date/Publication: 2020-08-26 05:30:03 UTC

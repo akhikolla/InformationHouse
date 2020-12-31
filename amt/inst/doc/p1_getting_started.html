@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="Johannes Signer" />
+
+<meta name="date" content="2020-10-01" />
+
+<title>Getting started with amt</title>
+
+<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
+// v0.0.1
+// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
+
+document.addEventListener('DOMContentLoaded', function() {
+  const codeList = document.getElementsByClassName("sourceCode");
+  for (var i = 0; i < codeList.length; i++) {
+    var linkList = codeList[i].getElementsByTagName('a');
+    for (var j = 0; j < linkList.length; j++) {
+      if (linkList[j].innerHTML === "") {
+        linkList[j].setAttribute('aria-hidden', 'true');
+      }
+    }
+  }
+});
+</script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Getting started with <code>amt</code></h1>
+<h4 class="author">Johannes Signer</h4>
+<h4 class="date">2020-10-01</h4>
+
+
+
+<div id="basics" class="section level2">
+<h2>Basics</h2>
+<div id="creating-a-track" class="section level3">
+<h3>Creating a track</h3>
+<p>The basic building blocks of <code>amt</code> are tracks. Tracks are <code>tibble</code>s with at least two columns that contain the coordinates: <code>x_</code> and <code>y_</code>. A track behaves exactly like a <code>tibble</code> (the only difference being that we added an other S3 class). Below is an example of creating a track with some dummy locations.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">library</span>(amt)</span>
+<span id="cb1-4"><a href="#cb1-4"></a>df1 &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">y =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="kw">is.data.frame</span>(df1)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>df1</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 2
+##       x     y
+##   &lt;int&gt; &lt;int&gt;
+## 1     1     1
+## 2     2     2
+## 3     3     3</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Now we can create a track</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>tr1 &lt;-<span class="st"> </span><span class="kw">make_track</span>(df1, x, y)</span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="kw">is.data.frame</span>(tr1)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>tr1</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 2
+##      x_    y_
+## * &lt;int&gt; &lt;int&gt;
+## 1     1     1
+## 2     2     2
+## 3     3     3</code></pre>
+<p>At the moment <code>amt</code> supports two types of tracks:</p>
+<ul>
+<li><code>track_xy</code> is a track that only has coordinates, and</li>
+<li><code>track_xyt</code> is a track that has a timestamp associated to each coordinate pair.</li>
+</ul>
+<p>If a <code>track_xy</code> or <code>track_xyt</code> is created with the function <code>make_track</code>, is determined whether or not a timestamp is passed as a third argument (called <code>.t</code>) to the function <code>make_track</code>. In the previous example we only passed <code>x</code> and <code>y</code> coordinates. Hence a <code>track_xy</code> was created.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">class</span>(tr1)</span></code></pre></div>
+<pre><code>## [1] &quot;track_xy&quot;   &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
+<p>To create a <code>track_xyt</code> we could do the following</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>df1 &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">y =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">t =</span> lubridate<span class="op">::</span><span class="kw">ymd</span>(<span class="st">&quot;2017-01-01&quot;</span>) <span class="op">+</span><span class="st"> </span>lubridate<span class="op">::</span><span class="kw">days</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">2</span>))</span>
+<span id="cb11-2"><a href="#cb11-2"></a>tr2 &lt;-<span class="st"> </span><span class="kw">make_track</span>(df1, x, y, t)</span></code></pre></div>
+<pre><code>## .t found, creating `track_xyt`.</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">class</span>(tr2)</span></code></pre></div>
+<pre><code>## [1] &quot;track_xyt&quot;  &quot;track_xy&quot;   &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
+<p>From the output above we see that a <code>track_xyt</code> is also a <code>track_xy</code>. This means that all methods for <code>track_xy</code> also work for a <code>track_xyt</code> (but not the reverse).</p>
+</div>
+<div id="adding-additional-information" class="section level3">
+<h3>Adding additional information</h3>
+<p>We can also add additional information for each relocation (e.g., the id of the animal, or some other sensor information such as the DOP). Any number of additional named columns can be passed to <code>make_track</code>. By named we mean, that columns should always be passed in the form of <code>column_name = content</code> to avoid confusion with coordinates and time stamp. We will extend the dummy example from above, by passing 2 more columns (the id of animal and the age).</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>df1 &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">y =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">t =</span> lubridate<span class="op">::</span><span class="kw">ymd</span>(<span class="st">&quot;2017-01-01&quot;</span>) <span class="op">+</span><span class="st"> </span>lubridate<span class="op">::</span><span class="kw">days</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">2</span>), </span>
+<span id="cb15-2"><a href="#cb15-2"></a>                  <span class="dt">id =</span> <span class="dv">1</span>, <span class="dt">age =</span> <span class="dv">4</span>)</span>
+<span id="cb15-3"><a href="#cb15-3"></a></span>
+<span id="cb15-4"><a href="#cb15-4"></a><span class="co"># first we only create a track_xy</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a>tr3 &lt;-<span class="st"> </span><span class="kw">make_track</span>(df1, x, y, <span class="dt">id =</span> id, <span class="dt">age =</span> age)</span></code></pre></div>
+<pre><code>## .t missing, creating `track_xy`.</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>tr3</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 4
+##      x_    y_    id   age
+## * &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     1     1     1     4
+## 2     2     2     1     4
+## 3     3     3     1     4</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># now lets create a track_xyt</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>tr4 &lt;-<span class="st"> </span><span class="kw">make_track</span>(df1, x, y, t, <span class="dt">id =</span> id, <span class="dt">age =</span> age)</span></code></pre></div>
+<pre><code>## .t found, creating `track_xyt`.</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>tr4</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 5
+##      x_    y_ t_            id   age
+## * &lt;int&gt; &lt;int&gt; &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt;
+## 1     1     1 2017-01-01     1     4
+## 2     2     2 2017-01-02     1     4
+## 3     3     3 2017-01-03     1     4</code></pre>
+</div>
+<div id="coordinate-reference-system" class="section level3">
+<h3>Coordinate reference system</h3>
+<p><code>make_track</code> has one further optional argument (<code>crs</code>), which allows the user to set a coordinate reference system (CRS) of the track. The CRS needs to be provided as valid <code>proj4string</code>, see the documentation of <code>sp::CRS</code> for further details.</p>
+</div>
+<div id="an-example-with-one-real-animal" class="section level3">
+<h3>An example with one real animal</h3>
+<p>In the <code>amt</code> relocation data of one red deer from northern Germany is included. We will use this data set to to illustrate how to create a track.</p>
+<p>We benign with loading and inspecting the data.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="kw">data</span>(sh)</span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="kw">head</span>(sh)</span></code></pre></div>
+<pre><code>##   x_epsg31467 y_epsg31467        day     time
+## 1     3558403     5999400 2009-02-13 00:02:23
+## 2     3558548     5999099 2009-02-13 06:02:21
+## 3     3558541     5999019 2009-02-13 12:01:51
+## 4     3558453     5999026 2009-02-13 18:00:55
+## 5     3558566     5999365 2009-02-14 00:01:36
+## 6     3557836     5999185 2009-02-14 06:02:24</code></pre>
+<p>Before creating a track, we have to do some data cleaning:</p>
+<ol style="list-style-type: decimal">
+<li>check if any coordinates are missing (and if so, remove the relocation),</li>
+<li>parse the date and time,</li>
+<li>create a time stamp,</li>
+<li>check for duplicated time stamps, and</li>
+<li>create two new columns for the id and month of the year.</li>
+</ol>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># check if all observations are complete</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="kw">all</span>(<span class="kw">complete.cases</span>(sh)) <span class="co"># no action required</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># parse date and time and create time stamps</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a>sh<span class="op">$</span>ts &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(lubridate<span class="op">::</span><span class="kw">ymd</span>(sh<span class="op">$</span>day) <span class="op">+</span></span>
+<span id="cb27-3"><a href="#cb27-3"></a><span class="st">                      </span>lubridate<span class="op">::</span><span class="kw">hms</span>(sh<span class="op">$</span>time))</span>
+<span id="cb27-4"><a href="#cb27-4"></a></span>
+<span id="cb27-5"><a href="#cb27-5"></a><span class="co"># check for duplicated time stamps</span></span>
+<span id="cb27-6"><a href="#cb27-6"></a><span class="kw">any</span>(<span class="kw">duplicated</span>(sh<span class="op">$</span>ts))</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co"># We have some duplicated time stamps, these need to be removed prior to</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a><span class="co"># creating a track.</span></span>
+<span id="cb29-3"><a href="#cb29-3"></a>sh &lt;-<span class="st"> </span>sh[<span class="op">!</span><span class="kw">duplicated</span>(sh<span class="op">$</span>ts), ]</span>
+<span id="cb29-4"><a href="#cb29-4"></a></span>
+<span id="cb29-5"><a href="#cb29-5"></a><span class="co"># create new columns</span></span>
+<span id="cb29-6"><a href="#cb29-6"></a>sh<span class="op">$</span>id &lt;-<span class="st"> &quot;Animal 1&quot;</span></span>
+<span id="cb29-7"><a href="#cb29-7"></a>sh<span class="op">$</span>month &lt;-<span class="st"> </span>lubridate<span class="op">::</span><span class="kw">month</span>(sh<span class="op">$</span>ts)</span></code></pre></div>
+<p>Now we can create a track.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>tr1 &lt;-<span class="st"> </span><span class="kw">make_track</span>(sh, x_epsg31467, y_epsg31467, ts, <span class="dt">id =</span> id, <span class="dt">month =</span> month)</span></code></pre></div>
+<pre><code>## .t found, creating `track_xyt`.</code></pre>
+<p>The column names of the data set already indicate the CRS of the data. We can add this information when creating a track.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>tr1 &lt;-<span class="st"> </span><span class="kw">make_track</span>(sh, x_epsg31467, y_epsg31467, ts, <span class="dt">id =</span> id, <span class="dt">month =</span> month, </span>
+<span id="cb32-2"><a href="#cb32-2"></a>                <span class="dt">crs =</span> sp<span class="op">::</span><span class="kw">CRS</span>(<span class="st">&quot;+init=epsg:31467&quot;</span>))</span></code></pre></div>
+<pre><code>## .t found, creating `track_xyt`.</code></pre>
+</div>
+<div id="a-note-on-pipes" class="section level3">
+<h3>A note on pipes (<code>%&gt;%</code>)</h3>
+<p><code>amt</code> was heavily inspired through workflows suggested by the popular packages from the <code>tidyverse</code>. The above steps could easily be connected using pipes. Note that result will be exactly the same.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="kw">data</span>(sh)</span>
+<span id="cb34-2"><a href="#cb34-2"></a>tr2 &lt;-<span class="st"> </span>sh <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="kw">complete.cases</span>(.)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb34-3"><a href="#cb34-3"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb34-4"><a href="#cb34-4"></a>    <span class="dt">ts =</span> <span class="kw">as.POSIXct</span>(lubridate<span class="op">::</span><span class="kw">ymd</span>(day) <span class="op">+</span><span class="st"> </span>lubridate<span class="op">::</span><span class="kw">hms</span>(time)), </span>
+<span id="cb34-5"><a href="#cb34-5"></a>    <span class="dt">id =</span> <span class="st">&quot;Animal 1&quot;</span>, </span>
+<span id="cb34-6"><a href="#cb34-6"></a>    <span class="dt">month =</span> lubridate<span class="op">::</span><span class="kw">month</span>(ts)</span>
+<span id="cb34-7"><a href="#cb34-7"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb34-8"><a href="#cb34-8"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">duplicated</span>(ts)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb34-9"><a href="#cb34-9"></a><span class="st">  </span><span class="kw">make_track</span>(x_epsg31467, y_epsg31467, ts, <span class="dt">id =</span> id, <span class="dt">month =</span> month, </span>
+<span id="cb34-10"><a href="#cb34-10"></a>           <span class="dt">crs =</span> sp<span class="op">::</span><span class="kw">CRS</span>(<span class="st">&quot;+init=epsg:31467&quot;</span>))</span></code></pre></div>
+<pre><code>## .t found, creating `track_xyt`.</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>tr2</span></code></pre></div>
+<pre><code>## # A tibble: 1,493 x 5
+##         x_      y_ t_                  id       month
+##  *   &lt;int&gt;   &lt;int&gt; &lt;dttm&gt;              &lt;chr&gt;    &lt;dbl&gt;
+##  1 3558528 5999094 2008-03-30 00:01:47 Animal 1     3
+##  2 3558513 5999055 2008-03-30 06:00:54 Animal 1     3
+##  3 3558564 5999146 2008-03-30 12:01:47 Animal 1     3
+##  4 3558504 5999072 2008-03-30 18:01:24 Animal 1     3
+##  5 3558495 5999051 2008-03-30 18:25:56 Animal 1     3
+##  6 3558493 5999052 2008-03-30 18:26:05 Animal 1     3
+##  7 3558489 5999051 2008-03-30 18:26:14 Animal 1     3
+##  8 3558486 5999046 2008-03-30 18:26:24 Animal 1     3
+##  9 3558484 5999052 2008-03-30 18:26:33 Animal 1     3
+## 10 3558317 5998989 2008-03-30 18:38:01 Animal 1     3
+## # … with 1,483 more rows</code></pre>
+</div>
+</div>
+<div id="working-with-tracks" class="section level2">
+<h2>Working with tracks</h2>
+<div id="utility-functions" class="section level3">
+<h3>Utility functions</h3>
+<div id="basic-manipulation" class="section level4">
+<h4>Basic manipulation</h4>
+<p>Remember, that a <code>track_xy*</code> behaves like regular a <code>data.frame</code>. This means that we can use all data manipulation verbs that we are used to from <code>base</code> R or the <code>tidyverse</code>. For example, we can filter a track based on some characteristic. As an example we extract all relocations from the month May.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>tr3 &lt;-<span class="st"> </span>tr2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(month <span class="op">==</span><span class="st"> </span><span class="dv">5</span>)</span>
+<span id="cb38-2"><a href="#cb38-2"></a></span>
+<span id="cb38-3"><a href="#cb38-3"></a><span class="co"># we are left with a track</span></span>
+<span id="cb38-4"><a href="#cb38-4"></a><span class="kw">class</span>(tr3)</span></code></pre></div>
+<pre><code>## [1] &quot;track_xyt&quot;  &quot;track_xy&quot;   &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
+</div>
+<div id="transforming-crs" class="section level4">
+<h4>Transforming CRS</h4>
+<p>If we set the CRS when creating a track (we can verify this with <code>has_crs</code>), we can transform the CRS of the coordinates with the function <code>transform_coords</code> (a wrapper around <code>sp::spTransform</code>). For illustration, we will transform the CRS of <code>tr2</code> to geographical coordinates (EPSG:4326).</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="kw">transform_coords</span>(tr2, sp<span class="op">::</span><span class="kw">CRS</span>(<span class="st">&quot;+init=epsg:4326&quot;</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 1,493 x 5
+##       x_    y_ t_                  id       month
+##  * &lt;dbl&gt; &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;    &lt;dbl&gt;
+##  1  9.89  54.1 2008-03-30 00:01:47 Animal 1     3
+##  2  9.89  54.1 2008-03-30 06:00:54 Animal 1     3
+##  3  9.89  54.1 2008-03-30 12:01:47 Animal 1     3
+##  4  9.89  54.1 2008-03-30 18:01:24 Animal 1     3
+##  5  9.89  54.1 2008-03-30 18:25:56 Animal 1     3
+##  6  9.89  54.1 2008-03-30 18:26:05 Animal 1     3
+##  7  9.89  54.1 2008-03-30 18:26:14 Animal 1     3
+##  8  9.89  54.1 2008-03-30 18:26:24 Animal 1     3
+##  9  9.89  54.1 2008-03-30 18:26:33 Animal 1     3
+## 10  9.89  54.1 2008-03-30 18:38:01 Animal 1     3
+## # … with 1,483 more rows</code></pre>
+</div>
+</div>
+<div id="some-initial-data-exploration" class="section level3">
+<h3>Some initial data exploration</h3>
+<p>Several functions for calculating derived quantities are available. We will start with looking at step length. The function <code>step_lengths</code> can be used for this.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a>tr2 &lt;-<span class="st"> </span>tr2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">sl_ =</span> <span class="kw">step_lengths</span>(.))</span></code></pre></div>
+<p>If we look at a summary of <code>sl_</code> we note two things:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="kw">summary</span>(tr2<span class="op">$</span>sl_)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+##    0.00   35.01  105.33  249.07  297.75 4727.86       1</code></pre>
+<p>Note, 1) there is a <code>NA</code> for the last step length, this is expected because we are still in a point representation (i.e., there is no step length for the last relocation). 2) the range is fairly large ranging from 0 to almost 5 km. Before looking at step lengths in any further detail, we will have to make sure the sampling rate is more or less regular (i.e., the same time step between any two points).</p>
+<p>The function <code>summarize_sampling_rate</code> provides an easy way to look at the sampling rate.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="kw">summarize_sampling_rate</span>(tr2)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 9
+##      min    q1 median  mean    q3   max    sd     n unit 
+##    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;
+## 1 0.0025  2.00   2.01  6.34  6.00 3924.  102.  1492 hour</code></pre>
+<p>This suggests that a sampling rate for 6 hours might be adequate. We can then use the function <code>track_resample</code> to resample the track and only keep relocations that are approximately 6 hours apart (within some tolerance, that can be specified). We will use the function <code>lubridate::hours</code> to specify the sampling rate and <code>lubridate::minutes</code> to specify the tolerance. Both arguments <code>rate</code> and <code>tolerance</code> are expected to be a <code>Period</code>.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a>tr3 &lt;-<span class="st"> </span>tr2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">track_resample</span>(<span class="dt">rate =</span> <span class="kw">hours</span>(<span class="dv">6</span>), <span class="dt">tolerance =</span> <span class="kw">minutes</span>(<span class="dv">20</span>))</span>
+<span id="cb47-2"><a href="#cb47-2"></a>tr3</span></code></pre></div>
+<pre><code>## # A tibble: 826 x 7
+##         x_      y_ t_                  id       month    sl_ burst_
+##  *   &lt;int&gt;   &lt;int&gt; &lt;dttm&gt;              &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1 3558528 5999094 2008-03-30 00:01:47 Animal 1     3  41.8       1
+##  2 3558513 5999055 2008-03-30 06:00:54 Animal 1     3 104.        1
+##  3 3558564 5999146 2008-03-30 12:01:47 Animal 1     3  95.3       1
+##  4 3558504 5999072 2008-03-30 18:01:24 Animal 1     3  22.8       1
+##  5 3557474 5999130 2008-03-31 00:01:23 Animal 1     3 155.        1
+##  6 3557319 5999127 2008-03-31 06:01:45 Animal 1     3   6.08      1
+##  7 3557313 5999126 2008-03-31 12:01:11 Animal 1     3   4.47      1
+##  8 3557317 5999128 2008-03-31 18:01:55 Animal 1     3 113.        1
+##  9 3557204 5999130 2008-04-01 00:01:24 Animal 1     4 187.        1
+## 10 3557108 5999291 2008-04-01 06:00:54 Animal 1     4   6.32      1
+## # … with 816 more rows</code></pre>
+<p><code>tr3</code> still a track, but with two differences compared to <code>tr2</code>. 1) the number of rows is reduced from 1493 to 826, because only relocations that are 6 hours +/- the tolerance apart of each other are retained; 2) <code>tr3</code> has one new column called <code>burst_</code>. A burst is sequence of relocations with equal sampling rates. Consider the following hypothetical example: 5 relocations are all 6 hours apart. Then there is a gap of 12 hours because one relocation failed and afterwards then there are an other 10 relocations all 6 hours apart. Then we would consider the first 5 relocations as a burst and the second 10 relocations (after the 12 hour gap) as a second burst.</p>
+</div>
+<div id="from-tracks-to-steps" class="section level3">
+<h3>From tracks to steps</h3>
+<p>In many situations we are more interested in steps (that is the animal moving from one relocation to an other, or the straight line between a start and a end point), that in the individual relocations. <code>amt</code> supports <code>steps</code> as an other way to represent movement data. The transition from a track to steps can be done via two functions.</p>
+<ol style="list-style-type: decimal">
+<li><code>steps</code>: Takes as an input a track, converts the track to step and calculating some derived quantities (e.g., step lengths, turning angles). The function <code>steps</code> to receive a track with regular sampling rates.</li>
+<li><code>steps_by_burst</code>: Takes as an input a resampled track (i.e., a track with several bursts) and will calculate derived quantities per burst.</li>
+</ol>
+</div>
+</div>
+<div id="how-to-deal-with-several-animals" class="section level2">
+<h2>How to deal with several animals</h2>
+<p>Up to now we have only considered situations with one animal. However, in most telemetry studies more than one animal are tracked and we often want to calculated movement relevant characteristics for several animals individually. <code>amt</code> does not provide a infrastructure for dealing with several animal, however, <code>list</code>-columns from the <code>tidyverse</code> can be used to manage many animals. Because a track is just a <code>data_frame</code> all <code>tidyverse</code> verbs can be used. The general strategy consists of 4 steps:</p>
+<ol style="list-style-type: decimal">
+<li>Group a track by one or more grouping variables using the function <code>group_by</code>.</li>
+<li>Nest a grouped track. This retains the unique values of the grouping variable(s) and creates a new column called <code>data</code>. The data column is a so called <code>list</code>-column. This means it is an R list that contains a <code>data_frame</code> for each group.</li>
+<li>Now we can perform operations on the grouped data creating a new list column. This can be done in a combination with <code>mutate</code> and <code>map</code> (instead of <code>map</code> also <code>lapply</code> could be used).</li>
+<li>Select the relevant columns and unnest. With <code>select</code> we can select columns of interest and reverse the nesting with the function <code>unnest</code>.</li>
+</ol>
+<p>As an example we will use a second data set included in <code>amt</code> on tracks of four fishers. We will load the data, create a track, resample the tracks individually to 30 min and create a histogram of step lengths (accounting for bursts).</p>
+<p>We start by loading the data and creating a track of all individuals together</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="kw">data</span>(<span class="st">&quot;amt_fisher&quot;</span>)</span>
+<span id="cb49-2"><a href="#cb49-2"></a>trk &lt;-<span class="st"> </span>amt_fisher <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">make_track</span>(x_, y_, t_, <span class="dt">id =</span> id)</span></code></pre></div>
+<pre><code>## .t found, creating `track_xyt`.</code></pre>
+<p>Next, we group the track by <code>id</code> and nest the track.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a>trk1 &lt;-<span class="st"> </span>trk <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">nest</span>(<span class="dt">data =</span> <span class="op">-</span><span class="st">&quot;id&quot;</span>)</span>
+<span id="cb51-2"><a href="#cb51-2"></a>trk1</span></code></pre></div>
+<pre><code>## # A tibble: 4 x 2
+##   id    data                
+##   &lt;chr&gt; &lt;list&gt;              
+## 1 M1    &lt;tibble [919 × 3]&gt;  
+## 2 M4    &lt;tibble [8,958 × 3]&gt;
+## 3 F2    &lt;tibble [3,004 × 3]&gt;
+## 4 F1    &lt;tibble [1,349 × 3]&gt;</code></pre>
+<p>We now want to resample each track to 30 minutes with a tolerance of 5 minutes and create steps for each animal. For the first animal we would do as follows:</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a><span class="co"># get the data for the first animal</span></span>
+<span id="cb53-2"><a href="#cb53-2"></a>x &lt;-<span class="st"> </span>trk1<span class="op">$</span>data[[<span class="dv">1</span>]]</span>
+<span id="cb53-3"><a href="#cb53-3"></a></span>
+<span id="cb53-4"><a href="#cb53-4"></a><span class="co"># apply the data analysis</span></span>
+<span id="cb53-5"><a href="#cb53-5"></a>x <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">track_resample</span>(<span class="dt">rate =</span> <span class="kw">minutes</span>(<span class="dv">30</span>), <span class="dt">tolerance =</span> <span class="kw">minutes</span>(<span class="dv">5</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">steps_by_burst</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 412 x 11
+##    burst_    x1_    x2_    y1_    y2_   sl_ direction_p   ta_
+##  *  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+##  1      1 1.78e6 1.78e6 2.40e6 2.40e6 10.6       NA     NA   
+##  2      1 1.78e6 1.78e6 2.40e6 2.40e6  4.96      -0.427  2.51
+##  3      1 1.78e6 1.78e6 2.40e6 2.40e6  2.19       2.08  -1.62
+##  4      1 1.78e6 1.78e6 2.40e6 2.40e6  7.50       0.464 -2.15
+##  5      1 1.78e6 1.78e6 2.40e6 2.40e6  8.01      -1.68   2.92
+##  6      1 1.78e6 1.78e6 2.40e6 2.40e6 24.2        1.24  -2.78
+##  7      1 1.78e6 1.78e6 2.40e6 2.40e6 38.8       -1.54  -2.76
+##  8      1 1.78e6 1.78e6 2.40e6 2.40e6 13.6        1.98  -2.80
+##  9      1 1.78e6 1.78e6 2.40e6 2.40e6  5.26      -0.825  2.34
+## 10      1 1.78e6 1.78e6 2.40e6 2.40e6 37.2        1.52  -2.52
+## # … with 402 more rows, and 3 more variables: t1_ &lt;dttm&gt;, t2_ &lt;dttm&gt;,
+## #   dt_ &lt;drtn&gt;</code></pre>
+<p>We now want to apply exactly the same logic to all animals. We can do this by using a <code>map</code> and save the results to a new column using <code>mutate</code>.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a>trk2 &lt;-<span class="st"> </span>trk1 <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb55-2"><a href="#cb55-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">steps =</span> <span class="kw">map</span>(data, <span class="cf">function</span>(x) </span>
+<span id="cb55-3"><a href="#cb55-3"></a>    x <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">track_resample</span>(<span class="dt">rate =</span> <span class="kw">minutes</span>(<span class="dv">30</span>), <span class="dt">tolerance =</span> <span class="kw">minutes</span>(<span class="dv">5</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">steps_by_burst</span>()))</span>
+<span id="cb55-4"><a href="#cb55-4"></a></span>
+<span id="cb55-5"><a href="#cb55-5"></a>trk2</span></code></pre></div>
+<pre><code>## # A tibble: 4 x 3
+##   id    data                 steps              
+##   &lt;chr&gt; &lt;list&gt;               &lt;list&gt;             
+## 1 M1    &lt;tibble [919 × 3]&gt;   &lt;tibble [412 × 11]&gt;
+## 2 M4    &lt;tibble [8,958 × 3]&gt; &lt;tibble [849 × 11]&gt;
+## 3 F2    &lt;tibble [3,004 × 3]&gt; &lt;tibble [308 × 11]&gt;
+## 4 F1    &lt;tibble [1,349 × 3]&gt; &lt;tibble [413 × 11]&gt;</code></pre>
+<p>Finally, we can select <code>id</code> and <code>steps</code>, unnest the new <code>data_frame</code> and create a plot of the step-length distributions.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a>trk2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(id, steps) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unnest</span>(<span class="dt">cols =</span> <span class="st">&quot;steps&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb57-2"><a href="#cb57-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(sl_, <span class="dt">fill =</span> <span class="kw">factor</span>(id))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_density</span>(<span class="dt">alpha =</span> <span class="fl">0.4</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+<div id="session" class="section level2">
+<h2>Session</h2>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a>sessioninfo<span class="op">::</span><span class="kw">session_info</span>()</span></code></pre></div>
+<pre><code>## ─ Session info ───────────────────────────────────────────────────────────────
+##  setting  value                       
+##  version  R version 4.0.0 (2020-04-24)
+##  os       Ubuntu 19.10                
+##  system   x86_64, linux-gnu           
+##  ui       X11                         
+##  language en_US:en                    
+##  collate  C                           
+##  ctype    en_US.UTF-8                 
+##  tz       Europe/Berlin               
+##  date     2020-10-01                  
+## 
+## ─ Packages ───────────────────────────────────────────────────────────────────
+##  package     * version date       lib source        
+##  amt         * 0.1.3   2020-10-01 [1] local         
+##  assertthat    0.2.1   2019-03-21 [3] CRAN (R 4.0.0)
+##  bibtex        0.4.2.2 2020-01-02 [3] CRAN (R 4.0.0)
+##  cli           2.0.2   2020-02-28 [3] CRAN (R 4.0.0)
+##  codetools     0.2-16  2018-12-24 [6] CRAN (R 4.0.0)
+##  colorspace    1.4-1   2019-03-18 [3] CRAN (R 4.0.0)
+##  crayon        1.3.4   2017-09-16 [3] CRAN (R 4.0.0)
+##  digest        0.6.25  2020-02-23 [3] CRAN (R 4.0.0)
+##  dplyr       * 1.0.1   2020-07-31 [3] CRAN (R 4.0.0)
+##  ellipsis      0.3.1   2020-05-15 [3] CRAN (R 4.0.0)
+##  evaluate      0.14    2019-05-28 [3] CRAN (R 4.0.0)
+##  fansi         0.4.1   2020-01-08 [3] CRAN (R 4.0.0)
+##  farver        2.0.3   2020-01-16 [3] CRAN (R 4.0.0)
+##  gbRd          0.4-11  2012-10-01 [3] CRAN (R 4.0.0)
+##  generics      0.0.2   2018-11-29 [3] CRAN (R 4.0.0)
+##  ggplot2     * 3.3.2   2020-06-19 [3] CRAN (R 4.0.0)
+##  glue          1.4.1   2020-05-13 [3] CRAN (R 4.0.0)
+##  gtable        0.3.0   2019-03-25 [3] CRAN (R 4.0.0)
+##  htmltools     0.5.0   2020-06-16 [3] CRAN (R 4.0.0)
+##  knitr         1.29    2020-06-23 [3] CRAN (R 4.0.0)
+##  labeling      0.3     2014-08-23 [3] CRAN (R 4.0.0)
+##  lattice       0.20-41 2020-04-02 [6] CRAN (R 4.0.0)
+##  lifecycle     0.2.0   2020-03-06 [3] CRAN (R 4.0.0)
+##  lubridate     1.7.9   2020-06-08 [3] CRAN (R 4.0.0)
+##  magrittr      1.5     2014-11-22 [3] CRAN (R 4.0.0)
+##  Matrix        1.2-18  2019-11-27 [6] CRAN (R 4.0.0)
+##  munsell       0.5.0   2018-06-12 [3] CRAN (R 4.0.0)
+##  pillar        1.4.6   2020-07-10 [3] CRAN (R 4.0.0)
+##  pkgconfig     2.0.3   2019-09-22 [3] CRAN (R 4.0.0)
+##  purrr         0.3.4   2020-04-17 [3] CRAN (R 4.0.0)
+##  R6            2.4.1   2019-11-12 [3] CRAN (R 4.0.0)
+##  raster        3.3-13  2020-07-17 [3] CRAN (R 4.0.0)
+##  Rcpp          1.0.5   2020-07-06 [3] CRAN (R 4.0.0)
+##  Rdpack        1.0.0   2020-07-01 [3] CRAN (R 4.0.0)
+##  rgdal         1.5-16  2020-08-07 [3] CRAN (R 4.0.0)
+##  rlang         0.4.7   2020-07-09 [3] CRAN (R 4.0.0)
+##  rmarkdown     2.3     2020-06-18 [3] CRAN (R 4.0.0)
+##  scales        1.1.1   2020-05-11 [3] CRAN (R 4.0.0)
+##  sessioninfo   1.1.1   2018-11-05 [3] CRAN (R 4.0.0)
+##  sp            1.4-2   2020-05-20 [3] CRAN (R 4.0.0)
+##  stringi       1.4.6   2020-02-17 [3] CRAN (R 4.0.0)
+##  stringr       1.4.0   2019-02-10 [3] CRAN (R 4.0.0)
+##  survival      3.2-3   2020-06-13 [3] CRAN (R 4.0.0)
+##  tibble        3.0.3   2020-07-10 [3] CRAN (R 4.0.0)
+##  tidyr         1.1.1   2020-07-31 [3] CRAN (R 4.0.0)
+##  tidyselect    1.1.0   2020-05-11 [3] CRAN (R 4.0.0)
+##  utf8          1.1.4   2018-05-24 [3] CRAN (R 4.0.0)
+##  vctrs         0.3.2   2020-07-15 [3] CRAN (R 4.0.0)
+##  withr         2.2.0   2020-04-20 [3] CRAN (R 4.0.0)
+##  xfun          0.16    2020-07-24 [3] CRAN (R 4.0.0)
+##  yaml          2.2.1   2020-02-01 [3] CRAN (R 4.0.0)
+## 
+## [1] /tmp/RtmpIqd5HA/Rinst4fbb6b901294
+## [2] /tmp/RtmpEi6HGn/temp_libpath6f8b94fd410
+## [3] /home/jsigner/R/x86_64-pc-linux-gnu-library/4.0
+## [4] /usr/local/lib/R/site-library
+## [5] /usr/lib/R/site-library
+## [6] /usr/lib/R/library</code></pre>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

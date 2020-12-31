@@ -1,0 +1,1194 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./chol_downdate2_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_output/e78ce7438df9a1440309ef3e26dc1d3f4bb32f6a.crash</line>
+</preamble>
+
+<pid>283542</pid>
+<ppid>283541</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_output/log_e78ce7438df9a1440309ef3e26dc1d3f4bb32f6a/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./chol_downdate2_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_output/e78ce7438df9a1440309ef3e26dc1d3f4bb32f6a.crash</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.027 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D2E2C8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src/Benchmarking.so</obj>
+      <fn>chol_downdate2(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src</dir>
+      <file>chol_down.cpp</file>
+      <line>87</line>
+    </frame>
+    <frame>
+      <ip>0x409F8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Benchmarking_deepstate_test_chol_downdate2_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2</dir>
+      <file>chol_downdate2_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Benchmarking_deepstate_test_chol_downdate2_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2</dir>
+      <file>chol_downdate2_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DCD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x938fba8 is 0 bytes after a block of size 760 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x40F1AD</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector(int const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>130</line>
+    </frame>
+    <frame>
+      <ip>0x407DC5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>RcppDeepState_NumericVector()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppDeepState/include/RcppDeepState.h</file>
+      <line>43</line>
+    </frame>
+    <frame>
+      <ip>0x409D84</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Benchmarking_deepstate_test_chol_downdate2_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2</dir>
+      <file>chol_downdate2_DeepState_TestHarness.cpp</file>
+      <line>20</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Benchmarking_deepstate_test_chol_downdate2_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2</dir>
+      <file>chol_downdate2_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DCD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x1</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D2E2E3</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src/Benchmarking.so</obj>
+      <fn>chol_downdate2(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src</dir>
+      <file>chol_down.cpp</file>
+      <line>88</line>
+    </frame>
+    <frame>
+      <ip>0x409F8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Benchmarking_deepstate_test_chol_downdate2_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2</dir>
+      <file>chol_downdate2_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Benchmarking_deepstate_test_chol_downdate2_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2</dir>
+      <file>chol_downdate2_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DCD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x938fba8 is 0 bytes after a block of size 760 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x40F1AD</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector(int const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>130</line>
+    </frame>
+    <frame>
+      <ip>0x407DC5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>RcppDeepState_NumericVector()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppDeepState/include/RcppDeepState.h</file>
+      <line>43</line>
+    </frame>
+    <frame>
+      <ip>0x409D84</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Benchmarking_deepstate_test_chol_downdate2_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2</dir>
+      <file>chol_downdate2_DeepState_TestHarness.cpp</file>
+      <line>20</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Benchmarking_deepstate_test_chol_downdate2_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2</dir>
+      <file>chol_downdate2_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DCD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x2</unique>
+  <tid>1</tid>
+  <kind>InvalidWrite</kind>
+  <what>Invalid write of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D2E2F4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src/Benchmarking.so</obj>
+      <fn>chol_downdate2(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src</dir>
+      <file>chol_down.cpp</file>
+      <line>88</line>
+    </frame>
+    <frame>
+      <ip>0x409F8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Benchmarking_deepstate_test_chol_downdate2_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2</dir>
+      <file>chol_downdate2_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Benchmarking_deepstate_test_chol_downdate2_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2</dir>
+      <file>chol_downdate2_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DCD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xa704a98 is 0 bytes after a block of size 760 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x4D2E1AF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src/Benchmarking.so</obj>
+      <fn>Vector</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector</dir>
+      <file>Vector.h</file>
+      <line>130</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E1AF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src/Benchmarking.so</obj>
+      <fn>chol_downdate2(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src</dir>
+      <file>chol_down.cpp</file>
+      <line>78</line>
+    </frame>
+    <frame>
+      <ip>0x409F8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Benchmarking_deepstate_test_chol_downdate2_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2</dir>
+      <file>chol_downdate2_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Benchmarking_deepstate_test_chol_downdate2_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2</dir>
+      <file>chol_downdate2_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DCD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x12</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D2E286</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src/Benchmarking.so</obj>
+      <fn>chol_downdate2(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src</dir>
+      <file>chol_down.cpp</file>
+      <line>82</line>
+    </frame>
+    <frame>
+      <ip>0x409F8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Benchmarking_deepstate_test_chol_downdate2_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2</dir>
+      <file>chol_downdate2_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Benchmarking_deepstate_test_chol_downdate2_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2</dir>
+      <file>chol_downdate2_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DCD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x13</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F3378C</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>sqrt</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math</dir>
+      <file>w_sqrt_compat.c</file>
+      <line>31</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E4E3</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src/Benchmarking.so</obj>
+      <fn>chol_downdate2(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src</dir>
+      <file>chol_down.cpp</file>
+      <line>82</line>
+    </frame>
+    <frame>
+      <ip>0x409F8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Benchmarking_deepstate_test_chol_downdate2_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2</dir>
+      <file>chol_downdate2_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Benchmarking_deepstate_test_chol_downdate2_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2</dir>
+      <file>chol_downdate2_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DCD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x6f</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D2E2CD</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src/Benchmarking.so</obj>
+      <fn>chol_downdate2(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src</dir>
+      <file>chol_down.cpp</file>
+      <line>87</line>
+    </frame>
+    <frame>
+      <ip>0x409F8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Benchmarking_deepstate_test_chol_downdate2_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2</dir>
+      <file>chol_downdate2_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Benchmarking_deepstate_test_chol_downdate2_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2</dir>
+      <file>chol_downdate2_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DCD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x9c84c78 is 0 bytes after a block of size 7,960 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D42B3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x49D5EAB</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x4A36479</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A35EE4</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A35EC7</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A35EE4</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A35EE4</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A35EE4</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A36DAA</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A3657A</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A35EC7</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xd7</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D2E252</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src/Benchmarking.so</obj>
+      <fn>chol_downdate2(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src</dir>
+      <file>chol_down.cpp</file>
+      <line>82</line>
+    </frame>
+    <frame>
+      <ip>0x409F8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Benchmarking_deepstate_test_chol_downdate2_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2</dir>
+      <file>chol_downdate2_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Benchmarking_deepstate_test_chol_downdate2_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2</dir>
+      <file>chol_downdate2_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DCD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x9c84c88 is 16 bytes after a block of size 7,960 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D42B3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x49D5EAB</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x4A36479</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A35EE4</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A35EC7</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A35EE4</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A35EE4</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A35EE4</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A36DAA</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A3657A</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A35EC7</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xd8</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D2E524</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src/Benchmarking.so</obj>
+      <fn>chol_downdate2(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src</dir>
+      <file>chol_down.cpp</file>
+      <line>82</line>
+    </frame>
+    <frame>
+      <ip>0x409F8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Benchmarking_deepstate_test_chol_downdate2_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2</dir>
+      <file>chol_downdate2_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Benchmarking_deepstate_test_chol_downdate2_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2</dir>
+      <file>chol_downdate2_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DCD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x9c84c88 is 16 bytes after a block of size 7,960 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D42B3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x49D5EAB</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x4A36479</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A35EE4</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A35EC7</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A35EE4</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A35EE4</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A35EE4</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A36DAA</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A3657A</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A35EC7</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x1de</unique>
+  <tid>1</tid>
+  <kind>InvalidWrite</kind>
+  <what>Invalid write of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D2E2DE</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src/Benchmarking.so</obj>
+      <fn>chol_downdate2(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src</dir>
+      <file>chol_down.cpp</file>
+      <line>87</line>
+    </frame>
+    <frame>
+      <ip>0x409F8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Benchmarking_deepstate_test_chol_downdate2_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2</dir>
+      <file>chol_downdate2_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Benchmarking_deepstate_test_chol_downdate2_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2</dir>
+      <file>chol_downdate2_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DCD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xa4dadf8 is 0 bytes after a block of size 63,416 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x4D2E111</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src/Benchmarking.so</obj>
+      <fn>Vector</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector</dir>
+      <file>Vector.h</file>
+      <line>135</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E111</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src/Benchmarking.so</obj>
+      <fn>Matrix</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector</dir>
+      <file>Matrix.h</file>
+      <line>60</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E111</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src/Benchmarking.so</obj>
+      <fn>chol_downdate2(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src</dir>
+      <file>chol_down.cpp</file>
+      <line>77</line>
+    </frame>
+    <frame>
+      <ip>0x409F8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Benchmarking_deepstate_test_chol_downdate2_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2</dir>
+      <file>chol_downdate2_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Benchmarking_deepstate_test_chol_downdate2_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2</dir>
+      <file>chol_downdate2_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DCD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x1e1</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D2E319</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src/Benchmarking.so</obj>
+      <fn>chol_downdate2(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src</dir>
+      <file>chol_down.cpp</file>
+      <line>91</line>
+    </frame>
+    <frame>
+      <ip>0x409F8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Benchmarking_deepstate_test_chol_downdate2_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2</dir>
+      <file>chol_downdate2_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Benchmarking_deepstate_test_chol_downdate2_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2</dir>
+      <file>chol_downdate2_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DCD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xa704a98 is 0 bytes after a block of size 760 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x4D2E1AF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src/Benchmarking.so</obj>
+      <fn>Vector</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector</dir>
+      <file>Vector.h</file>
+      <line>130</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E1AF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src/Benchmarking.so</obj>
+      <fn>chol_downdate2(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src</dir>
+      <file>chol_down.cpp</file>
+      <line>78</line>
+    </frame>
+    <frame>
+      <ip>0x409F8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Benchmarking_deepstate_test_chol_downdate2_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2</dir>
+      <file>chol_downdate2_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Benchmarking_deepstate_test_chol_downdate2_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2</dir>
+      <file>chol_downdate2_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DCD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x1e2</unique>
+  <tid>1</tid>
+  <kind>InvalidWrite</kind>
+  <what>Invalid write of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D2E35A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src/Benchmarking.so</obj>
+      <fn>chol_downdate2(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src</dir>
+      <file>chol_down.cpp</file>
+      <line>91</line>
+    </frame>
+    <frame>
+      <ip>0x409F8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Benchmarking_deepstate_test_chol_downdate2_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2</dir>
+      <file>chol_downdate2_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Benchmarking_deepstate_test_chol_downdate2_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2</dir>
+      <file>chol_downdate2_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DCD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_downdate2/chol_downdate2_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xa4db0c0 is 640 bytes inside an unallocated block of size 6,976 in arena "client"</auxwhat>
+</error>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.420 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>1</count>
+    <unique>0x1e2</unique>
+  </pair>
+  <pair>
+    <count>1</count>
+    <unique>0x1e1</unique>
+  </pair>
+  <pair>
+    <count>89</count>
+    <unique>0x2</unique>
+  </pair>
+  <pair>
+    <count>89</count>
+    <unique>0x1</unique>
+  </pair>
+  <pair>
+    <count>1</count>
+    <unique>0x1de</unique>
+  </pair>
+  <pair>
+    <count>89</count>
+    <unique>0x0</unique>
+  </pair>
+  <pair>
+    <count>7</count>
+    <unique>0xd7</unique>
+  </pair>
+  <pair>
+    <count>194</count>
+    <unique>0x6f</unique>
+  </pair>
+  <pair>
+    <count>3</count>
+    <unique>0xd8</unique>
+  </pair>
+  <pair>
+    <count>4</count>
+    <unique>0x13</unique>
+  </pair>
+  <pair>
+    <count>5</count>
+    <unique>0x12</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.956 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

@@ -1,0 +1,69 @@
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{A data set in rrecsys}
+-->
+
+## The User-Item Rating Matrix
+
+First thing first, to build a recommender system, it is required to have access on a data set. In rrecsys, we load a user-item rating matrix.
+Rows represent the users and columns the items. Please notice that we consider the missing values
+of the user-item rating matrix as NA (not available) values.
+
+Currently rrecsys is equipped with two data sets. We have included the 
+[MovieLens 100k](https://grouplens.org/datasets/movielens/100k/) and 
+the [MovieLens Latest](http://grouplens.org/datasets/movielens/latest/) datasets. 
+
+
+We will use these datasets for demonstration. 
+
+To load the MovieLens 100k data set:
+
+```{r, eval=FALSE}
+data("ml100k")
+```
+To load the MovieLens Latest data set:
+
+```{r, eval=FALSE}
+data("mlLatest100k")
+```
+
+rrecsys includes a method to read, define or even change the characteristics of a data set.
+For example, to define a rating scale (e.g., 0.5-5), which also includes real number values,
+ we can write the following:
+
+```{r, eval=FALSE}
+ML <- defineData(mlLatest100k, minimum = .5, maximum = 5, intScale = TRUE)
+ML
+## Dataset containing 718 users and  8927 items and a total of  100234  scores.
+```
+A dataset can be as well binarized by the following command:
+```{r, eval=FALSE}
+binML <- defineData(mlLatest100k, binary = TRUE, positiveThreshold = 3)
+binML
+## Binary dataset containing 718 users and  8927 items and a total of  84326  scores.
+```
+
+In this case all the rating in mlLatest100k with a value larger or equal to _positiveThreshold_ 
+are converted to 1 and the rest to NA values. 
+
+A _dataSet_ object can be analysed with the following methods:
+```{r, eval=FALSE}
+# Number of times an item was rated.
+colRatings(ML)
+# Number of times a user has rated.
+rowRatings(ML)
+# Total number of rating in the rating matrix.
+numRatings(ML)
+# Sparsity.
+sparsity(ML)
+```
+A _dataSet_ object can be cropped to contain a specific number of ratings:
+```{r, eval=FALSE}
+# Removing users that rated less than 40 items and items that were rated less than 30 times.
+subML <- ML[rowRatings(ML)>=40, colRatings(ML)>=30]
+sparsity(ML)
+sparsity(subML)
+```
+
+Please notice that the output of _defineData_ is an S4 object (class _dataSet_). 
+This would be the main input to the dispatcher in rrecsys for training a model.

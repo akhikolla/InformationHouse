@@ -1,0 +1,27 @@
+Package: idefix
+Type: Package
+Title: Efficient Designs for Discrete Choice Experiments
+Version: 1.0.1
+Authors@R: c(
+    person("Frits", "Traets", email = "frits.traets@kuleuven.be", role = c("aut", "cre")),
+    person("Daniel", "Gil", email = "danielgils@gmail.com", role = "ctb"))
+Maintainer: Frits Traets <frits.traets@kuleuven.be>
+Description: Generates efficient designs for discrete choice experiments based on the multinomial logit model, and individually adapted designs for the mixed multinomial logit model. The generated designs can be presented on screen and choice data can be gathered using a shiny application. Traets F, Sanchez G, and Vandebroek M (2020) <doi:10.18637/jss.v096.i03>.
+License: GPL-3
+Depends: R (>= 3.1.1), shiny
+LazyData: TRUE
+ByteCompile: TRUE
+Imports: dplyr, MASS, mlogit, parallel, Rcpp (>= 0.12.18), Rdpack,
+        stats, scales, tmvtnorm, utils
+RoxygenNote: 6.1.1
+Encoding: UTF-8
+LinkingTo: Rcpp, RcppArmadillo
+RdMacros: Rdpack
+URL: https://github.com/traets/idefix
+Suggests: testthat
+NeedsCompilation: yes
+Packaged: 2020-11-26 16:40:02 UTC; u0105757
+Author: Frits Traets [aut, cre],
+  Daniel Gil [ctb]
+Repository: CRAN
+Date/Publication: 2020-11-26 17:50:02 UTC

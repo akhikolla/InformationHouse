@@ -1,0 +1,33 @@
+Package: dsmisc
+Type: Package
+Title: Data Science Box of Pandora Miscellaneous
+Version: 0.3.3
+Date: 2020-09-11
+Description: Tool collection for common and not so common data science use cases. This includes 
+    custom made algorithms for data management as well as value calculations that are hard to find 
+    elsewhere because of their specificity but would be a waste to get lost nonetheless. 
+    Currently available functionality: find
+    sub-graphs in an edge list data.frame, find mode or modes in a vector of values, extract 
+    (a) specific regular expression group(s), generate ISO time stamps that play well with 
+    file names, or generate URL parameter lists by expanding value combinations. 
+Authors@R: c(
+    person(
+      "Peter", "Meissner",
+      email = "retep.meissner@gmail.com",
+      role = c("aut", "cre")
+    )
+  )
+License: GPL (>= 2)
+Imports: Rcpp (>= 1.0.1), stringr
+LinkingTo: Rcpp
+RoxygenNote: 7.1.1
+Encoding: UTF-8
+SystemRequirements: C++11
+Suggests: covr, testthat, spelling
+Language: en-US
+NeedsCompilation: yes
+Packaged: 2020-09-11 18:57:01 UTC; peter
+Author: Peter Meissner [aut, cre]
+Maintainer: Peter Meissner <retep.meissner@gmail.com>
+Repository: CRAN
+Date/Publication: 2020-09-12 05:40:13 UTC

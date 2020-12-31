@@ -1,0 +1,19 @@
+Package: unsystation
+Type: Package
+Title: Stationarity Test Based on Unsystematic Sub-Sampling
+Version: 0.2.0
+Authors@R: person("Haeran", "Cho", email = "haeran.cho@bristol.ac.uk", role=c("aut", "cre"))
+Maintainer: Haeran Cho <haeran.cho@bristol.ac.uk>
+Description: Performs a test for second-order stationarity of time series based
+    on unsystematic sub-samples.
+License: GPL-2
+LazyData: TRUE
+Suggests: RcppArmadillo
+Imports: Rcpp (>= 0.12.10), doParallel, foreach, iterators
+LinkingTo: Rcpp, RcppArmadillo
+RoxygenNote: 6.0.1
+NeedsCompilation: yes
+Packaged: 2018-05-23 21:41:23 UTC; mahrc
+Author: Haeran Cho [aut, cre]
+Repository: CRAN
+Date/Publication: 2018-05-23 22:06:46 UTC

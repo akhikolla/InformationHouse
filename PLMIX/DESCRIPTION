@@ -1,0 +1,26 @@
+Package: PLMIX
+Type: Package
+Title: Bayesian Analysis of Finite Mixtures of Plackett-Luce Models for
+        Partial Rankings/Orderings
+Version: 2.1.1
+Date: 2019-09-04
+Authors@R: c(person("Cristina", "Mollica", role = c("aut", "cre"), email = "cristina.mollica@uniroma1.it"), person("Luca", "Tardella", role = "aut",email = "luca.tardella@uniroma1.it"))
+Description: Fit finite mixtures of Plackett-Luce models for partial top rankings/orderings within the Bayesian framework. It provides MAP point estimates via EM algorithm and posterior MCMC simulations via Gibbs Sampling. It also fits MLE as a special case of the noninformative Bayesian analysis with vague priors. In addition to inferential techniques, the package assists other fundamental phases of a model-based analysis for partial rankings/orderings, by including functions for data manipulation, simulation, descriptive summary, model selection and goodness-of-fit evaluation. Main references on the methods are Mollica and Tardella (2017) <doi.org/10.1007/s11336-016-9530-0> and Mollica and Tardella (2014) <doi/10.1002/sim.6224>.
+License: GPL (>= 2)
+Imports: Rcpp (>= 1.0.0), abind (>= 1.4-5), foreach (>= 1.4.4), ggplot2
+        (>= 2.2.1), ggmcmc (>= 1.2), coda (>= 0.19-1), reshape2 (>=
+        1.4.3), rcdd (>= 1.2), gridExtra (>= 2.3), MCMCpack (>= 1.4-2),
+        gtools (>= 3.8.1), label.switching (>= 1.6), radarchart (>=
+        0.3.1), prefmod (>= 0.8-34), rankdist (>= 1.1.3), StatRank (>=
+        0.0.6), pmr (>= 1.2.5), PlackettLuce (>= 0.2-3), stats, utils
+LinkingTo: Rcpp
+RoxygenNote: 6.1.0
+Suggests: doParallel
+LazyData: true
+NeedsCompilation: yes
+Packaged: 2019-09-04 11:25:41 UTC; cmollica
+Author: Cristina Mollica [aut, cre],
+  Luca Tardella [aut]
+Maintainer: Cristina Mollica <cristina.mollica@uniroma1.it>
+Repository: CRAN
+Date/Publication: 2019-09-04 11:50:02 UTC

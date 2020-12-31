@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Manish Saraswat" />
+
+<meta name="date" content="2020-04-27" />
+
+<title>How to use CountVectorizer in R ?</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#header {
+text-align: center;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">How to use CountVectorizer in R ?</h1>
+<h4 class="author">Manish Saraswat</h4>
+<h4 class="date">2020-04-27</h4>
+
+
+
+<p>In this tutorial, we’ll look at how to create bag of words model (token occurence count matrix) in R in two simple steps with superml. Superml borrows speed gains using parallel computation and optimised functions from data.table R package. Bag of words model is often use to analyse text pattern using word occurences in a given text.</p>
+<div id="install" class="section level2">
+<h2>Install</h2>
+<p>You can install latest cran version using (recommended):</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;superml&quot;</span>)</a></code></pre></div>
+<p>You can install the developmemt version directly from github using:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;saraswatmks/superml&quot;</span>)</a></code></pre></div>
+</div>
+<div id="caveats-on-superml-installation" class="section level2">
+<h2>Caveats on superml installation</h2>
+<p>For machine learning, superml is based on the existing R packages. Hence, while installing the package, we don’t install all the dependencies. However, while training any model, superml will automatically install the package if its not found. Still, if you want to install all dependencies at once, you can simply do:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;superml&quot;</span>, <span class="dt">dependencies=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+</div>
+<div id="sample-data" class="section level2">
+<h2>Sample Data</h2>
+<p>First, we’ll create a sample data. Feel free to run it alongside in your laptop and check the computation.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">library</span>(superml)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt; Loading required package: R6</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co"># should be a vector of texts</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">sents &lt;-<span class="st">  </span><span class="kw">c</span>(<span class="st">'i am going home and home'</span>,</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">          <span class="st">'where are you going.? //// '</span>,</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">          <span class="st">'how does it work'</span>,</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">          <span class="st">'transform your work and go work again'</span>,</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">          <span class="st">'home is where you go from to work'</span>)</a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="co"># generate more sentences</span></a>
+<a class="sourceLine" id="cb4-12" data-line-number="12">n &lt;-<span class="st"> </span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb4-13" data-line-number="13">sents &lt;-<span class="st"> </span><span class="kw">rep</span>(sents, n) </a>
+<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="kw">length</span>(sents)</a>
+<a class="sourceLine" id="cb4-15" data-line-number="15"><span class="co">#&gt; [1] 50</span></a></code></pre></div>
+<p>For sample, we’ve generated 50 documents. Let’s create the features now. For ease, superml uses the similar API layout as python scikit-learn.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># initialise the class</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">cfv &lt;-<span class="st"> </span>CountVectorizer<span class="op">$</span><span class="kw">new</span>(<span class="dt">max_features =</span> <span class="dv">10</span>, <span class="dt">remove_stopwords =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co"># generate the matrix</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">cf_mat &lt;-<span class="st"> </span>cfv<span class="op">$</span><span class="kw">fit_transform</span>(sents)</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="kw">head</span>(cf_mat, <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt;      work home and go going where you again am are</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; [1,]    0    2   1  0     1     0   0     0  1   0</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; [2,]    0    0   0  0     1     1   1     0  0   1</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; [3,]    1    0   0  0     0     0   0     0  0   0</span></a></code></pre></div>
+<p><strong>Few observations:</strong></p>
+<ul>
+<li><code>remove_stopwords = FALSE</code> defaults to <code>TRUE</code>. We set it to <code>FALSE</code> since most of the words in our dummy <code>sents</code> are stopwords.</li>
+<li><code>max_features = 10</code> select the top 10 features (tokens) based on frequency.</li>
+</ul>
+<p>Now, let’s generate the matrix using its <code>ngram_range</code> features.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co"># initialise the class</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">cfv &lt;-<span class="st"> </span>CountVectorizer<span class="op">$</span><span class="kw">new</span>(<span class="dt">max_features =</span> <span class="dv">10</span>, <span class="dt">remove_stopwords =</span> <span class="ot">FALSE</span>, <span class="dt">ngram_range =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co"># generate the matrix</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">cf_mat &lt;-<span class="st"> </span>cfv<span class="op">$</span><span class="kw">fit_transform</span>(sents)</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="kw">head</span>(cf_mat, <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt;      work home and go going where you again am am going</span></a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="co">#&gt; [1,]    0    2   1  0     1     0   0     0  1        1</span></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co">#&gt; [2,]    0    0   0  0     1     1   1     0  0        0</span></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="co">#&gt; [3,]    1    0   0  0     0     0   0     0  0        0</span></a></code></pre></div>
+<p><strong>Few observations:</strong></p>
+<ul>
+<li><code>ngram_range = c(1,3)</code> set the lower and higher range respectively of the resulting ngram tokens.</li>
+</ul>
+</div>
+<div id="usage-for-a-machine-learning-model" class="section level2">
+<h2>Usage for a Machine Learning Model</h2>
+<p>In order to use Count Vectorizer as an input for a machine learning model, sometimes it gets confusing as to which method <code>fit_transform</code>, <code>fit</code>, <code>transform</code> should be used to generate features for the given data. Here’s a way to do:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">library</span>(data.table)</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="kw">library</span>(superml)</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="co"># use sents from above</span></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">sents &lt;-<span class="st">  </span><span class="kw">c</span>(<span class="st">'i am going home and home'</span>,</a>
+<a class="sourceLine" id="cb7-7" data-line-number="7">          <span class="st">'where are you going.? //// '</span>,</a>
+<a class="sourceLine" id="cb7-8" data-line-number="8">          <span class="st">'how does it work'</span>,</a>
+<a class="sourceLine" id="cb7-9" data-line-number="9">          <span class="st">'transform your work and go work again'</span>,</a>
+<a class="sourceLine" id="cb7-10" data-line-number="10">          <span class="st">'home is where you go from to work'</span>,</a>
+<a class="sourceLine" id="cb7-11" data-line-number="11">          <span class="st">'how does it work'</span>)</a>
+<a class="sourceLine" id="cb7-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb7-13" data-line-number="13"><span class="co"># create dummy data</span></a>
+<a class="sourceLine" id="cb7-14" data-line-number="14">train &lt;-<span class="st"> </span><span class="kw">data.table</span>(<span class="dt">text =</span> sents, <span class="dt">target =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb7-15" data-line-number="15">test &lt;-<span class="st"> </span><span class="kw">data.table</span>(<span class="dt">text =</span> <span class="kw">sample</span>(sents), <span class="dt">target =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dv">3</span>))</a></code></pre></div>
+<p>Let’s see how the data looks like:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">head</span>(train, <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="co">#&gt;                           text target</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="co">#&gt; 1:    i am going home and home      0</span></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="co">#&gt; 2: where are you going.? ////       1</span></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="co">#&gt; 3:            how does it work      0</span></a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">head</span>(test, <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="co">#&gt;                                     text target</span></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co">#&gt; 1:                      how does it work      0</span></a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co">#&gt; 2: transform your work and go work again      1</span></a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="co">#&gt; 3:           where are you going.? ////       0</span></a></code></pre></div>
+<p>Now, we generate features for train-test data:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="co"># initialise the class</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">cfv &lt;-<span class="st"> </span>CountVectorizer<span class="op">$</span><span class="kw">new</span>(<span class="dt">max_features =</span> <span class="dv">12</span>, <span class="dt">remove_stopwords =</span> <span class="ot">FALSE</span>, <span class="dt">ngram_range =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="co"># we fit on train data</span></a>
+<a class="sourceLine" id="cb10-5" data-line-number="5">cfv<span class="op">$</span><span class="kw">fit</span>(train<span class="op">$</span>text)</a>
+<a class="sourceLine" id="cb10-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb10-7" data-line-number="7">train_cf_features &lt;-<span class="st"> </span>cfv<span class="op">$</span><span class="kw">transform</span>(train<span class="op">$</span>text)</a>
+<a class="sourceLine" id="cb10-8" data-line-number="8">test_cf_features &lt;-<span class="st"> </span>cfv<span class="op">$</span><span class="kw">transform</span>(test<span class="op">$</span>text)</a>
+<a class="sourceLine" id="cb10-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb10-10" data-line-number="10"><span class="kw">dim</span>(train_cf_features)</a>
+<a class="sourceLine" id="cb10-11" data-line-number="11"><span class="co">#&gt; [1]  6 12</span></a>
+<a class="sourceLine" id="cb10-12" data-line-number="12"><span class="kw">dim</span>(test_cf_features)</a>
+<a class="sourceLine" id="cb10-13" data-line-number="13"><span class="co">#&gt; [1]  6 12</span></a></code></pre></div>
+<p>We generate 12 features for each of the given data. Let’s see how they look:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">head</span>(train_cf_features, <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="co">#&gt;      work home and does does it does it work go going how how does how does it</span></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="co">#&gt; [1,]    0    2   1    0       0            0  0     1   0        0           0</span></a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="co">#&gt; [2,]    0    0   0    0       0            0  0     1   0        0           0</span></a>
+<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="co">#&gt; [3,]    1    0   0    1       1            1  0     0   1        1           1</span></a>
+<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="co">#&gt;      it</span></a>
+<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="co">#&gt; [1,]  0</span></a>
+<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co">#&gt; [2,]  0</span></a>
+<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="co">#&gt; [3,]  1</span></a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">head</span>(test_cf_features, <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="co">#&gt;      work home and does does it does it work go going how how does how does it</span></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="co">#&gt; [1,]    1    0   0    1       1            1  0     0   1        1           1</span></a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="co">#&gt; [2,]    2    0   1    0       0            0  1     0   0        0           0</span></a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="co">#&gt; [3,]    0    0   0    0       0            0  0     1   0        0           0</span></a>
+<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="co">#&gt;      it</span></a>
+<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="co">#&gt; [1,]  1</span></a>
+<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="co">#&gt; [2,]  0</span></a>
+<a class="sourceLine" id="cb12-9" data-line-number="9"><span class="co">#&gt; [3,]  0</span></a></code></pre></div>
+<p>Finally, to train a machine learning model on this, you can simply do:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="co"># ensure the input to classifier is a data.table or data.frame object</span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3">x_train &lt;-<span class="st"> </span><span class="kw">data.table</span>(<span class="kw">cbind</span>(train_cf_features, <span class="dt">target =</span> train<span class="op">$</span>target))</a>
+<a class="sourceLine" id="cb13-4" data-line-number="4">x_test &lt;-<span class="st"> </span><span class="kw">data.table</span>(test_cf_features)</a>
+<a class="sourceLine" id="cb13-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb13-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb13-7" data-line-number="7">xgb &lt;-<span class="st"> </span>RFTrainer<span class="op">$</span><span class="kw">new</span>(<span class="dt">n_estimators =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb13-8" data-line-number="8">xgb<span class="op">$</span><span class="kw">fit</span>(x_train, <span class="st">&quot;target&quot;</span>)</a>
+<a class="sourceLine" id="cb13-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb13-10" data-line-number="10">predictions &lt;-<span class="st"> </span>xgb<span class="op">$</span><span class="kw">predict</span>(x_test)</a>
+<a class="sourceLine" id="cb13-11" data-line-number="11">predictions</a>
+<a class="sourceLine" id="cb13-12" data-line-number="12"><span class="co">#&gt; [1] 1 1 1 1 0 0</span></a>
+<a class="sourceLine" id="cb13-13" data-line-number="13"><span class="co">#&gt; Levels: 0 1</span></a></code></pre></div>
+</div>
+<div id="summary" class="section level2">
+<h2>Summary</h2>
+<p>In this tutorial, we discussed how to use superml’s countvectorizer (also known as bag of words model) to create word counts matrix and train a machine learning model on it.</p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

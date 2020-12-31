@@ -1,0 +1,18 @@
+useDynLib(dfphase1)
+
+importFrom(stats, p.adjust, quantile, reorder, rnorm, sd, uniroot)
+importFrom(lattice,xyplot,panel.xyplot,panel.text,panel.points,llines,trellis.par.get)
+importFrom(robustbase,covMcd)
+
+export(
+    phase1Plot, mphase1Plot,
+    shewhart, shewhart.normal.limits,
+    mshewhart, mshewhart.normal.limits,
+    changepoint, changepoint.normal.limits,
+    mchangepoint, mchangepoint.normal.limits,
+    rsp, mphase1, postsignal
+)
+importFrom(Rcpp, evalCpp)
+S3method("print","mphase1")
+S3method("plot","mphase1")
+S3method("postsignal","mphase1")

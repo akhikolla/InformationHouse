@@ -1,0 +1,81 @@
+INFO: Starting fuzzing
+WARNING: No test specified, defaulting to first test defined (Lmoments_deepstate_test_shiftedlegendre_test)
+input starts
+EXTERNAL: qs v0.23.4.
+
+rmax values: 467495432
+input ends
+
+error: Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+terminate called after throwing an instance of 'std::logic_error'
+  what():  Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+ERROR: Failed: Lmoments_deepstate_test_shiftedlegendre_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/Lmoments/inst/testfiles/shiftedlegendre/shiftedlegendre_output/1f863c479dd017058569d74dae435076ffd2b194.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+rmax values: -498905818
+input ends
+terminate called after throwing an instance of 'std::range_error'
+  what():  'rmax' must be > 0
+ERROR: Failed: Lmoments_deepstate_test_shiftedlegendre_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/Lmoments/inst/testfiles/shiftedlegendre/shiftedlegendre_output/0646c3c42d23c1c1fff52b72515b80b860f23b66.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+rmax values: -293123844
+input ends
+terminate called after throwing an instance of 'std::range_error'
+  what():  'rmax' must be > 0
+ERROR: Failed: Lmoments_deepstate_test_shiftedlegendre_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/Lmoments/inst/testfiles/shiftedlegendre/shiftedlegendre_output/497cf3c29f41eea19173d45cfeeb7f6b8d770399.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+rmax values: -1105761949
+input ends
+terminate called after throwing an instance of 'std::range_error'
+  what():  'rmax' must be > 0
+ERROR: Failed: Lmoments_deepstate_test_shiftedlegendre_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/Lmoments/inst/testfiles/shiftedlegendre/shiftedlegendre_output/0ce6b39035830c5b2e245355f53de33e014b4eb7.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+rmax values: 954479852
+input ends
+
+error: Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+terminate called after throwing an instance of 'std::logic_error'
+  what():  Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+ERROR: Failed: Lmoments_deepstate_test_shiftedlegendre_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/Lmoments/inst/testfiles/shiftedlegendre/shiftedlegendre_output/7c607f30fb0ddd3ef9884c262aa2371a48ab7db6.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+rmax values: 1344097580
+input ends
+
+error: Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+terminate called after throwing an instance of 'std::logic_error'
+  what():  Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+ERROR: Failed: Lmoments_deepstate_test_shiftedlegendre_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/Lmoments/inst/testfiles/shiftedlegendre/shiftedlegendre_output/181e3b6d2645b7c7f799dd5c186aa84c05a30002.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+rmax values: -823343871
+input ends
+terminate called after throwing an instance of 'std::range_error'
+  what():  'rmax' must be > 0
+ERROR: Failed: Lmoments_deepstate_test_shiftedlegendre_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/Lmoments/inst/testfiles/shiftedlegendre/shiftedlegendre_output/59c93716a8b9a6c91ac90eccb27263ccc85f065a.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+rmax values: -469638059
+input ends
+terminate called after throwing an instance of 'std::range_error'
+  what():  'rmax' must be > 0
+ERROR: Failed: Lmoments_deepstate_test_shiftedlegendre_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/Lmoments/inst/testfiles/shiftedlegendre/shiftedlegendre_output/1c61930931aa2d13ede208e97f6e44e50469762a.fail`
+INFO: Done fuzzing! Ran 8 tests (4 tests/second) with 8 failed/0 passed/0 abandoned tests

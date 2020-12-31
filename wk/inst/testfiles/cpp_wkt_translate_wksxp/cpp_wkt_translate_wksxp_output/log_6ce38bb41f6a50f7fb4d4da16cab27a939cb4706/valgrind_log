@@ -1,0 +1,1100 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./cpp_wkt_translate_wksxp_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_output/6ce38bb41f6a50f7fb4d4da16cab27a939cb4706.fail</line>
+</preamble>
+
+<pid>390784</pid>
+<ppid>390783</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_output/log_6ce38bb41f6a50f7fb4d4da16cab27a939cb4706/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./cpp_wkt_translate_wksxp_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_output/6ce38bb41f6a50f7fb4d4da16cab27a939cb4706.fail</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.026 </time>
+</status>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.231 </time>
+</status>
+
+<error>
+  <unique>0x9</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>8 bytes in 1 blocks are definitely lost in loss record 10 of 1,332</text>
+    <leakedbytes>8</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D060F7</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::initialize(int, char const* const*, bool, bool, bool)</fn>
+      <dir>/tmp/RtmpAPDRvx/R.INSTALL2c66eb2c3545f3/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>198</line>
+    </frame>
+    <frame>
+      <ip>0x4D06483</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/tmp/RtmpAPDRvx/R.INSTALL2c66eb2c3545f3/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x409B63</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_wk_deepstate_test_cpp_wkt_translate_wksxp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp</dir>
+      <file>cpp_wkt_translate_wksxp_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_wk_deepstate_test_cpp_wkt_translate_wksxp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp</dir>
+      <file>cpp_wkt_translate_wksxp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D7A8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA49</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DB24</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x11</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>21 bytes in 1 blocks are possibly lost in loss record 18 of 1,332</text>
+    <leakedbytes>21</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D2FF4C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>void std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::_M_construct&lt;char const*&gt;(char const*, char const*, std::forward_iterator_tag)</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>basic_string.tcc</file>
+      <line>219</line>
+    </frame>
+    <frame>
+      <ip>0x4D38B05</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>WKParseableStringException::WKParseableStringException(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, char const*, unsigned long)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>wkt-streamer.hpp</file>
+      <line>17</line>
+    </frame>
+    <frame>
+      <ip>0x4D2B445</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>WKParseableString::errorBefore(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>wkt-streamer.hpp</file>
+      <line>281</line>
+    </frame>
+    <frame>
+      <ip>0x4D3D5BB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>geometryTypeFromString</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>wkt-streamer.hpp</file>
+      <line>394</line>
+    </frame>
+    <frame>
+      <ip>0x4D3D5BB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>assertGeometryMeta</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>wkt-streamer.hpp</file>
+      <line>374</line>
+    </frame>
+    <frame>
+      <ip>0x4D3D5BB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>WKTStreamer::readGeometryWithType(WKTString&amp;, unsigned int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>wkt-streamer.hpp</file>
+      <line>461</line>
+    </frame>
+    <frame>
+      <ip>0x4D3DE25</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>WKTStreamer::readFeature(unsigned long)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>wkt-streamer.hpp</file>
+      <line>447</line>
+    </frame>
+    <frame>
+      <ip>0x4D35A9B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>WKReader::iterateFeature()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>reader.hpp</file>
+      <line>39</line>
+    </frame>
+    <frame>
+      <ip>0x4D473FF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>rcpp_translate_base</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>rcpp-translate.hpp</file>
+      <line>28</line>
+    </frame>
+    <frame>
+      <ip>0x4D473FF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>wk::rcpp_translate_wksxp(WKReader&amp;, int, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>rcpp-translate.hpp</file>
+      <line>67</line>
+    </frame>
+    <frame>
+      <ip>0x4D42DA6</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>cpp_wkt_translate_wksxp(Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;, int, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src</dir>
+      <file>translate.cpp</file>
+      <line>56</line>
+    </frame>
+    <frame>
+      <ip>0x40A3B1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_wk_deepstate_test_cpp_wkt_translate_wksxp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp</dir>
+      <file>cpp_wkt_translate_wksxp_DeepState_TestHarness.cpp</file>
+      <line>37</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_wk_deepstate_test_cpp_wkt_translate_wksxp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp</dir>
+      <file>cpp_wkt_translate_wksxp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D7A8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x12</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>21 bytes in 1 blocks are definitely lost in loss record 19 of 1,332</text>
+    <leakedbytes>21</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D2FF4C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>void std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::_M_construct&lt;char const*&gt;(char const*, char const*, std::forward_iterator_tag)</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>basic_string.tcc</file>
+      <line>219</line>
+    </frame>
+    <frame>
+      <ip>0x4D3EB33</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>as_string&lt;std::__cxx11::basic_string&lt;char&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp</dir>
+      <file>as.h</file>
+      <line>67</line>
+    </frame>
+    <frame>
+      <ip>0x4D3EB33</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>as&lt;std::__cxx11::basic_string&lt;char&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp</dir>
+      <file>as.h</file>
+      <line>71</line>
+    </frame>
+    <frame>
+      <ip>0x4D3EB33</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>as&lt;std::__cxx11::basic_string&lt;char&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp</dir>
+      <file>as.h</file>
+      <line>152</line>
+    </frame>
+    <frame>
+      <ip>0x4D3EB33</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>WKCharacterVectorProvider::seekNextFeature()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>rcpp-io.hpp</file>
+      <line>261</line>
+    </frame>
+    <frame>
+      <ip>0x4D473E0</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>hasNextFeature</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>reader.hpp</file>
+      <line>29</line>
+    </frame>
+    <frame>
+      <ip>0x4D473E0</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>rcpp_translate_base</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>rcpp-translate.hpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x4D473E0</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>wk::rcpp_translate_wksxp(WKReader&amp;, int, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>rcpp-translate.hpp</file>
+      <line>67</line>
+    </frame>
+    <frame>
+      <ip>0x4D42DA6</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>cpp_wkt_translate_wksxp(Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;, int, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src</dir>
+      <file>translate.cpp</file>
+      <line>56</line>
+    </frame>
+    <frame>
+      <ip>0x40A3B1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_wk_deepstate_test_cpp_wkt_translate_wksxp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp</dir>
+      <file>cpp_wkt_translate_wksxp_DeepState_TestHarness.cpp</file>
+      <line>37</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_wk_deepstate_test_cpp_wkt_translate_wksxp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp</dir>
+      <file>cpp_wkt_translate_wksxp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D7A8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA49</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DB24</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x13</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>23 bytes in 1 blocks are possibly lost in loss record 20 of 1,332</text>
+    <leakedbytes>23</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D302BC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>void std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::_M_construct&lt;char*&gt;(char*, char*, std::forward_iterator_tag)</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>basic_string.tcc</file>
+      <line>219</line>
+    </frame>
+    <frame>
+      <ip>0x4D38AF7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>_M_construct_aux&lt;char*&gt;</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>basic_string.h</file>
+      <line>247</line>
+    </frame>
+    <frame>
+      <ip>0x4D38AF7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>_M_construct&lt;char*&gt;</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>basic_string.h</file>
+      <line>266</line>
+    </frame>
+    <frame>
+      <ip>0x4D38AF7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>basic_string</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>basic_string.h</file>
+      <line>451</line>
+    </frame>
+    <frame>
+      <ip>0x4D38AF7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>WKParseableStringException::WKParseableStringException(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, char const*, unsigned long)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>wkt-streamer.hpp</file>
+      <line>17</line>
+    </frame>
+    <frame>
+      <ip>0x4D2B445</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>WKParseableString::errorBefore(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>wkt-streamer.hpp</file>
+      <line>281</line>
+    </frame>
+    <frame>
+      <ip>0x4D3D5BB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>geometryTypeFromString</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>wkt-streamer.hpp</file>
+      <line>394</line>
+    </frame>
+    <frame>
+      <ip>0x4D3D5BB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>assertGeometryMeta</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>wkt-streamer.hpp</file>
+      <line>374</line>
+    </frame>
+    <frame>
+      <ip>0x4D3D5BB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>WKTStreamer::readGeometryWithType(WKTString&amp;, unsigned int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>wkt-streamer.hpp</file>
+      <line>461</line>
+    </frame>
+    <frame>
+      <ip>0x4D3DE25</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>WKTStreamer::readFeature(unsigned long)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>wkt-streamer.hpp</file>
+      <line>447</line>
+    </frame>
+    <frame>
+      <ip>0x4D35A9B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>WKReader::iterateFeature()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>reader.hpp</file>
+      <line>39</line>
+    </frame>
+    <frame>
+      <ip>0x4D473FF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>rcpp_translate_base</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>rcpp-translate.hpp</file>
+      <line>28</line>
+    </frame>
+    <frame>
+      <ip>0x4D473FF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>wk::rcpp_translate_wksxp(WKReader&amp;, int, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>rcpp-translate.hpp</file>
+      <line>67</line>
+    </frame>
+    <frame>
+      <ip>0x4D42DA6</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>cpp_wkt_translate_wksxp(Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;, int, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src</dir>
+      <file>translate.cpp</file>
+      <line>56</line>
+    </frame>
+    <frame>
+      <ip>0x40A3B1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_wk_deepstate_test_cpp_wkt_translate_wksxp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp</dir>
+      <file>cpp_wkt_translate_wksxp_DeepState_TestHarness.cpp</file>
+      <line>37</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_wk_deepstate_test_cpp_wkt_translate_wksxp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp</dir>
+      <file>cpp_wkt_translate_wksxp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D7A8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x15</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>25 bytes in 1 blocks are possibly lost in loss record 22 of 1,332</text>
+    <leakedbytes>25</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D302BC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>void std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::_M_construct&lt;char*&gt;(char*, char*, std::forward_iterator_tag)</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>basic_string.tcc</file>
+      <line>219</line>
+    </frame>
+    <frame>
+      <ip>0x4D38ADC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>_M_construct_aux&lt;char*&gt;</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>basic_string.h</file>
+      <line>247</line>
+    </frame>
+    <frame>
+      <ip>0x4D38ADC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>_M_construct&lt;char*&gt;</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>basic_string.h</file>
+      <line>266</line>
+    </frame>
+    <frame>
+      <ip>0x4D38ADC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>basic_string</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>basic_string.h</file>
+      <line>451</line>
+    </frame>
+    <frame>
+      <ip>0x4D38ADC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>WKParseableStringException::WKParseableStringException(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, char const*, unsigned long)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>wkt-streamer.hpp</file>
+      <line>17</line>
+    </frame>
+    <frame>
+      <ip>0x4D2B445</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>WKParseableString::errorBefore(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>wkt-streamer.hpp</file>
+      <line>281</line>
+    </frame>
+    <frame>
+      <ip>0x4D3D5BB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>geometryTypeFromString</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>wkt-streamer.hpp</file>
+      <line>394</line>
+    </frame>
+    <frame>
+      <ip>0x4D3D5BB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>assertGeometryMeta</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>wkt-streamer.hpp</file>
+      <line>374</line>
+    </frame>
+    <frame>
+      <ip>0x4D3D5BB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>WKTStreamer::readGeometryWithType(WKTString&amp;, unsigned int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>wkt-streamer.hpp</file>
+      <line>461</line>
+    </frame>
+    <frame>
+      <ip>0x4D3DE25</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>WKTStreamer::readFeature(unsigned long)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>wkt-streamer.hpp</file>
+      <line>447</line>
+    </frame>
+    <frame>
+      <ip>0x4D35A9B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>WKReader::iterateFeature()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>reader.hpp</file>
+      <line>39</line>
+    </frame>
+    <frame>
+      <ip>0x4D473FF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>rcpp_translate_base</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>rcpp-translate.hpp</file>
+      <line>28</line>
+    </frame>
+    <frame>
+      <ip>0x4D473FF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>wk::rcpp_translate_wksxp(WKReader&amp;, int, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>rcpp-translate.hpp</file>
+      <line>67</line>
+    </frame>
+    <frame>
+      <ip>0x4D42DA6</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>cpp_wkt_translate_wksxp(Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;, int, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src</dir>
+      <file>translate.cpp</file>
+      <line>56</line>
+    </frame>
+    <frame>
+      <ip>0x40A3B1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_wk_deepstate_test_cpp_wkt_translate_wksxp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp</dir>
+      <file>cpp_wkt_translate_wksxp_DeepState_TestHarness.cpp</file>
+      <line>37</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_wk_deepstate_test_cpp_wkt_translate_wksxp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp</dir>
+      <file>cpp_wkt_translate_wksxp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D7A8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x2f</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>96 bytes in 1 blocks are possibly lost in loss record 48 of 1,332</text>
+    <leakedbytes>96</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E46308</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator&lt;char&gt; const&amp;)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E47FB8</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>char* std::string::_S_construct&lt;char const*&gt;(char const*, char const*, std::allocator&lt;char&gt; const&amp;, std::forward_iterator_tag)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E48055</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::basic_string(char const*, unsigned long, std::allocator&lt;char&gt; const&amp;)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E29331</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+    </frame>
+    <frame>
+      <ip>0x4E39795</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::runtime_error::runtime_error(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D38A64</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>WKParseException</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>parse-exception.hpp</file>
+      <line>12</line>
+    </frame>
+    <frame>
+      <ip>0x4D38A64</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>WKParseableStringException::WKParseableStringException(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, char const*, unsigned long)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>wkt-streamer.hpp</file>
+      <line>17</line>
+    </frame>
+    <frame>
+      <ip>0x4D2B445</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>WKParseableString::errorBefore(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>wkt-streamer.hpp</file>
+      <line>281</line>
+    </frame>
+    <frame>
+      <ip>0x4D3D5BB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>geometryTypeFromString</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>wkt-streamer.hpp</file>
+      <line>394</line>
+    </frame>
+    <frame>
+      <ip>0x4D3D5BB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>assertGeometryMeta</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>wkt-streamer.hpp</file>
+      <line>374</line>
+    </frame>
+    <frame>
+      <ip>0x4D3D5BB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>WKTStreamer::readGeometryWithType(WKTString&amp;, unsigned int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>wkt-streamer.hpp</file>
+      <line>461</line>
+    </frame>
+    <frame>
+      <ip>0x4D3DE25</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>WKTStreamer::readFeature(unsigned long)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>wkt-streamer.hpp</file>
+      <line>447</line>
+    </frame>
+    <frame>
+      <ip>0x4D35A9B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>WKReader::iterateFeature()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>reader.hpp</file>
+      <line>39</line>
+    </frame>
+    <frame>
+      <ip>0x4D473FF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>rcpp_translate_base</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>rcpp-translate.hpp</file>
+      <line>28</line>
+    </frame>
+    <frame>
+      <ip>0x4D473FF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>wk::rcpp_translate_wksxp(WKReader&amp;, int, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>rcpp-translate.hpp</file>
+      <line>67</line>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x38</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>152 bytes in 1 blocks are possibly lost in loss record 57 of 1,332</text>
+    <leakedbytes>152</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4E012E3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>__cxa_allocate_exception</fn>
+    </frame>
+    <frame>
+      <ip>0x4D35B19</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>WKReader::iterateFeature()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>reader.hpp</file>
+      <line>42</line>
+    </frame>
+    <frame>
+      <ip>0x4D473FF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>rcpp_translate_base</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>rcpp-translate.hpp</file>
+      <line>28</line>
+    </frame>
+    <frame>
+      <ip>0x4D473FF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>wk::rcpp_translate_wksxp(WKReader&amp;, int, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>rcpp-translate.hpp</file>
+      <line>67</line>
+    </frame>
+    <frame>
+      <ip>0x4D42DA6</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>cpp_wkt_translate_wksxp(Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;, int, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src</dir>
+      <file>translate.cpp</file>
+      <line>56</line>
+    </frame>
+    <frame>
+      <ip>0x40A3B1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_wk_deepstate_test_cpp_wkt_translate_wksxp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp</dir>
+      <file>cpp_wkt_translate_wksxp_DeepState_TestHarness.cpp</file>
+      <line>37</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_wk_deepstate_test_cpp_wkt_translate_wksxp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp</dir>
+      <file>cpp_wkt_translate_wksxp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D7A8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA49</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DB24</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x59</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>256 bytes in 1 blocks are possibly lost in loss record 90 of 1,332</text>
+    <leakedbytes>256</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4E012E3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>__cxa_allocate_exception</fn>
+    </frame>
+    <frame>
+      <ip>0x4D2B3BD</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>WKParseableString::errorBefore(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>wkt-streamer.hpp</file>
+      <line>281</line>
+    </frame>
+    <frame>
+      <ip>0x4D3D5BB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>geometryTypeFromString</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>wkt-streamer.hpp</file>
+      <line>394</line>
+    </frame>
+    <frame>
+      <ip>0x4D3D5BB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>assertGeometryMeta</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>wkt-streamer.hpp</file>
+      <line>374</line>
+    </frame>
+    <frame>
+      <ip>0x4D3D5BB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>WKTStreamer::readGeometryWithType(WKTString&amp;, unsigned int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>wkt-streamer.hpp</file>
+      <line>461</line>
+    </frame>
+    <frame>
+      <ip>0x4D3DE25</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>WKTStreamer::readFeature(unsigned long)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>wkt-streamer.hpp</file>
+      <line>447</line>
+    </frame>
+    <frame>
+      <ip>0x4D35A9B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>WKReader::iterateFeature()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>reader.hpp</file>
+      <line>39</line>
+    </frame>
+    <frame>
+      <ip>0x4D473FF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>rcpp_translate_base</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>rcpp-translate.hpp</file>
+      <line>28</line>
+    </frame>
+    <frame>
+      <ip>0x4D473FF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>wk::rcpp_translate_wksxp(WKReader&amp;, int, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/../inst/include/wk</dir>
+      <file>rcpp-translate.hpp</file>
+      <line>67</line>
+    </frame>
+    <frame>
+      <ip>0x4D42DA6</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src/wk.so</obj>
+      <fn>cpp_wkt_translate_wksxp(Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;, int, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/src</dir>
+      <file>translate.cpp</file>
+      <line>56</line>
+    </frame>
+    <frame>
+      <ip>0x40A3B1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_wk_deepstate_test_cpp_wkt_translate_wksxp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp</dir>
+      <file>cpp_wkt_translate_wksxp_DeepState_TestHarness.cpp</file>
+      <line>37</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_wk_deepstate_test_cpp_wkt_translate_wksxp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp</dir>
+      <file>cpp_wkt_translate_wksxp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D7A8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA49</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xba</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>1,025 bytes in 1 blocks are definitely lost in loss record 187 of 1,332</text>
+    <leakedbytes>1025</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E9B3AF</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::reserve(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D04C55</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>MemBuf::MemBuf(int)</fn>
+      <dir>/tmp/RtmpAPDRvx/R.INSTALL2c66eb2c3545f3/RInside/src</dir>
+      <file>MemBuf.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x4D06467</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/tmp/RtmpAPDRvx/R.INSTALL2c66eb2c3545f3/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>56</line>
+    </frame>
+    <frame>
+      <ip>0x409B63</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_wk_deepstate_test_cpp_wkt_translate_wksxp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp</dir>
+      <file>cpp_wkt_translate_wksxp_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_wk_deepstate_test_cpp_wkt_translate_wksxp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp</dir>
+      <file>cpp_wkt_translate_wksxp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D7A8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA49</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DB24</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.793 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

@@ -1,0 +1,17 @@
+WARNING: No test specified, defaulting to first test defined (mosum_deepstate_test_mean_help_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/mosum/inst/testfiles/mean_help/mean_help_output/985c5b0c49f0c59c44daf056bf94df47793d4398.crash`
+TRACE: Running: mosum_deepstate_test_mean_help_test from /home/akhila/fuzzer_packages/fuzzedpackages/mosum/inst/testfiles/mean_help/mean_help_DeepState_TestHarness.cpp(10)
+input starts
+EXTERNAL: qs v0.23.4.
+
+x values: 6.8862e+103 nan -1.12166e+50 -1.14776e-242 -inf nan inf 0
+l values: -1196428485
+r values: -870326468
+input ends
+==3989679==  If you believe this happened as a result of a stack
+==3989679==  overflow in your program's main thread (unlikely but
+==3989679==  possible), you can try to increase the size of the
+==3989679==  main thread stack using the --main-stacksize= flag.
+==3989679==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: mosum_deepstate_test_mean_help_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/mosum/inst/testfiles/mean_help/mean_help_output/985c5b0c49f0c59c44daf056bf94df47793d4398.crash crashed

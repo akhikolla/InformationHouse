@@ -1,0 +1,15 @@
+WARNING: No test specified, defaulting to first test defined (tidygraph_deepstate_test_get_paths_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/tidygraph/inst/testfiles/get_paths/get_paths_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash`
+TRACE: Running: tidygraph_deepstate_test_get_paths_test from /home/akhila/fuzzer_packages/fuzzedpackages/tidygraph/inst/testfiles/get_paths/get_paths_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+parent values: -709423862 1693996265 874270644 819746351 1283029671 308684195 -127551131 1528585009 -748078280 1636835733 -1401926948 1285557401 428228651 -328872220 -897103578 -1549445257 244494191 584058062 1078897549
+input ends
+==987784==  If you believe this happened as a result of a stack
+==987784==  overflow in your program's main thread (unlikely but
+==987784==  possible), you can try to increase the size of the
+==987784==  main thread stack using the --main-stacksize= flag.
+==987784==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: tidygraph_deepstate_test_get_paths_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/tidygraph/inst/testfiles/get_paths/get_paths_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash crashed

@@ -1,0 +1,24 @@
+export(GeneralizedUmatrix)
+export(plotTopographicMap)
+export(XYcoords2LinesColumns)
+export(upscaleUmatrix)
+export(NormalizeUmatrix)
+export(GeneratePmatrix)
+export(CalcUstarmatrix)
+export(TopviewTopographicMap)
+export(ExtendToroidalUmatrix)
+useDynLib("GeneralizedUmatrix", .registration = TRUE)
+
+
+import(ggplot2)
+importFrom("stats", "quantile")
+#Island generation now in ProjectionBasedClustering package
+
+importFrom("stats", "median")
+import(Rcpp)
+  importFrom("grDevices", "contourLines")
+  importFrom("stats", "quantile", "runif", "dist","cmdscale")
+  importFrom("grDevices", "dev.off", "png")
+  importFrom("graphics", "lines", "par", "rasterImage")
+ importFrom("grDevices", "colorRamp")
+     importFrom("stats", "qnorm", "sd")

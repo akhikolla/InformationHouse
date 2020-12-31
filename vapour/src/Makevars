@@ -1,0 +1,3 @@
+PKG_CPPFLAGS= -I/usr/include/gdal -DPROJ_H_API
+PKG_LIBS= -L/usr/lib -lgdal -lproj
+CXX_STD=CXX11

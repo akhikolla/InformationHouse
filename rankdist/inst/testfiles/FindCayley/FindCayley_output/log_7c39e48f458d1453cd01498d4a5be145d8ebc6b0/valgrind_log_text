@@ -1,0 +1,14 @@
+WARNING: No test specified, defaulting to first test defined (rankdist_deepstate_test_FindCayley_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/rankdist/inst/testfiles/FindCayley/FindCayley_output/7c39e48f458d1453cd01498d4a5be145d8ebc6b0.fail`
+TRACE: Running: rankdist_deepstate_test_FindCayley_test from /home/akhila/fuzzer_packages/fuzzedpackages/rankdist/inst/testfiles/FindCayley/FindCayley_DeepState_TestHarness.cpp(10)
+input starts
+EXTERNAL: qs v0.23.4.
+
+obs values: 1.90210e+73 3.18854e-169 1.80810e+216 1.91192e-230
+
+pi0 values: nan -2.42817e+218 -1.98478e+161 4.98275e+116 2.12523e-306 inf inf 9.87005e+210 nan -6.7198e-281 1.48445e+159 -4.30821e+137 0
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Index out of bounds: [index=-9223372036854775808; extent=4].
+ERROR: Failed: rankdist_deepstate_test_FindCayley_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/rankdist/inst/testfiles/FindCayley/FindCayley_output/7c39e48f458d1453cd01498d4a5be145d8ebc6b0.fail failed

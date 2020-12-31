@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Ryan Sun" />
+
+<meta name="date" content="2020-01-12" />
+
+<title>Generalized Berk-Jones (GBJ) Tutorial</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Generalized Berk-Jones (GBJ) Tutorial</h1>
+<h4 class="author">Ryan Sun</h4>
+<h4 class="date">2020-01-12</h4>
+
+
+
+<p>The GBJ package implements the Generalized Berk-Jones (GBJ) test for set-based inference in genetic association studies.</p>
+<p>Also included in this package are routines to perform the Generalized Higher Criticism (GHC), Higher Criticism (HC), Berk-Jones (BJ), and Minimum p-value (minP) tests. Some guidance on choosing between these methods (which, in principal, test the same null hypothesis and could be used interchangeably) is also given in the above paper.</p>
+<p>The remainder of this vignette provides:</p>
+<ul>
+<li>A high-level explanation of the problems that GBJ/GHC/HC/BJ/minP can solve.</li>
+<li>A worked example in the context of Genome-Wide Association Studies (GWAS) where individual-level genotype data is available.</li>
+<li>A worked example in the context of GWAS where only single SNP summary statistics are available.</li>
+</ul>
+<div id="uses-for-gbj" class="section level2">
+<h2>Uses for GBJ</h2>
+<p>We find it instructional to begin with a short anecdote from the class notes of John Tukey (Donoho and Jin, 2004):</p>
+<blockquote>
+<p>“A young psychologist administers many hypothesis tests as part of a research project, and finds that, of 250 tests 11 were significant at the 5% level. The young researcher feels very proud of this fact and is ready to make a big deal about it, until a senior research suggests that one would expect 12.5 significant tests even in the purely null case, merely by chance. In that sense, finding only 11 significant results is actually somewhat disappointing! … [Tukey] then proposed a sort of <em>second-level significance testing</em>, … [to] indicate a kind of <em>significance of the overall body of tests</em>.”</p>
+</blockquote>
+<p>All the tests performed in this package are designed to carry out the sort of second-level significance testing suggested in the story. That is, they are designed to test if there is at least one non-null hypothesis in the entire group of hypotheses. In statistical terms, assume that the researcher above had calculated 250 Z-scores, where <span class="math inline">\(Z_{i}\)</span> has mean <span class="math inline">\(\mu_{i}\)</span> and variance 1. Then the GBJ null hypothesis is that <span class="math inline">\(\mu_{i}=0\)</span> for all <span class="math inline">\(i\)</span>, and the GBJ alternative is that <span class="math inline">\(\mu_{i} \neq 0\)</span> for at least one <span class="math inline">\(i\)</span>.</p>
+<p>GBJ can be used to test either an entire collection of hypotheses, or it may make more sense to partition the group into smaller, predefined sets and then apply GBJ multiple times. For example, in the case of GWAS, we can group the individual SNP test statistics into genes/pathways and apply GBJ to each gene or pathway. In this case, GBJ is testing if the entire gene has any association with the outcome.</p>
+<p>Notable advantages to using GBJ are:</p>
+<ol style="list-style-type: decimal">
+<li><p>GBJ is a generalization of the Berk-Jones test, which is known to be optimal - in a certain sense - for detecting rare and weak signals when factors in a set are independent. This is clearly a very relevant guarantee for the genetics setting. GBJ modifies Berk-Jones to provide better finite sample rejection regions when factors in a set are correlated.</p></li>
+<li><p>Analytic calculation of p-values (no need for permutation).</p></li>
+<li>No tuning parameters. Standard inputs (similar to SKAT). Reasonable to apply GBJ on sets ranging from 2 to 2000 factors.
+<ol style="list-style-type: lower-alpha">
+<li>Theoretically there is no upper limit, but we are currently bound by the numerical precision in standard C++ routines. There are plans to remove this obstacle through arbitrary precision libraries.</li>
+</ol></li>
+</ol>
+</div>
+<div id="worked-example---individual-level-genotype-data" class="section level2">
+<h2>Worked Example - Individual Level Genotype Data</h2>
+<p>Suppose we are interested in testing whether a specific gene is associated with pancreatic cancer. We have 1000 patients in our study, half with pancreatic cancer and half without. Our dataset consists of 50 SNPs in the gene of interest, and for each patient we have their minor allele count (0,1,2) at each of the 50 SNPs. Additionally we have information on each patient’s age and gender:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GBJ)
+<span class="kw">set.seed</span>(<span class="dv">0</span>)
+cancer_status &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">500</span>), <span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">500</span>))
+
+<span class="co"># All of our SNPs have minor allele frequency of 0.3 in this example</span>
+genotype_data &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">data=</span><span class="kw">rbinom</span>(<span class="dt">n=</span><span class="dv">1000</span><span class="op">*</span><span class="dv">50</span>, <span class="dt">size=</span><span class="dv">2</span>, <span class="dt">prob=</span><span class="fl">0.3</span>), <span class="dt">nrow=</span><span class="dv">1000</span>)
+age &lt;-<span class="st"> </span><span class="kw">round</span>( <span class="kw">runif</span>(<span class="dt">n=</span><span class="dv">1000</span>, <span class="dt">min=</span><span class="dv">30</span>, <span class="dt">max=</span><span class="dv">80</span>) )
+gender &lt;-<span class="st"> </span><span class="kw">rbinom</span>(<span class="dt">n=</span><span class="dv">1000</span>, <span class="dt">size=</span><span class="dv">1</span>, <span class="dt">prob=</span><span class="fl">0.5</span>)     <span class="co"># Let 1 denote a female and 0 a male</span></code></pre></div>
+<p>Under the null hypothesis of no association between gene and pancreatic cancer, we can assume the true logistic model to be:</p>
+<p><span class="math display">\[\text{logit}(\mu_{i}) = \beta_{0} + \beta_{1}*Age_{i} + \beta_{2}*Gender_{i}\]</span></p>
+<p>(actually since we generated the data, we know <span class="math inline">\(\beta_{1}=\beta_{2}=0\)</span>, but this is just for illustration)</p>
+<p>The function <code>calc_score_stats()</code> can be used to calculate score statistics for each of the 50 SNPs. Under the null, these statistics will have an asymptotic N(0,1) distribution.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">null_mod &lt;-<span class="st"> </span><span class="kw">glm</span>(cancer_status<span class="op">~</span>age<span class="op">+</span>gender, <span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;logit&quot;</span>))
+log_reg_stats &lt;-<span class="st"> </span><span class="kw">calc_score_stats</span>(<span class="dt">null_model=</span>null_mod, <span class="dt">factor_matrix=</span>genotype_data, <span class="dt">link_function=</span><span class="st">&quot;logit&quot;</span>)
+log_reg_stats<span class="op">$</span>test_stats</code></pre></div>
+<pre><code>##  [1] -0.68383391 -1.52282289 -0.04324001  1.02900792 -2.08636456 -0.47750816
+##  [7]  1.02134595  0.57157512  0.09543809  1.88826217 -0.50314642 -0.39237040
+## [13] -1.00903095  0.70567669 -0.74408222  1.17911250  0.63650614 -1.45052034
+## [19] -0.04092308  1.06692697 -1.39140523 -0.15765491  0.11381805  0.44208014
+## [25] -0.62752319  0.77393856 -0.06840144 -0.27651351  0.03332305  0.96798877
+## [31]  0.65627672  0.18681278 -1.11695309 -1.58261616  1.44547339  1.78314038
+## [37]  0.88944355  0.44694854 -1.34907210  1.02299625 -0.59392262 -0.87602299
+## [43]  0.55980215 -1.39571015 -0.16295461 -0.86944840 -0.21030648 -1.61408239
+## [49]  0.64425823  1.71642921</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">log_reg_stats<span class="op">$</span>cor_mat[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</code></pre></div>
+<pre><code>##              [,1]        [,2]        [,3]        [,4]         [,5]
+## [1,]           NA  0.02020415 -0.01580513  0.03906158  0.005420753
+## [2,]  0.020204152          NA -0.03967446  0.03321533  0.028975255
+## [3,] -0.015805130 -0.03967446          NA -0.02172816  0.034011177
+## [4,]  0.039061583  0.03321533 -0.02172816          NA -0.043455163
+## [5,]  0.005420753  0.02897526  0.03401118 -0.04345516           NA</code></pre>
+<p>If our outcome was continuous and we wanted to assume a linear regression model, then we could still use <code>calc_score_stats()</code> with <code>link_function='linear'</code>, or if the outcome was non-negative count data and we assume a Poisson regression model, then use <code>link_function='log'</code>.</p>
+<p>Now we have both the test statistics and their correlation matrix, we can apply GBJ.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cor_Z &lt;-<span class="st"> </span>log_reg_stats<span class="op">$</span>cor_mat
+score_stats =<span class="st"> </span>log_reg_stats<span class="op">$</span>test_stats
+<span class="kw">GBJ</span>(<span class="dt">test_stats=</span>score_stats, <span class="dt">cor_mat=</span>cor_Z)</code></pre></div>
+<pre><code>## $GBJ
+## [1] 0.6109885
+## 
+## $GBJ_pvalue
+## [1] 0.6091488
+## 
+## $err_code
+## [1] 0</code></pre>
+<p>And that’s it! Now you are not convinced that GBJ is the correct test for your application, you can also apply GHC, HC, BJ, or minP, as demonstrated below:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">GHC</span>(<span class="dt">test_stats=</span>score_stats, <span class="dt">cor_mat=</span>cor_Z)</code></pre></div>
+<pre><code>## $GHC
+## [1] 1.505614
+## 
+## $GHC_pvalue
+## [1] 0.6328255
+## 
+## $err_code
+## [1] 0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">HC</span>(<span class="dt">test_stats=</span>score_stats, <span class="dt">cor_mat=</span>cor_Z)</code></pre></div>
+<pre><code>## $HC
+## [1] 1.514436
+## 
+## $HC_pvalue
+## [1] 0.633645</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">BJ</span>(<span class="dt">test_stats=</span>score_stats, <span class="dt">cor_mat=</span>cor_Z)</code></pre></div>
+<pre><code>## $BJ
+## [1] 0.6208709
+## 
+## $BJ_pvalue
+## [1] 0.607419</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">minP</span>(<span class="dt">test_stats=</span>score_stats, <span class="dt">cor_mat=</span>cor_Z)</code></pre></div>
+<pre><code>## $minP
+## [1] 0.03694561
+## 
+## $minP_pvalue
+## [1] 0.8439997</code></pre>
+</div>
+<div id="worked-example---summary-statistics" class="section level2">
+<h2>Worked Example - Summary Statistics</h2>
+<p>Suppose now that we only have GWAS summary statistics, not individual-level data, but we still want to perform a set-level test using GBJ. We then need to estimate the correlations between these summary statistics using genotypes from a reference panel. We have provided a function, estimate_ss_cor() to perform the estimation. estimate_ss_cor() requires as input (1) a matrix of <span class="math inline">\(m\)</span> PCs calculated from a reference panel (of the same ethnicity) and (2) a matrix of the genotypes at the summary statistic SNPs from the same reference panel. Here <span class="math inline">\(m\)</span> is approximately the number of PCs used in the original analysis that produced the summary statistics.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load the genotype data at FGFR2 SNPs for 91 Great Britain (GBR) subjects from the 1000 Genomes Project (publically available).</span>
+<span class="kw">data</span>(FGFR2)
+
+<span class="co"># Load PCs for these same 91 subjects (calculated, for example, with EIGENSTRAT)</span>
+<span class="kw">data</span>(gbr_pcs)
+
+<span class="co"># Suppose we were given the following 64 test statistics for the FGFR2 SNPs (must be the same SNPs that</span>
+<span class="co"># are in our genotype matrix!)</span>
+FGFR2_stats &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n=</span><span class="dv">64</span>)
+
+<span class="co"># Estimate correlation matrix for summary statistics</span>
+FGFR2_cor_mat &lt;-<span class="st"> </span><span class="kw">estimate_ss_cor</span>(<span class="dt">ref_pcs=</span>gbr_pcs, <span class="dt">ref_genotypes=</span>FGFR2, <span class="dt">link_function=</span><span class="st">'logit'</span>)
+
+<span class="co"># Run GBJ</span>
+<span class="kw">GBJ</span>(<span class="dt">test_stats=</span>FGFR2_stats, <span class="dt">cor_mat=</span>FGFR2_cor_mat)</code></pre></div>
+<pre><code>## $GBJ
+## [1] 0.3366795
+## 
+## $GBJ_pvalue
+## [1] 0.6390038
+## 
+## $err_code
+## [1] 0</code></pre>
+</div>
+<div id="some-advice-for-special-cases" class="section level2">
+<h2>Some advice for special cases</h2>
+<ul>
+<li><p>Note that in the first example (individual-level data) we know each of our factors (SNPs) are independent, so another option would be to just input a correlation matrix where all the off-diagonal elements are zero. This should not drastically change the results since our estimated correlations are so close to 0 anyway.</p></li>
+<li><p>Limits on the mathematical precision of R and C++ currently limit us somewhat for very large sets and very small p-values. There are plans to remove these limitations in future iterations of the software by using arbitrary precision libraries, however this has not yet been tested. At the moment, we limit sets to 2000 factors at most. Also p-values less than <span class="math inline">\(1*10^{(-14)}\)</span> are generally rounded to this value.</p></li>
+</ul>
+<p>Questions or novel applications? Please let me know! Contact information can be found in the package description.</p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

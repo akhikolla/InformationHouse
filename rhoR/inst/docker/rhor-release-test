@@ -1,0 +1,9 @@
+FROM registry.doit.wisc.edu/epistemic-analytics/qe-packages/rhor/release:current
+
+RUN R -e 'install.packages(c("covr", "DT"), repos="http://cran.rstudio.com", dependencies = TRUE)'
+RUN R -e 'install.packages(c("aws.s3","aws.signature"), repos="http://cran.rstudio.com", dependencies = TRUE)'
+RUN R -e 'install.packages(c("pkgdown"), repos="http://cran.rstudio.com", dependencies = TRUE)'
+RUN R -e 'install.packages("rvest", repos = "https://cran.rstudio.com", dependencies = TRUE)'
+RUN R -e 'install.packages(c("lintr"), repos="http://cran.rstudio.com", dependencies = TRUE)'
+
+RUN R --version

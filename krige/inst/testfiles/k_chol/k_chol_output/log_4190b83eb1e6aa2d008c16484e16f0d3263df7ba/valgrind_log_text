@@ -1,0 +1,15 @@
+WARNING: No test specified, defaulting to first test defined (krige_deepstate_test_k_chol_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/krige/inst/testfiles/k_chol/k_chol_output/4190b83eb1e6aa2d008c16484e16f0d3263df7ba.pass`
+TRACE: Running: krige_deepstate_test_k_chol_test from /home/akhila/fuzzer_packages/fuzzedpackages/krige/inst/testfiles/k_chol/k_chol_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+GlobalMat values: 1.02532e+261 1.12756e-57     nan
+1.46340e+288     inf 4.12846e-51
+5.67165e-306 4.85713e-272     inf
+    nan     inf 61.3403
+5.43908e-105 3.30698e+94 6.30847e-13
+
+input ends
+TRACE: Passed: krige_deepstate_test_k_chol_test

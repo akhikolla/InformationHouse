@@ -1,0 +1,75 @@
+INFO: Starting fuzzing
+WARNING: No test specified, defaulting to first test defined (Rrelperm_deepstate_test_kr3p_StoneII_SwSg_cpp_test)
+input starts
+EXTERNAL: qs v0.23.4.
+
+SWCON values: -2.43318e-187
+SWCRIT values: -1.64581e+174
+SOIRW values: -1.66668e-49
+SORW values: 1.91698e-80
+SOIRG values: 2.93871e+294
+SORG values: 6.2389e-80
+SGCON values: 4.73594e-68
+SGCRIT values: 1.92375e+304
+KRWIRO values: 5.22278e+77
+KROCW values: -2.97932e-194
+KRGCL values: -2.68155e-130
+NW values: -2.84435e-188
+NOW values: -1.3783e-303
+NG values: 9.46139e+185
+NOG values: 3.43512e-26
+NP values: -164119883
+input ends
+
+error: Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+terminate called after throwing an instance of 'std::logic_error'
+  what():  Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+ERROR: Failed: Rrelperm_deepstate_test_kr3p_StoneII_SwSg_cpp_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/Rrelperm/inst/testfiles/kr3p_StoneII_SwSg_cpp/kr3p_StoneII_SwSg_cpp_output/bc6b1dbc1b048d3afa208c1341553b3f79a87648.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+SWCON values: -1.5615e-299
+SWCRIT values: -1.20777e+13
+SOIRW values: 2.79236e-196
+SORW values: 1.26379e+187
+SOIRG values: 1.42068e+49
+SORG values: 2.58036e-206
+SGCON values: 3.02006e-260
+SGCRIT values: -9.91228e-57
+KRWIRO values: -1.64036e-118
+KROCW values: 1.05391e+182
+KRGCL values: 8.05607e-38
+NW values: -3.84354e+136
+NOW values: 2.36082e-100
+NG values: 3.01724e-124
+NOG values: 9.57301e+229
+NP values: 584058062
+input ends
+input starts
+EXTERNAL: qs v0.23.4.
+
+SWCON values: 1.27048e-62
+SWCRIT values: -2.88162e-134
+SOIRW values: 8.18711e+299
+SORW values: 0.00468189
+SOIRG values: 9.28697e-257
+SORG values: -4.47314e+269
+SGCON values: -1.08462e-247
+SGCRIT values: -1.0696e+114
+KRWIRO values: -3.47955e-216
+KROCW values: -8.95181e+215
+KRGCL values: 1.38348e-136
+NW values: 6.24605e+181
+NOW values: -4.11368e+80
+NG values: -nan
+NOG values: 2.79008e+291
+NP values: -152022060
+input ends
+
+error: Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+terminate called after throwing an instance of 'std::logic_error'
+  what():  Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+ERROR: Failed: Rrelperm_deepstate_test_kr3p_StoneII_SwSg_cpp_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/Rrelperm/inst/testfiles/kr3p_StoneII_SwSg_cpp/kr3p_StoneII_SwSg_cpp_output/35d8be9e58a84a90feecc6b279cadd40218ef1c5.fail`
+INFO: Done fuzzing! Ran 3 tests (1 tests/second) with 2 failed/1 passed/0 abandoned tests

@@ -1,0 +1,24 @@
+WARNING: No test specified, defaulting to first test defined (CDM_deepstate_test_cdm_rcpp_slca_calc_probs_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/CDM/inst/testfiles/cdm_rcpp_slca_calc_probs/cdm_rcpp_slca_calc_probs_output/b120ca6d6f8dddeda1d965f69533c4975c816eec.crash`
+TRACE: Running: CDM_deepstate_test_cdm_rcpp_slca_calc_probs_test from /home/akhila/fuzzer_packages/fuzzedpackages/CDM/inst/testfiles/cdm_rcpp_slca_calc_probs/cdm_rcpp_slca_calc_probs_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+XdesM values:     inf
+   -inf
+2.46562e-85
+    nan
+1.78433e+169
+
+dimXdes values: 4.63625e+225 -7.3028e+223 -5.7189e-122 2.41183e+268 3.45534e+254 3.36408e+153 -1.23691e-244 2.37202e+91 1.96953e-39 2.88757e-81 1.12535e-183 -8.81272e-44 1.00447e-151 7.07311e+59 5.80163e-269 4.68237e+124 -3.96937e-190 1.20295e+173 1.01829e+254 1.81826e+256 5.97401e-150 6.51123e-110 5.73085e-141 2.3049e-186 1.056e-283 -1.77034e-192 1.08098e-11 -1.68379e-260 -5.9493e+278 -9.52836e+75 -1.54422e-204 1.9085e+18 -2.06534e+23 -1.9394e+06 1.20595e-167 1.78112e-81 -4.28297e-110 -4.89273e+250 1.5545e+210 1.86447e+15 5.60014e+50 -2.9734e+61 -6.53022e+211 5.07781e+235 -3.79746e-197 -3.0708e+43 -4.86036e+07 2.35669e+99 -1.33699e+53 -3.02572e-63 -1.96976e+72 1.26817e+168 3.62183e+128 -1.67842e-149 1.68204e+173 -9.06568e-121 -1.1733e-301 5.87164e-141
+Missing value
+Xlambda values: 1.04614e-10 -1.88832e+146 -2.76293e-194 -6.97205e+79 2.75677e+53 nan -5.51075e-282 1.12721e+271 2.97293e-135 -5.64072e-246 -8.97413e+223 -0.000149059 4.00007e+209 -1.54857e+206 -4.76641e-43 -4.14493e+211 nan 7.50295e+275 -3.54919e+86 -8.46816e-38 nan 3.74334e-85 1.37854e+44 0
+input ends
+==300996==  If you believe this happened as a result of a stack
+==300996==  overflow in your program's main thread (unlikely but
+==300996==  possible), you can try to increase the size of the
+==300996==  main thread stack using the --main-stacksize= flag.
+==300996==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: CDM_deepstate_test_cdm_rcpp_slca_calc_probs_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/CDM/inst/testfiles/cdm_rcpp_slca_calc_probs/cdm_rcpp_slca_calc_probs_output/b120ca6d6f8dddeda1d965f69533c4975c816eec.crash crashed

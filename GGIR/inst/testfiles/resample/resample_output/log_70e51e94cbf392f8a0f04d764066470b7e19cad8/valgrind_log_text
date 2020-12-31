@@ -1,0 +1,22 @@
+WARNING: No test specified, defaulting to first test defined (GGIR_deepstate_test_resample_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_output/70e51e94cbf392f8a0f04d764066470b7e19cad8.fail`
+TRACE: Running: GGIR_deepstate_test_resample_test from /home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+raw values: 3.60909e+224 9.37481e+280 1.27048e-62 4.71376e-48     nan 7.46115e-258 1.41003e-86
+1.11742e+83 3.07504e-136 2.13410e-145 1.75062e-260 2.90402e-286 5.01413e+184 1.93644e+180
+1.97870e+143 1.01645e-124 2.01769e+47 4.13273e+261 3.56215e-230     nan 1.99326e-62
+    nan 1.00679e-73     nan 7.50348e-71 1.43678e-133 29072.6 1.39816e-16
+
+Missing value
+rawTime values: -1.48913e+39 2.63725e+261 4.51946e+163 -7.62766e-53 2.09617e+257 -4.68831e-154 1.11903e+232 3.26286e-84 3.96693e-30 1.30945e+193 2.81167e+284 7.81345e-69 8.06438e-68 -2.43433e-282 -8.66083e-93 -4.44117e-236 8.79839e-85 1.18757e+27 -1.93959e+293 -1.47979e+74 1.08295e-20 3.18894e-291 1.89411e+44 -3.25228e-308 4.16222e+189 -3.47188e+104 -9.61684e+161 9.71804e-239 -inf 2.17299e+107 2.26895e+150 -8.40097e+307 1.1376e+200 -2.04312e-81 -5.96231e+47 -3.45019e-87 1.8735e-225 1.78742e+27 1.54576e-223 3.91145e-103 4.75074e+44 2.03195e-141 -2.91324e+212 1.20156e+91 -2.30374e-256 7.89169e-125 -1.33791e+107 -1.09922e-83 -8.48369e-131 -3.27399e+63 -3.38411e-93 -4.03377e+85 nan -6.78346e+233 nan 6.88318e+174 -2.75812e-154 1.66812e-190 -1.22546e+06 -6.72853e+227 -1.29887e-120 3.2034e+244 -1.21483e+115 2.43581e-09 -1.64267e+77 1.69376e-180 -2.96114e+227 8.68344e-195 1.09354e-207 8.82813e-118 1.09354e-207 1.35097e+180 0
+Missing value
+time values: -1.32026e-127 -1.0059e+136 -8.22171e-297 2.67399e+100 -1.14821e+21 -2.35711e-280 7.70178e+83 1.11418e+34 -8.81534e+171 -4.06297e-252 -1.74996e-199 inf -inf -1.08393e+102 1.49501e+85 -3.13715e+264 -4.91627e-73 -1.00937e+159 -1.83579e-84 4.94392e-46 -1.02156e+85 5.10545e-144 7.54388e-268 -1.41417e+145 3.17473e+186 1.01613e+186 2516.91 2.21871e+224 -3.59386e+96 -7.41998e-230 2.3958e-213 2.00361e+240 -9.66703e-285 nan -3.98034e+133 6.74363e-138 5.37005e-103 9.83754e+188 1.55392e+178 1.17776e+221 -4.26472e+67 -1.73469e+226 -3.16762e-122 2.25801e+52 nan -1.78458e+275 7.84447e-127 0
+stop values: -1636265950
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Index out of bounds: [index=-1636265951; extent=73].
+ERROR: Failed: GGIR_deepstate_test_resample_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_output/70e51e94cbf392f8a0f04d764066470b7e19cad8.fail failed

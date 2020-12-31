@@ -1,0 +1,4 @@
+PKG_LIBS = $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) \
+					 $(shell "Rscript.exe" -e  "Rcpp:::LdFlags()")
+PKG_CPPFLAGS = -I${R_HOME}/include -I${R_HOME}/library/Rcpp/include \
+							 -I${R_HOME}/library/RcppArmadillo/include -I. -DNDEBUG

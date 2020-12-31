@@ -1,0 +1,18 @@
+WARNING: No test specified, defaulting to first test defined (jmotif_deepstate_test_series_to_wordbag_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/jmotif/inst/testfiles/series_to_wordbag/series_to_wordbag_output/1a596a3488e40e46ef40a584a5955a2648fa22eb.fail`
+TRACE: Running: jmotif_deepstate_test_series_to_wordbag_test from /home/akhila/fuzzer_packages/fuzzedpackages/jmotif/inst/testfiles/series_to_wordbag/series_to_wordbag_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+ts values: 1.27891e-188 7.52749e+12 -2.14488e+105 inf -2.02048e-44 nan 3.42032e-93 8.27932e-269 -4.36409e-38 inf 0
+w_size values: 2069757405
+paa_size values: -1364041863
+a_size values: 1062769791
+nr_strategy values: "NA" "dpjtppqwzocxzkfkwrv" "njhqkhmp" "NA" "clxsfooexjr" "dohhsxeeyagwkcsnahvi" "NA" "NA" "NA" "NA" "NA" "haq" "NA" "xnpitiwyalvhnjmtfxin" "gutvlotwtrsvevfrkbs" "vjhdxpfahts" "qkyc" "udzzbmivxbiqizjvforr" "lgspxhnfbwps" "gnlltlzvahfikvdqsmye" "xsafcwbspdkumvmfzzk" "rr" "NA" "rakxjeypfztk" "hownbgkubpitliu" "vjrzijktfzjnbzgkhrbd" "NA" "hesgekkqrrer" "an" "vcwk" "o" "rbulsiiwpekqhouhbuua" "grpzuvmwnqwceyfueppw" "fcozejddigvzcnrkrttv" "opmjxlhme" "jniorcozutxrwxdihlpn" "onleshy" "yehxwikhbqfkxeq" "NA" "xsdnqnhxpkwsb" "zrpiuqkmubuqngvwupip" "zozsmzpnpvyysoljnwwf" "NA" "bjtdbap" "rvuvmjvyfnfymqhaik" "askqkbpgnxevdvtckexc" "NA" "NA" "NA" "kmpmmsnwgypqxkxpqfsc" "NA" "NA" "mudrwfkahbghaffxxyma" "hlryacjdpqiftjkdtzfb" "NA" "uctnyvxfbjsvdnwcbd" "NA" "aaigv" "bb" "pbexarsazsfvqgheuqxc" "NA" "y"
+n_threshold values: 2.47179e+193
+input ends
+terminate called after throwing an instance of 'Rcpp::not_compatible'
+  what():  Expecting a single string value: [type=character; extent=62].
+ERROR: Failed: jmotif_deepstate_test_series_to_wordbag_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/jmotif/inst/testfiles/series_to_wordbag/series_to_wordbag_output/1a596a3488e40e46ef40a584a5955a2648fa22eb.fail failed

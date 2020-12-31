@@ -1,0 +1,15 @@
+WARNING: No test specified, defaulting to first test defined (rankdist_deepstate_test_cycle_decomp_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/rankdist/inst/testfiles/cycle_decomp/cycle_decomp_output/3a963b753774c7599d74db028cdc7eda961c1815.crash`
+TRACE: Running: rankdist_deepstate_test_cycle_decomp_test from /home/akhila/fuzzer_packages/fuzzedpackages/rankdist/inst/testfiles/cycle_decomp/cycle_decomp_DeepState_TestHarness.cpp(10)
+input starts
+EXTERNAL: qs v0.23.4.
+
+comp values: -1.32073e+308 -5.61812e+100 -2.12738e-134 1.30634e-274 3.70144e+306 -2.83435e-57 -inf 4.85597e-228 -1.21792e+70 -9.24993e+74 -6.08503e+306 -8.79878e+203 1.98689e+102 3.78265e-237 -1.24418e-126 5.80755e+83 2.11181e+229 6.65797e+216 8.04586e-85 -inf -4.84207e-298 5.26145e+181 5.20691e+178 -7.33197e-68 -4.0795e+216 9.28881e+51 -8.24625e-97 -1.80846e-255 -3.03861e-295 2.21217e+275 1.2726e-20 -3.91693e+293 -2.86147e+76 -6.73028e-64 -3.4652e+75 -9.62994e+258 -88.284 -4.01901e-137 -2.68736e-65 -2.45105e-209 -4.80091e-89 1.46954e+177 3.56122e-27 -5.84766e-142 -2.26011e-231 -3.24079e-300 -1.02663e+76 -9.93866e-260 3.46029e+269 -nan 1.02017e+264 4.03267e-51 -7.67952e+240 inf nan -1.161e+103 1.16722e+07 -4.12406e-62 3.71675e+304 1.09384e+48 -7.83919e-283 -0.172652 6.74315e-232 5.47722e+99 4.62562e+261 2.54194e+60 -7.32654e+295 -4.15679e+29 -1.59585e-186 1.18929e+258 2.11415e-98 8.31798e+129 5.14022e-138 2.53462e+203 -2.13969e-129 -5.73724e-135 4.68818e+204 -4.08009e+22 2.63827e-97 -inf -5.35115e+277 1.25559e-80 1.54892e+126 0
+input ends
+==3954687==  If you believe this happened as a result of a stack
+==3954687==  overflow in your program's main thread (unlikely but
+==3954687==  possible), you can try to increase the size of the
+==3954687==  main thread stack using the --main-stacksize= flag.
+==3954687==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: rankdist_deepstate_test_cycle_decomp_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/rankdist/inst/testfiles/cycle_decomp/cycle_decomp_output/3a963b753774c7599d74db028cdc7eda961c1815.crash crashed

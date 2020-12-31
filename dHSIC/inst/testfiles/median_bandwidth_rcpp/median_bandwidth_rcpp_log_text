@@ -1,0 +1,64 @@
+INFO: Starting fuzzing
+WARNING: No test specified, defaulting to first test defined (dHSIC_deepstate_test_median_bandwidth_rcpp_test)
+input starts
+EXTERNAL: qs v0.23.4.
+
+x values: 1.05415e-68 1.86447e-211 4.49059e+17 2.72551e-214 6.53679e-70 2.42643e+241 1.65687e+24
+
+n values: 644268439
+d values: 123721430
+input ends
+ERROR: Crashed: dHSIC_deepstate_test_median_bandwidth_rcpp_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/dHSIC/inst/testfiles/median_bandwidth_rcpp/median_bandwidth_rcpp_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash`
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+x values: 2.58036e-206    -inf     nan
+
+n values: 1078897549
+d values: -289987065
+input ends
+input starts
+EXTERNAL: qs v0.23.4.
+
+x values: 3.07504e-136 1.01645e-124 1.00679e-73 1.72389e-189 2.13410e-145 2.01769e+47 5.91096e+64 4.71376e-48 1.75062e-260
+
+n values: -1983958174
+d values: 1188064147
+input ends
+EXTERNAL: Error: negative length vectors are not allowed
+
+EXTERNAL: Execution halted
+
+input starts
+EXTERNAL: qs v0.23.4.
+
+x values: 1.55275e+40 4.07917e+165 1.44694e-22 8.62422e-89 8.95062e-07 8.88077e+282 4.09428e+146 0.00892625 1.53510e-99
+1.26562e-12 11.4127 5.24924e+272 1.01363e+74 1.86531e+250 5.10578e-14 8.78821e+143 1.30327e+122 7.52989e+12
+7.78977e+159 5.71162e+62 4.59987e+18 2.14829e+78 1.02818e-81 9.71140e-241 1.60646e-158 4.33867e+27 3.77445e+64
+5.68507e+80 3.92548e+14 1.51667e-225 1.56356e-81 1.83374e-104 7.70719e-71 2.54096e-21 2.84159e-210 14780.2
+2.19993e-285 4.49653e+83 6.61249e-257 1.87145e+289 9.93170e-171 1.49741e+196 2.36295e+123 8.31362e+90 4.33815e+110
+1.71990e-51 8.29783e+300 2.62736e-264 4.33714e-104 1088.08 1.44529e+91 1.93465e-43 1.42291 8.53986e-281
+
+n values: 640134790
+d values: 1581229726
+input ends
+ERROR: Crashed: dHSIC_deepstate_test_median_bandwidth_rcpp_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/dHSIC/inst/testfiles/median_bandwidth_rcpp/median_bandwidth_rcpp_output/c6443dbc808a79eb192b35d1cb3f366fca407fcf.crash`
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+x values:     inf
+   -inf
+2.46562e-85
+    nan
+1.78433e+169
+
+n values: 88940557
+d values: 1485040860
+input ends
+ERROR: Crashed: dHSIC_deepstate_test_median_bandwidth_rcpp_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/dHSIC/inst/testfiles/median_bandwidth_rcpp/median_bandwidth_rcpp_output/b120ca6d6f8dddeda1d965f69533c4975c816eec.crash`
+INFO: Done fuzzing! Ran 5 tests (2 tests/second) with 4 failed/1 passed/0 abandoned tests

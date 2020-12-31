@@ -1,0 +1,15 @@
+Package: dfphase1
+Type: Package
+Title: Phase I Control Charts (with Emphasis on Distribution-Free
+        Methods)
+Version: 1.1.1
+Author: Giovanna Capizzi and Guido Masarotto
+Maintainer: Giovanna Capizzi <giovanna.capizzi@unipd.it>
+Description: Statistical methods for retrospectively detecting changes in location and/or dispersion of univariate and multivariate variables. Data values are assumed to be independent, can be individual (one observation at each instant of time) or subgrouped (more than one observation at each instant of time). Control limits are computed, often using a permutation approach, so that a prescribed false alarm probability is guaranteed  without making any parametric assumptions on the stable (in-control) distribution. 
+License: LGPL (>= 2)
+Imports: Rcpp (>= 0.11.1), lattice, robustbase
+LinkingTo: Rcpp
+NeedsCompilation: yes
+Packaged: 2017-01-13 08:18:52 UTC; guido
+Repository: CRAN
+Date/Publication: 2017-01-14 01:04:15

@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./networkflow_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/transport/inst/testfiles/networkflow/networkflow_output/3c44a941801c5a758701eef9f02fd311f55ae9b7.pass</line>
+</preamble>
+
+<pid>973302</pid>
+<ppid>973301</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/transport/inst/testfiles/networkflow/networkflow_output/log_3c44a941801c5a758701eef9f02fd311f55ae9b7/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./networkflow_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/transport/inst/testfiles/networkflow/networkflow_output/3c44a941801c5a758701eef9f02fd311f55ae9b7.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.033 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D5F3A8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/transport/src/transport.so</obj>
+      <fn>networkflow(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/transport/src</dir>
+      <file>networksimplex.cpp</file>
+      <line>38</line>
+    </frame>
+    <frame>
+      <ip>0x40A355</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/transport/inst/testfiles/networkflow/networkflow_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_transport_deepstate_test_networkflow_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/transport/inst/testfiles/networkflow</dir>
+      <file>networkflow_DeepState_TestHarness.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/transport/inst/testfiles/networkflow/networkflow_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_transport_deepstate_test_networkflow_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/transport/inst/testfiles/networkflow</dir>
+      <file>networkflow_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DEA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/transport/inst/testfiles/networkflow/networkflow_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E149</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/transport/inst/testfiles/networkflow/networkflow_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E224</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/transport/inst/testfiles/networkflow/networkflow_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/transport/inst/testfiles/networkflow/networkflow_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xa703020 is 0 bytes after a block of size 208 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x4185BF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/transport/inst/testfiles/networkflow/networkflow_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector(Rcpp::Dimension const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>135</line>
+    </frame>
+    <frame>
+      <ip>0x40F856</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/transport/inst/testfiles/networkflow/networkflow_DeepState_TestHarness</obj>
+      <fn>Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;::Matrix(int const&amp;, int const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Matrix.h</file>
+      <line>59</line>
+    </frame>
+    <frame>
+      <ip>0x408BAF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/transport/inst/testfiles/networkflow/networkflow_DeepState_TestHarness</obj>
+      <fn>RcppDeepState_NumericMatrix()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppDeepState/include/RcppDeepState.h</file>
+      <line>137</line>
+    </frame>
+    <frame>
+      <ip>0x409F20</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/transport/inst/testfiles/networkflow/networkflow_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_transport_deepstate_test_networkflow_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/transport/inst/testfiles/networkflow</dir>
+      <file>networkflow_DeepState_TestHarness.cpp</file>
+      <line>24</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/transport/inst/testfiles/networkflow/networkflow_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_transport_deepstate_test_networkflow_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/transport/inst/testfiles/networkflow</dir>
+      <file>networkflow_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DEA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/transport/inst/testfiles/networkflow/networkflow_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E149</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/transport/inst/testfiles/networkflow/networkflow_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E224</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/transport/inst/testfiles/networkflow/networkflow_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/transport/inst/testfiles/networkflow/networkflow_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.578 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>1</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:09.107 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

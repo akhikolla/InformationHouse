@@ -1,0 +1,55 @@
+\name{DStree-internal}
+\alias{brier}
+\alias{likelihood}
+\alias{hazardr}
+\alias{alist}
+\alias{compute.MAE}
+\alias{computeN}
+\alias{descendants}
+\alias{formatg}
+\alias{hazard}
+\alias{hazardl}
+\alias{labels.DStree}
+\alias{labels.rpart}
+\alias{lik}
+\alias{node.match}
+\alias{print.DStree}
+\alias{sample.ds}
+\alias{string.bounding.box}
+\alias{summ.MAE}
+\alias{temp1S}
+\alias{temp2S}
+\alias{temp3S}
+\alias{tree.depth}
+\alias{.Random.seed}
+\title{
+  Internal Functions 
+}
+\description{
+  Internal functions, only used by packages \pkg{DStree}.
+}
+\usage{
+brier(z,S,time,states,KM,npred)
+alist(eval,split,init)
+compute.MAE(obs,pred)
+summ.MAE(fit,data,time,id.col)
+}
+\arguments{
+  \item{z}{...}
+  \item{S}{...}
+  \item{time}{...}
+  \item{states}{...}
+  \item{KM}{...}
+  \item{npred}{...}
+  \item{eval}{...}
+  \item{split}{...}
+  \item{init}{...}
+  \item{obs}{...}
+  \item{pred}{...}
+  \item{fit}{...}
+  \item{data}{...}
+  \item{time}{...}
+  \item{id.col}{...}
+}
+
+\keyword{internal}

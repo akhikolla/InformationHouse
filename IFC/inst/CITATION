@@ -1,0 +1,19 @@
+citHeader("To cite 'IFC' in publications, please use:")
+
+
+citEntry(entry = "manual",
+         title = "{IFC}: {A}n {R} {P}ackage for {I}maging {F}low {C}ytometry",
+         author = personList(person(given="Yohann", family="Demont"),
+                             person(given="Gautier", family="Stoll"),
+                             person(given="Guido", family="Kroemer"),
+                             person(given="Jean-Pierre", family="Marolleau"),
+                             person(given="Loïc", family = "Garçon")),
+organization = "INSERM, UPD, CHU Amiens",
+address = "Amiens, France",
+note = "version 0.1.1",
+year = "2020",
+url = "https://github.com/gitdemont/IFC",
+textVersion = paste("Demont Y., Stoll G., Kroemer G., Marolleau JP., Garçon L. (2020).",
+                    "IFC: An R Package for Imaging Flow Cytometry.",
+                    "INSERM, UPD, CHU Amiens.",
+                    "https://github.com/gitdemont/IFC"))

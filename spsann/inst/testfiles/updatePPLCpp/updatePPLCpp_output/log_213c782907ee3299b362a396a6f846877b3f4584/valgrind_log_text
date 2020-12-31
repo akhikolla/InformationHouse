@@ -1,0 +1,34 @@
+WARNING: No test specified, defaulting to first test defined (spsann_deepstate_test_updatePPLCpp_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/spsann/inst/testfiles/updatePPLCpp/updatePPLCpp_output/213c782907ee3299b362a396a6f846877b3f4584.crash`
+TRACE: Running: spsann_deepstate_test_updatePPLCpp_test from /home/akhila/fuzzer_packages/fuzzedpackages/spsann/inst/testfiles/updatePPLCpp/updatePPLCpp_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+x values: 4.49653e+83 2.62736e-264 8.95062e-07 5.10578e-14
+8.29783e+300 -4.30971e+256 1.86531e+250 9.71140e-241
+1.44694e-22 1.01363e+74     inf 7.70719e-71
+5.24924e+272 2.14829e+78 1.83374e-104 1.49741e+196
+4.59987e+18 1.56356e-81    -inf 1.44529e+91
+    inf 1.87145e+289 1088.08     nan
+6.61249e-257 4.33714e-104 8.88077e+282 8.78821e+143
+
+Missing value
+dm values: 3.82729e+304 2.00758e+28 2.07832e-289 1.62579e-42 1.42397e+141
+7.68486e-73 9.88060e+145 2.16217e-95     inf 2.92460e+218
+7.31743e-133 1.77522e-19 9.15799e+283 1.29649e+107 1.84241e+168
+2.94086e+191 2.88318e-150 2.07286e-39 1.29041e+91 1.61386e-28
+6.95893e+233     nan -8.74339e-139 3.52618e-252 1.88409e-236
+3.02573e+155     nan 3.22154e+53 3.86293e+281     inf
+2.99183e+54 1.07466e+137 3.30186e-51 9.83595e-110 9.43345e+75
+6.48853e-41 1.00290e-175 1.78535e+224 6.50612e-137 4.47597e+08
+
+idx values: 109255579
+input ends
+==910207==  If you believe this happened as a result of a stack
+==910207==  overflow in your program's main thread (unlikely but
+==910207==  possible), you can try to increase the size of the
+==910207==  main thread stack using the --main-stacksize= flag.
+==910207==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: spsann_deepstate_test_updatePPLCpp_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/spsann/inst/testfiles/updatePPLCpp/updatePPLCpp_output/213c782907ee3299b362a396a6f846877b3f4584.crash crashed

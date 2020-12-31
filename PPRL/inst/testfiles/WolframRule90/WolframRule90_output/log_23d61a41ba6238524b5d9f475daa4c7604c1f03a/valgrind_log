@@ -1,0 +1,346 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./WolframRule90_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/PPRL/inst/testfiles/WolframRule90/WolframRule90_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash</line>
+</preamble>
+
+<pid>467501</pid>
+<ppid>467500</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/PPRL/inst/testfiles/WolframRule90/WolframRule90_output/log_23d61a41ba6238524b5d9f475daa4c7604c1f03a/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./WolframRule90_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/PPRL/inst/testfiles/WolframRule90/WolframRule90_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.025 </time>
+</status>
+
+<fatal_signal>
+  <tid>1</tid>
+  <signo>1</signo>
+  <signame>SIGHUP</signame>
+  <sicode>0</sicode>
+  <stack>
+    <frame>
+      <ip>0x401EEC6</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/ld-2.31.so</obj>
+      <fn>__open_nocancel</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/io/../sysdeps/unix/sysv/linux</dir>
+      <file>open64_nocancel.c</file>
+      <line>45</line>
+    </frame>
+    <frame>
+      <ip>0x4009165</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/ld-2.31.so</obj>
+      <fn>open_verify.constprop.1</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/elf</dir>
+      <file>dl-load.c</file>
+      <line>1536</line>
+    </frame>
+    <frame>
+      <ip>0x400A5CF</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/ld-2.31.so</obj>
+      <fn>_dl_map_object</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/elf</dir>
+      <file>dl-load.c</file>
+      <line>2174</line>
+    </frame>
+    <frame>
+      <ip>0x400F504</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/ld-2.31.so</obj>
+      <fn>openaux</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/elf</dir>
+      <file>dl-deps.c</file>
+      <line>64</line>
+    </frame>
+    <frame>
+      <ip>0x401DC19</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/ld-2.31.so</obj>
+      <fn>_dl_catch_exception</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/elf</dir>
+      <file>dl-error-skeleton.c</file>
+      <line>208</line>
+    </frame>
+    <frame>
+      <ip>0x400F952</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/ld-2.31.so</obj>
+      <fn>_dl_map_object_deps</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/elf</dir>
+      <file>dl-deps.c</file>
+      <line>248</line>
+    </frame>
+    <frame>
+      <ip>0x4004063</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/ld-2.31.so</obj>
+      <fn>dl_main</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/elf</dir>
+      <file>rtld.c</file>
+      <line>1805</line>
+    </frame>
+    <frame>
+      <ip>0x401CBAA</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/ld-2.31.so</obj>
+      <fn>_dl_sysdep_start</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/elf/../elf</dir>
+      <file>dl-sysdep.c</file>
+      <line>252</line>
+    </frame>
+    <frame>
+      <ip>0x400204B</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/ld-2.31.so</obj>
+      <fn>_dl_start_final</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/elf</dir>
+      <file>rtld.c</file>
+      <line>449</line>
+    </frame>
+    <frame>
+      <ip>0x400204B</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/ld-2.31.so</obj>
+      <fn>_dl_start</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/elf</dir>
+      <file>rtld.c</file>
+      <line>539</line>
+    </frame>
+    <frame>
+      <ip>0x4001107</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/ld-2.31.so</obj>
+    </frame>
+    <frame>
+      <ip>0x2</ip>
+    </frame>
+    <frame>
+      <ip>0x1FFF000176</ip>
+    </frame>
+  </stack>
+</fatal_signal>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>InvalidJump</kind>
+  <what>Jump to the invalid address stated on the next line</what>
+  <stack>
+    <frame>
+      <ip>0x1030</ip>
+    </frame>
+    <frame>
+      <ip>0x4009165</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/ld-2.31.so</obj>
+      <fn>open_verify.constprop.1</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/elf</dir>
+      <file>dl-load.c</file>
+      <line>1536</line>
+    </frame>
+    <frame>
+      <ip>0x400A5CF</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/ld-2.31.so</obj>
+      <fn>_dl_map_object</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/elf</dir>
+      <file>dl-load.c</file>
+      <line>2174</line>
+    </frame>
+    <frame>
+      <ip>0x400F504</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/ld-2.31.so</obj>
+      <fn>openaux</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/elf</dir>
+      <file>dl-deps.c</file>
+      <line>64</line>
+    </frame>
+    <frame>
+      <ip>0x401DC19</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/ld-2.31.so</obj>
+      <fn>_dl_catch_exception</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/elf</dir>
+      <file>dl-error-skeleton.c</file>
+      <line>208</line>
+    </frame>
+    <frame>
+      <ip>0x400F952</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/ld-2.31.so</obj>
+      <fn>_dl_map_object_deps</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/elf</dir>
+      <file>dl-deps.c</file>
+      <line>248</line>
+    </frame>
+    <frame>
+      <ip>0x4004063</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/ld-2.31.so</obj>
+      <fn>dl_main</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/elf</dir>
+      <file>rtld.c</file>
+      <line>1805</line>
+    </frame>
+    <frame>
+      <ip>0x401CBAA</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/ld-2.31.so</obj>
+      <fn>_dl_sysdep_start</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/elf/../elf</dir>
+      <file>dl-sysdep.c</file>
+      <line>252</line>
+    </frame>
+    <frame>
+      <ip>0x400204B</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/ld-2.31.so</obj>
+      <fn>_dl_start_final</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/elf</dir>
+      <file>rtld.c</file>
+      <line>449</line>
+    </frame>
+    <frame>
+      <ip>0x400204B</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/ld-2.31.so</obj>
+      <fn>_dl_start</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/elf</dir>
+      <file>rtld.c</file>
+      <line>539</line>
+    </frame>
+    <frame>
+      <ip>0x4001107</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/ld-2.31.so</obj>
+    </frame>
+    <frame>
+      <ip>0x2</ip>
+    </frame>
+    <frame>
+      <ip>0x1FFF000176</ip>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x1030 is not stack'd, malloc'd or (recently) free'd</auxwhat>
+</error>
+
+<fatal_signal>
+  <tid>1</tid>
+  <signo>11</signo>
+  <signame>SIGSEGV</signame>
+  <sicode>2</sicode>
+  <event>Bad permissions for mapped region</event>
+  <siaddr>0x1030</siaddr>
+  <stack>
+    <frame>
+      <ip>0x1030</ip>
+    </frame>
+    <frame>
+      <ip>0x4009165</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/ld-2.31.so</obj>
+      <fn>open_verify.constprop.1</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/elf</dir>
+      <file>dl-load.c</file>
+      <line>1536</line>
+    </frame>
+    <frame>
+      <ip>0x400A5CF</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/ld-2.31.so</obj>
+      <fn>_dl_map_object</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/elf</dir>
+      <file>dl-load.c</file>
+      <line>2174</line>
+    </frame>
+    <frame>
+      <ip>0x400F504</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/ld-2.31.so</obj>
+      <fn>openaux</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/elf</dir>
+      <file>dl-deps.c</file>
+      <line>64</line>
+    </frame>
+    <frame>
+      <ip>0x401DC19</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/ld-2.31.so</obj>
+      <fn>_dl_catch_exception</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/elf</dir>
+      <file>dl-error-skeleton.c</file>
+      <line>208</line>
+    </frame>
+    <frame>
+      <ip>0x400F952</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/ld-2.31.so</obj>
+      <fn>_dl_map_object_deps</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/elf</dir>
+      <file>dl-deps.c</file>
+      <line>248</line>
+    </frame>
+    <frame>
+      <ip>0x4004063</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/ld-2.31.so</obj>
+      <fn>dl_main</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/elf</dir>
+      <file>rtld.c</file>
+      <line>1805</line>
+    </frame>
+    <frame>
+      <ip>0x401CBAA</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/ld-2.31.so</obj>
+      <fn>_dl_sysdep_start</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/elf/../elf</dir>
+      <file>dl-sysdep.c</file>
+      <line>252</line>
+    </frame>
+    <frame>
+      <ip>0x400204B</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/ld-2.31.so</obj>
+      <fn>_dl_start_final</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/elf</dir>
+      <file>rtld.c</file>
+      <line>449</line>
+    </frame>
+    <frame>
+      <ip>0x400204B</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/ld-2.31.so</obj>
+      <fn>_dl_start</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/elf</dir>
+      <file>rtld.c</file>
+      <line>539</line>
+    </frame>
+    <frame>
+      <ip>0x4001107</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/ld-2.31.so</obj>
+    </frame>
+    <frame>
+      <ip>0x2</ip>
+    </frame>
+    <frame>
+      <ip>0x1FFF000176</ip>
+    </frame>
+  </stack>
+</fatal_signal>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:00.090 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>1</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

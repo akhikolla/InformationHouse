@@ -1,0 +1,13 @@
+useDynLib(clogitboost)
+export(clogitboost)
+export(summary.clogitboost)
+export(predict.clogitboost)
+export(marginal)
+export(plot.clogitboost)
+S3method(plot,clogitboost)
+S3method(summary,clogitboost)
+S3method(predict,clogitboost)
+importFrom(Rcpp, evalCpp)
+importFrom("graphics","plot")
+importFrom("stats","aggregate","predict","smooth.spline","var")
+

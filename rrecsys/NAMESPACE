@@ -1,0 +1,67 @@
+useDynLib(rrecsys)
+#exportPattern("^[[:alpha:]]+")
+
+exportMethods(
+	"rrecsys",
+	"colRatings",
+	"rowRatings",
+	"numRatings",
+	"rowAverages",
+	"colAverages",
+	"ncol",
+	"nrow",
+	"[",
+	"coerce",
+	"sparsity",
+	"predict",
+	"show",
+	"evalRec",
+	"evalPred",
+	"getAUC",
+	"summary",
+	"results",
+	"evalModel"
+	)
+
+S3method("print", "rrecsys_registry")
+S3method("print", "rrecsys_entries")
+	
+export("rrecsysRegistry",
+		"defineData",
+		"setStoppingCriteria",
+		"showStoppingCriteria",
+		"showDeltaError",
+		"rankScore",
+		"histogram",
+		"evalChart",
+	  "dataChart",
+	  "recommendHPR",
+	  "recommendMF"
+		)
+		
+exportClasses(
+	"SVDclass",
+	"evalModel",
+	"IBclass",
+	"UBclass",
+	"wALSclass",
+	"BPRclass",
+	"PPLclass",
+	"_ds",
+	"dataSet",
+	"sparseDataSet",
+	"evalRecResults"
+)
+		
+
+		
+import("methods",
+		"registry",
+		"knitr",
+		"ggplot2")
+		
+importFrom("MASS", "ginv")
+importFrom("stats", "rnorm")
+importFrom("Rcpp", "evalCpp")
+importFrom("stats", "var")
+importFrom("stats", "quantile")

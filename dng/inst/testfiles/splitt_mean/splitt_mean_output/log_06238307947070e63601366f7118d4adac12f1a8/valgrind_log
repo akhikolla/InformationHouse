@@ -1,0 +1,471 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./splitt_mean_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_output/06238307947070e63601366f7118d4adac12f1a8.pass</line>
+</preamble>
+
+<pid>615873</pid>
+<ppid>615872</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_output/log_06238307947070e63601366f7118d4adac12f1a8/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./splitt_mean_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_output/06238307947070e63601366f7118d4adac12f1a8.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.025 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>InvalidWrite</kind>
+  <what>Invalid write of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D3A938</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/src/dng.so</obj>
+      <fn>splitt_mean(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/dng/src</dir>
+      <file>rcpp_splitt_mean.cpp</file>
+      <line>59</line>
+    </frame>
+    <frame>
+      <ip>0x40A2B2</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_dng_deepstate_test_splitt_mean_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean</dir>
+      <file>splitt_mean_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_dng_deepstate_test_splitt_mean_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean</dir>
+      <file>splitt_mean_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D489</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D564</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x8ce2bf8 is 0 bytes after a block of size 376 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x40F64D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector(int const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>130</line>
+    </frame>
+    <frame>
+      <ip>0x407D75</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>RcppDeepState_NumericVector()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppDeepState/include/RcppDeepState.h</file>
+      <line>43</line>
+    </frame>
+    <frame>
+      <ip>0x409BAD</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_dng_deepstate_test_splitt_mean_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean</dir>
+      <file>splitt_mean_DeepState_TestHarness.cpp</file>
+      <line>16</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_dng_deepstate_test_splitt_mean_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean</dir>
+      <file>splitt_mean_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D489</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D564</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xf</unique>
+  <tid>1</tid>
+  <kind>InvalidWrite</kind>
+  <what>Invalid write of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D3A970</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/src/dng.so</obj>
+      <fn>splitt_mean(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/dng/src</dir>
+      <file>rcpp_splitt_mean.cpp</file>
+      <line>60</line>
+    </frame>
+    <frame>
+      <ip>0x40A2B2</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_dng_deepstate_test_splitt_mean_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean</dir>
+      <file>splitt_mean_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_dng_deepstate_test_splitt_mean_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean</dir>
+      <file>splitt_mean_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D489</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D564</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xa4a8c08 is 0 bytes after a block of size 456 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x40F64D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector(int const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>130</line>
+    </frame>
+    <frame>
+      <ip>0x407D75</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>RcppDeepState_NumericVector()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppDeepState/include/RcppDeepState.h</file>
+      <line>43</line>
+    </frame>
+    <frame>
+      <ip>0x409D34</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_dng_deepstate_test_splitt_mean_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean</dir>
+      <file>splitt_mean_DeepState_TestHarness.cpp</file>
+      <line>20</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_dng_deepstate_test_splitt_mean_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean</dir>
+      <file>splitt_mean_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D489</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D564</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x27</unique>
+  <tid>1</tid>
+  <kind>InvalidWrite</kind>
+  <what>Invalid write of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D3A9E0</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/src/dng.so</obj>
+      <fn>splitt_mean(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/dng/src</dir>
+      <file>rcpp_splitt_mean.cpp</file>
+      <line>62</line>
+    </frame>
+    <frame>
+      <ip>0x40A2B2</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_dng_deepstate_test_splitt_mean_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean</dir>
+      <file>splitt_mean_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_dng_deepstate_test_splitt_mean_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean</dir>
+      <file>splitt_mean_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D489</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D564</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xa70ecc8 is 0 bytes after a block of size 600 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x40F64D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector(int const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>130</line>
+    </frame>
+    <frame>
+      <ip>0x407D75</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>RcppDeepState_NumericVector()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppDeepState/include/RcppDeepState.h</file>
+      <line>43</line>
+    </frame>
+    <frame>
+      <ip>0x40A06C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_dng_deepstate_test_splitt_mean_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean</dir>
+      <file>splitt_mean_DeepState_TestHarness.cpp</file>
+      <line>28</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_dng_deepstate_test_splitt_mean_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean</dir>
+      <file>splitt_mean_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D489</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D564</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+</valgrindoutput>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x4D3AA06</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/src/dng.so</obj>
+      <fn>Vector</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector</dir>
+      <file>Vector.h</file>
+      <line>130</line>
+    </frame>
+    <frame>
+      <ip>0x4D3AA06</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/src/dng.so</obj>
+      <fn>splitt_mean(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/dng/src</dir>
+      <file>rcpp_splitt_mean.cpp</file>
+      <line>65</line>
+    </frame>
+    <frame>
+      <ip>0x40A2B2</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_dng_deepstate_test_splitt_mean_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean</dir>
+      <file>splitt_mean_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_dng_deepstate_test_splitt_mean_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean</dir>
+      <file>splitt_mean_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D489</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D564</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/dng/inst/testfiles/splitt_mean/splitt_mean_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:07.390 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

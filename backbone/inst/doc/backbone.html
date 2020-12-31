@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="Rachel Domagalski, Zachary Neal, Bruce Sagan" />
+
+
+<title>Overview of the backbone package</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Overview of the backbone package</h1>
+<h4 class="author">Rachel Domagalski, Zachary Neal, Bruce Sagan</h4>
+
+
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(backbone)</span></code></pre></div>
+<div id="weighted-graphs-and-backbones" class="section level1">
+<h1>Weighted Graphs and Backbones</h1>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>In a graph <span class="math inline">\(G\)</span>, edges are either present (i.e. <span class="math inline">\(G_{ij}=1\)</span>) or absent (i.e. <span class="math inline">\(G_{ij}=0\)</span>). However in a weighted or valued graph, edges can take a range of values that may capture such properties as the strength or capacity of the edge. Although weighted graphs contain a large amount of information, there are some cases (e.g. visualization, application of statistical models not developed for weighted graphs) where it is useful to reduce this information by focusing on an unweighted subgraph that contains only the most important edges. We call this subgraph the backbone of <span class="math inline">\(G\)</span>, which we denote as <span class="math inline">\(G’\)</span>. Extracting <span class="math inline">\(G’\)</span> from <span class="math inline">\(G\)</span> requires deciding which edges to preserve. This usually involves selecting a threshold <span class="math inline">\(T_{ij}\)</span> such that edges are preserved if they are above the threshold (i.e. <span class="math inline">\(G_{ij}’=1\)</span> if <span class="math inline">\(G_{ij} &gt; T_{ij}\)</span>), and omitted if they are below the threshold (i.e. <span class="math inline">\(G_{ij}’=0\)</span> if <span class="math inline">\(G_{ij} &lt; T_{ij}\)</span>). It is also possible to extract a signed backbone by selecting upper <span class="math inline">\(T^+_{ij}\)</span> and lower <span class="math inline">\(T^-_{ij}\)</span> thresholds such that <span class="math inline">\(G_{ij}’=1\)</span> if <span class="math inline">\(G_{ij} &gt; T^+_{ij}\)</span>, <span class="math inline">\(G_{ij}’=-1\)</span> if <span class="math inline">\(G_{ij} &lt; T^-_{ij}\)</span>, and <span class="math inline">\(G_{ij}’=0\)</span> if <span class="math inline">\(G_{ij} &gt; T^-_{ij}\)</span> and <span class="math inline">\(G_{ij} &lt; T^+_{ij}\)</span>. The key to all backbone extraction methods lies in the selection of <span class="math inline">\(T\)</span>. The backbone package provides several different methods for selecting <span class="math inline">\(T\)</span> and thus extracting <span class="math inline">\(G’\)</span> from <span class="math inline">\(G\)</span>.</p>
+</div>
+<div id="example-data" class="section level2">
+<h2>Example data</h2>
+<p>We outline the use of the backbone package with Davis, Gardner, and Gardner’s Southern Women Dataset <span class="citation">(Davis, Gardner, and Gardner <a href="#ref-davis1941deep" role="doc-biblioref">1941</a>)</span>, which can be accessed via <span class="citation">(Repository <a href="#ref-ucinet" role="doc-biblioref">2006</a>)</span>. This data takes the form of a bipartite graph <span class="math inline">\(B\)</span> containing 18 women (rows) and 14 social events (columns) taking place over a nine month period. In <span class="math inline">\(B\)</span>, <span class="math inline">\(B_{ij} = 1\)</span> if women <span class="math inline">\(i\)</span> attended event <span class="math inline">\(j\)</span>, and otherwise is 0. Let’s take a look at the Davis dataset included in this package to see that it is bipartite.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">data</span>(davis) <span class="co">#load the dataset</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>op &lt;-<span class="st"> </span><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)</span>
+<span id="cb2-3"><a href="#cb2-3"></a>davis <span class="co">#view the dataset</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#&gt;           6/27 3/2 4/12 9/26 2/25 5/19 3/15 9/16 4/8 6/10 2/23 4/7 11/21 8/3</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="co">#&gt; EVELYN       1   1    1    1    1    1    0    1   1    0    0   0     0   0</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co">#&gt; LAURA        1   1    1    0    1    1    1    1   0    0    0   0     0   0</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="co">#&gt; THERESA      0   1    1    1    1    1    1    1   1    0    0   0     0   0</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="co">#&gt; BRENDA       1   0    1    1    1    1    1    1   0    0    0   0     0   0</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="co">#&gt; CHARLOTTE    0   0    1    1    1    0    1    0   0    0    0   0     0   0</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="co">#&gt; FRANCES      0   0    1    0    1    1    0    1   0    0    0   0     0   0</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="co">#&gt; ELEANOR      0   0    0    0    1    1    1    1   0    0    0   0     0   0</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="co">#&gt; PEARL        0   0    0    0    0    1    0    1   1    0    0   0     0   0</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="co">#&gt; RUTH         0   0    0    0    1    0    1    1   1    0    0   0     0   0</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="co">#&gt; VERNE        0   0    0    0    0    0    1    1   1    0    0   1     0   0</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="co">#&gt; MYRNA        0   0    0    0    0    0    0    1   1    1    0   1     0   0</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="co">#&gt; KATHERINE    0   0    0    0    0    0    0    1   1    1    0   1     1   1</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a><span class="co">#&gt; SYLVIA       0   0    0    0    0    0    1    1   1    1    0   1     1   1</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a><span class="co">#&gt; NORA         0   0    0    0    0    1    1    0   1    1    1   1     1   1</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a><span class="co">#&gt; HELEN        0   0    0    0    0    0    1    1   0    1    1   1     0   0</span></span>
+<span id="cb2-20"><a href="#cb2-20"></a><span class="co">#&gt; DOROTHY      0   0    0    0    0    0    0    1   1    0    0   0     0   0</span></span>
+<span id="cb2-21"><a href="#cb2-21"></a><span class="co">#&gt; OLIVIA       0   0    0    0    0    0    0    0   1    0    1   0     0   0</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a><span class="co">#&gt; FLORA        0   0    0    0    0    0    0    0   1    0    1   0     0   0</span></span>
+<span id="cb2-23"><a href="#cb2-23"></a><span class="kw">options</span>(op)</span></code></pre></div>
+<p>We see that our two sets of vertices are women and events attended.</p>
+<p>A weighted graph <span class="math inline">\(G\)</span> can be constructed from <span class="math inline">\(B\)</span> via bipartite projection, where <span class="math inline">\(G = BB^T\)</span> and <span class="math inline">\(G_{ij}\)</span> contains the number of events that both woman <span class="math inline">\(i\)</span> and woman <span class="math inline">\(j\)</span> attended. Looking at the matrix of southern women and events attended above, we see that Evelyn and Charlotte have attended three of the same events. This means that <span class="math inline">\(G_{15} = 3\)</span> in the projection, shown below.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>davis<span class="op">%*%</span><span class="kw">t</span>(davis) <span class="co">#The projected davis dataset</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="co">#&gt;           EVELYN LAURA THERESA BRENDA CHARLOTTE FRANCES ELEANOR PEARL RUTH</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co">#&gt; EVELYN         8     6       7      6         3       4       3     3    3</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt; LAURA          6     7       6      6         3       4       4     2    3</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#&gt; THERESA        7     6       8      6         4       4       4     3    4</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co">#&gt; BRENDA         6     6       6      7         4       4       4     2    3</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="co">#&gt; CHARLOTTE      3     3       4      4         4       2       2     0    2</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="co">#&gt; FRANCES        4     4       4      4         2       4       3     2    2</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="co">#&gt; ELEANOR        3     4       4      4         2       3       4     2    3</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="co">#&gt; PEARL          3     2       3      2         0       2       2     3    2</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="co">#&gt; RUTH           3     3       4      3         2       2       3     2    4</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="co">#&gt; VERNE          2     2       3      2         1       1       2     2    3</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a><span class="co">#&gt; MYRNA          2     1       2      1         0       1       1     2    2</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="co">#&gt; KATHERINE      2     1       2      1         0       1       1     2    2</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a><span class="co">#&gt; SYLVIA         2     2       3      2         1       1       2     2    3</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a><span class="co">#&gt; NORA           2     2       3      2         1       1       2     2    2</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a><span class="co">#&gt; HELEN          1     2       2      2         1       1       2     1    2</span></span>
+<span id="cb3-18"><a href="#cb3-18"></a><span class="co">#&gt; DOROTHY        2     1       2      1         0       1       1     2    2</span></span>
+<span id="cb3-19"><a href="#cb3-19"></a><span class="co">#&gt; OLIVIA         1     0       1      0         0       0       0     1    1</span></span>
+<span id="cb3-20"><a href="#cb3-20"></a><span class="co">#&gt; FLORA          1     0       1      0         0       0       0     1    1</span></span>
+<span id="cb3-21"><a href="#cb3-21"></a><span class="co">#&gt;           VERNE MYRNA KATHERINE SYLVIA NORA HELEN DOROTHY OLIVIA FLORA</span></span>
+<span id="cb3-22"><a href="#cb3-22"></a><span class="co">#&gt; EVELYN        2     2         2      2    2     1       2      1     1</span></span>
+<span id="cb3-23"><a href="#cb3-23"></a><span class="co">#&gt; LAURA         2     1         1      2    2     2       1      0     0</span></span>
+<span id="cb3-24"><a href="#cb3-24"></a><span class="co">#&gt; THERESA       3     2         2      3    3     2       2      1     1</span></span>
+<span id="cb3-25"><a href="#cb3-25"></a><span class="co">#&gt; BRENDA        2     1         1      2    2     2       1      0     0</span></span>
+<span id="cb3-26"><a href="#cb3-26"></a><span class="co">#&gt; CHARLOTTE     1     0         0      1    1     1       0      0     0</span></span>
+<span id="cb3-27"><a href="#cb3-27"></a><span class="co">#&gt; FRANCES       1     1         1      1    1     1       1      0     0</span></span>
+<span id="cb3-28"><a href="#cb3-28"></a><span class="co">#&gt; ELEANOR       2     1         1      2    2     2       1      0     0</span></span>
+<span id="cb3-29"><a href="#cb3-29"></a><span class="co">#&gt; PEARL         2     2         2      2    2     1       2      1     1</span></span>
+<span id="cb3-30"><a href="#cb3-30"></a><span class="co">#&gt; RUTH          3     2         2      3    2     2       2      1     1</span></span>
+<span id="cb3-31"><a href="#cb3-31"></a><span class="co">#&gt; VERNE         4     3         3      4    3     3       2      1     1</span></span>
+<span id="cb3-32"><a href="#cb3-32"></a><span class="co">#&gt; MYRNA         3     4         4      4    3     3       2      1     1</span></span>
+<span id="cb3-33"><a href="#cb3-33"></a><span class="co">#&gt; KATHERINE     3     4         6      6    5     3       2      1     1</span></span>
+<span id="cb3-34"><a href="#cb3-34"></a><span class="co">#&gt; SYLVIA        4     4         6      7    6     4       2      1     1</span></span>
+<span id="cb3-35"><a href="#cb3-35"></a><span class="co">#&gt; NORA          3     3         5      6    8     4       1      2     2</span></span>
+<span id="cb3-36"><a href="#cb3-36"></a><span class="co">#&gt; HELEN         3     3         3      4    4     5       1      1     1</span></span>
+<span id="cb3-37"><a href="#cb3-37"></a><span class="co">#&gt; DOROTHY       2     2         2      2    1     1       2      1     1</span></span>
+<span id="cb3-38"><a href="#cb3-38"></a><span class="co">#&gt; OLIVIA        1     1         1      1    2     1       1      2     2</span></span>
+<span id="cb3-39"><a href="#cb3-39"></a><span class="co">#&gt; FLORA         1     1         1      1    2     1       1      2     2</span></span></code></pre></div>
+<p>In this vignette, we demonstrate using the backbone package to extract the backbone of <span class="math inline">\(G\)</span>, which involves deciding whether to preserve an edge between Evelyn and Charlotte in <span class="math inline">\(G’\)</span>, and similarly for all other edges in <span class="math inline">\(G\)</span>.</p>
+</div>
+</div>
+<div id="general-backbone-methods" class="section level1">
+<h1>General Backbone Methods</h1>
+<p>In this section, we will describe backbone methods that can be applied to any weighted graph, whether the weights are present in a natively unipartite graph, or are the product of a bipartite projection (as is the case in our example data). All of the methods described can accept inputs of matrices, sparse matrices, igraph objects, edgelists, and network objects. For the sake of these examples, we use matrices.</p>
+<div id="universal-backbone-universal" class="section level2">
+<h2>Universal Backbone: universal( )</h2>
+<p>The simplest approach to backbone extraction applies a single threshold <span class="math inline">\(T\)</span> to all edges, and is achieved using the <code>universal()</code> function. The <code>universal()</code> function allows the user to extract a binary backbone by selecting a single threshold <span class="math inline">\(T\)</span>, or extract a signed backbone by selecting upper and lower thresholds <span class="math inline">\(T^+\)</span> and <span class="math inline">\(T^-\)</span>.</p>
+<p>The <code>universal( )</code> function has four parameters,</p>
+<ul>
+<li>M, graph: Bipartite graph object of class matrix, sparse matrix, igraph, edgelist, or network object.</li>
+<li>upper, Real or FUN: upper threshold value or function to be applied to the edge weights. Default is 0.</li>
+<li>lower, Real or FUN: lower threshold value or function to be applied to the edge weights. Default is NULL.</li>
+<li>bipartite Boolean: TRUE if bipartite matrix, FALSE if weighted matrix. Default is FALSE.</li>
+</ul>
+<p>The function <code>universal()</code> returns a <code>backbone</code> object containing the backbone graph, with either signed (or binary) edge weights, and a data frame called <code>summary</code>, containing the model name (universal threshold), number of rows in M, skew of row sums of M, number of columns of M, skew of column sums of M, and running time. The <code>universal()</code> function can be used in a variety of different ways, demonstrated in the following examples. Using the <code>davis</code> dataset, if we input the projected matrix <code>G &lt;- davis%*%t(davis)</code>, we can use the universal threshold on the weighted matrix <code>G</code>. If we set an upper threshold of 0, then if two women have attended any event together (co-attendance &gt; 0), there will be an edge between the two. We can plot this graph with the <code>igraph</code> package.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>G &lt;-<span class="st"> </span>davis<span class="op">%*%</span><span class="kw">t</span>(davis) <span class="co">#projected davis dataset, a weighted graph</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>universal_bb &lt;-<span class="st"> </span><span class="kw">universal</span>(G, <span class="dt">upper =</span> <span class="dv">0</span>)</span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="co">#&gt; Warning in universal(G, upper = 0): The input data is treated as unipartite</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>universal_bb<span class="op">$</span>backbone</span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="co">#&gt;           EVELYN LAURA THERESA BRENDA CHARLOTTE FRANCES ELEANOR PEARL RUTH</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="co">#&gt; EVELYN         0     1       1      1         1       1       1     1    1</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="co">#&gt; LAURA          1     0       1      1         1       1       1     1    1</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="co">#&gt; THERESA        1     1       0      1         1       1       1     1    1</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="co">#&gt; BRENDA         1     1       1      0         1       1       1     1    1</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="co">#&gt; CHARLOTTE      1     1       1      1         0       1       1     0    1</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="co">#&gt; FRANCES        1     1       1      1         1       0       1     1    1</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="co">#&gt; ELEANOR        1     1       1      1         1       1       0     1    1</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="co">#&gt; PEARL          1     1       1      1         0       1       1     0    1</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a><span class="co">#&gt; RUTH           1     1       1      1         1       1       1     1    0</span></span>
+<span id="cb4-15"><a href="#cb4-15"></a><span class="co">#&gt; VERNE          1     1       1      1         1       1       1     1    1</span></span>
+<span id="cb4-16"><a href="#cb4-16"></a><span class="co">#&gt; MYRNA          1     1       1      1         0       1       1     1    1</span></span>
+<span id="cb4-17"><a href="#cb4-17"></a><span class="co">#&gt; KATHERINE      1     1       1      1         0       1       1     1    1</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a><span class="co">#&gt; SYLVIA         1     1       1      1         1       1       1     1    1</span></span>
+<span id="cb4-19"><a href="#cb4-19"></a><span class="co">#&gt; NORA           1     1       1      1         1       1       1     1    1</span></span>
+<span id="cb4-20"><a href="#cb4-20"></a><span class="co">#&gt; HELEN          1     1       1      1         1       1       1     1    1</span></span>
+<span id="cb4-21"><a href="#cb4-21"></a><span class="co">#&gt; DOROTHY        1     1       1      1         0       1       1     1    1</span></span>
+<span id="cb4-22"><a href="#cb4-22"></a><span class="co">#&gt; OLIVIA         1     0       1      0         0       0       0     1    1</span></span>
+<span id="cb4-23"><a href="#cb4-23"></a><span class="co">#&gt; FLORA          1     0       1      0         0       0       0     1    1</span></span>
+<span id="cb4-24"><a href="#cb4-24"></a><span class="co">#&gt;           VERNE MYRNA KATHERINE SYLVIA NORA HELEN DOROTHY OLIVIA FLORA</span></span>
+<span id="cb4-25"><a href="#cb4-25"></a><span class="co">#&gt; EVELYN        1     1         1      1    1     1       1      1     1</span></span>
+<span id="cb4-26"><a href="#cb4-26"></a><span class="co">#&gt; LAURA         1     1         1      1    1     1       1      0     0</span></span>
+<span id="cb4-27"><a href="#cb4-27"></a><span class="co">#&gt; THERESA       1     1         1      1    1     1       1      1     1</span></span>
+<span id="cb4-28"><a href="#cb4-28"></a><span class="co">#&gt; BRENDA        1     1         1      1    1     1       1      0     0</span></span>
+<span id="cb4-29"><a href="#cb4-29"></a><span class="co">#&gt; CHARLOTTE     1     0         0      1    1     1       0      0     0</span></span>
+<span id="cb4-30"><a href="#cb4-30"></a><span class="co">#&gt; FRANCES       1     1         1      1    1     1       1      0     0</span></span>
+<span id="cb4-31"><a href="#cb4-31"></a><span class="co">#&gt; ELEANOR       1     1         1      1    1     1       1      0     0</span></span>
+<span id="cb4-32"><a href="#cb4-32"></a><span class="co">#&gt; PEARL         1     1         1      1    1     1       1      1     1</span></span>
+<span id="cb4-33"><a href="#cb4-33"></a><span class="co">#&gt; RUTH          1     1         1      1    1     1       1      1     1</span></span>
+<span id="cb4-34"><a href="#cb4-34"></a><span class="co">#&gt; VERNE         0     1         1      1    1     1       1      1     1</span></span>
+<span id="cb4-35"><a href="#cb4-35"></a><span class="co">#&gt; MYRNA         1     0         1      1    1     1       1      1     1</span></span>
+<span id="cb4-36"><a href="#cb4-36"></a><span class="co">#&gt; KATHERINE     1     1         0      1    1     1       1      1     1</span></span>
+<span id="cb4-37"><a href="#cb4-37"></a><span class="co">#&gt; SYLVIA        1     1         1      0    1     1       1      1     1</span></span>
+<span id="cb4-38"><a href="#cb4-38"></a><span class="co">#&gt; NORA          1     1         1      1    0     1       1      1     1</span></span>
+<span id="cb4-39"><a href="#cb4-39"></a><span class="co">#&gt; HELEN         1     1         1      1    1     0       1      1     1</span></span>
+<span id="cb4-40"><a href="#cb4-40"></a><span class="co">#&gt; DOROTHY       1     1         1      1    1     1       0      1     1</span></span>
+<span id="cb4-41"><a href="#cb4-41"></a><span class="co">#&gt; OLIVIA        1     1         1      1    1     1       1      0     1</span></span>
+<span id="cb4-42"><a href="#cb4-42"></a><span class="co">#&gt; FLORA         1     1         1      1    1     1       1      1     0</span></span>
+<span id="cb4-43"><a href="#cb4-43"></a>universal_bb<span class="op">$</span>summary</span>
+<span id="cb4-44"><a href="#cb4-44"></a><span class="co">#&gt;                           Model Summary</span></span>
+<span id="cb4-45"><a href="#cb4-45"></a><span class="co">#&gt; Input Class                      matrix</span></span>
+<span id="cb4-46"><a href="#cb4-46"></a><span class="co">#&gt; Model               Universal Threshold</span></span>
+<span id="cb4-47"><a href="#cb4-47"></a><span class="co">#&gt; Number of Rows                       18</span></span>
+<span id="cb4-48"><a href="#cb4-48"></a><span class="co">#&gt; Mean of Row Sums               40.72222</span></span>
+<span id="cb4-49"><a href="#cb4-49"></a><span class="co">#&gt; SD of Row Sums                 13.55948</span></span>
+<span id="cb4-50"><a href="#cb4-50"></a><span class="co">#&gt; Skew of Row Sums               -0.22725</span></span>
+<span id="cb4-51"><a href="#cb4-51"></a><span class="co">#&gt; Number of Columns                    18</span></span>
+<span id="cb4-52"><a href="#cb4-52"></a><span class="co">#&gt; Mean of Column Sums            40.72222</span></span>
+<span id="cb4-53"><a href="#cb4-53"></a><span class="co">#&gt; SD of Column Sums              13.55948</span></span>
+<span id="cb4-54"><a href="#cb4-54"></a><span class="co">#&gt; Skew of Column Sums            -0.22725</span></span>
+<span id="cb4-55"><a href="#cb4-55"></a><span class="co">#&gt; Running Time (secs)                0.96</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>graph &lt;-<span class="st"> </span>igraph<span class="op">::</span><span class="kw">graph_from_adjacency_matrix</span>(universal_bb<span class="op">$</span>backbone, <span class="dt">mode =</span> <span class="st">&quot;undirected&quot;</span>)</span>
+<span id="cb5-2"><a href="#cb5-2"></a>op &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))</span>
+<span id="cb5-3"><a href="#cb5-3"></a>lo &lt;-<span class="st"> </span>igraph<span class="op">::</span><span class="kw">layout_</span>(graph, igraph<span class="op">::</span><span class="kw">with_fr</span>())</span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="kw">plot</span>(graph, <span class="dt">vertex.label =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">18</span>, <span class="dt">layout =</span> lo)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">par</span>(op)</span></code></pre></div>
+<p>We can also use the <code>universal()</code> function on the original bipartite data. When inputting bipartite data, we set parameter <code>bipartite = TRUE</code>. The bipartite matrix will be multiplied by its transpose before the threshold is applied. Below, we input the bipartite matrix <code>davis</code> with the same threshold values as before, returning the same backbone matrix.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>universal_bb &lt;-<span class="st"> </span><span class="kw">universal</span>(davis, <span class="dt">upper =</span> <span class="dv">0</span>, <span class="dt">bipartite =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb7-2"><a href="#cb7-2"></a>universal_bb<span class="op">$</span>summary</span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="co">#&gt;                           Model Summary</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="co">#&gt; Input Class                      matrix</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="co">#&gt; Model               Universal Threshold</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&gt; Number of Rows                       18</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="co">#&gt; Mean of Row Sums                4.94444</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="co">#&gt; SD of Row Sums                  2.12747</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="co">#&gt; Skew of Row Sums                0.13747</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="co">#&gt; Number of Columns                    14</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="co">#&gt; Mean of Column Sums             6.35714</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="co">#&gt; SD of Column Sums               3.58645</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a><span class="co">#&gt; Skew of Column Sums             0.77915</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a><span class="co">#&gt; Running Time (secs)                   0</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a>graph &lt;-<span class="st"> </span>igraph<span class="op">::</span><span class="kw">graph_from_adjacency_matrix</span>(universal_bb<span class="op">$</span>backbone, <span class="dt">mode =</span> <span class="st">&quot;undirected&quot;</span>)</span>
+<span id="cb7-16"><a href="#cb7-16"></a>op &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))</span>
+<span id="cb7-17"><a href="#cb7-17"></a><span class="kw">plot</span>(graph, <span class="dt">vertex.label =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">18</span>, <span class="dt">layout =</span> lo)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">par</span>(op)</span></code></pre></div>
+<p>To create a signed backbone, we can apply both an upper and lower threshold value. For instance, we could choose to retain a positive edge if the women attended more than 4 events together, and a negative edge if they attended less than 2 events together (co-attendance of 0 or 1 events). We can do this with the following code. Note that the returned backbone matrix now has both <span class="math inline">\(+1\)</span> and <span class="math inline">\(-1\)</span> values.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>universal_bb &lt;-<span class="st"> </span><span class="kw">universal</span>(davis, <span class="dt">upper =</span> <span class="dv">4</span>, <span class="dt">lower =</span> <span class="dv">2</span>, <span class="dt">bipartite =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb9-2"><a href="#cb9-2"></a>universal_bb<span class="op">$</span>backbone</span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="co">#&gt;           EVELYN LAURA THERESA BRENDA CHARLOTTE FRANCES ELEANOR PEARL RUTH</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="co">#&gt; EVELYN         0     1       1      1         0       0       0     0    0</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="co">#&gt; LAURA          1     0       1      1         0       0       0     0    0</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a><span class="co">#&gt; THERESA        1     1       0      1         0       0       0     0    0</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a><span class="co">#&gt; BRENDA         1     1       1      0         0       0       0     0    0</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a><span class="co">#&gt; CHARLOTTE      0     0       0      0         0       0       0    -1    0</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a><span class="co">#&gt; FRANCES        0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb9-10"><a href="#cb9-10"></a><span class="co">#&gt; ELEANOR        0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb9-11"><a href="#cb9-11"></a><span class="co">#&gt; PEARL          0     0       0      0        -1       0       0     0    0</span></span>
+<span id="cb9-12"><a href="#cb9-12"></a><span class="co">#&gt; RUTH           0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb9-13"><a href="#cb9-13"></a><span class="co">#&gt; VERNE          0     0       0      0        -1      -1       0     0    0</span></span>
+<span id="cb9-14"><a href="#cb9-14"></a><span class="co">#&gt; MYRNA          0    -1       0     -1        -1      -1      -1     0    0</span></span>
+<span id="cb9-15"><a href="#cb9-15"></a><span class="co">#&gt; KATHERINE      0    -1       0     -1        -1      -1      -1     0    0</span></span>
+<span id="cb9-16"><a href="#cb9-16"></a><span class="co">#&gt; SYLVIA         0     0       0      0        -1      -1       0     0    0</span></span>
+<span id="cb9-17"><a href="#cb9-17"></a><span class="co">#&gt; NORA           0     0       0      0        -1      -1       0     0    0</span></span>
+<span id="cb9-18"><a href="#cb9-18"></a><span class="co">#&gt; HELEN         -1     0       0      0        -1      -1       0    -1    0</span></span>
+<span id="cb9-19"><a href="#cb9-19"></a><span class="co">#&gt; DOROTHY        0    -1       0     -1        -1      -1      -1     0    0</span></span>
+<span id="cb9-20"><a href="#cb9-20"></a><span class="co">#&gt; OLIVIA        -1    -1      -1     -1        -1      -1      -1    -1   -1</span></span>
+<span id="cb9-21"><a href="#cb9-21"></a><span class="co">#&gt; FLORA         -1    -1      -1     -1        -1      -1      -1    -1   -1</span></span>
+<span id="cb9-22"><a href="#cb9-22"></a><span class="co">#&gt;           VERNE MYRNA KATHERINE SYLVIA NORA HELEN DOROTHY OLIVIA FLORA</span></span>
+<span id="cb9-23"><a href="#cb9-23"></a><span class="co">#&gt; EVELYN        0     0         0      0    0    -1       0     -1    -1</span></span>
+<span id="cb9-24"><a href="#cb9-24"></a><span class="co">#&gt; LAURA         0    -1        -1      0    0     0      -1     -1    -1</span></span>
+<span id="cb9-25"><a href="#cb9-25"></a><span class="co">#&gt; THERESA       0     0         0      0    0     0       0     -1    -1</span></span>
+<span id="cb9-26"><a href="#cb9-26"></a><span class="co">#&gt; BRENDA        0    -1        -1      0    0     0      -1     -1    -1</span></span>
+<span id="cb9-27"><a href="#cb9-27"></a><span class="co">#&gt; CHARLOTTE    -1    -1        -1     -1   -1    -1      -1     -1    -1</span></span>
+<span id="cb9-28"><a href="#cb9-28"></a><span class="co">#&gt; FRANCES      -1    -1        -1     -1   -1    -1      -1     -1    -1</span></span>
+<span id="cb9-29"><a href="#cb9-29"></a><span class="co">#&gt; ELEANOR       0    -1        -1      0    0     0      -1     -1    -1</span></span>
+<span id="cb9-30"><a href="#cb9-30"></a><span class="co">#&gt; PEARL         0     0         0      0    0    -1       0     -1    -1</span></span>
+<span id="cb9-31"><a href="#cb9-31"></a><span class="co">#&gt; RUTH          0     0         0      0    0     0       0     -1    -1</span></span>
+<span id="cb9-32"><a href="#cb9-32"></a><span class="co">#&gt; VERNE         0     0         0      0    0     0       0     -1    -1</span></span>
+<span id="cb9-33"><a href="#cb9-33"></a><span class="co">#&gt; MYRNA         0     0         0      0    0     0       0     -1    -1</span></span>
+<span id="cb9-34"><a href="#cb9-34"></a><span class="co">#&gt; KATHERINE     0     0         0      1    1     0       0     -1    -1</span></span>
+<span id="cb9-35"><a href="#cb9-35"></a><span class="co">#&gt; SYLVIA        0     0         1      0    1     0       0     -1    -1</span></span>
+<span id="cb9-36"><a href="#cb9-36"></a><span class="co">#&gt; NORA          0     0         1      1    0     0      -1      0     0</span></span>
+<span id="cb9-37"><a href="#cb9-37"></a><span class="co">#&gt; HELEN         0     0         0      0    0     0      -1     -1    -1</span></span>
+<span id="cb9-38"><a href="#cb9-38"></a><span class="co">#&gt; DOROTHY       0     0         0      0   -1    -1       0     -1    -1</span></span>
+<span id="cb9-39"><a href="#cb9-39"></a><span class="co">#&gt; OLIVIA       -1    -1        -1     -1    0    -1      -1      0     0</span></span>
+<span id="cb9-40"><a href="#cb9-40"></a><span class="co">#&gt; FLORA        -1    -1        -1     -1    0    -1      -1      0     0</span></span></code></pre></div>
+<p>We can also choose a threshold that is a multiple of some function, such as mean, max, or min. The function is applied to the edge weights, and then multiplied by the upper and lower thresholds. Any <span class="math inline">\(G_{ij}\)</span> values above the upper threshold are counted as a positive <span class="math inline">\(+1\)</span> value in the backbone, and any below the lower threshold are counted as a negative <span class="math inline">\(-1\)</span> value in the backbone. The following code will return a backbone where the positive edges indicate two women attended more than 1 standard deviation above the mean number of events and negative edges indicate two women attended less than 1 standard deviation below the mean number of events.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>universal_bb &lt;-<span class="st"> </span><span class="kw">universal</span>(davis, </span>
+<span id="cb10-2"><a href="#cb10-2"></a>                          <span class="dt">upper =</span> <span class="cf">function</span>(x)<span class="kw">mean</span>(x)<span class="op">+</span><span class="kw">sd</span>(x), </span>
+<span id="cb10-3"><a href="#cb10-3"></a>                          <span class="dt">lower=</span><span class="cf">function</span>(x)<span class="kw">mean</span>(x)<span class="op">-</span><span class="kw">sd</span>(x), </span>
+<span id="cb10-4"><a href="#cb10-4"></a>                          <span class="dt">bipartite =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<p>Here, the <code>davis</code> matrix has first been projected. Then, the standard deviation of the <span class="math inline">\(G_{ij}\)</span> entries is calculated and added to (or subtracted from) to the mean of the <span class="math inline">\(G_{ij}\)</span> values. This value is then used to threshold the projected matrix for the positive (or negative) entries.</p>
+</div>
+</div>
+<div id="bipartite-projection-backbone-methods" class="section level1">
+<h1>Bipartite Projection Backbone Methods</h1>
+<div id="neal2014backbone" class="section level2">
+<h2><span class="citation">(Neal <a href="#ref-neal2014backbone" role="doc-biblioref">2014</a>)</span></h2>
+<p>The methods described above can be applied to any weighted graph <span class="math inline">\(G\)</span>. In this section we describe methods that are designed for weighted graphs that are the result of bipartite projections. They differ from other methods because they take into account the information contained in the original bipartite graph <span class="math inline">\(B\)</span>. Specifically, these methods are conditioned on the bipartite graph’s two degree sequences: the row vertex degrees (i.e. row marginals) and column vertex degrees (i.e. column marginals). We compare the values of <span class="math inline">\(G_{ij} = (BB^T)_{ij}\)</span> to the probability distributions that describe <span class="math inline">\(G^*_{ij} = (B^*B^{*T})_{ij}\)</span> for all bipartite graphs <span class="math inline">\(B^*\)</span> that satisfy the row and column vertex degree restrictions we choose.</p>
+<p>The backbone package implements three ways to construct the distribution of times <span class="math inline">\(G^*_{ij}\)</span>: the hypergeometric distribution using <code>hyperg()</code>, the stochastic degree sequence model using <code>sdsm()</code>, and the fixed degree sequence model using <code>fdsm()</code>.</p>
+<p>For two of the models, <code>hyperg()</code> and <code>sdsm()</code>, the probability distribution is known for the chosen restrictions. The <code>hyperg()</code> model fixes the row marginals but allows the column marginals to vary. The distribution of the <span class="math inline">\(G^*_{ij}\)</span> values in this case is given by the hypergeometric distribution. The <code>sdsm()</code> model approximately fixes the row and column marginals. This scenario is described by the Poisson binomial distribution.</p>
+<p>Since the distribution that describes having fixed row and column marginals, as in <code>fdsm()</code> is unknown, we use the following algorithm: 1. Construct a random bipartite graph <span class="math inline">\(B^*\)</span> that preserves (to varying extents, depending on the method) one or both degree sequences <span class="citation">(Strona, Ulrich, and Gotelli <a href="#ref-strona2018bi" role="doc-biblioref">2018</a>)</span>. 2. Project <span class="math inline">\(B^*\)</span> (i.e. <span class="math inline">\(B^{*} B^{*T}\)</span>) to obtain a random weighted bipartite projection <span class="math inline">\(G^*\)</span> 3. Repeat steps 1 and 2 <span class="math inline">\(N\)</span> times to build a distribution of <span class="math inline">\(G^*_{ij}\)</span> 4. Compute the proportion of times <span class="math inline">\(G^*{ij}\)</span> is equal to or above the corresponding entry <span class="math inline">\(G_{ij}\)</span> and the proportion of times <span class="math inline">\(G_{ij}^*\)</span> is equal to or below the corresponding entry <span class="math inline">\(G_{ij}\)</span>.</p>
+<p>In all cases, after finding or empirically generating the distribution, the backbone can then be extracted for a given <span class="math inline">\(\alpha\)</span> level using the <code>backbone.extract()</code> function. In this section, we first describe <code>backbone.extract()</code>, then illustrate its use in the context of <code>hyperg(), fdsm(),</code> and <code>sdsm()</code>.</p>
+</div>
+<div id="extracting-the-backbone-backbone.extract" class="section level2">
+<h2>Extracting the Backbone: backbone.extract( )</h2>
+<p>The <code>hyperg(), fdsm(),</code> and <code>sdsm()</code> functions return two matrices: a <code>positive</code> matrix containing the probability that (or in the case of <code>fdsm()</code>, the proportion of times that) <span class="math inline">\(G^*_{ij}\)</span> was greater than or equal to <span class="math inline">\(G_{ij}\)</span>, and a <code>negative</code> matrix containing the number of times <span class="math inline">\(G^*_{ij}\)</span> was less than or equal to <span class="math inline">\(G_{ij}\)</span>. The <code>backbone.extract()</code> function allows the user to take these positive and negative matrices and return a binary or signed backbone.</p>
+<p>The <code>backbone.extract()</code> function has six parameters: <code>matrix</code>, <code>signed</code>, a significance test value <code>alpha</code>, <code>fwer</code>, <code>class</code>, and <code>narrative</code>. The <code>matrix</code> parameter takes in the entire backbone object which is the output of <code>hyperg(), fdsm(),</code> or <code>sdsm()</code>. If the <code>signed</code> parameter is set to <code>TRUE</code> (the default) a signed backbone is returned, if <code>FALSE</code> a binary backbone is returned.</p>
+<p>One can adjust the precision of the significance test, <code>alpha</code>, to refine their backbone results. The value of <code>alpha</code> should be between <code>0</code> and <code>1</code>. The default is <code>alpha=0.05</code>. The statistical test is two-tailed with an area of <code>alpha/2</code> in each tail.</p>
+<p>Extracting the backbone of a bipartite projection involves applying this significance test to each of the N(N-1)/2 edges in the projection. Because each of these tests is independent, this can inflate the familywise error rate beyond the desired <code>alpha</code>. The <code>fwer</code> parameter, which is set to NULL by default, offers two ways to correct for this. When <code>fwer = bonferroni</code>, the classical Bonferroni correction is applied. When <code>fwer = holm</code>, the more powerful Holm-Bonferroni correction is applied.</p>
+<p>If an entry in the <code>positive</code> matrix is less than or equal to the <code>alpha</code>/2 value, it is considered a <code>+1</code> edge in the backbone. If an entry in the <code>negative</code> matrix is less than or equal to the <code>alpha</code>/2 value, it is considered a <code>-1</code> edge in the backbone. All other values are <code>0</code> in the backbone graph. The <code>backbone.extract()</code> function will return a backbone graph of the same class and input parameter <code>class</code>. This can be one of “original”, “matrix”, “sparseMatrix”, “igraph”, “network”, or “edgelist”. If “original”, the backbone graph returned is of the same class as the data inputted in one of <code>sdsm()</code>, <code>fdsm()</code>, or <code>hyperg()</code>.</p>
+<p>When <code>narrative</code> is set to <code>TRUE</code>, <code>backbone.extract()</code> will provide text describing the generated backbone graph that could be included in a manuscript. This text includes citations for the applied backbone methods.</p>
+<p>We demonstrate this function’s use in the following sections.</p>
+</div>
+<div id="hypergeometric-backbone-hyperg" class="section level2">
+<h2>Hypergeometric Backbone: hyperg( )</h2>
+<p>The hypergeometric distribution compares an edge’s observed weight, <span class="math inline">\(G_{ij}\)</span> to the distribution of weights expected in a projection obtained from a random bipartite network where the row vertex degrees are fixed, but the column vertex degrees are allowed to vary. This method of backbone extraction was developed in <span class="citation">(Tumminello et al. <a href="#ref-Tumminello" role="doc-biblioref">2011</a>)</span> and later in <span class="citation">(Neal <a href="#ref-neal2013identifying" role="doc-biblioref">2013</a>)</span>, which showed that the distribution of <span class="math inline">\(G^*_{ij}\)</span> when only vertex degrees are fixed is given by the hypergeometric distribution. For documentation on the hypergeometric distribution, see <code>stats::phyper</code>.</p>
+<p>The <code>hyperg()</code> function has one parameter,</p>
+<ul>
+<li>B, graph: Bipartite graph object of class matrix, sparse matrix, igraph, edgelist, or network object.</li>
+</ul>
+<p>The <code>hyperg()</code> function returns a backbone object of the following:</p>
+<ul>
+<li>positive: a matrix with <span class="math inline">\((i,j)\)</span> entry equal to the probability that <span class="math inline">\(G^*_{ij}\)</span> is equal to or above the corresponding entry <span class="math inline">\(G_{ij}\)</span>.</li>
+<li>negative: a matrix with <span class="math inline">\((i,j)\)</span> entry equal to the probability that <span class="math inline">\(G^*_{ij}\)</span> is equal to or below the corresponding entry <span class="math inline">\(G_{ij}\)</span>.</li>
+<li>summary: a data frame summary of the inputted matrix and the model used including: model name, number of rows, skew of row sums, number of columns, skew of column sums, and running time.</li>
+</ul>
+<p>Following the <code>hyperg()</code> function, the user must use the <code>backbone.extract()</code> function to find the backbone at a given significance value <code>alpha</code>.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>hyperg &lt;-<span class="st"> </span><span class="kw">hyperg</span>(davis)</span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="co">#&gt; Finding the distribution using hypergeometric distribution</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>hyperg_bb &lt;-<span class="st"> </span><span class="kw">backbone.extract</span>(hyperg, <span class="dt">signed =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+</div>
+<div id="the-stochastic-degree-sequence-model-sdsm" class="section level2">
+<h2>The Stochastic Degree Sequence Model: sdsm( )</h2>
+<p>The stochastic degree sequence model compares an edge’s observed weight, <span class="math inline">\(G_{ij}\)</span> to the distribution of weights expected in a projection obtained from a random bipartite network where both the row vertex degrees and column vertex degrees are <em>approximately</em> fixed. This method of backbone extraction was developed in <span class="citation">(Neal <a href="#ref-neal2014backbone" role="doc-biblioref">2014</a>)</span>. The construction of <span class="math inline">\(B^*\)</span> involves a series of steps:</p>
+<ol style="list-style-type: decimal">
+<li>The <span class="math inline">\(\beta\)</span> parameters in <span class="math inline">\(Pr(B_{ij}=1) = \beta_0 +\beta_1 B_i + \beta_2 B_j +\beta_3 (B_i \times B_j)\)</span> are estimated using a binomial regression (e.g. logit, probit, complementary log-log, etc.), where <span class="math inline">\(B_i\)</span> and <span class="math inline">\(B_j\)</span> are the row vertex and column vertex degrees in <span class="math inline">\(B\)</span>, respectively.</li>
+<li>The fitted parameters are used to compute the predicted probability that <span class="math inline">\(B_{ij}=1\)</span>.</li>
+<li>A matrix <span class="math inline">\(G^*\)</span> is constructed via the Poisson-Binomial distribution, where the <span class="math inline">\((i,j)\)</span> entry of <span class="math inline">\(G\)</span> is the probability of an edge weight begin above or below the observed value in the projection of <span class="math inline">\(B\)</span>.</li>
+</ol>
+<p>The <code>sdsm( )</code> function has four parameters,</p>
+<ul>
+<li>B, graph: Bipartite graph object of class matrix, sparse matrix, igraph, edgelist, or network object.</li>
+<li>trials, Integer: Number of random bipartite graphs generated. Default is 0.</li>
+<li>model, String: A method used to compute probabilities for generating random bipartite graphs. Can be c(“logit”, “probit”, “cauchit”, “log”, “cloglog”, “oldlogit”, “lpm”, “chi2”, “curveball”, “polytope”). If the <code>model</code> paramter is a <code>link</code> function (one of <code>c(&#39;logit&#39;, &#39;probit&#39;, &#39;cauchit&#39;, &#39;log&#39;, &#39;cloglog&#39;)</code>) these are the functions described by the <code>stats</code> package under <code>stats::glm</code> and <code>stats::family</code>.</li>
+<li>progress, Boolean: If <code>utils::txtProgressBar</code> should be used to measure progress. Default is FALSE.</li>
+</ul>
+<p>If the ‘model’ parameter is one of c(‘logit’, ‘probit’, ‘cauchit’, ‘log’, ‘cloglog’), then this model is used as a ‘link’ function for a binary outcome model conditioned on the row degrees and column degrees, as described by  and . If the ‘model’ parameter is ‘oldlogit’, then a logit link function is used but the model is conditioned on the row degrees, column degrees, and their product. If ‘model = lpm’, a linear probability model is used. If ‘model = chi2’, a chi-squared model is used. If ‘trials’&gt;0, and ‘model = curveball’, probabilities are computed by using  function <code>trials</code> times. The proportion of each cell being 1 is used as its probability. If ‘model = polytope’, the  function is used to find a matrix of probabilities that maximizes the entropy function, with same row and column sums.</p>
+<p>The probability of edge weights being above or below the observed values are computed using the Poisson Binomial distribution. These values are approximated using a Refined Normal Approximation (RNA method). This method is described by  and used under GPL-2 license.</p>
+<p>The <code>sdsm()</code> function returns a backbone object of the following:</p>
+<ul>
+<li>positive: a matrix with <span class="math inline">\((i,j)\)</span> entry equal to the probability that <span class="math inline">\(G^*_{ij}\)</span> is equal to or above the corresponding entry <span class="math inline">\(G_{ij}\)</span>.</li>
+<li>negative: a matrix with <span class="math inline">\((i,j)\)</span> entry equal to the probability that <span class="math inline">\(G^*_{ij}\)</span> is equal to or below the corresponding entry <span class="math inline">\(G_{ij}\)</span>.</li>
+<li>summary: a data frame summary of the inputted matrix and the model used including: model name, number of rows, skew of row sums, number of columns, skew of column sums, and running time.</li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>sdsm &lt;-<span class="st"> </span><span class="kw">sdsm</span>(davis)</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="co">#&gt; Finding the distribution using SDSM with polytope model.</span></span></code></pre></div>
+<p>The backbone package allows for two different types of family-wise error rate correction: Holm-Bonferroni and Bonferroni. To use Holm-Bonferroni correction, add parameter <code>fwer = &quot;holm&quot;</code> to <code>backbone.extract()</code>, and to use Bonferroni correction, add <code>fwer = &quot;bonferroni&quot;</code>. Note in this case, the Holm-Bonferroni is too restrictive and leaves us with no edges in our backbone graph.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>sdsm_bb &lt;-<span class="st"> </span><span class="kw">backbone.extract</span>(sdsm, <span class="dt">signed =</span> <span class="ot">FALSE</span>, <span class="dt">alpha =</span> <span class="fl">0.1</span>, <span class="dt">fwer =</span> <span class="st">&quot;bonferroni&quot;</span>) </span>
+<span id="cb13-2"><a href="#cb13-2"></a>sdsm_bb</span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="co">#&gt;           EVELYN LAURA THERESA BRENDA CHARLOTTE FRANCES ELEANOR PEARL RUTH</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="co">#&gt; EVELYN         0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="co">#&gt; LAURA          0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a><span class="co">#&gt; THERESA        0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb13-7"><a href="#cb13-7"></a><span class="co">#&gt; BRENDA         0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a><span class="co">#&gt; CHARLOTTE      0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb13-9"><a href="#cb13-9"></a><span class="co">#&gt; FRANCES        0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb13-10"><a href="#cb13-10"></a><span class="co">#&gt; ELEANOR        0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb13-11"><a href="#cb13-11"></a><span class="co">#&gt; PEARL          0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb13-12"><a href="#cb13-12"></a><span class="co">#&gt; RUTH           0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb13-13"><a href="#cb13-13"></a><span class="co">#&gt; VERNE          0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb13-14"><a href="#cb13-14"></a><span class="co">#&gt; MYRNA          0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb13-15"><a href="#cb13-15"></a><span class="co">#&gt; KATHERINE      0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb13-16"><a href="#cb13-16"></a><span class="co">#&gt; SYLVIA         0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb13-17"><a href="#cb13-17"></a><span class="co">#&gt; NORA           0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb13-18"><a href="#cb13-18"></a><span class="co">#&gt; HELEN          0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb13-19"><a href="#cb13-19"></a><span class="co">#&gt; DOROTHY        0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb13-20"><a href="#cb13-20"></a><span class="co">#&gt; OLIVIA         0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb13-21"><a href="#cb13-21"></a><span class="co">#&gt; FLORA          0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb13-22"><a href="#cb13-22"></a><span class="co">#&gt;           VERNE MYRNA KATHERINE SYLVIA NORA HELEN DOROTHY OLIVIA FLORA</span></span>
+<span id="cb13-23"><a href="#cb13-23"></a><span class="co">#&gt; EVELYN        0     0         0      0    0     0       0      0     0</span></span>
+<span id="cb13-24"><a href="#cb13-24"></a><span class="co">#&gt; LAURA         0     0         0      0    0     0       0      0     0</span></span>
+<span id="cb13-25"><a href="#cb13-25"></a><span class="co">#&gt; THERESA       0     0         0      0    0     0       0      0     0</span></span>
+<span id="cb13-26"><a href="#cb13-26"></a><span class="co">#&gt; BRENDA        0     0         0      0    0     0       0      0     0</span></span>
+<span id="cb13-27"><a href="#cb13-27"></a><span class="co">#&gt; CHARLOTTE     0     0         0      0    0     0       0      0     0</span></span>
+<span id="cb13-28"><a href="#cb13-28"></a><span class="co">#&gt; FRANCES       0     0         0      0    0     0       0      0     0</span></span>
+<span id="cb13-29"><a href="#cb13-29"></a><span class="co">#&gt; ELEANOR       0     0         0      0    0     0       0      0     0</span></span>
+<span id="cb13-30"><a href="#cb13-30"></a><span class="co">#&gt; PEARL         0     0         0      0    0     0       0      0     0</span></span>
+<span id="cb13-31"><a href="#cb13-31"></a><span class="co">#&gt; RUTH          0     0         0      0    0     0       0      0     0</span></span>
+<span id="cb13-32"><a href="#cb13-32"></a><span class="co">#&gt; VERNE         0     0         0      0    0     0       0      0     0</span></span>
+<span id="cb13-33"><a href="#cb13-33"></a><span class="co">#&gt; MYRNA         0     0         0      0    0     0       0      0     0</span></span>
+<span id="cb13-34"><a href="#cb13-34"></a><span class="co">#&gt; KATHERINE     0     0         0      0    0     0       0      0     0</span></span>
+<span id="cb13-35"><a href="#cb13-35"></a><span class="co">#&gt; SYLVIA        0     0         0      0    0     0       0      0     0</span></span>
+<span id="cb13-36"><a href="#cb13-36"></a><span class="co">#&gt; NORA          0     0         0      0    0     0       0      0     0</span></span>
+<span id="cb13-37"><a href="#cb13-37"></a><span class="co">#&gt; HELEN         0     0         0      0    0     0       0      0     0</span></span>
+<span id="cb13-38"><a href="#cb13-38"></a><span class="co">#&gt; DOROTHY       0     0         0      0    0     0       0      0     0</span></span>
+<span id="cb13-39"><a href="#cb13-39"></a><span class="co">#&gt; OLIVIA        0     0         0      0    0     0       0      0     0</span></span>
+<span id="cb13-40"><a href="#cb13-40"></a><span class="co">#&gt; FLORA         0     0         0      0    0     0       0      0     0</span></span></code></pre></div>
+</div>
+<div id="the-fixed-degree-sequence-model-fdsm" class="section level2">
+<h2>The Fixed Degree Sequence Model: fdsm( )</h2>
+<p>The fixed degree sequence model compares an edge’s observed weight, <span class="math inline">\(G_{ij}\)</span>, to the distribution of weights expected in a projection obtained from a random bipartite network where both the row vertex degrees and column vertex degrees are fixed. This method of backbone extraction was developed in <span class="citation">(Zweig and Kaufmann <a href="#ref-zweig2011systematic" role="doc-biblioref">2011</a>)</span>, however the challenge lies in randomly sampling from the space of <span class="math inline">\(B^*\)</span> with fixed degree sequences. The <code>fdsm()</code> function uses the curveball algorithm <span class="citation">(Strona et al. <a href="#ref-strona2014fast" role="doc-biblioref">2014</a>)</span>, which is proven to do so <span class="citation">(Carstens <a href="#ref-Carstens_2015" role="doc-biblioref">2015</a>)</span>.</p>
+<p>The <code>fdsm( )</code> function has four parameters,</p>
+<ul>
+<li>B, graph: Bipartite graph object of class matrix, sparse matrix, igraph, edgelist, or network object.</li>
+<li>trials, Integer: Number of random bipartite graphs generated. Default is 1000.</li>
+<li>dyad, vector length 2: two row entries i,j. Saves each value of <span class="math inline">\(G^*_{ij}\)</span>, which is useful for visualizing an example of the empirical null edge weight distribution generated by the model. These correspond to the row and column indices of a cell in the projected matrix , and can be written as their string row names or as numeric values. Default is NULL.</li>
+<li>progress, Boolean: If <code>utils::txtProgressBar</code> should be used to measure progress. Default is FALSE.</li>
+</ul>
+<p>The <code>fdsm()</code> function returns a backbone object of the following:</p>
+<ul>
+<li>positive: matrix of the proportion of times <span class="math inline">\(G^*_{ij}\)</span> is above the corresponding entry in <span class="math inline">\(G\)</span></li>
+<li>negative: matrix of the proportion of times <span class="math inline">\(G^*_{ij}\)</span> is below the corresponding entry in <span class="math inline">\(G\)</span></li>
+<li>dyad_values: list of edge weights for <span class="math inline">\(i,j\)</span> in each <span class="math inline">\(G^*\)</span></li>
+<li>summary: a data frame summary of the inputted matrix and the model used including: model name, number of rows, skew of row sums, number of columns, skew of column sums, and running time.</li>
+</ul>
+<p>We can find the backbone using the fixed degree sequence model as follows:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>fdsm &lt;-<span class="st"> </span><span class="kw">fdsm</span>(davis, <span class="dt">trials =</span> <span class="dv">100</span>, <span class="dt">dyad=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>))</span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="co">#&gt; Approximating the distribution using Curveball FDSM</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="co">#&gt; Estimated time to complete is 4.5 secs</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>fdsm<span class="op">$</span>dyad_values</span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="co">#&gt;   [1] 3 2 2 2 4 3 3 3 2 2 2 4 3 2 1 3 2 2 4 2 3 2 3 2 4 3 2 3 3 1 3 3 2 2 2 2 3</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="co">#&gt;  [38] 4 1 3 4 4 2 1 3 2 3 2 1 4 2 2 3 2 3 3 2 1 3 3 2 3 3 2 3 2 3 2 3 2 2 4 2 2</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a><span class="co">#&gt;  [75] 4 0 4 3 2 2 2 3 3 3 2 2 3 2 2 2 4 4 2 2 2 3 2 3 3 3</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a>fdsm_bb &lt;-<span class="st"> </span><span class="kw">backbone.extract</span>(fdsm, <span class="dt">signed =</span> <span class="ot">TRUE</span>, <span class="dt">alpha =</span> <span class="fl">0.1</span>)</span>
+<span id="cb15-6"><a href="#cb15-6"></a>fdsm_bb</span>
+<span id="cb15-7"><a href="#cb15-7"></a><span class="co">#&gt;           EVELYN LAURA THERESA BRENDA CHARLOTTE FRANCES ELEANOR PEARL RUTH</span></span>
+<span id="cb15-8"><a href="#cb15-8"></a><span class="co">#&gt; EVELYN         0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a><span class="co">#&gt; LAURA          0     0       0      1         0       0       0     0    0</span></span>
+<span id="cb15-10"><a href="#cb15-10"></a><span class="co">#&gt; THERESA        0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb15-11"><a href="#cb15-11"></a><span class="co">#&gt; BRENDA         0     1       0      0         0       0       0     0    0</span></span>
+<span id="cb15-12"><a href="#cb15-12"></a><span class="co">#&gt; CHARLOTTE      0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb15-13"><a href="#cb15-13"></a><span class="co">#&gt; FRANCES        0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb15-14"><a href="#cb15-14"></a><span class="co">#&gt; ELEANOR        0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb15-15"><a href="#cb15-15"></a><span class="co">#&gt; PEARL          0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb15-16"><a href="#cb15-16"></a><span class="co">#&gt; RUTH           0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb15-17"><a href="#cb15-17"></a><span class="co">#&gt; VERNE          0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb15-18"><a href="#cb15-18"></a><span class="co">#&gt; MYRNA          0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb15-19"><a href="#cb15-19"></a><span class="co">#&gt; KATHERINE      0    -1       0     -1        -1       0       0     0    0</span></span>
+<span id="cb15-20"><a href="#cb15-20"></a><span class="co">#&gt; SYLVIA        -1    -1       0     -1         0       0       0     0    0</span></span>
+<span id="cb15-21"><a href="#cb15-21"></a><span class="co">#&gt; NORA          -1    -1       0     -1         0       0       0     0    0</span></span>
+<span id="cb15-22"><a href="#cb15-22"></a><span class="co">#&gt; HELEN         -1     0       0      0         0       0       0     0    0</span></span>
+<span id="cb15-23"><a href="#cb15-23"></a><span class="co">#&gt; DOROTHY        0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb15-24"><a href="#cb15-24"></a><span class="co">#&gt; OLIVIA         0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb15-25"><a href="#cb15-25"></a><span class="co">#&gt; FLORA          0     0       0      0         0       0       0     0    0</span></span>
+<span id="cb15-26"><a href="#cb15-26"></a><span class="co">#&gt;           VERNE MYRNA KATHERINE SYLVIA NORA HELEN DOROTHY OLIVIA FLORA</span></span>
+<span id="cb15-27"><a href="#cb15-27"></a><span class="co">#&gt; EVELYN        0     0         0     -1   -1    -1       0      0     0</span></span>
+<span id="cb15-28"><a href="#cb15-28"></a><span class="co">#&gt; LAURA         0     0        -1     -1   -1     0       0      0     0</span></span>
+<span id="cb15-29"><a href="#cb15-29"></a><span class="co">#&gt; THERESA       0     0         0      0    0     0       0      0     0</span></span>
+<span id="cb15-30"><a href="#cb15-30"></a><span class="co">#&gt; BRENDA        0     0        -1     -1   -1     0       0      0     0</span></span>
+<span id="cb15-31"><a href="#cb15-31"></a><span class="co">#&gt; CHARLOTTE     0     0        -1      0    0     0       0      0     0</span></span>
+<span id="cb15-32"><a href="#cb15-32"></a><span class="co">#&gt; FRANCES       0     0         0      0    0     0       0      0     0</span></span>
+<span id="cb15-33"><a href="#cb15-33"></a><span class="co">#&gt; ELEANOR       0     0         0      0    0     0       0      0     0</span></span>
+<span id="cb15-34"><a href="#cb15-34"></a><span class="co">#&gt; PEARL         0     0         0      0    0     0       0      0     0</span></span>
+<span id="cb15-35"><a href="#cb15-35"></a><span class="co">#&gt; RUTH          0     0         0      0    0     0       0      0     0</span></span>
+<span id="cb15-36"><a href="#cb15-36"></a><span class="co">#&gt; VERNE         0     0         0      0    0     0       0      0     0</span></span>
+<span id="cb15-37"><a href="#cb15-37"></a><span class="co">#&gt; MYRNA         0     0         1      0    0     0       0      0     0</span></span>
+<span id="cb15-38"><a href="#cb15-38"></a><span class="co">#&gt; KATHERINE     0     1         0      1    0     0       0      0     0</span></span>
+<span id="cb15-39"><a href="#cb15-39"></a><span class="co">#&gt; SYLVIA        0     0         1      0    0     0       0      0     0</span></span>
+<span id="cb15-40"><a href="#cb15-40"></a><span class="co">#&gt; NORA          0     0         0      0    0     0       0      0     0</span></span>
+<span id="cb15-41"><a href="#cb15-41"></a><span class="co">#&gt; HELEN         0     0         0      0    0     0       0      0     0</span></span>
+<span id="cb15-42"><a href="#cb15-42"></a><span class="co">#&gt; DOROTHY       0     0         0      0    0     0       0      0     0</span></span>
+<span id="cb15-43"><a href="#cb15-43"></a><span class="co">#&gt; OLIVIA        0     0         0      0    0     0       0      0     1</span></span>
+<span id="cb15-44"><a href="#cb15-44"></a><span class="co">#&gt; FLORA         0     0         0      0    0     0       0      1     0</span></span></code></pre></div>
+<p>The <code>fdsm_props$dyad_values</code> output is a list of the <span class="math inline">\(G_{1,5}^*\)</span> values for each of the 100 trials, which in these data corresponds to the number of parties Evelyn and Charlotte would be expected to simultaneously attend if: (a) the number of parties attended by Evelyn was fixed, (b) the number of parties attended by Charlotte was fixed, and (c) the number of attendees at each party was fixed. Because we have provided both a <code>positive</code> and <code>negative</code> matrix, <code>backbone.extract()</code> returns a signed backbone matrix by conducting a two-tailed significance test in which <code>alpha</code> is <span class="math inline">\(0.05\)</span> on each end of the distribution.</p>
+</div>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1 class="unnumbered">References</h1>
+<div id="refs" class="references hanging-indent">
+<div id="ref-Carstens_2015">
+<p>Carstens, C. J. 2015. “Proof of Uniform Sampling of Binary Matrices with Fixed Row Sums and Column Sums for the Fast Curveball Algorithm.” <em>Physical Review E</em> 91 (4). <a href="https://doi.org/10.1103/PhysRevE.91.042812">https://doi.org/10.1103/PhysRevE.91.042812</a>.</p>
+</div>
+<div id="ref-davis1941deep">
+<p>Davis, Allison, Burleigh B Gardner, and Mary R Gardner. 1941. <em>Deep South: A Social Anthropological Study of Caste and Class</em>. University of Chicago Press. <a href="https://doi.org/10.1177/0002716242220001105">https://doi.org/10.1177/0002716242220001105</a>.</p>
+</div>
+<div id="ref-neal2013identifying">
+<p>Neal, Zachary. 2013. “Identifying Statistically Significant Edges in One-Mode Projections.” <em>Social Network Analysis and Mining</em> 3 (4): 915–24. <a href="https://doi.org/10.1007/s13278-013-0107-y">https://doi.org/10.1007/s13278-013-0107-y</a>.</p>
+</div>
+<div id="ref-neal2014backbone">
+<p>———. 2014. “The Backbone of Bipartite Projections: Inferring Relationships from Co-Authorship, Co-Sponsorship, Co-Attendance and Other Co-Behaviors.” <em>Social Networks</em> 39 (October): 84–97. <a href="https://doi.org/10.1016/j.socnet.2014.06.001">https://doi.org/10.1016/j.socnet.2014.06.001</a>.</p>
+</div>
+<div id="ref-ucinet">
+<p>Repository, UCI Network Data. 2006. “Southern Women Data Set.” <a href="https://networkdata.ics.uci.edu/netdata/html/davis.html">https://networkdata.ics.uci.edu/netdata/html/davis.html</a>.</p>
+</div>
+<div id="ref-strona2014fast">
+<p>Strona, Giovanni, Domenico Nappo, Francesco Boccacci, Simone Fattorini, and Jesus San-Miguel-Ayanz. 2014. “A Fast and Unbiased Procedure to Randomize Ecological Binary Matrices with Fixed Row and Column Totals.” <em>Nature Communications</em> 5 (June): 4114. <a href="https://doi.org/10.1038/ncomms5114">https://doi.org/10.1038/ncomms5114</a>.</p>
+</div>
+<div id="ref-strona2018bi">
+<p>Strona, Giovanni, Werner Ulrich, and Nicholas J. Gotelli. 2018. “Bi-Dimensional Null Model Analysis of Presence-Absence Binary Matrices.” <em>Ecology</em> 99 (1): 103–15. <a href="https://doi.org/10.1002/ecy.2043">https://doi.org/10.1002/ecy.2043</a>.</p>
+</div>
+<div id="ref-Tumminello">
+<p>Tumminello, Michele, Salvatore Miccichè, Fabrizio Lillo, Jyrki Piilo, and Rosario N. Mantegna. 2011. “Statistically Validated Networks in Bipartite Complex Systems.” <em>PLOS ONE</em> 6 (3): e17994. <a href="https://doi.org/10.1371/journal.pone.0017994">https://doi.org/10.1371/journal.pone.0017994</a>.</p>
+</div>
+<div id="ref-zweig2011systematic">
+<p>Zweig, Katharina Anna, and Michael Kaufmann. 2011. “A Systematic Approach to the One-Mode Projection of Bipartite Graphs.” <em>Social Network Analysis and Mining</em> 1 (3): 187–218. <a href="https://doi.org/10.1007/s13278-011-0021-0">https://doi.org/10.1007/s13278-011-0021-0</a>.</p>
+</div>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+WARNING: No test specified, defaulting to first test defined (lsbclust_deepstate_test_ClustMeans_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/lsbclust/inst/testfiles/ClustMeans/ClustMeans_output/6ce6aa8eca4534db9f7541e6d914e82540bea4c7.fail`
+TRACE: Running: lsbclust_deepstate_test_ClustMeans_test from /home/akhila/fuzzer_packages/fuzzedpackages/lsbclust/inst/testfiles/ClustMeans/ClustMeans_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+nclust values: 516759145
+start values: 1496557982 1612654575 1787349551 -1977115736 -189197891 -431905956 85877180 417166449 270340209 1010262182 -1087711927 1366356294 704774928 1151757385 -976353827 -1418113348 -1755435565 -1769113003 -1219518711 -1064284182 -1823278377 -127459139 891656928 -1628857291 1204357597 1451438862 -757983342 1650883829 -1200108368 -554930669 285799344 -242162375 1508775600 1900658244 466998910 995324915 -901733464 739359550 447671819 1054033048 -1034205133 -1543080000 -615629290 -1582233237 -240381154 -1093772072 2085282747 489182175 -2086989017 -1584732292 -668626311 -677649208 1207428613 -985473726 -1933443670 -380597908 -342060148 662374655 -1600489097 895303804 1428587034 1767857397 542744329
+Missing value
+data values: 2.17219e-294 1.70074e-95 3.68956e+87 6.69644e-57
+    inf     nan 1.97506e-17 1.17591e-172
+2.34646e-300     inf 3.15045e-289     nan
+
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Index out of bounds: [index=1496557981; extent=516759145].
+ERROR: Failed: lsbclust_deepstate_test_ClustMeans_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/lsbclust/inst/testfiles/ClustMeans/ClustMeans_output/6ce6aa8eca4534db9f7541e6d914e82540bea4c7.fail failed

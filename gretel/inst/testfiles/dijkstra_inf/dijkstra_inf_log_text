@@ -1,0 +1,39 @@
+INFO: Starting fuzzing
+WARNING: No test specified, defaulting to first test defined (gretel_deepstate_test_dijkstra_inf_test)
+input starts
+EXTERNAL: qs v0.23.4.
+
+dist values: 1.05415e-68 1.86447e-211 4.49059e+17 2.72551e-214 6.53679e-70 2.42643e+241 1.65687e+24
+
+src values: 644268439
+input ends
+ERROR: Crashed: gretel_deepstate_test_dijkstra_inf_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf/dijkstra_inf_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash`
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+dist values: 2.58036e-206    -inf     nan
+
+src values: 1078897549
+input ends
+ERROR: Crashed: gretel_deepstate_test_dijkstra_inf_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf/dijkstra_inf_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash`
+input starts
+EXTERNAL: qs v0.23.4.
+
+dist values: 2.01769e+47 1.43678e-133 3.24864e+70 1.20447e-16
+5.91096e+64 7.46115e-258 6.40668e-255 1.62054e+203
+4.71376e-48 5.01413e+184 4.51599e-206 1.34759e+170
+1.75062e-260 1.58739e-68 1.92056e-182 1.67897e-132
+4.13273e+261 29072.6 1.10966e+192 2.30932e+295
+7.50348e-71 1.41003e-86 4.42315e+80 1.54458e+60
+1.28334e+144 1.93644e+180 1.54664e-118 3.41101e+171
+2.90402e-286 1.99326e-62 5.07882e+283 3.58420e+261
+3.56215e-230 1.39816e-16 1.74133e+63 1.53532e+63
+
+src values: -767861348
+input ends
+ERROR: Crashed: gretel_deepstate_test_dijkstra_inf_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf/dijkstra_inf_output/f97703d88b5f44f18c8a5478e4cc2152bc9b0638.crash`
+INFO: Done fuzzing! Ran 3 tests (1 tests/second) with 3 failed/0 passed/0 abandoned tests

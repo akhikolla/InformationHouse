@@ -1,0 +1,908 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./score_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_output/0ddcafce63b4a0b1862bf2bc0534ac4a91731317.crash</line>
+</preamble>
+
+<pid>524055</pid>
+<ppid>524054</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_output/log_0ddcafce63b4a0b1862bf2bc0534ac4a91731317/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./score_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_output/0ddcafce63b4a0b1862bf2bc0534ac4a91731317.crash</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.042 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D6B460</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>assignCoeff</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/functors</dir>
+      <file>AssignmentFunctors.h</file>
+      <line>24</line>
+    </frame>
+    <frame>
+      <ip>0x4D6B460</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>assignCoeff</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>AssignEvaluator.h</file>
+      <line>637</line>
+    </frame>
+    <frame>
+      <ip>0x4D6B460</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>run</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>AssignEvaluator.h</file>
+      <line>497</line>
+    </frame>
+    <frame>
+      <ip>0x4D6B460</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>call_dense_assignment_loop&lt;Eigen::Matrix&lt;stan::math::var, -1, 1&gt;, Eigen::Block&lt;const Eigen::Matrix&lt;stan::math::var, -1, 1&gt;, -1, 1, false&gt;, Eigen::internal::assign_op&lt;stan::math::var, stan::math::var&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>AssignEvaluator.h</file>
+      <line>741</line>
+    </frame>
+    <frame>
+      <ip>0x4D6B460</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>run</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>AssignEvaluator.h</file>
+      <line>879</line>
+    </frame>
+    <frame>
+      <ip>0x4D6B460</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>call_assignment_no_alias&lt;Eigen::Matrix&lt;stan::math::var, -1, 1&gt;, Eigen::Block&lt;const Eigen::Matrix&lt;stan::math::var, -1, 1&gt;, -1, 1, false&gt;, Eigen::internal::assign_op&lt;stan::math::var, stan::math::var&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>AssignEvaluator.h</file>
+      <line>836</line>
+    </frame>
+    <frame>
+      <ip>0x4D6B460</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>_set_noalias&lt;Eigen::Block&lt;const Eigen::Matrix&lt;stan::math::var, -1, 1&gt;, -1, 1, false&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>732</line>
+    </frame>
+    <frame>
+      <ip>0x4D6B460</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>PlainObjectBase&lt;Eigen::Block&lt;const Eigen::Matrix&lt;stan::math::var, -1, 1&gt;, -1, 1, false&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>537</line>
+    </frame>
+    <frame>
+      <ip>0x4D6B460</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>Matrix&lt;Eigen::Block&lt;const Eigen::Matrix&lt;stan::math::var, -1, 1&gt;, -1, 1, false&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Matrix.h</file>
+      <line>377</line>
+    </frame>
+    <frame>
+      <ip>0x4D6B460</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>stan::math::var scoretemp::operator()&lt;stan::math::var&gt;(Eigen::Matrix&lt;stan::math::var, -1, 1, 0, -1, 1&gt; const&amp;) const</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src</dir>
+      <file>scores.cpp</file>
+      <line>39</line>
+    </frame>
+    <frame>
+      <ip>0x4D6BE6C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>void stan::math::gradient&lt;scoretemp&gt;(scoretemp const&amp;, Eigen::Matrix&lt;double, -1, 1, 0, -1, 1&gt; const&amp;, double&amp;, Eigen::Matrix&lt;double, -1, 1, 0, -1, 1&gt;&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/StanHeaders/include/stan/math/rev/mat/functor</dir>
+      <file>gradient.hpp</file>
+      <line>47</line>
+    </frame>
+    <frame>
+      <ip>0x4D48F4C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>score(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src</dir>
+      <file>scores.cpp</file>
+      <line>124</line>
+    </frame>
+    <frame>
+      <ip>0x40A8FC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_ProbReco_deepstate_test_score_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score</dir>
+      <file>score_DeepState_TestHarness.cpp</file>
+      <line>48</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_ProbReco_deepstate_test_score_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score</dir>
+      <file>score_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E858</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EAF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EBD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xa4c1810 is 18,880 bytes inside a block of size 19,243 free'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483CA3F</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>free</fn>
+    </frame>
+    <frame>
+      <ip>0xCC3396A</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libzstd.so.1.4.4</obj>
+      <fn>ZSTD_compress</fn>
+    </frame>
+    <frame>
+      <ip>0xCB957D3</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/qs/libs/qs.so</obj>
+      <fn>compress</fn>
+      <dir>/tmp/RtmpubcMiN/R.INSTALL2c69ab762bad41/qs/src</dir>
+      <file>qs_common.h</file>
+      <line>928</line>
+    </frame>
+    <frame>
+      <ip>0xCB957D3</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/qs/libs/qs.so</obj>
+      <fn>flush</fn>
+      <dir>/tmp/RtmpubcMiN/R.INSTALL2c69ab762bad41/qs/src</dir>
+      <file>qs_serialization.h</file>
+      <line>43</line>
+    </frame>
+    <frame>
+      <ip>0xCB957D3</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/qs/libs/qs.so</obj>
+      <fn>c_qsave(SEXPREC*, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, int, int, bool, int)</fn>
+      <dir>/tmp/RtmpubcMiN/R.INSTALL2c69ab762bad41/qs/src</dir>
+      <file>qs_functions.cpp</file>
+      <line>85</line>
+    </frame>
+    <frame>
+      <ip>0xCB80B01</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/qs/libs/qs.so</obj>
+      <fn>_qs_c_qsave_try(SEXPREC*, SEXPREC*, SEXPREC*, SEXPREC*, SEXPREC*, SEXPREC*, SEXPREC*, SEXPREC*)</fn>
+      <dir>/tmp/RtmpubcMiN/R.INSTALL2c69ab762bad41/qs/src</dir>
+      <file>RcppExports.cpp</file>
+      <line>557</line>
+    </frame>
+    <frame>
+      <ip>0x410986</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>qs::c_qsave(SEXPREC*, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, int, int, bool, int)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/qs/include/qs_RcppExports.h</file>
+      <line>357</line>
+    </frame>
+    <frame>
+      <ip>0x40A34B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_ProbReco_deepstate_test_score_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score</dir>
+      <file>score_DeepState_TestHarness.cpp</file>
+      <line>33</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_ProbReco_deepstate_test_score_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score</dir>
+      <file>score_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E858</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EAF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EBD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Block was alloc'd at</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0xCC2D033</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libzstd.so.1.4.4</obj>
+    </frame>
+    <frame>
+      <ip>0xCC2DD95</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libzstd.so.1.4.4</obj>
+    </frame>
+    <frame>
+      <ip>0xCC2FE0B</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libzstd.so.1.4.4</obj>
+    </frame>
+    <frame>
+      <ip>0xCC33838</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libzstd.so.1.4.4</obj>
+      <fn>ZSTD_compress_usingDict</fn>
+    </frame>
+    <frame>
+      <ip>0xCC33883</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libzstd.so.1.4.4</obj>
+      <fn>ZSTD_compressCCtx</fn>
+    </frame>
+    <frame>
+      <ip>0xCC33904</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libzstd.so.1.4.4</obj>
+      <fn>ZSTD_compress</fn>
+    </frame>
+    <frame>
+      <ip>0xCB957D3</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/qs/libs/qs.so</obj>
+      <fn>compress</fn>
+      <dir>/tmp/RtmpubcMiN/R.INSTALL2c69ab762bad41/qs/src</dir>
+      <file>qs_common.h</file>
+      <line>928</line>
+    </frame>
+    <frame>
+      <ip>0xCB957D3</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/qs/libs/qs.so</obj>
+      <fn>flush</fn>
+      <dir>/tmp/RtmpubcMiN/R.INSTALL2c69ab762bad41/qs/src</dir>
+      <file>qs_serialization.h</file>
+      <line>43</line>
+    </frame>
+    <frame>
+      <ip>0xCB957D3</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/qs/libs/qs.so</obj>
+      <fn>c_qsave(SEXPREC*, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, int, int, bool, int)</fn>
+      <dir>/tmp/RtmpubcMiN/R.INSTALL2c69ab762bad41/qs/src</dir>
+      <file>qs_functions.cpp</file>
+      <line>85</line>
+    </frame>
+    <frame>
+      <ip>0xCB80B01</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/qs/libs/qs.so</obj>
+      <fn>_qs_c_qsave_try(SEXPREC*, SEXPREC*, SEXPREC*, SEXPREC*, SEXPREC*, SEXPREC*, SEXPREC*, SEXPREC*)</fn>
+      <dir>/tmp/RtmpubcMiN/R.INSTALL2c69ab762bad41/qs/src</dir>
+      <file>RcppExports.cpp</file>
+      <line>557</line>
+    </frame>
+    <frame>
+      <ip>0x410986</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>qs::c_qsave(SEXPREC*, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, int, int, bool, int)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/qs/include/qs_RcppExports.h</file>
+      <line>357</line>
+    </frame>
+    <frame>
+      <ip>0x40A34B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_ProbReco_deepstate_test_score_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score</dir>
+      <file>score_DeepState_TestHarness.cpp</file>
+      <line>33</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_ProbReco_deepstate_test_score_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score</dir>
+      <file>score_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x2</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D6B46F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>run</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>AssignEvaluator.h</file>
+      <line>496</line>
+    </frame>
+    <frame>
+      <ip>0x4D6B46F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>call_dense_assignment_loop&lt;Eigen::Matrix&lt;stan::math::var, -1, 1&gt;, Eigen::Block&lt;const Eigen::Matrix&lt;stan::math::var, -1, 1&gt;, -1, 1, false&gt;, Eigen::internal::assign_op&lt;stan::math::var, stan::math::var&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>AssignEvaluator.h</file>
+      <line>741</line>
+    </frame>
+    <frame>
+      <ip>0x4D6B46F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>run</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>AssignEvaluator.h</file>
+      <line>879</line>
+    </frame>
+    <frame>
+      <ip>0x4D6B46F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>call_assignment_no_alias&lt;Eigen::Matrix&lt;stan::math::var, -1, 1&gt;, Eigen::Block&lt;const Eigen::Matrix&lt;stan::math::var, -1, 1&gt;, -1, 1, false&gt;, Eigen::internal::assign_op&lt;stan::math::var, stan::math::var&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>AssignEvaluator.h</file>
+      <line>836</line>
+    </frame>
+    <frame>
+      <ip>0x4D6B46F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>_set_noalias&lt;Eigen::Block&lt;const Eigen::Matrix&lt;stan::math::var, -1, 1&gt;, -1, 1, false&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>732</line>
+    </frame>
+    <frame>
+      <ip>0x4D6B46F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>PlainObjectBase&lt;Eigen::Block&lt;const Eigen::Matrix&lt;stan::math::var, -1, 1&gt;, -1, 1, false&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>537</line>
+    </frame>
+    <frame>
+      <ip>0x4D6B46F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>Matrix&lt;Eigen::Block&lt;const Eigen::Matrix&lt;stan::math::var, -1, 1&gt;, -1, 1, false&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Matrix.h</file>
+      <line>377</line>
+    </frame>
+    <frame>
+      <ip>0x4D6B46F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>stan::math::var scoretemp::operator()&lt;stan::math::var&gt;(Eigen::Matrix&lt;stan::math::var, -1, 1, 0, -1, 1&gt; const&amp;) const</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src</dir>
+      <file>scores.cpp</file>
+      <line>39</line>
+    </frame>
+    <frame>
+      <ip>0x4D6BE6C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>void stan::math::gradient&lt;scoretemp&gt;(scoretemp const&amp;, Eigen::Matrix&lt;double, -1, 1, 0, -1, 1&gt; const&amp;, double&amp;, Eigen::Matrix&lt;double, -1, 1, 0, -1, 1&gt;&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/StanHeaders/include/stan/math/rev/mat/functor</dir>
+      <file>gradient.hpp</file>
+      <line>47</line>
+    </frame>
+    <frame>
+      <ip>0x4D48F4C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>score(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src</dir>
+      <file>scores.cpp</file>
+      <line>124</line>
+    </frame>
+    <frame>
+      <ip>0x40A8FC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_ProbReco_deepstate_test_score_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score</dir>
+      <file>score_DeepState_TestHarness.cpp</file>
+      <line>48</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_ProbReco_deepstate_test_score_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score</dir>
+      <file>score_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E858</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EAF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EBD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xa4c1820 is 18,896 bytes inside a block of size 19,243 free'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483CA3F</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>free</fn>
+    </frame>
+    <frame>
+      <ip>0xCC3396A</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libzstd.so.1.4.4</obj>
+      <fn>ZSTD_compress</fn>
+    </frame>
+    <frame>
+      <ip>0xCB957D3</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/qs/libs/qs.so</obj>
+      <fn>compress</fn>
+      <dir>/tmp/RtmpubcMiN/R.INSTALL2c69ab762bad41/qs/src</dir>
+      <file>qs_common.h</file>
+      <line>928</line>
+    </frame>
+    <frame>
+      <ip>0xCB957D3</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/qs/libs/qs.so</obj>
+      <fn>flush</fn>
+      <dir>/tmp/RtmpubcMiN/R.INSTALL2c69ab762bad41/qs/src</dir>
+      <file>qs_serialization.h</file>
+      <line>43</line>
+    </frame>
+    <frame>
+      <ip>0xCB957D3</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/qs/libs/qs.so</obj>
+      <fn>c_qsave(SEXPREC*, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, int, int, bool, int)</fn>
+      <dir>/tmp/RtmpubcMiN/R.INSTALL2c69ab762bad41/qs/src</dir>
+      <file>qs_functions.cpp</file>
+      <line>85</line>
+    </frame>
+    <frame>
+      <ip>0xCB80B01</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/qs/libs/qs.so</obj>
+      <fn>_qs_c_qsave_try(SEXPREC*, SEXPREC*, SEXPREC*, SEXPREC*, SEXPREC*, SEXPREC*, SEXPREC*, SEXPREC*)</fn>
+      <dir>/tmp/RtmpubcMiN/R.INSTALL2c69ab762bad41/qs/src</dir>
+      <file>RcppExports.cpp</file>
+      <line>557</line>
+    </frame>
+    <frame>
+      <ip>0x410986</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>qs::c_qsave(SEXPREC*, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, int, int, bool, int)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/qs/include/qs_RcppExports.h</file>
+      <line>357</line>
+    </frame>
+    <frame>
+      <ip>0x40A34B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_ProbReco_deepstate_test_score_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score</dir>
+      <file>score_DeepState_TestHarness.cpp</file>
+      <line>33</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_ProbReco_deepstate_test_score_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score</dir>
+      <file>score_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E858</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EAF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EBD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Block was alloc'd at</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0xCC2D033</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libzstd.so.1.4.4</obj>
+    </frame>
+    <frame>
+      <ip>0xCC2DD95</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libzstd.so.1.4.4</obj>
+    </frame>
+    <frame>
+      <ip>0xCC2FE0B</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libzstd.so.1.4.4</obj>
+    </frame>
+    <frame>
+      <ip>0xCC33838</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libzstd.so.1.4.4</obj>
+      <fn>ZSTD_compress_usingDict</fn>
+    </frame>
+    <frame>
+      <ip>0xCC33883</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libzstd.so.1.4.4</obj>
+      <fn>ZSTD_compressCCtx</fn>
+    </frame>
+    <frame>
+      <ip>0xCC33904</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libzstd.so.1.4.4</obj>
+      <fn>ZSTD_compress</fn>
+    </frame>
+    <frame>
+      <ip>0xCB957D3</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/qs/libs/qs.so</obj>
+      <fn>compress</fn>
+      <dir>/tmp/RtmpubcMiN/R.INSTALL2c69ab762bad41/qs/src</dir>
+      <file>qs_common.h</file>
+      <line>928</line>
+    </frame>
+    <frame>
+      <ip>0xCB957D3</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/qs/libs/qs.so</obj>
+      <fn>flush</fn>
+      <dir>/tmp/RtmpubcMiN/R.INSTALL2c69ab762bad41/qs/src</dir>
+      <file>qs_serialization.h</file>
+      <line>43</line>
+    </frame>
+    <frame>
+      <ip>0xCB957D3</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/qs/libs/qs.so</obj>
+      <fn>c_qsave(SEXPREC*, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, int, int, bool, int)</fn>
+      <dir>/tmp/RtmpubcMiN/R.INSTALL2c69ab762bad41/qs/src</dir>
+      <file>qs_functions.cpp</file>
+      <line>85</line>
+    </frame>
+    <frame>
+      <ip>0xCB80B01</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/qs/libs/qs.so</obj>
+      <fn>_qs_c_qsave_try(SEXPREC*, SEXPREC*, SEXPREC*, SEXPREC*, SEXPREC*, SEXPREC*, SEXPREC*, SEXPREC*)</fn>
+      <dir>/tmp/RtmpubcMiN/R.INSTALL2c69ab762bad41/qs/src</dir>
+      <file>RcppExports.cpp</file>
+      <line>557</line>
+    </frame>
+    <frame>
+      <ip>0x410986</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>qs::c_qsave(SEXPREC*, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, int, int, bool, int)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/qs/include/qs_RcppExports.h</file>
+      <line>357</line>
+    </frame>
+    <frame>
+      <ip>0x40A34B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_ProbReco_deepstate_test_score_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score</dir>
+      <file>score_DeepState_TestHarness.cpp</file>
+      <line>33</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_ProbReco_deepstate_test_score_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score</dir>
+      <file>score_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x36</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D68157</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>value_of_rec</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/StanHeaders/include/stan/math/rev/scal/fun</dir>
+      <file>value_of_rec.hpp</file>
+      <line>17</line>
+    </frame>
+    <frame>
+      <ip>0x4D68157</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>check</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/StanHeaders/include/stan/math/prim/scal/err</dir>
+      <file>check_not_nan.hpp</file>
+      <line>27</line>
+    </frame>
+    <frame>
+      <ip>0x4D68157</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>check_not_nan&lt;Eigen::Matrix&lt;stan::math::var, -1, -1&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/StanHeaders/include/stan/math/prim/scal/err</dir>
+      <file>check_not_nan.hpp</file>
+      <line>49</line>
+    </frame>
+    <frame>
+      <ip>0x4D68157</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>multiply&lt;double, -1, -1, stan::math::var, -1&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/StanHeaders/include/stan/math/rev/mat/fun</dir>
+      <file>multiply.hpp</file>
+      <line>625</line>
+    </frame>
+    <frame>
+      <ip>0x4D68157</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>stan::math::var scoretemp::operator()&lt;stan::math::var&gt;(Eigen::Matrix&lt;stan::math::var, -1, 1, 0, -1, 1&gt; const&amp;) const</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src</dir>
+      <file>scores.cpp</file>
+      <line>41</line>
+    </frame>
+    <frame>
+      <ip>0x4D6BE6C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>void stan::math::gradient&lt;scoretemp&gt;(scoretemp const&amp;, Eigen::Matrix&lt;double, -1, 1, 0, -1, 1&gt; const&amp;, double&amp;, Eigen::Matrix&lt;double, -1, 1, 0, -1, 1&gt;&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/StanHeaders/include/stan/math/rev/mat/functor</dir>
+      <file>gradient.hpp</file>
+      <line>47</line>
+    </frame>
+    <frame>
+      <ip>0x4D48F4C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>score(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src</dir>
+      <file>scores.cpp</file>
+      <line>124</line>
+    </frame>
+    <frame>
+      <ip>0x40A8FC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_ProbReco_deepstate_test_score_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score</dir>
+      <file>score_DeepState_TestHarness.cpp</file>
+      <line>48</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_ProbReco_deepstate_test_score_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score</dir>
+      <file>score_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E858</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EAF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EBD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x4800000048000008 is not stack'd, malloc'd or (recently) free'd</auxwhat>
+</error>
+
+<fatal_signal>
+  <tid>1</tid>
+  <signo>11</signo>
+  <signame>SIGSEGV</signame>
+  <sicode>128</sicode>
+  <event>General Protection Fault</event>
+  <stack>
+    <frame>
+      <ip>0x4D68157</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>value_of_rec</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/StanHeaders/include/stan/math/rev/scal/fun</dir>
+      <file>value_of_rec.hpp</file>
+      <line>17</line>
+    </frame>
+    <frame>
+      <ip>0x4D68157</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>check</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/StanHeaders/include/stan/math/prim/scal/err</dir>
+      <file>check_not_nan.hpp</file>
+      <line>27</line>
+    </frame>
+    <frame>
+      <ip>0x4D68157</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>check_not_nan&lt;Eigen::Matrix&lt;stan::math::var, -1, -1&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/StanHeaders/include/stan/math/prim/scal/err</dir>
+      <file>check_not_nan.hpp</file>
+      <line>49</line>
+    </frame>
+    <frame>
+      <ip>0x4D68157</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>multiply&lt;double, -1, -1, stan::math::var, -1&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/StanHeaders/include/stan/math/rev/mat/fun</dir>
+      <file>multiply.hpp</file>
+      <line>625</line>
+    </frame>
+    <frame>
+      <ip>0x4D68157</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>stan::math::var scoretemp::operator()&lt;stan::math::var&gt;(Eigen::Matrix&lt;stan::math::var, -1, 1, 0, -1, 1&gt; const&amp;) const</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src</dir>
+      <file>scores.cpp</file>
+      <line>41</line>
+    </frame>
+    <frame>
+      <ip>0x4D6BE6C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>void stan::math::gradient&lt;scoretemp&gt;(scoretemp const&amp;, Eigen::Matrix&lt;double, -1, 1, 0, -1, 1&gt; const&amp;, double&amp;, Eigen::Matrix&lt;double, -1, 1, 0, -1, 1&gt;&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/StanHeaders/include/stan/math/rev/mat/functor</dir>
+      <file>gradient.hpp</file>
+      <line>47</line>
+    </frame>
+    <frame>
+      <ip>0x4D48F4C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src/ProbReco.so</obj>
+      <fn>score(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/src</dir>
+      <file>scores.cpp</file>
+      <line>124</line>
+    </frame>
+    <frame>
+      <ip>0x40A8FC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_ProbReco_deepstate_test_score_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score</dir>
+      <file>score_DeepState_TestHarness.cpp</file>
+      <line>48</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_ProbReco_deepstate_test_score_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score</dir>
+      <file>score_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E858</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EAF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EBD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ProbReco/inst/testfiles/score/score_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</fatal_signal>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:09.785 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>1</count>
+    <unique>0x36</unique>
+  </pair>
+  <pair>
+    <count>15</count>
+    <unique>0x0</unique>
+  </pair>
+  <pair>
+    <count>39</count>
+    <unique>0x2</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:10.504 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

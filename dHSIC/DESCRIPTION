@@ -1,0 +1,18 @@
+Package: dHSIC
+Type: Package
+Title: Independence Testing via Hilbert Schmidt Independence Criterion
+Version: 2.1
+Date: 2019-01-04
+Author: Niklas Pfister and Jonas Peters
+Maintainer: Niklas Pfister <pfister@stat.math.ethz.ch>
+Description: Contains an implementation of the
+	     d-variable Hilbert Schmidt independence criterion
+	     and several hypothesis tests based on it, as described
+	     in Pfister et al. (2017) <doi:10.1111/rssb.12235>.
+License: GPL-3
+Imports: Rcpp (>= 0.12.18)
+LinkingTo: Rcpp
+NeedsCompilation: yes
+Packaged: 2019-01-04 08:58:38 UTC; pfisteni
+Repository: CRAN
+Date/Publication: 2019-01-04 13:50:19 UTC

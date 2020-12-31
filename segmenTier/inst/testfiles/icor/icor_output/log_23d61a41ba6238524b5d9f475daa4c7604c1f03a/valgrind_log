@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./icor_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/segmenTier/inst/testfiles/icor/icor_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash</line>
+</preamble>
+
+<pid>436698</pid>
+<ppid>436697</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/segmenTier/inst/testfiles/icor/icor_output/log_23d61a41ba6238524b5d9f475daa4c7604c1f03a/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./icor_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/segmenTier/inst/testfiles/icor/icor_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.049 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D2CEC0</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/segmenTier/src/segmenTier.so</obj>
+      <fn>icor(int, int, int, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/segmenTier/src</dir>
+      <file>segment.cpp</file>
+      <line>21</line>
+    </frame>
+    <frame>
+      <ip>0x40A7E9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/segmenTier/inst/testfiles/icor/icor_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_segmenTier_deepstate_test_icor_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/segmenTier/inst/testfiles/icor</dir>
+      <file>icor_DeepState_TestHarness.cpp</file>
+      <line>46</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/segmenTier/inst/testfiles/icor/icor_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_segmenTier_deepstate_test_icor_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/segmenTier/inst/testfiles/icor</dir>
+      <file>icor_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E598</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/segmenTier/inst/testfiles/icor/icor_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E839</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/segmenTier/inst/testfiles/icor/icor_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E914</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/segmenTier/inst/testfiles/icor/icor_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/segmenTier/inst/testfiles/icor/icor_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xfffffff32a546b60 is not stack'd, malloc'd or (recently) free'd</auxwhat>
+</error>
+
+<fatal_signal>
+  <tid>1</tid>
+  <signo>11</signo>
+  <signame>SIGSEGV</signame>
+  <sicode>1</sicode>
+  <event>Access not within mapped region</event>
+  <siaddr>0xFFFFFFF32A546B60</siaddr>
+  <stack>
+    <frame>
+      <ip>0x4D2CEC0</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/segmenTier/src/segmenTier.so</obj>
+      <fn>icor(int, int, int, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/segmenTier/src</dir>
+      <file>segment.cpp</file>
+      <line>21</line>
+    </frame>
+    <frame>
+      <ip>0x40A7E9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/segmenTier/inst/testfiles/icor/icor_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_segmenTier_deepstate_test_icor_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/segmenTier/inst/testfiles/icor</dir>
+      <file>icor_DeepState_TestHarness.cpp</file>
+      <line>46</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/segmenTier/inst/testfiles/icor/icor_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_segmenTier_deepstate_test_icor_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/segmenTier/inst/testfiles/icor</dir>
+      <file>icor_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E598</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/segmenTier/inst/testfiles/icor/icor_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E839</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/segmenTier/inst/testfiles/icor/icor_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E914</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/segmenTier/inst/testfiles/icor/icor_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/segmenTier/inst/testfiles/icor/icor_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</fatal_signal>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:15.315 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>1</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:16.581 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

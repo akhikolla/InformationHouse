@@ -1,0 +1,45 @@
+Package: RcppNumerical
+Type: Package
+Title: 'Rcpp' Integration for Numerical Computing Libraries
+Version: 0.4-0
+Date: 2019-12-01
+Authors@R: c(
+    person("Yixuan", "Qiu", email = "yixuan.qiu@cos.name", role = c("aut", "cre")),
+    person("Ralf", "Stubner", email = "ralf.stubner@gmail.com", role = "ctb",
+           comment = "Integration on infinite intervals"),
+    person("Sreekumar", "Balan", role = "aut",
+           comment = "Numerical integration library"),
+    person("Matt", "Beall", role = "aut",
+           comment = "Numerical integration library"),
+    person("Mark", "Sauder", role = "aut",
+           comment = "Numerical integration library"),
+    person("Naoaki", "Okazaki", role = "aut",
+           comment = "The libLBFGS library"),
+    person("Thomas", "Hahn", role = "aut",
+           comment = "The Cuba library")
+    )
+Maintainer: Yixuan Qiu <yixuan.qiu@cos.name>
+Description: A collection of open source libraries for numerical computing
+    (numerical integration, optimization, etc.) and their integration with
+    'Rcpp'.
+License: GPL (>= 2)
+Copyright: See file COPYRIGHTS
+URL: https://github.com/yixuan/RcppNumerical
+BugReports: https://github.com/yixuan/RcppNumerical/issues
+LazyData: TRUE
+Imports: Rcpp
+LinkingTo: Rcpp, RcppEigen
+Suggests: knitr, rmarkdown, prettydoc, mvtnorm, RcppEigen
+VignetteBuilder: knitr, rmarkdown
+RoxygenNote: 7.0.1
+NeedsCompilation: yes
+Packaged: 2019-12-02 16:22:03 UTC; qyx
+Author: Yixuan Qiu [aut, cre],
+  Ralf Stubner [ctb] (Integration on infinite intervals),
+  Sreekumar Balan [aut] (Numerical integration library),
+  Matt Beall [aut] (Numerical integration library),
+  Mark Sauder [aut] (Numerical integration library),
+  Naoaki Okazaki [aut] (The libLBFGS library),
+  Thomas Hahn [aut] (The Cuba library)
+Repository: CRAN
+Date/Publication: 2019-12-02 20:20:07 UTC

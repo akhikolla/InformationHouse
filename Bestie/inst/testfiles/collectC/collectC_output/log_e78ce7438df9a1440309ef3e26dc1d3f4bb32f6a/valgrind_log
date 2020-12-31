@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./collectC_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/Bestie/inst/testfiles/collectC/collectC_output/e78ce7438df9a1440309ef3e26dc1d3f4bb32f6a.crash</line>
+</preamble>
+
+<pid>282020</pid>
+<ppid>282019</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/Bestie/inst/testfiles/collectC/collectC_output/log_e78ce7438df9a1440309ef3e26dc1d3f4bb32f6a/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./collectC_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/Bestie/inst/testfiles/collectC/collectC_output/e78ce7438df9a1440309ef3e26dc1d3f4bb32f6a.crash</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.040 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x424EBF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Bestie/inst/testfiles/collectC/collectC_DeepState_TestHarness</obj>
+      <fn>collectC(Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Bestie</dir>
+      <file>src/rcpp_fns.cpp</file>
+      <line>11</line>
+    </frame>
+    <frame>
+      <ip>0x40A3F9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Bestie/inst/testfiles/collectC/collectC_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Bestie_deepstate_test_collectC_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Bestie/inst/testfiles/collectC</dir>
+      <file>collectC_DeepState_TestHarness.cpp</file>
+      <line>31</line>
+    </frame>
+    <frame>
+      <ip>0x409E08</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Bestie/inst/testfiles/collectC/collectC_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Bestie_deepstate_test_collectC_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Bestie/inst/testfiles/collectC</dir>
+      <file>collectC_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D488</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Bestie/inst/testfiles/collectC/collectC_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D729</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Bestie/inst/testfiles/collectC/collectC_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D804</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Bestie/inst/testfiles/collectC/collectC_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076D5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Bestie/inst/testfiles/collectC/collectC_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xfffffffc80a77ad8 is not stack'd, malloc'd or (recently) free'd</auxwhat>
+</error>
+
+<fatal_signal>
+  <tid>1</tid>
+  <signo>11</signo>
+  <signame>SIGSEGV</signame>
+  <sicode>1</sicode>
+  <event>Access not within mapped region</event>
+  <siaddr>0xFFFFFFFC80A77AD8</siaddr>
+  <stack>
+    <frame>
+      <ip>0x424EBF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Bestie/inst/testfiles/collectC/collectC_DeepState_TestHarness</obj>
+      <fn>collectC(Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Bestie</dir>
+      <file>src/rcpp_fns.cpp</file>
+      <line>11</line>
+    </frame>
+    <frame>
+      <ip>0x40A3F9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Bestie/inst/testfiles/collectC/collectC_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Bestie_deepstate_test_collectC_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Bestie/inst/testfiles/collectC</dir>
+      <file>collectC_DeepState_TestHarness.cpp</file>
+      <line>31</line>
+    </frame>
+    <frame>
+      <ip>0x409E08</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Bestie/inst/testfiles/collectC/collectC_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Bestie_deepstate_test_collectC_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Bestie/inst/testfiles/collectC</dir>
+      <file>collectC_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D488</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Bestie/inst/testfiles/collectC/collectC_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D729</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Bestie/inst/testfiles/collectC/collectC_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D804</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Bestie/inst/testfiles/collectC/collectC_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076D5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Bestie/inst/testfiles/collectC/collectC_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</fatal_signal>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:48.681 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>1</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:01:07.810 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

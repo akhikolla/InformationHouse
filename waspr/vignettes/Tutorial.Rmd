@@ -1,0 +1,59 @@
+---
+title: "Tutorial"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Tutorial}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+To use `waspr` the user first needs to load the package as follows:
+
+```{r message=FALSE}
+library(waspr)
+```
+
+The user must provide a 3-dimensional array with posterior samples for all
+parameters for each subset posterior (rows = subset posteriors, columns =
+parameters, slices = samples). The amount of parameters and samples must be
+equal for each subset posterior, these posterior samples may be obtained from
+any type of MCMC algorithm. `waspr` provides an example array with posterior
+samples for 8 parameters for 8 subset posteriors, `pois_logistic`, that will be
+used to illustrate the functionality of the package.
+
+The main function `wasp()` runs the swapping algorithm, combines its output and
+computes the Wasserstein barycenter. It has four arguments, `mcmc`, that
+specifies the 3-dimensional array with samples for each subset posterior, and
+optional arguments `par.names`, that can be used to specify parameter names,
+`iter` to specify the maximum number of iterations of the swapping algorithm,
+`acc` to specify the accuracy of the swapping algorithm and `out` to indicate
+whether the results per iteration of the swap algorithm should be printed.
+
+```{r}
+
+out <- wasp(pois_logistic,
+            iter = 10,
+            acc = 0.001,
+            par.names = c("beta_s", "alpha_l", "beta_l",
+                         "baseline_sigma", "baseline_mu",
+                         "correlation", "sigma_s", "sigma_l"))
+
+```
+
+`wasp()` prints the iteration number and cost function value of the swapping
+algorithm. The `out` object is of class `wasp` and contains several elements. To
+obtain the Wasserstein barycenter of the subset posteriors a user can specify
+`out$barycenter`. This returns a matrix of posterior samples (rows) for all
+parameters (columns) of the full data posterior. A summary of the approximation
+of the full data posterior is available through `summary(out)`.
+
+```{r}
+summary(out)
+```

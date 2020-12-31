@@ -1,0 +1,1047 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./eho_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_output/25301f3fa1c583c56333b1907587786ad9af8de3.pass</line>
+</preamble>
+
+<pid>4041459</pid>
+<ppid>4041458</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_output/log_25301f3fa1c583c56333b1907587786ad9af8de3/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./eho_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_output/25301f3fa1c583c56333b1907587786ad9af8de3.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.027 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x41DE8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;::operator[](long) const</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/sugar/functions/pmin.h</file>
+      <line>111</line>
+    </frame>
+    <frame>
+      <ip>0x41DE13</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt;::operator[](long) const</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/sugar/operators/plus.h</file>
+      <line>72</line>
+    </frame>
+    <frame>
+      <ip>0x41DD19</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>void Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::import_expression&lt;Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; &gt;(Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; const&amp;, long)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>1085</line>
+    </frame>
+    <frame>
+      <ip>0x41DBBF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>void Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::import_sugar_expression&lt;true, Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; &gt;(Rcpp::VectorBase&lt;14, true, Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; &gt; const&amp;, Rcpp::traits::integral_constant&lt;bool, false&gt;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>1071</line>
+    </frame>
+    <frame>
+      <ip>0x41D681</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector&lt;true, Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; &gt;(Rcpp::VectorBase&lt;14, true, Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; &gt; const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>165</line>
+    </frame>
+    <frame>
+      <ip>0x41C994</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>eho(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic</dir>
+      <file>src/EHO.cpp</file>
+      <line>9</line>
+    </frame>
+    <frame>
+      <ip>0x4096E0</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_pinbasic_deepstate_test_eho_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho</dir>
+      <file>eho_DeepState_TestHarness.cpp</file>
+      <line>27</line>
+    </frame>
+    <frame>
+      <ip>0x409148</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_pinbasic_deepstate_test_eho_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho</dir>
+      <file>eho_DeepState_TestHarness.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x419188</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x419429</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x419504</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407795</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xa15ba40 is 0 bytes after a block of size 272 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x40B5ED</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector(int const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>130</line>
+    </frame>
+    <frame>
+      <ip>0x40831A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>RcppDeepState_NumericVector()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppDeepState/include/RcppDeepState.h</file>
+      <line>44</line>
+    </frame>
+    <frame>
+      <ip>0x4094C0</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_pinbasic_deepstate_test_eho_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho</dir>
+      <file>eho_DeepState_TestHarness.cpp</file>
+      <line>21</line>
+    </frame>
+    <frame>
+      <ip>0x409148</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_pinbasic_deepstate_test_eho_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho</dir>
+      <file>eho_DeepState_TestHarness.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x419188</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x419429</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x419504</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407795</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x1</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x41E01C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;::operator[](long) const</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/sugar/functions/pmax.h</file>
+      <line>111</line>
+    </frame>
+    <frame>
+      <ip>0x41DED9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt;::operator[](long) const</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/sugar/operators/times.h</file>
+      <line>273</line>
+    </frame>
+    <frame>
+      <ip>0x41DE29</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt;::operator[](long) const</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/sugar/operators/plus.h</file>
+      <line>72</line>
+    </frame>
+    <frame>
+      <ip>0x41DD19</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>void Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::import_expression&lt;Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; &gt;(Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; const&amp;, long)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>1085</line>
+    </frame>
+    <frame>
+      <ip>0x41DBBF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>void Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::import_sugar_expression&lt;true, Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; &gt;(Rcpp::VectorBase&lt;14, true, Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; &gt; const&amp;, Rcpp::traits::integral_constant&lt;bool, false&gt;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>1071</line>
+    </frame>
+    <frame>
+      <ip>0x41D681</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector&lt;true, Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; &gt;(Rcpp::VectorBase&lt;14, true, Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; &gt; const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>165</line>
+    </frame>
+    <frame>
+      <ip>0x41C994</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>eho(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic</dir>
+      <file>src/EHO.cpp</file>
+      <line>9</line>
+    </frame>
+    <frame>
+      <ip>0x4096E0</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_pinbasic_deepstate_test_eho_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho</dir>
+      <file>eho_DeepState_TestHarness.cpp</file>
+      <line>27</line>
+    </frame>
+    <frame>
+      <ip>0x409148</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_pinbasic_deepstate_test_eho_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho</dir>
+      <file>eho_DeepState_TestHarness.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x419188</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x419429</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x419504</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xa15ba40 is 0 bytes after a block of size 272 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x40B5ED</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector(int const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>130</line>
+    </frame>
+    <frame>
+      <ip>0x40831A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>RcppDeepState_NumericVector()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppDeepState/include/RcppDeepState.h</file>
+      <line>44</line>
+    </frame>
+    <frame>
+      <ip>0x4094C0</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_pinbasic_deepstate_test_eho_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho</dir>
+      <file>eho_DeepState_TestHarness.cpp</file>
+      <line>21</line>
+    </frame>
+    <frame>
+      <ip>0x409148</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_pinbasic_deepstate_test_eho_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho</dir>
+      <file>eho_DeepState_TestHarness.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x419188</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x419429</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x419504</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407795</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x2</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x41DE8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;::operator[](long) const</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/sugar/functions/pmin.h</file>
+      <line>111</line>
+    </frame>
+    <frame>
+      <ip>0x41DE13</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt;::operator[](long) const</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/sugar/operators/plus.h</file>
+      <line>72</line>
+    </frame>
+    <frame>
+      <ip>0x41DD41</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>void Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::import_expression&lt;Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; &gt;(Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; const&amp;, long)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>1085</line>
+    </frame>
+    <frame>
+      <ip>0x41DBBF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>void Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::import_sugar_expression&lt;true, Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; &gt;(Rcpp::VectorBase&lt;14, true, Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; &gt; const&amp;, Rcpp::traits::integral_constant&lt;bool, false&gt;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>1071</line>
+    </frame>
+    <frame>
+      <ip>0x41D681</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector&lt;true, Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; &gt;(Rcpp::VectorBase&lt;14, true, Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; &gt; const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>165</line>
+    </frame>
+    <frame>
+      <ip>0x41C994</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>eho(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic</dir>
+      <file>src/EHO.cpp</file>
+      <line>9</line>
+    </frame>
+    <frame>
+      <ip>0x4096E0</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_pinbasic_deepstate_test_eho_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho</dir>
+      <file>eho_DeepState_TestHarness.cpp</file>
+      <line>27</line>
+    </frame>
+    <frame>
+      <ip>0x409148</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_pinbasic_deepstate_test_eho_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho</dir>
+      <file>eho_DeepState_TestHarness.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x419188</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x419429</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x419504</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407795</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xa15ba48 is 8 bytes after a block of size 272 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x40B5ED</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector(int const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>130</line>
+    </frame>
+    <frame>
+      <ip>0x40831A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>RcppDeepState_NumericVector()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppDeepState/include/RcppDeepState.h</file>
+      <line>44</line>
+    </frame>
+    <frame>
+      <ip>0x4094C0</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_pinbasic_deepstate_test_eho_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho</dir>
+      <file>eho_DeepState_TestHarness.cpp</file>
+      <line>21</line>
+    </frame>
+    <frame>
+      <ip>0x409148</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_pinbasic_deepstate_test_eho_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho</dir>
+      <file>eho_DeepState_TestHarness.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x419188</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x419429</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x419504</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407795</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x3</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x41E01C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;::operator[](long) const</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/sugar/functions/pmax.h</file>
+      <line>111</line>
+    </frame>
+    <frame>
+      <ip>0x41DED9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt;::operator[](long) const</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/sugar/operators/times.h</file>
+      <line>273</line>
+    </frame>
+    <frame>
+      <ip>0x41DE29</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt;::operator[](long) const</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/sugar/operators/plus.h</file>
+      <line>72</line>
+    </frame>
+    <frame>
+      <ip>0x41DD41</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>void Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::import_expression&lt;Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; &gt;(Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; const&amp;, long)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>1085</line>
+    </frame>
+    <frame>
+      <ip>0x41DBBF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>void Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::import_sugar_expression&lt;true, Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; &gt;(Rcpp::VectorBase&lt;14, true, Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; &gt; const&amp;, Rcpp::traits::integral_constant&lt;bool, false&gt;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>1071</line>
+    </frame>
+    <frame>
+      <ip>0x41D681</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector&lt;true, Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; &gt;(Rcpp::VectorBase&lt;14, true, Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; &gt; const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>165</line>
+    </frame>
+    <frame>
+      <ip>0x41C994</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>eho(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic</dir>
+      <file>src/EHO.cpp</file>
+      <line>9</line>
+    </frame>
+    <frame>
+      <ip>0x4096E0</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_pinbasic_deepstate_test_eho_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho</dir>
+      <file>eho_DeepState_TestHarness.cpp</file>
+      <line>27</line>
+    </frame>
+    <frame>
+      <ip>0x409148</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_pinbasic_deepstate_test_eho_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho</dir>
+      <file>eho_DeepState_TestHarness.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x419188</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x419429</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x419504</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xa15ba48 is 8 bytes after a block of size 272 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x40B5ED</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector(int const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>130</line>
+    </frame>
+    <frame>
+      <ip>0x40831A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>RcppDeepState_NumericVector()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppDeepState/include/RcppDeepState.h</file>
+      <line>44</line>
+    </frame>
+    <frame>
+      <ip>0x4094C0</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_pinbasic_deepstate_test_eho_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho</dir>
+      <file>eho_DeepState_TestHarness.cpp</file>
+      <line>21</line>
+    </frame>
+    <frame>
+      <ip>0x409148</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_pinbasic_deepstate_test_eho_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho</dir>
+      <file>eho_DeepState_TestHarness.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x419188</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x419429</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x419504</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407795</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x4</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x41DE8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;::operator[](long) const</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/sugar/functions/pmin.h</file>
+      <line>111</line>
+    </frame>
+    <frame>
+      <ip>0x41DE13</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt;::operator[](long) const</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/sugar/operators/plus.h</file>
+      <line>72</line>
+    </frame>
+    <frame>
+      <ip>0x41DD69</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>void Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::import_expression&lt;Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; &gt;(Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; const&amp;, long)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>1085</line>
+    </frame>
+    <frame>
+      <ip>0x41DBBF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>void Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::import_sugar_expression&lt;true, Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; &gt;(Rcpp::VectorBase&lt;14, true, Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; &gt; const&amp;, Rcpp::traits::integral_constant&lt;bool, false&gt;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>1071</line>
+    </frame>
+    <frame>
+      <ip>0x41D681</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector&lt;true, Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; &gt;(Rcpp::VectorBase&lt;14, true, Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; &gt; const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>165</line>
+    </frame>
+    <frame>
+      <ip>0x41C994</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>eho(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic</dir>
+      <file>src/EHO.cpp</file>
+      <line>9</line>
+    </frame>
+    <frame>
+      <ip>0x4096E0</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_pinbasic_deepstate_test_eho_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho</dir>
+      <file>eho_DeepState_TestHarness.cpp</file>
+      <line>27</line>
+    </frame>
+    <frame>
+      <ip>0x409148</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_pinbasic_deepstate_test_eho_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho</dir>
+      <file>eho_DeepState_TestHarness.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x419188</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x419429</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x419504</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407795</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xa15ba50 is 16 bytes after a block of size 272 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x40B5ED</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector(int const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>130</line>
+    </frame>
+    <frame>
+      <ip>0x40831A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>RcppDeepState_NumericVector()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppDeepState/include/RcppDeepState.h</file>
+      <line>44</line>
+    </frame>
+    <frame>
+      <ip>0x4094C0</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_pinbasic_deepstate_test_eho_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho</dir>
+      <file>eho_DeepState_TestHarness.cpp</file>
+      <line>21</line>
+    </frame>
+    <frame>
+      <ip>0x409148</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_pinbasic_deepstate_test_eho_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho</dir>
+      <file>eho_DeepState_TestHarness.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x419188</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x419429</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x419504</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407795</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x5</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x41E01C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;::operator[](long) const</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/sugar/functions/pmax.h</file>
+      <line>111</line>
+    </frame>
+    <frame>
+      <ip>0x41DED9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt;::operator[](long) const</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/sugar/operators/times.h</file>
+      <line>273</line>
+    </frame>
+    <frame>
+      <ip>0x41DE29</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt;::operator[](long) const</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/sugar/operators/plus.h</file>
+      <line>72</line>
+    </frame>
+    <frame>
+      <ip>0x41DD69</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>void Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::import_expression&lt;Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; &gt;(Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; const&amp;, long)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>1085</line>
+    </frame>
+    <frame>
+      <ip>0x41DBBF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>void Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::import_sugar_expression&lt;true, Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; &gt;(Rcpp::VectorBase&lt;14, true, Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; &gt; const&amp;, Rcpp::traits::integral_constant&lt;bool, false&gt;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>1071</line>
+    </frame>
+    <frame>
+      <ip>0x41D681</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector&lt;true, Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; &gt;(Rcpp::VectorBase&lt;14, true, Rcpp::sugar::Plus_Vector_Vector&lt;14, true, Rcpp::sugar::Pmin_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt;, true, Rcpp::sugar::Times_Vector_Primitive&lt;14, true, Rcpp::sugar::Pmax_Vector_Vector&lt;14, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, true, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt; &gt; &gt; &gt; &gt; const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>165</line>
+    </frame>
+    <frame>
+      <ip>0x41C994</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>eho(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic</dir>
+      <file>src/EHO.cpp</file>
+      <line>9</line>
+    </frame>
+    <frame>
+      <ip>0x4096E0</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_pinbasic_deepstate_test_eho_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho</dir>
+      <file>eho_DeepState_TestHarness.cpp</file>
+      <line>27</line>
+    </frame>
+    <frame>
+      <ip>0x409148</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_pinbasic_deepstate_test_eho_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho</dir>
+      <file>eho_DeepState_TestHarness.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x419188</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x419429</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x419504</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xa15ba50 is 16 bytes after a block of size 272 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x40B5ED</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector(int const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>130</line>
+    </frame>
+    <frame>
+      <ip>0x40831A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>RcppDeepState_NumericVector()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppDeepState/include/RcppDeepState.h</file>
+      <line>44</line>
+    </frame>
+    <frame>
+      <ip>0x4094C0</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_pinbasic_deepstate_test_eho_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho</dir>
+      <file>eho_DeepState_TestHarness.cpp</file>
+      <line>21</line>
+    </frame>
+    <frame>
+      <ip>0x409148</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_pinbasic_deepstate_test_eho_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho</dir>
+      <file>eho_DeepState_TestHarness.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x419188</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x419429</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x419504</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407795</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/pinbasic/inst/testfiles/eho/eho_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:07.430 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>1</count>
+    <unique>0x5</unique>
+  </pair>
+  <pair>
+    <count>1</count>
+    <unique>0x4</unique>
+  </pair>
+  <pair>
+    <count>1</count>
+    <unique>0x3</unique>
+  </pair>
+  <pair>
+    <count>1</count>
+    <unique>0x2</unique>
+  </pair>
+  <pair>
+    <count>1</count>
+    <unique>0x1</unique>
+  </pair>
+  <pair>
+    <count>1</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:07.901 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

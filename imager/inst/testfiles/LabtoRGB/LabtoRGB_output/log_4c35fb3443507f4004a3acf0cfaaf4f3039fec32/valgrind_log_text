@@ -1,0 +1,13 @@
+WARNING: No test specified, defaulting to first test defined (imager_deepstate_test_LabtoRGB_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/LabtoRGB/LabtoRGB_output/4c35fb3443507f4004a3acf0cfaaf4f3039fec32.fail`
+TRACE: Running: imager_deepstate_test_LabtoRGB_test from /home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/LabtoRGB/LabtoRGB_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+im values: 4.79212e-250 9.60637e+283 nan 7.52379e-133 -2.04487e-51 10.9345 4.13144e+182 -8.40393e-124 -1.71931e-91 -3.98832e+298 -1.72121e+187 inf -3.17528e+212 2.46668e-86 2.28394e-55 2.59435e+241 -7.22583e-217 1.19332e+132 -7.27981e+99 4.54276e-241 2.40253e-278 -3.60971e+55 5.50504e+287 9.25656e+260 1.04605e+288 -4.46946e+285 -3.80853e+121 4.03823e+81 2.24933e-239 -5.2946e-202 -2.95649e+65 -7.30543e+59 -1.54533e+76 6.63715e+22 2.38121e-167 -3.30715e+68 1.49613e-304 5.92763e-300 7.38636e-168 -1.50356e+120 7.7919e-90 -7.86497e+286 4.51759e+123 1.34692e-60 -1.87211e-60 3.63993e-237 5.72006e-299 2.88948e+251 1.63928e+214 8.41437e-249 3.08669e+146 6.64201e-211 8.02333e-162 -9.81122e+249 1.65859e+214 6.44986e+171 2.53752e+224 -5.20507e+113 nan 1.50713e-55 -5.2821e-140 -3.03976e+168 2.90514e-216 5.47527e+116 1.48609e-263 -3.46514e+276 -2.6788e+19 -inf 5.07008e+306 -2.65911e-237 4.75701e+290 -1.30988e-205 6.12845e+15 -5.00992e+172 141.551 1.60464e+160 -6.43816e-168 1.23487e-251 -1.86166e-136 1.39484e-252 3.64566e+301 -6.40193e+177 5.52539e+159 0
+input ends
+terminate called after throwing an instance of 'Rcpp::not_compatible'
+  what():  Not compatible with requested type: [type=NULL; target=integer].
+ERROR: Failed: imager_deepstate_test_LabtoRGB_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/LabtoRGB/LabtoRGB_output/4c35fb3443507f4004a3acf0cfaaf4f3039fec32.fail failed

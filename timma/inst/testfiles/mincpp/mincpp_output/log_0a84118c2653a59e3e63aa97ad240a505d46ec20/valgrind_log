@@ -1,0 +1,429 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./mincpp_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/timma/inst/testfiles/mincpp/mincpp_output/0a84118c2653a59e3e63aa97ad240a505d46ec20.fail</line>
+</preamble>
+
+<pid>923608</pid>
+<ppid>923607</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/timma/inst/testfiles/mincpp/mincpp_output/log_0a84118c2653a59e3e63aa97ad240a505d46ec20/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./mincpp_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/timma/inst/testfiles/mincpp/mincpp_output/0a84118c2653a59e3e63aa97ad240a505d46ec20.fail</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.025 </time>
+</status>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:07.661 </time>
+</status>
+
+<error>
+  <unique>0x9</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>8 bytes in 1 blocks are definitely lost in loss record 10 of 1,322</text>
+    <leakedbytes>8</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D060F7</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::initialize(int, char const* const*, bool, bool, bool)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>198</line>
+    </frame>
+    <frame>
+      <ip>0x4D06483</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x409B73</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/inst/testfiles/mincpp/mincpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_timma_deepstate_test_mincpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/timma/inst/testfiles/mincpp</dir>
+      <file>mincpp_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/inst/testfiles/mincpp/mincpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_timma_deepstate_test_mincpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/timma/inst/testfiles/mincpp</dir>
+      <file>mincpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D4A8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/inst/testfiles/mincpp/mincpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D749</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/inst/testfiles/mincpp/mincpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D824</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/inst/testfiles/mincpp/mincpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/inst/testfiles/mincpp/mincpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x2b</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>101 bytes in 1 blocks are possibly lost in loss record 44 of 1,322</text>
+    <leakedbytes>101</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E21308</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator&lt;char&gt; const&amp;)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E22FB8</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>char* std::string::_S_construct&lt;char const*&gt;(char const*, char const*, std::allocator&lt;char&gt; const&amp;, std::forward_iterator_tag)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E23055</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::basic_string(char const*, unsigned long, std::allocator&lt;char&gt; const&amp;)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E04331</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+    </frame>
+    <frame>
+      <ip>0x4E146D5</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::logic_error::logic_error(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D20AB5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/src/timma.so</obj>
+      <fn>void arma::arma_stop_logic_error&lt;char const*&gt;(char const* const&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>debug.hpp</file>
+      <line>144</line>
+    </frame>
+    <frame>
+      <ip>0x4D2C81F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/src/timma.so</obj>
+      <fn>arma_check&lt;char const*&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>debug.hpp</file>
+      <line>382</line>
+    </frame>
+    <frame>
+      <ip>0x4D2C81F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/src/timma.so</obj>
+      <fn>init_cold</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>Cube_meat.hpp</file>
+      <line>212</line>
+    </frame>
+    <frame>
+      <ip>0x4D2C81F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/src/timma.so</obj>
+      <fn>Cube</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>Cube_meat.hpp</file>
+      <line>611</line>
+    </frame>
+    <frame>
+      <ip>0x4D2C81F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/src/timma.so</obj>
+      <fn>arma::Cube&lt;double&gt;::Cube(double*, unsigned int, unsigned int, unsigned int, bool, bool, bool)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>Cube_meat.hpp</file>
+      <line>594</line>
+    </frame>
+    <frame>
+      <ip>0x4D2A2AA</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/src/timma.so</obj>
+      <fn>mincpp(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/timma/src</dir>
+      <file>max_min.cpp</file>
+      <line>33</line>
+    </frame>
+    <frame>
+      <ip>0x40A3C1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/inst/testfiles/mincpp/mincpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_timma_deepstate_test_mincpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/timma/inst/testfiles/mincpp</dir>
+      <file>mincpp_DeepState_TestHarness.cpp</file>
+      <line>37</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/inst/testfiles/mincpp/mincpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_timma_deepstate_test_mincpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/timma/inst/testfiles/mincpp</dir>
+      <file>mincpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D4A8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/inst/testfiles/mincpp/mincpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x34</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>144 bytes in 1 blocks are possibly lost in loss record 53 of 1,322</text>
+    <leakedbytes>144</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4DDC2E3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>__cxa_allocate_exception</fn>
+    </frame>
+    <frame>
+      <ip>0x4D20A21</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/src/timma.so</obj>
+      <fn>void arma::arma_stop_logic_error&lt;char const*&gt;(char const* const&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>debug.hpp</file>
+      <line>144</line>
+    </frame>
+    <frame>
+      <ip>0x4D2C81F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/src/timma.so</obj>
+      <fn>arma_check&lt;char const*&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>debug.hpp</file>
+      <line>382</line>
+    </frame>
+    <frame>
+      <ip>0x4D2C81F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/src/timma.so</obj>
+      <fn>init_cold</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>Cube_meat.hpp</file>
+      <line>212</line>
+    </frame>
+    <frame>
+      <ip>0x4D2C81F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/src/timma.so</obj>
+      <fn>Cube</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>Cube_meat.hpp</file>
+      <line>611</line>
+    </frame>
+    <frame>
+      <ip>0x4D2C81F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/src/timma.so</obj>
+      <fn>arma::Cube&lt;double&gt;::Cube(double*, unsigned int, unsigned int, unsigned int, bool, bool, bool)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>Cube_meat.hpp</file>
+      <line>594</line>
+    </frame>
+    <frame>
+      <ip>0x4D2A2AA</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/src/timma.so</obj>
+      <fn>mincpp(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/timma/src</dir>
+      <file>max_min.cpp</file>
+      <line>33</line>
+    </frame>
+    <frame>
+      <ip>0x40A3C1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/inst/testfiles/mincpp/mincpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_timma_deepstate_test_mincpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/timma/inst/testfiles/mincpp</dir>
+      <file>mincpp_DeepState_TestHarness.cpp</file>
+      <line>37</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/inst/testfiles/mincpp/mincpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_timma_deepstate_test_mincpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/timma/inst/testfiles/mincpp</dir>
+      <file>mincpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D4A8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/inst/testfiles/mincpp/mincpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D749</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/inst/testfiles/mincpp/mincpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D824</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/inst/testfiles/mincpp/mincpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/inst/testfiles/mincpp/mincpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xb2</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>1,025 bytes in 1 blocks are definitely lost in loss record 179 of 1,322</text>
+    <leakedbytes>1025</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E763AF</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::reserve(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D04C55</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>MemBuf::MemBuf(int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>MemBuf.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x4D06467</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>56</line>
+    </frame>
+    <frame>
+      <ip>0x409B73</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/inst/testfiles/mincpp/mincpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_timma_deepstate_test_mincpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/timma/inst/testfiles/mincpp</dir>
+      <file>mincpp_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/inst/testfiles/mincpp/mincpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_timma_deepstate_test_mincpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/timma/inst/testfiles/mincpp</dir>
+      <file>mincpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D4A8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/inst/testfiles/mincpp/mincpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D749</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/inst/testfiles/mincpp/mincpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D824</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/inst/testfiles/mincpp/mincpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/timma/inst/testfiles/mincpp/mincpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.156 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

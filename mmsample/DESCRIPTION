@@ -1,0 +1,15 @@
+Package: mmsample
+Title: Multivariate Matched Sampling
+Version: 0.1
+Author: Eoin O'Connell [aut, cre]
+Maintainer: Eoin O'Connell <eoin.m.oconnell@gmail.com>
+Description: Subset a control group to match an intervention group on a set of features using multivariate matching and propensity score calipers. Based on methods in Rosenbaum and Rubin (1985).
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports: Rcpp (>= 0.12.15), MASS (>= 7.3)
+LinkingTo: Rcpp, RcppArmadillo
+NeedsCompilation: yes
+Packaged: 2018-12-19 18:50:55 UTC; eoinoconnell
+Repository: CRAN
+Date/Publication: 2018-12-31 22:10:06 UTC

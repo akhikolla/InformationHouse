@@ -1,0 +1,14 @@
+WARNING: No test specified, defaulting to first test defined (olctools_deepstate_test_recover_olc_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/olctools/inst/testfiles/recover_olc/recover_olc_output/36750e98540cc7d0ed23be463d2353889fd9d713.fail`
+TRACE: Running: olctools_deepstate_test_recover_olc_test from /home/akhila/fuzzer_packages/fuzzedpackages/olctools/inst/testfiles/recover_olc/recover_olc_DeepState_TestHarness.cpp(10)
+input starts
+EXTERNAL: qs v0.23.4.
+
+olcs values: "xsfvgiddaafjw" "NA" "NA" "duhwtpqtih" "mqtr" "NA" "wzwzbpwzycbfdolmzsku" "lnspuwfdxtimicenucka" "ziw" "betryt" "NA" "ggyphrycf" "meiqldnhqcdwltlhbnro" "NA" "NA" "NA" "NA" "vdtaiwwg" "ofersgdtjmddvmfqqsrg" "cnjsphaqoqppoodcptxm" "NA" "qxmrgxqxtgmbkghvvw" "gkcrnebglwrirfwwvzbl" "NA" "NA" "NA" "NA" "mvgrvpnikuhqqlzytxoo" "NA" "NA" "NA" "zcbmmolarktpfxtzigyw" "NA" "NA" "bsntlkwdes" "jzdytxndnlmsdysamray" "ktwbsezt" "ioaoom" "igmijsesj" "zdzhfydqjylkmhjgsxot" "NA" "NA" "bp" "xlvxtqrjbwmvjjwccryo" "yjgczcqezwkomvccrdo" "NA" "hwhwoznmhgwgtpnzpzoy" "NA" "NA" "hsmfhmzexqujaxiobxgu" "NA" "goschizcdylbywatvxwc"
+lats values: 5.61863e+153 -144.332 5.65805e-162 -4.00861e+102 -5.52703e-267 5.72023e-267 -4.69715e-08 4.39921e-159 2.6402e-182 6.69707e-107 8.27773e-32 -2.41164e+297 8.64004e-249 8.22695e-171 -2.64119e+94 -4.15967e+301 -6.59459e-211 2.81491e+233 inf 1.82655e-242 4.68108e-298 -5.39423e-139 -1.10348e-262 -2.23477e+32 1.97551e+96 -2.34644e+127 1.70654e-115 nan -5.58916e+304 -8.03459e+242 -2.24249e-99 -4.33821e+250 1.39678e+183 nan 3.48406e-206 1.78956e+150 3.80111e+111 8.24046e+40 1.44598e+67 -7.59747e+69 2.57622e-251 2.05425e-28 -2.53086e-21 3.80868e+72 -1.7915e-09 -3.88229e+143 -7.83928e+283 nan -2.92761e-36 -5.43697e+251 4.63457e+45 5.43902e+267 -1.09423e+12 4.70146e+207 -9.48153e+44 8.8681e+178 6.78716e+18 inf 0
+longs values: nan
+input ends
+terminate called after throwing an instance of 'std::range_error'
+  what():  There must be as many longitude values as latitude values
+ERROR: Failed: olctools_deepstate_test_recover_olc_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/olctools/inst/testfiles/recover_olc/recover_olc_output/36750e98540cc7d0ed23be463d2353889fd9d713.fail failed

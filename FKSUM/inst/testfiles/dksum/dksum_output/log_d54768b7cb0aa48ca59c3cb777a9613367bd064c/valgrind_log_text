@@ -1,0 +1,22 @@
+WARNING: No test specified, defaulting to first test defined (FKSUM_deepstate_test_dksum_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/FKSUM/inst/testfiles/dksum/dksum_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash`
+TRACE: Running: FKSUM_deepstate_test_dksum_test from /home/akhila/fuzzer_packages/fuzzedpackages/FKSUM/inst/testfiles/dksum/dksum_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+x values: -9.91228e-57 -1.64036e-118 1.05391e+182 8.05607e-38 -3.84354e+136 2.36082e-100 3.01724e-124 9.57301e+229 -7.99809e-243 3.0603e-110 3.27696e-93 -2.10374e+36 -5.29515e-20 9.81127e+30 -3403.88 -364840 -8.45394e+179 -4.53552e+269 3.95635e-268
+Missing value
+y values: 7.10346e+183 nan -6.90559e+64 -inf 1.69525e-11 -3.22009e+207 1.87679e-179 7.60266e-52 -inf -4.07828e-125 1.24681e+68 -2.7582e-295 5.67557e+224 -3.54965e-194 1.60096e-198 4.16403e-243 inf -inf 4.45587e-209 3.27437e+270 1.99018e+90 7.37432e-288 3.21585e+236 -4.62773e+76 5.0002e+07 -6.90296e+295 0
+x_eval values: -3.19868e-152 9.01759e+269 1.38132e+189 4.87533e-255 6.46587e+299 7.95414e+131 -1.00073e+287
+h values: -3.65405e+16
+Missing value
+betas values: -3.08832e+19 2.01317e-209 -inf -inf -1.33821e+63 -5.41559e+156 -2.30753e+261 3.15422e+84 -3.72184e-129 6.54168e+73 3.73657e+138 -5.71213e+187 -1.29575e+212 2.65977e-25 nan -5.09043e-110 -3.45193e+44 -2.11453e-76 inf -1.15542e+112 1.12936e-169 1.82929e-65 1.6328e+135 1.41608e-276 0
+Counts values: -7.19983e-133 6.02031e+250 -6.22109e+272 -2.11922e+85 -1.62929e+63 2.97474e-162 1.38686e+242 1.35822e+166 2.33044e-248 5.0534e+12 -7.91954e+194 5.11639e-144 -2.33802e-198 -1.49989e-10 4.32397e+216 -1.06935e+213 -9.43147e-93 -3.03937e+176 -6.48737e-106 5.45459e-152 -1.49013e-270 1.33234e-306 2.63496e+131 -4.5035e-150 -5.65162e-264 -1.1424e+36 -8.10243e+208 -1.11251e-275 5.63612e+298 8.98835e+132 -6.81615e+140 1.77935e+285 1.27517e-122 2.21466e+23 -7.41203e-200 4.07838e-07 49162.9
+input ends
+==411642==  If you believe this happened as a result of a stack
+==411642==  overflow in your program's main thread (unlikely but
+==411642==  possible), you can try to increase the size of the
+==411642==  main thread stack using the --main-stacksize= flag.
+==411642==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: FKSUM_deepstate_test_dksum_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/FKSUM/inst/testfiles/dksum/dksum_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash crashed

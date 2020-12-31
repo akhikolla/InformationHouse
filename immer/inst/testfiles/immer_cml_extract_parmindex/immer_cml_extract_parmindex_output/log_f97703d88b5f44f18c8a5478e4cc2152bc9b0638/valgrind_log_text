@@ -1,0 +1,25 @@
+WARNING: No test specified, defaulting to first test defined (immer_deepstate_test_immer_cml_extract_parmindex_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/immer/inst/testfiles/immer_cml_extract_parmindex/immer_cml_extract_parmindex_output/f97703d88b5f44f18c8a5478e4cc2152bc9b0638.crash`
+TRACE: Running: immer_deepstate_test_immer_cml_extract_parmindex_test from /home/akhila/fuzzer_packages/fuzzedpackages/immer/inst/testfiles/immer_cml_extract_parmindex/immer_cml_extract_parmindex_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+esf_par0 values: 2.01769e+47 1.43678e-133 3.24864e+70 1.20447e-16
+5.91096e+64 7.46115e-258 6.40668e-255 1.62054e+203
+4.71376e-48 5.01413e+184 4.51599e-206 1.34759e+170
+1.75062e-260 1.58739e-68 1.92056e-182 1.67897e-132
+4.13273e+261 29072.6 1.10966e+192 2.30932e+295
+7.50348e-71 1.41003e-86 4.42315e+80 1.54458e+60
+1.28334e+144 1.93644e+180 1.54664e-118 3.41101e+171
+2.90402e-286 1.99326e-62 5.07882e+283 3.58420e+261
+3.56215e-230 1.39816e-16 1.74133e+63 1.53532e+63
+
+parm_index_pp values: -1453063886 668834061 -761301371 -1852173736 -636431700 1261390305 638784143 -1616685240 123304750 907295753 -1280143803 1285594406 -1318071300 -1642275388 804279503 -1817503846 76728635 -1509604262 -1210933501 1916545315 -1409540023 419237448 -312338560 221125394 -1042002585 -376323680 1667277781 -1664288441 -921071135 379529476 21005326 1872699440 -2089969812 -27718559 -1179699370 2083560773 1227761247 -850369586 -1863787009 -2013450485 1808234345 545573849 855781295 852358267 -82060599 1799264251 645200813 1915402461 -248494575 -1273893913 320509765 -410271517 -1499747311 -649916929 -1207391190 845481764 -1790102199 1595945074 1002944546 1400374777 330370028
+input ends
+==880858==  If you believe this happened as a result of a stack
+==880858==  overflow in your program's main thread (unlikely but
+==880858==  possible), you can try to increase the size of the
+==880858==  main thread stack using the --main-stacksize= flag.
+==880858==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: immer_deepstate_test_immer_cml_extract_parmindex_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/immer/inst/testfiles/immer_cml_extract_parmindex/immer_cml_extract_parmindex_output/f97703d88b5f44f18c8a5478e4cc2152bc9b0638.crash crashed

@@ -1,0 +1,27 @@
+Package: Rrelperm
+Title: Generate Two- And Three-Phase Relative Permeability Estimates
+Version: 0.1.0
+Date: 2020-06-21
+Authors@R: 
+    person(given = "Farshad",
+           family = "Tabasinejad",
+           role = c("aut", "cre"),
+           email = "farshad.tabasinejad@susaenergy.com")
+Description: Create a table of two- and three-phase relative permeability estimates for water, and hydrocarbon phases in the reservoir. Stone, H. L. (1970) <doi:10.2118/2116-PA>. Fayers, F. J. and Matthews, J. D. (1984) <doi:10.2118/11277-PA>. Baker, L. E. (1988) <doi:10.2118/17369-MS>.
+License: GPL-3
+URL: https://susaenergy.github.io/Rrelperm_ws/
+Imports: Rcpp (>= 1.0.4.6), nleqslv, Rdpack
+LinkingTo: Rcpp, RcppArmadillo
+RdMacros: Rdpack
+Suggests: knitr, rmarkdown, testthat, ggplot2, ggtern, magrittr, tidyr
+Language: en-US
+Encoding: UTF-8
+LazyData: TRUE
+VignetteBuilder: knitr
+RoxygenNote: 7.1.0
+NeedsCompilation: yes
+Packaged: 2020-06-22 04:56:21 UTC; ftn60
+Author: Farshad Tabasinejad [aut, cre]
+Maintainer: Farshad Tabasinejad <farshad.tabasinejad@susaenergy.com>
+Repository: CRAN
+Date/Publication: 2020-06-25 14:30:14 UTC

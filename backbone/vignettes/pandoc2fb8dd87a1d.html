@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>backbone_introduction</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#header {
+text-align: center;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">backbone_introduction</h1>
+
+
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(backbone)</a></code></pre></div>
+<div id="weighted-graphs-bipartite-projections-and-signed-graphs" class="section level1">
+<h1>Weighted Graphs, Bipartite Projections, and Signed Graphs</h1>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>Signed graphs, those with both positive and negative edges, are an incredible tool for understanding social dynamics in today’s world. However, collecting signed graph data is challenging for numerous reasons. Often times people do not want to report on negative ties, may have strategic reasons for not reporting, or in the case of children, cannot be asked negative questions.</p>
+<p>One solution is to infer a signed graph from either a weighted graph or bipartite projection. A weighted graph is one where each edge has a numeric value indicating its strength. Bipartite graph data records activity participation such as co-attendance or co-sponsorship. Inferring a signed graph from either of these graph types is called extracting the backbone.</p>
+<p>The backbone package provides users with several different methods of backbone extraction which are in use in the current literature. It allows the user to input their own weighted graph or bipartite graph data to find a graph with only the significant edges retained between nodes of a unipartite set. The backbone matrix <span class="math inline">\(G\)</span> is a positive or signed matrix in which <span class="math inline">\(G_{ij}=1\)</span> if agents <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> have a significant positive relationship and <span class="math inline">\(G_{ij}=-1\)</span> if they have a significant negative relationship.</p>
+<p>We will outline the use of the backbone package with Davis, Gardner, and Gardner’s Southern Women Dataset <span class="citation">(Davis, Gardner, and Gardner <a href="#ref-davis1941deep">1941</a>)</span> and accessed via <span class="citation">(Repository, <a href="#ref-ucinet">n.d.</a>)</span>. This dataset contains bipartite data of 18 women and their attendance of 14 social events over a nine month period.</p>
+</div>
+<div id="bipartite-projections" class="section level2">
+<h2>Bipartite Projections</h2>
+<p>A bipartite graph <span class="math inline">\(B\)</span> contains two sets of vertices, with edges only existing between the two sets, not within. In network analysis, these two sets are often referred to as agents and artifacts. Looking at <span class="math inline">\(B\)</span> as a bipartite matrix, <span class="math inline">\(B_{ik}=1\)</span> if the <span class="math inline">\(i\)</span>th agent is associated with the <span class="math inline">\(j\)</span>th artifact, and is zero otherwise. Let’s take a look at the Davis dataset included in this package to see that it is bipartite.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">data</span>(davis) <span class="co">#load the dataset</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">davis <span class="co">#view the dataset</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt;           6/27 3/2 4/12 9/26 2/25 5/19 3/15 9/16 4/8 6/10 2/23 4/7 11/21</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; EVELYN       1   1    1    1    1    1    0    1   1    0    0   0     0</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; LAURA        1   1    1    0    1    1    1    1   0    0    0   0     0</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt; THERESA      0   1    1    1    1    1    1    1   1    0    0   0     0</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; BRENDA       1   0    1    1    1    1    1    1   0    0    0   0     0</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt; CHARLOTTE    0   0    1    1    1    0    1    0   0    0    0   0     0</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt; FRANCES      0   0    1    0    1    1    0    1   0    0    0   0     0</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt; ELEANOR      0   0    0    0    1    1    1    1   0    0    0   0     0</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt; PEARL        0   0    0    0    0    1    0    1   1    0    0   0     0</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt; RUTH         0   0    0    0    1    0    1    1   1    0    0   0     0</span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt; VERNE        0   0    0    0    0    0    1    1   1    0    0   1     0</span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt; MYRNA        0   0    0    0    0    0    0    1   1    1    0   1     0</span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt; KATHERINE    0   0    0    0    0    0    0    1   1    1    0   1     1</span></a>
+<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co">#&gt; SYLVIA       0   0    0    0    0    0    1    1   1    1    0   1     1</span></a>
+<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="co">#&gt; NORA         0   0    0    0    0    1    1    0   1    1    1   1     1</span></a>
+<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="co">#&gt; HELEN        0   0    0    0    0    0    1    1   0    1    1   1     0</span></a>
+<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="co">#&gt; DOROTHY      0   0    0    0    0    0    0    1   1    0    0   0     0</span></a>
+<a class="sourceLine" id="cb2-20" data-line-number="20"><span class="co">#&gt; OLIVIA       0   0    0    0    0    0    0    0   1    0    1   0     0</span></a>
+<a class="sourceLine" id="cb2-21" data-line-number="21"><span class="co">#&gt; FLORA        0   0    0    0    0    0    0    0   1    0    1   0     0</span></a>
+<a class="sourceLine" id="cb2-22" data-line-number="22"><span class="co">#&gt;           8/3</span></a>
+<a class="sourceLine" id="cb2-23" data-line-number="23"><span class="co">#&gt; EVELYN      0</span></a>
+<a class="sourceLine" id="cb2-24" data-line-number="24"><span class="co">#&gt; LAURA       0</span></a>
+<a class="sourceLine" id="cb2-25" data-line-number="25"><span class="co">#&gt; THERESA     0</span></a>
+<a class="sourceLine" id="cb2-26" data-line-number="26"><span class="co">#&gt; BRENDA      0</span></a>
+<a class="sourceLine" id="cb2-27" data-line-number="27"><span class="co">#&gt; CHARLOTTE   0</span></a>
+<a class="sourceLine" id="cb2-28" data-line-number="28"><span class="co">#&gt; FRANCES     0</span></a>
+<a class="sourceLine" id="cb2-29" data-line-number="29"><span class="co">#&gt; ELEANOR     0</span></a>
+<a class="sourceLine" id="cb2-30" data-line-number="30"><span class="co">#&gt; PEARL       0</span></a>
+<a class="sourceLine" id="cb2-31" data-line-number="31"><span class="co">#&gt; RUTH        0</span></a>
+<a class="sourceLine" id="cb2-32" data-line-number="32"><span class="co">#&gt; VERNE       0</span></a>
+<a class="sourceLine" id="cb2-33" data-line-number="33"><span class="co">#&gt; MYRNA       0</span></a>
+<a class="sourceLine" id="cb2-34" data-line-number="34"><span class="co">#&gt; KATHERINE   1</span></a>
+<a class="sourceLine" id="cb2-35" data-line-number="35"><span class="co">#&gt; SYLVIA      1</span></a>
+<a class="sourceLine" id="cb2-36" data-line-number="36"><span class="co">#&gt; NORA        1</span></a>
+<a class="sourceLine" id="cb2-37" data-line-number="37"><span class="co">#&gt; HELEN       0</span></a>
+<a class="sourceLine" id="cb2-38" data-line-number="38"><span class="co">#&gt; DOROTHY     0</span></a>
+<a class="sourceLine" id="cb2-39" data-line-number="39"><span class="co">#&gt; OLIVIA      0</span></a>
+<a class="sourceLine" id="cb2-40" data-line-number="40"><span class="co">#&gt; FLORA       0</span></a></code></pre></div>
+<p>We see that our two sets of vertices are women and events attended. We want to use this bipartite data to infer a signed graph between the women, indicating who attends events together and avoids attending events together. Let’s first look at the graph projection.</p>
+<p>A projection <span class="math inline">\(P\)</span> of bipartite graph <span class="math inline">\(B\)</span> is defined by <span class="math inline">\(BB'\)</span>, where <span class="math inline">\(B'\)</span> is the transpose of <span class="math inline">\(B\)</span>. <span class="math inline">\(P\)</span> is a unipartite graph of the agents, where <span class="math inline">\(P_{ij}\)</span> equals the number of artifacts that agents <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> have in common. Note that the projection <span class="math inline">\(P\)</span> is a weighted graph. From looking at the matrix of southern women above, we see that Evelyn and Laura have attended six of the same events. This means that <span class="math inline">\(P_{1 2} = 6\)</span> in the projection.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">davis<span class="op">%*%</span><span class="kw">t</span>(davis) <span class="co">#The projected davis dataset</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt;           EVELYN LAURA THERESA BRENDA CHARLOTTE FRANCES ELEANOR PEARL RUTH</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; EVELYN         8     6       7      6         3       4       3     3    3</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt; LAURA          6     7       6      6         3       4       4     2    3</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; THERESA        7     6       8      6         4       4       4     3    4</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; BRENDA         6     6       6      7         4       4       4     2    3</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; CHARLOTTE      3     3       4      4         4       2       2     0    2</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; FRANCES        4     4       4      4         2       4       3     2    2</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; ELEANOR        3     4       4      4         2       3       4     2    3</span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; PEARL          3     2       3      2         0       2       2     3    2</span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt; RUTH           3     3       4      3         2       2       3     2    4</span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt; VERNE          2     2       3      2         1       1       2     2    3</span></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt; MYRNA          2     1       2      1         0       1       1     2    2</span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt; KATHERINE      2     1       2      1         0       1       1     2    2</span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt; SYLVIA         2     2       3      2         1       1       2     2    3</span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co">#&gt; NORA           2     2       3      2         1       1       2     2    2</span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="co">#&gt; HELEN          1     2       2      2         1       1       2     1    2</span></a>
+<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="co">#&gt; DOROTHY        2     1       2      1         0       1       1     2    2</span></a>
+<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="co">#&gt; OLIVIA         1     0       1      0         0       0       0     1    1</span></a>
+<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="co">#&gt; FLORA          1     0       1      0         0       0       0     1    1</span></a>
+<a class="sourceLine" id="cb3-21" data-line-number="21"><span class="co">#&gt;           VERNE MYRNA KATHERINE SYLVIA NORA HELEN DOROTHY OLIVIA FLORA</span></a>
+<a class="sourceLine" id="cb3-22" data-line-number="22"><span class="co">#&gt; EVELYN        2     2         2      2    2     1       2      1     1</span></a>
+<a class="sourceLine" id="cb3-23" data-line-number="23"><span class="co">#&gt; LAURA         2     1         1      2    2     2       1      0     0</span></a>
+<a class="sourceLine" id="cb3-24" data-line-number="24"><span class="co">#&gt; THERESA       3     2         2      3    3     2       2      1     1</span></a>
+<a class="sourceLine" id="cb3-25" data-line-number="25"><span class="co">#&gt; BRENDA        2     1         1      2    2     2       1      0     0</span></a>
+<a class="sourceLine" id="cb3-26" data-line-number="26"><span class="co">#&gt; CHARLOTTE     1     0         0      1    1     1       0      0     0</span></a>
+<a class="sourceLine" id="cb3-27" data-line-number="27"><span class="co">#&gt; FRANCES       1     1         1      1    1     1       1      0     0</span></a>
+<a class="sourceLine" id="cb3-28" data-line-number="28"><span class="co">#&gt; ELEANOR       2     1         1      2    2     2       1      0     0</span></a>
+<a class="sourceLine" id="cb3-29" data-line-number="29"><span class="co">#&gt; PEARL         2     2         2      2    2     1       2      1     1</span></a>
+<a class="sourceLine" id="cb3-30" data-line-number="30"><span class="co">#&gt; RUTH          3     2         2      3    2     2       2      1     1</span></a>
+<a class="sourceLine" id="cb3-31" data-line-number="31"><span class="co">#&gt; VERNE         4     3         3      4    3     3       2      1     1</span></a>
+<a class="sourceLine" id="cb3-32" data-line-number="32"><span class="co">#&gt; MYRNA         3     4         4      4    3     3       2      1     1</span></a>
+<a class="sourceLine" id="cb3-33" data-line-number="33"><span class="co">#&gt; KATHERINE     3     4         6      6    5     3       2      1     1</span></a>
+<a class="sourceLine" id="cb3-34" data-line-number="34"><span class="co">#&gt; SYLVIA        4     4         6      7    6     4       2      1     1</span></a>
+<a class="sourceLine" id="cb3-35" data-line-number="35"><span class="co">#&gt; NORA          3     3         5      6    8     4       1      2     2</span></a>
+<a class="sourceLine" id="cb3-36" data-line-number="36"><span class="co">#&gt; HELEN         3     3         3      4    4     5       1      1     1</span></a>
+<a class="sourceLine" id="cb3-37" data-line-number="37"><span class="co">#&gt; DOROTHY       2     2         2      2    1     1       2      1     1</span></a>
+<a class="sourceLine" id="cb3-38" data-line-number="38"><span class="co">#&gt; OLIVIA        1     1         1      1    2     1       1      2     2</span></a>
+<a class="sourceLine" id="cb3-39" data-line-number="39"><span class="co">#&gt; FLORA         1     1         1      1    2     1       1      2     2</span></a></code></pre></div>
+</div>
+<div id="general-backbone-methods" class="section level2">
+<h2>General Backbone Methods</h2>
+<p>In this section, we will describe backbone methods that work for any weighted graph. Finding the backbone of a matrix/graph/network means that we only retain the significant edges. Since weighted graphs can be difficult to work with, we want to find a binary or signed (<span class="math inline">\(\pm 1\)</span>) matrix that represents our data. The purpose of the <code>backbone</code> package is to provide multiple methods to extract these significant edges and obtain the positive or signed matrices. To illustrate general backbone methods, we will use the weighted graph <span class="math inline">\(P = BB'\)</span> where <span class="math inline">\(B\)</span> is the bipartite matrix <code>davis</code> included in the package.</p>
+</div>
+<div id="universal-backbone-universal" class="section level2">
+<h2>Universal Backbone: universal( )</h2>
+<p>One way to do this is through the <code>universal()</code> function. The <code>universal()</code> function allows the user to pick threshold values (one for positive matrices, two for signed matrices). If the value of the projection <span class="math inline">\(P_{ij}\)</span> is greater than or equal to the set positive threshold value, this edge in the backbone is set to <span class="math inline">\(+1\)</span>. If the value of the projection <span class="math inline">\(P_{ij}\)</span> is less than or equal to the set negative threshold value, this edge is set to <span class="math inline">\(-1\)</span> in the backbone. Edges that are not outside of the threshold values are set to zero.</p>
+<p>The <code>universal( )</code> function has six parameters, * B, Matrix: Bipartite network * upper, Real: upper threshold value, to be multiplied by the chosen function applied to the projection * lower, Real: lower threshold value, to be multiplied by the chosen function applied to the projection * signed, Boolean: If the backbone should be signed, or positive only * weighted, Boolean: TRUE if weighted matrix, FALSE if bipartite to be projected * by_row, Boolean: If model should be evaluated by row or column. If false, the matrix is transposed before the projection (if biparitite) and threshold is applied. * FUN, Function: A function to be applied to the projection, e.g. mean, sd, max, etc. If trivial, valued threshold is used.</p>
+<p>The function <code>universal()</code> returns the backbone matrix, a signed (or positive) adjacency matrix of a graph.</p>
+<p>In our example using the <code>davis</code> dataset, if we input the projected matrix <code>P &lt;- davis%*%t(davis)</code>, we can use the universal threshold on the weighted matrix. If we set an upper threshold of 1, then if two women have attended any event together, there will be an edge between the two. We can plot this graph with the <code>igraph</code> package.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">P &lt;-<span class="st"> </span>davis<span class="op">%*%</span><span class="kw">t</span>(davis)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">universal_bb &lt;-<span class="st"> </span><span class="kw">universal</span>(P, <span class="dt">upper =</span> <span class="dv">1</span>, <span class="dt">signed =</span> <span class="ot">FALSE</span>, <span class="dt">weighted =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">graph &lt;-<span class="st"> </span>igraph<span class="op">::</span><span class="kw">graph_from_adjacency_matrix</span>(universal_bb, <span class="dt">mode =</span> <span class="st">&quot;undirected&quot;</span>)</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw">plot</span>(graph, <span class="dt">vertex.label =</span> <span class="ot">NA</span>)</a></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --> We can also use the <code>universal()</code> function on the original bipartite data. For the same threshold as before, input the bipartite data as below. Notice we have gotten the same backbone matrix.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">universal_bb &lt;-<span class="st"> </span><span class="kw">universal</span>(davis, <span class="dt">upper =</span> <span class="dv">1</span>, <span class="dt">signed =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">graph &lt;-<span class="st"> </span>igraph<span class="op">::</span><span class="kw">graph_from_adjacency_matrix</span>(universal_bb, <span class="dt">mode =</span> <span class="st">&quot;undirected&quot;</span>)</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">plot</span>(graph, <span class="dt">vertex.label =</span> <span class="ot">NA</span>)</a></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>The threshold used above creates a very dense matrix. If we want to impose a stricter condition, say women have to attend at least 3 events together, we do so as follows:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">P &lt;-<span class="st"> </span>davis<span class="op">%*%</span><span class="kw">t</span>(davis)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">universal_bb &lt;-<span class="st"> </span><span class="kw">universal</span>(P, <span class="dt">upper =</span> <span class="dv">3</span>, <span class="dt">signed =</span> <span class="ot">FALSE</span>, <span class="dt">weighted =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">graph &lt;-<span class="st"> </span>igraph<span class="op">::</span><span class="kw">graph_from_adjacency_matrix</span>(universal_bb, <span class="dt">mode =</span> <span class="st">&quot;undirected&quot;</span>)</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="kw">plot</span>(graph, <span class="dt">vertex.label =</span> <span class="ot">NA</span>)</a></code></pre></div>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASAAAAEgCAMAAAAjXV6yAAAADFBMVEUAAACpqanmnwD///+JKgd3AAAACXBIWXMAAA7DAAAOwwHHb6hkAAAE9klEQVR4nO3ci3abOhQAUSv8/z+3BqEHOB2SQnRMZta6SWvHDtkGCRT3Pib7Z4/RGxA9gSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIGgqECPR5AtC7IZ2x4fHx8xNi3GVmx7+gQRCrERu44DXX4ovjnQ9YdiTKCjP/gPHIpBgQ4eOr8Y6FgCUb92DDrcL53FAiUQJBA0ACjMdeihfn5b41yHHurHNzXQdeihBIIEghyDIGcx6J22dUgCQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkE3ArrmTRH3AbrobTW3AbrqjVkC0fOe/oxjSgL9o5TSIvRIpz/3+wKVSSs9VVK+4XShtwXKk1aaeabFaP548mz/rkB5yMk7TKr/nT3bBwL60ku/Aq2tQKeP1XGAvvDS/wVpIJYxKHdfoIM/Wd5d1kkrlWF5+XR/oNRNQ91Rt9pMy07z976Ud5/5pna2P3O7Tnyu/6m+9JWhHnWNzfzX9eNz4krlEFtuvOUsltbpp+wh6y3LQLz74vlz+WOza031oDunoUD5xc6v/eZErwy4/d5Tv+J5jC2PTHX/uRXQcgQ1L/5yrHT3t8dYasec8uj1RLoi3QWon3BS+dHKsLsfcFPdWfpBPZ9JL/ecOggFBMpMaX/ZUCex7virJ4rPrzh5GhsPtL2Ymqb2uGkf0M5jzay3PPKqM8XxY1CdxNf9pfr0JvVPaWpmvXk/64amuwBt5qHu+jxtgerIlOqjt8fUzfaguXKetzmVbkbf5m+bU6Jnq0g7et9jDFoqpy6b08Jmoad8fDl/9wsf041msdx6crObluoqYd7HNo+76vq9bzxQHolSXVQuRuWmer1Vq4+/9N+Zjwd6lMuJZjZK/bC0Idk+w5X/znw4UDP0pHytedk5zbe2b+h3n/Zrp+0amEBTe2KXytXGetVw+urXd7Zv7Lefmmv6tJg88kC9LhuO3rzB339qVoXqPlOPs1OXLr5TAKD1kJr6hdfmrpHFAqrXDd1dI4sJtL9GHVYIoGblZ7+IOGJ7moIBpfzrru6uocUC2q0CCbRUYNJuchdoLnVr0q9WEkcVBGi+kN//dnkSaOnF+wvT5vOoQgC9umoXqOnlskYQobhA/TujhhUC6JNl5RDX8zGAPln36d7LMKggQJ+0Pa0eUGyg899R9+WCA43/nysHBxr/ew2BaAsGfu8DCUQ5BlHOYsETCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBII+gNOzcNo2hZiPwAAAABJRU5ErkJggg==" /><!-- --></p>
+<p>Or, perhaps we only keep edges that are more than twice the mean. We can do this with the following code.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">universal_bb &lt;-<span class="st"> </span><span class="kw">universal</span>(davis, <span class="dt">upper =</span> <span class="dv">2</span>, <span class="dt">FUN =</span> mean, <span class="dt">signed =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">graph2 &lt;-<span class="st"> </span>igraph<span class="op">::</span><span class="kw">graph_from_adjacency_matrix</span>(universal_bb, <span class="dt">mode =</span> <span class="st">&quot;undirected&quot;</span>)</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="kw">plot</span>(graph2, <span class="dt">vertex.label =</span> <span class="ot">NA</span>)</a></code></pre></div>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASAAAAEgCAMAAAAjXV6yAAAADFBMVEUAAACpqanmnwD///+JKgd3AAAACXBIWXMAAA7DAAAOwwHHb6hkAAADvElEQVR4nO3a4VLaSgCAUWLf/53bei9aWsgHDslu5Hw/HJ04spwhu1mT0w+tdho9gNkDFAGKAEWAIkARoAhQBCgCFAGKAEWAIkARoAhQBCgCFAGKAEWAIkARoAhQBCgCFAGKAEWAIkARoAhQBCgCFAGKAEWAIkARoAhQBCgCFAGKAEWAIkARoAhQBCgCFAGKAEWAIkARoAhQBCgCFAGKAEWAIkARoAhQBCgCFAGKAEWAIkARoAhQBCgCFAGKAEWAIkARoAhQBCgCFE0NdDqNH974Edzu9Pb2Nnx8wwdwu98+44VGv/5K60B7nX5HBdrt9JsYaA1hv9NvZqCV0whQBKgyB1VWsUkaDjTDdmKt0aObYjux1uDBzbGdWAtQBCgaPTZzUA7AKnbsAEWAIkARoAhQ9K2AtrhkmBRo7a3ePLbJReecQGtv9eaxbbYtUwKtvdXbxwDFMUB1zBxUx6xieWyDkez4WocMUAQoAhQBigBFgCJAEaAIUDQAaPZbhZftP9bpbzZftvtQ539c4TJA0Sig5fzj7BPSsDloWZYfm0xITyYfuYotywbn27PJR3zAl4/vng/09L94IKC7zp1vBvTICXHfr34zoOX+KfXed/4d5qAPoWX1ty67+6Nx/FXsA+YRn2EXmAOBHvIZtocbAvR+FjzoM+qie8hr/rnXmL0RH9pDbVcBRYCiYXPQgNf9UuNWsYN0nJEOClAEKAIUAYoARYcG2uNy4chAu1xwHhhony0LoHqVjf/+ht0Ceu7MdGCgG3PQk2emIwNd/aw8+8Q7NNC1AEWAKnNQZRXbNUDRVEAz/q96phFdTq+TaE0xiP+6XKBnuTc0wxj+7wJomruLEwzh3PkJ6vcAXen01xkG6O9+z8sfj+DP4TMX0LvO+fEzq9iVlvOXT6nRTQj06+vy+cPopgT60kOeGzUh0PK1p2A3aj6gj+kH0D99LvMm6Wv9eelz1zL/YreeH96svtqt50f3Yi93Z/XR3fzLAT26WX09oItJ1xxUWcWOEaAIUAQoAhQBigBFgCJAEaAIUAQoAhQBigBFgCJAEaAIUAQoAhQBigBFgCJAEaAIUAQoAhQBigBFgCJAEaAIUAQoAhQBigBFgCJAEaAIUAQoAhQBigBFgCJAEaAIUAQoAhQBigBFgCJAEaAIUAQoAhQBigBFgCJAEaAIUAQoAhQBigBFgCJAEaAIUAQoAhQBigBFgCJAEaAIUAQoAhQBigBFgCJAEaAIUAQoAhQBigBFgCJAEaAIUAQoAhQBin4CN0fG3hNuOcIAAAAASUVORK5CYII=" /><!-- --></p>
+<p>To create a signed network, we can apply both an upper and lower threshold value. For instance, we could chose to retain a positive edge if the women attended at least 5 events together, and a negative edge if they only attended 1 event together. We can do this with the following code.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">universal_bb &lt;-<span class="st"> </span><span class="kw">universal</span>(davis, <span class="dt">upper =</span> <span class="dv">5</span>, <span class="dt">lower =</span> <span class="dv">1</span>, <span class="dt">signed =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p>We can also chose to threshold by multiples of a chosen function, such as mean, max, or min. The function is applied to the projection <span class="math inline">\(P\)</span>, and then multiplied by the upper and lower thresholds. Any <span class="math inline">\(P_{ij}\)</span> values above the upper threshold are counted as a positive <span class="math inline">\(+1\)</span> value in the backbone, and any below the lower threshold are counted as a negative <span class="math inline">\(-1\)</span> value in the backbone. The following code will return a backbone where the positive edges indicate two women attended more than 4 times the mean number of events together, and a negative edge indicates two women attended below half the mean number of events together.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">universal_bb &lt;-<span class="st"> </span><span class="kw">universal</span>(davis, <span class="dt">upper =</span> <span class="dv">4</span>, <span class="dt">lower =</span> <span class="fl">.5</span>, <span class="dt">FUN =</span> mean, <span class="dt">signed =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p>While this threshold creates a less dense, more informative graph, it may be missing out on key relationships between agents. We move to more sophisticated methods of backbone extraction.</p>
+</div>
+<div id="bipartite-projection-backbone-methods" class="section level2">
+<h2>Bipartite Projection Backbone Methods</h2>
+<p>When examining a bipartite projection, we need to interpret the <span class="math inline">\(P_{ij}\)</span> values. Larger values indicate that agents <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> share many artifacts, but this may not be enough to claim they have any sort of relationship. If they both are associated with a large number of artifacts  if those artifacts are also associated with a large number of agents, then their individual large <span class="math inline">\(P_{ij}\)</span> value may not be meaningful. To tell if <span class="math inline">\(P_{ij}\)</span> is large enough or small enough to be an interesting finding, we compare the <span class="math inline">\(P\)</span> matrix to a null distribution which is conditioned on the number of artifacts with which the agents are associated, and the number of agents associated with each artifact. The <code>backbone</code> package provides three different ways to create distributions: the hypergeometric distribution using <code>hyperg()</code>, the stochastic degree sequence method using <code>sdsm()</code>, and the fixed degree sequence method using <code>fdsm()</code>. Each of these three functions return two matrices labeled positive and negative. The positive matrix contains the number of times an observed edge <span class="math inline">\(P_{ij}\)</span> is above the expected value in a null distribution divided by the number of trials. The negative matrix contains the number of times the observed edge is below the expected value in a null distribution, divided by the number of trials. To obtain the backbone matrix, we use the <code>backbone.extract()</code> function.</p>
+</div>
+<div id="extracting-the-backbone-backbone.extract" class="section level2">
+<h2>Extracting the Backbone: backbone.extract( )</h2>
+<p>The <code>backbone.extract()</code> function allows the user to take a matrix of proportions and return a backbone. It is intended to be used with the functions <code>hyperg, sdsm,</code> and <code>fdsm</code>. The backbone extraction function takes in two matrices, denoted positive and negative, and a significant test value <code>alpha</code>. These matrices should be proportions (each entry between 0 and 1) of times an observed edge <span class="math inline">\(P_{ij}\)</span> of a bipartite projection was above (in the positive matrix) or below (in the negative matrix) the value in a the distribution. One can adjust the precision of the significance test, <span class="math inline">\(alpha\)</span>, to refine their backbone results. We will demonstrate this function’s use in the following sections.</p>
+</div>
+<div id="hypergeometric-backbone-hyperg" class="section level2">
+<h2>Hypergeometric Backbone: hyperg( )</h2>
+<p>The hypergeometric distribution compares an edge’s observed weight, <span class="math inline">\(P_{ij}\)</span> to the distribution of weights expected in a projection obtained from a random bipartite network where the row sums are fixed, but the column sums are allowed to vary. This method of backbone extraction was developed in <span class="citation">(Neal <a href="#ref-neal2013identifying">2013</a>)</span>. For documentation on the hypergeometric distribution, see <code>stats::phyper</code>. The <code>hyperg()</code> function returns matrices of the probability of ties above and below the observed <span class="math inline">\(P_{ij}\)</span> value, based on the hypergeometric distribution. One must use the <code>backbone.extract()</code> function to find the backbone at a given significance value <span class="math inline">\(alpha\)</span>.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">hyperg_probs &lt;-<span class="st"> </span><span class="kw">hyperg</span>(davis)</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="co">#&gt; [1] &quot;Finding the Backbone using Hypergeometric Distribution&quot;</span></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">hyperg_bb &lt;-<span class="st"> </span><span class="kw">backbone.extract</span>(hyperg_probs<span class="op">$</span>positive, hyperg_probs<span class="op">$</span>negative)</a></code></pre></div>
+</div>
+<div id="the-degree-sequence-methods-sdsm-and-fdsm" class="section level2">
+<h2>The Degree Sequence Methods: sdsm( ) and fdsm( )</h2>
+<p>Both the Stochastic Degree Sequence Method (sdsm) and Fixed Degree Sequence Method (fdsm) involve the same series of steps. They construct a null distribution by: 1. Constructing <span class="math inline">\(B^*\)</span>, a new bipartite matrix which retains the agent and artifact degrees of <span class="math inline">\(B\)</span> but is otherwise random. 2. Compute the projection of <span class="math inline">\(B^*\)</span>, called <span class="math inline">\(P^*\)</span>. 3. Save <span class="math inline">\(P^*_{ij}\)</span>, repeat 1 and 2. 4. Compare <span class="math inline">\(P_{ij}\)</span> to the distribution of <span class="math inline">\(P^*_{ij}\)</span>.</p>
+<p>The models differ in how they construct <span class="math inline">\(B^*\)</span>. The fdsm method constructs <span class="math inline">\(B^*\)</span> so that the agent and artifact degrees are exactly the same as in <span class="math inline">\(B\)</span>. This method is due to Zweig and Kaufmann <span class="citation">(Zweig and Kaufmann <a href="#ref-zweig2011systematic">2011</a>)</span>. There are several different ways to randomly sample from this space of <span class="math inline">\(B^*\)</span> matrices. The function <code>fdsm( )</code> uses the curveball algorithm <span class="citation">(Strona et al. <a href="#ref-strona2014fast">2014</a>)</span></p>
+<p>Alternatively, the sdsm constructs <span class="math inline">\(B^*\)</span> so that the agent and artifact degrees are approximately the same as in <span class="math inline">\(B\)</span>, but using a maximum likelihood estimation to estimate parameters of a binomail regression equation <span class="math inline">\(Pr(B_{ij}=1) = \beta_0 +\beta_1 B_i + \beta_2 B_j +\beta_3 (B_i \times B_j)\)</span> where <span class="math inline">\(B_i\)</span> and <span class="math inline">\(B_j\)</span> are the agent and artifact degrees in <span class="math inline">\(B\)</span> respectively. The fitted parameters are then used to compute the predicted probability that <span class="math inline">\(B_{ij}=1\)</span>. Then, <span class="math inline">\(B^*\)</span> is constructed such that <span class="math inline">\(B_{ij}^*\)</span> is the outcome of a single Bernouilli trial with <span class="math inline">\(Pr(B_{ij}=1)\)</span> probability of success. This method is due to <span class="citation">(Neal <a href="#ref-neal2014backbone">2014</a>)</span>.</p>
+<div id="fdsm" class="section level3">
+<h3>fdsm</h3>
+<p>The <code>fdsm( )</code> function has five parameters, * B, Matrix: Bipartite network * trials, Integer: Number of random bipartite graphs generated * by_row, Boolean: If model should be evaluated by row or column. If false, the matrix is transposed before the projection and threshold is applied. * sparse, Boolean: If sparse matrix manipulations should be used * maxiter, Integer: Maximum number of iterations if “model” is a GLM * dyad, vector length 2: two row entries i,j to save Pij values</p>
+<p>It returns a list of the following: * positive: matrix of proportion of ties above expected * negative: matrix of proportion of ties below expected * dyad_values: list of edge weight in each trial for dyad</p>
+<p>The dyad_values is a list of all of the <span class="math inline">\(P_{ij}\)</span> values in each random bipartite graph generated for a given <span class="math inline">\(i,j\)</span> pair.</p>
+<p>We can find the backbone via the fdsm method as follows:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">fdsm_props &lt;-<span class="st"> </span><span class="kw">fdsm</span>(davis, <span class="dt">trials =</span> <span class="dv">100</span>, <span class="dt">by_row =</span> <span class="ot">TRUE</span>, <span class="dt">sparse =</span> <span class="ot">TRUE</span>, <span class="dt">dyad=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">6</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">fdsm_props<span class="op">$</span>dyad</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="co">#&gt;   [1] 3 3 4 3 3 3 3 3 2 3 2 4 4 2 2 4 1 3 1 4 2 3 3 3 2 3 3 3 3 3 4 4 3 3 3</span></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="co">#&gt;  [36] 3 3 4 1 3 2 3 2 2 2 2 2 3 3 3 1 1 3 2 2 2 3 3 2 3 3 1 2 3 2 2 3 3 3 1</span></a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="co">#&gt;  [71] 2 3 3 3 3 2 1 2 4 3 2 3 2 3 3 0 2 4 2 4 3 3 3 2 3 3 4 2 4 2</span></a>
+<a class="sourceLine" id="cb12-5" data-line-number="5">fdsm_bb &lt;-<span class="st"> </span><span class="kw">backbone.extract</span>(fdsm_props<span class="op">$</span>positive, fdsm_props<span class="op">$</span>negative, <span class="dt">alpha =</span> <span class="fl">0.05</span>)</a>
+<a class="sourceLine" id="cb12-6" data-line-number="6">fdsm_bb</a>
+<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="co">#&gt;           EVELYN LAURA THERESA BRENDA CHARLOTTE FRANCES ELEANOR PEARL RUTH</span></a>
+<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="co">#&gt; EVELYN         0     1       1      1         0       1       0     1    0</span></a>
+<a class="sourceLine" id="cb12-9" data-line-number="9"><span class="co">#&gt; LAURA          1     0       1      1         0       1       1     0    0</span></a>
+<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="co">#&gt; THERESA        1     1       0      1         1       1       1     1    1</span></a>
+<a class="sourceLine" id="cb12-11" data-line-number="11"><span class="co">#&gt; BRENDA         1     1       1      0         1       1       1     0    0</span></a>
+<a class="sourceLine" id="cb12-12" data-line-number="12"><span class="co">#&gt; CHARLOTTE      0     0       1      1         0       0       0    -1    0</span></a>
+<a class="sourceLine" id="cb12-13" data-line-number="13"><span class="co">#&gt; FRANCES        1     1       1      1         0       0       1     1    0</span></a>
+<a class="sourceLine" id="cb12-14" data-line-number="14"><span class="co">#&gt; ELEANOR        0     1       1      1         0       1       0     0    1</span></a>
+<a class="sourceLine" id="cb12-15" data-line-number="15"><span class="co">#&gt; PEARL          1     0       1      0        -1       1       0     0    0</span></a>
+<a class="sourceLine" id="cb12-16" data-line-number="16"><span class="co">#&gt; RUTH           0     0       1      0         0       0       1     0    0</span></a>
+<a class="sourceLine" id="cb12-17" data-line-number="17"><span class="co">#&gt; VERNE          0     0       0      0         0       0       0     0    1</span></a>
+<a class="sourceLine" id="cb12-18" data-line-number="18"><span class="co">#&gt; MYRNA          0    -1       0     -1        -1       0       0     1    0</span></a>
+<a class="sourceLine" id="cb12-19" data-line-number="19"><span class="co">#&gt; KATHERINE     -1    -1      -1     -1        -1      -1      -1     0    0</span></a>
+<a class="sourceLine" id="cb12-20" data-line-number="20"><span class="co">#&gt; SYLVIA        -1    -1       0     -1         0      -1       0     0    0</span></a>
+<a class="sourceLine" id="cb12-21" data-line-number="21"><span class="co">#&gt; NORA          -1    -1      -1     -1        -1      -1       0     0    0</span></a>
+<a class="sourceLine" id="cb12-22" data-line-number="22"><span class="co">#&gt; HELEN         -1     0       0      0        -1       0       0     0    0</span></a>
+<a class="sourceLine" id="cb12-23" data-line-number="23"><span class="co">#&gt; DOROTHY        1     0       1      0        -1       0       0     1    1</span></a>
+<a class="sourceLine" id="cb12-24" data-line-number="24"><span class="co">#&gt; OLIVIA         0    -1       0     -1        -1      -1      -1     0    0</span></a>
+<a class="sourceLine" id="cb12-25" data-line-number="25"><span class="co">#&gt; FLORA          0    -1       0     -1        -1      -1      -1     0    0</span></a>
+<a class="sourceLine" id="cb12-26" data-line-number="26"><span class="co">#&gt;           VERNE MYRNA KATHERINE SYLVIA NORA HELEN DOROTHY OLIVIA FLORA</span></a>
+<a class="sourceLine" id="cb12-27" data-line-number="27"><span class="co">#&gt; EVELYN        0     0        -1     -1   -1    -1       1      0     0</span></a>
+<a class="sourceLine" id="cb12-28" data-line-number="28"><span class="co">#&gt; LAURA         0    -1        -1     -1   -1     0       0     -1    -1</span></a>
+<a class="sourceLine" id="cb12-29" data-line-number="29"><span class="co">#&gt; THERESA       0     0        -1      0   -1     0       1      0     0</span></a>
+<a class="sourceLine" id="cb12-30" data-line-number="30"><span class="co">#&gt; BRENDA        0    -1        -1     -1   -1     0       0     -1    -1</span></a>
+<a class="sourceLine" id="cb12-31" data-line-number="31"><span class="co">#&gt; CHARLOTTE     0    -1        -1      0   -1    -1      -1     -1    -1</span></a>
+<a class="sourceLine" id="cb12-32" data-line-number="32"><span class="co">#&gt; FRANCES       0     0        -1     -1   -1     0       0     -1    -1</span></a>
+<a class="sourceLine" id="cb12-33" data-line-number="33"><span class="co">#&gt; ELEANOR       0     0        -1      0    0     0       0     -1    -1</span></a>
+<a class="sourceLine" id="cb12-34" data-line-number="34"><span class="co">#&gt; PEARL         0     1         0      0    0     0       1      0     0</span></a>
+<a class="sourceLine" id="cb12-35" data-line-number="35"><span class="co">#&gt; RUTH          1     0         0      0    0     0       1      0     0</span></a>
+<a class="sourceLine" id="cb12-36" data-line-number="36"><span class="co">#&gt; VERNE         0     1         0      1    0     1       1      0     0</span></a>
+<a class="sourceLine" id="cb12-37" data-line-number="37"><span class="co">#&gt; MYRNA         1     0         1      1    0     0       1      0     0</span></a>
+<a class="sourceLine" id="cb12-38" data-line-number="38"><span class="co">#&gt; KATHERINE     0     1         0      1    0     0       1      0     0</span></a>
+<a class="sourceLine" id="cb12-39" data-line-number="39"><span class="co">#&gt; SYLVIA        1     1         1      0    1     0       1      0     0</span></a>
+<a class="sourceLine" id="cb12-40" data-line-number="40"><span class="co">#&gt; NORA          0     0         0      1    0     0       0      1     1</span></a>
+<a class="sourceLine" id="cb12-41" data-line-number="41"><span class="co">#&gt; HELEN         1     0         0      0    0     0       0      0     0</span></a>
+<a class="sourceLine" id="cb12-42" data-line-number="42"><span class="co">#&gt; DOROTHY       1     1         1      1    0     0       0      0     0</span></a>
+<a class="sourceLine" id="cb12-43" data-line-number="43"><span class="co">#&gt; OLIVIA        0     0         0      0    1     0       0      0     1</span></a>
+<a class="sourceLine" id="cb12-44" data-line-number="44"><span class="co">#&gt; FLORA         0     0         0      0    1     0       0      1     0</span></a></code></pre></div>
+<p>Note that since we have provided both a positive and negative matrix of proportions, we will return a signed matrix. Also, we now have a two-tailed significance test, so <span class="math inline">\(alpha\)</span> will be <span class="math inline">\(0.025\)</span> on each end of the distribution. This also returns a list of the <span class="math inline">\(P_{3,6}^*\)</span> values for each of the 100 trials. The dyad parameter is defaultly set to NULL and will not be returned if not called for.</p>
+</div>
+<div id="sdsm" class="section level3">
+<h3>sdsm</h3>
+<p>The <code>sdsm( )</code> function has nine parameters, * B, Matrix: Bipartite network * trials, Integer: Number of random bipartite graphs generated * model, String: Model used to generate random bipartite graphs * by_row, Boolean: If model should be evaluated by row or column. If false, the matrix is transposed before the projection and threshold is applied. * sparse, Boolean: If sparse matrix manipulations should be used * maxiter, Integer: Maximum number of iterations if “model” is a GLM * dyad, vector length 2: two row entries i,j to save Pij values * row_marg, Integer: row in which to save B* row marginals * col_marg, Integer: column in which to save B* column marginals</p>
+<p>It returns a list of the following: * positive: matrix of proportion of ties above expected * negative: matrix of proportion of ties below expected * dyad_values: list of edge weight in each trial for dyad * row_marginals: list of row sum for row in row_marg * col_marginals: list of column sum for column in col_marg</p>
+<p>The sdsm function not only computes the positive and negative proportion matrices, but because sdsm doesn’t fix agent and artifact degrees, we can also return a list of the <span class="math inline">\(P_{i,j}^*\)</span> values for given agents <span class="math inline">\(i,j\)</span>, the agent degree for a given agent, and the artifact degree for a given artifact.</p>
+<p>We can find the backbone via the sdsm method as follows:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">sdsm_props &lt;-<span class="st"> </span><span class="kw">sdsm</span>(davis, <span class="dt">trials =</span> <span class="dv">100</span>,<span class="dt">dyad =</span> <span class="kw">c</span>(<span class="st">&quot;EVELYN&quot;</span>, <span class="st">&quot;CHARLOTTE&quot;</span>), <span class="dt">row_marg =</span> <span class="st">&quot;EVELYN&quot;</span>, <span class="dt">col_marg =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">sdsm_props<span class="op">$</span>dyad</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="co">#&gt;   [1] 5 1 3 1 4 3 2 2 3 5 2 3 3 4 4 3 1 5 3 3 2 4 1 2 0 3 1 2 2 3 3 3 3 4 1</span></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="co">#&gt;  [36] 5 4 2 0 2 2 5 2 2 2 2 4 2 5 2 2 1 3 2 5 1 4 3 1 4 4 3 2 3 0 3 6 2 1 4</span></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="co">#&gt;  [71] 2 4 2 5 2 2 3 2 5 3 2 3 6 1 5 2 2 3 3 4 3 2 2 2 5 4 3 2 2 2</span></a>
+<a class="sourceLine" id="cb14-5" data-line-number="5">sdsm_props<span class="op">$</span>row_marg</a>
+<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="co">#&gt;   [1] 10  8  8 10  7  8  7  9  9  9  7 10  7 12  6  7  7  8  9  6  5  8  7</span></a>
+<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="co">#&gt;  [24]  8 10  9  6  9  8  8  9  7  8  8  5 13 12 10  8  8  6  8  8  9  5  7</span></a>
+<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="co">#&gt;  [47]  7  8  9  7  8  8  6  9  9  9  9  7  3  8  9  8 11  9  6  8  8  7 10</span></a>
+<a class="sourceLine" id="cb14-9" data-line-number="9"><span class="co">#&gt;  [70]  7  6 11  8 11 12 10  9 10  7 10  8 10 10  6  9 11  8 11  7  9  7  7</span></a>
+<a class="sourceLine" id="cb14-10" data-line-number="10"><span class="co">#&gt;  [93] 12  8 11  9  7  8 10  7</span></a>
+<a class="sourceLine" id="cb14-11" data-line-number="11">sdsm_props<span class="op">$</span>col_marg</a>
+<a class="sourceLine" id="cb14-12" data-line-number="12"><span class="co">#&gt;   [1] 4 3 3 5 2 4 2 3 4 2 1 3 3 4 3 3 3 3 5 5 6 3 3 5 6 4 3 3 3 5 8 2 2 4 4</span></a>
+<a class="sourceLine" id="cb14-13" data-line-number="13"><span class="co">#&gt;  [36] 6 3 3 4 2 2 4 3 3 3 2 3 3 4 3 3 2 0 2 2 4 3 3 0 3 4 4 6 1 4 3 3 1 4 3</span></a>
+<a class="sourceLine" id="cb14-14" data-line-number="14"><span class="co">#&gt;  [71] 3 3 3 5 3 2 3 3 3 1 1 4 1 4 4 2 3 4 4 4 2 3 5 1 3 4 3 4 0 3</span></a>
+<a class="sourceLine" id="cb14-15" data-line-number="15">sdsm_bb &lt;-<span class="st"> </span><span class="kw">backbone.extract</span>(sdsm_props<span class="op">$</span>positive, sdsm_props<span class="op">$</span>negative, <span class="dt">alpha =</span> <span class="fl">0.05</span>)</a>
+<a class="sourceLine" id="cb14-16" data-line-number="16">sdsm_bb</a>
+<a class="sourceLine" id="cb14-17" data-line-number="17"><span class="co">#&gt;           EVELYN LAURA THERESA BRENDA CHARLOTTE FRANCES ELEANOR PEARL RUTH</span></a>
+<a class="sourceLine" id="cb14-18" data-line-number="18"><span class="co">#&gt; EVELYN         0     0       0      0         0       0       0     0    0</span></a>
+<a class="sourceLine" id="cb14-19" data-line-number="19"><span class="co">#&gt; LAURA          0     0       0      0         0       0       0     0    0</span></a>
+<a class="sourceLine" id="cb14-20" data-line-number="20"><span class="co">#&gt; THERESA        0     0       0      0         0       0       0     0    0</span></a>
+<a class="sourceLine" id="cb14-21" data-line-number="21"><span class="co">#&gt; BRENDA         0     0       0      0         0       0       1     0    0</span></a>
+<a class="sourceLine" id="cb14-22" data-line-number="22"><span class="co">#&gt; CHARLOTTE      0     0       0      0         0       0       0    -1    0</span></a>
+<a class="sourceLine" id="cb14-23" data-line-number="23"><span class="co">#&gt; FRANCES        0     0       0      0         0       0       0     0    0</span></a>
+<a class="sourceLine" id="cb14-24" data-line-number="24"><span class="co">#&gt; ELEANOR        0     0       0      1         0       0       0     0    0</span></a>
+<a class="sourceLine" id="cb14-25" data-line-number="25"><span class="co">#&gt; PEARL          0     0       0      0        -1       0       0     0    0</span></a>
+<a class="sourceLine" id="cb14-26" data-line-number="26"><span class="co">#&gt; RUTH           0     0       0      0         0       0       0     0    0</span></a>
+<a class="sourceLine" id="cb14-27" data-line-number="27"><span class="co">#&gt; VERNE          0     0       0      0         0       0       0     0    1</span></a>
+<a class="sourceLine" id="cb14-28" data-line-number="28"><span class="co">#&gt; MYRNA          0    -1       0      0        -1       0       0     0    0</span></a>
+<a class="sourceLine" id="cb14-29" data-line-number="29"><span class="co">#&gt; KATHERINE      0    -1       0     -1        -1       0       0     0    0</span></a>
+<a class="sourceLine" id="cb14-30" data-line-number="30"><span class="co">#&gt; SYLVIA        -1     0       0      0         0       0       0     0    0</span></a>
+<a class="sourceLine" id="cb14-31" data-line-number="31"><span class="co">#&gt; NORA          -1     0       0     -1         0       0       0     0    0</span></a>
+<a class="sourceLine" id="cb14-32" data-line-number="32"><span class="co">#&gt; HELEN         -1     0       0      0         0       0       0     0    0</span></a>
+<a class="sourceLine" id="cb14-33" data-line-number="33"><span class="co">#&gt; DOROTHY        0     0       0      0        -1       0       0     0    0</span></a>
+<a class="sourceLine" id="cb14-34" data-line-number="34"><span class="co">#&gt; OLIVIA         0    -1       0     -1        -1      -1      -1     0    0</span></a>
+<a class="sourceLine" id="cb14-35" data-line-number="35"><span class="co">#&gt; FLORA          0    -1       0     -1        -1      -1      -1     0    0</span></a>
+<a class="sourceLine" id="cb14-36" data-line-number="36"><span class="co">#&gt;           VERNE MYRNA KATHERINE SYLVIA NORA HELEN DOROTHY OLIVIA FLORA</span></a>
+<a class="sourceLine" id="cb14-37" data-line-number="37"><span class="co">#&gt; EVELYN        0     0         0     -1   -1    -1       0      0     0</span></a>
+<a class="sourceLine" id="cb14-38" data-line-number="38"><span class="co">#&gt; LAURA         0    -1        -1      0    0     0       0     -1    -1</span></a>
+<a class="sourceLine" id="cb14-39" data-line-number="39"><span class="co">#&gt; THERESA       0     0         0      0    0     0       0      0     0</span></a>
+<a class="sourceLine" id="cb14-40" data-line-number="40"><span class="co">#&gt; BRENDA        0     0        -1      0   -1     0       0     -1    -1</span></a>
+<a class="sourceLine" id="cb14-41" data-line-number="41"><span class="co">#&gt; CHARLOTTE     0    -1        -1      0    0     0      -1     -1    -1</span></a>
+<a class="sourceLine" id="cb14-42" data-line-number="42"><span class="co">#&gt; FRANCES       0     0         0      0    0     0       0     -1    -1</span></a>
+<a class="sourceLine" id="cb14-43" data-line-number="43"><span class="co">#&gt; ELEANOR       0     0         0      0    0     0       0     -1    -1</span></a>
+<a class="sourceLine" id="cb14-44" data-line-number="44"><span class="co">#&gt; PEARL         0     0         0      0    0     0       0      0     0</span></a>
+<a class="sourceLine" id="cb14-45" data-line-number="45"><span class="co">#&gt; RUTH          1     0         0      0    0     0       0      0     0</span></a>
+<a class="sourceLine" id="cb14-46" data-line-number="46"><span class="co">#&gt; VERNE         0     0         0      0    0     0       0      0     0</span></a>
+<a class="sourceLine" id="cb14-47" data-line-number="47"><span class="co">#&gt; MYRNA         0     0         1      0    0     0       0      0     0</span></a>
+<a class="sourceLine" id="cb14-48" data-line-number="48"><span class="co">#&gt; KATHERINE     0     1         0      1    0     0       0      0     0</span></a>
+<a class="sourceLine" id="cb14-49" data-line-number="49"><span class="co">#&gt; SYLVIA        0     0         1      0    0     0       0      0     0</span></a>
+<a class="sourceLine" id="cb14-50" data-line-number="50"><span class="co">#&gt; NORA          0     0         0      0    0     0       0      0     0</span></a>
+<a class="sourceLine" id="cb14-51" data-line-number="51"><span class="co">#&gt; HELEN         0     0         0      0    0     0       0      0     0</span></a>
+<a class="sourceLine" id="cb14-52" data-line-number="52"><span class="co">#&gt; DOROTHY       0     0         0      0    0     0       0      0     0</span></a>
+<a class="sourceLine" id="cb14-53" data-line-number="53"><span class="co">#&gt; OLIVIA        0     0         0      0    0     0       0      0     0</span></a>
+<a class="sourceLine" id="cb14-54" data-line-number="54"><span class="co">#&gt; FLORA         0     0         0      0    0     0       0      0     0</span></a></code></pre></div>
+<p>Here we have returned a list of the numbers of events Evelyn and Charlotte attended together in each generated random matrix, the number of events attended by Evelyn in each generated random matrix, and the number of people who attended event 1 in each generated random matrix.</p>
+</div>
+</div>
+</div>
+<div id="future" class="section level1">
+<h1>Future</h1>
+<p>The <code>backbone</code> package will be updated to contain additional backbone extraction methods that are used in the current literature.</p>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<div id="refs" class="references">
+<div id="ref-davis1941deep">
+<p>Davis, Allison, Burleigh B Gardner, and Mary R Gardner. 1941. “Deep South. The U.” of Chicago Press, Chicago, IL.</p>
+</div>
+<div id="ref-neal2013identifying">
+<p>Neal, Zachary. 2013. “Identifying Statistically Significant Edges in One-Mode Projections.” <em>Social Network Analysis and Mining</em> 3 (4). Springer: 915–24.</p>
+</div>
+<div id="ref-neal2014backbone">
+<p>———. 2014. “The Backbone of Bipartite Projections: Inferring Relationships from Co-Authorship, Co-Sponsorship, Co-Attendance and Other Co-Behaviors.” <em>Social Networks</em> 39. Elsevier: 84–97.</p>
+</div>
+<div id="ref-ucinet">
+<p>Repository, UCI Network Data. n.d. “Southern Women Data Set.” <a href="https://networkdata.ics.uci.edu/netdata/html/davis.html" class="uri">https://networkdata.ics.uci.edu/netdata/html/davis.html</a>.</p>
+</div>
+<div id="ref-strona2014fast">
+<p>Strona, Giovanni, Domenico Nappo, Francesco Boccacci, Simone Fattorini, and Jesus San-Miguel-Ayanz. 2014. “A Fast and Unbiased Procedure to Randomize Ecological Binary Matrices with Fixed Row and Column Totals.” <em>Nature Communications</em> 5. Nature Publishing Group: 4114.</p>
+</div>
+<div id="ref-zweig2011systematic">
+<p>Zweig, Katharina Anna, and Michael Kaufmann. 2011. “A Systematic Approach to the One-Mode Projection of Bipartite Graphs.” <em>Social Network Analysis and Mining</em> 1 (3). Springer: 187–218.</p>
+</div>
+</div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+WARNING: No test specified, defaulting to first test defined (RStoolbox_deepstate_test_rescaleImageCpp_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/RStoolbox/inst/testfiles/rescaleImageCpp/rescaleImageCpp_output/4da01de20eaab18ce2c3fbd7985400e5d85e5306.fail`
+TRACE: Running: RStoolbox_deepstate_test_rescaleImageCpp_test from /home/akhila/fuzzer_packages/fuzzedpackages/RStoolbox/inst/testfiles/rescaleImageCpp/rescaleImageCpp_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+x values: 7.86219e+96     nan     inf 0.696194 3.82615e+185
+6.57685e-265     inf 5.78661e+63 1.66892e+157 7.77680e+12
+    nan 3.00408e+142 6.88269e+77 4.91889e+286 4.67110e-254
+3.25069e-76 3.16529e-77 1.34328e-172 1.06628e-83 1.83861e-260
+2.06782e+21 1.32627e-207 1.33134e-21 4.62122e+72 7.59331e+75
+1.14427e+25     inf 3.79325e-87 5.01627e+160 1.74098e+38
+
+scal values: -8.68021e-18 -5.74297e-285 -1.93858e-84 -9.55261e+122 -2.27913e-136 -4.0898e-77 1.70876e+210 -4.11434e-31 4.46461e+90 -9.98378e+79 6.07126e+192 -9.78409e+14 -1.07834e+141 1.32164e-53 -2.06872e-53 4.51846e-22 6.7271e+231 1.85732e-228 -2.2823e+269 -3.93905e+77
+Missing value
+xmin values: nan -1.18541e+270 -3.82823e+272 7.66579e+37 -2.13214e+211 -8.64723e+51 1.81364e-23 4.38532e+144 2.25465e+74 -1.04846e-33 2.76065e-47 nan 6.89551e-141 -4.17573e-06 3.0631e-55 -2.75121e+258 -5.64994e+10 1.05298e-175 1.91247e+186 1.10441e+188 inf -2.92184e-186 -5.1693e-60 1.02231e+202 4.69361e-184 -3.4002e+222 1.87769e+118 1.13818e-253 -1.58252e+294 -9.62747e+267 -2.97749e-44 9.3239e+218 -2.88353e-80 6.52911e+192 3.26805e+211 -3.1524e-292 -1.5746e+156 6.64813e-52 -1.33325e-82 6.86769e+163 -2.41279e-237 9.19786e-213 2.50084e-78 7.66948e+180 3.29298e-206 -4.19244e-268 -3.21207e+41 5.43304e-44 115511 5.42917e+168 8.14607e-153 -inf 5.74635e+301 6.95629e-34 -1.20231e-203 7.40204e-277 -1.80019e-16 5.69133e-282 -4.34941e+192 -4.22208e-202 -1.714e-251 -5.00568e+267 -1.61292e-57 2.23012e-07 -1.74209e-27 8.57935e+169 -3.23906e+16 -2.17279e-300 -6.83423e+149 -inf 1.03853e-17 2.09307e-300 -2.76145e-11 1.26428e-238 1.22117e-74 6.58762e-07 -2.46294e+244 1.32444e+106 -6.96552e+286 1.15706e-132 0
+ymin values: -2.59021e-162 1.43385e-107 -1.00214e-140 1.99102e-114 1.56091e+114 2.34347e+50 -1.66771e+07 -8.26211e-230 1.40261e+234 -8.71421e-165 6.61874e-268 -5.94785e+294 6.27956e+235 2.79148e-43 2.56431e+21 1.62232e-112 2.30841e+10 -1.01304e-34 -1.08818e-48 1.6153e+277 -1.9383e-130 -2.43922e+212 -7.48978e-165 -9.77469e-272 3.88261e+42 1.83391e-07 1.40221e-92 -9.83637e+50
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Column index is out of bounds: [index=5; column extent=5].
+ERROR: Failed: RStoolbox_deepstate_test_rescaleImageCpp_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/RStoolbox/inst/testfiles/rescaleImageCpp/rescaleImageCpp_output/4da01de20eaab18ce2c3fbd7985400e5d85e5306.fail failed

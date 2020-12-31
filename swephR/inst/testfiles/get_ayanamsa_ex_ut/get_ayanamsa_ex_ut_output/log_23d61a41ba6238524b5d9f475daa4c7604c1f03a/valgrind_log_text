@@ -1,0 +1,16 @@
+WARNING: No test specified, defaulting to first test defined (swephR_deepstate_test_get_ayanamsa_ex_ut_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/swephR/inst/testfiles/get_ayanamsa_ex_ut/get_ayanamsa_ex_ut_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash`
+TRACE: Running: swephR_deepstate_test_get_ayanamsa_ex_ut_test from /home/akhila/fuzzer_packages/fuzzedpackages/swephR/inst/testfiles/get_ayanamsa_ex_ut/get_ayanamsa_ex_ut_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+jd_ut values: -2.43318e-187
+iflag values: -1053990400
+input ends
+==405950==  If you believe this happened as a result of a stack
+==405950==  overflow in your program's main thread (unlikely but
+==405950==  possible), you can try to increase the size of the
+==405950==  main thread stack using the --main-stacksize= flag.
+==405950==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: swephR_deepstate_test_get_ayanamsa_ex_ut_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/swephR/inst/testfiles/get_ayanamsa_ex_ut/get_ayanamsa_ex_ut_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash crashed

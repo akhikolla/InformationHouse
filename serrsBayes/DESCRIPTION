@@ -1,0 +1,48 @@
+Package: serrsBayes
+Type: Package
+Title: Bayesian Modelling of Raman Spectroscopy
+Version: 0.4-1
+Date: 2020-02-04
+Authors@R: c(
+    person("Matt", "Moores", role = c("aut", "cre"), email = "mmoores@gmail.com", comment = c(ORCID = "0000-0003-4531-3572")),
+    person("Jake", "Carson", role="aut", email="Jake.Carson@warwick.ac.uk", comment = c(ORCID = "0000-0002-7896-0971")),
+    person("Benjamin", "Moskowitz", role="ctb"),
+    person("Kirsten", "Gracie", role="dtc"),
+    person("Karen", "Faulds", role="dtc", comment = c(ORCID = "0000-0002-5567-7399")),
+    person("Mark", "Girolami", role="aut"),
+    person("Engineering and Physical Sciences Research Council", role="fnd", comment="EPSRC programme grant ref: EP/L014165/1"),
+    person("University of Warwick", role="cph"))
+Description: Sequential Monte Carlo (SMC) algorithms for fitting a generalised additive
+    mixed model (GAMM) to surface-enhanced resonance Raman spectroscopy (SERRS),
+    using the method of Moores et al. (2016) <arXiv:1604.07299>. Multivariate
+    observations of SERRS are highly collinear and lend themselves to a reduced-rank
+    representation. The GAMM separates the SERRS signal into three components: a
+    sequence of Lorentzian, Gaussian, or pseudo-Voigt peaks; a smoothly-varying baseline;
+    and additive white noise. The parameters of each component of the model are estimated
+    iteratively using SMC. The posterior distributions of the parameters given the observed
+    spectra are represented as a population of weighted particles.
+License: GPL (>= 2) | file LICENSE
+URL: https://github.com/mooresm/serrsBayes,
+        https://mooresm.github.io/serrsBayes
+BugReports: https://github.com/mooresm/serrsBayes/issues
+Depends: R (>= 3.5.0), Matrix, truncnorm, splines
+Imports: Rcpp (>= 0.11.3), methods
+LinkingTo: Rcpp, RcppEigen
+Suggests: testthat, knitr, rmarkdown
+LazyData: true
+RoxygenNote: 6.1.1
+VignetteBuilder: knitr
+NeedsCompilation: yes
+Packaged: 2020-02-05 01:22:15 UTC; mmoores
+Author: Matt Moores [aut, cre] (<https://orcid.org/0000-0003-4531-3572>),
+  Jake Carson [aut] (<https://orcid.org/0000-0002-7896-0971>),
+  Benjamin Moskowitz [ctb],
+  Kirsten Gracie [dtc],
+  Karen Faulds [dtc] (<https://orcid.org/0000-0002-5567-7399>),
+  Mark Girolami [aut],
+  Engineering and Physical Sciences Research Council [fnd] (EPSRC
+    programme grant ref: EP/L014165/1),
+  University of Warwick [cph]
+Maintainer: Matt Moores <mmoores@gmail.com>
+Repository: CRAN
+Date/Publication: 2020-02-05 12:40:02 UTC

@@ -1,0 +1,26 @@
+Package: MESS
+Type: Package
+Title: Miscellaneous Esoteric Statistical Scripts
+Version: 0.5.7
+Date: 2020-07-21
+Authors@R: person(given="Claus Thorn", family="Ekstrøm", role = c("aut", "cre"), email = "claus@rprimer.dk")
+Maintainer: Claus Thorn Ekstrøm <claus@rprimer.dk>
+Depends: R (>= 3.5)
+Imports: MASS, Matrix, Rcpp, geepack, geeM, ggplot2, ggformula, glmnet,
+        kinship2, methods, mvtnorm, parallel
+LinkingTo: Rcpp, RcppArmadillo
+Suggests: knitr, lme4, magrittr, rmarkdown, testthat
+Description: A mixed collection of useful and semi-useful diverse
+    statistical functions, some of which may even be referenced in
+    The R Primer book.
+URL: https://github.com/ekstroem/MESS
+BugReports: https://github.com/ekstroem/MESS/issues
+Encoding: UTF-8
+ByteCompile: true
+License: GPL-2
+RoxygenNote: 7.1.0
+NeedsCompilation: yes
+Packaged: 2020-07-21 09:40:08 UTC; cld189
+Author: Claus Thorn Ekstrøm [aut, cre]
+Repository: CRAN
+Date/Publication: 2020-07-21 13:10:07 UTC

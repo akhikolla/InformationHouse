@@ -1,0 +1,30 @@
+INFO: Starting fuzzing
+WARNING: No test specified, defaulting to first test defined (hermiter_deepstate_test_hermite_normalization_test)
+input starts
+EXTERNAL: qs v0.23.4.
+
+N values: 467495432
+input ends
+terminate called after throwing an instance of 'boost::wrapexcept<std::overflow_error>'
+  what():  Error in function boost::math::tgamma<double>(double): numeric overflow
+ERROR: Failed: hermiter_deepstate_test_hermite_normalization_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/hermiter/inst/testfiles/hermite_normalization/hermite_normalization_output/3e7fe15a33d5da5aad18932cfdcfd8606d05f5f2.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+N values: -498905818
+input ends
+EXTERNAL: Error: negative length vectors are not allowed
+
+EXTERNAL: Execution halted
+
+input starts
+EXTERNAL: qs v0.23.4.
+
+N values: -293123844
+input ends
+EXTERNAL: Error: negative length vectors are not allowed
+
+EXTERNAL: Execution halted
+
+INFO: Done fuzzing! Ran 3 tests (1 tests/second) with 3 failed/0 passed/0 abandoned tests

@@ -1,0 +1,24 @@
+Package: ClinicalTrialSummary
+Type: Package
+Title: Summary Measures for Clinical Trials with Survival Outcomes
+Version: 1.1.1
+Author: Daewoo Pak and Song Yang
+Maintainer: Daewoo Pak <heavyrain.pak@gmail.com>
+Description: Provides estimates of several summary measures for clinical trials including
+    the average hazard ratio, the weighted average hazard ratio, the restricted 
+    superiority probability ratio, the restricted mean survival difference and 
+    the ratio of restricted mean times lost, based on the short-term and 
+    long-term hazard ratio model (Yang, 2005 <doi:10.1093/biomet/92.1.1>) 
+    which accommodates various non-proportional hazards scenarios. The inference
+    procedures and the asymptotic results for the summary measures are discussed 
+    in Yang (2018, <doi:10.1002/sim.7676>).
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
+Imports: Rcpp
+LinkingTo: Rcpp
+NeedsCompilation: yes
+Packaged: 2019-01-18 17:13:07 UTC; dpak
+Repository: CRAN
+Date/Publication: 2019-01-18 21:40:04 UTC

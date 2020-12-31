@@ -1,0 +1,16 @@
+WARNING: No test specified, defaulting to first test defined (accelerometry_deepstate_test_blocksums_i_max_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/accelerometry/inst/testfiles/blocksums_i_max/blocksums_i_max_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash`
+TRACE: Running: accelerometry_deepstate_test_blocksums_i_max_test from /home/akhila/fuzzer_packages/fuzzedpackages/accelerometry/inst/testfiles/blocksums_i_max/blocksums_i_max_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+x values: -709423862 1693996265 874270644 819746351 1283029671 308684195 -127551131 1528585009 -748078280 1636835733 -1401926948 1285557401 428228651 -328872220 -897103578 -1549445257 244494191 584058062 1078897549
+window values: -289987065
+input ends
+==662605==  If you believe this happened as a result of a stack
+==662605==  overflow in your program's main thread (unlikely but
+==662605==  possible), you can try to increase the size of the
+==662605==  main thread stack using the --main-stacksize= flag.
+==662605==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: accelerometry_deepstate_test_blocksums_i_max_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/accelerometry/inst/testfiles/blocksums_i_max/blocksums_i_max_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash crashed

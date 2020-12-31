@@ -1,0 +1,14 @@
+WARNING: No test specified, defaulting to first test defined (immunarch_deepstate_test_fill_vec_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/immunarch/inst/testfiles/fill_vec/fill_vec_output/213c782907ee3299b362a396a6f846877b3f4584.crash`
+TRACE: Running: immunarch_deepstate_test_fill_vec_test from /home/akhila/fuzzer_packages/fuzzedpackages/immunarch/inst/testfiles/fill_vec/fill_vec_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+read_vec values: 4.38983e+276 -2.83919e+230 nan -1.5601e+246 inf
+Missing value
+read_indices values: 6.55275e-240 -1.484e+47 9.16905e-35 -2.07468e-284 6.94131e+164 -5.59672e-168 -3.58047e-10 4.92682e-88 -1.11189e-72 -inf -1.46674e+64 1.5471e-298 6.0141e+221 8.84504e-195 1.58469e+132 nan -6.57814e-121 -3.95541e-64 -6.06987e-92 1.99298e+185 2.76504e-247 1.7345e-218 -7.99673e+32 -2.65452e-24 2.90992e-226 1.59363e-85 -9.60586e-14 1.94017e+245 -7.08033e+11 2.70557e-169 1.94564e-174 2.16962e-222 2.86187e+259 -1.701e-276 5.99249e+109 -6.87851e+103 -4.04479e+229 1.15534e+107 5.71274e-194 2.01701e+253 -3.11231e-229 -1.34478e-162 -2.19771e-185 9.33597e-293 7.34305e-165 -1.04191e-193 2.15177e+165 -6.94314e-208 nan -4.27378e+148 nan 1.48547e-143 -1.0431e-116 8.16764e-111 1.27627e-286 -5.70401e-238 0
+input ends
+Inconsistency detected by ld.so: dl-close.c: 181: _dl_close_worker: Assertion `idx == nloaded' failed!
+ERROR: Crashed: immunarch_deepstate_test_fill_vec_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/immunarch/inst/testfiles/fill_vec/fill_vec_output/213c782907ee3299b362a396a6f846877b3f4584.crash crashed

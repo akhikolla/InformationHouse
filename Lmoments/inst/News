@@ -1,0 +1,30 @@
+1.3-1  The functions Lmoments, Lcoefs, Lmomcov and t1lmoments now call C++ internally for faster computation.
+
+1.2-3	The maximum order of L-moments (rmax) is restricted to equal the sample size.
+
+1.2-2	The title is now written with title case.
+
+1.2-1   Extended lmomcov to calculate the covariance matrix for L-moments of arbitrary order.
+	Added a function to generate the coefficients of shifted Legendre polynomials.
+
+1.1-6   An update due to a warning in CRAN checkings. 
+
+1.1-4   Added "journal" field to the citation info. 
+        The missing field was causing a warning in CRAN checkings. 
+
+1.1-3   Updated publication info and email address.
+        Corrected mistakes in the syntax of the documentation.
+
+1.1-2	Updated publication info.
+	Corrected an error in the function 'covnormpoly4'.
+
+1.1-1: 	Added 'na.rm' parameter to the L-moments functions.
+	Added 'returnobject' parameter to the L-moments functions.
+	Added 'trim' parameter to the L-moments functions.
+	Fixed problems with user-specified 'rmax' in the L-moments functions.
+	Improved function 'Lmomcov'.
+	Fixed the syntax error in the bounded special case in functions 'dnormpoly' and 'dcauchypoly' 
+	Added column names to the output of the L-moments functions.
+	Suggestions from William Asquith and Michael Toewns are acknowledged.
+
+1.0-2:  First release to CRAN

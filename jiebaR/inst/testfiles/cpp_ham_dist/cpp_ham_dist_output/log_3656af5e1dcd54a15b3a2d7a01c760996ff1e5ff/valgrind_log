@@ -1,0 +1,486 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./cpp_ham_dist_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist/cpp_ham_dist_output/3656af5e1dcd54a15b3a2d7a01c760996ff1e5ff.fail</line>
+</preamble>
+
+<pid>906828</pid>
+<ppid>906827</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist/cpp_ham_dist_output/log_3656af5e1dcd54a15b3a2d7a01c760996ff1e5ff/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./cpp_ham_dist_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist/cpp_ham_dist_output/3656af5e1dcd54a15b3a2d7a01c760996ff1e5ff.fail</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.025 </time>
+</status>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:07.734 </time>
+</status>
+
+<error>
+  <unique>0x9</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>8 bytes in 1 blocks are definitely lost in loss record 10 of 1,332</text>
+    <leakedbytes>8</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D060F7</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::initialize(int, char const* const*, bool, bool, bool)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>198</line>
+    </frame>
+    <frame>
+      <ip>0x4D06483</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x409B63</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist/cpp_ham_dist_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_jiebaR_deepstate_test_cpp_ham_dist_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist</dir>
+      <file>cpp_ham_dist_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist/cpp_ham_dist_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_jiebaR_deepstate_test_cpp_ham_dist_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist</dir>
+      <file>cpp_ham_dist_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41CFF8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist/cpp_ham_dist_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D299</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist/cpp_ham_dist_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D374</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist/cpp_ham_dist_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist/cpp_ham_dist_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x11</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>21 bytes in 1 blocks are definitely lost in loss record 18 of 1,332</text>
+    <leakedbytes>21</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D3AD8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/src/jiebaR.so</obj>
+      <fn>void std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::_M_construct&lt;char const*&gt;(char const*, char const*, std::forward_iterator_tag)</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>basic_string.tcc</file>
+      <line>219</line>
+    </frame>
+    <frame>
+      <ip>0x4D6364B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/src/jiebaR.so</obj>
+      <fn>_M_construct_aux&lt;char const*&gt;</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>basic_string.h</file>
+      <line>247</line>
+    </frame>
+    <frame>
+      <ip>0x4D6364B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/src/jiebaR.so</obj>
+      <fn>_M_construct&lt;char const*&gt;</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>basic_string.h</file>
+      <line>266</line>
+    </frame>
+    <frame>
+      <ip>0x4D6364B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/src/jiebaR.so</obj>
+      <fn>basic_string</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>basic_string.h</file>
+      <line>527</line>
+    </frame>
+    <frame>
+      <ip>0x4D6364B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/src/jiebaR.so</obj>
+      <fn>cpp_ham_dist(Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/src</dir>
+      <file>util.cpp</file>
+      <line>30</line>
+    </frame>
+    <frame>
+      <ip>0x409F2C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist/cpp_ham_dist_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_jiebaR_deepstate_test_cpp_ham_dist_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist</dir>
+      <file>cpp_ham_dist_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist/cpp_ham_dist_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_jiebaR_deepstate_test_cpp_ham_dist_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist</dir>
+      <file>cpp_ham_dist_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41CFF8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist/cpp_ham_dist_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D299</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist/cpp_ham_dist_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D374</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist/cpp_ham_dist_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist/cpp_ham_dist_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x13</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>31 bytes in 1 blocks are possibly lost in loss record 20 of 1,332</text>
+    <leakedbytes>31</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E65308</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator&lt;char&gt; const&amp;)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E66FB8</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>char* std::string::_S_construct&lt;char const*&gt;(char const*, char const*, std::allocator&lt;char&gt; const&amp;, std::forward_iterator_tag)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E67484</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::basic_string(char const*, std::allocator&lt;char&gt; const&amp;)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E48188</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::logic_error::logic_error(char const*)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E481EC</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::invalid_argument::invalid_argument(char const*)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E182F7</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::__throw_invalid_argument(char const*)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D64180</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/src/jiebaR.so</obj>
+      <fn>unsigned long long __gnu_cxx::__stoa&lt;unsigned long long, unsigned long long, char, int&gt;(unsigned long long (*)(char const*, char**, int), char const*, char const*, unsigned long*, int)</fn>
+      <dir>/usr/include/c++/9/ext</dir>
+      <file>string_conversions.h</file>
+      <line>83</line>
+    </frame>
+    <frame>
+      <ip>0x4D6366E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/src/jiebaR.so</obj>
+      <fn>stoull</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>basic_string.h</file>
+      <line>6524</line>
+    </frame>
+    <frame>
+      <ip>0x4D6366E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/src/jiebaR.so</obj>
+      <fn>cpp_ham_dist(Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/src</dir>
+      <file>util.cpp</file>
+      <line>30</line>
+    </frame>
+    <frame>
+      <ip>0x409F2C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist/cpp_ham_dist_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_jiebaR_deepstate_test_cpp_ham_dist_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist</dir>
+      <file>cpp_ham_dist_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist/cpp_ham_dist_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_jiebaR_deepstate_test_cpp_ham_dist_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist</dir>
+      <file>cpp_ham_dist_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41CFF8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist/cpp_ham_dist_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x34</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>144 bytes in 1 blocks are possibly lost in loss record 53 of 1,332</text>
+    <leakedbytes>144</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4E202E3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>__cxa_allocate_exception</fn>
+    </frame>
+    <frame>
+      <ip>0x4E182E1</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::__throw_invalid_argument(char const*)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D64180</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/src/jiebaR.so</obj>
+      <fn>unsigned long long __gnu_cxx::__stoa&lt;unsigned long long, unsigned long long, char, int&gt;(unsigned long long (*)(char const*, char**, int), char const*, char const*, unsigned long*, int)</fn>
+      <dir>/usr/include/c++/9/ext</dir>
+      <file>string_conversions.h</file>
+      <line>83</line>
+    </frame>
+    <frame>
+      <ip>0x4D6366E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/src/jiebaR.so</obj>
+      <fn>stoull</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>basic_string.h</file>
+      <line>6524</line>
+    </frame>
+    <frame>
+      <ip>0x4D6366E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/src/jiebaR.so</obj>
+      <fn>cpp_ham_dist(Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/src</dir>
+      <file>util.cpp</file>
+      <line>30</line>
+    </frame>
+    <frame>
+      <ip>0x409F2C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist/cpp_ham_dist_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_jiebaR_deepstate_test_cpp_ham_dist_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist</dir>
+      <file>cpp_ham_dist_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist/cpp_ham_dist_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_jiebaR_deepstate_test_cpp_ham_dist_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist</dir>
+      <file>cpp_ham_dist_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41CFF8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist/cpp_ham_dist_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D299</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist/cpp_ham_dist_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D374</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist/cpp_ham_dist_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist/cpp_ham_dist_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xb9</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>1,025 bytes in 1 blocks are definitely lost in loss record 186 of 1,332</text>
+    <leakedbytes>1025</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4EBA3AF</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::reserve(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D04C55</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>MemBuf::MemBuf(int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>MemBuf.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x4D06467</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>56</line>
+    </frame>
+    <frame>
+      <ip>0x409B63</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist/cpp_ham_dist_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_jiebaR_deepstate_test_cpp_ham_dist_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist</dir>
+      <file>cpp_ham_dist_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist/cpp_ham_dist_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_jiebaR_deepstate_test_cpp_ham_dist_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist</dir>
+      <file>cpp_ham_dist_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41CFF8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist/cpp_ham_dist_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D299</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist/cpp_ham_dist_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D374</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist/cpp_ham_dist_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/jiebaR/inst/testfiles/cpp_ham_dist/cpp_ham_dist_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.222 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

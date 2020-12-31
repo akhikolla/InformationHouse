@@ -1,0 +1,17 @@
+WARNING: No test specified, defaulting to first test defined (wk_deepstate_test_cpp_wkt_translate_wkb_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wkb/cpp_wkt_translate_wkb_output/456ddcb024af1d38ec9c8a2abc53886cdcab95bb.fail`
+TRACE: Running: wk_deepstate_test_cpp_wkt_translate_wkb_test from /home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wkb/cpp_wkt_translate_wkb_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+wkt values: "mozzwixsehisnavbbddi" "qlticntqpfnnscjohrgy" "nhtu" "i" "NA" "qnlycdwvtkfvzzoccnok" "uwipaisslycgbssjilab" "glgvvpthbifdhynnnhde" "NA" "NA" "NA" "cvcpdqbsreswfdvdrnug" "brmenikbxdebyxnxpq" "NA" "nmxn" "NA" "NA" "llkvpktmolaaewly" "NA" "NA" "m" "NA" "hgwkqhcahwyy" "NA" "fgrtsaew" "iggputknaunv" "bansvuushyvlzobrvkxf" "dpteytnatxnznsqgchow" "smuwpxzavzaaiazroiqx" "NA" "pxhxvsphrwgosziwpohu" "hrvjerojzkytyodcbzya" "czfnkwkfqtjlzihedjet" "io" "ywphvwvawjlikwq" "NA" "tfklrynvjaplktclgz" "NA" "NA" "NA" "NA" "yfhakygjujzifwonnxlc" "eqkaybzxrhiuxyerozlj" "bqwcenwloascalhacoo" "lgvypdqtctpyvijwuwvl" "" "esifsdnqpeasirdw" "fiysxeatzsidgjnqoswq" "NA" "wxweopnavjspwjaghzkj" "NA" "NA" "NA" "bdkjeejrftbjcykunrse" "NA" "NA" "amrobelckuahkbafbsbx"
+includeZ values: 2113400008
+includeM values: -1354212959
+includeSRID values: 1639523616
+endian values: -1635714286
+bufferSize values: -1166635176
+input ends
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Attempt to set zero or negative buffer size
+ERROR: Failed: wk_deepstate_test_cpp_wkt_translate_wkb_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wkb/cpp_wkt_translate_wkb_output/456ddcb024af1d38ec9c8a2abc53886cdcab95bb.fail failed

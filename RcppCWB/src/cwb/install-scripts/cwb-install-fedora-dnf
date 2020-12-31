@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Note : this script will probably work on other flavours of Linux using RPM.
+# The original Fedora/Red Hat targeting script uses Yum.
+# This copy does exactly the same, but with the replacement DNF package manager. 
+
+# run as root! su or sudo.
+
+who=$(whoami)
+
+if [[ "$who" != root ]]
+then
+	echo "This script must be run as root."
+	echo "Please try again: sudo cwb-install-fedora-dnf"
+	echo "Thanks!"
+	exit
+fi
+
+dnf install autoconf bison flex gcc pkgconfig glibc glibc-common glibc-devel glibc-headers make ncurses ncurses-libs ncurses-devel pcre pcre-devel glib glib-devel readline readline-devel
+
+CONFIG_FLAGS=`./install-scripts/cwb-config-basic`
+
+make clean $CONFIG_FLAGS \
+&& make depend $CONFIG_FLAGS \
+&& make cl $CONFIG_FLAGS \
+&& make utils $CONFIG_FLAGS \
+&& make cqp $CONFIG_FLAGS \
+&& make install $CONFIG_FLAGS \
+&& make realclean $CONFIG_FLAGS
+

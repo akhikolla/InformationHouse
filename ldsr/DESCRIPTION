@@ -1,0 +1,31 @@
+Package: ldsr
+Type: Package
+Title: Linear Dynamical System Reconstruction
+Version: 0.0.2
+Authors@R: c(
+    person("Hung", "Nguyen", email = "ntthung@gmail.com", role = c("aut", "cre")),
+    person("Stefano", "Galelli", email = "stefano_galelli@sutd.edu.sg", role = "ctb")
+    )
+Description: Streamflow (and climate) reconstruction using Linear Dynamical Systems. 
+    The advantage of this method is the additional state trajectory which can reveal more information 
+    about the catchment or climate system. For details of the method please refer to Nguyen and Galelli 
+    (2018) <doi:10.1002/2017WR022114>.
+License: GPL (>= 2.0)
+Encoding: UTF-8
+LazyData: true
+Depends: R (>= 3.5)
+Imports: data.table, foreach, MASS, Rcpp, stats
+RoxygenNote: 7.1.0
+LinkingTo: Rcpp, RcppArmadillo
+URL: https://github.com/ntthung/ldsr
+BugReports: https://github.com/ntthung/ldsr/issues
+Suggests: GA, knitr, rmarkdown, testthat, ggplot2, patchwork, doFuture,
+        future
+VignetteBuilder: knitr
+NeedsCompilation: yes
+Packaged: 2020-04-29 15:58:48 UTC; The Water Guy
+Author: Hung Nguyen [aut, cre],
+  Stefano Galelli [ctb]
+Maintainer: Hung Nguyen <ntthung@gmail.com>
+Repository: CRAN
+Date/Publication: 2020-05-04 14:40:09 UTC

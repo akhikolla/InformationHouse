@@ -1,0 +1,25 @@
+INFO: Starting fuzzing
+WARNING: No test specified, defaulting to first test defined (rlfsm_deepstate_test_a_tilda_cpp_test)
+input starts
+EXTERNAL: qs v0.23.4.
+
+N values: 467495432
+m values: 1827680409
+M values: -1053990400
+alpha values: 3.76873e+222
+H values: 2.1759e+276
+input ends
+terminate called after throwing an instance of 'std::length_error'
+  what():  cannot create std::vector larger than max_size()
+ERROR: Failed: rlfsm_deepstate_test_a_tilda_cpp_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/rlfsm/inst/testfiles/a_tilda_cpp/a_tilda_cpp_output/f8f6c0560a3e8d3effc92e9db0e07e076fd2f280.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+N values: -498905818
+m values: 569042049
+M values: 1273656994
+alpha values: 2.30186e+66
+H values: 7.98472e+52
+input ends
+INFO: Done fuzzing! Ran 2 tests (0 tests/second) with 1 failed/1 passed/0 abandoned tests

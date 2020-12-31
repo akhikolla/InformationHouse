@@ -1,0 +1,19 @@
+Package: pcIRT
+Type: Package
+Title: IRT Models for Polytomous and Continuous Item Responses
+Version: 0.2.4
+Date: 2019-07-08
+Author: Christine Hohensinn [cre,aut]
+Maintainer: Christine Hohensinn <research@christinehohensinn.at>
+Depends: R (>= 2.15)
+Suggests: roxygen2
+LinkingTo: Rcpp
+Imports: Rcpp, combinat, stats, graphics, grDevices, utils, methods
+Description: Estimates the multidimensional polytomous Rasch model (Rasch, 1961) with conditional maximum likelihood estimation.
+License: GPL-3
+URL: https://github.com/christinehohensinn/pcIRT
+RoxygenNote: 6.1.1
+NeedsCompilation: yes
+Packaged: 2019-07-15 18:58:20 UTC; christine
+Repository: CRAN
+Date/Publication: 2019-07-15 19:40:10 UTC

@@ -1,0 +1,13 @@
+WARNING: No test specified, defaulting to first test defined (linearQ_deepstate_test_mStat_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/linearQ/inst/testfiles/mStat/mStat_output/213c782907ee3299b362a396a6f846877b3f4584.crash`
+TRACE: Running: linearQ_deepstate_test_mStat_test from /home/akhila/fuzzer_packages/fuzzedpackages/linearQ/inst/testfiles/mStat/mStat_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+data values: 4.38983e+276 -2.83919e+230 nan -1.5601e+246 inf
+type values: 1315945823
+input ends
+EXTERNAL: Unsupported type 1315945823!
+ERROR: Crashed: linearQ_deepstate_test_mStat_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/linearQ/inst/testfiles/mStat/mStat_output/213c782907ee3299b362a396a6f846877b3f4584.crash crashed

@@ -1,0 +1,17 @@
+Package: Opt5PL
+Type: Package
+Title: Optimal Designs for the 5-Parameter Logistic Model
+Version: 0.1.1
+Author: Seung Won Hyun, Weng Kee Wong, and Yarong Yang
+Maintainer: Seung Won Hyun <yellowatom09@gmail.com>
+Description: Obtain and evaluate various optimal designs for the 3, 4, and 5-parameter logistic models. The optimal designs are obtained based on the numerical algorithm in Hyun, Wong, Yang (2018) <doi:10.18637/jss.v083.i05>. 
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+Imports: Rcpp (>= 0.12.18), matrixcalc
+LinkingTo: Rcpp
+RoxygenNote: 6.1.0
+NeedsCompilation: yes
+Packaged: 2018-10-06 19:54:40 UTC; raina
+Repository: CRAN
+Date/Publication: 2018-10-06 21:00:15 UTC

@@ -1,0 +1,173 @@
+---
+title: "Introducing serrsBayes"
+author: "Matt Moores"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    fig_caption: yes
+bibliography: refs.bib
+vignette: >
+  %\VignetteIndexEntry{Introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+set.seed(1234)
+```
+
+The R package **serrsBayes** uses a sequential Monte Carlo (SMC) algorithm [@DelMoral2006] to separate an observed spectrum into 3 components: the peaks $s_i(\tilde\nu)$; baseline $\xi_i(\tilde\nu)$; and additive white noise $\epsilon_{i,j} \sim \mathcal{N}(0, \sigma^2_\epsilon)$:
+$$
+\mathbf{y}_i = \xi_i(\tilde\nu) + s_i(\tilde\nu) + \boldsymbol\epsilon_i
+$$
+This is a type of *functional data analysis* [@Ramsay2009], since the discretised spectrum $\mathbf{y}_i$ is represented using latent (unobserved), continuous functions. The background fluorescence $\xi_i(\tilde\nu)$ is estimated using a penalised B-spline [@Wood2017], while the peaks can be modelled as Gaussian, Lorentzian, or pseudo-Voigt functions.
+
+The Voigt function is a *convolution* of a Gaussian and a Lorentzian: $f_V(\nu_j) = (f_G * f_L)(\nu_j)$. It has an additional parameter $\eta_p$ that equals 0 for pure Gaussian and 1 for Lorentzian:
+$$
+s_i(\nu_j) = \sum_{p=1}^P A_{i,p} f_V(\nu_j ; \ell_p, \varphi_p, \eta_p) 
+$$
+where $A_{i,p}$ is the *amplitude* of peak $p$; $\ell_p$ is the peak *location*; and $\varphi_p$ is the *broadening*. The horizontal axis of a Raman spectrum is measured in *wavenumbers* $\nu_j \in \Delta\tilde\nu$, with units of inverse centimetres (cm$^{-1}$). The vertical axis is measured in arbitrary units (a.u.), since the *intensity* of the Raman signal depends on the properties of the spectrometer. This functional model is explained further in our paper, @Moores2016.
+
+## Data
+
+This example of surface-enhanced Raman spectroscopy (SERS) was originally published by @Gracie2015:
+```{r data, message=FALSE, fig.width=6}
+library(serrsBayes)
+data("lsTamra", package = "serrsBayes")
+wavenumbers <- lsTamra$wavenumbers
+spectra <- lsTamra$spectra
+plot(wavenumbers, spectra[1,], type='l', col=4, main="Raman Spectrum of TAMRA+DNA",
+     xlab=expression(paste("Raman shift (cm"^{-1}, ")")), ylab="Intensity (a.u.)")
+nWL <- length(wavenumbers)
+```
+
+## Priors
+We will use the same priors that were described in the paper [@Moores2016], including the TD-DFT peak locations from @Watanabe2005:
+```{r priors}
+peakLocations <- c(615, 631, 664, 673, 702, 705, 771, 819, 895, 923, 1014,
+                   1047, 1049, 1084, 1125, 1175, 1192, 1273, 1291, 1307, 1351, 1388, 1390,
+                   1419, 1458, 1505, 1530, 1577, 1601, 1615, 1652, 1716)
+nPK <- length(peakLocations)
+priors <- list(loc.mu=peakLocations, loc.sd=rep(50,nPK), scaG.mu=log(16.47) - (0.34^2)/2,
+               scaG.sd=0.34, scaL.mu=log(25.27) - (0.4^2)/2, scaL.sd=0.4, noise.nu=5, noise.sd=50,
+               bl.smooth=1, bl.knots=121)
+```
+
+## Computation
+Now we run the SMC algorithm to fit the model:
+```{r SMC, results='hide'}
+data("result", package = "serrsBayes")
+if(!exists("result")) {
+  tm <- system.time(result <- fitVoigtPeaksSMC(wavenumbers, spectra, priors, npart=2000))
+  result$time <- tm
+  save(result, file="result.rda")
+}
+```
+
+The default values for the number of particles, Markov chain steps, and learning rate can be somewhat conservative, depending on the application. Unfortunately, the new function `fitVoigtPeaksSMC` has not been parallelised yet, so it only runs on a single core. Thus, it can take a long time to fit the model with 34 peaks and 2401 wavenumbers:
+```{r time}
+print(paste(format(result$time["elapsed"]/3600, digits=3),"hours for",length(result$ess),"SMC iterations."))
+```
+
+The downside of choosing smaller values for these tuning parameters is that you run the risk of the SMC collapsing. The quality of the particle distribution deteriorates with each iteration, as measured by the effective sample size (ESS):
+```{r ess, fig.show='hold', fig.width=3, fig.height=3}
+plot.ts(result$ess, ylab="ESS", main="Effective Sample Size",
+        xlab="SMC iteration", ylim=c(0,max(result$ess)))
+abline(h=max(result$ess)/2, col=4, lty=2)
+abline(h=0,lty=2)
+plot.ts(result$accept, ylab="accept", main="M-H Acceptance Rate",
+        xlab="SMC iteration", ylim=c(0,max(result$accept)))
+abline(h=0.234, col=4, lty=2)
+abline(h=0,lty=2)
+plot.ts(result$times, ylab="time (s)", main="Elapsed Time", xlab="SMC iteration")
+plot.ts(result$kappa, ylab=expression(kappa), main="Likelihood Tempering",
+        xlab="SMC iteration")
+abline(h=0,lty=2)
+abline(h=1,lty=3,col=4)
+```
+
+If SMC collapses, the best solution is to increase the number of particles and run it again. Thus, choosing a conservative number to begin with is a sensible strategy. With 2000 particles and 10 M-H steps per SMC iteration, we can see from the above plots that the algorithm has converged to the target distribution. More detailed convergence diagnostics can be obtained from the genealogical history of the particles [@Jacob2015,@Lee2015], but this is not yet implemented in the R package.
+
+## Posterior Inference
+
+A subsample of particles can be used to plot the posterior distribution of the baseline and peaks:
+```{r baseline, fig.show='hold'}
+samp.idx <- sample.int(length(result$weights), 50, prob=result$weights)
+samp.mat <- resid.mat <- matrix(0,nrow=length(samp.idx), ncol=nWL)
+samp.sigi <- samp.lambda <- numeric(length=nrow(samp.mat))
+spectra <- as.matrix(spectra)
+plot(wavenumbers, spectra[1,], type='l', xlab=expression(paste("Raman shift (cm"^{-1}, ")")), ylab="Intensity (a.u.)")
+for (pt in 1:length(samp.idx)) {
+  k <- samp.idx[pt]
+  samp.mat[pt,] <- mixedVoigt(result$location[k,], result$scale_G[k,],
+                              result$scale_L[k,], result$beta[k,], wavenumbers)
+  samp.sigi[pt] <- result$sigma
+  samp.lambda[pt] <- result$lambda
+  
+  Obsi <- spectra[1,] - samp.mat[pt,]
+  g0_Cal <- length(Obsi) * samp.lambda[pt] * result$priors$bl.precision
+  gi_Cal <- crossprod(result$priors$bl.basis) + g0_Cal
+  mi_Cal <- as.vector(solve(gi_Cal, crossprod(result$priors$bl.basis, Obsi)))
+
+  bl.est <- result$priors$bl.basis %*% mi_Cal # smoothed residuals = estimated basline
+  lines(wavenumbers, bl.est, col=2)
+  lines(wavenumbers, bl.est + samp.mat[pt,], col=4)
+  resid.mat[pt,] <- Obsi - bl.est[,1]
+}
+title(main="Baseline for TAMRA")
+
+plot(range(wavenumbers), range(samp.mat), type='n', xlab=expression(paste("Raman shift (cm"^{-1}, ")")), ylab="Intensity (a.u.)")
+abline(h=0,lty=2)
+for (pt in 1:length(samp.idx)) {
+  lines(wavenumbers, samp.mat[pt,], col=4)
+}
+title(main="Spectral Signature")
+```
+
+Notice that the uncertainty in the baseline is greatest where the peaks are bunched close together, which is exactly what we would expect. This is also reflected in uncertainty of the spectral signature. 
+
+We can compute the Voigt parameters and the full width at half maximum (FWHM) for each peak:
+```{r}
+result$voigt <- result$FWHM <- matrix(nrow=nrow(result$beta), ncol=ncol(result$beta))
+for (k in 1:nrow(result$beta)) {
+  result$voigt[k,] <- getVoigtParam(result$scale_G[k,], result$scale_L[k,])
+  f_G <- result$scale_G[k,]
+  f_L <- result$scale_L[k,]
+  result$FWHM[k,] <- 0.5346*f_L + sqrt(0.2166*f_L^2 + f_G^2)
+}
+```
+
+Finally, display the lower and upper 95% highest posterior density (HPD) intervals for the parameters of each peak:
+```{r confint, warning=FALSE, echo=FALSE, results='asis'}
+result$voigt <- result$FWHM <- matrix(nrow=nrow(result$beta), ncol=ncol(result$beta))
+for (k in 1:nrow(result$beta)) {
+  result$voigt[k,] <- getVoigtParam(result$scale_G[k,], result$scale_L[k,])
+  f_G <- 2*result$scale_G[k,]*sqrt(2*log(2))
+  f_L <- 2*result$scale_L[k,]
+  result$FWHM[k,] <- 0.5346*f_L + sqrt(0.2166*f_L^2 + f_G^2)
+}
+
+voigtCI <- apply(result$voigt, 2, function(x) quantile(x,probs=c(0.025,0.975)))
+fmtVoigtCI <- format(voigtCI,dig=2)
+fwhmCI <- apply(result$FWHM, 2, function(x) quantile(x,probs=c(0.025,0.975)))
+fmtFWHMci <- format(fwhmCI,dig=2)
+ampCI <- apply(result$beta, 2, function(x) quantile(x,probs=c(0.025,0.975)))
+fmtAmpCI <- format(ampCI,digits=0,scientific=FALSE)
+locCI <- apply(result$location, 2, function(x) quantile(x,probs=c(0.025,0.975)))
+fmtLocCI <- format(locCI,dig=3)
+
+library(knitr)
+tabCI <- cbind(paste0("[", fmtLocCI[1,], "; ", fmtLocCI[2,], "]"),
+  paste0("[", fmtAmpCI[1,], "; ", fmtAmpCI[2,], "]"),
+  paste0("[", fmtFWHMci[1,], "; ", fmtFWHMci[2,], "]"),
+  paste0("[", fmtVoigtCI[1,], "; ", fmtVoigtCI[2,], "]"))
+colnames(tabCI) <- c("Location (cm-1)", "Amplitude", "FWHM (cm-1)", "Voigt")
+kable(tabCI, caption="95% highest posterior density intervals for pseudo-Voigt peaks",
+      align = 'rrrr')
+```
+
+# References

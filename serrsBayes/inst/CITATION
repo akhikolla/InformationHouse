@@ -1,0 +1,20 @@
+citHeader("To cite serrsBayes in publications use:")
+
+citEntry(entry = "Article",
+         title        = "Bayesian modelling and quantification of {R}aman spectroscopy",
+         author       = personList(person(c("Matthew","T."),"Moores"),
+                                   as.person("Kirsten Gracie"),
+                                   as.person("Jake Carson"),
+                                   as.person("Karen Faulds"),
+                                   as.person("Duncan Graham"),
+                                   as.person("Mark Girolami")),
+         journal      = "arXiv preprint",
+         year         = "2016",
+         url          = "http://arxiv.org/abs/1604.07299",
+         
+         textVersion  =
+           paste("Matthew T. Moores, Kirsten Gracie, Jake Carson, Karen Faulds, Duncan Graham & Mark Girolami (2016).",
+                 "Bayesian modelling and quantification of Raman spectroscopy.",
+                 "arXiv preprint arXiv:1604.07299 [stat.AP]",
+                 "URL http://arxiv.org/abs/1604.07299")
+)

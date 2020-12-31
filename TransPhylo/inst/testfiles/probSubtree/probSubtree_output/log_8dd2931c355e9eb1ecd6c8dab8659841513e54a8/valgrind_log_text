@@ -1,0 +1,19 @@
+WARNING: No test specified, defaulting to first test defined (TransPhylo_deepstate_test_probSubtree_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/TransPhylo/inst/testfiles/probSubtree/probSubtree_output/8dd2931c355e9eb1ecd6c8dab8659841513e54a8.fail`
+TRACE: Running: TransPhylo_deepstate_test_probSubtree_test from /home/akhila/fuzzer_packages/fuzzedpackages/TransPhylo/inst/testfiles/probSubtree/probSubtree_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+tab values:     inf
+   -inf
+2.46562e-85
+    nan
+1.78433e+169
+
+rate values: -4.24436e+139
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Column index is out of bounds: [index=1; column extent=1].
+ERROR: Failed: TransPhylo_deepstate_test_probSubtree_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/TransPhylo/inst/testfiles/probSubtree/probSubtree_output/8dd2931c355e9eb1ecd6c8dab8659841513e54a8.fail failed

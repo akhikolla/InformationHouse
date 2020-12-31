@@ -1,0 +1,38 @@
+INFO: Starting fuzzing
+WARNING: No seed provided; using 1608764778
+WARNING: No test specified, defaulting to first test defined (rankdist_deepstate_test_cycle_decomp_test)
+input starts
+EXTERNAL: qs v0.23.4.
+
+comp values: 1.37093e-159 -2.67576e+101 7.39816e+67 4.40801e-142 -1.43144e-52 -1.1005e-187 1.06257e+249 -4.84049e-284 1.15812e+163 inf 1.80231e-46 -1.18226e-25 -2.27082e-47 -4.44215e-305 -5.68531e-138 -1.034e+52 -inf 2.85713e+62 -2.67576e+101 -5.62144e+237 -2.56698e-118 nan 3.96245e-224 0
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Index out of bounds: [index=-1; extent=24].
+ERROR: Failed: rankdist_deepstate_test_cycle_decomp_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/rankdist/inst/testfiles/cycle_decomp/cycle_decomp_output/3d502fb23fb102c0554e37f66efd869c3ec5e871.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+comp values: -2.35565e-78 2.7013e+209 -1.83824e+266 -3.86326e-289 8.33678e-208 1.04835e+90 -4.37991e+60 -7.37382e+284 1.11362e-212 1.17982e-29 2.88426e+241 6.49225e-93 8.33678e-208 -2.11387e-191 1.1001e+219 -1.71547e-74 -9.64941e+45 6.07131e+190 1.12282e-172 1.17667e+291 -1.51729e+41 8.52811e-291 3.97754e-279 3.22516e+272 3.47093e+59 -4.06994e+292 8.92948e-221 2.7928e+73 3.71942e-272 -2.06617e+161 2.97276e+195 -7.54165e-07 -8.82266e-07 -1.45064e-105 -1.29064e+246 1.4169e-177 -1.04742e-150 -2.62136e-129 2.59865e-39 -2.90561e-135 -9.59949e+296 -1.1441e+206 -2.91682e-37 7.40963e-242 -5.72627e-282 1.04297e-228 1.77595e+117 -1.09198e+157 1.11398e+32 -5.63672e-05 1.67214e+119 8.33678e-208 3.69938e+93 -2.96425e+201 4.41336e-175 -3.11256e+133 1.26674e+134 nan -2.89319e+67 9.84734e-133 1.01669e+188 nan 2.3585e+45 3.01068e-12 -5.94065e+241 9.14457e+20 -6.96816e-92 8.83516e+182 -9.3546e-19 -1.22735e+303 4.94092e-206 -0.0120506 0
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Index out of bounds: [index=-1; extent=73].
+ERROR: Failed: rankdist_deepstate_test_cycle_decomp_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/rankdist/inst/testfiles/cycle_decomp/cycle_decomp_output/1d2610999a903191b19ef9eae6ea762934f548ed.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+comp values: 2.50349e-09 4.50633e-61 3.65691e-26 -6.78115e-190 5.49432e+119 -5.45836e-194 5.00682e+231 -3.11733e+173 -5.52493e-187 1.75891e+211 2.22623e+159 1.10389e+285 nan 4.91843e+35 2.16834e+307 -3.60463e+200 9.03871e+99 -3.3719e+168 7.19635e-239 -5.45836e-194 3.60416e-26 -1.75729e-125 -inf nan -3.67099e-127 -4.98067e+206 -1.89163e+251 -3.18246e+182 1.83954e+294 -6.56363e-06 3.64047e+17 0
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Index out of bounds: [index=-1; extent=32].
+ERROR: Failed: rankdist_deepstate_test_cycle_decomp_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/rankdist/inst/testfiles/cycle_decomp/cycle_decomp_output/964fdadc0b79031f3f217e732bcd8411b518fe40.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+comp values: -1.32073e+308 -5.61812e+100 -2.12738e-134 1.30634e-274 3.70144e+306 -2.83435e-57 -inf 4.85597e-228 -1.21792e+70 -9.24993e+74 -6.08503e+306 -8.79878e+203 1.98689e+102 3.78265e-237 -1.24418e-126 5.80755e+83 2.11181e+229 6.65797e+216 8.04586e-85 -inf -4.84207e-298 5.26145e+181 5.20691e+178 -7.33197e-68 -4.0795e+216 9.28881e+51 -8.24625e-97 -1.80846e-255 -3.03861e-295 2.21217e+275 1.2726e-20 -3.91693e+293 -2.86147e+76 -6.73028e-64 -3.4652e+75 -9.62994e+258 -88.284 -4.01901e-137 -2.68736e-65 -2.45105e-209 -4.80091e-89 1.46954e+177 3.56122e-27 -5.84766e-142 -2.26011e-231 -3.24079e-300 -1.02663e+76 -9.93866e-260 3.46029e+269 -nan 1.02017e+264 4.03267e-51 -7.67952e+240 inf nan -1.161e+103 1.16722e+07 -4.12406e-62 3.71675e+304 1.09384e+48 -7.83919e-283 -0.172652 6.74315e-232 5.47722e+99 4.62562e+261 2.54194e+60 -7.32654e+295 -4.15679e+29 -1.59585e-186 1.18929e+258 2.11415e-98 8.31798e+129 5.14022e-138 2.53462e+203 -2.13969e-129 -5.73724e-135 4.68818e+204 -4.08009e+22 2.63827e-97 -inf -5.35115e+277 1.25559e-80 1.54892e+126 0
+input ends
+ERROR: Crashed: rankdist_deepstate_test_cycle_decomp_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/rankdist/inst/testfiles/cycle_decomp/cycle_decomp_output/3a963b753774c7599d74db028cdc7eda961c1815.crash`
+INFO: Done fuzzing! Ran 4 tests (2 tests/second) with 4 failed/0 passed/0 abandoned tests

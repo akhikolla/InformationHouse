@@ -1,0 +1,21 @@
+year <- sub("-.*", "", meta$Date)
+note <- sprintf("R package version %s", meta$Version)
+
+bibentry(bibtype = "Manual",
+         textVersion = paste("Dominic Schuhmacher, Björn Bähre, Carsten Gottschlich, Valentin Hartmann, Florian Heinemann, Bernhard Schmitzer and Jörn Schrieber (2019). ", 
+                             "transport: Computation of Optimal Transport Plans and Wasserstein Distances. ",
+                             "R package version ", meta$Version, ". https://cran.r-project.org/package=transport", sep=""),
+         header = "To cite the transport package in publications use:",
+         title = "{transport}: Computation of Optimal Transport Plans and Wasserstein Distances",
+         author = c(person("Dominic", "Schuhmacher", email = "dominic.schuhmacher@mathematik.uni-goettingen.de", role = c("aut","cre")),
+             person("Björn", "Bähre", role = "aut", comment = "aha and power diagrams"),
+             person("Carsten", "Gottschlich", role = "aut", comment = "simplex and shortlist"), 
+             person("Valentin", "Hartmann", role = "aut", comment = "semidiscrete1"),
+             person("Florian", "Heinemann", role = "aut", comment = "transport_track"),
+             person("Bernhard", "Schmitzer", role = "aut", comment = "shielding")),
+             person("Jörn", "Schrieber", role = "aut", comment = "subsampling"),
+         year         = year,
+         note         = note,
+         url          = "https://cran.r-project.org/package=transport",
+)
+

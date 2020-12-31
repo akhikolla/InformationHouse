@@ -1,0 +1,47 @@
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{Introduction and Installing rrecsys}
+-->
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## rrecsys
+This is a package in R that provides implementations of several baselines (Item/User Average and Most Popular Item Recommendation) and other well-known recommendation algorithms. 
+In particular, two main families of recommendation algorithms (i.e., Collaborative filtering and Matrix factorization) 
+are implemented, as shown in the following:
+
+1. Collaborative filtering
+
+* Weighted Slope One
+* User-based k-nearest neighbour
+* Item-based k-nearest neighbour
+
+2. Matrix factorization
+
+* Simon Funk's SVD with stochastic gradient descent
+* weighted Alternated Least Squares (wALS)
+* Bayesian Personalized Ranking (BPR)
+
+rrecsys addresses the two most common scenarios in Recommender Systems:
+
+* Rating Prediction (e.g. on a scale of 1 to 5 stars), and
+* Item Recommendations (e.g. a list of top-N recommended items).
+
+All algorithms can run on a user-item rating matrix that holds data of either item ratings (e.g., 1-5 rating scale) or item purchases/views (e.g., purchased item or not purchased item). The package offers as well an evaluation methodology with the following standard metrics for the specific task:
+
+* Rating Prediction task: global or user-based MAE and RMSE
+* Item Recommendation task: precision, recall, F1, NDCG, rank score and all the elements of the confusion matrix.
+
+## Installation & Loading the package
+The package is available on CRAN and as well on [GitHub](https://github.com/ludovikcoba). To install it from CRAN:
+
+```{r, eval=FALSE}
+install.packages("rrecsys")
+```
+Once the package is installed it can be loaded it in the environment:
+```{r, eval=FALSE}
+library(rrecsys)
+```
+<!--Usually we try to keep updated both GitHub and CRAN with the same version of the package. The version on GitHub is intended for the developing community and we recommend to use it with RStudio.-->

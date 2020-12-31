@@ -1,0 +1,11 @@
+WARNING: No test specified, defaulting to first test defined (krige_deepstate_test_k_inv_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/krige/inst/testfiles/k_inv/k_inv_output/0666942299713afbcdabc80eff1ab61bc815c485.pass`
+TRACE: Running: krige_deepstate_test_k_inv_test from /home/akhila/fuzzer_packages/fuzzedpackages/krige/inst/testfiles/k_inv/k_inv_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+GlobalMat values:     nan    -inf    -inf     nan    -inf 1.55275e+40
+
+input ends
+TRACE: Passed: krige_deepstate_test_k_inv_test

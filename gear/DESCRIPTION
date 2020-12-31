@@ -1,0 +1,18 @@
+Package: gear
+Type: Package
+Title: Geostatistical Analysis in R
+Version: 0.3.4
+Date: 2020-04-06
+Author: Joshua French
+Maintainer: Joshua French <joshua.french@ucdenver.edu>
+Description: Implements common geostatistical methods in a clean, straightforward, efficient manner. The methods are discussed in Schabenberger and Gotway (2004, <ISBN:9781584883227>) and Waller and Gotway (2004, <ISBN:9780471387718>).
+License: GPL (>= 2)
+Imports: autoimage, stats, optimx, Rcpp
+Suggests: sp, sf, testthat, Matrix, geoR, gstat, spam, ggplot2, lattice
+Encoding: UTF-8
+NeedsCompilation: yes
+RoxygenNote: 7.1.0
+LinkingTo: Rcpp
+Packaged: 2020-04-06 17:36:50 UTC; joshu
+Repository: CRAN
+Date/Publication: 2020-04-10 21:20:02 UTC

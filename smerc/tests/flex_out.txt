@@ -1,0 +1,195 @@
+-------------------------------------------------------
+        FleXScan ver3.1.2 -- purely spatial      
+-------------------------------------------------------
+
+Scanning method: Flexible spatial scan.
+
+<STATISTICS>
+ Original log likelihood ratio.
+
+Program run on: Thu Nov 12 06:05:01 2015
+
+Purely Spatial analysis
+scanning for clusters with
+high rates using the Poisson model.
+
+--------------------------------------------------------
+
+SUMMARY OF DATA
+
+Limit length of cluster: 5
+Number of census areas.: 281
+Total cases ...........: 552
+
+--------------------------------------------------------
+
+MOST LIKELY CLUSTER
+
+1.Census areas included .: 86, 88, 89, 92
+  Maximum distance.......: 11.3486 km (areas: 89 to 92)
+  Number of cases .......: 24
+  (Expected number of cases: 9.24077)
+  Overall relative risk .: 2.59719
+  Statistic value .......: 8.34958
+  Monte Carlo rank ......: 28/1000
+  P-value ...............: 0.028
+
+--------------------------------------------------------
+
+SECONDARY CLUSTERS
+
+2.Census areas included .: 1, 2, 13, 15, 49
+  Maximum distance.......: 2.82418 km (areas: 13 to 49)
+  Number of cases .......: 23
+  (Expected number of cases: 10.0335)
+  Overall relative risk .: 2.29231
+  Statistic value .......: 6.2698
+  Monte Carlo rank ......: 168/1000
+  P-value ...............: 0.168
+
+3.Census areas included .: 37, 38, 40, 43
+  Maximum distance.......: 4.46556 km (areas: 37 to 43)
+  Number of cases .......: 21
+  (Expected number of cases: 8.90675)
+  Overall relative risk .: 2.35776
+  Statistic value .......: 6.05437
+  Monte Carlo rank ......: 194/1000
+  P-value ...............: 0.194
+
+4.Census areas included .: 62, 64, 65, 67
+  Maximum distance.......: 5.82273 km (areas: 62 to 65)
+  Number of cases .......: 25
+  (Expected number of cases: 12.8236)
+  Overall relative risk .: 1.94953
+  Statistic value .......: 4.65184
+  Monte Carlo rank ......: 590/1000
+  P-value ...............: 0.59
+
+5.Census areas included .: 117, 123, 124, 125
+  Maximum distance.......: 1.22164 km (areas: 117 to 125)
+  Number of cases .......: 14
+  (Expected number of cases: 5.86564)
+  Overall relative risk .: 2.38678
+  Statistic value .......: 4.10576
+  Monte Carlo rank ......: 784/1000
+  P-value ...............: 0.784
+
+6.Census areas included .: 166, 167
+  Maximum distance.......: 1.01127 km (areas: 166 to 167)
+  Number of cases .......: 9
+  (Expected number of cases: 3.01554)
+  Overall relative risk .: 2.98454
+  Statistic value .......: 3.88929
+  Monte Carlo rank ......: 839/1000
+  P-value ...............: 0.839
+
+7.Census areas included .: 265, 266, 281
+  Maximum distance.......: 2.77816 km (areas: 265 to 281)
+  Number of cases .......: 11
+  (Expected number of cases: 4.20808)
+  Overall relative risk .: 2.61402
+  Statistic value .......: 3.82013
+  Monte Carlo rank ......: 858/1000
+  P-value ...............: 0.858
+
+8.Census areas included .: 46, 53, 54
+  Maximum distance.......: 4.23304 km (areas: 53 to 54)
+  Number of cases .......: 15
+  (Expected number of cases: 6.82437)
+  Overall relative risk .: 2.19801
+  Statistic value .......: 3.69923
+  Monte Carlo rank ......: 904/1000
+  P-value ...............: 0.904
+
+9.Census areas included .: 131, 132, 139
+  Maximum distance.......: 1.9747 km (areas: 131 to 139)
+  Number of cases .......: 7
+  (Expected number of cases: 2.15127)
+  Overall relative risk .: 3.25389
+  Statistic value .......: 3.43167
+  Monte Carlo rank ......: 946/1000
+  P-value ...............: 0.946
+
+10.Census areas included .: 126
+  Maximum distance.......: 0 km (areas: 126 to 126)
+  Number of cases .......: 5
+  (Expected number of cases: 1.35851)
+  Overall relative risk .: 3.68051
+  Statistic value .......: 2.88583
+  Monte Carlo rank ......: 995/1000
+  P-value ...............: 0.995
+
+11.Census areas included .: 5, 12
+  Maximum distance.......: 0.982643 km (areas: 5 to 12)
+  Number of cases .......: 6
+  (Expected number of cases: 1.88824)
+  Overall relative risk .: 3.17757
+  Statistic value .......: 2.84034
+  Monte Carlo rank ......: 997/1000
+  P-value ...............: 0.997
+
+12.Census areas included .: 171
+  Maximum distance.......: 0 km (areas: 171 to 171)
+  Number of cases .......: 5
+  (Expected number of cases: 1.46184)
+  Overall relative risk .: 3.42034
+  Statistic value .......: 2.62194
+  Monte Carlo rank ......: 999/1000
+  P-value ...............: 0.999
+
+13.Census areas included .: 155, 225
+  Maximum distance.......: 2.29126 km (areas: 155 to 225)
+  Number of cases .......: 11
+  (Expected number of cases: 5.36618)
+  Overall relative risk .: 2.04988
+  Statistic value .......: 2.29088
+  Monte Carlo rank ......: 1000/1000
+  P-value ...............: 1
+
+*** There are no more secondary clusters ***
+
+--------------------------------------------------------
+The statistic value required for an observed
+cluster to be significant at level
+... 0.01: 9.37439
+... 0.05: 7.69892
+
+--------------------------------------------------------
+
+PARAMETER SETTINGS
+
+Input Files
+-----------
+  Case File:        C:\Users\Joshua\Dropbox\Code\GitHub\smerc\tests\flex_nycases.txt
+  Coordinates File: C:\Users\Joshua\Dropbox\Code\GitHub\smerc\tests\flex_nycoords.txt
+  Matrix File:      C:\Users\Joshua\Dropbox\Code\GitHub\smerc\tests\flex_nyw.mt0
+
+Analysis
+--------
+  Type of Analysis     : Purely Spatial
+  Probability Model    : Poisson
+  <STATISTICS>
+   Original log likelihood ratio.
+
+  Scan for Area with   : High Rates
+  Coordinates          : Latitude/Longitude
+  Radius of Earth      : 6370 km
+
+  Number of Replications : 999
+  Type of Random number  : Multinomial
+  Seed of Random number  : 4586111
+
+Scanning Method
+---------------
+  Scanning Method :  Flexible scan
+  Maximum Spatial Cluster Size : 5 areas
+
+Output
+------
+  Results File : C:\Users\Joshua\Dropbox\Code\GitHub\smerc\tests\flex_out.txt
+  Criteria for Reporting Secondary Clusters : No Geographical Overlap
+
+--------------------------------------------------------
+
+Program completed  : Thu Nov 12 06:05:03 2015
+Total Running Time : 2 seconds

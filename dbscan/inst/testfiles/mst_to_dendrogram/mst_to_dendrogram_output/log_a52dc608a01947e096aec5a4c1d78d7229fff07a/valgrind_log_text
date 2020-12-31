@@ -1,0 +1,22 @@
+WARNING: No test specified, defaulting to first test defined (dbscan_deepstate_test_mst_to_dendrogram_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/dbscan/inst/testfiles/mst_to_dendrogram/mst_to_dendrogram_output/a52dc608a01947e096aec5a4c1d78d7229fff07a.crash`
+TRACE: Running: dbscan_deepstate_test_mst_to_dendrogram_test from /home/akhila/fuzzer_packages/fuzzedpackages/dbscan/inst/testfiles/mst_to_dendrogram/mst_to_dendrogram_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+mst values: 3.62674e+276 5.17781e+105     nan     inf
+9.30831e-138 2.59099e-68    -inf 2.38724e-271
+4.09716e+47 8.40608e+118 -1.71931e-91     inf
+2.35355e-176 5.11394e+143 5.62204e+284 7.49286e+260
+4.02270e+176 5.15177e+08 4.19856e+214 2.65866e-149
+2.85289e-14 1.90988e-229 7.70806e+120 7.35556e-289
+
+input ends
+==780037==  If you believe this happened as a result of a stack
+==780037==  overflow in your program's main thread (unlikely but
+==780037==  possible), you can try to increase the size of the
+==780037==  main thread stack using the --main-stacksize= flag.
+==780037==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: dbscan_deepstate_test_mst_to_dendrogram_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/dbscan/inst/testfiles/mst_to_dendrogram/mst_to_dendrogram_output/a52dc608a01947e096aec5a4c1d78d7229fff07a.crash crashed

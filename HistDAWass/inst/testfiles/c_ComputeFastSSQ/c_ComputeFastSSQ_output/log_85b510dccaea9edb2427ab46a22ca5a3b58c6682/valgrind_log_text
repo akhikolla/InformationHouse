@@ -1,0 +1,13 @@
+WARNING: No test specified, defaulting to first test defined (HistDAWass_deepstate_test_c_ComputeFastSSQ_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/HistDAWass/inst/testfiles/c_ComputeFastSSQ/c_ComputeFastSSQ_output/85b510dccaea9edb2427ab46a22ca5a3b58c6682.fail`
+TRACE: Running: HistDAWass_deepstate_test_c_ComputeFastSSQ_test from /home/akhila/fuzzer_packages/fuzzedpackages/HistDAWass/inst/testfiles/c_ComputeFastSSQ/c_ComputeFastSSQ_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+subMM values: 1.05415e-68 1.86447e-211 4.49059e+17 2.72551e-214 6.53679e-70 2.42643e+241 1.65687e+24
+
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Row index is out of bounds: [index=1; row extent=1].
+ERROR: Failed: HistDAWass_deepstate_test_c_ComputeFastSSQ_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/HistDAWass/inst/testfiles/c_ComputeFastSSQ/c_ComputeFastSSQ_output/85b510dccaea9edb2427ab46a22ca5a3b58c6682.fail failed

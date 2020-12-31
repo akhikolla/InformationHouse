@@ -1,0 +1,30 @@
+WARNING: No test specified, defaulting to first test defined (CMF_deepstate_test_p_updateMean_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/CMF/inst/testfiles/p_updateMean/p_updateMean_output/b120ca6d6f8dddeda1d965f69533c4975c816eec.crash`
+TRACE: Running: CMF_deepstate_test_p_updateMean_test from /home/akhila/fuzzer_packages/fuzzedpackages/CMF/inst/testfiles/p_updateMean/p_updateMean_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+Xm values:     inf
+   -inf
+2.46562e-85
+    nan
+1.78433e+169
+
+Missing value
+U1m values:     inf -4.24436e+139     nan
+2.70433e-194    -inf 2.15982e-87
+
+U2m values: 2.62539e+129 6.85769e-16 1.98743e+154 1.51886e-282 9.00123e+84 3.02439e+234 1.08708e+120 2.96592e-146 1.95817e-131
+
+Missing value
+I values: -1.77034e-192 1.08098e-11 -1.68379e-260 nan -9.52836e+75 -inf 1.9085e+18 -2.06534e+23 -1.9394e+06 1.20595e-167 1.78112e-81 nan -4.89273e+250 1.5545e+210 1.86447e+15 5.60014e+50 -2.9734e+61 -6.53022e+211 5.07781e+235 -3.79746e-197 -3.0708e+43 -4.86036e+07 2.35669e+99 -1.33699e+53 -3.02572e-63 4.88049e-239 nan 0
+Mv values: 1.60338e-58 1.04614e-10 -1.88832e+146 -2.76293e-194 -6.97205e+79 2.75677e+53 -3.06268e-211 -5.51075e-282 1.12721e+271 2.97293e-135 -5.64072e-246 -8.97413e+223 -0.000149059 4.00007e+209 -1.54857e+206 -4.76641e-43 -4.14493e+211 -1.33376e-19 7.50295e+275 -3.54919e+86 -8.46816e-38 -4.69314e+27 3.74334e-85 7.18085e-13 5.43925e+77 -2.63955e+203 -8.03519e+62 4.52786e-99 1.6259e-175 1.55591e+162 8.63031e-255 -3.60763e-249 1.61089e+221 -3.24201e+210 -2.97824e-198 -2.02673e+265 -4.09672e+105 -3.55042e+163 -1.91508e+25 3.03926e-246
+input ends
+==304400==  If you believe this happened as a result of a stack
+==304400==  overflow in your program's main thread (unlikely but
+==304400==  possible), you can try to increase the size of the
+==304400==  main thread stack using the --main-stacksize= flag.
+==304400==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: CMF_deepstate_test_p_updateMean_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/CMF/inst/testfiles/p_updateMean/p_updateMean_output/b120ca6d6f8dddeda1d965f69533c4975c816eec.crash crashed

@@ -1,0 +1,16 @@
+Package: ExactMultinom
+Type: Package
+Title: Multinomial Goodness-of-Fit Tests
+Version: 0.1.2
+Author: Johannes Resin
+Maintainer: Johannes Resin <johannes.resin@h-its.org>
+Description: Computes exact p-values for multinomial goodness-of-fit tests based on multiple test statistics, namely, Pearson's chi-square, the log-likelihood ratio and the probability mass statistic. Implements the algorithm detailed in Resin (2020) <arXiv:2008.12682>. Estimates based on the classical asymptotic chi-square approximation or Monte-Carlo simulation can also be computed.
+License: GPL (>= 2)
+Imports: Rcpp (>= 1.0.4), stats
+LinkingTo: Rcpp
+Encoding: UTF-8
+RoxygenNote: 7.1.1
+NeedsCompilation: yes
+Packaged: 2020-09-04 14:16:29 UTC; resinjs
+Repository: CRAN
+Date/Publication: 2020-09-04 21:42:10 UTC

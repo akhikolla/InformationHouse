@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./LogC_Component_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/rankdist/inst/testfiles/LogC_Component/LogC_Component_output/34813736c673d096b5faa28c05783947ec813b7f.pass</line>
+</preamble>
+
+<pid>3954192</pid>
+<ppid>3954191</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/rankdist/inst/testfiles/LogC_Component/LogC_Component_output/log_34813736c673d096b5faa28c05783947ec813b7f/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./LogC_Component_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/rankdist/inst/testfiles/LogC_Component/LogC_Component_output/34813736c673d096b5faa28c05783947ec813b7f.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.049 </time>
+</status>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:14.948 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:15.959 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

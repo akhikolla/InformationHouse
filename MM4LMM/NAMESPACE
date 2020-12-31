@@ -1,0 +1,8 @@
+useDynLib(MM4LMM)
+import(parallel)
+importFrom("Matrix","isDiagonal")
+importFrom("stats" , "as.formula","model.matrix","pchisq","var","terms","pf")
+importFrom("MASS", "ginv")
+importFrom("utils", "combn")
+exportPattern("^[[:alpha:]]+")
+importFrom(Rcpp, evalCpp)

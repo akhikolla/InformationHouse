@@ -1,0 +1,15 @@
+WARNING: No test specified, defaulting to first test defined (wk_deepstate_test_cpp_wkt_translate_wksxp_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_output/6ce38bb41f6a50f7fb4d4da16cab27a939cb4706.fail`
+TRACE: Running: wk_deepstate_test_cpp_wkt_translate_wksxp_test from /home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+wkt values: "oeythlfrxtfjxzdeejol" "mrwgmurgjf" "NA" "tglpvzndhadidxnofcd" "NA" "NA" "NA" "kkifqamgnkrmdnypk" "alwsl" "NA" "NA" "deyblbjnrxlmflq" "drufrhgu" "NA" "" "NA" "rpufgzsjlfrfxj" "k" "debdigxot" "hnqccwqunjtqwtlmwuvl" "cvtybxyehosv" "tyxywzcahlzvygwwlxio" "NA" "bxdyoyljwaovxnit" "NA" "qkbbzzvfqrkkcakktvou" "ylirspbmtsiebt" "NA" "oyvfplfjkdgyblkuclje" "iqfhzwsn" "hlbjrcphtbflmknkgkso" "cyvft" "fvbbuvwkfdolmvvsfoy" "gnhcdo" "dkvsodovrmropxuetwq" "mmaezhmlzmduyceoiuvp" "zsktexlho" "vrfjgsjlle" "bonem" "smedmqbn" "djpwkhrnbomtudmlvtxl" "NA" "ehiatrkevxwpouxmotnz" "tnpepvmngtignueovd" "tayheeeiznxujffvyicb" "psymffi" "" "NA" "gqpdoqpwftndjkepcotj" "javywxovxeofevjfbmcg" "focvjjnsjffzlybzxmyq" "btcxkjxvbcuyd" "NA" "jiobfmxyrb" "aucksxjefgvswxepdewo" "hszddhypebywrnpazbjt" "NA" "NA" "NA" "hqzbqxhrrgbbcrjwnzuj" "gvwzegyainqmqbhri" "onvppuuvdnjhtexeekdo" "lvevwglscgkr" "" "topbogcerek"
+includeZ values: -568592799
+includeM values: -158683130
+includeSRID values: -426592579
+input ends
+terminate called after throwing an instance of 'WKParseException'
+  what():  Expected geometry type or 'SRID=' but found 'oeythlfrxtfjxzdeejol' (:0)
+ERROR: Failed: wk_deepstate_test_cpp_wkt_translate_wksxp_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_output/6ce38bb41f6a50f7fb4d4da16cab27a939cb4706.fail failed

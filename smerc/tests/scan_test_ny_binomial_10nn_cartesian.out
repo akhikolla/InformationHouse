@@ -1,0 +1,159 @@
+-------------------------------------------------------
+        FleXScan ver3.1.2 -- purely spatial      
+-------------------------------------------------------
+
+Scanning method: Circular spatial scan.
+
+<STATISTICS>
+ Original log likelihood ratio.
+
+Program run on: Thu Oct 18 16:51:30 2018
+
+Purely Spatial analysis
+scanning for clusters with
+high rates using the Binomial model.
+
+--------------------------------------------------------
+
+SUMMARY OF DATA
+
+Limit length of cluster: 10
+Number of census areas.: 281
+Total cases ...........: 552
+Total population ......: 1057673
+
+--------------------------------------------------------
+
+MOST LIKELY CLUSTER
+
+1.Census areas included .: 1, 2, 3, 12, 13, 14, 15, 35, 47, 49
+  Maximum distance.......: 4.27336 km (areas: 12 to 47)
+  Number of cases .......: 41
+  Population ............: 38999
+  Statistic value .......: 8.47836
+  Monte Carlo rank ......: 14/1000
+  P-value ...............: 0.014
+
+--------------------------------------------------------
+
+SECONDARY CLUSTERS
+
+2.Census areas included .: 85, 86, 87, 88, 89, 90, 91, 92, 93
+  Maximum distance.......: 25.4258 km (areas: 85 to 90)
+  Number of cases .......: 42
+  Population ............: 40696
+  Statistic value .......: 8.29257
+  Monte Carlo rank ......: 20/1000
+  P-value ...............: 0.02
+
+3.Census areas included .: 37, 38, 39, 40, 43, 44, 45, 46, 52, 53
+  Maximum distance.......: 7.44554 km (areas: 37 to 46)
+  Number of cases .......: 44
+  Population ............: 47412
+  Statistic value .......: 6.43049
+  Monte Carlo rank ......: 139/1000
+  P-value ...............: 0.139
+
+4.Census areas included .: 113, 117, 118, 119, 124, 125, 126, 127
+  Maximum distance.......: 2.79619 km (areas: 119 to 125)
+  Number of cases .......: 28
+  Population ............: 26499
+  Statistic value .......: 5.77247
+  Monte Carlo rank ......: 233/1000
+  P-value ...............: 0.233
+
+5.Census areas included .: 62, 64, 65, 67
+  Maximum distance.......: 5.82273 km (areas: 62 to 65)
+  Number of cases .......: 25
+  Population ............: 24571
+  Statistic value .......: 4.65493
+  Monte Carlo rank ......: 561/1000
+  P-value ...............: 0.561
+
+6.Census areas included .: 265, 266, 281
+  Maximum distance.......: 2.77816 km (areas: 265 to 281)
+  Number of cases .......: 11
+  Population ............: 8063
+  Statistic value .......: 3.82302
+  Monte Carlo rank ......: 839/1000
+  P-value ...............: 0.839
+
+7.Census areas included .: 120, 121, 131, 132, 138, 139
+  Maximum distance.......: 2.02446 km (areas: 120 to 139)
+  Number of cases .......: 10
+  Population ............: 6985
+  Statistic value .......: 3.77633
+  Monte Carlo rank ......: 853/1000
+  P-value ...............: 0.853
+
+8.Census areas included .: 159, 166, 167
+  Maximum distance.......: 1.01127 km (areas: 166 to 167)
+  Number of cases .......: 11
+  Population ............: 8839
+  Statistic value .......: 3.21181
+  Monte Carlo rank ......: 966/1000
+  P-value ...............: 0.966
+
+9.Census areas included .: 171
+  Maximum distance.......: 0 km (areas: 171 to 171)
+  Number of cases .......: 5
+  Population ............: 2801
+  Statistic value .......: 2.62418
+  Monte Carlo rank ......: 998/1000
+  P-value ...............: 0.998
+
+10.Census areas included .: 155, 225
+  Maximum distance.......: 2.29126 km (areas: 155 to 225)
+  Number of cases .......: 11
+  Population ............: 10282
+  Statistic value .......: 2.29244
+  Monte Carlo rank ......: 1000/1000
+  P-value ...............: 1
+
+*** There are no more secondary clusters ***
+
+--------------------------------------------------------
+The statistic value required for an observed
+cluster to be significant at level
+... 0.01: 9.30606
+... 0.05: 7.54519
+
+--------------------------------------------------------
+
+PARAMETER SETTINGS
+
+Input Files
+-----------
+  Case File:        C:\Users\joshu\Documents\Dropbox\Code\GitHub\smerc\tests\flex_nycases_pop.txt
+  Coordinates File: C:\Users\joshu\Documents\Dropbox\Code\GitHub\smerc\tests\flex_nycoords.txt
+  Matrix File:      C:\Users\joshu\Documents\Dropbox\Code\GitHub\smerc\tests\flex_nyw.mt0
+
+Analysis
+--------
+  Type of Analysis     : Purely Spatial
+  Probability Model    : Binomial
+  <STATISTICS>
+   Original log likelihood ratio.
+
+  Scan for Area with   : High Rates
+  Coordinates          : Latitude/Longitude
+  Radius of Earth      : 6370 km
+
+  Number of Replications : 999
+  Type of Random number  : Multinomial
+  Seed of Random number  : 4586111
+
+Scanning Method
+---------------
+  Scanning Method :  Circular scan
+  Maximum Spatial Cluster Size : 10 areas
+
+Output
+------
+  Results File : C:\Users\joshu\Documents\Dropbox\Code\GitHub\smerc\tests\scan_binomial.out
+  Criteria for Reporting Secondary Clusters : No Geographical Overlap
+
+--------------------------------------------------------
+
+Program completed  : Thu Oct 18 16:51:32 2018
+Total Running Time : 2 seconds

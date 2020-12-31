@@ -1,0 +1,78 @@
+
+
+useDynLib(mnlfa)
+
+
+
+####################################################
+################## IMPORTS #########################
+####################################################
+
+#***************************************************
+#*************** R Basics / Linking To *************
+#***************************************************
+
+
+# importFrom(Rcpp, evalCpp)
+importFrom(stats, dnorm)
+importFrom(stats, model.matrix)
+importFrom(utils, flush.console)
+importFrom(utils, packageDescription)
+
+
+
+#***************************************************
+#********** Imports (own packages) *****************
+#***************************************************
+
+importFrom(CDM, cat_paste)
+importFrom(CDM, cdm_calc_information_criteria)
+importFrom(CDM, cdm_parameter_regularization)
+importFrom(CDM, cdm_penalty_values)
+importFrom(CDM, cdm_print_summary_call)
+importFrom(CDM, cdm_print_summary_computation_time)
+importFrom(CDM, cdm_print_summary_data_frame)
+importFrom(CDM, cdm_print_summary_information_criteria)
+importFrom(CDM, csink)
+importFrom(CDM, osink)
+
+
+
+
+#***************************************************
+#************** Imports ****************************
+#***************************************************
+
+# importFrom(survey, svydesign)
+
+
+
+#***************************************************
+#************** Suggests ***************************
+#***************************************************
+# requireNamespace("another_package")
+# require_namespace_msg("another_package")
+
+# importFrom(pbivnorm, pbivnorm)
+
+
+
+####################################################
+################## EXPORTS #########################
+####################################################
+
+export(mnlfa)
+export(mnlfa_expand_to_list)
+
+
+################################################
+################ S3 methods ####################
+################################################
+
+S3method(summary, mnlfa)
+
+# S3method(coef, mnlfa)
+# S3method(confint, mnlfa)
+# S3method(logLik, mnlfa)
+# S3method(summary, mnlfa)
+# S3method(vcov, mnlfa)

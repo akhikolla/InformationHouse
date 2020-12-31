@@ -1,0 +1,19 @@
+WARNING: No test specified, defaulting to first test defined (PP_deepstate_test_Likgpcm_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/PP/inst/testfiles/Likgpcm/Likgpcm_output/3065308d70363d595f786fd27f9f15145798715e.fail`
+TRACE: Running: PP_deepstate_test_Likgpcm_test from /home/akhila/fuzzer_packages/fuzzedpackages/PP/inst/testfiles/Likgpcm/Likgpcm_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+awv values: 1452738095 1618366851 1679204877 1586657384 -2073912510 2030347660 720227797 1790569921 1375006897 1782658255 1473698998
+DELTA values: 7.78977e+159 2.19993e-285 4.07917e+165 5.71162e+62 4.49653e+83 1.44694e-22 4.59987e+18 6.61249e-257 8.62422e-89
+5.68507e+80 1.71990e-51 11.4127 3.92548e+14 8.29783e+300 5.24924e+272 1.51667e-225 2.62736e-264 1.01363e+74
+
+Missing value
+ALPHA values: 2.124e-163 -9.51323e-197 3.19247e-184 1.49439e+214 -7261.59 1.80254e+45 -1.19985e-167 -1.25433e+73 -2.85375e-285 -4.96182e+212 nan -3.48461e-264 -2.09115e-209 2.70315e+165 -4.35123e-245 -4.7888e-91 -6.15607e-134 1.58392e+299 1.75992e-188 2.92513e-276 6.55275e-240 nan 3.22331e-237 6.20752 8.27412e+256 1.04413e-152 1.74061e+94 nan 8.21606e-152 2.27705e+266 1.32765e-258 -6.58791e-221 0
+Missing value
+nodes values: -1.85162e+290 nan -1.34852e+122 1.76776e+51 nan inf -8.23755e+198 -9.01896e-271 7.90107e-59 -7.51099e-234 inf 2.66297e-21 2.85695e-49 4.90458e-204 -1.3085e-253 -1.07333e-20 -8.85386e+100 -5.65013e+262 3.67043e+302 0
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Index out of bounds: [index=2; extent=2].
+ERROR: Failed: PP_deepstate_test_Likgpcm_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/PP/inst/testfiles/Likgpcm/Likgpcm_output/3065308d70363d595f786fd27f9f15145798715e.fail failed

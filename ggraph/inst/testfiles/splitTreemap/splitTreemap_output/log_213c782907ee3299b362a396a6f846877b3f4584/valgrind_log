@@ -1,0 +1,195 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./splitTreemap_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/ggraph/inst/testfiles/splitTreemap/splitTreemap_output/213c782907ee3299b362a396a6f846877b3f4584.crash</line>
+</preamble>
+
+<pid>822027</pid>
+<ppid>822026</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/ggraph/inst/testfiles/splitTreemap/splitTreemap_output/log_213c782907ee3299b362a396a6f846877b3f4584/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./splitTreemap_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/ggraph/inst/testfiles/splitTreemap/splitTreemap_output/213c782907ee3299b362a396a6f846877b3f4584.crash</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.024 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D36DA1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ggraph/src/ggraph.so</obj>
+      <fn>createHierarchy(std::vector&lt;int, std::allocator&lt;int&gt; &gt;, std::vector&lt;int, std::allocator&lt;int&gt; &gt;, std::vector&lt;double, std::allocator&lt;double&gt; &gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ggraph/src</dir>
+      <file>nodes.cpp</file>
+      <line>11</line>
+    </frame>
+    <frame>
+      <ip>0x4D3CA14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ggraph/src/ggraph.so</obj>
+      <fn>splitTreemap(Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ggraph/src</dir>
+      <file>treemap.cpp</file>
+      <line>78</line>
+    </frame>
+    <frame>
+      <ip>0x40A531</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ggraph/inst/testfiles/splitTreemap/splitTreemap_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_ggraph_deepstate_test_splitTreemap_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ggraph/inst/testfiles/splitTreemap</dir>
+      <file>splitTreemap_DeepState_TestHarness.cpp</file>
+      <line>40</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ggraph/inst/testfiles/splitTreemap/splitTreemap_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_ggraph_deepstate_test_splitTreemap_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ggraph/inst/testfiles/splitTreemap</dir>
+      <file>splitTreemap_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D718</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ggraph/inst/testfiles/splitTreemap/splitTreemap_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D9B9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ggraph/inst/testfiles/splitTreemap/splitTreemap_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA94</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ggraph/inst/testfiles/splitTreemap/splitTreemap_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ggraph/inst/testfiles/splitTreemap/splitTreemap_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x2222c1338 is not stack'd, malloc'd or (recently) free'd</auxwhat>
+</error>
+
+<fatal_signal>
+  <tid>1</tid>
+  <signo>11</signo>
+  <signame>SIGSEGV</signame>
+  <sicode>1</sicode>
+  <event>Access not within mapped region</event>
+  <siaddr>0x2222C1338</siaddr>
+  <stack>
+    <frame>
+      <ip>0x4D36DA1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ggraph/src/ggraph.so</obj>
+      <fn>createHierarchy(std::vector&lt;int, std::allocator&lt;int&gt; &gt;, std::vector&lt;int, std::allocator&lt;int&gt; &gt;, std::vector&lt;double, std::allocator&lt;double&gt; &gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ggraph/src</dir>
+      <file>nodes.cpp</file>
+      <line>11</line>
+    </frame>
+    <frame>
+      <ip>0x4D3CA14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ggraph/src/ggraph.so</obj>
+      <fn>splitTreemap(Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ggraph/src</dir>
+      <file>treemap.cpp</file>
+      <line>78</line>
+    </frame>
+    <frame>
+      <ip>0x40A531</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ggraph/inst/testfiles/splitTreemap/splitTreemap_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_ggraph_deepstate_test_splitTreemap_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ggraph/inst/testfiles/splitTreemap</dir>
+      <file>splitTreemap_DeepState_TestHarness.cpp</file>
+      <line>40</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ggraph/inst/testfiles/splitTreemap/splitTreemap_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_ggraph_deepstate_test_splitTreemap_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ggraph/inst/testfiles/splitTreemap</dir>
+      <file>splitTreemap_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D718</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ggraph/inst/testfiles/splitTreemap/splitTreemap_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D9B9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ggraph/inst/testfiles/splitTreemap/splitTreemap_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA94</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ggraph/inst/testfiles/splitTreemap/splitTreemap_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ggraph/inst/testfiles/splitTreemap/splitTreemap_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</fatal_signal>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:07.696 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>1</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.308 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

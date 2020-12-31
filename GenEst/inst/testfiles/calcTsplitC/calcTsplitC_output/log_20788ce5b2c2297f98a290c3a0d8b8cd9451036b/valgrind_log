@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./calcTsplitC_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/GenEst/inst/testfiles/calcTsplitC/calcTsplitC_output/20788ce5b2c2297f98a290c3a0d8b8cd9451036b.pass</line>
+</preamble>
+
+<pid>512432</pid>
+<ppid>512431</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/GenEst/inst/testfiles/calcTsplitC/calcTsplitC_output/log_20788ce5b2c2297f98a290c3a0d8b8cd9451036b/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./calcTsplitC_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/GenEst/inst/testfiles/calcTsplitC/calcTsplitC_output/20788ce5b2c2297f98a290c3a0d8b8cd9451036b.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.041 </time>
+</status>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:11.943 </time>
+</status>
+
+<error>
+  <unique>0x2e</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>136 bytes in 1 blocks are definitely lost in loss record 47 of 1,319</text>
+    <leakedbytes>136</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483C583</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new[](unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D26607</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GenEst/src/GenEst.so</obj>
+      <fn>calcTsplitC(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/GenEst/src</dir>
+      <file>tsplit.cpp</file>
+      <line>58</line>
+    </frame>
+    <frame>
+      <ip>0x40A147</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GenEst/inst/testfiles/calcTsplitC/calcTsplitC_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_GenEst_deepstate_test_calcTsplitC_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/GenEst/inst/testfiles/calcTsplitC</dir>
+      <file>calcTsplitC_DeepState_TestHarness.cpp</file>
+      <line>30</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GenEst/inst/testfiles/calcTsplitC/calcTsplitC_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_GenEst_deepstate_test_calcTsplitC_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/GenEst/inst/testfiles/calcTsplitC</dir>
+      <file>calcTsplitC_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DBC8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GenEst/inst/testfiles/calcTsplitC/calcTsplitC_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DE69</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GenEst/inst/testfiles/calcTsplitC/calcTsplitC_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DF44</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GenEst/inst/testfiles/calcTsplitC/calcTsplitC_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/GenEst/inst/testfiles/calcTsplitC/calcTsplitC_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:12.528 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

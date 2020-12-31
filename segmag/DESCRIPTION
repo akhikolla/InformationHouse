@@ -1,0 +1,30 @@
+Package: segmag
+Type: Package
+Version: 1.2.4
+Date: 2016-08-11
+Title: Determine Event Boundaries in Event Segmentation Experiments
+Maintainer: Frank Papenmeier <frank.papenmeier@uni-tuebingen.de>
+Author: Frank Papenmeier [aut, cre],
+    Konstantin Sering [ctb]
+Authors@R: c(person("Frank","Papenmeier", role=c("aut","cre"),
+    email="frank.papenmeier@uni-tuebingen.de"),
+    person("Konstantin","Sering", role="ctb"))
+Description: Contains functions that help to determine event
+    boundaries in event segmentation experiments by bootstrapping a critical
+    segmentation magnitude under the null hypothesis that all key presses were
+    randomly distributed across the experiment. Segmentation magnitude is
+    defined as the sum of Gaussians centered at the times of the segmentation
+    key presses performed by the participants. Within a participant, the maximum
+    of the overlaid Gaussians is used to prevent an excessive influence of a
+    single participant on the overall outcome (e.g. if a participant is pressing
+    the key multiple times in succession). Further functions are included, such
+    as plotting the results.
+License: GPL (>= 3)
+Suggests: testthat
+Imports: Rcpp (>= 0.11.0), utils, stats, grDevices, graphics, plyr
+LinkingTo: Rcpp
+RoxygenNote: 5.0.1
+NeedsCompilation: yes
+Packaged: 2016-08-11 14:05:47 UTC; fpapenmeier
+Repository: CRAN
+Date/Publication: 2016-08-11 18:40:42

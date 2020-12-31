@@ -1,0 +1,25 @@
+WARNING: No test specified, defaulting to first test defined (activegp_deepstate_test_grad_W_kappa_ij2_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/grad_W_kappa_ij2/grad_W_kappa_ij2_output/1dfe7a328f8ae27ea29aa5f1aecadc0eafc19f31.fail`
+TRACE: Running: activegp_deepstate_test_grad_W_kappa_ij2_test from /home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/grad_W_kappa_ij2/grad_W_kappa_ij2_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+design1 values: -4.40542e-65 9.93765e+292 2.32003e+83 -3.79864e-121 1.88831e-213 2.454e-127 -5.16834e+138 -6.5185e+234 5.70876e+39 -1925.99 3.4062e+177 3.79125e-141 -3.78689e-26 6.67997e+201 1.95296e-225 3.67122e+174 -6.02247e+297 nan -3.64069e+264 -1.02667e+221 -4.93899e-292 1.18829e+83 4.5494e+83 6.14545e-207 2.68266e+268 -1.49404e+247 7.68739e-208 nan -1.21096e-290 -9.56765e-120 -1.23782e+306 -6.5868e-128 6.87917e+136 -4.09753e-228 5.93333e-215 2.89107e+289 -1.64629e+219 2.77718e+36 9.30501e-126 -8.40171e-48 -8.72773e-222 4.27065e+243 7.56179e+267 1.48525e-139 4.58275e+262 nan -8.23981e-124 -1.61626e-196 inf nan 3.46445e-66 0
+Missing value
+design2 values: 5.74434e+70     nan
+    inf 1.01679e+123
+6.22698e+119 6.61355e-270
+4.37747e+95     inf
+1.79162e+266 9.07765e-32
+
+Missing value
+theta values: -8.29464e-75 -3.61086e+112 2.34212e-88 -3.65991e+49 2.65147e-259 nan 2.15408e-10 -2.58912e+95 1.58182e-177 -5.08553e-257 8.3992e+143 nan -9.42344e-297 6.71993e+128 3.20188e+15 1.3387e-196 1.83725e-142 5.72837e+218 7.43113e+194 -3.64935e+79 8.87238e-218 nan -1.89726e+20 -3.52884e-108 -1.74543e+156 -1.20739e-233 1.20409e+306 -inf 4.10428e-270 -2.94242e+49 -4.9458e+239 1.89167e+84 -1.93568e-269 inf 1.03871e-102 -1.13991e-140 8.83473e-246 -3.54062e-303 2.6204e+42 -2.68381e+105 6.75146e-266 -4.47954e-117 0
+i1 values: 1340998520
+i2 values: 747613946
+ct values: 2008496840
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Index out of bounds: [index=1340998520; extent=43].
+ERROR: Failed: activegp_deepstate_test_grad_W_kappa_ij2_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/grad_W_kappa_ij2/grad_W_kappa_ij2_output/1dfe7a328f8ae27ea29aa5f1aecadc0eafc19f31.fail failed

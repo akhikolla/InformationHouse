@@ -1,0 +1,25 @@
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{Predicting & recommending}
+-->
+
+## Predicting & recommending
+
+Once a model has been trained rrecsys may be used to generate either recommendation or predictions. 
+
+The prediction method will generate a new rating matrix with estimations on the missing ratings. Let’s predict using two models trained in the previous vignettes:
+```{r, eval=FALSE}
+pSVD <- predict(svd)
+pIB <- predict(ibknn)
+```
+The _predict_ method has a second argument, _Round_ that rounds predicted values to the scale and binds them to the domain of the data set.
+
+The _recommend_ method generates a top-N list for each user:
+```{r, eval=FALSE}
+rSVD <- recommendHPR(svd, topN = 3)
+rIB <- recommendHPR(ibknn, topN = 3)
+# Let’s compare results on user 3:
+rSVD[4]
+rIB[4]
+```
+The _topN_ argument specifies the length of the recommended list for each user.

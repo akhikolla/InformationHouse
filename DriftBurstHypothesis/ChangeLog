@@ -1,0 +1,69 @@
+2019-24-01 Emil Sjoerup <emilsjoerup@live.dk>
+  *DESCRIPTION (Version): New version is 0.1.1
+  *Fix ambiguity in a call to sqrt() for int which caused installation failure on Solaris.
+  *More robust code, passing vectors of differing length for logprices and time are now stopped.
+  *The Mu and Sigma vectors returned now also start with a 0 instead of uninitiated memory.
+  *Documentation changed to make it more clear that the left-sided exponential kernel is used (no foresight).
+2019-02-04 Emil Sjoerup <emilsjoerup@live.dk>
+  *DESCRIPTION (Version): New version is 0.1.2
+  *Fix a bug where the iMaxLag was being scaled higher if the lag selection algorithm suggested a lag higher than 20. (Was a bug now fixed)
+  *Add xts funcitonality, now an xts object will no longer break the code and the timestamps can now be extracted from and xts.
+2019-08-04 Emil Sjoerup <emilsjoerup@live.dk>
+  *Mitigate bug that caused crashes if the first testing time was before actual observations.
+2019-13-04 Emil Sjoerup <emilsjoerup@live.dk>
+  *Update documentation to get ready for CRAN update.
+2019-25-04 Emil Sjoerup <emilsjoerup@live.dk>
+  *DESCRIPTION (Version): New version is 0.1.3
+  *Implement tests for function that is prone to cause failures (Automatic Lag Selection Algorithm)
+  *Put in safeguard that should prevent crashes. Now, it is not allowed to have more than 15 minutes between trades.
+  *Fix bug caused by a misunderstanding when re-reading the paper. The bug was introduced in version 0.1.2 caused too low maximum lags
+2019-14-05 Emil Sjoerup <emilsjoerup@live.dk>
+  *New plot method for the "DBH" S3 class also introduced in this version
+  *New methods getMu and getSigma to get the mu and sigma estimates
+2019-06-06 Emil Sjoerup <emilsjoerup@live.dk>
+  *New method getDB to get the Drift Bursts test statistic added.
+2019-06-14 Emil Sjoerup <emilsjoerup@live.dk>
+  *add timezones to the code, output should no longer have timezones different from the input
+2019-06-24 Emil Sjoerup <emilsjoerup@live.dk>
+  *Fix a mistake that lead to foresight in the lag selection algorithm
+  *More helpful messages
+2019-06-25 Emil Sjoerup <emilsjoerup@live.dk>
+  *Allow for different time-zones in plotting. The standard is that a trading day starts at 9:30
+2019-06-30 Emil Sjoerup <emilsjoerup@live.dk>
+  *Use warnings instead of cat() to display warnings
+  *Start loop at first test time instead of second in case users don't use same testtimes as I do.
+  *getMu() and getSigma() now returns corrected values (i.e. mu * Mean_bandwidth, and sigma * 2 * iT)
+2019-07-06 Emil Sjoerup <emilsjoerup@live.dk>
+  *Bump version number to 0.1.3.1
+  *Don't start loop at first test time, instead make it explicit in the documentation that the first test is not calculated and should be used to designate the start of the trading day.
+  *Add tests for the examples given.
+2019-08-22 Emil Sjoerup <emilsjoerup@live.dk>
+  *Change to camelCase
+  *getMu and getSigma now corrects for nObs
+2019-09-01 Emil Sjoerup <emilsjoerup@live.dk>
+  *DESCRIPTION (Version): New version is 0.2.0
+  *Add realTime argument to driftBursts function
+2019-10-02 Emil Sjoerup <emilsjoerup@live.dk>
+  *No longer calling -abs(vX) in DBH.cpp as it was always a negative vector and was leftover from before I optimized indexing in that function. -Minor performance gain.
+  *add print.DBH method
+2019-10-06 Emil Sjoerup <emilsjoerup@live.dk>
+  *DESCRIPTION (Version): New version is 0.2.0.1
+  *Add .0 to 2.0 in floor(iLag/2) to floor(iLag/2.0) in order to avoid integer arguments in floor() which causes installation errors on Solaris
+2019-10-27 Emil Sjoerup <emilsjoerup@live.dk>
+  *Remove surperfluous code form the cfilter function - extra unused arguments were included, which have been removed.
+  *Add padding vector to the output of driftBursts function, which is used for the new mean and variance methods of the new classes for the 3 estimates
+  *Add methods for calculating mean and variance of the output of driftBursts
+  *Re-organize the documentation to have a file for the methods of the DBH class.
+2019-10-29 Emil Sjoerup <emilsjoerup@live.dk>
+  *DESCRIPTION (Version): New version is 0.3.0 
+  *In driftBursts, the testTimes argument should no longer have an entry denoting the start of the trading day, as now testing is done on all entries.
+2019-11-23 Emil Sjoerup <emilsjoerup@live.dk>
+  *Port over the routine for testing whether a flash crash is present from Matlab. 
+2019-11-28 Emil Sjoerup <emilsjoerup@live.dk>
+  *remove realTime feature, which was a bug mistaken as a feature :)
+2020-01-01 Emil Sjoerup <emilsjoeerup@live.dk>
+  *Small performance gains for sequential evaluation
+2020-07-13 Emil Sjoerup <emilsjoerup@live.dk>
+  * DESCRIPTION (Version): New version is 0.4.0.1
+  * Implement safeguard against testing too soon which caused crashes when
+    many trades at the start of the series have the same timestamp and testing is mandated at the very start of trading.

@@ -1,0 +1,21 @@
+citHeader("To cite remote in publications use:")
+
+citEntry(entry = "Article",
+  title        = "{remote}: Empirical Orthogonal Teleconnections in {R}",
+  author       = personList(as.person("Tim Appelhans"),
+                   as.person("Florian Detsch"),
+                   as.person("Thomas Nauss")),
+  journal      = "Journal of Statistical Software",
+  year         = "2015",
+  volume       = "65",
+  number       = "10",
+  pages        = "1--19",
+  url          = "https://www.jstatsoft.org/article/view/v065i10",
+
+  textVersion  =
+  paste("Tim Appelhans, Florian Detsch, Thomas Nauss (2015).",
+        "remote: Empirical Orthogonal Teleconnections in R.",
+        "Journal of Statistical Software, 65(10), 1-19.",
+        "URL https://www.jstatsoft.org/article/view/v065i10.")
+)
+

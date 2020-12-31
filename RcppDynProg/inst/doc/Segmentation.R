@@ -1,0 +1,137 @@
+## ----r1, fig.height = 6, fig.width = 8, fig.align = "center"------------------
+library("RcppDynProg")
+
+
+set.seed(2018)
+g <- 50
+d <- data.frame(
+  x = 1:(3*g)) # ordered in x
+d$y_ideal <- c(rep(0, g), rep(1, g), rep(-1, g))
+d$y_observed <- d$y_ideal + rnorm(length(d$y_ideal))
+
+
+
+# plot
+plot(d$x, d$y_observed,
+     xlab = "x", ylab = "y",
+     main = "raw data\ncircles: observed values, dashed line: unobserved true values")
+lines(d$x, d$y_ideal,
+     type = "l",
+     lty = "dashed")
+
+## -----------------------------------------------------------------------------
+y_permuted <- d$y_ideal[sample.int(nrow(d), nrow(d), replace = FALSE)]
+
+
+solve_with_penalty <- function(ycol, penalty) {
+  n <- length(ycol)
+  indices = seq_len(n)
+  x <- const_costs(ycol, 1+numeric(n), 1, indices)
+  x <- x + penalty
+  solve_interval_partition(x, n)
+}
+
+lb <- 1
+ub <- 10
+while(length(solve_with_penalty(y_permuted, ub))>2) {
+  ub <- ub*2
+}
+while(TRUE) {
+  mid <- ceiling((ub+lb)/2)
+  if(mid>=ub) {
+    break
+  }
+  si <- solve_with_penalty(y_permuted, mid)
+  if(length(si)<=2) {
+    ub <- mid
+  } else {
+    lb <- mid
+  }
+}
+print(ub)
+
+## ----r5, fig.height = 6, fig.width = 8, fig.align = "center"------------------
+soln <- solve_with_penalty(d$y_observed, ub)
+print(soln)
+
+
+d$group <- as.character(findInterval(d$x, soln))
+group_means <- tapply(d$y_observed, d$group, mean)
+d$group_mean <- group_means[d$group]
+d$estimate <- d$group_mean
+
+print(sum((d$y_observed - d$y_ideal)^2))
+  
+print(sum((d$group_mean - d$y_ideal)^2))
+
+# plot
+d$group <- as.character(d$group)
+plot(d$x, d$y_observed,
+     xlab = "x", ylab = "y",
+     main = "RcppDynProg piecewise linear estimate\ndots: observed values, segments: estimated shape")
+points(d$x, d$y_ideal,
+     type = "l",
+     lty = "dashed")
+cmap <- c("#a6cee3",
+          "#1f78b4",
+          "#b2df8a",
+          "#33a02c",
+          "#fb9a99",
+          "#e31a1c",
+          "#fdbf6f",
+          "#ff7f00",
+          "#cab2d6",
+          "#6a3d9a",
+          "#ffff99",
+          "#b15928")
+names(cmap) <- as.character(seq_len(length(cmap)))
+points(d$x, d$y_observed, col = cmap[d$group], pch=19)
+groups <- sort(unique(d$group))
+for(gi in groups) {
+  di <- d[d$group==gi, , drop = FALSE]
+  lines(di$x, di$estimate, col = cmap[di$group[[1]]], lwd=2)
+}
+
+## ----r2, fig.height = 6, fig.width = 8, fig.align = "center"------------------
+# x_cuts <- solve_for_partition(d$x, d$y_observed)
+# sometimes a different penalty due to problem chunking
+x_cuts <- solve_for_partitionc(d$x, d$y_observed, penalty = ub)
+print(x_cuts)
+
+d$estimate <- approx(x_cuts$x, x_cuts$pred, xout = d$x, method = "constant", rule = 2)$y
+d$group <- as.character(findInterval(d$x, x_cuts[x_cuts$what=="left", "x"]))
+
+print(sum((d$y_observed - d$y_ideal)^2))
+
+print(sum((d$estimate - d$y_ideal)^2))
+
+print(sum((d$estimate - d$y_observed)^2))
+
+# plot
+d$group <- as.character(d$group)
+plot(d$x, d$y_observed,
+     xlab = "x", ylab = "y",
+     main = "RcppDynProg piecewise constant estimate\ndots: observed values, segments: estimated shape")
+points(d$x, d$y_ideal,
+     type = "l",
+     lty = "dashed")
+cmap <- c("#a6cee3",
+          "#1f78b4",
+          "#b2df8a",
+          "#33a02c",
+          "#fb9a99",
+          "#e31a1c",
+          "#fdbf6f",
+          "#ff7f00",
+          "#cab2d6",
+          "#6a3d9a",
+          "#ffff99",
+          "#b15928")
+names(cmap) <- as.character(seq_len(length(cmap)))
+points(d$x, d$y_observed, col = cmap[d$group], pch=19)
+groups <- sort(unique(d$group))
+for(gi in groups) {
+  di <- d[d$group==gi, , drop = FALSE]
+  lines(di$x, di$estimate, col = cmap[di$group[[1]]], lwd=2)
+}
+

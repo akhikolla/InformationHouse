@@ -1,0 +1,19 @@
+WARNING: No test specified, defaulting to first test defined (lsbclust_deepstate_test_AssignCluster_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/lsbclust/inst/testfiles/AssignCluster/AssignCluster_output/548c98ca6075818b02050bd830b464db8571e3b4.crash`
+TRACE: Running: lsbclust_deepstate_test_AssignCluster_test from /home/akhila/fuzzer_packages/fuzzedpackages/lsbclust/inst/testfiles/AssignCluster/AssignCluster_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+data values: 1.52651e+105 8.83845e-105 6.26124e-137 4.18097e+20 1.56184e+211 2.23267e-290 2.09507e+129
+7.27896e+159 1.41854e+151 1.23689e+65 8.13135e-163 4.07229e+48 4.24354e-257 2.09790e+114
+
+Missing value
+weight values: -3.57814e+162 2.61836e-90 -5.48331e+153 8.59497e+213 4.63308e-216 8.52202e+148 -2.01404e+18 1.95054e-135 2.89409e+129 5.17028e-67 inf -9.05845e+223 -8.70564e-59 -4.94768e+70 -3.96736e-10 -7.95382e+85 -3.79334e-257 -1.06609e+76 -1.63013e+113 2.45465e+100 3.04966e+276 9.47363e-189 1.72673e-188 -1.11791e+241 -8.35803e-257 9.85535e-28 6.98337e-240 5.33734e-179 1.58966e-174 2.89818e+153 8.37176e+87 -1.35074e-229 -inf -5.4561e-306 5.97178e-181 -6.79567e+177 -1.52285e-140 3.78232e-75 -4.32911e-123 3.48544e+205 -1.14279e-204 3.28334e+06 7987.56 -7.631e+290 -4.76947e+277 3.97169e+144 -1.09353e+274 1.63194e-239 nan 1.94851e+21 -1.95392e+216 1.53527e+279 5.94282e+161 1.6128e+205 -2.91778e-282 inf -5.50127e-67 nan 0
+M values: 1.02255e-50 7.22548e+237 7.02217e+115 6.01155e+85 9.37027e-183 3.77720e+306 1.49847e-122 3.34936e+09 2.05738e+163
+1.22364e+241 2.73416e-38 1.61749e+232 1.01789e-274 1.45764e+171 3.48160e-219 0.0100308 6.23458 1.25624e+69
+1.76863e-125 2.29544e-224 1.88291e-90 9.09857e+37 3.62775e-05 1.41679e+104 2.31348e+58 1.00014e+208 2.75032e+84
+
+nclust values: 578009953
+input ends
+ERROR: Crashed: lsbclust_deepstate_test_AssignCluster_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/lsbclust/inst/testfiles/AssignCluster/AssignCluster_output/548c98ca6075818b02050bd830b464db8571e3b4.crash crashed

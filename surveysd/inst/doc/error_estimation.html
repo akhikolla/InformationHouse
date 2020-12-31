@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+<meta name="date" content="2020-12-10" />
+
+<title>Error estimation</title>
+
+<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
+// v0.0.1
+// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
+
+document.addEventListener('DOMContentLoaded', function() {
+  const codeList = document.getElementsByClassName("sourceCode");
+  for (var i = 0; i < codeList.length; i++) {
+    var linkList = codeList[i].getElementsByTagName('a');
+    for (var j = 0; j < linkList.length; j++) {
+      if (linkList[j].innerHTML === "") {
+        linkList[j].setAttribute('aria-hidden', 'true');
+      }
+    }
+  }
+});
+</script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Error estimation</h1>
+<h4 class="date">2020-12-10</h4>
+
+
+<div id="TOC">
+<ul>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#estimator-functions">Estimator functions</a><ul>
+<li><a href="#custom-estimators">Custom estimators</a></li>
+<li><a href="#multiple-estimators">Multiple estimators</a></li>
+</ul></li>
+<li><a href="#grouping">Grouping</a><ul>
+<li><a href="#several-grouping-variables">Several grouping variables</a></li>
+</ul></li>
+</ul>
+</div>
+
+<p>For the most part, this document will present the functionalities of the function <code>surveysd::calc.stError()</code> which generates point estimates and standard errors for user-supplied estimation functions.</p>
+<div id="prerequisites" class="section level2">
+<h2>Prerequisites</h2>
+<p>In order to use a dataset with <code>calc.stError()</code>, several weight columns have to be present. Each weight column corresponds to a bootstrap sample. In the following examples, we will use the data from <code>demo.eusilc()</code> and attach the bootstrap weights using <code>draw.bootstrap()</code> and <code>recalib()</code>. Please refer to the documentation of those functions for more detail.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(surveysd)</span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb1-4"><a href="#cb1-4"></a>eusilc &lt;-<span class="st"> </span><span class="kw">demo.eusilc</span>(<span class="dt">prettyNames =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb1-5"><a href="#cb1-5"></a>dat_boot &lt;-<span class="st"> </span><span class="kw">draw.bootstrap</span>(eusilc, <span class="dt">REP =</span> <span class="dv">10</span>, <span class="dt">hid =</span> <span class="st">&quot;hid&quot;</span>, <span class="dt">weights =</span> <span class="st">&quot;pWeight&quot;</span>,</span>
+<span id="cb1-6"><a href="#cb1-6"></a>                           <span class="dt">strata =</span> <span class="st">&quot;region&quot;</span>, <span class="dt">period =</span> <span class="st">&quot;year&quot;</span>)</span>
+<span id="cb1-7"><a href="#cb1-7"></a>dat_boot_calib &lt;-<span class="st"> </span><span class="kw">recalib</span>(dat_boot, <span class="dt">conP.var =</span> <span class="st">&quot;gender&quot;</span>, <span class="dt">conH.var =</span> <span class="st">&quot;region&quot;</span>,</span>
+<span id="cb1-8"><a href="#cb1-8"></a>                          <span class="dt">epsP =</span> <span class="fl">1e-2</span>, <span class="dt">epsH =</span> <span class="fl">2.5e-2</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb1-9"><a href="#cb1-9"></a>dat_boot_calib[, onePerson <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="kw">nrow</span>(.SD) <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, by =<span class="st"> </span>.(year, hid)]</span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co">## print part of the dataset</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>dat_boot_calib[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, .(year, povertyRisk, eqIncome, onePerson, pWeight, w1, w2, w3, w4, w5)]</span></code></pre></div>
+<div class="kable-table">
+<table style="width:100%;">
+<colgroup>
+<col width="5%"></col>
+<col width="12%"></col>
+<col width="9%"></col>
+<col width="10%"></col>
+<col width="9%"></col>
+<col width="10%"></col>
+<col width="10%"></col>
+<col width="10%"></col>
+<col width="10%"></col>
+<col width="9%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">year</th>
+<th align="left">povertyRisk</th>
+<th align="right">eqIncome</th>
+<th align="left">onePerson</th>
+<th align="right">pWeight</th>
+<th align="right">w1</th>
+<th align="right">w2</th>
+<th align="right">w3</th>
+<th align="right">w4</th>
+<th align="right">w5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="left">FALSE</td>
+<td align="right">16090.69</td>
+<td align="left">FALSE</td>
+<td align="right">504.5696</td>
+<td align="right">0.4477743</td>
+<td align="right">1007.5651</td>
+<td align="right">0.4466992</td>
+<td align="right">0.4489062</td>
+<td align="right">1019.721</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="left">FALSE</td>
+<td align="right">16090.69</td>
+<td align="left">FALSE</td>
+<td align="right">504.5696</td>
+<td align="right">0.4477743</td>
+<td align="right">1007.5651</td>
+<td align="right">0.4466992</td>
+<td align="right">0.4489062</td>
+<td align="right">1019.721</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="left">FALSE</td>
+<td align="right">16090.69</td>
+<td align="left">FALSE</td>
+<td align="right">504.5696</td>
+<td align="right">0.4477743</td>
+<td align="right">1007.5651</td>
+<td align="right">0.4466992</td>
+<td align="right">0.4489062</td>
+<td align="right">1019.721</td>
+</tr>
+<tr class="even">
+<td align="right">2011</td>
+<td align="left">FALSE</td>
+<td align="right">16090.69</td>
+<td align="left">FALSE</td>
+<td align="right">504.5696</td>
+<td align="right">0.4237016</td>
+<td align="right">968.2711</td>
+<td align="right">0.4468813</td>
+<td align="right">0.4654705</td>
+<td align="right">1005.100</td>
+</tr>
+<tr class="odd">
+<td align="right">2011</td>
+<td align="left">FALSE</td>
+<td align="right">16090.69</td>
+<td align="left">FALSE</td>
+<td align="right">504.5696</td>
+<td align="right">0.4237016</td>
+<td align="right">968.2711</td>
+<td align="right">0.4468813</td>
+<td align="right">0.4654705</td>
+<td align="right">1005.100</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="estimator-functions" class="section level2">
+<h2>Estimator functions</h2>
+<p>The parameters <code>fun</code> and <code>var</code> in <code>calc.stError()</code> define the estimator to be used in the error analysis. There are two built-in estimator functions <code>weightedSum()</code> and <code>weightedRatio()</code> which can be used as follows.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>povertyRate &lt;-<span class="st"> </span><span class="kw">calc.stError</span>(dat_boot_calib, <span class="dt">var =</span> <span class="st">&quot;povertyRisk&quot;</span>, <span class="dt">fun =</span> weightedRatio)</span>
+<span id="cb2-2"><a href="#cb2-2"></a>totalIncome &lt;-<span class="st"> </span><span class="kw">calc.stError</span>(dat_boot_calib, <span class="dt">var =</span> <span class="st">&quot;eqIncome&quot;</span>, <span class="dt">fun =</span> weightedSum)</span></code></pre></div>
+<p>Those functions calculate the ratio of persons at risk of poverty (in percent) and the total income. By default, the results are calculated separately for each reference period.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>povertyRate<span class="op">$</span>Estimates</span></code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">year</th>
+<th align="right">n</th>
+<th align="right">N</th>
+<th align="right">val_povertyRisk</th>
+<th align="right">stE_povertyRisk</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">14827</td>
+<td align="right">8182222</td>
+<td align="right">14.44422</td>
+<td align="right">0.5838199</td>
+</tr>
+<tr class="even">
+<td align="right">2011</td>
+<td align="right">14827</td>
+<td align="right">8182222</td>
+<td align="right">14.77393</td>
+<td align="right">0.6771848</td>
+</tr>
+<tr class="odd">
+<td align="right">2012</td>
+<td align="right">14827</td>
+<td align="right">8182222</td>
+<td align="right">15.04515</td>
+<td align="right">0.4907275</td>
+</tr>
+<tr class="even">
+<td align="right">2013</td>
+<td align="right">14827</td>
+<td align="right">8182222</td>
+<td align="right">14.89013</td>
+<td align="right">0.4756386</td>
+</tr>
+<tr class="odd">
+<td align="right">2014</td>
+<td align="right">14827</td>
+<td align="right">8182222</td>
+<td align="right">15.14556</td>
+<td align="right">0.5195149</td>
+</tr>
+<tr class="even">
+<td align="right">2015</td>
+<td align="right">14827</td>
+<td align="right">8182222</td>
+<td align="right">15.53640</td>
+<td align="right">0.4808834</td>
+</tr>
+<tr class="odd">
+<td align="right">2016</td>
+<td align="right">14827</td>
+<td align="right">8182222</td>
+<td align="right">15.08315</td>
+<td align="right">0.3566648</td>
+</tr>
+<tr class="even">
+<td align="right">2017</td>
+<td align="right">14827</td>
+<td align="right">8182222</td>
+<td align="right">15.42019</td>
+<td align="right">0.5592589</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>totalIncome<span class="op">$</span>Estimates</span></code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">year</th>
+<th align="right">n</th>
+<th align="right">N</th>
+<th align="right">val_eqIncome</th>
+<th align="right">stE_eqIncome</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">14827</td>
+<td align="right">8182222</td>
+<td align="right">162750998071</td>
+<td align="right">960851034</td>
+</tr>
+<tr class="even">
+<td align="right">2011</td>
+<td align="right">14827</td>
+<td align="right">8182222</td>
+<td align="right">161926931417</td>
+<td align="right">901915958</td>
+</tr>
+<tr class="odd">
+<td align="right">2012</td>
+<td align="right">14827</td>
+<td align="right">8182222</td>
+<td align="right">162576509628</td>
+<td align="right">1198230549</td>
+</tr>
+<tr class="even">
+<td align="right">2013</td>
+<td align="right">14827</td>
+<td align="right">8182222</td>
+<td align="right">163199507862</td>
+<td align="right">1474893389</td>
+</tr>
+<tr class="odd">
+<td align="right">2014</td>
+<td align="right">14827</td>
+<td align="right">8182222</td>
+<td align="right">163986275009</td>
+<td align="right">1528829971</td>
+</tr>
+<tr class="even">
+<td align="right">2015</td>
+<td align="right">14827</td>
+<td align="right">8182222</td>
+<td align="right">163416275447</td>
+<td align="right">1338217239</td>
+</tr>
+<tr class="odd">
+<td align="right">2016</td>
+<td align="right">14827</td>
+<td align="right">8182222</td>
+<td align="right">162706205137</td>
+<td align="right">1207314432</td>
+</tr>
+<tr class="even">
+<td align="right">2017</td>
+<td align="right">14827</td>
+<td align="right">8182222</td>
+<td align="right">164314959107</td>
+<td align="right">1322744977</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Columns that use the <code>val_</code> prefix denote the point estimate belonging to the “main weight” of the dataset, which is <code>pWeight</code> in case of the dataset used here.</p>
+<p>Columns with the <code>stE_</code> prefix denote standard errors calculated with bootstrap replicates. The replicates result in using <code>w1</code>, <code>w2</code>, …, <code>w10</code> instead of <code>pWeight</code> when applying the estimator.</p>
+<p><code>n</code> denotes the number of observations for the year and <code>N</code> denotes the total weight of those persons.</p>
+<div id="custom-estimators" class="section level3">
+<h3>Custom estimators</h3>
+<p>In order to define a custom estimator function to be used in <code>fun</code>, the function needs to have two arguments like the example below.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">## define custom estimator</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>myWeightedSum &lt;-<span class="st"> </span><span class="cf">function</span>(x, w) {</span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="kw">sum</span>(x<span class="op">*</span>w)</span>
+<span id="cb5-4"><a href="#cb5-4"></a>}</span>
+<span id="cb5-5"><a href="#cb5-5"></a></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="co">## check if results are equal to the one using `suveysd::weightedSum()`</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a>totalIncome2 &lt;-<span class="st"> </span><span class="kw">calc.stError</span>(dat_boot_calib, <span class="dt">var =</span> <span class="st">&quot;eqIncome&quot;</span>, <span class="dt">fun =</span> myWeightedSum)</span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="kw">all.equal</span>(totalIncome<span class="op">$</span>Estimates, totalIncome2<span class="op">$</span>Estimates)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>The parameters <code>x</code> and <code>w</code> can be assumed to be vectors with equal length with <code>w</code> being numeric and <code>x</code> being the column defined in the <code>var</code> argument. It will be called once for each period (in this case <code>year</code>) and for each weight column (in this case <code>pWeight</code>, <code>w1</code>, <code>w2</code>, …, <code>w10</code>).</p>
+</div>
+<div id="multiple-estimators" class="section level3">
+<h3>Multiple estimators</h3>
+<p>In case an estimator should be applied to several columns of the dataset, <code>var</code> can be set to a vector containing all necessary columns.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>multipleRates &lt;-<span class="st"> </span><span class="kw">calc.stError</span>(dat_boot_calib, <span class="dt">var =</span> <span class="kw">c</span>(<span class="st">&quot;povertyRisk&quot;</span>, <span class="st">&quot;onePerson&quot;</span>), <span class="dt">fun =</span> weightedRatio)</span>
+<span id="cb7-2"><a href="#cb7-2"></a>multipleRates<span class="op">$</span>Estimates</span></code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">year</th>
+<th align="right">n</th>
+<th align="right">N</th>
+<th align="right">val_povertyRisk</th>
+<th align="right">stE_povertyRisk</th>
+<th align="right">val_onePerson</th>
+<th align="right">stE_onePerson</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">14827</td>
+<td align="right">8182222</td>
+<td align="right">14.44422</td>
+<td align="right">0.5838199</td>
+<td align="right">14.85737</td>
+<td align="right">0.2572088</td>
+</tr>
+<tr class="even">
+<td align="right">2011</td>
+<td align="right">14827</td>
+<td align="right">8182222</td>
+<td align="right">14.77393</td>
+<td align="right">0.6771848</td>
+<td align="right">14.85737</td>
+<td align="right">0.2778282</td>
+</tr>
+<tr class="odd">
+<td align="right">2012</td>
+<td align="right">14827</td>
+<td align="right">8182222</td>
+<td align="right">15.04515</td>
+<td align="right">0.4907275</td>
+<td align="right">14.85737</td>
+<td align="right">0.2909612</td>
+</tr>
+<tr class="even">
+<td align="right">2013</td>
+<td align="right">14827</td>
+<td align="right">8182222</td>
+<td align="right">14.89013</td>
+<td align="right">0.4756386</td>
+<td align="right">14.85737</td>
+<td align="right">0.3458258</td>
+</tr>
+<tr class="odd">
+<td align="right">2014</td>
+<td align="right">14827</td>
+<td align="right">8182222</td>
+<td align="right">15.14556</td>
+<td align="right">0.5195149</td>
+<td align="right">14.85737</td>
+<td align="right">0.4394058</td>
+</tr>
+<tr class="even">
+<td align="right">2015</td>
+<td align="right">14827</td>
+<td align="right">8182222</td>
+<td align="right">15.53640</td>
+<td align="right">0.4808834</td>
+<td align="right">14.85737</td>
+<td align="right">0.3810024</td>
+</tr>
+<tr class="odd">
+<td align="right">2016</td>
+<td align="right">14827</td>
+<td align="right">8182222</td>
+<td align="right">15.08315</td>
+<td align="right">0.3566648</td>
+<td align="right">14.85737</td>
+<td align="right">0.3105411</td>
+</tr>
+<tr class="even">
+<td align="right">2017</td>
+<td align="right">14827</td>
+<td align="right">8182222</td>
+<td align="right">15.42019</td>
+<td align="right">0.5592589</td>
+<td align="right">14.85737</td>
+<td align="right">0.3030293</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Here we see the relative number of persons at risk of poverty and the relative number of one-person households.</p>
+</div>
+</div>
+<div id="grouping" class="section level2">
+<h2>Grouping</h2>
+<p>The <code>groups</code> argument can be used to calculate estimators for different subsets of the data. This argument can take the grouping variable as a string that refers to a column name (usually a factor) in <code>dat</code>. If set, all estimators are not only split by the reference period but also by the grouping variable. For simplicity, only one reference period of the above data is used.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>dat2 &lt;-<span class="st"> </span><span class="kw">subset</span>(dat_boot_calib, year <span class="op">==</span><span class="st"> </span><span class="dv">2010</span>)</span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="cf">for</span> (att  <span class="cf">in</span> <span class="kw">c</span>(<span class="st">&quot;period&quot;</span>, <span class="st">&quot;weights&quot;</span>, <span class="st">&quot;b.rep&quot;</span>))</span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="kw">attr</span>(dat2, att) &lt;-<span class="st"> </span><span class="kw">attr</span>(dat_boot_calib, att)</span></code></pre></div>
+<p>To calculate the ratio of persons at risk of poverty for each federal state of Austria, <code>group = &quot;region&quot;</code> can be used.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>povertyRates &lt;-<span class="st"> </span><span class="kw">calc.stError</span>(dat2, <span class="dt">var =</span> <span class="st">&quot;povertyRisk&quot;</span>, <span class="dt">fun =</span> weightedRatio, <span class="dt">group =</span> <span class="st">&quot;region&quot;</span>)</span>
+<span id="cb9-2"><a href="#cb9-2"></a>povertyRates<span class="op">$</span>Estimates</span></code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">year</th>
+<th align="right">n</th>
+<th align="right">N</th>
+<th align="left">region</th>
+<th align="right">val_povertyRisk</th>
+<th align="right">stE_povertyRisk</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">549</td>
+<td align="right">260564</td>
+<td align="left">Burgenland</td>
+<td align="right">19.53984</td>
+<td align="right">1.8042764</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">733</td>
+<td align="right">377355</td>
+<td align="left">Vorarlberg</td>
+<td align="right">16.53731</td>
+<td align="right">3.2896891</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">924</td>
+<td align="right">535451</td>
+<td align="left">Salzburg</td>
+<td align="right">13.78734</td>
+<td align="right">2.2585866</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">1078</td>
+<td align="right">563648</td>
+<td align="left">Carinthia</td>
+<td align="right">13.08627</td>
+<td align="right">1.7469304</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">1317</td>
+<td align="right">701899</td>
+<td align="left">Tyrol</td>
+<td align="right">15.30819</td>
+<td align="right">1.3943715</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">2295</td>
+<td align="right">1167045</td>
+<td align="left">Styria</td>
+<td align="right">14.37464</td>
+<td align="right">1.3500431</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">2322</td>
+<td align="right">1598931</td>
+<td align="left">Vienna</td>
+<td align="right">17.23468</td>
+<td align="right">1.0428496</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">2804</td>
+<td align="right">1555709</td>
+<td align="left">Lower Austria</td>
+<td align="right">13.84362</td>
+<td align="right">1.7034375</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">2805</td>
+<td align="right">1421620</td>
+<td align="left">Upper Austria</td>
+<td align="right">10.88977</td>
+<td align="right">0.8709790</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">14827</td>
+<td align="right">8182222</td>
+<td align="left">NA</td>
+<td align="right">14.44422</td>
+<td align="right">0.5838199</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The last row with <code>region = NA</code> denotes the aggregate over all regions. Note that the columns <code>N</code> and <code>n</code> now show the weighted and unweighted number of persons in each region.</p>
+<div id="several-grouping-variables" class="section level3">
+<h3>Several grouping variables</h3>
+<p>In case more than one grouping variable is used, there are several options of calling <code>calc.stError()</code> depending on whether combinations of grouping levels should be regarded or not. We will consider the variables <code>gender</code> and <code>region</code> as our grouping variables and show three options on how <code>calc.stError()</code> can be called.</p>
+<div id="option-1-all-regions-and-all-genders" class="section level4">
+<h4>Option 1: All regions and all genders</h4>
+<p>Calculate the point estimate and standard error for each region and each gender. The number of rows in the output is therefore</p>
+<p><span class="math display">\[n_\text{periods}\cdot(n_\text{regions} + n_\text{genders} + 1) = 1\cdot(9 + 2 + 1) = 12.\]</span></p>
+<p>The last row is again the estimate for the whole period.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>povertyRates &lt;-<span class="st"> </span><span class="kw">calc.stError</span>(dat2, <span class="dt">var =</span> <span class="st">&quot;povertyRisk&quot;</span>, <span class="dt">fun =</span> weightedRatio, </span>
+<span id="cb10-2"><a href="#cb10-2"></a>                             <span class="dt">group =</span> <span class="kw">c</span>(<span class="st">&quot;gender&quot;</span>, <span class="st">&quot;region&quot;</span>))</span>
+<span id="cb10-3"><a href="#cb10-3"></a>povertyRates<span class="op">$</span>Estimates</span></code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">year</th>
+<th align="right">n</th>
+<th align="right">N</th>
+<th align="left">gender</th>
+<th align="left">region</th>
+<th align="right">val_povertyRisk</th>
+<th align="right">stE_povertyRisk</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">549</td>
+<td align="right">260564</td>
+<td align="left">NA</td>
+<td align="left">Burgenland</td>
+<td align="right">19.53984</td>
+<td align="right">1.8042764</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">733</td>
+<td align="right">377355</td>
+<td align="left">NA</td>
+<td align="left">Vorarlberg</td>
+<td align="right">16.53731</td>
+<td align="right">3.2896891</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">924</td>
+<td align="right">535451</td>
+<td align="left">NA</td>
+<td align="left">Salzburg</td>
+<td align="right">13.78734</td>
+<td align="right">2.2585866</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">1078</td>
+<td align="right">563648</td>
+<td align="left">NA</td>
+<td align="left">Carinthia</td>
+<td align="right">13.08627</td>
+<td align="right">1.7469304</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">1317</td>
+<td align="right">701899</td>
+<td align="left">NA</td>
+<td align="left">Tyrol</td>
+<td align="right">15.30819</td>
+<td align="right">1.3943715</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">2295</td>
+<td align="right">1167045</td>
+<td align="left">NA</td>
+<td align="left">Styria</td>
+<td align="right">14.37464</td>
+<td align="right">1.3500431</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">2322</td>
+<td align="right">1598931</td>
+<td align="left">NA</td>
+<td align="left">Vienna</td>
+<td align="right">17.23468</td>
+<td align="right">1.0428496</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">2804</td>
+<td align="right">1555709</td>
+<td align="left">NA</td>
+<td align="left">Lower Austria</td>
+<td align="right">13.84362</td>
+<td align="right">1.7034375</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">2805</td>
+<td align="right">1421620</td>
+<td align="left">NA</td>
+<td align="left">Upper Austria</td>
+<td align="right">10.88977</td>
+<td align="right">0.8709790</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">7267</td>
+<td align="right">3979572</td>
+<td align="left">male</td>
+<td align="left">NA</td>
+<td align="right">12.02660</td>
+<td align="right">0.6303407</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">7560</td>
+<td align="right">4202650</td>
+<td align="left">female</td>
+<td align="left">NA</td>
+<td align="right">16.73351</td>
+<td align="right">0.6300745</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">14827</td>
+<td align="right">8182222</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">14.44422</td>
+<td align="right">0.5838199</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="option-2-all-combinations-of-state-and-gender" class="section level4">
+<h4>Option 2: All combinations of <code>state</code> and <code>gender</code></h4>
+<p>Split the data by all combinations of the two grouping variables. This will result in a larger output-table of the size</p>
+<p><span class="math display">\[n_\text{periods}\cdot(n_\text{regions} \cdot n_\text{genders} + 1) = 1\cdot(9\cdot2 + 1)= 19.\]</span></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>povertyRates &lt;-<span class="st"> </span><span class="kw">calc.stError</span>(dat2, <span class="dt">var =</span> <span class="st">&quot;povertyRisk&quot;</span>, <span class="dt">fun =</span> weightedRatio, </span>
+<span id="cb11-2"><a href="#cb11-2"></a>                             <span class="dt">group =</span> <span class="kw">list</span>(<span class="kw">c</span>(<span class="st">&quot;gender&quot;</span>, <span class="st">&quot;region&quot;</span>)))</span>
+<span id="cb11-3"><a href="#cb11-3"></a>povertyRates<span class="op">$</span>Estimates</span></code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">year</th>
+<th align="right">n</th>
+<th align="right">N</th>
+<th align="left">gender</th>
+<th align="left">region</th>
+<th align="right">val_povertyRisk</th>
+<th align="right">stE_povertyRisk</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">261</td>
+<td align="right">122741.8</td>
+<td align="left">male</td>
+<td align="left">Burgenland</td>
+<td align="right">17.414524</td>
+<td align="right">2.2332286</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">288</td>
+<td align="right">137822.2</td>
+<td align="left">female</td>
+<td align="left">Burgenland</td>
+<td align="right">21.432598</td>
+<td align="right">2.0899871</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">359</td>
+<td align="right">182732.9</td>
+<td align="left">male</td>
+<td align="left">Vorarlberg</td>
+<td align="right">12.973259</td>
+<td align="right">3.1093204</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">374</td>
+<td align="right">194622.1</td>
+<td align="left">female</td>
+<td align="left">Vorarlberg</td>
+<td align="right">19.883637</td>
+<td align="right">3.7576712</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">440</td>
+<td align="right">253143.7</td>
+<td align="left">male</td>
+<td align="left">Salzburg</td>
+<td align="right">9.156964</td>
+<td align="right">1.9028612</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">484</td>
+<td align="right">282307.3</td>
+<td align="left">female</td>
+<td align="left">Salzburg</td>
+<td align="right">17.939382</td>
+<td align="right">2.5374889</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">517</td>
+<td align="right">268581.4</td>
+<td align="left">male</td>
+<td align="left">Carinthia</td>
+<td align="right">10.552148</td>
+<td align="right">2.0614209</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">561</td>
+<td align="right">295066.6</td>
+<td align="left">female</td>
+<td align="left">Carinthia</td>
+<td align="right">15.392924</td>
+<td align="right">1.9756282</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">650</td>
+<td align="right">339566.5</td>
+<td align="left">male</td>
+<td align="left">Tyrol</td>
+<td align="right">12.857542</td>
+<td align="right">1.0371712</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">667</td>
+<td align="right">362332.5</td>
+<td align="left">female</td>
+<td align="left">Tyrol</td>
+<td align="right">17.604861</td>
+<td align="right">2.2145631</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">1128</td>
+<td align="right">571011.7</td>
+<td align="left">male</td>
+<td align="left">Styria</td>
+<td align="right">11.671247</td>
+<td align="right">1.5111686</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">1132</td>
+<td align="right">774405.4</td>
+<td align="left">male</td>
+<td align="left">Vienna</td>
+<td align="right">15.590616</td>
+<td align="right">1.3348673</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">1167</td>
+<td align="right">596033.3</td>
+<td align="left">female</td>
+<td align="left">Styria</td>
+<td align="right">16.964539</td>
+<td align="right">1.3758548</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">1190</td>
+<td align="right">824525.6</td>
+<td align="left">female</td>
+<td align="left">Vienna</td>
+<td align="right">18.778813</td>
+<td align="right">0.9304295</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">1363</td>
+<td align="right">684272.5</td>
+<td align="left">male</td>
+<td align="left">Upper Austria</td>
+<td align="right">9.074690</td>
+<td align="right">1.1711956</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">1387</td>
+<td align="right">772593.2</td>
+<td align="left">female</td>
+<td align="left">Lower Austria</td>
+<td align="right">16.372949</td>
+<td align="right">1.8366058</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">1417</td>
+<td align="right">783115.8</td>
+<td align="left">male</td>
+<td align="left">Lower Austria</td>
+<td align="right">11.348283</td>
+<td align="right">1.6437512</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">1442</td>
+<td align="right">737347.5</td>
+<td align="left">female</td>
+<td align="left">Upper Austria</td>
+<td align="right">12.574205</td>
+<td align="right">0.7710579</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">14827</td>
+<td align="right">8182222.0</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">14.444218</td>
+<td align="right">0.5838199</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="option-3-cobination-of-option-1-and-option-2" class="section level4">
+<h4>Option 3: Cobination of Option 1 and Option 2</h4>
+<p>In this case, the estimates and standard errors are calculated for</p>
+<ul>
+<li>every gender,</li>
+<li>every state and</li>
+<li>every combination of state and gender.</li>
+</ul>
+<p>The number of rows in the output is therefore</p>
+<p><span class="math display">\[n_\text{periods}\cdot(n_\text{regions} \cdot n_\text{genders} + n_\text{regions} + n_\text{genders} + 1) = 1\cdot(9\cdot2 + 9 + 2 + 1) = 30.\]</span></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>povertyRates &lt;-<span class="st"> </span><span class="kw">calc.stError</span>(dat2, <span class="dt">var =</span> <span class="st">&quot;povertyRisk&quot;</span>, <span class="dt">fun =</span> weightedRatio, </span>
+<span id="cb12-2"><a href="#cb12-2"></a>                             <span class="dt">group =</span> <span class="kw">list</span>(<span class="st">&quot;gender&quot;</span>, <span class="st">&quot;region&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;gender&quot;</span>, <span class="st">&quot;region&quot;</span>)))</span>
+<span id="cb12-3"><a href="#cb12-3"></a>povertyRates<span class="op">$</span>Estimates</span></code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">year</th>
+<th align="right">n</th>
+<th align="right">N</th>
+<th align="left">gender</th>
+<th align="left">region</th>
+<th align="right">val_povertyRisk</th>
+<th align="right">stE_povertyRisk</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">261</td>
+<td align="right">122741.8</td>
+<td align="left">male</td>
+<td align="left">Burgenland</td>
+<td align="right">17.414524</td>
+<td align="right">2.2332286</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">288</td>
+<td align="right">137822.2</td>
+<td align="left">female</td>
+<td align="left">Burgenland</td>
+<td align="right">21.432598</td>
+<td align="right">2.0899871</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">359</td>
+<td align="right">182732.9</td>
+<td align="left">male</td>
+<td align="left">Vorarlberg</td>
+<td align="right">12.973259</td>
+<td align="right">3.1093204</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">374</td>
+<td align="right">194622.1</td>
+<td align="left">female</td>
+<td align="left">Vorarlberg</td>
+<td align="right">19.883637</td>
+<td align="right">3.7576712</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">440</td>
+<td align="right">253143.7</td>
+<td align="left">male</td>
+<td align="left">Salzburg</td>
+<td align="right">9.156964</td>
+<td align="right">1.9028612</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">484</td>
+<td align="right">282307.3</td>
+<td align="left">female</td>
+<td align="left">Salzburg</td>
+<td align="right">17.939382</td>
+<td align="right">2.5374889</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">517</td>
+<td align="right">268581.4</td>
+<td align="left">male</td>
+<td align="left">Carinthia</td>
+<td align="right">10.552148</td>
+<td align="right">2.0614209</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">549</td>
+<td align="right">260564.0</td>
+<td align="left">NA</td>
+<td align="left">Burgenland</td>
+<td align="right">19.539836</td>
+<td align="right">1.8042764</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">561</td>
+<td align="right">295066.6</td>
+<td align="left">female</td>
+<td align="left">Carinthia</td>
+<td align="right">15.392924</td>
+<td align="right">1.9756282</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">650</td>
+<td align="right">339566.5</td>
+<td align="left">male</td>
+<td align="left">Tyrol</td>
+<td align="right">12.857542</td>
+<td align="right">1.0371712</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">667</td>
+<td align="right">362332.5</td>
+<td align="left">female</td>
+<td align="left">Tyrol</td>
+<td align="right">17.604861</td>
+<td align="right">2.2145631</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">733</td>
+<td align="right">377355.0</td>
+<td align="left">NA</td>
+<td align="left">Vorarlberg</td>
+<td align="right">16.537310</td>
+<td align="right">3.2896891</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">924</td>
+<td align="right">535451.0</td>
+<td align="left">NA</td>
+<td align="left">Salzburg</td>
+<td align="right">13.787343</td>
+<td align="right">2.2585866</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">1078</td>
+<td align="right">563648.0</td>
+<td align="left">NA</td>
+<td align="left">Carinthia</td>
+<td align="right">13.086268</td>
+<td align="right">1.7469304</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">1128</td>
+<td align="right">571011.7</td>
+<td align="left">male</td>
+<td align="left">Styria</td>
+<td align="right">11.671247</td>
+<td align="right">1.5111686</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">1132</td>
+<td align="right">774405.4</td>
+<td align="left">male</td>
+<td align="left">Vienna</td>
+<td align="right">15.590616</td>
+<td align="right">1.3348673</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">1167</td>
+<td align="right">596033.3</td>
+<td align="left">female</td>
+<td align="left">Styria</td>
+<td align="right">16.964539</td>
+<td align="right">1.3758548</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">1190</td>
+<td align="right">824525.6</td>
+<td align="left">female</td>
+<td align="left">Vienna</td>
+<td align="right">18.778813</td>
+<td align="right">0.9304295</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">1317</td>
+<td align="right">701899.0</td>
+<td align="left">NA</td>
+<td align="left">Tyrol</td>
+<td align="right">15.308191</td>
+<td align="right">1.3943715</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">1363</td>
+<td align="right">684272.5</td>
+<td align="left">male</td>
+<td align="left">Upper Austria</td>
+<td align="right">9.074690</td>
+<td align="right">1.1711956</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">1387</td>
+<td align="right">772593.2</td>
+<td align="left">female</td>
+<td align="left">Lower Austria</td>
+<td align="right">16.372949</td>
+<td align="right">1.8366058</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">1417</td>
+<td align="right">783115.8</td>
+<td align="left">male</td>
+<td align="left">Lower Austria</td>
+<td align="right">11.348283</td>
+<td align="right">1.6437512</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">1442</td>
+<td align="right">737347.5</td>
+<td align="left">female</td>
+<td align="left">Upper Austria</td>
+<td align="right">12.574205</td>
+<td align="right">0.7710579</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">2295</td>
+<td align="right">1167045.0</td>
+<td align="left">NA</td>
+<td align="left">Styria</td>
+<td align="right">14.374637</td>
+<td align="right">1.3500431</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">2322</td>
+<td align="right">1598931.0</td>
+<td align="left">NA</td>
+<td align="left">Vienna</td>
+<td align="right">17.234683</td>
+<td align="right">1.0428496</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">2804</td>
+<td align="right">1555709.0</td>
+<td align="left">NA</td>
+<td align="left">Lower Austria</td>
+<td align="right">13.843623</td>
+<td align="right">1.7034375</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">2805</td>
+<td align="right">1421620.0</td>
+<td align="left">NA</td>
+<td align="left">Upper Austria</td>
+<td align="right">10.889773</td>
+<td align="right">0.8709790</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">7267</td>
+<td align="right">3979571.7</td>
+<td align="left">male</td>
+<td align="left">NA</td>
+<td align="right">12.026600</td>
+<td align="right">0.6303407</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">7560</td>
+<td align="right">4202650.3</td>
+<td align="left">female</td>
+<td align="left">NA</td>
+<td align="right">16.733508</td>
+<td align="right">0.6300745</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">14827</td>
+<td align="right">8182222.0</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">14.444218</td>
+<td align="right">0.5838199</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+useDynLib(fad, .registration = TRUE)
+
+importFrom(Rcpp, evalCpp)
+
+importFrom("stats", "cov2cor", "lm.fit", "model.matrix", "napredict",
+                "optim", "runif", "sd", "setNames", "terms")
+
+importFrom("Matrix","Diagonal")
+importClassesFrom(Matrix, dgeMatrix, dgCMatrix, dsCMatrix)
+
+importFrom("methods", "as")
+
+
+importFrom("RSpectra","eigs_sym","svds");
+
+
+S3method(print,fad)
+export(fad)
+

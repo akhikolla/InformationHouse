@@ -1,0 +1,22 @@
+Changes in metacart Version 2.0-2 (2019-07-10)
+========================================
+* testxvalid.cpp is modified so that the function ComputeY returns a List instead of a DataFrame. 
+
+
+Changes in metacart Version 2.0-2 (2019-09-05)
+========================================
+* Rcpp is removed from Imports in DESCRIPTION
+
+Changes in metacart Version 2.0-1 (2019-05-09)
+========================================
+* Example of function FEmrt_main.R has been changed. Now the c parameter is set to 0.
+* Plot functions have been changed. They return a warning instead of an error in case the tree contains only the root node.
+* New maintainer.
+
+Changes in metacart Version 2.0-0 (2018-11-21)
+========================================
+* New plot.FEmrt() function that produces the same plots as plot.REmrt().
+* New REmrt() function that implements the update scheme to boost the speed. Also, internal Rcpp functions .compute_tau_() and .compute_re_Q_() were created to speed up the computation of residual heterogeneity and Q-statistic for each split point.
+* Xvalid_all() is renewed with faster speed. Internal Rcpp functions .partition(), .ComputeY(), .PredY(), .ReplaceNA() were added.
+* quint.validate() is renewed.
+* New example data set dat.balanced is added.

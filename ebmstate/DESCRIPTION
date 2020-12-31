@@ -1,0 +1,71 @@
+Package: ebmstate
+Type: Package
+Title: Empirical Bayes Multi-State Cox Model
+Version: 0.1.1
+Date: 2020-08-21 21:34:01 GMT
+Authors@R: 
+    c(person(given = "Rui",
+             family = "Costa",
+             role = c("aut", "cre"),
+             email = "rui.costa@ebi.ac.uk"),
+      person(given = "Moritz",
+             family = "Gerstung",
+             role = "aut"),
+      person(given = c("Terry", "M"),
+             family = "Therneau",
+             role = "ctb",comment="author of 
+             'survival', a package from
+             which code parts were copied"),
+      person(given = "Thomas",
+             family = "Lumley",
+             role = "ctb",comment="contributor
+             to 'survival', a package from
+             which code parts were copied"),
+      person(given = "Hein",
+             family = "Putter",
+             role = "ctb",comment="co-author of 
+             'mstate', a package from which
+             code parts were copied"),
+      person(given = "Liesbeth",
+             family = "de Wreede",
+             role = "ctb",comment="co-author of
+             'mstate', a package from which
+             code parts were copied"),
+      person(given = "Marta",
+             family = "Fiocco",
+             role = "ctb",comment="co-author of 
+             'mstate', a package from which
+             code parts were copied"),
+      person(given = "Ronald",
+             family = "Geskus",
+             role = "ctb",comment="contributor
+             to 'mstate', a package
+             from which code parts were 
+             copied"))
+Description: Implements an empirical Bayes, multi-state Cox model for survival analysis. Run "?'ebmstate-package'" for details. See also Schall (1991) <doi:10.1093/biomet/78.4.719>.
+Depends: R (>= 3.6.0), survival (>= 2.44-1.1), mstate (>= 0.2.11)
+Imports: Rcpp, HDInterval, stats, utils, methods
+License: GPL (>= 3)
+LinkingTo: Rcpp
+RoxygenNote: 7.1.1
+Encoding: UTF-8
+LazyData: true
+NeedsCompilation: yes
+Packaged: 2020-08-24 16:22:19 UTC; ruibarrigana
+Author: Rui Costa [aut, cre],
+  Moritz Gerstung [aut],
+  Terry M Therneau [ctb] (author of 'survival', a package from which code
+    parts were copied),
+  Thomas Lumley [ctb] (contributor to 'survival', a package from which
+    code parts were copied),
+  Hein Putter [ctb] (co-author of 'mstate', a package from which code
+    parts were copied),
+  Liesbeth de Wreede [ctb] (co-author of 'mstate', a package from which
+    code parts were copied),
+  Marta Fiocco [ctb] (co-author of 'mstate', a package from which code
+    parts were copied),
+  Ronald Geskus [ctb] (contributor to 'mstate', a package from which code
+    parts were copied)
+Maintainer: Rui Costa <rui.costa@ebi.ac.uk>
+Repository: CRAN
+Date/Publication: 2020-08-26 09:10:12 UTC

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Wush Wu and Michael Benesty" />
+
+
+<title>FeatureHashing</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Amargin%3A%200%20auto%3B%0Abackground%2Dcolor%3A%20white%3B%0A%0A%2F%20font%2Dfamily%3AGeorgia%2C%20Palatino%2C%20serif%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Book%20Antiqua%22%2C%20Palatino%2C%20serif%3B%0A%2F%20font%2Dfamily%3AArial%2C%20Helvetica%2C%20sans%2Dserif%3B%0A%2F%20font%2Dfamily%3ATahoma%2C%20Verdana%2C%20Geneva%2C%20sans%2Dserif%3B%0A%2F%20font%2Dfamily%3ACourier%2C%20monospace%3B%0A%2F%20font%2Dfamily%3A%22Times%20New%20Roman%22%2C%20Times%2C%20serif%3B%0A%09color%3A%20%23333333%3B%20%0A%2F%20color%3A%20%23000000%3B%20%0A%2F%20color%3A%20%23666666%3B%20%09%2F%20color%3A%20%23E3E3E3%3B%20%0A%2F%20color%3A%20white%3B%20line%2Dheight%3A%20100%25%3B%0Amax%2Dwidth%3A%20800px%3B%0Apadding%3A%2010px%3B%0Afont%2Dsize%3A%2017px%3B%0Atext%2Dalign%3A%20justify%3B%0Atext%2Djustify%3A%20inter%2Dword%3B%0A%7D%0Ap%20%7B%0Aline%2Dheight%3A%20150%25%3B%0A%2F%20max%2Dwidth%3A%20540px%3B%0Amax%2Dwidth%3A%20960px%3B%0Amargin%2Dbottom%3A%205px%3B%0Afont%2Dweight%3A%20400%3B%20%2F%20color%3A%20%23333333%0A%7D%0Ah1%2C%20h2%2C%20h3%2C%20h4%2C%20h5%2C%20h6%20%7B%0Afont%2Dweight%3A%20400%3B%0Amargin%2Dtop%3A%2035px%3B%0Amargin%2Dbottom%3A%2015px%3B%0Apadding%2Dtop%3A%2010px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%2070px%3B%0Acolor%3A%20%23606AAA%3B%0Afont%2Dsize%3A230%25%3B%0Afont%2Dvariant%3Asmall%2Dcaps%3B%0Apadding%2Dbottom%3A20px%3B%0Awidth%3A100%25%3B%0Aborder%2Dbottom%3A1px%20solid%20%23606AAA%3B%0A%7D%0Ah2%20%7B%0Afont%2Dsize%3A160%25%3B%0A%7D%0Ah3%20%7B%0Afont%2Dsize%3A130%25%3B%0A%7D%0Ah4%20%7B%0Afont%2Dsize%3A120%25%3B%0Afont%2Dvariant%3Asmall%2Dcaps%3B%0A%7D%0Ah5%20%7B%0Afont%2Dsize%3A120%25%3B%0A%7D%0Ah6%20%7B%0Afont%2Dsize%3A120%25%3B%0Afont%2Dvariant%3Asmall%2Dcaps%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%23606AAA%3B%0Amargin%3A%200%3B%0Apadding%3A%200%3B%0Avertical%2Dalign%3A%20baseline%3B%0A%7D%0Aa%3Ahover%20%7B%0Atext%2Ddecoration%3A%20blink%3B%0Acolor%3A%20green%3B%0A%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20gray%3B%0A%7D%0Aul%2C%20ol%20%7B%0Apadding%3A%200%3B%0Amargin%3A%200px%200px%200px%2050px%3B%0A%7D%0Aul%20%7B%0Alist%2Dstyle%2Dtype%3A%20square%3B%0Alist%2Dstyle%2Dposition%3A%20inside%3B%0A%7D%0Ali%20%7B%0Aline%2Dheight%3A150%25%20%7D%0Ali%20ul%2C%20li%20ul%20%7B%0Amargin%2Dleft%3A%2024px%3B%0A%7D%0Apre%20%7B%0Apadding%3A%200px%2010px%3B%0Amax%2Dwidth%3A%20800px%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20Andale%20Mono%2C%20monospace%2C%20courrier%20new%3B%0Aline%2Dheight%3A%201%2E5%3B%0Afont%2Dsize%3A%2015px%3B%0Abackground%3A%20%23F8F8F8%3B%0Aborder%2Dradius%3A%204px%3B%0Apadding%3A%205px%3B%0Adisplay%3A%20inline%2Dblock%3B%0Amax%2Dwidth%3A%20800px%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%0A%7D%0Ali%20code%2C%20p%20code%20%7B%0Abackground%3A%20%23CDCDCD%3B%0Acolor%3A%20%23606AAA%3B%0Apadding%3A%200px%205px%200px%205px%3B%0A%7D%0Acode%2Er%2C%20code%2Ecpp%20%7B%0Adisplay%3A%20block%3B%0Aword%2Dwrap%3A%20break%2Dword%3B%0Aborder%3A%201px%20solid%20%23606AAA%3B%20%7D%0Aaside%20%7B%0Adisplay%3A%20block%3B%0Afloat%3A%20right%3B%0Awidth%3A%20390px%3B%0A%7D%0Ablockquote%20%7B%0Aborder%2Dleft%3A%2E5em%20solid%20%23606AAA%3B%0Abackground%3A%20%23F8F8F8%3B%0Apadding%3A%200em%201em%200em%201em%3B%0Amargin%2Dleft%3A10px%3B%0Amax%2Dwidth%3A%20500px%3B%0A%7D%0Ablockquote%20cite%20%7B%0Aline%2Dheight%3A10px%3B%0Acolor%3A%23bfbfbf%3B%0A%7D%0Ablockquote%20cite%3Abefore%20%7B%0A%2Fcontent%3A%20%27%5C2014%20%5C00A0%27%3B%0A%7D%0Ablockquote%20p%2C%20blockquote%20li%20%7B%20color%3A%20%23666%3B%0A%7D%0Ahr%20%7B%0A%2F%20width%3A%20540px%3B%0Atext%2Dalign%3A%20left%3B%0Amargin%3A%200%20auto%200%200%3B%0Acolor%3A%20%23999%3B%0A%7D%0A%0Atable%20%7B%0Awidth%3A%20100%25%3B%0Aborder%2Dtop%3A%201px%20solid%20%23919699%3B%0Aborder%2Dleft%3A%201px%20solid%20%23919699%3B%0Aborder%2Dspacing%3A%200%3B%0A%7D%0Atable%20th%20%7B%0Apadding%3A%204px%208px%204px%208px%3B%0Atext%2Dalign%3A%20center%3B%0Acolor%3A%20white%3B%0Abackground%3A%20%23606AAA%3B%0Aborder%2Dbottom%3A%201px%20solid%20%23919699%3B%0Aborder%2Dright%3A%201px%20solid%20%23919699%3B%0A%7D%0Atable%20th%20p%20%7B%0Afont%2Dweight%3A%20bold%3B%0Amargin%2Dbottom%3A%200px%3B%20%7D%0Atable%20td%20%7B%0Apadding%3A%208px%3B%09vertical%2Dalign%3A%20top%3B%0Aborder%2Dbottom%3A%201px%20solid%20%23919699%3B%0Aborder%2Dright%3A%201px%20solid%20%23919699%3B%0A%7D%0Atable%20td%3Alast%2Dchild%20%7B%0A%2Fbackground%3A%20lightgray%3B%0Atext%2Dalign%3A%20right%3B%0A%7D%0Atable%20td%20p%20%7B%0Amargin%2Dbottom%3A%200px%3B%20%7D%0Atable%20td%20p%20%2B%20p%20%7B%0Amargin%2Dtop%3A%205px%3B%20%7D%0Atable%20td%20p%20%2B%20p%20%2B%20p%20%7B%0Amargin%2Dtop%3A%205px%3B%20%7D" rel="stylesheet" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">FeatureHashing</h1>
+<h4 class="author">Wush Wu and Michael Benesty</h4>
+
+
+<div id="TOC">
+<ul>
+<li><a href="#introduction"><span class="toc-section-number">1</span> Introduction</a></li>
+<li><a href="#installation"><span class="toc-section-number">2</span> Installation</a><ul>
+<li><a href="#when-should-we-use-feature-hashing"><span class="toc-section-number">2.1</span> When should we use Feature Hashing?</a></li>
+</ul></li>
+<li><a href="#getting-started"><span class="toc-section-number">3</span> Getting Started</a><ul>
+<li><a href="#logistic-regression-with-glmnet"><span class="toc-section-number">3.1</span> Logistic Regression with <a href="https://cran.r-project.org/package=glmnet"><code>glmnet</code></a></a></li>
+<li><a href="#gradient-boosted-decision-tree-with-xgboost"><span class="toc-section-number">3.2</span> Gradient Boosted Decision Tree with <a href="https://cran.r-project.org/package=xgboost"><code>xgboost</code></a></a></li>
+<li><a href="#per-coordinate-ftrl-proximal-with-l_1-and-l_2-regularization-for-logistic-regression"><span class="toc-section-number">3.3</span> Per-Coordinate FTRL-Proximal with <span class="math inline">\(L_1\)</span> and <span class="math inline">\(L_2\)</span> Regularization for Logistic Regression</a></li>
+</ul></li>
+<li><a href="#supported-data-structure"><span class="toc-section-number">4</span> Supported Data Structure</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</div>
+
+<div id="introduction" class="section level1">
+<h1><span class="header-section-number">1</span> Introduction</h1>
+<p><a href="https://en.wikipedia.org/wiki/Feature_hashing">Feature hashing</a>, also called as the hashing trick, is a method to transform features to vector. Without looking the indices up in an associative array, it applies a hash function to the features and uses their hash values as indices directly.</p>
+<p>The package <strong>FeatureHashing</strong> implements the method in <span class="citation">Weinberger et al. (2009)</span> to transform a <code>data.frame</code> to sparse matrix. The package provides a formula interface similar to <code>model.matrix</code> in <code>R</code> and <code>Matrix::sparse.model.matrix</code> in the package <code>Matrix</code>. Splitting of concatenated data, check the help of <code>test.tag</code> for explanation of concatenated data, during the construction of the model matrix.</p>
+</div>
+<div id="installation" class="section level1">
+<h1><span class="header-section-number">2</span> Installation</h1>
+<p>To install the stable version from Cran, run this command:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;FeatureHashing&quot;</span>)</code></pre></div>
+<p>For up-to-date version, please install from github. Windows user will need to install <a href="https://cran.r-project.org/bin/windows/Rtools/">RTools</a> first.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">'wush978/FeatureHashing'</span>)</code></pre></div>
+<div id="when-should-we-use-feature-hashing" class="section level2">
+<h2><span class="header-section-number">2.1</span> When should we use Feature Hashing?</h2>
+<p>Feature hashing is useful when the user does not easy to know the dimension of the feature vector. For example, the bag-of-word representation in document classification problem requires scanning entire dataset to know how many words we have, i.e. the dimension of the feature vector.</p>
+<p>In general, feature hashing is useful in the following environment:</p>
+<ul>
+<li>Streaming Environment</li>
+<li>Distirbuted Environment</li>
+</ul>
+<p>Because it is expensive or impossible to know the real dimension of the feature vector.</p>
+</div>
+</div>
+<div id="getting-started" class="section level1">
+<h1><span class="header-section-number">3</span> Getting Started</h1>
+<p>The following scripts show how to use the <strong>FeatureHashing</strong> to construct <code>Matrix::dgCMatrix</code> and train a model in other packages which supports <code>Matrix::dgCMatrix</code> as input.</p>
+<p>The dataset is a sample from iPinYou dataset which is described in <span class="citation">Zhang et al. (2014)</span>.</p>
+<div id="logistic-regression-with-glmnet" class="section level2">
+<h2><span class="header-section-number">3.1</span> Logistic Regression with <a href="https://cran.r-project.org/package=glmnet"><code>glmnet</code></a></h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># The following script assumes that the data.frame</span>
+<span class="co"># of the training dataset and testing dataset are </span>
+<span class="co"># assigned to variable `ipinyou.train` and `ipinyou.test`</span>
+<span class="co"># respectively</span>
+
+<span class="kw">library</span>(FeatureHashing)
+
+<span class="co"># Checking version.</span>
+<span class="kw">stopifnot</span>(<span class="kw">packageVersion</span>(<span class="st">&quot;FeatureHashing&quot;</span>) <span class="op">&gt;=</span><span class="st"> </span><span class="kw">package_version</span>(<span class="st">&quot;0.9&quot;</span>))
+
+<span class="kw">data</span>(ipinyou)
+f &lt;-<span class="st"> </span><span class="er">~</span><span class="st"> </span>IP <span class="op">+</span><span class="st"> </span>Region <span class="op">+</span><span class="st"> </span>City <span class="op">+</span><span class="st"> </span>AdExchange <span class="op">+</span><span class="st"> </span>Domain <span class="op">+</span>
+<span class="st">  </span>URL <span class="op">+</span><span class="st"> </span>AdSlotId <span class="op">+</span><span class="st"> </span>AdSlotWidth <span class="op">+</span><span class="st"> </span>AdSlotHeight <span class="op">+</span>
+<span class="st">  </span>AdSlotVisibility <span class="op">+</span><span class="st"> </span>AdSlotFormat <span class="op">+</span><span class="st"> </span>CreativeID <span class="op">+</span>
+<span class="st">  </span>Adid <span class="op">+</span><span class="st"> </span><span class="kw">split</span>(UserTag, <span class="dt">delim =</span> <span class="st">&quot;,&quot;</span>)
+<span class="co"># if the version of FeatureHashing is 0.8, please use the following command:</span>
+<span class="co"># m.train &lt;- as(hashed.model.matrix(f, ipinyou.train, 2^16, transpose = FALSE), &quot;dgCMatrix&quot;)</span>
+m.train &lt;-<span class="st"> </span><span class="kw">hashed.model.matrix</span>(f, ipinyou.train, <span class="dv">2</span><span class="op">^</span><span class="dv">16</span>)
+m.test &lt;-<span class="st"> </span><span class="kw">hashed.model.matrix</span>(f, ipinyou.test, <span class="dv">2</span><span class="op">^</span><span class="dv">16</span>)
+
+<span class="co"># logistic regression with glmnet</span>
+
+<span class="kw">library</span>(glmnet)</code></pre></div>
+<pre><code>## Loading required package: Matrix</code></pre>
+<pre><code>## Loading required package: foreach</code></pre>
+<pre><code>## Loaded glmnet 2.0-18</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cv.g.lr &lt;-<span class="st"> </span><span class="kw">cv.glmnet</span>(m.train, ipinyou.train<span class="op">$</span>IsClick,
+  <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)<span class="co">#, type.measure = &quot;auc&quot;)</span>
+p.lr &lt;-<span class="st"> </span><span class="kw">predict</span>(cv.g.lr, m.test, <span class="dt">s=</span><span class="st">&quot;lambda.min&quot;</span>)
+
+<span class="kw">library</span>(pROC)</code></pre></div>
+<pre><code>## Type 'citation(&quot;pROC&quot;)' for a citation.</code></pre>
+<pre><code>## 
+## Attaching package: 'pROC'</code></pre>
+<pre><code>## The following object is masked from 'package:glmnet':
+## 
+##     auc</code></pre>
+<pre><code>## The following objects are masked from 'package:stats':
+## 
+##     cov, smooth, var</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">auc</span>(ipinyou.test<span class="op">$</span>IsClick, <span class="kw">c</span>(p.lr))</code></pre></div>
+<pre><code>## Setting levels: control = FALSE, case = TRUE</code></pre>
+<pre><code>## Setting direction: controls &lt; cases</code></pre>
+<pre><code>## Area under the curve: 0.5187</code></pre>
+</div>
+<div id="gradient-boosted-decision-tree-with-xgboost" class="section level2">
+<h2><span class="header-section-number">3.2</span> Gradient Boosted Decision Tree with <a href="https://cran.r-project.org/package=xgboost"><code>xgboost</code></a></h2>
+<p>Following the script above,</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># GBDT with xgboost</span>
+<span class="cf">if</span>(<span class="kw">require</span>(<span class="st">&quot;xgboost&quot;</span>)){
+  cv.g.gdbt &lt;-<span class="st"> </span><span class="kw">xgboost</span>(m.train, ipinyou.train<span class="op">$</span>IsClick, <span class="dt">max.depth=</span><span class="dv">7</span>, <span class="dt">eta=</span><span class="fl">0.1</span>, <span class="dt">subsample =</span> <span class="fl">0.7</span>, <span class="dt">colsample_bytree =</span> <span class="fl">0.7</span>,
+    <span class="dt">nround =</span> <span class="dv">10</span>, <span class="dt">objective =</span> <span class="st">&quot;binary:logistic&quot;</span>, <span class="dt">verbose =</span> <span class="kw">ifelse</span>(<span class="kw">interactive</span>(), <span class="dv">1</span>, <span class="dv">0</span>))
+  p.lm &lt;-<span class="st"> </span><span class="kw">predict</span>(cv.g.gdbt, m.test)
+  <span class="kw">auc</span>(ipinyou.test<span class="op">$</span>IsClick, p.lm)  
+}</code></pre></div>
+<pre><code>## Loading required package: xgboost</code></pre>
+<pre><code>## Setting levels: control = FALSE, case = TRUE</code></pre>
+<pre><code>## Setting direction: controls &lt; cases</code></pre>
+<pre><code>## Area under the curve: 0.6252</code></pre>
+</div>
+<div id="per-coordinate-ftrl-proximal-with-l_1-and-l_2-regularization-for-logistic-regression" class="section level2">
+<h2><span class="header-section-number">3.3</span> Per-Coordinate FTRL-Proximal with <span class="math inline">\(L_1\)</span> and <span class="math inline">\(L_2\)</span> Regularization for Logistic Regression</h2>
+<p>The following scripts use an implementation of the FTRL-Proximal for Logistic Regresion, which is published in <span class="citation">McMahan et al. (2013)</span>, to predict the probability (1-step prediction) and update the model simultaneously.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="kw">system.file</span>(<span class="st">&quot;ftprl.R&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;FeatureHashing&quot;</span>))
+
+m.train &lt;-<span class="st"> </span><span class="kw">hashed.model.matrix</span>(f, ipinyou.train, <span class="dv">2</span><span class="op">^</span><span class="dv">16</span>, <span class="dt">transpose =</span> <span class="ot">TRUE</span>)
+ftprl &lt;-<span class="st"> </span><span class="kw">initialize.ftprl</span>(<span class="fl">0.1</span>, <span class="dv">1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="dv">2</span><span class="op">^</span><span class="dv">16</span>)
+ftprl &lt;-<span class="st"> </span><span class="kw">update.ftprl</span>(ftprl, m.train, ipinyou.train<span class="op">$</span>IsClick, <span class="dt">predict =</span> <span class="ot">TRUE</span>)
+<span class="kw">auc</span>(ipinyou.train<span class="op">$</span>IsClick, <span class="kw">attr</span>(ftprl, <span class="st">&quot;predict&quot;</span>))</code></pre></div>
+<pre><code>## Setting levels: control = FALSE, case = TRUE</code></pre>
+<pre><code>## Setting direction: controls &lt; cases</code></pre>
+<pre><code>## Area under the curve: 0.5993</code></pre>
+<p>If we use the same algorithm to predict the click through rate of the 3rd season of iPinYou, the overall AUC will be 0.77 which is comparable to the overall AUC of the 3rd season 0.76 reported in <span class="citation">Zhang et al. (2014)</span>.</p>
+</div>
+</div>
+<div id="supported-data-structure" class="section level1">
+<h1><span class="header-section-number">4</span> Supported Data Structure</h1>
+<ul>
+<li>character and factor</li>
+<li>numeric and integer</li>
+<li>array, i.e. concatenated strings such as <code>c(&quot;a,b&quot;, &quot;a,b,c&quot;, &quot;a,c&quot;, &quot;&quot;)</code></li>
+</ul>
+</div>
+<div id="reference" class="section level1 unnumbered">
+<h1>Reference</h1>
+<div id="refs" class="references">
+<div id="ref-DBLP:conf/kdd/McMahanHSYEGNPDGCLWHBK13">
+<p>McMahan, H. Brendan, Gary Holt, David Sculley, Michael Young, Dietmar Ebner, Julian Grady, Lan Nie, et al. 2013. “Ad Click Prediction: A View from the Trenches.” In <em>The 19th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, KDD 2013, Chicago, Il, Usa, August 11-14, 2013</em>, edited by Inderjit S. Dhillon, Yehuda Koren, Rayid Ghani, Ted E. Senator, Paul Bradley, Rajesh Parekh, Jingrui He, Robert L. Grossman, and Ramasamy Uthurusamy, 1222–30. ACM. doi:<a href="https://doi.org/10.1145/2487575.2488200">10.1145/2487575.2488200</a>.</p>
+</div>
+<div id="ref-DBLP:conf/icml/WeinbergerDLSA09">
+<p>Weinberger, Kilian Q., Anirban Dasgupta, John Langford, Alexander J. Smola, and Josh Attenberg. 2009. “Feature Hashing for Large Scale Multitask Learning.” In <em>Proceedings of the 26th Annual International Conference on Machine Learning, ICML 2009, Montreal, Quebec, Canada, June 14-18, 2009</em>, edited by Andrea Pohoreckyj Danyluk, Léon Bottou, and Michael L. Littman, 1113–20. doi:<a href="https://doi.org/10.1145/1553374.1553516">10.1145/1553374.1553516</a>.</p>
+</div>
+<div id="ref-zhang2014real">
+<p>Zhang, Weinan, Shuai Yuan, Jun Wang, and Xuehua Shen. 2014. “Real-Time Bidding Benchmarking with iPinYou Dataset.” <em>arXiv Preprint arXiv:1407.7073</em>.</p>
+</div>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

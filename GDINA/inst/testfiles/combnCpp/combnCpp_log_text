@@ -1,0 +1,27 @@
+INFO: Starting fuzzing
+WARNING: No test specified, defaulting to first test defined (GDINA_deepstate_test_combnCpp_test)
+input starts
+EXTERNAL: qs v0.23.4.
+
+n values: -2.43318e-187
+k values: -1.64581e+174
+input ends
+
+error: Mat::col(): index out of bounds
+terminate called after throwing an instance of 'std::logic_error'
+  what():  Mat::col(): index out of bounds
+ERROR: Failed: GDINA_deepstate_test_combnCpp_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/GDINA/inst/testfiles/combnCpp/combnCpp_output/a2421ce438cbbe78b45a6d7fab35544f68175fc8.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+n values: -1.5615e-299
+k values: -1.20777e+13
+input ends
+
+error: Mat::col(): index out of bounds
+terminate called after throwing an instance of 'std::logic_error'
+  what():  Mat::col(): index out of bounds
+ERROR: Failed: GDINA_deepstate_test_combnCpp_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/GDINA/inst/testfiles/combnCpp/combnCpp_output/1d06ea5869d624b8381d869bd8ae68a75ad353cb.fail`
+INFO: Done fuzzing! Ran 2 tests (0 tests/second) with 2 failed/0 passed/0 abandoned tests

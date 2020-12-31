@@ -1,0 +1,28 @@
+WARNING: No test specified, defaulting to first test defined (segmenTier_deepstate_test_icor_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/segmenTier/inst/testfiles/icor/icor_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash`
+TRACE: Running: segmenTier_deepstate_test_icor_test from /home/akhila/fuzzer_packages/fuzzedpackages/segmenTier/inst/testfiles/icor/icor_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+k values: 467495432
+j values: 1827680409
+c values: -1053990400
+Missing value
+seq values: nan inf
+M values: 644268439
+csim values: 7.41992e-298 6.68484e+28 7.76075e-247 7.37938e+60 4.21050e-25
+6.88708e+148 5.48714e+129 4.44503e+129 2.01589e-107 2.92496e-49
+1.83947e-95 2.44558e-65 6.08700e-59 4.53678e-85 5.13051e-260
+6.23171e-187 1.58625e-183 8.06612e+173 2.94365e-174 2.24644e-212
+9.88409e+20 7.10517e+225 4.93011e-61 2.67214e-07 7.64098e-62
+5.52275e-164 5.60404e+114 2.88568e-129 1.02194e-144 4.73804e-46
+4.15792e-241 3.18818e-55 5.33256e+288 7.71811e+97 1.53011e-264
+
+input ends
+==436711==  If you believe this happened as a result of a stack
+==436711==  overflow in your program's main thread (unlikely but
+==436711==  possible), you can try to increase the size of the
+==436711==  main thread stack using the --main-stacksize= flag.
+==436711==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: segmenTier_deepstate_test_icor_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/segmenTier/inst/testfiles/icor/icor_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash crashed

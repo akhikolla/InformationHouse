@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./collision_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/particles/inst/testfiles/collision/collision_output/6777cc0bc29dcf0f8c578fa517654f5a6c1281e4.pass</line>
+</preamble>
+
+<pid>4035513</pid>
+<ppid>4035512</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/particles/inst/testfiles/collision/collision_output/log_6777cc0bc29dcf0f8c578fa517654f5a6c1281e4/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./collision_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/particles/inst/testfiles/collision/collision_output/6777cc0bc29dcf0f8c578fa517654f5a6c1281e4.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.030 </time>
+</status>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.068 </time>
+</status>
+
+<error>
+  <unique>0x8e</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>576 bytes in 6 blocks are definitely lost in loss record 143 of 1,321</text>
+    <leakedbytes>576</leakedbytes>
+    <leakedblocks>6</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x425317</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/particles/inst/testfiles/collision/collision_DeepState_TestHarness</obj>
+      <fn>collision(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/particles</dir>
+      <file>src/collision.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409928</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/particles/inst/testfiles/collision/collision_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_particles_deepstate_test_collision_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/particles/inst/testfiles/collision</dir>
+      <file>collision_DeepState_TestHarness.cpp</file>
+      <line>33</line>
+    </frame>
+    <frame>
+      <ip>0x4092B8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/particles/inst/testfiles/collision/collision_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_particles_deepstate_test_collision_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/particles/inst/testfiles/collision</dir>
+      <file>collision_DeepState_TestHarness.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x41A018</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/particles/inst/testfiles/collision/collision_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41A2B9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/particles/inst/testfiles/collision/collision_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41A394</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/particles/inst/testfiles/collision/collision_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4077E5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/particles/inst/testfiles/collision/collision_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.574 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

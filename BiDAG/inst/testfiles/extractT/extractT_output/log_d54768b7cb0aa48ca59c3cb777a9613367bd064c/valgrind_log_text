@@ -1,0 +1,27 @@
+WARNING: No test specified, defaulting to first test defined (BiDAG_deepstate_test_extractT_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/BiDAG/inst/testfiles/extractT/extractT_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash`
+TRACE: Running: BiDAG_deepstate_test_extractT_test from /home/akhila/fuzzer_packages/fuzzedpackages/BiDAG/inst/testfiles/extractT/extractT_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+xs values: -709423862 1693996265 874270644 819746351 1283029671 308684195 -127551131 1528585009 -748078280 1636835733 -1401926948 1285557401 428228651 -328872220 -897103578 -1549445257 244494191 584058062 1078897549
+Missing value
+ys values: 1030107689 -65887478 -1521321529 1030107689 -868094021 -132791755
+Missing value
+ts values: 2.30980e-182 1.47931e-54 2.55974e-54 4.15407e+299 1.67815e-244 5.82654e+204 1.02829e+24 9.11477e-58     inf
+7.71387e+222 5.23903e+92 5.13410e-200 5.54632e+126     nan 8.58757e+51 8.12322e+215 1.80484e-156 1.97321e+115
+7.63196e-179 3.77279e+117 3.78577e-20 1.10287e+163 2.17841e-188 2.09166e+130     nan 1.39327e-36 7.64698e-93
+1.51700e-149 1.31853e-92 1.67916e+53 6.83110e+156 3.28180e-228 1.07434e+96 2.15260e-192 3.48355e+255 1.76215e-16
+8.84503e+276 3.87495e-252 1.94040e+23 1.34694e-281 9.24463e-269 9.27460e-43     nan 1.20701e+126 4.97226e+295
+8.24884e+80 4.06346e-59 4.22494e+112 2.48647e-24 3.61641e-138 1.39178e-50 1.22473e+289 1.53032e-27 2.50526e-188
+6.98712e-223 3.52963e-120 1.37322e+180 1.15216e-54 5.56262e+109 1.19456e-123    -inf 4.91543e-166 1.35406e+52
+3.06215e-53 3.25836e+189 3.09179e-63 3.12941e+182 1.19057e-138 5.61827e+110 1.15361e-33 1.24280e-267 1.65193e+49
+
+input ends
+==283540==  If you believe this happened as a result of a stack
+==283540==  overflow in your program's main thread (unlikely but
+==283540==  possible), you can try to increase the size of the
+==283540==  main thread stack using the --main-stacksize= flag.
+==283540==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: BiDAG_deepstate_test_extractT_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/BiDAG/inst/testfiles/extractT/extractT_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash crashed

@@ -1,0 +1,321 @@
+---
+title: 'Verification of seasonal forecasts from the ECOMS User Data Gateway: a worked
+  example'
+author: 
+  - name: Joaquín Bedia
+    affiliation: 1
+  - name: Jonas Bhend
+    affiliation: 2
+address:
+  - code: 1
+    address: Santander Met Group. University of Cantabria - CSIC (Spain)
+  - code: 2
+    address: Federal Office of Meteorology and Climatology MeteoSwiss, Zurich, Switzerland
+date: version 2 - '`r Sys.Date()`'
+output:
+  pdf_document:
+    number_sections: yes
+    toc: yes
+    template: latex.authors
+fontsize: 11pt
+geometry: margin=1in
+documentclass: article
+references:
+- author:
+  - family: Mason
+    given: Simon J.
+  - family: Weigel
+    given: Andreas P.
+  container-title: Monthly Weather Review
+  id: Mason2009
+  issue: 1
+  issued:
+    year: 2009
+  page: 331-349
+  title: A generic forecast verification framework for administrative purposes
+  type: article-journal
+  volume: 137
+- author:
+  - family: Weigel
+    given: Andreas P.
+  - family: Mason
+    given: Simon J.
+  container-title: Monthly Weather Review
+  id: Weigel2011
+  issue: 9
+  issued:
+    year: 2011
+  page: 3069-3074
+  title: The generalized discrimination score for ensemble forecasts
+  type: article-journal
+  volume: 139
+abstract: This document provides a worked example on how to download forecast and
+  validation data from the ECOMS-User Data Gateway and perform forecast validation
+  using the tools integrated in the R package `easyVerification`. All the steps are
+  undertaken within the R environment. Access to ECOMS-UDG is done via the R package
+  `ecomsUDG.Raccess`, serving as a user-friendly interface to the ECOMS-UDG by exploiting
+  OpenDAP and other remote service protocols. It is not the aim of this tutorial to
+  provide a comprehensive description of the `easyVerification` or the `ecomsUDG.Raccess`
+  packages. More detailed information on the latter can be obtained at the [ECOMS-UDG
+  wiki](http://meteo.unican.es/trac/wiki/udg/ecoms).
+vignette: |
+  %\VignetteIndexEntry{Verification of seasonal forecasts from the ECOMS User Data Gateway: a worked example} %\VignetteEngine{knitr::rmarkdown} \usepackage[utf8]{inputenc}
+---
+
+
+# Obtaining data from the ECOMS-UDG
+
+## Access authorization
+
+As different terms of use and policies apply to the different datasets stored in the ECOMS User Data Gateway, a fine-grained user authorization scheme has been implemented using the THREDDS Administration Panel ([TAP](http://meteo.unican.es/tap/)), which allows user registration and data access authorization for the ECOMS partners (EUPORIAS, SPECS and NACLIM projects), for which this document is initially conceived.
+
+In all cases, dataset access is conditioned to the acceptance of the particular usage terms and conditions. Further instructions on TAP registration are provided [here](http://meteo.unican.es/trac/wiki/udg/registration).
+
+## Installing the `ecomsUDG.Raccess` package
+
+Package `ecomsUDG.Raccess` is available in a public [GitHub repository](https://github.com/SantanderMetGroup/ecomsUDG.Raccess). The recommended installation procedure is to use the `install_github` command from the `devtools` R package. More details on the package installation process, as well as some advice regarding the most common installation problems can be found at the [ECOMS-UDG wiki](http://meteo.unican.es/trac/wiki/udg/ecoms/RPackage/versions).
+
+```{r, echo=TRUE, eval=FALSE}
+devtools::install_github(c("SantanderMetGroup/downscaleR.java",
+                           "SantanderMetGroup/downscaleR",
+                           "SantanderMetGroup/ecomsUDG.Raccess"))
+```
+
+Note that apart from the `ecomsUDG.Raccess` package, two more dependencies are installed. `downscaleR.java` is internally used, containing the netCDF Java API used by the other packages, but the user never calls explicitly to any of its functions. Furthermore, the package `downscaleR` has some utilities internally used by the `ecomsUDG.Raccess` package, plus some other utilities that we will explicitly use during the next examples (plotting, interpolation...).
+
+## Accessing data
+
+Once a valid username and a password are obtained from the TAP, providing authorization for the required datasets, login can be performed from R using the `loginECOMS_UDG` function (see the `help(loginECOMS_UDG)` for details in case of proxy connections).
+
+```{r, echo=TRUE}
+library(ecomsUDG.Raccess)
+```
+
+```{r, echo=TRUE, eval=FALSE}
+loginECOMS_UDG(username = "myUser", password = "999a")   
+```
+
+Data download is straightforward using the `loadECOMS` function. Argument names are intuitive, and the function has been conceived thinking in the needs of the downscaling and impact research communities, being simple to obtain spatio-temporal slices for particular spatial domains, forecast times, seasons and years.
+
+Suppose we are interested obtaining data from the ECMWF's System4 seasonal forecasting model of 15 members[^1] (`dataset = "System4_seasonal_15"`). In particular, in this example we will retrieve maximum daily surface temperature (`var = "tasmax"`) for boreal summer (JJA, `season = 6:8`), for a rectangular domain centered on the Iberian Peninsula and France (`lonLim = c(-10,15)` and `latLim = c(35,50)`), for the period 1981-2000 (`years = 1981:2000`), and considering the first 9 ensemble members (`members = 1:9`) and a lead-month 2 forecast[^2] (`leadMonth = 2`). We will illustrate the verification of these data against the observational gridded datasets WATCH Forcing Dataset-ERA-Interim (WFDEI, `dataset = "WFDEI"`), also available via the ECOMS-UDG.
+
+[^1]: More specific worked examples for different cases are presented in the [examples section](http://meteo.unican.es/trac/wiki/udg/ecoms/RPackage/examples) of the ECOMS wiki.
+
+[^2]: See [this link](http://meteo.unican.es/trac/wiki/udg/ecoms/dataserver/datasets) details on the configuration of this particular dataset.
+
+```{r, eval=FALSE}
+tx.forecast <- loadECOMS(dataset = "System4_seasonal_15",
+                         var = "tasmax",
+                         members = 1:9,
+                         lonLim = c(-10 ,15),
+                         latLim = c(35, 50),
+                         season = 6:8,
+                         years = 1991:2000,
+                         leadMonth = 2)
+
+
+## [2015-01-19 14:54:01] Defining homogeneization parameters for variable "tasmax"
+## [2015-01-19 14:54:01] Defining geo-location parameters
+## [2015-01-19 14:54:01] Defining initialization time parameters
+## [2015-01-19 14:54:05] Retrieving data subset ...
+## [2015-01-19 14:55:09] Done
+```
+```{r, echo=FALSE}
+load("s4.Rdata")
+```
+
+The data loaded can be quickly inspected using the `plotMeanField` tool[^3]. We can plot a map of the temporal mean (mean maximum temperature summer 1991-2000) either as a multi-member mean (argument `multimember = FALSE`), or considering each member sepparately (`multimember = TRUE`), as in this example:
+
+[^3]: Loading times may differ significantly depending on various factors. More details [here](http://meteo.unican.es/trac/wiki/udg/ecoms/RPackage/examples#Introductionandusagerecommendations)
+
+```{r,fig.width=8,fig.height=9,fig.cap='Summer (June-August) mean daily maximum temperature from ECMWF System4 seasonal forecasts initialized in May for the period 1991-2000'}
+plotMeanField(tx.forecast, multi.member = TRUE)
+```
+
+Similarly, we next load the reference observation data from the gridded dataset WFDEI. Note that in this case, the argument referring to the forecast time (`leadMonth`), is omitted, as the data loaded is not a forecast.
+
+```{r,eval=FALSE}
+tx.obs <- loadECOMS(dataset = "WFDEI", 
+                    var = "tasmax", 
+                    lonLim = c(-10 ,15), 
+                    latLim = c(35, 50), 
+                    season = 6:8,
+                    years = 1991:2000)
+
+## [2015-01-19 14:59:03] Defining homogeneization parameters for variable "tasmax"
+## [2015-01-19 14:59:03] Defining geo-location parameters
+## [2015-01-19 14:59:03] Defining time selection parameters
+## [2015-01-19 14:59:04] Retrieving data subset ...
+## [2015-01-19 14:59:05] Done
+```
+
+```{r, echo=FALSE}
+load("wfdei.Rdata")
+```
+
+
+This is the map (temporal mean) of the observed reference data we want to use for validation:
+
+
+```{r, fig.width=4,fig.height=5,fig.align='center',fig.cap='Summer (JJA) mean daily maximum temperature from the WFDEI data set for 1991-2000'}
+plotMeanField(tx.obs)
+```
+
+# Forecast validation
+
+## Installing the `easyVerification` package
+
+Similar to installing the `ecomsUDG.Raccess`, you can install the `easyVerification` package providing verification scores and the functionality to compute these scores on large datasets. To install `easyVerification` please install the `SpecsVerification` package from CRAN first to make use of the validation metrics supplied with `SpecsVerification`. 
+
+```{r, echo=TRUE,eval=FALSE}
+install.packages("SpecsVerification")
+devtools::install_github("MeteoSwiss/easyVerification", build_vignettes=TRUE)
+```
+
+To find out more on the functionality in the `easyVerification` package, please read the help to the functions, the vignette with `vignette("easyVerification")` or the [README on GitHub](https://github.com/MeteoSwiss/easyVerification/blob/master/README.md).
+
+## Mean bias
+
+After installing and loading the `easyVerification` package, we compute a few forecast scores and skill scores to illustrate how `easyVerification` can be used with seasonal forecast data downloaded from the ECOMS-UDG. To be able to validate the forecasts, we first have to interpolate either the forecasts or the observations to have the data on a common grid. We interpolate the observations to the grid of the forecasts using bilinear interpolation.
+
+```{r, echo=TRUE}
+tx.obsintp <- interpGridData(tx.obs, 
+                             new.grid=getGrid(tx.forecast),
+                             method="bilinear")
+```
+
+Before we go on, we compute 3-monthly averages of the forecasts and observations for validation of seasonal average daily maximum temperature.
+
+```{r, echo=TRUE}
+annualmean <- function(x){
+  xout <- x
+  is.time <- which(attr(x$Data, 'dimensions') == 'time')
+  isnot.time <- which(attr(x$Data, 'dimensions') != 'time')
+  years <- getYearsAsINDEX(x)
+  xout$Data <- aperm(apply(x$Data, isnot.time, tapply, years, mean), 
+                     seq(along=dim(x$Data))[c(is.time, isnot.time)])
+  xout$Dates$start <- tapply(x$Dates$start, years, min)
+  xout$Dates$end <- tapply(x$Dates$end, years, max)
+  return(xout)
+}
+
+mn.tx.forecast <- annualmean(tx.forecast)
+mn.tx.obsintp <- annualmean(tx.obsintp)
+```
+
+Now we're ready to compute validation scores on the 3-monthly mean daily maximum temperature forecasts. First we start by analysing the mean bias of the forecasts.
+
+```{r, echo=TRUE}
+suppressPackageStartupMessages({
+  library(easyVerification)
+  library(fields)
+})
+
+bias <- veriApply("EnsMe", 
+                  fcst=mn.tx.forecast$Data,
+                  obs=mn.tx.obsintp$Data, 
+                  ensdim=1, tdim=2)
+
+bias.breaks <- pretty(c(bias, -bias), 50)
+ncols <- length(bias.breaks) - 1
+bias.col <- c(hcl(240, l=seq(20,99,length=ncols/2), c=seq(70,30, length=ncols/2)),
+              hcl(10, l=seq(99,20,length=ncols/2), c=seq(30,70,length=ncols/2)))
+```
+
+```{r, echo=TRUE,fig.width=5,fig.height=4,fig.align='center',fig.cap="Mean bias of the summer (JJA) forecasts from ECMWF System4 initialized in May against the verifying observations from WFDEI for 1991-2000."}
+image.plot(mn.tx.obsintp$xyCoords$x,
+           mn.tx.obsintp$xyCoords$y,
+           t(bias), 
+           breaks=bias.breaks, col=bias.col,
+           xlab='longitude', ylab='latitude', las=1)
+map(add=T, lwd=2, col='darkgrey')
+```
+
+## Correlation
+
+Next, we compute the correlation between the ensemble mean and verifying observations.
+
+```{r, echo=TRUE}
+corr <- veriApply("EnsCorr", 
+                  fcst=mn.tx.forecast$Data,
+                  obs=mn.tx.obsintp$Data, 
+                  ensdim=1, tdim=2)
+
+corr.breaks <- seq(-1,1,0.05)
+ncols <- length(corr.breaks) - 1
+corr.col <- c(hcl(240, l=seq(20,99,length=ncols/2), c=seq(70,30, length=ncols/2)),
+              hcl(10, l=seq(99,20,length=ncols/2), c=seq(30,70,length=ncols/2)))
+```
+
+```{r, echo=TRUE,fig.width=5,fig.height=4,fig.align='center',fig.cap="Corelation of the summer (JJA) ensemble mean forecast from ECMWF System4 initialized in May against the verifying observations from WFDEI for 1991-2000."}
+image.plot(mn.tx.obsintp$xyCoords$x,
+           mn.tx.obsintp$xyCoords$y,
+           t(corr), 
+           breaks=corr.breaks, col=corr.col,
+           xlab='longitude', ylab='latitude', las=1)
+map(add=T, lwd=2, col='darkgrey')
+box()
+```
+
+We find that the ensemble mean summer forecasts for 1991-2000 correlate well with the veryfing observations over most of the western Mediterranean, but forecasts do not skillfully represent year-to-year variability over Switzerland, Austria and southern Germany.
+
+## Generalized discrimination score
+
+We continue with a probabilistic forecast verification metric that is a measure of how well the forecasts are able to discriminate between varying observations. This generalized discrimination score (also referred to as the two alternatives forced choice score) has been introduced by Mason and Weigel [-@Mason2009]. In `easyVerification` the generalized discrimination score for continuous ensemble forecasts is included as described in Weigel and Mason [-@Weigel2011].
+
+```{r, echo=TRUE}
+gds <- veriApply("Ens2AFC", 
+                 fcst=mn.tx.forecast$Data,
+                 obs=mn.tx.obsintp$Data, 
+                 ensdim=1, tdim=2)
+```
+
+This score ranges from 0 to 1, where 1 denotes perfect resolution, and 0.5 is no resolution. 
+
+```{r, echo=TRUE,fig.width=5,fig.height=4,fig.align='center',fig.cap="The generalized discrimination score for summer (JJA) ECMWF System4 forecasts initialized in May against the verifying observations from WFDEI for 1991-2000."}
+image.plot(mn.tx.obsintp$xyCoords$x,
+           mn.tx.obsintp$xyCoords$y,
+           t(gds), 
+           breaks=corr.breaks/2+0.5, col=corr.col,
+           xlab='longitude', ylab='latitude', las=1)
+map(add=T, lwd=2, col='darkgrey')
+box()
+```
+
+Again, we find that the System4 forecasts for summer maximum temperature are more skillful in the south-western part of the domain and one is better of using climatological forecasts rather than the System4 forecasts in the north-eastern part of the domain.
+
+## Ranked probability score
+
+The final skill score we analyse is the ranked probability skill score (RPSS). Here we use the ranked probability skill score for tercile forecasts, that is probability forecasts for the three categories colder than average, average, and warmer than average. In order to convert observations and forecast in probabilities for the three categories, we have to add an additional argument `prob` to the `veriApply` function with the quantile boundaries for the categories as shown below.
+
+```{r, echo=TRUE}
+rpss <- veriApply("EnsRpss", 
+                 fcst=mn.tx.forecast$Data,
+                 obs=mn.tx.obsintp$Data, 
+                 prob=c(1/3,2/3),
+                 ensdim=1, tdim=2)
+```
+
+Please note that along with the RPSS, the function `EnsRpss` (and thus `veriApply` as well) also returns the standard error of the RPSS. This allows us to mark where the forecasts have significant skill.
+
+```{r, echo=TRUE,fig.width=5,fig.height=4,fig.align='center',fig.cap="The RPSS for summer (JJA) ECMWF System4 forecasts initialized in May against the verifying observations from WFDEI for 1991-2000. Stippling indicates locations where the RPSS is significantly larger than zero at the 5 percent level."}
+image.plot(mn.tx.obsintp$xyCoords$x,
+           mn.tx.obsintp$xyCoords$y,
+           t(rpss$rpss), 
+           breaks=corr.breaks, col=corr.col,
+           xlab='longitude', ylab='latitude', las=1)
+map(add=T, lwd=2, col='darkgrey')
+sig.i <- rpss$rpss > rpss$rpss.sigma*qnorm(0.95)
+lons <- rep(mn.tx.obsintp$xyCoords$x, each=length(mn.tx.obsintp$xyCoords$y))
+lats <- rep(mn.tx.obsintp$xyCoords$y, length(mn.tx.obsintp$xyCoords$x))
+points(lons[sig.i], lats[sig.i], pch=16, cex=0.5)
+box()
+```
+
+
+# Summary
+
+This vignette illustrates how to download seasonal forecast data from the ECOMS User Data Gateway using the `ecomsUDG.Raccess` R package and how to validate such forecasts using verification scores from the `easyVerification` R package. More information on both packages can be found in the respective GitHub repositories ([`ecomsUDG.Raccess`](https://github.com/SantanderMetGroup/ecomsUDG.Raccess) and [`easyVerification`](https://github.com/MeteoSwiss/easyVerification)) and on the [ECOMS UDG wiki](http://meteo.unican.es/trac/wiki/udg/ecoms).
+
+# References
+

@@ -1,0 +1,12 @@
+WARNING: No test specified, defaulting to first test defined (hermiter_deepstate_test_hermite_normalization_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/hermiter/inst/testfiles/hermite_normalization/hermite_normalization_output/3e7fe15a33d5da5aad18932cfdcfd8606d05f5f2.fail`
+TRACE: Running: hermiter_deepstate_test_hermite_normalization_test from /home/akhila/fuzzer_packages/fuzzedpackages/hermiter/inst/testfiles/hermite_normalization/hermite_normalization_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+N values: 467495432
+input ends
+terminate called after throwing an instance of 'boost::wrapexcept<std::overflow_error>'
+  what():  Error in function boost::math::tgamma<double>(double): numeric overflow
+ERROR: Failed: hermiter_deepstate_test_hermite_normalization_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/hermiter/inst/testfiles/hermite_normalization/hermite_normalization_output/3e7fe15a33d5da5aad18932cfdcfd8606d05f5f2.fail failed

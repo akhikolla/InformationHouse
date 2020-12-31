@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./p_updatePseudoData_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/CMF/inst/testfiles/p_updatePseudoData/p_updatePseudoData_output/b120ca6d6f8dddeda1d965f69533c4975c816eec.crash</line>
+</preamble>
+
+<pid>304428</pid>
+<ppid>304427</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/CMF/inst/testfiles/p_updatePseudoData/p_updatePseudoData_output/log_b120ca6d6f8dddeda1d965f69533c4975c816eec/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./p_updatePseudoData_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/CMF/inst/testfiles/p_updatePseudoData/p_updatePseudoData_output/b120ca6d6f8dddeda1d965f69533c4975c816eec.crash</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.024 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D28D50</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CMF/src/CMF.so</obj>
+      <fn>p_updatePseudoData(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CMF/src</dir>
+      <file>helper.cpp</file>
+      <line>49</line>
+    </frame>
+    <frame>
+      <ip>0x40A4B6</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CMF/inst/testfiles/p_updatePseudoData/p_updatePseudoData_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_CMF_deepstate_test_p_updatePseudoData_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CMF/inst/testfiles/p_updatePseudoData</dir>
+      <file>p_updatePseudoData_DeepState_TestHarness.cpp</file>
+      <line>38</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CMF/inst/testfiles/p_updatePseudoData/p_updatePseudoData_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_CMF_deepstate_test_p_updatePseudoData_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CMF/inst/testfiles/p_updatePseudoData</dir>
+      <file>p_updatePseudoData_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E0A8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CMF/inst/testfiles/p_updatePseudoData/p_updatePseudoData_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E349</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CMF/inst/testfiles/p_updatePseudoData/p_updatePseudoData_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E424</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CMF/inst/testfiles/p_updatePseudoData/p_updatePseudoData_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CMF/inst/testfiles/p_updatePseudoData/p_updatePseudoData_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xfffffffc07d37bf8 is not stack'd, malloc'd or (recently) free'd</auxwhat>
+</error>
+
+<fatal_signal>
+  <tid>1</tid>
+  <signo>11</signo>
+  <signame>SIGSEGV</signame>
+  <sicode>1</sicode>
+  <event>Access not within mapped region</event>
+  <siaddr>0xFFFFFFFC07D37BF8</siaddr>
+  <stack>
+    <frame>
+      <ip>0x4D28D50</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CMF/src/CMF.so</obj>
+      <fn>p_updatePseudoData(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CMF/src</dir>
+      <file>helper.cpp</file>
+      <line>49</line>
+    </frame>
+    <frame>
+      <ip>0x40A4B6</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CMF/inst/testfiles/p_updatePseudoData/p_updatePseudoData_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_CMF_deepstate_test_p_updatePseudoData_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CMF/inst/testfiles/p_updatePseudoData</dir>
+      <file>p_updatePseudoData_DeepState_TestHarness.cpp</file>
+      <line>38</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CMF/inst/testfiles/p_updatePseudoData/p_updatePseudoData_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_CMF_deepstate_test_p_updatePseudoData_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CMF/inst/testfiles/p_updatePseudoData</dir>
+      <file>p_updatePseudoData_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E0A8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CMF/inst/testfiles/p_updatePseudoData/p_updatePseudoData_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E349</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CMF/inst/testfiles/p_updatePseudoData/p_updatePseudoData_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E424</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CMF/inst/testfiles/p_updatePseudoData/p_updatePseudoData_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CMF/inst/testfiles/p_updatePseudoData/p_updatePseudoData_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</fatal_signal>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:07.685 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>1</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.302 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

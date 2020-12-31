@@ -1,0 +1,21 @@
+Package: rankdist
+Type: Package
+Title: Distance Based Ranking Models
+Version: 1.1.4
+Date: 2019-07-27
+Author: Zhaozhi Qian
+Maintainer: Zhaozhi Qian <qianzhaozhi@connect.hku.hk>
+Description: Implements distance based probability models for ranking data. 
+    The supported distance metrics include Kendall distance, Spearman distance, Footrule distance, Hamming distance,
+    Weighted-tau distance and Weighted Kendall distance.
+    Phi-component model and mixture models are also supported.
+License: GPL (>= 2)
+Depends: R (>= 2.10)
+Imports: Rcpp (>= 0.11.4), hash, optimx, permute, methods
+LinkingTo: Rcpp
+LazyData: true
+Suggests: testthat
+NeedsCompilation: yes
+Packaged: 2019-07-27 16:28:49 UTC; steven
+Repository: CRAN
+Date/Publication: 2019-07-27 21:40:08 UTC

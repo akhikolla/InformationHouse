@@ -1,0 +1,12 @@
+WARNING: No test specified, defaulting to first test defined (phylobase_deepstate_test_tabulateTips_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/phylobase/inst/testfiles/tabulateTips/tabulateTips_output/6c7a49b69871edbba67fd877fd9a676d3e7772e0.fail`
+TRACE: Running: phylobase_deepstate_test_tabulateTips_test from /home/akhila/fuzzer_packages/fuzzedpackages/phylobase/inst/testfiles/tabulateTips/tabulateTips_DeepState_TestHarness.cpp(10)
+input starts
+EXTERNAL: qs v0.23.4.
+
+ances values: -1283963009 1843875706 -1387738195 -913903888 1930737479 -1046560882 -2147483648 -636252275 -1932129031 -1118080150 -1556211860 -989504456 437551067 -1304532489 1270779941 -769674658 -172075086 432676028 154413262 964953683 -1736102326 -1013431794 1456616232 -219838745 -1545758020 -1464436559 -358580444 612726717 1405992694 1045027732 470727950 -213650026 563040969 1187674672 1794725006 2127317896
+input ends
+terminate called after throwing an instance of 'std::length_error'
+  what():  cannot create std::vector larger than max_size()
+ERROR: Failed: phylobase_deepstate_test_tabulateTips_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/phylobase/inst/testfiles/tabulateTips/tabulateTips_output/6c7a49b69871edbba67fd877fd9a676d3e7772e0.fail failed

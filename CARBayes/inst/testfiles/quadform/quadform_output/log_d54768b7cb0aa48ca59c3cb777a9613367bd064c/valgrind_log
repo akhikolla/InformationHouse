@@ -1,0 +1,634 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./quadform_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash</line>
+</preamble>
+
+<pid>300070</pid>
+<ppid>300069</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_output/log_d54768b7cb0aa48ca59c3cb777a9613367bd064c/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./quadform_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.025 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>UninitValue</kind>
+  <what>Use of uninitialised value of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D2CBFF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/src/CARBayes.so</obj>
+      <fn>quadform(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, int, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/src</dir>
+      <file>CARBayes.cpp</file>
+      <line>86</line>
+    </frame>
+    <frame>
+      <ip>0x40A942</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_CARBayes_deepstate_test_quadform_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform</dir>
+      <file>quadform_DeepState_TestHarness.cpp</file>
+      <line>49</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_CARBayes_deepstate_test_quadform_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform</dir>
+      <file>quadform_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E7C8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EA69</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EB44</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x1</unique>
+  <tid>1</tid>
+  <kind>UninitValue</kind>
+  <what>Use of uninitialised value of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D2CBF8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/src/CARBayes.so</obj>
+      <fn>quadform(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, int, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/src</dir>
+      <file>CARBayes.cpp</file>
+      <line>86</line>
+    </frame>
+    <frame>
+      <ip>0x40A942</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_CARBayes_deepstate_test_quadform_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform</dir>
+      <file>quadform_DeepState_TestHarness.cpp</file>
+      <line>49</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_CARBayes_deepstate_test_quadform_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform</dir>
+      <file>quadform_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E7C8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EA69</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EB44</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x9</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D2CC05</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/src/CARBayes.so</obj>
+      <fn>quadform(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, int, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/src</dir>
+      <file>CARBayes.cpp</file>
+      <line>86</line>
+    </frame>
+    <frame>
+      <ip>0x40A942</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_CARBayes_deepstate_test_quadform_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform</dir>
+      <file>quadform_DeepState_TestHarness.cpp</file>
+      <line>49</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_CARBayes_deepstate_test_quadform_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform</dir>
+      <file>quadform_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E7C8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EA69</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EB44</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x88c1e98 is 0 bytes after a block of size 7,960 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D42B3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x49D5EAB</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x4968D28</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x497A1D0</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4994DD7</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_eval</fn>
+    </frame>
+    <frame>
+      <ip>0x4996C9E</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4997B91</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_applyClosure</fn>
+    </frame>
+    <frame>
+      <ip>0x498450D</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4994DD7</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_eval</fn>
+    </frame>
+    <frame>
+      <ip>0x4996C9E</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4997B91</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_applyClosure</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xa</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D2CBE9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/src/CARBayes.so</obj>
+      <fn>quadform(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, int, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/src</dir>
+      <file>CARBayes.cpp</file>
+      <line>85</line>
+    </frame>
+    <frame>
+      <ip>0x40A942</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_CARBayes_deepstate_test_quadform_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform</dir>
+      <file>quadform_DeepState_TestHarness.cpp</file>
+      <line>49</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_CARBayes_deepstate_test_quadform_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform</dir>
+      <file>quadform_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E7C8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EA69</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EB44</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x88c1e98 is 0 bytes after a block of size 7,960 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D42B3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x49D5EAB</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x4968D28</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x497A1D0</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4994DD7</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_eval</fn>
+    </frame>
+    <frame>
+      <ip>0x4996C9E</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4997B91</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_applyClosure</fn>
+    </frame>
+    <frame>
+      <ip>0x498450D</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4994DD7</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_eval</fn>
+    </frame>
+    <frame>
+      <ip>0x4996C9E</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4997B91</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_applyClosure</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xd</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D2CBDC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/src/CARBayes.so</obj>
+      <fn>quadform(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, int, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/src</dir>
+      <file>CARBayes.cpp</file>
+      <line>84</line>
+    </frame>
+    <frame>
+      <ip>0x40A942</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_CARBayes_deepstate_test_quadform_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform</dir>
+      <file>quadform_DeepState_TestHarness.cpp</file>
+      <line>49</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_CARBayes_deepstate_test_quadform_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform</dir>
+      <file>quadform_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E7C8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EA69</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EB44</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x88c1e98 is 0 bytes after a block of size 7,960 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D42B3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x49D5EAB</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x4968D28</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x497A1D0</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4994DD7</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_eval</fn>
+    </frame>
+    <frame>
+      <ip>0x4996C9E</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4997B91</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_applyClosure</fn>
+    </frame>
+    <frame>
+      <ip>0x498450D</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4994DD7</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_eval</fn>
+    </frame>
+    <frame>
+      <ip>0x4996C9E</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4997B91</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_applyClosure</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x2c3</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D2CBFF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/src/CARBayes.so</obj>
+      <fn>quadform(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, int, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/src</dir>
+      <file>CARBayes.cpp</file>
+      <line>86</line>
+    </frame>
+    <frame>
+      <ip>0x40A942</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_CARBayes_deepstate_test_quadform_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform</dir>
+      <file>quadform_DeepState_TestHarness.cpp</file>
+      <line>49</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_CARBayes_deepstate_test_quadform_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform</dir>
+      <file>quadform_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E7C8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EA69</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EB44</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x194c2065fa05a50 is not stack'd, malloc'd or (recently) free'd</auxwhat>
+</error>
+
+<fatal_signal>
+  <tid>1</tid>
+  <signo>11</signo>
+  <signame>SIGSEGV</signame>
+  <sicode>128</sicode>
+  <event>General Protection Fault</event>
+  <stack>
+    <frame>
+      <ip>0x4D2CBFF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/src/CARBayes.so</obj>
+      <fn>quadform(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, int, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/src</dir>
+      <file>CARBayes.cpp</file>
+      <line>86</line>
+    </frame>
+    <frame>
+      <ip>0x40A942</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_CARBayes_deepstate_test_quadform_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform</dir>
+      <file>quadform_DeepState_TestHarness.cpp</file>
+      <line>49</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_CARBayes_deepstate_test_quadform_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform</dir>
+      <file>quadform_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E7C8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EA69</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41EB44</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/quadform/quadform_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</fatal_signal>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.033 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>1</count>
+    <unique>0x2c3</unique>
+  </pair>
+  <pair>
+    <count>190</count>
+    <unique>0xa</unique>
+  </pair>
+  <pair>
+    <count>189</count>
+    <unique>0xd</unique>
+  </pair>
+  <pair>
+    <count>190</count>
+    <unique>0x9</unique>
+  </pair>
+  <pair>
+    <count>69</count>
+    <unique>0x1</unique>
+  </pair>
+  <pair>
+    <count>69</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.673 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

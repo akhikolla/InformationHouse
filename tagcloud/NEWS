@@ -1,0 +1,12 @@
+0.6
+  - Rebuilt vignette now in knitr
+  - Using the new Rcpp syntax
+  - corrected imports so it works with new CRAN checks
+0.5 
+  - Corrected calculations of aspect ratio - that was a serious bug that
+    prevented correct rendering in all but most simple device layouts
+  - Added a vignette
+  - Added this NEWS file
+  - Added the "snake" algorithm
+  - Corrected the clist and list algorithms
+  - Minor corrections in the package description and manuals

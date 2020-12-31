@@ -1,0 +1,32 @@
+Package: cort
+Title: Some Empiric and Nonparametric Copula Models
+Version: 0.3.2
+Authors@R: 
+    person(given = "Oskar",
+           family = "Laverny",
+           role = c("aut", "cre"),
+           email = "oskar.laverny@gmail.com",
+           comment = c(ORCID = "0000-0002-7508-999X"))
+Description: Provides S4 classes and methods to fit several copula models: The classic empirical checkerboard copula and the empirical checkerboard copula with known margins, see Cuberos, Masiello and Maume-Deschamps (2019) <doi:10.1080/03610926.2019.1586936> are proposed. These two models allow to fit copulas in high dimension with a small number of observations, and they are always proper copulas. Some flexibility is added via a possibility to differentiate the checkerboard parameter by dimension. The last model consist of the implementation of the Copula Recursive Tree algorithm proposed by Laverny, Maume-Deschamps, Masiello and Rullière (2020) <arXiv:2005.02912>, including the localised dimension reduction, which fits a copula by recursive splitting of the copula domain. We also provide an efficient way of mixing copulas, allowing to bag the algorithm into a forest, and a generic way of measuring d-dimensional boxes with a copula.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+Depends: R (>= 2.10)
+Imports: Rdpack, methods, purrr, nloptr, osqp, Rcpp, furrr (>= 0.2.0)
+URL: https://github.com/lrnv/cort
+BugReports: https://github.com/lrnv/cort/issues
+Suggests: covr, testthat (>= 2.1.0), spelling, knitr, rmarkdown
+Language: en-US
+Collate: 'utils.R' 'generics.R' 'ConvexCombCopula.R'
+        'empiricalCopula.R' 'Cort.R' 'CortForest.R' 'RcppExports.R'
+        'cbCopula.R' 'cbkmCopula.R' 'cort-package.R' 'data.R'
+VignetteBuilder: knitr
+RdMacros: Rdpack
+LinkingTo: Rcpp
+NeedsCompilation: yes
+Packaged: 2020-11-26 18:37:20 UTC; U009192
+Author: Oskar Laverny [aut, cre] (<https://orcid.org/0000-0002-7508-999X>)
+Maintainer: Oskar Laverny <oskar.laverny@gmail.com>
+Repository: CRAN
+Date/Publication: 2020-12-01 00:30:20 UTC

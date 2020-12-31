@@ -1,0 +1,13 @@
+citHeader("To cite package 'PAutilities' in publications use:")
+
+citEntry(entry = "Misc",
+  title        = "PAutilities: Streamline physical activity research",
+  author       = personList(as.person("Paul R. Hibbing")),
+  year         = "2019",
+  url          = "https://cran.r-project.org/package=PAutilities",
+
+  textVersion  =
+  paste("Paul R. Hibbing (2019).",
+        "PAutilities: Streamline physical activity research.",
+        "URL https://cran.r-project.org/package=PAutilities.")
+)

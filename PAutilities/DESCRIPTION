@@ -1,0 +1,38 @@
+Package: PAutilities
+Type: Package
+Title: Streamline Physical Activity Research
+Version: 1.0.1
+Authors@R: c(
+    person(
+      c("Paul", "R."), "Hibbing", email = "paulhibbing@gmail.com",
+      role = c("aut","cre")),
+    person(
+      "Centers for Disease Control and Prevention", role = "ctb"))
+Depends: R (>= 2.10)
+Description: A collection of utilities that are useful for a broad range of
+    tasks that are common in physical activity research, including the
+    following: creation of Bland-Altman plots, formatted descriptive
+    statistics, metabolic calculations (e.g. basal metabolic rate predictions)
+    and conversions, demographic calculations (age and age-for-body-mass-index
+    percentile), bout analysis of moderate-to-vigorous intensity physical
+    activity, and analysis of bout detection algorithm performance.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+URL: https://github.com/paulhibbing/PAutilities
+BugReports: https://github.com/paulhibbing/PAutilities/issues
+RoxygenNote: 6.1.1
+Imports: dplyr (>= 0.7), equivalence, ggplot2 (>= 2.2), graphics,
+        lazyeval (>= 0.2), lubridate (>= 1.7.4), magrittr (>= 1.5),
+        methods, matchingMarkets (>= 1.0.1), reshape2, rlang (>=
+        0.3.1), stats, Rcpp
+Suggests: testthat, knitr, rmarkdown
+VignetteBuilder: knitr
+LinkingTo: Rcpp
+NeedsCompilation: yes
+Packaged: 2020-05-16 19:29:20 UTC; Paul
+Author: Paul R. Hibbing [aut, cre],
+  Centers for Disease Control and Prevention [ctb]
+Maintainer: Paul R. Hibbing <paulhibbing@gmail.com>
+Repository: CRAN
+Date/Publication: 2020-05-17 05:00:27 UTC

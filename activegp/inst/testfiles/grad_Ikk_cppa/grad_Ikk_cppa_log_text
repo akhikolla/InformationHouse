@@ -1,0 +1,99 @@
+INFO: Starting fuzzing
+WARNING: No test specified, defaulting to first test defined (activegp_deepstate_test_grad_Ikk_cppa_test)
+input starts
+EXTERNAL: qs v0.23.4.
+
+a values: -2.43318e-187
+b values: -1.64581e+174
+t values: -1.66668e-49
+ct values: 1668042617
+input ends
+terminate called after throwing an instance of 'std::invalid_argument'
+  what():  Covariance Type not Supported
+ERROR: Failed: activegp_deepstate_test_grad_Ikk_cppa_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/grad_Ikk_cppa/grad_Ikk_cppa_output/d7a62d0cd1eb0e30f03e89259c9d4a411f83c8f9.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+a values: -1.5615e-299
+b values: -1.20777e+13
+t values: 2.79236e-196
+ct values: 900590154
+input ends
+terminate called after throwing an instance of 'std::invalid_argument'
+  what():  Covariance Type not Supported
+ERROR: Failed: activegp_deepstate_test_grad_Ikk_cppa_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/grad_Ikk_cppa/grad_Ikk_cppa_output/b622b90f55084ee7b9c76b3a2c009464a8662657.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+a values: 1.27048e-62
+b values: -2.88162e-134
+t values: 8.18711e+299
+ct values: 314985932
+input ends
+terminate called after throwing an instance of 'std::invalid_argument'
+  what():  Covariance Type not Supported
+ERROR: Failed: activegp_deepstate_test_grad_Ikk_cppa_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/grad_Ikk_cppa/grad_Ikk_cppa_output/dc0d3ff44cc5f6a20bb138edf3e4ab68775b64fa.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+a values: 3.16522e+06
+b values: 3.72126e-82
+t values: 5.29799e-243
+ct values: 1586657384
+input ends
+terminate called after throwing an instance of 'std::invalid_argument'
+  what():  Covariance Type not Supported
+ERROR: Failed: activegp_deepstate_test_grad_Ikk_cppa_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/grad_Ikk_cppa/grad_Ikk_cppa_output/8b1ee75902ecb60fc7ba035152d9368b19af1f81.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+a values: -1.92672e-302
+b values: -4.2952e-278
+t values: 4.24195e+22
+ct values: 1930967719
+input ends
+terminate called after throwing an instance of 'std::invalid_argument'
+  what():  Covariance Type not Supported
+ERROR: Failed: activegp_deepstate_test_grad_Ikk_cppa_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/grad_Ikk_cppa/grad_Ikk_cppa_output/db8cfe18825e3458eb71d9c7910084e6f62f447c.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+a values: -8.5119e-07
+b values: -5.48117e-145
+t values: 4.79212e-250
+ct values: 805659460
+input ends
+terminate called after throwing an instance of 'std::invalid_argument'
+  what():  Covariance Type not Supported
+ERROR: Failed: activegp_deepstate_test_grad_Ikk_cppa_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/grad_Ikk_cppa/grad_Ikk_cppa_output/37be972629d2d034b1e25f8b84200c033c2c3425.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+a values: -5.84486e+130
+b values: 7.96752e+95
+t values: -4.40542e-65
+ct values: 1898225516
+input ends
+terminate called after throwing an instance of 'std::invalid_argument'
+  what():  Covariance Type not Supported
+ERROR: Failed: activegp_deepstate_test_grad_Ikk_cppa_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/grad_Ikk_cppa/grad_Ikk_cppa_output/d966ceb9f44f8d669b1770901971c0f995f54bf3.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+a values: -3.59873e+296
+b values: 9.11343e-239
+t values: -2.94034e-89
+ct values: 393718998
+input ends
+terminate called after throwing an instance of 'std::invalid_argument'
+  what():  Covariance Type not Supported
+ERROR: Failed: activegp_deepstate_test_grad_Ikk_cppa_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/grad_Ikk_cppa/grad_Ikk_cppa_output/20430ea1c8330cea5a4d4cd863820832885860a2.fail`
+INFO: Done fuzzing! Ran 8 tests (4 tests/second) with 8 failed/0 passed/0 abandoned tests

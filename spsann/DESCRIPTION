@@ -1,0 +1,56 @@
+Package: spsann
+Type: Package
+Title: Optimization of Sample Configurations using Spatial Simulated
+        Annealing
+Version: 2.2.0
+Date: 2019-04-28
+Authors@R: c(
+    person("Alessandro", "Samuel-Rosa", role = c("aut", "cre"), email = "alessandrosamuelrosa@gmail.com",
+           comment = c(ORCID = "0000-0003-0877-1320")),
+    person("Lucia Helena Cunha dos", "Anjos", role = "ths", email = "lanjos@ufrrj.br",
+           comment = c(ORCID = "0000-0003-0063-3521")),
+    person("Gustavo de Mattos", "Vasques", role = "ths", email = "gustavo.vasques@embrapa.br"),
+    person("Gerard B M", "Heuvelink", role = "ths", email = "gerard.heuvelink@wur.nl",
+           comment = c(ORCID = "0000-0003-0959-9358")),
+    person("Dick", "Brus", role = "ctb", email = "dick.brus@wur.nl",
+           comment = c(ORCID = "0000-0003-2194-4783")),
+    person("Richard Murray", "Lark", role = "ctb", email = "mlark@bgs.ac.uk",
+           comment = c(ORCID = "0000-0003-2571-8521")),
+    person("Edzer", "Pebesma", role = "ctb",  email = "edzer.pebesma@uni-muenster.de",
+           comment = c(ORCID = "0000-0001-8049-7069")),
+    person("Jon", "Skoien", role = "ctb",  email = "jon.skoien@gmail.com"),
+    person("Joshua", "French", role = "ctb",  email = "joshua.french@ucdenver.edu"),
+    person("Pierre", "Roudier", role = "ctb", email = "roudierp@landcareresearch.co.nz")
+    )
+Description: Methods to optimize sample configurations using spatial simulated annealing. Multiple objective 
+    functions are implemented for various purposes, such as variogram estimation, spatial trend estimation 
+    and spatial interpolation. A general purpose spatial simulated annealing function enables the user to 
+    define his/her own objective function. Solutions for augmenting existing sample configurations and solving
+    multi-objective optimization problems are available as well.
+License: GPL (>= 2)
+Imports: methods, pedometrics, Rcpp, sp, SpatialTools
+Suggests: gstat, tcltk, knitr
+LinkingTo: Rcpp
+Encoding: UTF-8
+RoxygenNote: 6.1.1
+VignetteBuilder: knitr
+URL: https://github.com/samuel-rosa/spsann/
+BugReports: https://github.com/samuel-rosa/spsann/issues/
+Language: en-GB
+NeedsCompilation: yes
+Packaged: 2019-04-29 12:04:25 UTC; alessandro
+Author: Alessandro Samuel-Rosa [aut, cre]
+    (<https://orcid.org/0000-0003-0877-1320>),
+  Lucia Helena Cunha dos Anjos [ths]
+    (<https://orcid.org/0000-0003-0063-3521>),
+  Gustavo de Mattos Vasques [ths],
+  Gerard B M Heuvelink [ths] (<https://orcid.org/0000-0003-0959-9358>),
+  Dick Brus [ctb] (<https://orcid.org/0000-0003-2194-4783>),
+  Richard Murray Lark [ctb] (<https://orcid.org/0000-0003-2571-8521>),
+  Edzer Pebesma [ctb] (<https://orcid.org/0000-0001-8049-7069>),
+  Jon Skoien [ctb],
+  Joshua French [ctb],
+  Pierre Roudier [ctb]
+Maintainer: Alessandro Samuel-Rosa <alessandrosamuelrosa@gmail.com>
+Repository: CRAN
+Date/Publication: 2019-04-29 12:20:03 UTC

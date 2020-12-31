@@ -1,0 +1,52 @@
+INFO: Starting fuzzing
+WARNING: No seed provided; using 1608764680
+WARNING: No test specified, defaulting to first test defined (rankdist_deepstate_test_FindCayley_test)
+input starts
+EXTERNAL: qs v0.23.4.
+
+obs values: 6.88767e+36 8.02616e-61 1.42120e-164 4.42409e-162 1.52703e-227 7.65386e+154 3.03859e-255 3.22705e+296 2.66985e+209 5.52676e-117
+1.82178e+145 6.95428e-36 7.55802e+213 1.14678e-257 6.28747e+217 1.01067e-94 3.61185e-36 2.52632e+06 6.47018e+09 6.12472e-202
+4.56323e-81 1.97443e+103 5.06023e-306 1.82064e-32 1.35208e-193 4.11708e+214 1.52718e-248 5.68902e+101 3.23362e+227 2.92759e+191
+1.90566e+294 1.13497e+197 8.97552e-145 7.00445e+172 2.32678e+291 1.61173e-107 3.15502e+114 2.52635e+12 3.18194e-83 1.43425e+211
+
+pi0 values: 2.14969e+70 -1.81639e-91 -2.45723e+108 -2.51209e+164 nan -1.616e+19 9.24812e-69 3.47685e-118 6.05092e+260 2.07119e+273 -2.49434e-43 -9.50347e-06 -1.46456e+41 -2.73659e-51 5.48251e+189 4.72849e+22 4.13944e+42 9.3767e+175 -4.76176e-284 -6.05451e+240 -2.71581e+203 -2.23035e-75 5.58779e+20 2.26572e+284 -1.9525e+89 3.9238e+302 7.17721e+208 -7.4603e-57 3.72751e-141 -1.04283e-64 -6.98042e+169 2.44182e+164 -4.67272e+216 3.02343e-56 5.59635e+114 -inf 2.02824e+270 -1.66668e-86 8.1018e-171 2.26655e-110 -5.35299e-294 -8.46589e+274 -3.14785e-154 2.05216e-99 nan -8.88957e+32 4.43773e-169 -2.67014e-143 -1.30228e+141 -2.87332e-271 2.17887e-147 2.24888e+48 2.5867e+209 -3.1648e+269 324713 -3.02962e-98 4.70309e-151 -2.66256e+256 2.09966e-284 -3.41522e+255 -2.31599e-252 -6.77456e-71 -8.97086e-204 2.949e-230 -1.20058e-166 -3.44627e-199 -8.24318e+98 nan
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Index out of bounds: [index=-1; extent=10].
+ERROR: Failed: rankdist_deepstate_test_FindCayley_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/rankdist/inst/testfiles/FindCayley/FindCayley_output/962f205b341332a87d529313756a9cf322252805.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+obs values: 5.22661e-115 1.26775e-75 1.13885e+247 1.10059e+50
+
+pi0 values: -1.4096e+232 -1.19727e-219 -5.3176e-61 1.30004e+288 3.16401e+258 -3.48579e-105 2.70622e-138 -3.30658e-251 -2.75275e-126 -1.31886e+200 7.69107e+233 -1.04948e-156 -3.61402e+135 2.22155e+12 1.10474e+304 -2.208e-38 9.944e+39 5.09098e+206 -4.11759e-34 3.86286e+142 -2.9063e-266 -4.19898e-297 -3.39952e-199 -1.57336e+36 inf 5.72978e+115 -3.71064e+178 -4.73843e+271 -3.21128e-285 7.57859e+21 -1.12091e-138 6.15503e+69 7.04515e-37 4.4941e+272 3.67686e-262 -2.03767e-234 3.94736e+142 -1.64589e+157 3.01466e-297 -2.49397e-167 1.00592e+149 2.3581e-182 inf -1.84496e+10 -4.79504e-212 1.22591e-224 2.11386e+154 -7.27686e+288 -5.07485e+269 1.08629e+24 -5.65591e-50 5.82974e+86 -2.83406e-134 -2.96936e+196 inf 2.8684e-288 -6.00267e+248 nan -2.26879e+97 -5.22439e-79 1.40858e+151 0
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Index out of bounds: [index=-9223372036854775808; extent=4].
+ERROR: Failed: rankdist_deepstate_test_FindCayley_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/rankdist/inst/testfiles/FindCayley/FindCayley_output/b73d3cbc5bc36bb94929254f3fb6b326a63e2fa7.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+obs values: 1.90210e+73 3.18854e-169 1.80810e+216 1.91192e-230
+
+pi0 values: nan -2.42817e+218 -1.98478e+161 4.98275e+116 2.12523e-306 inf inf 9.87005e+210 nan -6.7198e-281 1.48445e+159 -4.30821e+137 0
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Index out of bounds: [index=-9223372036854775808; extent=4].
+ERROR: Failed: rankdist_deepstate_test_FindCayley_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/rankdist/inst/testfiles/FindCayley/FindCayley_output/7c39e48f458d1453cd01498d4a5be145d8ebc6b0.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+obs values: 2.50498e+113 4.24417e-302
+8.76158e-173 4.16261e+286
+
+pi0 values: 3.06418e+82 -1.10108e+232 2.15827e+122 -4.43245e-306 3.62972e+203 2.42034e-237 nan -3.78609e-190 -2.17184e+304 -5.04774e-09 1.07669e-290 -4.71409e+253 8.63768e+266 3.93997e+270 3.22597e-193 -3.73508e-208 2.62497e+248 -2.77831e+216 -1.51532e+287 1.06842e-162 8.54932e-274 1.68311e-31 1.54235e-71 3.8323e-90 -2.27742e+53 -4.90371e+23 -5.53828e-59 3.89147e+233 -2.28075e-300 -inf 1.39591e-255 -2.84127e-144 -4.33723e+162 2.26955e+101 -1.52449e+15 9.76109e-205 nan -4.75255e+115 0
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Index out of bounds: [index=-9223372036854775808; extent=2].
+ERROR: Failed: rankdist_deepstate_test_FindCayley_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/rankdist/inst/testfiles/FindCayley/FindCayley_output/d8f9221a55ae363c28dc8f4c609959f21eb30cd5.fail`
+INFO: Done fuzzing! Ran 4 tests (2 tests/second) with 4 failed/0 passed/0 abandoned tests

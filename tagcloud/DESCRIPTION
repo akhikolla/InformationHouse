@@ -1,0 +1,20 @@
+Package: tagcloud
+Type: Package
+Title: Tag Clouds
+Version: 0.6
+Date: 2015-07-02
+Author: January Weiner
+Maintainer: January Weiner <january.weiner@gmail.com>
+Description: Generating Tag and Word Clouds.
+License: GPL (>= 2)
+LazyLoad: yes
+Depends: Rcpp (>= 0.9.4)
+Imports: RColorBrewer
+Suggests: extrafont,knitr
+VignetteBuilder: knitr
+LinkingTo: Rcpp
+URL: http://logfc.wordpress.com
+NeedsCompilation: yes
+Packaged: 2015-07-03 07:23:26.877 UTC; january
+Repository: CRAN
+Date/Publication: 2015-07-03 11:17:02

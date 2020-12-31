@@ -1,0 +1,40 @@
+---
+title: "signalHsmm - report"
+output:
+  html_document:
+    theme: united
+    self_contained: true
+    toc: true
+    toc_float: true
+---
+
+<style>
+img {
+    max-width: none;
+
+    /* other options:
+    max-width: 200%;
+    max-width: 700px;
+    max-width: 9in;
+    max-width: 25cm;
+    etc
+    */
+}
+</style>
+
+```{r,results='asis',echo=FALSE}
+file_name <- ifelse(is.null(input[["seq_file"]][["name"]]), "none",
+                    input[["seq_file"]][["name"]])
+cat("**Input file name**: ", file_name, "\n\n")
+cat(paste0("**Date**: ", Sys.time()), "\n\n")
+
+```
+
+
+```{r, echo=FALSE, fig.width=10, results='asis'}
+for (i in prediction()) {
+  cat("\n\n## ", sep = "")
+  summary(i, double_linebreak = TRUE)
+  plot(i)
+}
+```

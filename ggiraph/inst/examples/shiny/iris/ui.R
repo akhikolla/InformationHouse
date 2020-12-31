@@ -1,0 +1,10 @@
+library(ggiraph)
+shinyUI(fluidPage(
+  fluidRow(
+    column(
+      width=12,
+      uiOutput("selpoint"),
+      girafeOutput("plot")
+    )
+  )
+))

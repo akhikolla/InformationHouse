@@ -1,0 +1,746 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./cpp_coords_linestring_translate_wkb_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_output/d8c0e76c504230aeacccd8c0605d3e006c143718.pass</line>
+</preamble>
+
+<pid>390530</pid>
+<ppid>390529</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_output/log_d8c0e76c504230aeacccd8c0605d3e006c143718/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./cpp_coords_linestring_translate_wkb_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_output/d8c0e76c504230aeacccd8c0605d3e006c143718.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.026 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D4B10B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/src/wkutils.so</obj>
+      <fn>WKRcppPointCoordProvider::coord(long)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/wk/include/wk</dir>
+      <file>rcpp-coord-reader.hpp</file>
+      <line>41</line>
+    </frame>
+    <frame>
+      <ip>0x4D4F21E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/src/wkutils.so</obj>
+      <fn>WKRcppLinestringCoordProvider::readFeature(WKGeometryHandler*)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/wk/include/wk</dir>
+      <file>rcpp-coord-reader.hpp</file>
+      <line>111</line>
+    </frame>
+    <frame>
+      <ip>0x4D4A016</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/src/wkutils.so</obj>
+      <fn>WKRcppLinestringCoordReader::readFeature(unsigned long)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/wk/include/wk</dir>
+      <file>rcpp-coord-reader.hpp</file>
+      <line>283</line>
+    </frame>
+    <frame>
+      <ip>0x4D4A49B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/src/wkutils.so</obj>
+      <fn>WKReader::iterateFeature()</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/wk/include/wk</dir>
+      <file>reader.hpp</file>
+      <line>39</line>
+    </frame>
+    <frame>
+      <ip>0x4D4AED7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/src/wkutils.so</obj>
+      <fn>rcpp_translate_base</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/wk/include/wk</dir>
+      <file>rcpp-translate.hpp</file>
+      <line>28</line>
+    </frame>
+    <frame>
+      <ip>0x4D4AED7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/src/wkutils.so</obj>
+      <fn>wk::rcpp_translate_wkb(WKReader&amp;, int, int, int, int, int)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/wk/include/wk</dir>
+      <file>rcpp-translate.hpp</file>
+      <line>41</line>
+    </frame>
+    <frame>
+      <ip>0x4D48D73</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/src/wkutils.so</obj>
+      <fn>cpp_coords_linestring_translate_wkb(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/src</dir>
+      <file>coords-translate.cpp</file>
+      <line>51</line>
+    </frame>
+    <frame>
+      <ip>0x40A8A4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_wkutils_deepstate_test_cpp_coords_linestring_translate_wkb_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb</dir>
+      <file>cpp_coords_linestring_translate_wkb_DeepState_TestHarness.cpp</file>
+      <line>48</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_wkutils_deepstate_test_cpp_coords_linestring_translate_wkb_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb</dir>
+      <file>cpp_coords_linestring_translate_wkb_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DCB8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DF59</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E034</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x8c066c0 is 0 bytes after a block of size 272 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x40FE3D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector(int const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>130</line>
+    </frame>
+    <frame>
+      <ip>0x407D75</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>RcppDeepState_NumericVector()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppDeepState/include/RcppDeepState.h</file>
+      <line>43</line>
+    </frame>
+    <frame>
+      <ip>0x409BAD</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_wkutils_deepstate_test_cpp_coords_linestring_translate_wkb_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb</dir>
+      <file>cpp_coords_linestring_translate_wkb_DeepState_TestHarness.cpp</file>
+      <line>16</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_wkutils_deepstate_test_cpp_coords_linestring_translate_wkb_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb</dir>
+      <file>cpp_coords_linestring_translate_wkb_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DCB8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DF59</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E034</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x1</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D4F2D0</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/src/wkutils.so</obj>
+      <fn>coord</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/wk/include/wk</dir>
+      <file>rcpp-coord-reader.hpp</file>
+      <line>41</line>
+    </frame>
+    <frame>
+      <ip>0x4D4F2D0</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/src/wkutils.so</obj>
+      <fn>WKRcppLinestringCoordProvider::readFeature(WKGeometryHandler*)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/wk/include/wk</dir>
+      <file>rcpp-coord-reader.hpp</file>
+      <line>118</line>
+    </frame>
+    <frame>
+      <ip>0x4D4A016</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/src/wkutils.so</obj>
+      <fn>WKRcppLinestringCoordReader::readFeature(unsigned long)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/wk/include/wk</dir>
+      <file>rcpp-coord-reader.hpp</file>
+      <line>283</line>
+    </frame>
+    <frame>
+      <ip>0x4D4A49B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/src/wkutils.so</obj>
+      <fn>WKReader::iterateFeature()</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/wk/include/wk</dir>
+      <file>reader.hpp</file>
+      <line>39</line>
+    </frame>
+    <frame>
+      <ip>0x4D4AED7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/src/wkutils.so</obj>
+      <fn>rcpp_translate_base</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/wk/include/wk</dir>
+      <file>rcpp-translate.hpp</file>
+      <line>28</line>
+    </frame>
+    <frame>
+      <ip>0x4D4AED7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/src/wkutils.so</obj>
+      <fn>wk::rcpp_translate_wkb(WKReader&amp;, int, int, int, int, int)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/wk/include/wk</dir>
+      <file>rcpp-translate.hpp</file>
+      <line>41</line>
+    </frame>
+    <frame>
+      <ip>0x4D48D73</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/src/wkutils.so</obj>
+      <fn>cpp_coords_linestring_translate_wkb(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/src</dir>
+      <file>coords-translate.cpp</file>
+      <line>51</line>
+    </frame>
+    <frame>
+      <ip>0x40A8A4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_wkutils_deepstate_test_cpp_coords_linestring_translate_wkb_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb</dir>
+      <file>cpp_coords_linestring_translate_wkb_DeepState_TestHarness.cpp</file>
+      <line>48</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_wkutils_deepstate_test_cpp_coords_linestring_translate_wkb_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb</dir>
+      <file>cpp_coords_linestring_translate_wkb_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DCB8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DF59</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E034</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x8c066c0 is 0 bytes after a block of size 272 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x40FE3D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector(int const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>130</line>
+    </frame>
+    <frame>
+      <ip>0x407D75</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>RcppDeepState_NumericVector()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppDeepState/include/RcppDeepState.h</file>
+      <line>43</line>
+    </frame>
+    <frame>
+      <ip>0x409BAD</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_wkutils_deepstate_test_cpp_coords_linestring_translate_wkb_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb</dir>
+      <file>cpp_coords_linestring_translate_wkb_DeepState_TestHarness.cpp</file>
+      <line>16</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_wkutils_deepstate_test_cpp_coords_linestring_translate_wkb_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb</dir>
+      <file>cpp_coords_linestring_translate_wkb_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DCB8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DF59</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E034</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x7</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D4B126</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/src/wkutils.so</obj>
+      <fn>WKRcppPointCoordProvider::coord(long)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/wk/include/wk</dir>
+      <file>rcpp-coord-reader.hpp</file>
+      <line>44</line>
+    </frame>
+    <frame>
+      <ip>0x4D4F21E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/src/wkutils.so</obj>
+      <fn>WKRcppLinestringCoordProvider::readFeature(WKGeometryHandler*)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/wk/include/wk</dir>
+      <file>rcpp-coord-reader.hpp</file>
+      <line>111</line>
+    </frame>
+    <frame>
+      <ip>0x4D4A016</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/src/wkutils.so</obj>
+      <fn>WKRcppLinestringCoordReader::readFeature(unsigned long)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/wk/include/wk</dir>
+      <file>rcpp-coord-reader.hpp</file>
+      <line>283</line>
+    </frame>
+    <frame>
+      <ip>0x4D4A49B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/src/wkutils.so</obj>
+      <fn>WKReader::iterateFeature()</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/wk/include/wk</dir>
+      <file>reader.hpp</file>
+      <line>39</line>
+    </frame>
+    <frame>
+      <ip>0x4D4AED7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/src/wkutils.so</obj>
+      <fn>rcpp_translate_base</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/wk/include/wk</dir>
+      <file>rcpp-translate.hpp</file>
+      <line>28</line>
+    </frame>
+    <frame>
+      <ip>0x4D4AED7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/src/wkutils.so</obj>
+      <fn>wk::rcpp_translate_wkb(WKReader&amp;, int, int, int, int, int)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/wk/include/wk</dir>
+      <file>rcpp-translate.hpp</file>
+      <line>41</line>
+    </frame>
+    <frame>
+      <ip>0x4D48D73</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/src/wkutils.so</obj>
+      <fn>cpp_coords_linestring_translate_wkb(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/src</dir>
+      <file>coords-translate.cpp</file>
+      <line>51</line>
+    </frame>
+    <frame>
+      <ip>0x40A8A4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_wkutils_deepstate_test_cpp_coords_linestring_translate_wkb_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb</dir>
+      <file>cpp_coords_linestring_translate_wkb_DeepState_TestHarness.cpp</file>
+      <line>48</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_wkutils_deepstate_test_cpp_coords_linestring_translate_wkb_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb</dir>
+      <file>cpp_coords_linestring_translate_wkb_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DCB8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DF59</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E034</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xa206148 is 0 bytes after a block of size 296 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x40FE3D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector(int const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>130</line>
+    </frame>
+    <frame>
+      <ip>0x407D75</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>RcppDeepState_NumericVector()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppDeepState/include/RcppDeepState.h</file>
+      <line>43</line>
+    </frame>
+    <frame>
+      <ip>0x40A06C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_wkutils_deepstate_test_cpp_coords_linestring_translate_wkb_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb</dir>
+      <file>cpp_coords_linestring_translate_wkb_DeepState_TestHarness.cpp</file>
+      <line>28</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_wkutils_deepstate_test_cpp_coords_linestring_translate_wkb_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb</dir>
+      <file>cpp_coords_linestring_translate_wkb_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DCB8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DF59</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E034</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x9</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D4F2EB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/src/wkutils.so</obj>
+      <fn>coord</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/wk/include/wk</dir>
+      <file>rcpp-coord-reader.hpp</file>
+      <line>44</line>
+    </frame>
+    <frame>
+      <ip>0x4D4F2EB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/src/wkutils.so</obj>
+      <fn>WKRcppLinestringCoordProvider::readFeature(WKGeometryHandler*)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/wk/include/wk</dir>
+      <file>rcpp-coord-reader.hpp</file>
+      <line>118</line>
+    </frame>
+    <frame>
+      <ip>0x4D4A016</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/src/wkutils.so</obj>
+      <fn>WKRcppLinestringCoordReader::readFeature(unsigned long)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/wk/include/wk</dir>
+      <file>rcpp-coord-reader.hpp</file>
+      <line>283</line>
+    </frame>
+    <frame>
+      <ip>0x4D4A49B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/src/wkutils.so</obj>
+      <fn>WKReader::iterateFeature()</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/wk/include/wk</dir>
+      <file>reader.hpp</file>
+      <line>39</line>
+    </frame>
+    <frame>
+      <ip>0x4D4AED7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/src/wkutils.so</obj>
+      <fn>rcpp_translate_base</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/wk/include/wk</dir>
+      <file>rcpp-translate.hpp</file>
+      <line>28</line>
+    </frame>
+    <frame>
+      <ip>0x4D4AED7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/src/wkutils.so</obj>
+      <fn>wk::rcpp_translate_wkb(WKReader&amp;, int, int, int, int, int)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/wk/include/wk</dir>
+      <file>rcpp-translate.hpp</file>
+      <line>41</line>
+    </frame>
+    <frame>
+      <ip>0x4D48D73</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/src/wkutils.so</obj>
+      <fn>cpp_coords_linestring_translate_wkb(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/src</dir>
+      <file>coords-translate.cpp</file>
+      <line>51</line>
+    </frame>
+    <frame>
+      <ip>0x40A8A4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_wkutils_deepstate_test_cpp_coords_linestring_translate_wkb_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb</dir>
+      <file>cpp_coords_linestring_translate_wkb_DeepState_TestHarness.cpp</file>
+      <line>48</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_wkutils_deepstate_test_cpp_coords_linestring_translate_wkb_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb</dir>
+      <file>cpp_coords_linestring_translate_wkb_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DCB8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DF59</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E034</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xa206148 is 0 bytes after a block of size 296 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x40FE3D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector(int const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>130</line>
+    </frame>
+    <frame>
+      <ip>0x407D75</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>RcppDeepState_NumericVector()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppDeepState/include/RcppDeepState.h</file>
+      <line>43</line>
+    </frame>
+    <frame>
+      <ip>0x40A06C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_wkutils_deepstate_test_cpp_coords_linestring_translate_wkb_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb</dir>
+      <file>cpp_coords_linestring_translate_wkb_DeepState_TestHarness.cpp</file>
+      <line>28</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_wkutils_deepstate_test_cpp_coords_linestring_translate_wkb_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb</dir>
+      <file>cpp_coords_linestring_translate_wkb_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DCB8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DF59</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E034</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_coords_linestring_translate_wkb/cpp_coords_linestring_translate_wkb_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:09.614 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>1</count>
+    <unique>0x9</unique>
+  </pair>
+  <pair>
+    <count>4</count>
+    <unique>0x1</unique>
+  </pair>
+  <pair>
+    <count>1</count>
+    <unique>0x7</unique>
+  </pair>
+  <pair>
+    <count>4</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:10.197 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

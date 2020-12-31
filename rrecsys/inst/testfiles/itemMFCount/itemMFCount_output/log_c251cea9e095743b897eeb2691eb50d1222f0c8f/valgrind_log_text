@@ -1,0 +1,16 @@
+WARNING: No test specified, defaulting to first test defined (rrecsys_deepstate_test_itemMFCount_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/rrecsys/inst/testfiles/itemMFCount/itemMFCount_output/c251cea9e095743b897eeb2691eb50d1222f0c8f.fail`
+TRACE: Running: rrecsys_deepstate_test_itemMFCount_test from /home/akhila/fuzzer_packages/fuzzedpackages/rrecsys/inst/testfiles/itemMFCount/itemMFCount_DeepState_TestHarness.cpp(10)
+input starts
+EXTERNAL: qs v0.23.4.
+
+sim_index values: 4.47830e+113 6.60044e+28 1.01877e-290 6.27176e-141 1.63473e-70 3777.51 3.81094e+155 2.21248e+40 2.51267e+81
+3.83702e-105 1.10159e-97 5.18108e-58 9.37988e+201 3.64403e+147 1.99328e-183 5.50321e+200 8.96529e+156 1.46179e+28
+
+user_vector values: 3.01217e-69 4.05322e-17 -6.11691e+206 inf -1.73576e-275 -4.70927e+80 -1.05815e-90 1.34785e-73 -1.18111e-287 -5.10051e+20 -8.70992e+205 3.67474e-160 -3.53627e+188 1.03461e+44 -2.37887e-116 nan -7.8262e-274 9.64202e+24 1.5795e+40 -5.54631e-261 2.8036e-129 1.16662e-226 -1.05615e-302 -2.45497e-83 1.90532e+173 -5.45436e-276 -3.13844e+296 3.22646e-257 1.43022e+264 -7.36083e-236 -0.453754 -0.256842 -1.24947e+206 8.42948e+45 -3.09383e-259 -3.42093e+279 -9.75234e+110 nan 1.09854e+62 -4.8006e+296 -1.65083e-229 nan -1.3857e+226 8.18424e+284 -3.44028e-130 -6.2746e+292 3.4495e-79 -5.1669e+203 -1.84786e-249 inf 3.00123e-41 -1.00578e-110 -1.35343e-10 0
+pt values: -4.60348e-85
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Index out of bounds: [index=-1; extent=54].
+ERROR: Failed: rrecsys_deepstate_test_itemMFCount_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/rrecsys/inst/testfiles/itemMFCount/itemMFCount_output/c251cea9e095743b897eeb2691eb50d1222f0c8f.fail failed

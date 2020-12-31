@@ -1,0 +1,93 @@
+#' Active subspace estimation with Gaussian processes
+#' @title Package activegp
+#' @author Nathan Wycoff, Mickael Binois
+#' @docType package
+#' @name activegp
+#' @import lhs
+#' @references
+#' N. Wycoff, M. Binois, S. Wild (2019+), Sequential Learning of Active Subspaces, preprint.\cr
+#' P. Constantine (2015) Active Subspaces: Emerging Ideas for Dimension Reduction in Parameter Studies, SIAM Spotlights
+#' @details
+#' The primary function for analysis of the active subspace given some set of function evaluations is C_GP. 
+#'
+#' C_var, C_var2, and C_tr give three possible acquisition functions for sequential design. Either C_var or C_var2 is recommended, see Wycoff et al for details and the example below for usage. 
+#' @examples 
+#' \donttest{
+#' ################################################################################
+#' ### Sequential learning of active subspaces
+#' ################################################################################
+#'     library(hetGP); library(lhs)
+#'     set.seed(42)
+#' 
+#'     nvar <- 2
+#'     n <- 20
+#'     nits <- 20
+#' 
+#'     # theta gives the subspace direction
+#'     f <- function(x, theta, nugget = 1e-6){
+#'       if(is.null(dim(x))) x <- matrix(x, 1)
+#'       xact <- cos(theta) * x[,1] - sin(theta) * x[,2]
+#'       return(hetGP::f1d(xact) + rnorm(n = nrow(x), sd = rep(nugget, nrow(x))))
+#'       return(100*erf((xact + 0.5)*5) + hetGP::f1d(xact) + 
+#'         rnorm(n = nrow(x), sd = rep(nugget, nrow(x))))
+#'     }
+#' 
+#'     theta_dir <- pi/6
+#'     act_dir <- c(cos(theta_dir), -sin(theta_dir))
+#' 
+#'     # Create design of experiments and initial GP model
+#'     design <- X <- matrix(signif(maximinLHS(n, nvar), 2), ncol = nvar)
+#'     response <- Y <- apply(design, 1, f, theta = theta_dir)
+#'     model <- mleHomGP(design, response, lower = rep(1e-4, nvar),
+#'                       upper = rep(0.5,nvar), known = list(g = 1e-6, beta0 = 0))
+#' 
+#'     C_hat <- C_GP(model)
+#' 
+#'     ngrid <- 51
+#'     xgrid <- seq(0, 1,, ngrid)
+#'     Xgrid <- as.matrix(expand.grid(xgrid, xgrid))
+#'     filled.contour(matrix(f(Xgrid, theta = theta_dir), ngrid))
+#'     ssd <- rep(NA, nits)
+#' 
+#'     # Main loop
+#'     for(nit in 1:nits) {
+#'       cat(nit)
+#'       cat(" ")
+#'       
+#'       af <- function(x, C) C_var(C, x, grad = FALSE)
+#'       af_gr <- function(x, C) C_var(C, x, grad = TRUE)
+#'       Ctr_grid <- apply(Xgrid, 1, af, C = C_hat) # CVAR
+#'       
+#'       # Best candidate point
+#'       opt_cand <- matrix(Xgrid[which.max(Ctr_grid),], 1)
+#'       
+#'       # Refine with gradient based optimization
+#'       opt <-  optim(opt_cand, af, af_gr, method = 'L-BFGS-B', lower = rep(0, nvar), C = C_hat,
+#'                     upper = rep(1, nvar), hessian = TRUE, 
+#'                     control = list(fnscale=-1, trace = 0, maxit = 10))
+#'       
+#'       # Criterion surface with best initial point and corresponding local optimum
+#'       filled.contour(matrix(Ctr_grid, ngrid), color.palette = terrain.colors,
+#'                      plot.axes = {axis(1); axis(2); points(X, pch = 20);
+#'                                   points(opt_cand, pch = 20, col = 'blue');
+#'                                   points(opt$par, pch = 20, col = 'red')})
+#'       
+#'       X <- rbind(X, opt$par)
+#'       Ynew <- f(opt$par, theta = theta_dir)
+#'       Y <- c(Y, Ynew)
+#'       model <- update(model, Xnew = opt$par, Znew = Ynew)
+#'       
+#'       ## periodically restart model fit
+#'       if(nit %% 5 == 0){
+#'         mod2 <- mleHomGP(X = list(X0 = model$X0, Z0 = model$Z0, mult = model$mult), Z = model$Z,
+#'                          known = model$used_args$known, lower = model$used_args$lower,
+#'                          upper = model$used_args$upper)
+#'         if(mod2$ll > model$ll) model <- mod2
+#'       }
+#'       C_hat <- C_GP(model)
+#'       # Compute subspace distance
+#'       ssd[nit] <- subspace_dist(C_hat, matrix(act_dir, nrow = nvar), r = 1)
+#'     }
+#'     plot(ssd, type = 'b')
+#' }
+NULL

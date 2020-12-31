@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./binary_representation_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/simPop/inst/testfiles/binary_representation/binary_representation_output/28c727eb5e6e5f00eb7d5e63f065ddb06778f544.pass</line>
+</preamble>
+
+<pid>435052</pid>
+<ppid>435051</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/simPop/inst/testfiles/binary_representation/binary_representation_output/log_28c727eb5e6e5f00eb7d5e63f065ddb06778f544/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./binary_representation_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/simPop/inst/testfiles/binary_representation/binary_representation_output/28c727eb5e6e5f00eb7d5e63f065ddb06778f544.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.094 </time>
+</status>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:20.683 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:22.312 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

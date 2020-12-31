@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./nbody_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/particles/inst/testfiles/nbody/nbody_output/6973fc6966a06e37da1a95c5dd9f916fad29993f.pass</line>
+</preamble>
+
+<pid>4035551</pid>
+<ppid>4035550</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/particles/inst/testfiles/nbody/nbody_output/log_6973fc6966a06e37da1a95c5dd9f916fad29993f/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./nbody_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/particles/inst/testfiles/nbody/nbody_output/6973fc6966a06e37da1a95c5dd9f916fad29993f.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.030 </time>
+</status>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.068 </time>
+</status>
+
+<error>
+  <unique>0x42</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>192 bytes in 2 blocks are definitely lost in loss record 67 of 1,318</text>
+    <leakedbytes>192</leakedbytes>
+    <leakedblocks>2</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x42B6A2</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/particles/inst/testfiles/nbody/nbody_DeepState_TestHarness</obj>
+      <fn>nbody(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double, double, double, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/particles</dir>
+      <file>src/nbody.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x4099E0</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/particles/inst/testfiles/nbody/nbody_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_particles_deepstate_test_nbody_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/particles/inst/testfiles/nbody</dir>
+      <file>nbody_DeepState_TestHarness.cpp</file>
+      <line>47</line>
+    </frame>
+    <frame>
+      <ip>0x4092B8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/particles/inst/testfiles/nbody/nbody_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_particles_deepstate_test_nbody_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/particles/inst/testfiles/nbody</dir>
+      <file>nbody_DeepState_TestHarness.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x41A078</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/particles/inst/testfiles/nbody/nbody_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41A319</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/particles/inst/testfiles/nbody/nbody_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41A3F4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/particles/inst/testfiles/nbody/nbody_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4077E5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/particles/inst/testfiles/nbody/nbody_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.580 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

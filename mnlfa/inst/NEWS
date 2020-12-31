@@ -1,0 +1,52 @@
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+----------------------- mnlfa NEWS ----------------------------
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+mnlfa: Moderated nonlinear factor analysis
+
+ .----------------.  .-----------------. .----------------.  .----------------.  .----------------. 
+| .--------------. || .--------------. || .--------------. || .--------------. || .--------------. |
+| | ____    ____ | || | ____  _____  | || |   _____      | || |  _________   | || |      __      | |
+| ||_   \  /   _|| || ||_   \|_   _| | || |  |_   _|     | || | |_   ___  |  | || |     /  \     | |
+| |  |   \/   |  | || |  |   \ | |   | || |    | |       | || |   | |_  \_|  | || |    / /\ \    | |
+| |  | |\  /| |  | || |  | |\ \| |   | || |    | |   _   | || |   |  _|      | || |   / ____ \   | |
+| | _| |_\/_| |_ | || | _| |_\   |_  | || |   _| |__/ |  | || |  _| |_       | || | _/ /    \ \_ | |
+| ||_____||_____|| || ||_____|\____| | || |  |________|  | || | |_____|      | || ||____|  |____|| |
+| |              | || |              | || |              | || |              | || |              | |
+| '--------------' || '--------------' || '--------------' || '--------------' || '--------------' |
+ '----------------'  '----------------'  '----------------'  '----------------'  '----------------' 
+
+Alexander Robitzsch
+IPN - Leibniz Institute for Science and Mathematics Education 
+at Kiel University
+
+Questions or suggestions about sirt can be sent to:
+robitzsch@ipn.uni-kiel.de
+
+For reporting a bug, please provide always a reproducible R script 
+and (if necessary) a corresponding dataset.
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+CHANGELOG mnlfa
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+------------------------------------------------------------------------
+VERSIONS mnlfa 0.1  |  2019-04-04  |  Last: mnlfa 0.1-53
+------------------------------------------------------------------------
+
+ADDED * initial release of mnlfa package with 1PL/2PL unidimensional 
+        models for dichotomous data
+NOTE  * included utility function mnlfa_expand_to_list()
+NOTE  * refer to packages aMNLFA and GPCMlasso in 'Enhances'
+
+DATA  * included/modified datasets: data.mnlfa01
+EXAMP * included/modified examples: mnlfa (1), mnlfa_expand_to_list (1)
+

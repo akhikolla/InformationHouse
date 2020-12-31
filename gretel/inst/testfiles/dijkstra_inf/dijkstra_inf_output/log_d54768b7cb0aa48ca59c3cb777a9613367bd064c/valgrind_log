@@ -1,0 +1,289 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./dijkstra_inf_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf/dijkstra_inf_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash</line>
+</preamble>
+
+<pid>834385</pid>
+<ppid>834384</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf/dijkstra_inf_output/log_d54768b7cb0aa48ca59c3cb777a9613367bd064c/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./dijkstra_inf_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf/dijkstra_inf_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.039 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>InvalidWrite</kind>
+  <what>Invalid write of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D26DFA</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/src/gretel.so</obj>
+      <fn>dijkstra_inf(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/src</dir>
+      <file>dijkstra.cpp</file>
+      <line>107</line>
+    </frame>
+    <frame>
+      <ip>0x409FDE</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf/dijkstra_inf_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_gretel_deepstate_test_dijkstra_inf_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf</dir>
+      <file>dijkstra_inf_DeepState_TestHarness.cpp</file>
+      <line>27</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf/dijkstra_inf_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_gretel_deepstate_test_dijkstra_inf_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf</dir>
+      <file>dijkstra_inf_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D908</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf/dijkstra_inf_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBA9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf/dijkstra_inf_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DC84</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf/dijkstra_inf_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf/dijkstra_inf_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x20b999600 is not stack'd, malloc'd or (recently) free'd</auxwhat>
+</error>
+
+<fatal_signal>
+  <tid>1</tid>
+  <signo>11</signo>
+  <signame>SIGSEGV</signame>
+  <sicode>1</sicode>
+  <event>Access not within mapped region</event>
+  <siaddr>0x20B999600</siaddr>
+  <stack>
+    <frame>
+      <ip>0x4D26DFA</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/src/gretel.so</obj>
+      <fn>dijkstra_inf(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/src</dir>
+      <file>dijkstra.cpp</file>
+      <line>107</line>
+    </frame>
+    <frame>
+      <ip>0x409FDE</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf/dijkstra_inf_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_gretel_deepstate_test_dijkstra_inf_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf</dir>
+      <file>dijkstra_inf_DeepState_TestHarness.cpp</file>
+      <line>27</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf/dijkstra_inf_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_gretel_deepstate_test_dijkstra_inf_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf</dir>
+      <file>dijkstra_inf_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D908</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf/dijkstra_inf_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBA9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf/dijkstra_inf_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DC84</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf/dijkstra_inf_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf/dijkstra_inf_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</fatal_signal>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:09.234 </time>
+</status>
+
+<error>
+  <unique>0xf</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>8 bytes in 1 blocks are definitely lost in loss record 15 of 1,415</text>
+    <leakedbytes>8</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D26DCE</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/src/gretel.so</obj>
+      <fn>allocate</fn>
+      <dir>/usr/include/c++/9/ext</dir>
+      <file>new_allocator.h</file>
+      <line>114</line>
+    </frame>
+    <frame>
+      <ip>0x4D26DCE</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/src/gretel.so</obj>
+      <fn>allocate</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>alloc_traits.h</file>
+      <line>444</line>
+    </frame>
+    <frame>
+      <ip>0x4D26DCE</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/src/gretel.so</obj>
+      <fn>_M_allocate</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>stl_vector.h</file>
+      <line>343</line>
+    </frame>
+    <frame>
+      <ip>0x4D26DCE</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/src/gretel.so</obj>
+      <fn>_M_create_storage</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>stl_vector.h</file>
+      <line>358</line>
+    </frame>
+    <frame>
+      <ip>0x4D26DCE</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/src/gretel.so</obj>
+      <fn>_Vector_base</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>stl_vector.h</file>
+      <line>302</line>
+    </frame>
+    <frame>
+      <ip>0x4D26DCE</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/src/gretel.so</obj>
+      <fn>vector</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>stl_vector.h</file>
+      <line>521</line>
+    </frame>
+    <frame>
+      <ip>0x4D26DCE</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/src/gretel.so</obj>
+      <fn>dijkstra_inf(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/src</dir>
+      <file>dijkstra.cpp</file>
+      <line>105</line>
+    </frame>
+    <frame>
+      <ip>0x409FDE</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf/dijkstra_inf_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_gretel_deepstate_test_dijkstra_inf_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf</dir>
+      <file>dijkstra_inf_DeepState_TestHarness.cpp</file>
+      <line>27</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf/dijkstra_inf_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_gretel_deepstate_test_dijkstra_inf_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf</dir>
+      <file>dijkstra_inf_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D908</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf/dijkstra_inf_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBA9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf/dijkstra_inf_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DC84</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf/dijkstra_inf_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_inf/dijkstra_inf_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<errorcounts>
+  <pair>
+    <count>1</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:09.963 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

@@ -1,0 +1,21 @@
+WARNING: No test specified, defaulting to first test defined (activegp_deepstate_test_W_kappa_ij_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/W_kappa_ij/W_kappa_ij_output/459629a40874418d2ad3dfdebf1e29a7f4d1d75d.fail`
+TRACE: Running: activegp_deepstate_test_W_kappa_ij_test from /home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/W_kappa_ij/W_kappa_ij_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+design values: 6.77802e-61 1.47759e+143 6.27440e-62 1.55723e+234 2.85353e-137 3.33957e-305 3.25350e-58 7.47790e-305
+4.02883e+82 1.05926e+69 2.66027e-251 2.40647e-78 1.24664e-33 8.82760e+208 5.23732e-77 0.000847739
+1.37085e+166 2.42002e+54 1.18796e-216 2.96154e-179 5.07853e+212 6.32727e+43 1.40525e+109 1.92872e-182
+6.49239e+224 2.26741e+104 2.24371e+115 2.06460e-90 4.27062e+251 1.62943e+287 0.00274153 2.29111e-102
+
+Missing value
+theta values: 1.19923e+165 5.27902e-206 -1.91257e+236 nan -3.47206e-94 5.68673e-170 3.12746e-17 4.24413e+194 1.06653e+184 -5.17219e+179 nan -6.76041e+206 3.32729e-130 2.04676e-41 -4.69058e+198 -8.22651e-73 -8.08139e-76 -1.87894e+269 -inf -5.14745e+145 -inf 3.85855e-120 3.17594e+283 nan
+i1 values: -2000042418
+i2 values: -1982129162
+ct values: 118805280
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Index out of bounds: [index=-2000042418; extent=24].
+ERROR: Failed: activegp_deepstate_test_W_kappa_ij_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/W_kappa_ij/W_kappa_ij_output/459629a40874418d2ad3dfdebf1e29a7f4d1d75d.fail failed

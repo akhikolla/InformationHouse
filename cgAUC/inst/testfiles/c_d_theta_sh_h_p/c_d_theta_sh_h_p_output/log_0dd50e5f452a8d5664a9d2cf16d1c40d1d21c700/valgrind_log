@@ -1,0 +1,625 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./c_d_theta_sh_h_p_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_output/0dd50e5f452a8d5664a9d2cf16d1c40d1d21c700.pass</line>
+</preamble>
+
+<pid>759739</pid>
+<ppid>759738</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_output/log_0dd50e5f452a8d5664a9d2cf16d1c40d1d21c700/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./c_d_theta_sh_h_p_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_output/0dd50e5f452a8d5664a9d2cf16d1c40d1d21c700.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.025 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F96D41</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_exp_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_exp.c</file>
+      <line>105</line>
+    </frame>
+    <frame>
+      <ip>0x4F572C2</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>exp@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_exp_template.c</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D279E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/src/cgAUC.so</obj>
+      <fn>c_s_h(double, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/src</dir>
+      <file>rcpp_cgAUC_sub_function.cpp</file>
+      <line>7</line>
+    </frame>
+    <frame>
+      <ip>0x4D28C86</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/src/cgAUC.so</obj>
+      <fn>c_d_theta_sh_h_p(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/src</dir>
+      <file>rcpp_cgAUC_sub_function.cpp</file>
+      <line>152</line>
+    </frame>
+    <frame>
+      <ip>0x40A35C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_cgAUC_deepstate_test_c_d_theta_sh_h_p_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p</dir>
+      <file>c_d_theta_sh_h_p_DeepState_TestHarness.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_cgAUC_deepstate_test_c_d_theta_sh_h_p_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p</dir>
+      <file>c_d_theta_sh_h_p_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DE78</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E119</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E1F4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x1</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F96DE2</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_exp_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_exp.c</file>
+      <line>108</line>
+    </frame>
+    <frame>
+      <ip>0x4F572C2</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>exp@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_exp_template.c</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D279E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/src/cgAUC.so</obj>
+      <fn>c_s_h(double, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/src</dir>
+      <file>rcpp_cgAUC_sub_function.cpp</file>
+      <line>7</line>
+    </frame>
+    <frame>
+      <ip>0x4D28C86</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/src/cgAUC.so</obj>
+      <fn>c_d_theta_sh_h_p(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/src</dir>
+      <file>rcpp_cgAUC_sub_function.cpp</file>
+      <line>152</line>
+    </frame>
+    <frame>
+      <ip>0x40A35C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_cgAUC_deepstate_test_c_d_theta_sh_h_p_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p</dir>
+      <file>c_d_theta_sh_h_p_DeepState_TestHarness.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_cgAUC_deepstate_test_c_d_theta_sh_h_p_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p</dir>
+      <file>c_d_theta_sh_h_p_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DE78</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E119</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E1F4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x2</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F96DEE</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_exp_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_exp.c</file>
+      <line>112</line>
+    </frame>
+    <frame>
+      <ip>0x4F572C2</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>exp@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_exp_template.c</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D279E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/src/cgAUC.so</obj>
+      <fn>c_s_h(double, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/src</dir>
+      <file>rcpp_cgAUC_sub_function.cpp</file>
+      <line>7</line>
+    </frame>
+    <frame>
+      <ip>0x4D28C86</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/src/cgAUC.so</obj>
+      <fn>c_d_theta_sh_h_p(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/src</dir>
+      <file>rcpp_cgAUC_sub_function.cpp</file>
+      <line>152</line>
+    </frame>
+    <frame>
+      <ip>0x40A35C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_cgAUC_deepstate_test_c_d_theta_sh_h_p_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p</dir>
+      <file>c_d_theta_sh_h_p_DeepState_TestHarness.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_cgAUC_deepstate_test_c_d_theta_sh_h_p_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p</dir>
+      <file>c_d_theta_sh_h_p_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DE78</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E119</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E1F4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x3</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F96DFD</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_exp_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_exp.c</file>
+      <line>114</line>
+    </frame>
+    <frame>
+      <ip>0x4F572C2</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>exp@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_exp_template.c</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D279E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/src/cgAUC.so</obj>
+      <fn>c_s_h(double, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/src</dir>
+      <file>rcpp_cgAUC_sub_function.cpp</file>
+      <line>7</line>
+    </frame>
+    <frame>
+      <ip>0x4D28C86</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/src/cgAUC.so</obj>
+      <fn>c_d_theta_sh_h_p(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/src</dir>
+      <file>rcpp_cgAUC_sub_function.cpp</file>
+      <line>152</line>
+    </frame>
+    <frame>
+      <ip>0x40A35C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_cgAUC_deepstate_test_c_d_theta_sh_h_p_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p</dir>
+      <file>c_d_theta_sh_h_p_DeepState_TestHarness.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_cgAUC_deepstate_test_c_d_theta_sh_h_p_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p</dir>
+      <file>c_d_theta_sh_h_p_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DE78</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E119</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E1F4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x4</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F96E09</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_exp_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_exp.c</file>
+      <line>116</line>
+    </frame>
+    <frame>
+      <ip>0x4F572C2</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>exp@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_exp_template.c</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D279E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/src/cgAUC.so</obj>
+      <fn>c_s_h(double, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/src</dir>
+      <file>rcpp_cgAUC_sub_function.cpp</file>
+      <line>7</line>
+    </frame>
+    <frame>
+      <ip>0x4D28C86</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/src/cgAUC.so</obj>
+      <fn>c_d_theta_sh_h_p(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/src</dir>
+      <file>rcpp_cgAUC_sub_function.cpp</file>
+      <line>152</line>
+    </frame>
+    <frame>
+      <ip>0x40A35C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_cgAUC_deepstate_test_c_d_theta_sh_h_p_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p</dir>
+      <file>c_d_theta_sh_h_p_DeepState_TestHarness.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_cgAUC_deepstate_test_c_d_theta_sh_h_p_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p</dir>
+      <file>c_d_theta_sh_h_p_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DE78</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E119</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E1F4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x5</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F572E5</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>exp@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_exp_template.c</file>
+      <line>33</line>
+    </frame>
+    <frame>
+      <ip>0x4D279E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/src/cgAUC.so</obj>
+      <fn>c_s_h(double, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/src</dir>
+      <file>rcpp_cgAUC_sub_function.cpp</file>
+      <line>7</line>
+    </frame>
+    <frame>
+      <ip>0x4D28C86</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/src/cgAUC.so</obj>
+      <fn>c_d_theta_sh_h_p(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/src</dir>
+      <file>rcpp_cgAUC_sub_function.cpp</file>
+      <line>152</line>
+    </frame>
+    <frame>
+      <ip>0x40A35C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_cgAUC_deepstate_test_c_d_theta_sh_h_p_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p</dir>
+      <file>c_d_theta_sh_h_p_DeepState_TestHarness.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_cgAUC_deepstate_test_c_d_theta_sh_h_p_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p</dir>
+      <file>c_d_theta_sh_h_p_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DE78</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E119</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E1F4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x6</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F5730A</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__exp</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_exp_template.c</file>
+      <line>33</line>
+    </frame>
+    <frame>
+      <ip>0x4F5730A</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>exp@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_exp_template.c</file>
+      <line>30</line>
+    </frame>
+    <frame>
+      <ip>0x4D279E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/src/cgAUC.so</obj>
+      <fn>c_s_h(double, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/src</dir>
+      <file>rcpp_cgAUC_sub_function.cpp</file>
+      <line>7</line>
+    </frame>
+    <frame>
+      <ip>0x4D28C86</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/src/cgAUC.so</obj>
+      <fn>c_d_theta_sh_h_p(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/src</dir>
+      <file>rcpp_cgAUC_sub_function.cpp</file>
+      <line>152</line>
+    </frame>
+    <frame>
+      <ip>0x40A35C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_cgAUC_deepstate_test_c_d_theta_sh_h_p_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p</dir>
+      <file>c_d_theta_sh_h_p_DeepState_TestHarness.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_cgAUC_deepstate_test_c_d_theta_sh_h_p_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p</dir>
+      <file>c_d_theta_sh_h_p_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DE78</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E119</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E1F4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/cgAUC/inst/testfiles/c_d_theta_sh_h_p/c_d_theta_sh_h_p_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:07.701 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>1892</count>
+    <unique>0x6</unique>
+  </pair>
+  <pair>
+    <count>1892</count>
+    <unique>0x5</unique>
+  </pair>
+  <pair>
+    <count>1892</count>
+    <unique>0x4</unique>
+  </pair>
+  <pair>
+    <count>1892</count>
+    <unique>0x3</unique>
+  </pair>
+  <pair>
+    <count>1892</count>
+    <unique>0x2</unique>
+  </pair>
+  <pair>
+    <count>1892</count>
+    <unique>0x1</unique>
+  </pair>
+  <pair>
+    <count>1892</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.191 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

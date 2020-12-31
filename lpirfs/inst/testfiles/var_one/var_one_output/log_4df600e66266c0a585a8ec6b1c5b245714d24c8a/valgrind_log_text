@@ -1,0 +1,16 @@
+WARNING: No test specified, defaulting to first test defined (lpirfs_deepstate_test_var_one_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/lpirfs/inst/testfiles/var_one/var_one_output/4df600e66266c0a585a8ec6b1c5b245714d24c8a.fail`
+TRACE: Running: lpirfs_deepstate_test_var_one_test from /home/akhila/fuzzer_packages/fuzzedpackages/lpirfs/inst/testfiles/var_one/var_one_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+VAR_Data values:     nan    -inf    -inf     nan    -inf 1.55275e+40
+
+input ends
+
+error: Mat::rows(): indices out of bounds or incorrectly used
+terminate called after throwing an instance of 'std::logic_error'
+  what():  Mat::rows(): indices out of bounds or incorrectly used
+ERROR: Failed: lpirfs_deepstate_test_var_one_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/lpirfs/inst/testfiles/var_one/var_one_output/4df600e66266c0a585a8ec6b1c5b245714d24c8a.fail failed

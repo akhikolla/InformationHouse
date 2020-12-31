@@ -1,0 +1,17 @@
+WARNING: No test specified, defaulting to first test defined (GGIR_deepstate_test_resample_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_output/cd583982acf28cfbfc7b7dd51c69f3fb0534ec68.fail`
+TRACE: Running: GGIR_deepstate_test_resample_test from /home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+raw values: 1.05415e-68 1.86447e-211 4.49059e+17 2.72551e-214 6.53679e-70 2.42643e+241 1.65687e+24
+
+rawTime values: -3.48837e-09 -1.50153e+251 1.57867e-307 -7.00762e-50 -6.99566e-60 2.58197e-253 -2.63239e-196 9.32252e-200 1.66712e-146 2.4867e+34 4.39319e-139 -1.36007e+107 2.86379e-96 3.02278e-165 1.34862e-57 5.86822e+165 -4.91144e+258 -5.33605e+203 -6.88846e+106 -3.43788e-268 8.94805e+170 -2.0443e-36 -6.03987e-114 2.60723e+99 -6.29778e-66 3.9179e+115 3.9271e+276 -3.86193e+221 3.59913e-219 -3.45053e+232 -6.25834e-147 -2.16549e+140 -8.58505e-232 9.95826e+13 -3.71024e-280 1.7409e+15 1.1042e+143 3.36904e+294 1.11439e+215 -2.48154e-22 3.10689e-226 1.11179e-242 1.5402e-307 1.414e-40
+Missing value
+time values: -inf -2.01994e+299 -9.49379e-217 -inf nan
+stop values: 689291313
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Index out of bounds: [index=689291312; extent=44].
+ERROR: Failed: GGIR_deepstate_test_resample_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/GGIR/inst/testfiles/resample/resample_output/cd583982acf28cfbfc7b7dd51c69f3fb0534ec68.fail failed

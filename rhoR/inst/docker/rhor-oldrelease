@@ -1,0 +1,15 @@
+FROM rocker/r-ver:3.5.3
+
+RUN apt-get update -y
+RUN apt-get install -y apt-utils
+RUN apt-get install -y libxml2 xml2
+RUN apt-get install -y libxml2-dev
+RUN apt-get install -y libcurl4-openssl-dev libssh2-1-dev libssl-dev git
+RUN apt-get install -y qpdf pandoc pandoc-citeproc openssh-client curl
+RUN apt-cache search git
+RUN apt-get install -y libgit2-dev
+
+RUN R -e 'install.packages(c("roxygen2"), repos="http://cran.rstudio.com")'
+RUN R -e 'install.packages(c("git2r","usethis","devtools","testthat"), repos="http://cran.rstudio.com")'
+
+RUN R --version

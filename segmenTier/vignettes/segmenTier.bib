@@ -1,0 +1,166 @@
+@article{Machne2017,
+        author = {Machn\'e, R. and Murray, D.B. and Stadler, P.F.},
+        title = {Similarity-Based Segmentation of Multi-Dimensional Signals.},
+        journal = {Sci Rep},
+        volume = {7},
+        number = {1},
+        year = {2017},
+        month = {Sep},
+        pages = {12355},
+        pmid = {28955039},
+        doi = {10.1038/s41598-017-12401-8},
+        abstract = {The segmentation of time series and genomic data is a common problem
+in computational biology. With increasingly complex measurement
+procedures individual data points are often not just numbers or
+simple vectors in which all  components are of the same kind.
+Analysis methods that capitalize on slopes in a  single real-valued
+data track or that make explicit use of the vectorial nature of
+the data are not applicable in such scenaria. We develop here
+a framework for  segmentation in arbitrary data domains that only
+requires a minimal notion of similarity. Using unsupervised clustering
+of (a sample of) the input yields an approximate segmentation
+algorithm that is efficient enough for genome-wide applications.
+As a showcase application we segment a time-series of transcriptome
+sequencing data from budding yeast, in high temporal resolution
+over ca. 2.5 cycles of the short-period respiratory oscillation.
+The algorithm is used with a  similarity measure focussing on
+periodic expression profiles across the metabolic cycle rather
+than coverage per time point.}
+}
+@article{Machne2012,
+        author = {Machn\'e, R. and Murray, D.B.},
+        title = {The yin and yang of yeast transcription: elements of a global feedback system between metabolism and chromatin.},
+        journal = {PLoS One},
+        volume = {7},
+        number = {6},
+        year = {2012},
+        pages = {e37906},
+        pmid = {22685547},
+        doi = {10.1371/journal.pone.0037906},
+        abstract = {When grown in continuous culture, budding yeast cells tend to
+synchronize their respiratory activity to form a stable oscillation
+that percolates throughout cellular physiology and involves the
+majority of the protein-coding transcriptome. Oscillations in
+batch culture and at single cell level support the idea that these
+dynamics constitute a general growth principle. The precise molecular
+mechanisms and biological functions of the oscillation remain
+elusive.  Fourier analysis of transcriptome time series datasets
+from two different oscillation periods (0.7 h and 5 h) reveals
+seven distinct co-expression clusters common to both systems (34\%
+of all yeast ORF), which consolidate into two superclusters when
+correlated with a compilation of 1,327 unrelated transcriptome
+datasets. These superclusters encode for cell growth and anabolism
+during the phase of high, and mitochondrial growth, catabolism
+and stress response during the phase of low oxygen uptake. The
+promoters of each cluster are characterized by different nucleotide
+contents, promoter nucleosome configurations, and dependence on
+ATP-dependent nucleosome remodeling complexes. We show that the
+ATP:ADP ratio oscillates, compatible with alternating metabolic
+activity of the two superclusters and differential feedback on
+their transcription via activating (RSC) and repressive (Isw2)
+types of promoter structure remodeling. We propose a  novel feedback
+mechanism, where the energetic state of the cell, reflected in
+the ATP:ADP ratio, gates the transcription of large, but functionally
+coherent groups of genes via differential effects of ATP-dependent
+nucleosome remodeling machineries. Besides providing a mechanistic
+hypothesis for the delayed negative  feedback that results in
+the oscillatory phenotype, this mechanism may underpin the continuous
+adaptation of growth to environmental conditions.}
+}
+@article{Lehmann2013,
+        author = {Lehmann, R. and Machn{\'e}, R. and Georg, J. and Benary, M. and Axmann, I. M. and Steuer, R.},
+        title = {How cyanobacteria pose new problems to old methods: challenges in microarray time series analysis.},
+        journal = {BMC Bioinformatics}, 
+        volume = {14}, 
+        number = {1},
+        year = {2013},
+        month = {Apr},
+        pages = {133},
+        pmid = {23601192},
+        doi = {10.1186/1471-2105-14-133},
+        abstract = {BACKGROUND: The transcriptomes of several cyanobacterial strains
+have been shown  to exhibit diurnal oscillation patterns, reflecting
+the diurnal phototrophic lifestyle of the organisms.The analysis
+of such genome-wide transcriptional oscillations is often facilitated
+by the use of clustering algorithms in conjunction with a number
+of pre-processing steps. Biological interpretation is usually
+focussed on the time and phase of expression of the resulting
+groups of genes.However, the use of microarray technology in such
+studies requires the normalization of pre-processing data, with
+unclear impact on the qualitative and  quantitative features of
+the derived information on the number of oscillating transcripts
+and their respective phases. RESULTS: A microarray based evaluation
+of diurnal expression in the cyanobacterium Synechocystis sp.
+PCC 6803 is presented. As expected, the temporal expression patterns
+reveal strong oscillations in transcript abundance.We compare
+the Fourier transformation-based  expression phase before and
+after the application of quantile normalization, median polishing,
+cyclical LOESS, and least oscillating set (LOS) normalization.Whereas
+LOS normalization mostly preserves the phases of the raw data,
+the remaining methods introduce systematic biases. In particular,
+quantile-normalization is found to introduce a phase-shift of
+180 degrees , effectively changing night-expressed genes into
+day-expressed ones. Comparison of a large number of clustering
+results of differently normalized data shows that the normalization
+method determines the result. Subsequent steps, such as the choice
+of data transformation, similarity measure, and clustering algorithm,
+only play minor roles.We find that the standardization and the
+DTF transformation are  favorable for the clustering of time series
+in contrast to the 12m transformation. We use the cluster-wise
+functional enrichment of a clustering derived by LOS normalization,
+clustering using flowClust, and DFT transformation  to derive
+the diurnal biological program of Synechocystis sp.. CONCLUSION:
+Application of quantile normalization, median polishing, and also
+cyclic LOESS normalization of the presented cyanobacterial dataset
+lead to increased numbers of oscillating genes and the systematic
+shift of the expression phase. The LOS normalization minimizes
+the observed detrimental effects. As previous analyses employed
+a variety of different normalization methods, a direct comparison
+of results must be treated with caution.}
+}
+
+@article{Beck2014,
+        author = {Beck, C. and Hertel, S. and Rediger, A. and Lehmann, R. and Wiegard, A. and Kolsch, A. and Heilmann, B. and Georg, J. and Hess, W.R. and Axmann, I.M.},
+        title = {Daily Expression Pattern of Protein-Encoding Genes and Small Noncoding {RNAs} in \textit{Synechocystis} sp. Strain {PCC} 6803.},
+        journal = {Appl Environ Microbiol},
+        volume = {80},
+        number = {17},
+        year = {2014},
+        month = {Sep},
+        pages = {5195-5206},
+        pmid = {24928881},
+        doi = {10.1128/AEM.01086-14},
+        abstract = {Many organisms harbor circadian clocks with periods close to 24
+h. These cellular clocks allow organisms to anticipate the environmental
+cycles of day and night by synchronizing circadian rhythms with
+the rising and setting of the sun. These rhythms originate from
+the oscillator components of circadian clocks and control  global
+gene expression and various cellular processes. The oscillator
+of photosynthetic cyanobacteria is composed of three proteins,
+KaiA, KaiB, and KaiC, linked to a complex regulatory network.
+Synechocystis sp. strain PCC 6803 possesses the standard cyanobacterial
+kaiABC gene cluster plus multiple kaiB and  kaiC gene copies and
+antisense RNAs for almost every kai transcript. However, there
+is no clear evidence of circadian rhythms in Synechocystis sp.
+PCC 6803 under various experimental conditions. It is also still
+unknown if and to what extent the multiple kai gene copies and
+kai antisense RNAs affect circadian timing. Moreover, a large
+number of small noncoding RNAs whose accumulation dynamics over
+time have not yet been monitored are known for Synechocystis sp.
+PCC 6803. Here we performed a 48-h time series transcriptome analysis
+of Synechocystis sp. PCC 6803, taking into account periodic light-dark
+phases, continuous light, and continuous darkness. We found that
+expression of functionally related genes occurred in different
+phases of day and night. Moreover, we found day-peaking and night-peaking
+transcripts among the small RNAs; in particular, the amounts of
+kai antisense RNAs correlated or anticorrelated with those of
+their respective kai target mRNAs, pointing toward the regulatory
+relevance of these antisense RNAs. Surprisingly, we observed that
+the amounts of 16S and 23S rRNAs in this cyanobacterium fluctuated
+in light-dark  periods, showing maximum accumulation in the dark
+phase. Importantly, the amounts of all transcripts, including
+small noncoding RNAs, did not show any rhythm under continuous
+light or darkness, indicating the absence of circadian rhythms
+in Synechocystis.}
+}
+

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Dane Van Domelen   vandomed@gmail.com" />
+
+<meta name="date" content="2018-08-23" />
+
+<title>Functions for Processing Accelerometer Data</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Functions for Processing Accelerometer Data</h1>
+<h4 class="author"><em>Dane Van Domelen <br> <a href="mailto:vandomed@gmail.com">vandomed@gmail.com</a></em></h4>
+<h4 class="date"><em>2018-08-23</em></h4>
+
+
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>The <strong>accelerometry</strong> package has functions for processing time series accelerometer data from research studies. It was primarily developed for uniaxial minute-to-minute count data. It is also compatible with triaxial data, and could potentially also be used with epochs other than 1 minute.</p>
+<p>If you have “raw data,” meaning your device recorded actual acceleration data at 30 Hz or some other sampling frequency, this package probably won’t be very helpful. Then again, you can usually convert raw data to counts after data collection, e.g. using <a href="https://www.actigraphcorp.com/support/software/actilife/">ActiLife software</a> for ActiGraph devices.</p>
+<p>C++ is used for most of the functions, through the <strong>Rcpp</strong> package <span class="citation">(Eddelbuettel and François 2011)</span>, so they should be pretty fast. For example, the <strong>nhanesaccel</strong> package, which relies on <strong>accelerometry</strong>’s functions to process data from the 2003-2006 National Health and Nutrition Examination Survey (NHANES), can process that dataset about 90 times faster than a SAS script provided by the National Cancer Institute <span class="citation">(Van Domelen and Pittard 2014)</span>.</p>
+</div>
+<div id="installation" class="section level2">
+<h2>Installation</h2>
+<p>The package is available to download from either CRAN or GitHub. To install from CRAN:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;accelerometry&quot;</span>)</code></pre></div>
+<p>And to install from GitHub (<strong>devtools</strong> package must be installed):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;devtools&quot;</span>)
+<span class="kw">install_github</span>(<span class="st">&quot;vandomed/accelerometry&quot;</span>)</code></pre></div>
+</div>
+<div id="typical-usage" class="section level2">
+<h2>Typical usage</h2>
+<p>Converting time series accelerometer data to meaningful physical activity variables typically requires 3 steps:</p>
+<ol style="list-style-type: decimal">
+<li>Identify periods in which the accelerometer was removed (assuming it could be removed), and determine which days have sufficient wear time.</li>
+<li>Calculate physical activity variables of interest for each day.</li>
+<li>Calculate averages across valid days, and perhaps for weekdays/weekends separately.</li>
+</ol>
+<p>In using the <strong>accelerometry</strong> package, you can either call separate functions to implement these steps (e.g. <em>nonwear</em> for 1, <em>bouts</em> and <em>intensities</em> for 2, and <em>personvars</em> for 3) or call an umbrella function that does it all internally (e.g. <em>process_uni</em> or <em>process_tri</em>). The composite functions should be sufficient for most users.</p>
+<p>I’ll use data from the first 5 subjects in NHANES 2003-2004 (included with the package) to illustrate the various functions. Here’s what the dataset looks like:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(unidata)
+<span class="co">#&gt;       seqn paxday paxinten</span>
+<span class="co">#&gt; [1,] 21005      1        0</span>
+<span class="co">#&gt; [2,] 21005      1        0</span>
+<span class="co">#&gt; [3,] 21005      1        0</span>
+<span class="co">#&gt; [4,] 21005      1        0</span>
+<span class="co">#&gt; [5,] 21005      1        0</span>
+<span class="co">#&gt; [6,] 21005      1        0</span>
+<span class="kw">dim</span>(unidata)
+<span class="co">#&gt; [1] 50400     3</span></code></pre></div>
+<p>There are 3 variables – <code>seqn</code> is the subject ID, <code>paxday</code> is the day of the week (1 = Sunday, …, 7 = Saturday), and <code>paxinten</code> is the count value recorded for each minute – and 50,400 observations (1 obs/min x 1,440 min/day x 7 days/subject x 5 subjects).</p>
+<p>Here’s what 7 days of data looks like, for the 3rd subject in the dataset, SEQN = 21007. You can see the 7 separate clouds of data corresponding to each day of the week.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">seqn &lt;-<span class="st"> </span>unidata[, <span class="st">&quot;seqn&quot;</span>]
+counts &lt;-<span class="st"> </span>unidata[, <span class="st">&quot;paxinten&quot;</span>]
+counts.<span class="dv">21007</span> &lt;-<span class="st"> </span>counts[seqn <span class="op">==</span><span class="st"> </span><span class="dv">21007</span>]
+<span class="kw">plot</span>(counts.<span class="dv">21007</span>, <span class="dt">main =</span> <span class="st">&quot;Counts for Subject 21007&quot;</span>)</code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+<div id="individual-functions" class="section level2">
+<h2>Individual functions</h2>
+<div id="weartime" class="section level3">
+<h3><code>weartime</code></h3>
+<p>There are two distinct approaches for identifying non-wear time:</p>
+<ol style="list-style-type: decimal">
+<li>Have subjects keep a journal, writing down the precise times that they take the device off and put it back on.</li>
+<li>Identify non-wear periods based on the accelerometer signal itself, under the assumption that long periods of 0 counts are probably non-wear time.</li>
+</ol>
+<p>Approach 2 is seriously flawed, in my opinion, because it is very possible for somebody wearing the device to record 0 counts for several hours consecutively. But this is the only option for studies like NHANES, where journals were not part of the protocol.</p>
+<p>The <em>weartime</em> function is for implementing the signal-based approach of removing non-wear time. The default behavior is to classify as non-wear any interval 60 minutes or longer with 0 counts. To do that for our subject of interest:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wear1 &lt;-<span class="st"> </span><span class="kw">weartime</span>(counts.<span class="dv">21007</span>)</code></pre></div>
+<p>If you have reason to prefer a 90- rather than 60-minute window size, and perhaps want to allow for up 2 nonzero count values as long as they are below 100, you could use:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wear2 &lt;-<span class="st"> </span><span class="kw">weartime</span>(counts.<span class="dv">21007</span>, 
+                  <span class="dt">window =</span> <span class="dv">90</span>, 
+                  <span class="dt">tol =</span> <span class="dv">2</span>, 
+                  <span class="dt">tol_upper =</span> <span class="dv">99</span>)</code></pre></div>
+<p>Let’s see how these two compare (multiplying 0/1 vectors by 5000 and 5100 just to make it easier to visualize):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))
+
+<span class="kw">plot</span>(counts.<span class="dv">21007</span>, <span class="dt">main =</span> <span class="st">&quot;Subject 21007 (whole week)&quot;</span>)
+<span class="kw">points</span>(wear1 <span class="op">*</span><span class="st"> </span><span class="dv">5000</span>, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)
+<span class="kw">points</span>(wear2 <span class="op">*</span><span class="st"> </span><span class="dv">5100</span>, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)
+
+<span class="kw">plot</span>(counts.<span class="dv">21007</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">4321</span>, <span class="dv">5760</span>), <span class="dt">main =</span> <span class="st">&quot;Subject 21007 (day 4)&quot;</span>)
+<span class="kw">points</span>(wear1 <span class="op">*</span><span class="st"> </span><span class="dv">5000</span>, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)
+<span class="kw">points</span>(wear2 <span class="op">*</span><span class="st"> </span><span class="dv">5100</span>, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>It looks like the main difference here is an extra non-wear period for the 60-minute method on the 4th day of monitoring. Personally, I wouldn’t go higher than 60 minutes. Even at 60, you’ll have no chance of removing short non-wear periods, e.g. when subjects are showering or swimming for exercise. That’s all going to be classified as sedentary time, unfortunately.</p>
+</div>
+<div id="bouts" class="section level3">
+<h3><code>bouts</code></h3>
+<p>A “bout” is a sustained period of activity of some intensity for some time. Bouted MVPA (moderate-to-vigorous physical activity) is a popular bout variable because physical activity guidelines are often based on MVPA accumulated in bouts of <span class="math inline">\(\ge\)</span> 10 minutes <span class="citation">(Troiano et al. 2008)</span>. Bouted sedentary time can also be interesting, given recent enthusiasm for studying sedentary behaviors.</p>
+<p>Here is how you would use <em>bouts</em> to identify bouted MVPA for our subject of interest. Note that 2020 is a common cutpoint used to classify MVPA <span class="citation">(Troiano et al. 2008)</span>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mvpa &lt;-<span class="st"> </span><span class="kw">bouts</span>(<span class="dt">counts =</span> counts.<span class="dv">21007</span>, 
+              <span class="dt">bout_length =</span> <span class="dv">10</span>, 
+              <span class="dt">thresh_lower =</span> <span class="dv">2020</span>)
+<span class="kw">sum</span>(mvpa)
+<span class="co">#&gt; [1] 0</span></code></pre></div>
+<p>Zero bouted MVPA for the entire week - not good! That’s actually not uncommon in NHANES. And we’re using a strict definition of a bout, not allowing for any minutes to dip below 2020 counts during a 10-minute window. We could be more liberal and define bouted MVPA as any 10-minute interval with counts <span class="math inline">\(\ge\)</span> 2020, allowing for 1-2 minutes with counts &lt; 2020, as long as they are still <span class="math inline">\(\ge\)</span> 100. To implement that algorithm:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mvpa &lt;-<span class="st"> </span><span class="kw">bouts</span>(<span class="dt">counts =</span> counts.<span class="dv">21007</span>, 
+              <span class="dt">bout_length =</span> <span class="dv">10</span>, 
+              <span class="dt">thresh_lower =</span> <span class="dv">2020</span>, 
+              <span class="dt">tol =</span> <span class="dv">2</span>, 
+              <span class="dt">tol_lower =</span> <span class="dv">100</span>)
+<span class="kw">sum</span>(mvpa)
+<span class="co">#&gt; [1] 10075</span></code></pre></div>
+<p>With this more forgiving algorithm, the subject is considered to have 21 rather than 0 minutes of bouted MVPA over the course of the week.</p>
+</div>
+<div id="intensities" class="section level3">
+<h3><code>intensities</code></h3>
+<p>This is a simple function that calculates the number of minutes spent in 5 different intensity levels, and the number of counts accumulated from each intensity level. Default behavior is to categorize counts as follows:</p>
+<ul>
+<li>0-99 = intensity 1 (sedentary)</li>
+<li>100-759 = intensity 2 (light)</li>
+<li>760-2019 = intensity 3 (lifestyle)</li>
+<li>2020-5998 = intensity 4 (moderate)</li>
+<li><span class="math inline">\(\ge\)</span> 5999 = intensity 5 (vigorous)</li>
+</ul>
+<p>It also lumps intensities 2-3, 4-5, and 2-5 together, for a total of 8 categories. Applied to our subject:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(intensity.data &lt;-<span class="st"> </span><span class="kw">intensities</span>(<span class="dt">counts =</span> counts.<span class="dv">21007</span>[wear1 <span class="op">==</span><span class="st"> </span><span class="dv">1</span>]))
+<span class="co">#&gt;  [1]    3379    2069     790     247      12    2859     259    3118</span>
+<span class="co">#&gt;  [9]   62933  702722  953350  717948   91473 1656072  809421 2465493</span></code></pre></div>
+<p>I subsetted just the valid wear time for this subject, to avoid classifying non-wear time as sedentary time. The first 8 numbers are time spent in the various intensities (e.g. 3379 minutes of sedentary time), and the next 8 are counts accumulated from those intensities (e.g. 62933 counts accumulated during sedentary time).</p>
+</div>
+<div id="sedbreaks" class="section level3">
+<h3><code>sedbreaks</code></h3>
+<p>There is some evidence in the epidemiological literature that “sedentary breaks” are beneficial <span class="citation">(Stamatakis et al. 2018)</span>, i.e. that breaking up prolonged periods of sedentary time can lead to improved health. To count the number of sedentary breaks over the 7-day period for our subject of interest:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">breakcount &lt;-<span class="st"> </span><span class="kw">sedbreaks</span>(<span class="dt">counts =</span> counts.<span class="dv">21007</span>, 
+                        <span class="dt">weartime =</span> wear1)
+<span class="kw">sum</span>(breakcount)
+<span class="co">#&gt; [1] 729</span></code></pre></div>
+<p>This subject had 729 sedentary breaks over the 7-day period, or a little more than 100 a day. The definition of a sedentary break here is having a minute with counts <span class="math inline">\(\ge\)</span> 100 after a minute of counts &lt; 100. Note that we had to give <em>sedbreaks</em> the wear time vector; this prevents the first minute after each non-wear periods being classified as a sedentary break.</p>
+</div>
+</div>
+<div id="umbrella-functions" class="section level2">
+<h2>Umbrella functions</h2>
+<div id="process_uni" class="section level3">
+<h3><code>process_uni</code></h3>
+<p>With uniaxial accelerometer data, you can use <em>process_uni</em> to calculate physical activity variables for each subject. To calculate a few basic activity variables for our subject of interest, you can run:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(averages.<span class="dv">21007</span> &lt;-<span class="st"> </span><span class="kw">process_uni</span>(counts.<span class="dv">21007</span>))
+<span class="co">#&gt;      id valid_days valid_wk_days valid_we_days include valid_min   counts</span>
+<span class="co">#&gt; [1,]  1          7             5             2       1  928.1429 361203.7</span>
+<span class="co">#&gt;          cpm steps</span>
+<span class="co">#&gt; [1,] 402.281   NaN</span></code></pre></div>
+<p>It looks like all 7 days were valid for analysis, meaning they had at least 10 hours of wear time. The subject averaged about 928 minutes (15.5 hours) of wear time per day. The variables <code>counts</code> and <code>cpm</code> (counts per minute of wear time) are probably the two most popular measures of total physical activity volume; this subject averaged about 361,000 counts per day, and 402.3 counts per minute of wear time.</p>
+<p>All we specified was the vector of counts, so the function used default values for everything, which basically means the data-processing parameters that I personally prefer. But if you look at the help file (<code>?process_uni</code>), you’ll see a long list of parameters that you can adjust if you like.</p>
+<p>Oftentimes researchers want more detailed variables than just counts and cpm. You can request a lot more variables with the <code>brevity</code> input. If we set it to 2 rather than 1:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">averages.<span class="dv">21007</span> &lt;-<span class="st"> </span><span class="kw">process_uni</span>(<span class="dt">counts =</span> counts.<span class="dv">21007</span>, 
+                              <span class="dt">brevity =</span> <span class="dv">2</span>)
+<span class="kw">colnames</span>(averages.<span class="dv">21007</span>)
+<span class="co">#&gt;  [1] &quot;id&quot;                &quot;valid_days&quot;        &quot;valid_wk_days&quot;    </span>
+<span class="co">#&gt;  [4] &quot;valid_we_days&quot;     &quot;include&quot;           &quot;valid_min&quot;        </span>
+<span class="co">#&gt;  [7] &quot;counts&quot;            &quot;cpm&quot;               &quot;steps&quot;            </span>
+<span class="co">#&gt; [10] &quot;sed_min&quot;           &quot;light_min&quot;         &quot;life_min&quot;         </span>
+<span class="co">#&gt; [13] &quot;mod_min&quot;           &quot;vig_min&quot;           &quot;lightlife_min&quot;    </span>
+<span class="co">#&gt; [16] &quot;mvpa_min&quot;          &quot;active_min&quot;        &quot;sed_percent&quot;      </span>
+<span class="co">#&gt; [19] &quot;light_percent&quot;     &quot;life_percent&quot;      &quot;mod_percent&quot;      </span>
+<span class="co">#&gt; [22] &quot;vig_percent&quot;       &quot;lightlife_percent&quot; &quot;mvpa_percent&quot;     </span>
+<span class="co">#&gt; [25] &quot;active_percent&quot;    &quot;sed_counts&quot;        &quot;light_counts&quot;     </span>
+<span class="co">#&gt; [28] &quot;life_counts&quot;       &quot;mod_counts&quot;        &quot;vig_counts&quot;       </span>
+<span class="co">#&gt; [31] &quot;lightlife_counts&quot;  &quot;mvpa_counts&quot;       &quot;active_counts&quot;    </span>
+<span class="co">#&gt; [34] &quot;sed_bouted_10min&quot;  &quot;sed_bouted_30min&quot;  &quot;sed_bouted_60min&quot; </span>
+<span class="co">#&gt; [37] &quot;sed_breaks&quot;        &quot;max_1min_counts&quot;   &quot;max_50min_counts&quot; </span>
+<span class="co">#&gt; [40] &quot;max_10min_counts&quot;  &quot;max_30min_counts&quot;  &quot;num_mvpa_bouts&quot;   </span>
+<span class="co">#&gt; [43] &quot;num_vig_bouts&quot;     &quot;mvpa_bouted&quot;       &quot;vig_bouted&quot;       </span>
+<span class="co">#&gt; [46] &quot;guideline_min&quot;</span></code></pre></div>
+<p>Now we get a lot more variables, with various measures of intensity, sedentary behaviors, and bouted activity. Let’s look at a few of the variables:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">averages.<span class="dv">21007</span>[, <span class="kw">c</span>(<span class="st">&quot;sed_percent&quot;</span>, <span class="st">&quot;sed_bouted_60min&quot;</span>, <span class="st">&quot;max_1min_counts&quot;</span>)]
+<span class="co">#&gt;      sed_percent sed_bouted_60min  max_1min_counts </span>
+<span class="co">#&gt;        0.5035413       52.4285714     7173.2857143</span></code></pre></div>
+<p>The subject on average spent 50.4% of wear time sedentary, 570.7 minutes per day in sedentary bouts <span class="math inline">\(\ge\)</span> 1 hour, and achieved a max 5-minute count average of 3371 counts/min.</p>
+<p>If you set <code>brevity = 3</code>, you also get hourly count averages, which can be interesting to plot for individual subjects and/or across subgroups.</p>
+<p>If you want a daily summary rather than averages across all valid days, you can set <code>return_form = &quot;daily&quot;</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(daily.<span class="dv">21007</span> &lt;-<span class="st"> </span><span class="kw">process_uni</span>(<span class="dt">counts =</span> counts.<span class="dv">21007</span>, 
+                            <span class="dt">return_form =</span> <span class="st">&quot;daily&quot;</span>))
+<span class="co">#&gt;      id day valid_day valid_min counts      cpm steps</span>
+<span class="co">#&gt; [1,]  1   1         1       737 438907 595.5319    NA</span>
+<span class="co">#&gt; [2,]  1   2         1       953 400517 420.2697    NA</span>
+<span class="co">#&gt; [3,]  1   3         1       941 316556 336.4038    NA</span>
+<span class="co">#&gt; [4,]  1   4         1       826 386072 467.3995    NA</span>
+<span class="co">#&gt; [5,]  1   5         1      1098 293143 266.9791    NA</span>
+<span class="co">#&gt; [6,]  1   6         1      1284 437497 340.7298    NA</span>
+<span class="co">#&gt; [7,]  1   7         1       658 255734 388.6535    NA</span></code></pre></div>
+</div>
+<div id="process_tri" class="section level3">
+<h3><code>process_tri</code></h3>
+<p>This function is very similar to <em>process_uni</em>, but works on triaxial rather than uniaxial accelerometer data. To illustrate, we can use the <code>tridata</code> dataset included with the package:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(tridata)
+<span class="co">#&gt;      vert ap ml</span>
+<span class="co">#&gt; [1,]    0  0  0</span>
+<span class="co">#&gt; [2,]    0  0  0</span>
+<span class="co">#&gt; [3,]    0  0  0</span>
+<span class="co">#&gt; [4,]    0  0  0</span>
+<span class="co">#&gt; [5,]    0  0  0</span>
+<span class="co">#&gt; [6,]    0  0  0</span></code></pre></div>
+<p>This is not real data and doesn’t closely resemble real data; I generated it as 0’s from midnight to 8 am and then multivariate normal for the rest of the day. The 3 columns are intended to represent counts in 3 axes: vertical, anteroposterior (AP), and mediolateral (ML).</p>
+<p>Let’s see what happens when we run <em>process_tri</em>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(daily.tri &lt;-<span class="st"> </span><span class="kw">process_tri</span>(tridata))
+<span class="co">#&gt;      id day valid_day valid_min counts_vert counts_ap counts_ml counts_sum</span>
+<span class="co">#&gt; [1,]  1   1         1       959     1544623   1529602   1522205    4596430</span>
+<span class="co">#&gt; [2,]  1   2         1       959     1590602   1588969   1572505    4752076</span>
+<span class="co">#&gt; [3,]  1   3         1       960     1524408   1514676   1598054    4637138</span>
+<span class="co">#&gt; [4,]  1   4         1       960     1522137   1510912   1555942    4588991</span>
+<span class="co">#&gt; [5,]  1   5         1       960     1534686   1547806   1522350    4604842</span>
+<span class="co">#&gt; [6,]  1   6         1       959     1528161   1503414   1535805    4567380</span>
+<span class="co">#&gt; [7,]  1   7         1       960     1556011   1538843   1569277    4664131</span>
+<span class="co">#&gt;      counts_vm cpm_vert   cpm_ap   cpm_ml  cpm_sum   cpm_vm steps</span>
+<span class="co">#&gt; [1,]   3153402 1610.660 1594.997 1587.284 4792.941 3288.219    NA</span>
+<span class="co">#&gt; [2,]   3247601 1658.605 1656.902 1639.734 4955.241 3386.445    NA</span>
+<span class="co">#&gt; [3,]   3169986 1587.925 1577.787 1664.640 4830.352 3302.068    NA</span>
+<span class="co">#&gt; [4,]   3149399 1585.559 1573.867 1620.773 4780.199 3280.624    NA</span>
+<span class="co">#&gt; [5,]   3179197 1598.631 1612.298 1585.781 4796.710 3311.663    NA</span>
+<span class="co">#&gt; [6,]   3137262 1593.494 1567.689 1601.465 4762.649 3271.389    NA</span>
+<span class="co">#&gt; [7,]   3210668 1620.845 1602.961 1634.664 4858.470 3344.446    NA</span></code></pre></div>
+<p>Results are similar to what <em>process_uni</em> produced, but instead of a single <code>counts</code> and <code>cpm</code> variable for each day, we have 5: one for each axis of the accelerometer, plus one for the triaxial sum and one for the triaxial vector magnitude.</p>
+<p>I won’t give a full tutorial here, but to illustrate adjusting data-processing parameters, suppose we wanted to define non-wear time as 45 minutes of 0 counts in all 3 axes, as opposed to 60 minutes of 0 counts in the vertical axis only. You would run:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(daily.tri &lt;-<span class="st"> </span><span class="kw">process_tri</span>(<span class="dt">counts =</span> tridata, 
+                          <span class="dt">nonwear_axis =</span> <span class="st">&quot;sum&quot;</span>, 
+                          <span class="dt">nonwear_window =</span> <span class="dv">45</span>))
+<span class="co">#&gt;      id day valid_day valid_min counts_vert counts_ap counts_ml counts_sum</span>
+<span class="co">#&gt; [1,]  1   1         1       960     1544623   1531284   1522205    4598112</span>
+<span class="co">#&gt; [2,]  1   2         1       960     1590602   1588969   1574682    4754253</span>
+<span class="co">#&gt; [3,]  1   3         1       960     1524408   1514676   1598054    4637138</span>
+<span class="co">#&gt; [4,]  1   4         1       960     1522137   1510912   1555942    4588991</span>
+<span class="co">#&gt; [5,]  1   5         1       960     1534686   1547806   1522350    4604842</span>
+<span class="co">#&gt; [6,]  1   6         1       960     1528161   1506124   1539040    4573325</span>
+<span class="co">#&gt; [7,]  1   7         1       960     1556011   1538843   1569277    4664131</span>
+<span class="co">#&gt;      counts_vm cpm_vert   cpm_ap   cpm_ml  cpm_sum   cpm_vm steps</span>
+<span class="co">#&gt; [1,]   3155084 1608.982 1595.088 1585.630 4789.700 3286.546    NA</span>
+<span class="co">#&gt; [2,]   3249778 1656.877 1655.176 1640.294 4952.347 3385.185    NA</span>
+<span class="co">#&gt; [3,]   3169986 1587.925 1577.787 1664.640 4830.352 3302.068    NA</span>
+<span class="co">#&gt; [4,]   3149399 1585.559 1573.867 1620.773 4780.199 3280.624    NA</span>
+<span class="co">#&gt; [5,]   3179197 1598.631 1612.298 1585.781 4796.710 3311.663    NA</span>
+<span class="co">#&gt; [6,]   3141482 1591.834 1568.879 1603.167 4763.880 3272.378    NA</span>
+<span class="co">#&gt; [7,]   3210668 1620.845 1602.961 1634.664 4858.470 3344.446    NA</span></code></pre></div>
+</div>
+</div>
+<div id="references" class="section level2 unnumbered">
+<h2>References</h2>
+<div id="refs" class="references">
+<div id="ref-rcpp2">
+<p>Eddelbuettel, Dirk. 2013. <em>Seamless R and C++ Integration with Rcpp</em>. New York: Springer. doi:<a href="https://doi.org/10.1007/978-1-4614-6868-4">10.1007/978-1-4614-6868-4</a>.</p>
+</div>
+<div id="ref-rcpp3">
+<p>Eddelbuettel, Dirk, and James Joseph Balamuta. 2017. “Extending R with C++: A Brief Introduction to Rcpp.” <em>PeerJ Preprints</em> 5 (August): e3188v1. doi:<a href="https://doi.org/10.7287/peerj.preprints.3188v1">10.7287/peerj.preprints.3188v1</a>.</p>
+</div>
+<div id="ref-rcpp1">
+<p>Eddelbuettel, Dirk, and Romain François. 2011. “Rcpp: Seamless R and C++ Integration.” <em>Journal of Statistical Software</em> 40 (8): 1–18. doi:<a href="https://doi.org/10.18637/jss.v040.i08">10.18637/jss.v040.i08</a>.</p>
+</div>
+<div id="ref-stamatakis2018time">
+<p>Stamatakis, Emmanuel, Ulf Ekelund, Ding Ding, Mark Hamer, Adrian E Bauman, and I-Min Lee. 2018. “Is the Time Right for Quantitative Public Health Guidelines on Sitting? A Narrative Review of Sedentary Behaviour Research Paradigms and Findings.” <em>Br J Sports Med</em>. BMJ Publishing Group Ltd; British Association of Sport; Exercise Medicine, bjsports–2018.</p>
+</div>
+<div id="ref-troiano2008physical">
+<p>Troiano, Richard P, David Berrigan, Kevin W Dodd, Louise C Masse, Timothy Tilert, Margaret McDowell, and others. 2008. “Physical Activity in the United States Measured by Accelerometer.” <em>Medicine and Science in Sports and Exercise</em> 40 (1). WILLIAMS &amp; WILKINS: 181.</p>
+</div>
+<div id="ref-rjournal">
+<p>Van Domelen, Dane, and W. Stephen Pittard. 2014. “Flexible R Functions for Processing Accelerometer Data, with Emphasis on Nhanes 2003-2006.” <em>The R Journal</em> 6 (2). <a href="https://journal.r-project.org/archive/2014/RJ-2014-024/RJ-2014-024.pdf" class="uri">https://journal.r-project.org/archive/2014/RJ-2014-024/RJ-2014-024.pdf</a>.</p>
+</div>
+</div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

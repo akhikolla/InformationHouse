@@ -1,0 +1,21 @@
+Package: FDRSeg
+Type: Package
+Title: FDR-Control in Multiscale Change-Point Segmentation
+Version: 1.0-3
+Date: 2017-09-20
+Authors@R: c(person("Housen", "Li", role = "aut", email = "housen.li@outlook.com"),
+    person("Hannes", "Sieling", role = "aut", email = "hsielin@uni-goettingen.de"),
+    person("Timo", "Aspelmeier", role = "cre", email = "timo.aspelmeier@mathematik.uni-goettingen.de"))
+Author: Housen Li [aut], 
+    Hannes Sieling [aut],
+    Timo Aspelmeier [cre]
+Maintainer: Timo Aspelmeier <timo.aspelmeier@mathematik.uni-goettingen.de>
+Description: Estimate step functions via multiscale inference with controlled false discovery rate (FDR). For details see H. Li, A. Munk and H. Sieling (2016) <doi:10.1214/16-EJS1131>. 
+Depends: R (>= 2.15.3)
+License: GPL-3
+Imports: Rcpp (>= 0.11.5), stepR (>= 1.0-1), stats
+LinkingTo: Rcpp
+NeedsCompilation: yes
+Packaged: 2017-09-19 16:41:23 UTC; hli
+Repository: CRAN
+Date/Publication: 2017-09-20 08:34:11 UTC

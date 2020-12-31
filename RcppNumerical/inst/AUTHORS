@@ -1,0 +1,27 @@
+The files
+  inst/include/integration/GaussKronrodNodesWeights.h
+  inst/include/integration/Integrator.h
+were modified from library NumericalIntegration
+(https://github.com/tbs1980/NumericalIntegration, MPL-2)
+written by Sreekumar T. Balan, Matt Beall, and Mark Sauder.
+
+The files
+  inst/include/optimization/lbfgs.h
+  src/arithmetic_ansi.h
+  src/lbfgs.c
+contained in RcppNumerical (< 0.3-0) were copied from the libLBFGS library
+(http://www.chokkan.org/software/liblbfgs/, MIT)
+written by Naoaki Okazaki.
+
+The files
+  inst/include/integration/cuba.h
+  src/Cuhre.c
+  src/cuhre/*
+were modified from the Cuba library
+(http://www.feynarts.de/cuba/, LGPL-3)
+written by Thomas Hahn.
+
+The code for numerical integration on infinite intervals was contributed by
+Ralf Stubner <ralf.stubner@gmail.com>.
+
+Other part of this package was written by Yixuan Qiu.

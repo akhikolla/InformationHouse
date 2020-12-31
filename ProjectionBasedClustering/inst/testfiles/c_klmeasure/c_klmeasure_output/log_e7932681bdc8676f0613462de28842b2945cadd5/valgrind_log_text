@@ -1,0 +1,23 @@
+WARNING: No test specified, defaulting to first test defined (ProjectionBasedClustering_deepstate_test_c_klmeasure_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/ProjectionBasedClustering/inst/testfiles/c_klmeasure/c_klmeasure_output/e7932681bdc8676f0613462de28842b2945cadd5.crash`
+TRACE: Running: ProjectionBasedClustering_deepstate_test_c_klmeasure_test from /home/akhila/fuzzer_packages/fuzzedpackages/ProjectionBasedClustering/inst/testfiles/c_klmeasure/c_klmeasure_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+Data values: 3.60909e+224 9.37481e+280 1.27048e-62 4.71376e-48     nan 7.46115e-258 1.41003e-86
+1.11742e+83 3.07504e-136 2.13410e-145 1.75062e-260 2.90402e-286 5.01413e+184 1.93644e+180
+1.97870e+143 1.01645e-124 2.01769e+47 4.13273e+261 3.56215e-230     nan 1.99326e-62
+    nan 1.00679e-73     nan 7.50348e-71 1.43678e-133 29072.6 1.39816e-16
+
+pData values: 4.71727e-75 2.98963e-36 1.44019e-33 2.16906e-76
+
+NeighborhoodSize values: -1007985803
+input ends
+==524238==  If you believe this happened as a result of a stack
+==524238==  overflow in your program's main thread (unlikely but
+==524238==  possible), you can try to increase the size of the
+==524238==  main thread stack using the --main-stacksize= flag.
+==524238==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: ProjectionBasedClustering_deepstate_test_c_klmeasure_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/ProjectionBasedClustering/inst/testfiles/c_klmeasure/c_klmeasure_output/e7932681bdc8676f0613462de28842b2945cadd5.crash crashed

@@ -1,0 +1,114 @@
+Changes in Version 0.10  (2018-5-8)
+=====================================
+
+   o Major Change: update CppJieba version to 5.0.0.
+   o Remove: `query_threshold` and `words_locate`
+   o Remove: `level` and `level_pair` methods for worker
+   o Change: query mode now behaves the same as Python jieba `cut_for_search`.
+   o Fix: special Unicode string decoding error
+   o Fix: GCC 8 warnings
+   
+Changes in Version 0.9.1 (2016-9-28)
+=====================================
+
+   o Major Change: `distance` and `vector_distance` now return integer value as distance.
+   o Major Change: requires C++11 with GCC 4.9+ to build this package
+   o Fix: `tobin` now returns the correct value
+   o Fix: `get_idf` rownames with 1 based index
+   o Add: `new_user_word` now has a default tag
+   o Add: `apply_list` to handle nested list input data
+   o Add: `simhash_dist` to compute distance of simhash values
+   o Add: `simhash_dist_mat` to compute compute distance matrix of simhash values
+   o Add: `vector_tag` to tag a character vector
+   o Add: more docs
+   o Depreciated: quick mode will be remove in v0.11.0
+   o Depreciated: filecoding to file_coding
+   
+   o Warning: next version will update internal CppJieba version to 5.0.0, `query_threshold`, `words_locate` will be removed due to the upstream apis changes.
+
+Changes in Version 0.8.2 (2016-4-18)
+=====================================
+
+   o Add: user_weight option for worker(), and default value is the max weight.
+   o Fix: Build with R 3.3.0
+
+
+Changes in Version 0.8 (2016-1-14)
+=====================================
+
+   o Remove: ShowDictPath() EditDict() tag()
+   o Remove: some C API due to CppJieba V4.4.1 update. 
+
+   o C APIs will not work: jiebaR_mp_ptr jiebaR_mp_cut jiebaR_query_ptr jiebaR_query_cut jiebaR_hmm_ptr jiebaR_hmm_cut. 
+
+   o C APIs will work but give a warning: jiebaR_mix_ptr jiebaR_mix_cut jiebaR_tag_ptr jiebaR_tag_tag jiebaR_tag_file. jiebaR_mix_cut. 
+
+   o C APIs change: jiebaR_key_ptr jiebaR_sim_ptr add user path varible.
+
+   o Add: some C API due to CppJieba V4.4.1 update. 
+
+   jiebaR_jiebaclass_ptr, jiebaR_jiebaclass_mix_cut, jiebaR_jiebaclass_mp_cut, jiebaR_jiebaclass_hmm_cut, jiebaR_jiebaclass_query_cut, jiebaR_jiebaclass_full_cut, jiebaR_jiebaclass_level_cut, jiebaR_jiebaclass_level_cut_pair,  jiebaR_jiebaclass_tag_tag,jiebaR_jiebaclass_tag_file, jiebaR_set_query_threshold, jiebaR_add_user_word, jiebaR_u64tobin, jiebaR_get_loc
+
+   o Add: more type for segmentation, add: full cut, level cut.
+   o Add: default attributte for the type of segmentation.
+   o Add: add new user word after worker engine created.
+   o Add: query_threshold to update query threshold
+   o Add: words_locate to locate the positions of words
+   o Fix: build on GCC 5.3.2 with gnu++14
+   o Fix: build on Clang 3.8 RC
+   o Fix: add roxygen2 as a dependency for the update of devtools
+
+
+
+Changes in Version 0.7 (2015-12-6)
+=====================================
+
+   o Add: tobin() to transform simhash to binary format.
+   o Add: vector_simhash() vector_distance() to extract simhash or compute  Hamming distance from the result of segmentation.
+   o Add: get_tuple() to get tuple from segmentation result.
+   o Add: get_idf() to generate IDF dict.
+   o Fix: C API now work with Clang on Mac 10.11.
+   o Enhencement: Update tests for C API.
+   o Warning: Next version will update internal CppJieba version and tag(), EditDict(), ShowDictPath() will be remove.
+
+Changes in Version 0.6 (2015-10-1)
+=====================================
+
+   o Add: C API.
+   o Add: freq() to count word frequency.
+   o Fix: filter_segment() may occasionally remove words.
+   o Enhencement: filter_segment() now can handle list of vectors of words.
+   o Enhencement: segmentation worker now can remove stop words. The default STOPPATH is not used by default for segmentation worker. 
+   o Enhencement: when symbol = F, 2010-10-13, 10.2 can be identified.
+
+Changes in Version 0.5 (2015-04-29)
+=====================================
+
+   o Fix: edit_dict() on Mac.
+   o New function: filter_segment() to filter segmentation result.
+   o New function: vector_keywords() to extract keywords from a string.
+   o Enhancement: Segmentation support: Vector input => List output.
+   o Enhancement: Segmentation support: Input by lines => Output by lines.
+   o Enhancement: Add option write = "NOFILE".
+   o Enhancement: New rules for "English word + Numbers".
+   o Update documentation.
+
+Changes in Version 0.4 (2015-01-03)
+=====================================
+
+   o Remove Rcpp Modules.
+   o Better symbol filter in segmentation.
+   o Separate data files to jiebaRD package.
+
+Changes in Version 0.3 (2014-12-01)
+=====================================
+
+   o 2X segmentation speed.
+   o Quick Mode.
+   o A new `[` symbol to do segmentation.
+   o Portable string utility function.
+
+Changes in Version 0.2 (2014-11-23)
+=====================================
+
+   o First release on CRAN.

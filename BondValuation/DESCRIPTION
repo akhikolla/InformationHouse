@@ -1,0 +1,20 @@
+Package: BondValuation
+Title: Fixed Coupon Bond Valuation Allowing for Odd Coupon Periods and
+        Various Day Count Conventions
+Date: 2018-11-05
+Version: 0.1.0
+Authors@R: person("Djatschenko","Wadim",email="wadim.djatschenko@gmx.de",role = c("aut", "cre"))
+Description: Analysis of large datasets of fixed coupon bonds, allowing for irregular first and last coupon periods and various day count conventions. With this package you can compute the yield to maturity, the modified and MacAulay durations and the convexity of fixed-rate bonds. It provides the function AnnivDates, which can be used to evaluate the quality of the data and return time-invariant properties and temporal structure of a bond.
+Depends: R (>= 2.15.1)
+Imports: Rcpp, timeDate
+LazyData: TRUE
+License: GPL-3
+RoxygenNote: 6.1.0
+LinkingTo: Rcpp
+Encoding: UTF-8
+NeedsCompilation: yes
+Packaged: 2018-11-05 19:51:21 UTC; Wadim
+Author: Djatschenko Wadim [aut, cre]
+Maintainer: Djatschenko Wadim <wadim.djatschenko@gmx.de>
+Repository: CRAN
+Date/Publication: 2018-11-14 15:00:18 UTC

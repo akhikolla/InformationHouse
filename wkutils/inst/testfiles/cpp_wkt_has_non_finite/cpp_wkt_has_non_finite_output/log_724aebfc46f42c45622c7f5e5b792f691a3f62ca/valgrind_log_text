@@ -1,0 +1,12 @@
+WARNING: No test specified, defaulting to first test defined (wkutils_deepstate_test_cpp_wkt_has_non_finite_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_wkt_has_non_finite/cpp_wkt_has_non_finite_output/724aebfc46f42c45622c7f5e5b792f691a3f62ca.fail`
+TRACE: Running: wkutils_deepstate_test_cpp_wkt_has_non_finite_test from /home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_wkt_has_non_finite/cpp_wkt_has_non_finite_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+wkt values: "dxzacqdxrb" "afoykrklhomoufedlot" "hfltbndpjtppqwzocxzk" "wrvwmnjhqkhmpltvcl" "fooexjrodohhsxee" "NA" "NA" "wkcsnahvixeejdkyhaqo" "xnpitiwyalvhnjmtfxin" "gutvlotwtrsvevfrkbs" "vjhdxpfahts"
+input ends
+terminate called after throwing an instance of 'WKParseException'
+  what():  Expected geometry type or 'SRID=' but found 'dxzacqdxrb' (:0)
+ERROR: Failed: wkutils_deepstate_test_cpp_wkt_has_non_finite_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_wkt_has_non_finite/cpp_wkt_has_non_finite_output/724aebfc46f42c45622c7f5e5b792f691a3f62ca.fail failed

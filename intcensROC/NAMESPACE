@@ -1,0 +1,4 @@
+useDynLib(intcensROC)
+exportPattern("^[[:alpha:]]+")
+importFrom("stats", "quantile")
+importFrom(Rcpp, evalCpp)

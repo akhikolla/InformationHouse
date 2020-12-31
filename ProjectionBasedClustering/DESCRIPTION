@@ -1,0 +1,34 @@
+Package: ProjectionBasedClustering
+Type: Package
+Title: Projection Based Clustering
+Version: 1.1.6
+Authors@R: c(person("Michael", "Thrun", email= "m.thrun@gmx.net",role=c("aut","cre","cph")),person("Florian", "Lerch",role="aut"),person("Felix", "Pape",role="aut"),person("Tim", "Schreier",role="aut"),person("Luis", "Winckelmann",role="aut"),person("Kristian", "Nybo",role="cph"),person("Jarkko", "Venna",role="cph"))
+Date: 2020-12-11
+Description: A clustering approach applicable to every projection method is proposed here. The two-dimensional scatter plot of any projection method can construct a topographic map which displays unapparent data structures by using distance and density information of the data. The generalized U*-matrix renders this visualization in the form of a topographic map, which can be used to automatically define the clusters of high-dimensional data. The whole system is based on Thrun and Ultsch, "Using Projection based Clustering to Find Distance and Density based Clusters in High-Dimensional Data" <DOI:10.1007/s00357-020-09373-2>. Selecting the correct projection method will result in a visualization in which mountains surround each cluster. The number of clusters can be determined by counting valleys on the topographic map. Most projection methods are wrappers for already available methods in R. By contrast, the neighbor retrieval visualizer (NeRV) is based on C++ source code of the 'dredviz' software package, and the Curvilinear Component Analysis (CCA) is translated from 'MATLAB' ('SOM Toolbox' 2.0) to R.
+License: GPL-3
+Imports: Rcpp, ggplot2, stats, graphics, vegan, deldir, geometry,
+        GeneralizedUmatrix, shiny, shinyjs, shinythemes, plotly,
+        grDevices
+Suggests: DataVisualizations, fastICA, tsne, FastKNN, MASS, pcaPP,
+        spdep, pracma, grid, mgcv, fields, png, reshape2, Rtsne,
+        methods, dendextend, umap, uwot, DatabionicSwarm, parallelDist
+LinkingTo: Rcpp
+LazyData: TRUE
+Encoding: UTF-8
+SystemRequirements: C++11
+Depends: R (>= 3.0)
+NeedsCompilation: yes
+URL: http://www.deepbionics.org
+LazyLoad: yes
+BugReports: https://github.com/Mthrun/ProjectionBasedClustering/issues
+Packaged: 2020-12-11 16:37:09 UTC; MT
+Author: Michael Thrun [aut, cre, cph],
+  Florian Lerch [aut],
+  Felix Pape [aut],
+  Tim Schreier [aut],
+  Luis Winckelmann [aut],
+  Kristian Nybo [cph],
+  Jarkko Venna [cph]
+Maintainer: Michael Thrun <m.thrun@gmx.net>
+Repository: CRAN
+Date/Publication: 2020-12-11 17:40:03 UTC

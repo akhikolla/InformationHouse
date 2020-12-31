@@ -1,0 +1,19 @@
+Package: intcensROC
+Type: Package
+Title: AUC Estimation of Interval Censored Survival Data
+Version: 0.1.2
+Date: 2020-11-11
+Author: Jiaxing Lin, Yuan Wu, Xiaofei Wang, Kouros Owzar.
+Maintainer: Alexander Sibley <dcibioinformatics@duke.edu>
+Description: The kernel of this 'Rcpp' based package is an efficient implementation of the generalized gradient projection method for spline function based constrained maximum likelihood estimator for interval censored survival data (Wu, Yuan; Zhang, Ying. Partially monotone tensor spline estimation of the joint distribution function with bivariate current status data. Ann. Statist. 40, 2012, 1609-1636 <doi:10.1214/12-AOS1016>). The key function computes the density function of the joint distribution of event time and the marker and returns the receiver operating characteristic (ROC) curve for the interval censored survival data as well as area under the curve (AUC). 
+URL: https://gitlab.oit.duke.edu/dcibioinformatics/soft/intcensroc
+License: GPL (>= 2)
+Imports: Rcpp (>= 0.12.4), pracma
+LinkingTo: Rcpp, RcppEigen
+Suggests: knitr, copula
+VignetteBuilder: knitr
+BuildVignettes: yes
+NeedsCompilation: yes
+Packaged: 2020-11-11 23:32:08 UTC; zs68
+Repository: CRAN
+Date/Publication: 2020-11-12 21:50:07 UTC

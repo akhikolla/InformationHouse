@@ -1,0 +1,71 @@
+INFO: Starting fuzzing
+WARNING: No seed provided; using 1608742397
+WARNING: No test specified, defaulting to first test defined (rrecsys_deepstate_test_FSVDupdaterSparseMat_test)
+input starts
+EXTERNAL: qs v0.23.4.
+
+sparseRatingMat values: 5.15064e+79 5.41805e+15
+6.26444e-46 2.39135e+275
+
+learningRate values: 6.9823e+13
+regCoef values: 9.81432e+148
+nrfeat values: 2141170803
+steps values: 834309303
+nr_users values: -1628700817
+nr_items values: -476016553
+input ends
+EXTERNAL: Error: negative length vectors are not allowed
+
+EXTERNAL: Execution halted
+
+input starts
+EXTERNAL: qs v0.23.4.
+
+sparseRatingMat values: 8.93154e-61 2.43887e-27 5.91780e+301 7.31160e+252 2.35831e-295 6.61310e+09 2.29068e+13 1.30156e-169 3.85440e-239
+
+learningRate values: 1.43652e-198
+regCoef values: 2.13259e+140
+nrfeat values: 144801442
+steps values: -324583941
+nr_users values: 407776609
+nr_items values: 801041417
+input ends
+EXTERNAL: Error: vector is too large
+
+EXTERNAL: Execution halted
+
+input starts
+EXTERNAL: qs v0.23.4.
+
+sparseRatingMat values: 2.14532e+210 1.15579e-300 5.91335e+194 4.96139e-28 1.35632e-118 3.96861e+127
+2.76050e+307 1.16724e+100 1.96991e-11 2.14471e-28 2.23304e-153 4.42541e-256
+
+learningRate values: -1.86449e+307
+regCoef values: 2.598e-25
+nrfeat values: -2044426014
+steps values: -25855736
+nr_users values: 1594705601
+nr_items values: -132055955
+input ends
+EXTERNAL: Error: negative length vectors are not allowed
+
+EXTERNAL: Execution halted
+
+input starts
+EXTERNAL: qs v0.23.4.
+
+sparseRatingMat values: 7.83934e-19 9.52348e-210 9.65929e+08 4.89402e+247 3.00103e+155 7.52411e+156 2.43037e+146
+3.29580e+250 1.64957e+146 3.35267e+141 7.06186e-19 1.36934e-113 5.47675e+149 1.32607e-136
+
+learningRate values: 1.19823e+165
+regCoef values: -8.71936e-15
+nrfeat values: -176533297
+steps values: -680230732
+nr_users values: -1127017793
+nr_items values: -1501617413
+input ends
+EXTERNAL: Error: vector is too large
+
+EXTERNAL: Execution halted
+
+INFO: Done fuzzing! Ran 4 tests (2 tests/second) with 4 failed/0 passed/0 abandoned tests

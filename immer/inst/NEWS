@@ -1,0 +1,219 @@
+********************************************************
+****       CHANGES IN immer PACKAGE VERSIONS        ****
+********************************************************
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Item Response Models for Multiple Ratings (immer)
+Alexander Robitzsch & Jan Steinfeld
+
+ 
+    #@#################################################################@   
+   :#@##################################################################`  
+   #####################################################################+  
+   #####################################################################@  
+  .##########@###########################################################` 
+  +######@+;'@##########################################################@: 
+  ######'     +@########################################################## 
+  #####+ ##'  `##########################################################@ 
+  ####@ ####  +@#@##################################################@##### 
+ .#####.#####@######@#########@#@######@@####@##@############@######@#####`
+ :####+:###@:,@##@,;##@+@##@+'###@;.'##@##@##@''@#####@@'+@###,;##@;######.
+ ;####@ @##   ##@  ,;    :,    .#    ':    :.    ,@@#'     ';   ,+   @####.
+ '#####`:##   #@   : ''    ++   @@;  ` +;    +'   #@' `+@   #@  .    #####,
+ +######, #   : ,   @#@   +#@  `##,   @#@   @##  `#@  `##   @#`  +,  @####:
+ +#######@@  :+@`  ;##'  `##@  .@#   +##:  `###  .@.  @#+   #:  .##@@#####:
+ '########:  ##@   @#@,  ;##;  ;#@   @##`  +##,  +#       `@#`  ##########,
+ ;########   @##   ###`  @##`  @#+  `###   @##   ##   ,;'@##@   @#########,
+ :#######@  `##+  ,##@   @#@   @#,  '##@   ##@   @@  `#######  `##########.
+ .#######+  ,##.  @##+  `##@  .##`  @##;  ,##@  `##   ###; #;  :#@,+###### 
+  #######'    #   @##:  ,##;  ;##   @##`  +###   `@:     `;#.  @@:  ###### 
+  #######@,`,##.`,###,..###,  #@#..,##@,..####:` +#@'  ``#+#` `@#+ :#####@ 
+  #########################:   ,###################@#####@###@#@#########@ 
+  '########################@+;+##########################################: 
+  ,######################################################################` 
+   ##@##################################################################@  
+                            
+                   
+
+mailto: 
+-------
+
+robitzsch@ipn.uni-mail.de
+
+* For reporting a bug, please provide always a reproducible R script 
+  and (if necessary) a corresponding dataset.
+
+
+URL:
+----
+For development versions see
+https://sites.google.com/site/alexanderrobitzsch/software
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+------------------------------------------------------------
+VERSIONS immer 1.1  |  2018-12-10  |  Last: immer 1.1-35
+------------------------------------------------------------
+
+ADDED * included datasets of mammogram ratings data.immer11 
+        (Zhang & Petersen, 2018, Statistics in Medicine) and 
+        figure skating ratings data.immer12 (Linacre, 2009)
+
+DATA  * included/modified datasets: data.immer11, data.immer12
+EXAMP * included/modified examples: ---
+
+------------------------------------------------------------
+VERSIONS immer 1.0  |  2018-04-24  |  Last: immer 1.0-138
+------------------------------------------------------------
+
+ADDED * included joint maximum likelihood estimation function
+        immer_jml() with epsilon-adjustment for bias correction
+NOTE  * included argument 'file' in summary() method of
+        immer_hrm() and immer_cml()
+ADDED * included composite conditional maximum likelihood
+        estimation function immer_ccml() for partial credit
+        model
+ADDED * included function immer_latent_regression() for
+        estimating unidimensional latent regression models
+NOTE  * added S3 method IRT.likelihood() for immer_jml()
+        function
+NOTE  * included data processing function immer_proc_data()
+NOTE  * renamed functions immer_HRM() and simulate_HRM()
+        to immer_hrm() and simulate_hrm()
+ADDED * included function immer_create_design_matrix_formula()
+        for creating design matrices with an R formula
+FIXED * corrected bug in immer_hrm() when est.psi="r" was
+        specified
+NOTE  * display iteration about remaining computation time
+        in immer_hrm()
+NOTE  * included argument 'sigma_init' for providing initial
+        values for sigma in immer_hrm()
+NOTE  * better handling of numerical overflow in immer_hrm()
+NOTE  * prevent alphanumeric order of rater labels in output
+        of immer_hrm()
+ADDED * included Rcpp functions for faster computations in
+        immer_cml()
+NOTE  * renamed simulate_hrm() into immer_hrm_simulate()
+
+DATA  * included/modified datasets: data.ptam4, data.ptam4long,
+        data.ptam4long
+EXAMP * included/modified examples: immer_jml (1),
+        immer_ccml (1), immer_latent_regression (1),
+        immer_proc_data (1)
+
+------------------------------------------------------------
+VERSIONS immer 0.8  |  2017-04-27  |  Last: immer 0.8-5
+------------------------------------------------------------
+
+ADDED * included registration of native routines and disabling
+        symbol search according to CRAN policies
+
+DATA  * included/modified datasets: data.ptam1, data.ptam2, 
+        data.ptam3
+EXAMP * included/modified examples: ---
+
+----------------------------------------------------------
+Changes in Version 0.7   (2017-01-18)  --  CRAN 0.7-0
+----------------------------------------------------------
+
+NOTE  * changed internal structure of Rcpp functions
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: ---
+
+----------------------------------------------------------
+Changes in Version 0.6   (2016-10-28)  --  CRAN 0.6-0
+----------------------------------------------------------
+
+FIXED * fixed a bug when saving sampled values
+        (thanks to Giang Pham)
+FIXED * fixed a bug in relabeling rater identifiers
+        (thanks to Giang Pham)
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: ---
+
+
+----------------------------------------------------------
+Changes in Version 0.5   (2016-05-31)  --  CRAN 0.5-0
+----------------------------------------------------------
+
+NOTE  * include reviewer rating dataset 'data.immer09'
+        (Kuhlisch et al., 2016) and standard setting ratings
+        in 'data.immer10'
+
+DATA  * included/modified datasets: data.immer09, data.immer10
+EXAMP * included/modified examples: ---
+
+----------------------------------------------------------
+Changes in Version 0.4   (2016-03-07)  --  CRAN 0.4-0
+----------------------------------------------------------
+
+NOTE  * added utility functions 'probs2logits' and 
+        'logits2probs' for conversions of probabilities 
+        and logits of probabilities
+ADDED * included a latent class for agreement of two
+        raters 'lc2_agreement'
+ADDED * added utility function 'immer_unique_patterns' for
+        extraction of unique item response patterns
+ADDED * added descriptive function 'immer_agree2' for
+        agreement among two raters (including Aicken's Alpha
+        and Gwet's AC1)
+
+DATA  * included/modified datasets: data.immer08
+EXAMP * included/modified examples: probs2logits (1),
+        lc2_agreement (1), immer_unique_patterns (1),
+        immer_agree2 (1)
+
+----------------------------------------------------------
+Changes in Version 0.3   (2016-01-22)  --  CRAN 0.3-0
+----------------------------------------------------------
+
+ADDED * proposal distribution in Metropolis-Hastings steps
+        are now only updated during the burn-in phase
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: ---
+
+----------------------------------------------------------
+Changes in Version 0.2   (2015-11-04)  --  CRAN 0.2-0
+----------------------------------------------------------
+
+ADDED * extended 'immer_reshape_wideformat' for reshaping
+        of data frame with ratings
+
+DATA  * included/modified datasets: data.immer07
+EXAMP * included/modified examples: immer_reshape_wideformat (2),
+        immer_cml (4,5)
+
+----------------------------------------------------------
+Changes in Version 0.1   (2015-09-13)  --  CRAN 0.1-1
+----------------------------------------------------------
+
+ADDED * included functions 'immer_HRM' and 'simulate_HRM'
+        for estimating and simulating the hierarchical
+        rater model (Patz et al., 2002)
+ADDED * included utility function 'immer_reshape_wideformat'
+        for converting a rating dataset into a wideformat 
+ADDED * included 'immer_opcat' for estimating integer
+        item discriminations
+ADDED * included linear logistic partial credit model in
+        estimated by conditional maximum likelihood in
+        'immer_cml'. This functions uses the
+        'psychotools::elementary_symmetric_function' function.        
+ADDED * included installation function 'immer_install'
+        for installing the facets program
+ADDED * included wrapper function 'immer_FACETS' to the
+        FACETS program
+
+DATA  * included/modified datasets: 
+        data.immer01a, ..., data.immer06
+EXAMP * included/modified examples: immer_HRM (1,2),
+        immer_reshape_wideformat (1), immer_opcat (1),
+        immer_cml (1,2,3), immer_FACETS (1), immer_install (1)

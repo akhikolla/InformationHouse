@@ -1,0 +1,691 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./loglikPLMIX_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_output/03b936bb138916c92c503e7885b3fb5fe09174c8.pass</line>
+</preamble>
+
+<pid>455379</pid>
+<ppid>455378</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_output/log_03b936bb138916c92c503e7885b3fb5fe09174c8/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./loglikPLMIX_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_output/03b936bb138916c92c503e7885b3fb5fe09174c8.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.037 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F7B1BC</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>log@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_log_template.c</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D44DD7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/src/PLMIX.so</obj>
+      <fn>loglikPLMIX(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/src</dir>
+      <file>loglikPLMIX.cpp</file>
+      <line>53</line>
+    </frame>
+    <frame>
+      <ip>0x40A2FB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_PLMIX_deepstate_test_loglikPLMIX_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX</dir>
+      <file>loglikPLMIX_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_PLMIX_deepstate_test_loglikPLMIX_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX</dir>
+      <file>loglikPLMIX_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DE38</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E0D9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E1B4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x1</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4FBAF3C</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_log_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_log.c</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x4D44DD7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/src/PLMIX.so</obj>
+      <fn>loglikPLMIX(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/src</dir>
+      <file>loglikPLMIX.cpp</file>
+      <line>53</line>
+    </frame>
+    <frame>
+      <ip>0x40A2FB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_PLMIX_deepstate_test_loglikPLMIX_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX</dir>
+      <file>loglikPLMIX_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_PLMIX_deepstate_test_loglikPLMIX_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX</dir>
+      <file>loglikPLMIX_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DE38</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E0D9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E1B4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x2</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4FBAF4B</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_log_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_log.c</file>
+      <line>85</line>
+    </frame>
+    <frame>
+      <ip>0x4D44DD7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/src/PLMIX.so</obj>
+      <fn>loglikPLMIX(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/src</dir>
+      <file>loglikPLMIX.cpp</file>
+      <line>53</line>
+    </frame>
+    <frame>
+      <ip>0x40A2FB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_PLMIX_deepstate_test_loglikPLMIX_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX</dir>
+      <file>loglikPLMIX_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_PLMIX_deepstate_test_loglikPLMIX_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX</dir>
+      <file>loglikPLMIX_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DE38</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E0D9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E1B4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x3</unique>
+  <tid>1</tid>
+  <kind>UninitValue</kind>
+  <what>Use of uninitialised value of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4FBAFBB</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_log_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_log.c</file>
+      <line>114</line>
+    </frame>
+    <frame>
+      <ip>0x4D44DD7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/src/PLMIX.so</obj>
+      <fn>loglikPLMIX(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/src</dir>
+      <file>loglikPLMIX.cpp</file>
+      <line>53</line>
+    </frame>
+    <frame>
+      <ip>0x40A2FB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_PLMIX_deepstate_test_loglikPLMIX_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX</dir>
+      <file>loglikPLMIX_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_PLMIX_deepstate_test_loglikPLMIX_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX</dir>
+      <file>loglikPLMIX_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DE38</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E0D9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E1B4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x4</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4FBAD41</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_exp_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_exp.c</file>
+      <line>105</line>
+    </frame>
+    <frame>
+      <ip>0x4F7B2C2</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>exp@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_exp_template.c</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D44E37</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/src/PLMIX.so</obj>
+      <fn>loglikPLMIX(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/src</dir>
+      <file>loglikPLMIX.cpp</file>
+      <line>69</line>
+    </frame>
+    <frame>
+      <ip>0x40A2FB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_PLMIX_deepstate_test_loglikPLMIX_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX</dir>
+      <file>loglikPLMIX_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_PLMIX_deepstate_test_loglikPLMIX_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX</dir>
+      <file>loglikPLMIX_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DE38</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E0D9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E1B4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x5</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4FBADE2</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_exp_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_exp.c</file>
+      <line>108</line>
+    </frame>
+    <frame>
+      <ip>0x4F7B2C2</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>exp@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_exp_template.c</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D44E37</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/src/PLMIX.so</obj>
+      <fn>loglikPLMIX(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/src</dir>
+      <file>loglikPLMIX.cpp</file>
+      <line>69</line>
+    </frame>
+    <frame>
+      <ip>0x40A2FB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_PLMIX_deepstate_test_loglikPLMIX_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX</dir>
+      <file>loglikPLMIX_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_PLMIX_deepstate_test_loglikPLMIX_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX</dir>
+      <file>loglikPLMIX_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DE38</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E0D9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E1B4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x6</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4FBADEE</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_exp_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_exp.c</file>
+      <line>112</line>
+    </frame>
+    <frame>
+      <ip>0x4F7B2C2</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>exp@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_exp_template.c</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D44E37</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/src/PLMIX.so</obj>
+      <fn>loglikPLMIX(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/src</dir>
+      <file>loglikPLMIX.cpp</file>
+      <line>69</line>
+    </frame>
+    <frame>
+      <ip>0x40A2FB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_PLMIX_deepstate_test_loglikPLMIX_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX</dir>
+      <file>loglikPLMIX_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_PLMIX_deepstate_test_loglikPLMIX_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX</dir>
+      <file>loglikPLMIX_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DE38</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E0D9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E1B4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x7</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4FBADFD</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_exp_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_exp.c</file>
+      <line>114</line>
+    </frame>
+    <frame>
+      <ip>0x4F7B2C2</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>exp@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_exp_template.c</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D44E37</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/src/PLMIX.so</obj>
+      <fn>loglikPLMIX(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/src</dir>
+      <file>loglikPLMIX.cpp</file>
+      <line>69</line>
+    </frame>
+    <frame>
+      <ip>0x40A2FB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_PLMIX_deepstate_test_loglikPLMIX_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX</dir>
+      <file>loglikPLMIX_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_PLMIX_deepstate_test_loglikPLMIX_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX</dir>
+      <file>loglikPLMIX_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DE38</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E0D9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E1B4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x8</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F7B30A</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__exp</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_exp_template.c</file>
+      <line>33</line>
+    </frame>
+    <frame>
+      <ip>0x4F7B30A</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>exp@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_exp_template.c</file>
+      <line>30</line>
+    </frame>
+    <frame>
+      <ip>0x4D44E37</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/src/PLMIX.so</obj>
+      <fn>loglikPLMIX(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/src</dir>
+      <file>loglikPLMIX.cpp</file>
+      <line>69</line>
+    </frame>
+    <frame>
+      <ip>0x40A2FB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_PLMIX_deepstate_test_loglikPLMIX_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX</dir>
+      <file>loglikPLMIX_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_PLMIX_deepstate_test_loglikPLMIX_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX</dir>
+      <file>loglikPLMIX_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DE38</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E0D9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E1B4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/PLMIX/inst/testfiles/loglikPLMIX/loglikPLMIX_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:11.218 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>1</count>
+    <unique>0x8</unique>
+  </pair>
+  <pair>
+    <count>1</count>
+    <unique>0x7</unique>
+  </pair>
+  <pair>
+    <count>1</count>
+    <unique>0x6</unique>
+  </pair>
+  <pair>
+    <count>1</count>
+    <unique>0x5</unique>
+  </pair>
+  <pair>
+    <count>1</count>
+    <unique>0x4</unique>
+  </pair>
+  <pair>
+    <count>1</count>
+    <unique>0x3</unique>
+  </pair>
+  <pair>
+    <count>1</count>
+    <unique>0x2</unique>
+  </pair>
+  <pair>
+    <count>1</count>
+    <unique>0x1</unique>
+  </pair>
+  <pair>
+    <count>1</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:11.791 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

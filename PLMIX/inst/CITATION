@@ -1,0 +1,43 @@
+citHeader("To cite package 'PLMIX' in publications use:")
+
+bibentry(bibtype="Article",
+#         title = "PLMIX Version 2 for R: Bayesian analysis of finite mixtures 
+#                  of Plackett-Luce models for partially ranked data",
+          title = "Bayesian Plackett-Luce mixture models for partially ranked data",
+         author = personList(person(given="Cristina", family="Mollica"),
+                             person(given="Luca", family="Tardella")),
+         year = "2017",
+         journal = "Psychometrika",     
+         volume = 82,
+         number = 2,
+         pages = "442--458",
+	 issn = "0033-3123",
+         doi = "10.1007/s11336-016-9530-0",
+         textVersion = paste("Mollica, C., Tardella, L. (2017).", 
+                "Bayesian Plackett-Luce mixture models for 
+                partially ranked data.", "Psychometrika,", 
+	       "Vol. 82(2),", 
+               "pages 442--458,",
+	       "ISSN: 0033-3123,", 
+                "DOI: 10.1007/s11336-016-9530-0."))
+
+
+bibentry(bibtype="Article",
+         title = "Epitope profiling via mixture modeling for ranked data",
+         author = personList(person(given="Cristina", family="Mollica"),
+                             person(given="Luca", family="Tardella")),
+         year = "2014",
+         journal = "Statistics in Medicine",     
+         volume = 33,
+         number = 21,
+         pages = "3738--3758",
+	 issn = "0277-6715",
+         doi = "10.1002/sim.6224",
+         textVersion =
+         paste("Mollica, C., Tardella, L. (2014).", 
+                "Epitope profiling via mixture modeling 
+                 for ranked data.", "Statistics in Medicine,",
+	       "Vol. 33(21),", 
+               "pages 3738--3758,",
+	       "ISSN: 0277-6715,", 
+                "DOI: 10.1002/sim.6224."))

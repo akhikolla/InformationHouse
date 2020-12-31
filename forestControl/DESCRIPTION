@@ -1,0 +1,29 @@
+Package: forestControl
+Type: Package
+Title: Approximate False Positive Rate Control in Selection Frequency
+        for Random Forest
+Version: 0.2.1
+Date: 2019-11-18
+Authors@R: c(
+    person("Tom", "Wilson", , "tpw2@aber.ac.uk", c("aut", "cre"), comment = c(ORCID = "0000-0003-3112-4682")),
+    person("Jasen", "Finch", , "jsf9@aber.ac.uk", "aut"))
+Description: Approximate false positive rate control in selection frequency for
+    random forest using the methods described by Ender Konukoglu and Melanie Ganz (2014) <arXiv:1410.2838>.
+    Methods for calculating the selection frequency threshold at false positive rates
+    and selection frequency false positive rate feature selection.
+Imports: Rcpp, purrr, tibble, magrittr, dplyr
+Suggests: testthat, randomForest, ranger, parsnip
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+URL: https://github.com/aberHRML/forestControl
+BugReports: https://github.com/aberHRML/forestControl/issues
+RoxygenNote: 6.0.1
+LinkingTo: Rcpp
+NeedsCompilation: yes
+Packaged: 2019-11-18 09:50:23 UTC; tpw2
+Author: Tom Wilson [aut, cre] (<https://orcid.org/0000-0003-3112-4682>),
+  Jasen Finch [aut]
+Maintainer: Tom Wilson <tpw2@aber.ac.uk>
+Repository: CRAN
+Date/Publication: 2019-11-18 10:40:02 UTC

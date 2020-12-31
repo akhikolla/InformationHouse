@@ -1,0 +1,22 @@
+Package: specklestar
+Version: 0.0.1.7
+Title: Reduction of Speckle Data from BTA 6-m Telescope
+Description: A set of functions for obtaining positional parameters and magnitude difference between components of binary and multiple stellar systems from series of speckle images.
+Author: Denis Rastegaev
+Maintainer: Denis Rastegaev <drastega@gmail.com>
+URL: https://drastega.github.io/docs/specklestar_vignette.html
+BugReports: https://github.com/drastega/specklestar/issues
+Depends: R (>= 3.0.0)
+Imports: Rcpp
+Suggests: imager, tidyverse, rgl, fftw, mrbsizeR, knitr, rmarkdown
+License: GPL-2
+NeedsCompilation: yes
+SystemRequirements: fftw3 (>= 3.1.2)
+Encoding: UTF-8
+LazyData: true
+LinkingTo: Rcpp
+RoxygenNote: 6.0.1
+VignetteBuilder: knitr
+Packaged: 2018-02-08 13:50:57 UTC; leda
+Repository: CRAN
+Date/Publication: 2018-02-08 18:14:49 UTC

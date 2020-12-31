@@ -1,0 +1,19 @@
+Package: IntegratedMRF
+Type: Package
+Title: Integrated Prediction using Uni-Variate and Multivariate Random
+        Forests
+Version: 1.1.9
+Date: 2018-07-05
+Author: Raziur Rahman, Ranadip Pal 
+Maintainer: Raziur Rahman <razeeebuet@gmail.com>
+Description: An implementation of a framework for drug sensitivity prediction from various genetic characterizations using ensemble approaches. Random Forests or Multivariate Random Forest predictive models can be generated from each genetic characterization that are then combined using a Least Square Regression approach. It also provides options for the use of different error estimation approaches of Leave-one-out, Bootstrap, N-fold cross validation and 0.632+Bootstrap along with generation of prediction confidence interval using Jackknife-after-Bootstrap approach. 
+License: GPL-3
+RoxygenNote: 6.0.1
+Depends: R (>= 2.10)
+Imports: Rcpp (>= 0.12.4), bootstrap, ggplot2, utils, stats, limSolve,
+        MultivariateRandomForest
+LinkingTo: Rcpp
+NeedsCompilation: yes
+Packaged: 2018-07-05 20:10:58 UTC; Raziur_Rahman
+Repository: CRAN
+Date/Publication: 2018-07-05 20:30:03 UTC

@@ -1,0 +1,24 @@
+Package: hans
+Type: Package
+Title: Haversines are not Slow
+Version: 0.1
+Date: 2019-08-29
+Authors@R: person("Alex", "Hallam", email = "alexhallam6.28@tutanota.com",
+                  role = c("aut", "cre"))
+Encoding: UTF-8
+Description: The haversine is a function used to calculate the distance between a pair of 
+    latitude and longitude points while accounting for the assumption that the points 
+    are on a spherical globe. This package provides a fast, dataframe compatible, 
+    haversine function. For the first publication on the haversine calculation see 
+    Joseph de Mendoza y Ríos (1795) <https://books.google.cat/books?id=030t0OqlX2AC> (In Spanish).
+License: MIT + file LICENSE
+Imports: Rcpp (>= 1.0.1)
+LinkingTo: Rcpp
+Suggests: testthat (>= 2.1.0)
+RoxygenNote: 6.1.1
+NeedsCompilation: yes
+Packaged: 2019-09-03 13:20:37 UTC; ahallam
+Author: Alex Hallam [aut, cre]
+Maintainer: Alex Hallam <alexhallam6.28@tutanota.com>
+Repository: CRAN
+Date/Publication: 2019-09-27 10:20:06 UTC

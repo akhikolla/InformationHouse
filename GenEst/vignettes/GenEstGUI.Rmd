@@ -1,0 +1,287 @@
+---
+title: "GenEst - Graphic User Interface"
+author: "Juniper L. Simonis"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{GenEst - 4. Graphic User Interface}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\usepackage[utf8]{inputenc}
+---
+
+# Overview
+
+This document describes the codebase used to create the GenEst Graphic User 
+Interface (GUI). The Genest GUI is coded in HTML via external R packages 
+([DT](https://cran.r-project.org/package=DT),
+[htmltools](https://cran.r-project.org/package=htmltools),
+[shiny](https://cran.r-project.org/package=shiny),
+[shinyjs](https://cran.r-project.org/package=shinyjs),
+as well as a number of internal functions to facilitate a simple,
+human-readable codebase underlying the app. The goal being to allow GenEst 
+to evolve as fluidly as possible at the user interface.
+
+# Execution 
+
+The GUI is executed locally or as a deployed app following the basic approach
+of shiny applications. For ease of implementation, we have created an overall
+function to intialize the app, `runGenEst()`, which calls both the server and
+UI codebases. Like most vintage Shiny apps, we employee the two-file system,
+including a `ui.R` and `server.R` script, although each script is Spartan. The
+`ui.R` script includes a single call to the `GenEstUI(appType)` function,
+which starts the cascade of HTML-generating functions outlined in 
+**UI Function Hierarchy**. The `server.R` script includes a single reference
+(not a call) to the function `GenEstServer`, which is detailed in
+**Server Function Hierarchy**. 
+
+# User Interface
+
+### UI Function Hierarchy
+
+The GenEst User Interface is constructed in HTML using pages, panels, 
+tabs, and widgets. The code is parsed into a series of hierarchical functions 
+to facilitate readability and mobility of specific UI components.
+
+* `GenEstUI(appType)`
+  * `dataInputPanel()`
+    * `dataInputSidebar()`
+      * `dataInputWidget("SE")`
+      * `dataInputWidget("CP")`
+      * `dataInputWidget("SS")`
+      * `dataInputWidget("DWP")`
+      * `dataInputWidget("CO")`
+    * `loadedDataPanel()`
+      * `dataTabPanel("SE")`
+      * `dataTabPanel("CP")`
+      * `dataTabPanel("SS")`
+      * `dataTabPanel("DWP")`
+      * `dataTabPanel("CO")`
+	* `analysisPanel()`
+    * `GeneralInputsPanel()`
+      * `GeneralInputsSidebar()`
+        * `modelInputWidget("nsim")`
+        * `modelInputWidget("CL")`
+        * `modelInputWidget("sizeclassCol")`		
+    * `SEPanel()`
+      * `SESidebar()`
+        * `modelInputWidget("obsSE")`
+        * `modelInputWidget("predsSE")`
+        * `modelInputWidget("kFixed")`
+        * `modelRunWidget("SE")`
+        * `modelOutputWidget("SE")`	   
+      * `SEMainPanel()`	
+        * `selectedDataPanel("SE")`
+        * `modelOutputPanel("SEFigures")`
+        * `modelOutputPanel("SEEstimates")`
+        * `modelOutputPanel("SEModComparison")`
+        * `modelOutputPanel("SEModSelection")`	  
+    * `CPPanel()`
+      * `CPSidebar()`
+        * `modelInputWidget("ltp")`
+        * `modelInputWidget("fta")`
+        * `modelInputWidget("predsCP")`
+        * `modelInputWidget("dists")`
+        * `modelRunWidget("CP")`
+        * `modelOutputWidget("CP")`
+      * `CPMainPanel()`
+        * `selectedDataPanel("CP")`
+        * `modelOutputPanel("CPFigures")`
+        * `modelOutputPanel("CPEstimates")`
+        * `modelOutputPanel("CPModComparison")`
+        * `modelOutputPanel("CPModSelection")`	
+	* `MPanel()`
+      * `MSidebar()`
+        * `modelInputWidget("frac")`
+        * `modelInputWidget("DWPCol")`
+        * `modelInputWidget("dateFoundCol")`
+        * `modelRunWidget("M")`
+        * `modelOutputWidget("M")`
+      * `MMainPanel()`	  
+    * `gPanel()`
+      * `gSidebar()`
+        * `modelInputWidget("gSearchInterval")`
+        * `modelInputWidget("gSearchMax")`
+        * `modelInputWidget("useSSinputs")`
+        * `modelInputWidget("useSSdata")`
+        * `modelRunWidget("g")`
+        * `modelOutputWidget("g")`
+      * `gMainPanel()`	
+        * `selectedDataPanel("g")`
+        * `modelOutputPanel("gFigures")`
+        * `modelOutputPanel("gSummary")`	  
+  * `helpPanel(type)`
+    * `gettingStartedPanel()`
+      * `gettingStartedContent()`
+    * `downloadsPanel()`
+      * `dataDownloadsWidget("RP")`
+      * `dataDownloadsWidget("RPbat")`
+      * `dataDownloadsWidget("cleared")`
+      * `dataDownloadsWidget("powerTower")`
+      * `dataDownloadsWidget("PV")`
+      * `dataDownloadsWidget("trough")`
+      * `dataDownloadsWidget("mock")`
+    * `aboutPanel()`
+      * `aboutContent()`
+        * `GenEstAuthors()`
+        * `GenEstGUIauthors()`
+        * `GenEstLicense()`
+        * `GenEstAcknowledgements()`
+        * `GenEstLogos()`
+    * `disclaimersPanel(appType)`
+      * `disclaimerContent(appType)`
+        * `disclaimerUSGS()`
+        * `disclaimerWEST(appType)`		
+		
+### UI Widgets
+ 
+We have coded up a number of widget functions, some of which are simple
+wrappers on shiny functions that help reduce code clutter, and others of which
+are custom HTML (e.g., for model selection), but which are still nonetheless
+wrapped over shiny widgets: 
+
+* `dataInputWidget(dataType)`
+* `modelInputWidget(inType)`		
+* `modelRunWidget(modType)`
+* `modelOutputWidget(modType)`	   
+* `dataDownloadsWidget(set)`
+* `modelSelectionWidget(modType)`	  
+* `kFixedWidget()`
+
+A major need for widgets is having a simple condition wrapped on it, such that
+the widget is within a conditional panel, defined by some other input or 
+output variable. To facilitate coding of these widgets, we have made a function
+`widgetMaker`, which is a generalized constructor function.
+
+### UI Panels
+
+Similarly to the input widgets, we have coded up a number of output panel 
+functions that help direct traffic in the building on the HTML document. These
+functions are generalized to the suite of possible options for panels currently 
+needed by leveraging the basic template approach with limited variation.
+
+* `dataTabPanel(dataType)`
+* `selectedDataPanel(modType)`
+* `modelOutputPanel(outType)`
+
+### UI Content
+
+There is a fair amount of (mostly) static content, which we have contained
+wihtin functions to reduce overall code clutter. These functions primarily 
+dictate content within the "Help" tab's subtabs.
+
+* `gettingStartedContent()`
+* `aboutContent()`
+* `GenEstAuthors()`
+* `GenEstGUIAuthors()`
+* `GenEstLicense()`
+* `GenEstAcknowledgements()`
+* `GenEstLogos()`
+* `disclaimersContent(appType)`
+* `disclaimerUSGS()`
+* `disclaimerWEST(appType)`
+
+# Server Functionality
+
+###  Reactivity
+
+The server-side functionality operates using [Shiny's reactive 
+programming](https://shiny.rstudio.com/articles/reactivity-overview.html) 
+framework. In particular, we include a main `reactiveValues` list called
+`rv`, that, in addition to the standard `input` and `output` lists is
+passed among functions throughout the app. The `rv` list holds all of the
+reactive values currently being used by the application. 
+
+### Server Function Hierarchy
+
+The GenEst server code is a relatively flat hierarchy, especially in 
+comparison to the UI code. In particular, after a brief set of preamble
+functions for preparing objects and options, `GenEstServer` makes many calls
+to `observeEvent`, the reactive observation function, one call for each
+of the possible events in the application (data load, model run or clear, 
+column selection, clear of contents). Each call also includes an
+evaluation of the held-back "handler" code for the event returned by
+the function `reaction`, with the handler being the code that
+is to be evaluated when the event is observed. The expression is held-back
+in `reaction` to minimize scoping issues associated with message-related
+functions.
+
+* `GenEstServer(input, output, session)`
+  * `rv <- initialReactiveValues()`
+  * `output <- initialOutput(rv, output)`
+  * `msgs <- msgList()`  
+  * `options(htmlwidgets.TOJSON_ARGS = list(na = 'string'))` 
+  * `observeEvent(DT.options = list(pageLength = 25))`  
+  * `observeEvent(input$clear_all,  eval(reaction("clear_all")))`
+  * `observeEvent(input$file_SE, eval(reaction("file_SE")))`
+  * `observeEvent(input$file_SE_clear, eval(reaction("file_SE_clear")))`
+  * `observeEvent(input$file_CP, eval(reaction("file_CP")))`
+  * `observeEvent(input$file_CP_clear, eval(reaction("file_CP_clear")))`
+  * `observeEvent(input$file_SS, eval(reaction("file_SS")))`
+  * `observeEvent(input$file_SS_clear, eval(reaction("file_SS_clear")))`
+  * `observeEvent(input$file_DWP, eval(reaction("file_DWP")))`
+  * `observeEvent(input$file_DWP_clear, eval(reaction("file_DWP_clear")))`
+  * `observeEvent(input$file_CO, eval(reaction("file_CO")))`
+  * `observeEvent(input$file_CO_clear, eval(reaction("file_CO_clear")))`
+
+  * `observeEvent(input$class, eval(reaction("class")), ignoreNULL = FALSE)`
+
+  * `observeEvent(input$obsSE, eval(reaction("obsSE")), ignoreNULL = FALSE)`
+  * `observeEvent(input$predsSE, eval(reaction("predsSE")), ignoreNULL = FALSE)`
+  * `observeEvent(input$run_SE, eval(reaction("run_SE")))`
+  * `observeEvent(input$run_SE_clear, eval(reaction("run_SE_clear")))`
+  * `observeEvent(input$outSEclass, eval(reaction("outSEclass")))`
+  * `observeEvent(input$outSEp, eval(reaction("outSEp")))`
+  * `observeEvent(input$outSEk, eval(reaction("outSEk")))`
+
+  * `observeEvent(input$ltp, eval(reaction("ltp")), ignoreNULL = FALSE)`
+  * `observeEvent(input$fta, eval(reaction("fta")), ignoreNULL = FALSE)`
+  * `observeEvent(input$predsCP, eval(reaction("predsCP")), ignoreNULL = FALSE)`
+  * `observeEvent(input$run_CP, eval(reaction("run_CP")))`
+  * `observeEvent(input$run_CP_clear, eval(reaction("run_CP_clear")))`
+  * `observeEvent(input$outCPclass, eval(reaction("outCPclass")))`
+  * `observeEvent(input$outCPdist, eval(reaction("outCPdist")))`
+  * `observeEvent(input$outCPl, eval(reaction("outCPl")))`
+  * `observeEvent(input$outCPs, eval(reaction("outCPs")))`
+
+  * `observeEvent(input$run_M, eval(reaction("run_M")))`
+  * `observeEvent(input$run_M_clear, eval(reaction("run_M_clear")))`
+  * `observeEvent(input$split_M, eval(reaction("split_M")))`
+  * `observeEvent(input$split_M_clear, eval(reaction("split_M_clear")))`
+  * `observeEvent(input$transpose_split, eval(reaction("transpose_split")))`
+
+  * `observeEvent(input$useSSdata, eval(reaction("useSSdata")))`
+  * `observeEvent(input$useSSinputs, eval(reaction("useSSinputs")))`
+  * `observeEvent(input$run_g, eval(reaction("run_g")))`
+  * `observeEvent(input$run_g_clear, eval(reaction("run_g_clear")))`
+  * `observeEvent(input$outgclass, eval(reaction("outgclass")))`
+
+The `reaction` function is, essentially, a parsed-text-generating
+function. Depending upon the specific event (`eventName`, the only input), the
+necessary set of function calls (messages for running, running the code,
+messages for when done) is prepared for evaluation. The main function used to
+do things within the handler code (when the event occurs) is `eventReaction`, 
+which calls three functions: `update_rv`, `update_output`, and `update_input`,
+in that order (updating the output depends on the rv being updated already
+and updating the input requires both the rv and output to be up-to-date):
+
+* `eventReaction(eventName, rv, input, output, session)`
+  * `update_rv(eventName, rv, input)`
+  * `update_output(eventName, rv, output)`
+  * `update_input(eventName, rv, input, session)`
+  
+Because of the scoping set-up for Shiny apps, there is no need to assign
+the returned elements for `update_rv` and `update_output` to anything, and
+`update_input` works through `session` to direct its updates to the 
+application. 
+  
+Each of the three functions takes `eventName` as the first argument,
+which is used to toggle amongst the possible actions to be taken with 
+respect to each of the lists. That is, each of the three `update_` functions
+contains a large internal set of routines, and only the relevant ones are
+called for a given function. This occurs via simple conditional code blocks
+("if the eventType is this, do this") for each of the possible events,
+thereby reducing the number of specific functions, but increasing the size
+of the key functions. Within each of the three functions, some of the events
+trigger a substantial amount of code while others only trigger a few (or no)
+lines. Similarly, some of the handler expressions take virutally no time to 
+run, while others take a few minutes. 

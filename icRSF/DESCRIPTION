@@ -1,0 +1,16 @@
+Package: icRSF
+Type: Package
+Title: A Modified Random Survival Forest Algorithm
+Version: 1.2
+Date: 2018-2-26
+Author: Hui Xu and Raji Balasubramanian
+Maintainer: Hui Xu <huix@schoolph.umass.edu>
+Description: Implements a modification to the Random Survival Forests algorithm for obtaining variable importance in high dimensional datasets. The proposed algorithm is appropriate for settings in which a silent event is observed through sequentially administered, error-prone self-reports or laboratory based diagnostic tests.  The modified algorithm incorporates a formal likelihood framework that accommodates sequentially administered, error-prone self-reports or laboratory based diagnostic tests. The original Random Survival Forests algorithm is modified by the introduction of a new splitting criterion based on a likelihood ratio test statistic.
+License: GPL (>= 2)
+Imports: Rcpp (>= 0.11.3), icensmis, parallel, stats
+LinkingTo: Rcpp
+RoxygenNote: 6.0.1
+NeedsCompilation: yes
+Packaged: 2018-02-27 05:13:31 UTC; adaxu
+Repository: CRAN
+Date/Publication: 2018-02-27 05:25:02 UTC

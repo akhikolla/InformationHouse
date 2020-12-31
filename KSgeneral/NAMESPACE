@@ -1,0 +1,7 @@
+exportPattern("^[[:alpha:]]+")
+importFrom(Rcpp, evalCpp)
+importFrom("stats", "ecdf", "is.stepfun", "knots")
+importFrom("utils", "write.table")
+importFrom("dgof", "ks.test")
+importFrom("MASS", "mvrnorm")
+useDynLib(KSgeneral, .registration = TRUE)

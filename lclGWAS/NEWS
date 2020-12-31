@@ -1,0 +1,14 @@
+lclGWAS v1.0.2 (Release date: 2017-02-20)
+==============
+* Fix a NOTE for R_useDynamicSymbols and R_registerRoutines 
+
+lclGWAS v1.0.2 (Release date: 2016-11-30)
+==============
+* Removed argument 'g' from alphaEst() (unused).
+* Removed argument 'm' from alphaEst(). Function now estimates alpha for all intervals.
+* Replaced 'fam_size' and 'm' argument with family indicator vector in betaEst() and varEst().
+* Revised documentation.
+
+lclGWAS v1.0.1 (Release date: 2016-11-15)
+==============
+* Fix bug to prevent error when using clang compiler.

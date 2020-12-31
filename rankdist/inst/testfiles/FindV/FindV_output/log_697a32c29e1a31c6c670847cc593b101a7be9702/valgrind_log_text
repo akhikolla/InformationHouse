@@ -1,0 +1,21 @@
+WARNING: No test specified, defaulting to first test defined (rankdist_deepstate_test_FindV_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/rankdist/inst/testfiles/FindV/FindV_output/697a32c29e1a31c6c670847cc593b101a7be9702.fail`
+TRACE: Running: rankdist_deepstate_test_FindV_test from /home/akhila/fuzzer_packages/fuzzedpackages/rankdist/inst/testfiles/FindV/FindV_DeepState_TestHarness.cpp(10)
+input starts
+EXTERNAL: qs v0.23.4.
+
+obs values: 1.70525e-203 1.66932e+81 4.86508e-199 2.43483e+123
+5.17004e+29 1.70262e-282 1.76790e+52 76413.7
+1.56736e-308 1.44080e+253 5.56189e+161 7.93866e-85
+3.32294e+145 2.93245e+153 9.90336e-193 1.26889e-229
+8.23938e-256 5.78895e+102 1.63543e-155 3.79159e+201
+7.48308e-165 3.04298e-25 2.45111e-93 9.62529e-53
+4.35849e+271 7.25835e-209 2.42853e+235 3.08084e-250
+1.22877e+129 3.93440e-197 1.97397e-100 9.00855e+260
+
+pi0 values: -7.00284e+37 -7.74607e-163 2.60895e+106 3.26025e+108 -1.43209e-44 9.65707e-250 -9.9978e+267 1.20436e-293 4.65626e-96 2.05199e-63 3.38636e+126 7.8528e-55 1.0489e+166 2.06315e+244 1.72067e+113 -6.49145e+129 -2.07839e-219 9.30242e+179 3.13465e+25 5.51183e+275 3.26571e+179 -3.35963e-47 2.0881e-69 -8.78494e+79 1.33147e-33 1.84894e+229 1.46074e-279 1.08319e-156 4.47443e+184 -7.65163e+215 1.01154e-10 1.62166e+67 2.98521e+77 -8.58445e+152 -2.37811e-143 -1.45112e-292 2.91168e+78 5.92618e-33 3.03074e-303 -4.26376e-204 2.5265e+143 -1.14755e+39 -1.1956e+12 -1.58885e+260 -9.11508e-11 1.08319e-156 -3.38971e-127 -3.04897e+61 -5.10219e+242 7.98106e+215 -6.90137e+204 -6.37709e+162 -3.51169e+132 2.69578e+46 nan -1.48503e+238 1.08319e-156 -6.21709e+131 2.3011e-287 2.11975e+225 -5146.06 nan 1.25014e+142 -7.85323e-155 3.32285e+153 1.38449e-206 -5.48913e+199 1.50102e+161 1.3337e-287 3.85312e-70 -5.69251e+163 0
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Index out of bounds: [index=-2147483648; extent=72].
+ERROR: Failed: rankdist_deepstate_test_FindV_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/rankdist/inst/testfiles/FindV/FindV_output/697a32c29e1a31c6c670847cc593b101a7be9702.fail failed

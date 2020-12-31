@@ -1,0 +1,498 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./calcRho_c_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_output/632a21be9c32d7ea31b1d695b387489abc4ed0c6.fail</line>
+</preamble>
+
+<pid>3958470</pid>
+<ppid>3958469</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_output/log_632a21be9c32d7ea31b1d695b387489abc4ed0c6/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./calcRho_c_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_output/632a21be9c32d7ea31b1d695b387489abc4ed0c6.fail</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.057 </time>
+</status>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:14.349 </time>
+</status>
+
+<error>
+  <unique>0x9</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>8 bytes in 1 blocks are definitely lost in loss record 10 of 1,322</text>
+    <leakedbytes>8</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D060F7</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::initialize(int, char const* const*, bool, bool, bool)</fn>
+      <dir>/tmp/RtmpAPDRvx/R.INSTALL2c66eb2c3545f3/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>198</line>
+    </frame>
+    <frame>
+      <ip>0x4D06483</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/tmp/RtmpAPDRvx/R.INSTALL2c66eb2c3545f3/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x4099D3</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_rhoR_deepstate_test_calcRho_c_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c</dir>
+      <file>calcRho_c_DeepState_TestHarness.cpp</file>
+      <line>11</line>
+    </frame>
+    <frame>
+      <ip>0x4099B8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_rhoR_deepstate_test_calcRho_c_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c</dir>
+      <file>calcRho_c_DeepState_TestHarness.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x41A958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41ABF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41ACD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407835</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x14</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>41 bytes in 1 blocks are definitely lost in loss record 21 of 1,322</text>
+    <leakedbytes>41</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D073FC</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>void std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::_M_construct&lt;char const*&gt;(char const*, char const*, std::forward_iterator_tag)</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>basic_string.tcc</file>
+      <line>219</line>
+    </frame>
+    <frame>
+      <ip>0x40BA60</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>void arma::arma_stop_logic_error&lt;char const*&gt;(char const* const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/debug.hpp</file>
+      <line>144</line>
+    </frame>
+    <frame>
+      <ip>0x41669A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>void arma::arma_check&lt;char const*&gt;(bool, char const* const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/debug.hpp</file>
+      <line>382</line>
+    </frame>
+    <frame>
+      <ip>0x41657D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>arma::Mat&lt;double&gt;::init_cold()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/Mat_meat.hpp</file>
+      <line>204</line>
+    </frame>
+    <frame>
+      <ip>0x42763A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>arma::Mat&lt;double&gt;::Mat(arma::arma_vec_indicator const&amp;, unsigned int, unsigned int, unsigned short)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/Mat_meat.hpp</file>
+      <line>168</line>
+    </frame>
+    <frame>
+      <ip>0x42759D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>arma::Col&lt;double&gt;::Col(unsigned int)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/Col_meat.hpp</file>
+      <line>48</line>
+    </frame>
+    <frame>
+      <ip>0x42C75D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>calcRho_c(double, double, int, double, int, int, double, double, double, double, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR</dir>
+      <file>src/rhor.cpp</file>
+      <line>395</line>
+    </frame>
+    <frame>
+      <ip>0x40A495</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_rhoR_deepstate_test_calcRho_c_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c</dir>
+      <file>calcRho_c_DeepState_TestHarness.cpp</file>
+      <line>79</line>
+    </frame>
+    <frame>
+      <ip>0x4099B8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_rhoR_deepstate_test_calcRho_c_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c</dir>
+      <file>calcRho_c_DeepState_TestHarness.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x41A958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41ABF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x20</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>65 bytes in 1 blocks are possibly lost in loss record 33 of 1,322</text>
+    <leakedbytes>65</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E07308</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator&lt;char&gt; const&amp;)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E08FB8</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>char* std::string::_S_construct&lt;char const*&gt;(char const*, char const*, std::allocator&lt;char&gt; const&amp;, std::forward_iterator_tag)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E09055</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::basic_string(char const*, unsigned long, std::allocator&lt;char&gt; const&amp;)</fn>
+    </frame>
+    <frame>
+      <ip>0x4DEA331</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+    </frame>
+    <frame>
+      <ip>0x4DFA6D5</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::logic_error::logic_error(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)</fn>
+    </frame>
+    <frame>
+      <ip>0x40BA72</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>void arma::arma_stop_logic_error&lt;char const*&gt;(char const* const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/debug.hpp</file>
+      <line>144</line>
+    </frame>
+    <frame>
+      <ip>0x41669A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>void arma::arma_check&lt;char const*&gt;(bool, char const* const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/debug.hpp</file>
+      <line>382</line>
+    </frame>
+    <frame>
+      <ip>0x41657D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>arma::Mat&lt;double&gt;::init_cold()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/Mat_meat.hpp</file>
+      <line>204</line>
+    </frame>
+    <frame>
+      <ip>0x42763A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>arma::Mat&lt;double&gt;::Mat(arma::arma_vec_indicator const&amp;, unsigned int, unsigned int, unsigned short)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/Mat_meat.hpp</file>
+      <line>168</line>
+    </frame>
+    <frame>
+      <ip>0x42759D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>arma::Col&lt;double&gt;::Col(unsigned int)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/Col_meat.hpp</file>
+      <line>48</line>
+    </frame>
+    <frame>
+      <ip>0x42C75D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>calcRho_c(double, double, int, double, int, int, double, double, double, double, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR</dir>
+      <file>src/rhor.cpp</file>
+      <line>395</line>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x35</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>144 bytes in 1 blocks are possibly lost in loss record 54 of 1,322</text>
+    <leakedbytes>144</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4DC22E3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>__cxa_allocate_exception</fn>
+    </frame>
+    <frame>
+      <ip>0x40BA25</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>void arma::arma_stop_logic_error&lt;char const*&gt;(char const* const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/debug.hpp</file>
+      <line>144</line>
+    </frame>
+    <frame>
+      <ip>0x41669A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>void arma::arma_check&lt;char const*&gt;(bool, char const* const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/debug.hpp</file>
+      <line>382</line>
+    </frame>
+    <frame>
+      <ip>0x41657D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>arma::Mat&lt;double&gt;::init_cold()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/Mat_meat.hpp</file>
+      <line>204</line>
+    </frame>
+    <frame>
+      <ip>0x42763A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>arma::Mat&lt;double&gt;::Mat(arma::arma_vec_indicator const&amp;, unsigned int, unsigned int, unsigned short)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/Mat_meat.hpp</file>
+      <line>168</line>
+    </frame>
+    <frame>
+      <ip>0x42759D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>arma::Col&lt;double&gt;::Col(unsigned int)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/Col_meat.hpp</file>
+      <line>48</line>
+    </frame>
+    <frame>
+      <ip>0x42C75D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>calcRho_c(double, double, int, double, int, int, double, double, double, double, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR</dir>
+      <file>src/rhor.cpp</file>
+      <line>395</line>
+    </frame>
+    <frame>
+      <ip>0x40A495</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_rhoR_deepstate_test_calcRho_c_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c</dir>
+      <file>calcRho_c_DeepState_TestHarness.cpp</file>
+      <line>79</line>
+    </frame>
+    <frame>
+      <ip>0x4099B8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_rhoR_deepstate_test_calcRho_c_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c</dir>
+      <file>calcRho_c_DeepState_TestHarness.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x41A958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41ABF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xb2</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>1,025 bytes in 1 blocks are definitely lost in loss record 179 of 1,322</text>
+    <leakedbytes>1025</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E5C3AF</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::reserve(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D04C55</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>MemBuf::MemBuf(int)</fn>
+      <dir>/tmp/RtmpAPDRvx/R.INSTALL2c66eb2c3545f3/RInside/src</dir>
+      <file>MemBuf.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x4D06467</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/tmp/RtmpAPDRvx/R.INSTALL2c66eb2c3545f3/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>56</line>
+    </frame>
+    <frame>
+      <ip>0x4099D3</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_rhoR_deepstate_test_calcRho_c_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c</dir>
+      <file>calcRho_c_DeepState_TestHarness.cpp</file>
+      <line>11</line>
+    </frame>
+    <frame>
+      <ip>0x4099B8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_rhoR_deepstate_test_calcRho_c_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c</dir>
+      <file>calcRho_c_DeepState_TestHarness.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x41A958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41ABF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41ACD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407835</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:15.345 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

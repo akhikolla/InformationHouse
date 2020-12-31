@@ -1,0 +1,71 @@
+Changes in version 3.0.1 (2020-11-06)
+	* A few minor changes in messages and vignette.
+
+Changes in version 3.0.0 (2020-09-11)
+	* The function and class 'truthTab' has been renamed 'configTable', in order to avoid confusion due to the use of the term 'truth table' in other contexts.
+	* As a consequence, several other functions have also changed their names: full.tt to full.ct; tt2df to ct2df; cstt/fstt/mvtt to csct/fsct/mvct.
+	* Code using the old names of these functions will mostly work. However their use is deprecated, and you will be warned to switch to the new names. The old names may eventually be removed in future releases.
+	* cna() has new arguments acyclic.only and cycle.type.
+	* In cna(), the default value of the argument maxstep has changed to c(3, 4, 10).
+	* In csf(), the selection process of complex solution formulas has been thoroughly revised. See the 'Details' section in ?csf.
+	* csf() has new arguments inus.only, minimalizeCsf, acyclic.only, cycle.type and verbose. Its argument n has been renamed as n.init, with a default of 1000.
+	* The way the output of msc(), asf() and csf() is printed has been modified (class 'condTbl'). 
+  * The changes in csf() also affect printed output from cna(), as csf() is executed within the print method of class 'cna'.
+	* Renaming of an argument in condition(): from tt to ct
+	* is.inus() now also applies to conditions of the msc, asf or csf type. is.inus() has a new argument csf.info.
+
+Changes in version 2.2.3 (2020-05-13)
+  * A few adjustments and a bug fix in methods for class "truthTab"
+  * Minor adjustments in examples for compliance with dplyr 1.0.0
+
+Changes in version 2.2.2 (2019-12-06)
+  * In the default method of condition(), argument tt now has a default value.
+  * Added some informative error messages
+  * Two bug fixes
+
+Changes in version 2.2.1 (2019-09-06)
+  * Added an error message in case of using wrong data in rreduce()
+
+Changes in version 2.2.0 (2019-04-13)
+  * In this release, we have added further utility functions that are helpful to explore and benchmark the cna method.
+  * New functions: full.tt, is.inus, redundant, cyclic, is.submodel, identical.model, minimalize, randomAsf, randomCsf. See the help files for details.
+  * cna() has a new argument only.minimal.asf.
+  * In selectCases() and selectCases1(), the argument x is not mandatory anymore; it now has the default value full.tt(cond). Similarly, minimalizeCsf() can also be used without a data argument.
+  * The package vignette has been updated accordingly.
+
+Changes in version 2.1.1 (2018-06-13)
+  * Bug fix in minimalizeCsf()
+
+Changes in version 2.1.0 (2018-06-01)
+  * The package now comes with a vignette providing an extensive introduction to the methodological background and the package's usage.
+  * Several functions have a noticeably faster implementation, most notably csf().
+  * cna() has new arguments inus.only and details, and the default value of the argument what has changed from "mac" to "ac".
+  * Various new model fit parameters, which are helpful e.g. in ambiguity reduction, can now be calculated by cna(): exhaustiveness, faithfulness, inus, redundant.
+  * The package now provides functionalities for handling structural redundancies in complex solution formulas (csf).
+  * New functions condTbl() and minimalizeCsf() have been added.
+  * The way the output is displayed has slightly changed for some functions, in particular for truth tables and related tabular displays.
+  * coherence() now returns 1 instead of NA for atomic solution formulas (asf).
+  * condition() has a new argument add.data.
+  * The syntax accepted by condition() has become more flexible. 
+  * msc, asf and csf have a new argument details.
+  * truthTab() has a new argument verbose.
+  * The option spaces is newly available for controlling the spacing in asf and csf.
+  * Data with more than 26 factors can now be processed as well. 
+
+Changes in version 2.0.0 (2017-04-11)
+  * Most functions in the package have been fundamentally redesigned or revised. Although we tried to maintain backward compatibility where it was reasonably achievable, code compatible with older versions will not work in many cases.
+  * Three different types of data are now handled: crisp-set, multi-value, and fuzzy-set. Accordingly, several functions have a type argument with possible values "cs", "mv", "fs".
+  * truthTab() has new arguments: type, rm.dup.factors, rm.const.factors and .cases. The argument switch has been removed.
+  * The new convenience functions cstt(), mvtt() and fstt() provide easy access to truthTab().
+  * condition() is now able to handle complex expressions.
+  * New arguments in condition(): type, force.bool, rm.parentheses.
+  * The convenience functions cscond(), mvcond() and fscond() provide easy access to condition().
+  * cna() uses a different (more general and usually faster) algorithm to find solutions.
+  * New arguments in cna(): type, con.msc, rm.const.factors, rm.dup.factors, only.minimal.msc, maxSol, cutoff, border.
+  * The meaning of the argument maxstep in cna() has changed.
+  * The convenience functions cscna(), mvcna() and fscna() provide easy access to cna().
+  * complexity has been added in the output of msc(), asf() and csf(). coherence has been added in the output of csf().
+  * The new functions allCombs(), makeFuzzy(), selectCases(), selectCases1() and some() facilitate the generation of simulated data for inverse search trials that assess the correctness of models output by cna.
+  * Additional new functions: fs2tt(), coherence().
+  * New data sets: d.autonomy, d.jobsecurity, d.pacts, d.pban.
+

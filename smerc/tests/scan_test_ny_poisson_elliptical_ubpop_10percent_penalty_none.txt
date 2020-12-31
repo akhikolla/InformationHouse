@@ -1,0 +1,194 @@
+                                 _____________________________
+
+                                         SaTScan v9.6
+                                 _____________________________
+
+
+Program run on: Sat Mar  9 07:48:37 2019
+
+Purely Spatial analysis
+scanning for clusters with high rates
+using the Discrete Poisson model.
+_______________________________________________________________________________________________
+
+SUMMARY OF DATA
+
+Study period.......................: 2000/1/1 to 2000/12/31
+Number of locations................: 281
+Population, averaged over time.....: 1057673
+Total number of cases..............: 552
+Annual cases / 100000..............: 52.1
+_______________________________________________________________________________________________
+
+CLUSTERS DETECTED
+
+1.Location IDs included.: 46, 53, 45, 41, 44, 38, 52, 43, 54, 39, 50, 15, 40, 49, 16, 14, 1,
+                          48, 37, 13, 17, 11, 2, 12, 47
+  Coordinates...........: (42.0883,-76.0764)
+  Semiminor axis........: 0.046
+  Semimajor axis........: 0.18
+  Angle (degrees).......: 90.00
+  Shape.................: 4.00
+  Population............: 102678
+  Number of cases.......: 96
+  Expected cases........: 53.59
+  Annual cases / 100000.: 93.3
+  Observed / expected...: 1.79
+  Relative risk.........: 1.96
+  Log likelihood ratio..: 15.416469
+  Test statistic........: 15.416469
+  P-value...............: 0.00046
+
+2.Location IDs included.: 84, 86, 87, 251, 92, 85, 259, 88, 89, 103, 261, 281, 266, 280, 265,
+                          102
+  Coordinates...........: (42.7087,-76.1026)
+  Semiminor axis........: 0.093
+  Semimajor axis........: 0.46
+  Angle (degrees).......: 60.00
+  Shape.................: 5.00
+  Population............: 53236
+  Number of cases.......: 55
+  Expected cases........: 27.78
+  Annual cases / 100000.: 103.1
+  Observed / expected...: 1.98
+  Relative risk.........: 2.09
+  Log likelihood ratio..: 11.061167
+  Test statistic........: 11.061167
+  P-value...............: 0.013
+
+3.Location IDs included.: 117, 123, 116, 118, 122, 114, 115, 124, 121, 113, 120, 119, 133, 125,
+                          131, 132, 111, 220, 127, 126, 130, 135
+  Coordinates...........: (43.0684,-76.1385)
+  Semiminor axis........: 0.014
+  Semimajor axis........: 0.057
+  Angle (degrees).......: 75.00
+  Shape.................: 4.00
+  Population............: 56173
+  Number of cases.......: 55
+  Expected cases........: 29.32
+  Annual cases / 100000.: 97.7
+  Observed / expected...: 1.88
+  Relative risk.........: 1.97
+  Log likelihood ratio..: 9.562963
+  Test statistic........: 9.562963
+  P-value...............: 0.062
+
+4.Location IDs included.: 170, 171, 166, 167
+  Coordinates...........: (43.0068,-76.1412)
+  Semiminor axis........: 0.0072
+  Semimajor axis........: 0.029
+  Angle (degrees).......: -60.00
+  Shape.................: 4.00
+  Population............: 12214
+  Number of cases.......: 17
+  Expected cases........: 6.37
+  Annual cases / 100000.: 138.9
+  Observed / expected...: 2.67
+  Relative risk.........: 2.72
+  Log likelihood ratio..: 6.154083
+  Test statistic........: 6.154083
+  P-value...............: 0.640
+
+5.Location IDs included.: 64, 65, 67, 62, 68
+  Coordinates...........: (42.9411,-76.5559)
+  Semiminor axis........: 0.046
+  Semimajor axis........: 0.18
+  Angle (degrees).......: 30.00
+  Shape.................: 4.00
+  Population............: 27490
+  Number of cases.......: 28
+  Expected cases........: 14.35
+  Annual cases / 100000.: 101.6
+  Observed / expected...: 1.95
+  Relative risk.........: 2.00
+  Log likelihood ratio..: 5.244377
+  Test statistic........: 5.244377
+  P-value...............: 0.872
+_______________________________________________________________________________________________
+
+PARAMETER SETTINGS
+
+Input
+-----
+  Case File        : /Users/jfrench/Dropbox/Code/GitHub/smerc/tests/satscan_ny_cases.txt
+  Population File  : /Users/jfrench/Dropbox/Code/GitHub/smerc/tests/satscan_ny_pop.txt
+  Time Precision   : Year
+  Start Time       : 2000/1/1
+  End Time         : 2000/12/31
+  Coordinates File : /Users/jfrench/Dropbox/Code/GitHub/smerc/tests/flexscan_ny_coords.txt
+  Coordinates      : Cartesian
+
+Analysis
+--------
+  Type of Analysis    : Purely Spatial
+  Probability Model   : Discrete Poisson
+  Scan for Areas with : High Rates
+
+Output
+------
+  Main Results File : /Users/jfrench/Dropbox/Code/GitHub/smerc/tests/scan_test_ny_poisson_elliptical_ubpop_10percent_penalty_none.txt
+
+Data Checking
+-------------
+  Temporal Data Check     : Check to ensure that all cases and controls are within the specified temporal study period.
+  Geographical Data Check : Check to ensure that all observations (cases, controls and populations) are within the specified geographical area.
+
+Spatial Neighbors
+-----------------
+  Use Non-Euclidian Neighbors file : No
+  Use Meta Locations File          : No
+  Multiple Coordinates Type        : Allow only one set of coordinates per location ID.
+
+Spatial Window
+--------------
+  Maximum Spatial Cluster Size : 10 percent of population at risk
+  Window Shape                 : Elliptic
+  Non-Compactness Penalty      : None
+  Isotonic Scan                : No
+
+Cluster Restrictions
+--------------------
+  Minimum Cases in Cluster for High Rates : 2
+  Restrict High Rate Clusters             : No
+
+Space And Time Adjustments
+--------------------------
+  Adjust for known relative risks : No
+
+Inference
+---------
+  P-Value Reporting                  : Default Combination
+  Number of Replications             : 999
+  Adjusting for More Likely Clusters : No
+
+Border Analysis
+---------------
+  Report Oliveira's F : No
+
+Spatial Output
+--------------
+  Report Hierarchical Clusters              : Yes
+  Criteria for Reporting Secondary Clusters : No Geographical Overlap
+  Report Gini Optimized Cluster Collection  : No
+  Restrict Reporting to Smaller Clusters    : No
+
+Other Output
+------------
+  Report Critical Values  : No
+  Report Monte Carlo Rank : No
+
+Elliptic Scan
+-------------
+  Ellipse Shapes                          : 1.5, 2, 3, 4, 5
+  Number of Angles for Each Ellipse Shape : 4, 6, 9, 12, 15
+
+Run Options
+-----------
+  Processor Usage   : All Available Processors
+  Suppress Warnings : No
+  Logging Analysis  : No
+_______________________________________________________________________________________________
+
+Program completed  : Sat Mar  9 07:48:38 2019
+Total Running Time : 1 second
+Processor Usage    : 8 processors

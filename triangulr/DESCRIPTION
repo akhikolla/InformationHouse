@@ -1,0 +1,38 @@
+Package: triangulr
+Title: High-Performance Triangular Distribution Functions
+Version: 1.1.0
+Authors@R: 
+    person(given = "Alvin",
+           family = "Nursalim",
+           role = c("aut", "cre"),
+           email = "alvin.nursalim@outlook.com")
+Description: A collection of high-performance functions for the triangular
+    distribution that consists of the probability density function, cumulative
+    distribution function, quantile function, random variate generator, moment
+    generating function, characteristic function, and expected shortfall
+    function. References: Samuel Kotz, Johan Ren Van Dorp (2004)
+    <doi:10.1142/5720>, Melissa E. O'Neill (2014)
+    <https://www.cs.hmc.edu/tr/hmc-cs-2014-0905.pdf>, David Blackman and
+    Sebastiano Vigna (2018) <arXiv:1805.01407>, and Acerbi, Carlo and
+    Tasche, Dirk. (2002) <doi:10.1111/1468-0300.00091>.
+License: MIT + file LICENSE
+URL: https://github.com/irkaal/triangulr/
+        https://irkaal.github.io/triangulr/
+BugReports: https://github.com/irkaal/triangulr/issues
+Depends: R (>= 3.3)
+Encoding: UTF-8
+LazyData: true
+ByteCompile: true
+RoxygenNote: 7.1.1
+Collate: 'RcppExports.R' 'Triangular.R' 'ctri.R' 'dtri.R' 'error.R'
+        'estri.R' 'mgtri.R' 'ptri.R' 'qtri.R' 'rtri.R'
+LinkingTo: Rcpp, dqrng
+Imports: Rcpp (>= 1.0.5), rlang (>= 0.4.8), vctrs (>= 0.3.5), dqrng (>=
+        0.2.1)
+Suggests: testthat (>= 3.0.0)
+NeedsCompilation: yes
+Packaged: 2020-11-20 04:58:43 UTC; Alvin
+Author: Alvin Nursalim [aut, cre]
+Maintainer: Alvin Nursalim <alvin.nursalim@outlook.com>
+Repository: CRAN
+Date/Publication: 2020-11-20 07:30:02 UTC

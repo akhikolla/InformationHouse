@@ -1,0 +1,26 @@
+useDynLib(ivtools, .registration=TRUE)
+
+importFrom(Rcpp, evalCpp)
+
+importFrom(stats, "family", "fitted", "formula", "glm", "model.frame", "model.matrix", 
+  "pchisq", "plogis", "pnorm", "predict", "printCoefmat", "optimize", "qnorm", "rbinom", 
+  "residuals", "rnorm", "stepfun", "update", "var", "vcov", "weighted.mean")
+importFrom(data.table, "data.table")
+importFrom(numDeriv, "jacobian")
+importFrom(nleqslv, "nleqslv")
+importFrom(survival, "coxph", "coxph.detail", "survfit", "strata")
+importFrom(ahaz, "ahaz")
+## importFrom(Rcpp, "cppFunction")
+importFrom("graphics", "abline", "lines", "matlines", "par")
+  
+export(ah, estfun, ivah, ivbounds, ivcoxph, ivglm)
+
+S3method(summary, ivbounds)
+S3method(print, summary.ivbounds)
+S3method(print, ivmod)
+S3method(summary, ivmod)
+S3method(print, summary.ivmod)
+S3method(confint, ivmod)
+S3method(plot, ivah)
+S3method(plot, estfun)
+

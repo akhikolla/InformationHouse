@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Aaron Robotham" />
+
+<meta name="date" content="2020-12-03" />
+
+<title>ProFound: Source Finding</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#header {
+text-align: center;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">ProFound: Source Finding</h1>
+<h4 class="author">Aaron Robotham</h4>
+<h4 class="date">2020-12-03</h4>
+
+
+
+<div id="introduction-to-profound-functions" class="section level2">
+<h2>Introduction to ProFound Functions</h2>
+<p>The <strong>ProFound</strong> source finding and image utilites suite covers the following functions:</p>
+<div id="very-high-level" class="section level3">
+<h3>Very High Level</h3>
+<ul>
+<li>profoundProFound: Source finder and CoG growing utility (this is what we refer to as ProFound elsewhere, as a short-hand)</li>
+</ul>
+</div>
+<div id="high-level" class="section level3">
+<h3>High Level</h3>
+<ul>
+<li>profoundMakeSegim: Watershed image segmentation</li>
+<li>profoundMakeSkyGrid: Calculate smoothed (e.g. bicubic) sky maps</li>
+<li>profoundSkyEst: Sky estimator using circular annuli (robust to bright central extended sources)</li>
+</ul>
+</div>
+<div id="mid-level" class="section level3">
+<h3>Mid Level</h3>
+<ul>
+<li>profoundGainEst: Estimate image gain</li>
+<li>profoundGetEllipses: Calculate multiple annulus properties of iso-photal ellipses</li>
+<li>profoundGetEllipsesPlot: Create diagnostic plot of estimated iso-photal ellipses</li>
+<li>profoundMakeSegimDilate: Segmentation map dilation</li>
+<li>profoundMakeSegimExpand: Segmentation map expansion</li>
+<li>profoundMakeSegimPropagate: Propagate segmentation map segments over adjacent sky pixels</li>
+<li>profoundMakeSigma: Make a Sigma Map</li>
+<li>profoundMakeSkyMap: Calculate coarse sky maps</li>
+<li>profoundMakeStack: Create a stacked image</li>
+<li>profoundPixelCorrelation: Calculate pixel-to-pixel correlation and 2D image FFT</li>
+<li>profoundSegimGroup: Find the IDs of groups of touching segments</li>
+<li>profoundSegimMerge: Optimally merge segmentation maps</li>
+<li>profoundSegimNear: Find the IDs of all segments near to other segments</li>
+<li>profoundSegimPlot: Image segmentation plots</li>
+<li>profoundSegimStats: Image segmentation statistics (e.g. flux, apertures etc)</li>
+<li>profoundSkyEstLoc: Local sky estimator using source clipping</li>
+</ul>
+</div>
+<div id="low-level" class="section level3">
+<h3>Low Level</h3>
+<ul>
+<li>profoundDrawEllipse: Draw Ellipse</li>
+<li>profoundFlux2Mag: Convert from flux to magnitude</li>
+<li>profoundFlux2SB: Convert from flux to surface brightness</li>
+<li>profoundGainConvert: Update gain values when changing zero-points</li>
+<li>profoundGetEllipse: Calculate single annulus properties of an iso-photal ellipse</li>
+<li>profoundGetPixScale: Get Pixel Scale</li>
+<li>profoundImBlur: Fast image blur</li>
+<li>profoundImDiff: Fast image difference</li>
+<li>profoundImGrad: Fast image gradients</li>
+<li>profoundInterp2d: Image interpolation</li>
+<li>profoundMag2Flux: Convert from magnitude to flux</li>
+<li>profoundMag2Mu: Convert from magnitude to central surface brightness</li>
+<li>profoundMu2Mag: Convert from central surface brightness to magnitude</li>
+<li>profoundSB2Flux: Convert from surface brightness to flux</li>
+</ul>
+</div>
+</div>
+<div id="basic-profound-usage" class="section level2">
+<h2>Basic ProFound Usage</h2>
+<p>The <strong>profoundProFound</strong> function might be the only function many people need to use in order to extract photometry from a target image. In brief, in fully automatic mode using default option, the basic code flow of the source extraction is as follows:</p>
+<ol style="list-style-type: decimal">
+<li>Make a rough sky map</li>
+<li>Using this rough sky map, make an initial segmentation map</li>
+<li>Using this segmentation map, make a better sky map</li>
+<li>Using this better sky map, extract basic photometric properties</li>
+<li>Using the current segmentation map, dilate segments and re-measure photometric properties for the new image segments (by default it iterates six times)</li>
+<li>Using the iterative dilation statistics, every object is checked for convergence (by default convergence of flux is used)</li>
+<li>Make final segmentation map by combining the segments when each source has converged in flux</li>
+<li>Make a conservative object mask by aggressively dilating the final segmentation map</li>
+<li>Using this conservative objects mask make a final sky map</li>
+<li>Using the final segmentation map and the final sky map compute the final comprehensive photometric properties</li>
+<li>Return a list containing the input image pixel-matched final segmentation map (called <strong>segim</strong>), the pre-dilation segmentation map (<strong>segim_orig</strong>) , the binary object/sky mask (<strong>objects</strong>), the conservatively dilated binary object/sky mask (<strong>objects_redo</strong>), the sky image (<strong>sky</strong>), the sky-RMS image (<strong>skyRMS</strong>) and the effective surface brightness limit image (<strong>SBlim</strong>)</li>
+<li>Return the data-frame of photometric properties for every detected source (<strong>segstats</strong>)</li>
+</ol>
+<p>Some other simple properties are passed through and included in the output of ProFound: the header (<strong>header</strong>) if it is attached to the input image, the magnitude zero point specified (<strong>magzero</strong>), the gain in electrons per astronomical data unit (<strong>gain</strong>), the pixel scale in arc-seconds per pixel (<strong>pixscale</strong>) and finally the full function call (<strong>call</strong>).</p>
+<p>Get the latest version of <strong>ProFound</strong>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(devtools)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">install_github</span>(<span class="st">'asgr/ProFound'</span>)</a></code></pre></div>
+<p>Set global evaluate (basically TRUE for GitHub version and FALSE for CRAN):</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">evalglobal=<span class="ot">FALSE</span></a></code></pre></div>
+<p>Load some libraries:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(ProFound)</a></code></pre></div>
+<p>First read in some data.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">image=<span class="kw">readFITS</span>(<span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">'VIKING/mystery_VIKING_Z.fits'</span>,<span class="dt">package=</span><span class="st">&quot;ProFound&quot;</span>))</a></code></pre></div>
+<p>Give it a quick look:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">magimageWCS</span>(image)</a></code></pre></div>
+<p>A basic example of the lower level <strong>profoundMakeSegim</strong> versus the higher level <strong>profoundProFound</strong>:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">out_segim=segim=<span class="kw">profoundMakeSegim</span>(image<span class="op">$</span>imDat, <span class="dt">magzero=</span><span class="dv">30</span>, <span class="dt">pixscale=</span><span class="fl">0.339</span>, <span class="dt">header=</span>image<span class="op">$</span>hdr, <span class="dt">plot=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">out_profound=<span class="kw">profoundProFound</span>(image, <span class="dt">magzero=</span><span class="dv">30</span>, <span class="dt">verbose=</span><span class="ot">TRUE</span>, <span class="dt">plot=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<p>Notice in the two outputs (the first being <strong>profoundMakeSegim</strong>, the second being <strong>profoundProFound</strong>) that some segment have converged quickly (i.e. not grown much) but others have expanded a lot in order to capture all the flux present. <strong>profoundProFound</strong> in default mode with modern survey imaging data tends to extract very close to a true total magnitude, without too much error introduced by sky noise (a consequence of over-growing apertures).</p>
+<p>Because it was run in verbose mode, the major <strong>profoundProFound</strong> steps mentioned above were printed out. For large images (a few thousand by a few thousand pixels plus) this is useful since it can take a few minutes to run with all the bells and whistles turned on, and it is nice to see it making progress. Note for more than a couple of hundred sources, you almost certainly do not want to plot the output, since this will be slow.</p>
+<p>Note because we parsed <strong>profoundProFound</strong> a header we have RA and Dec coordinates in the photometric properties data-frame. We also parsed the appropriate magnitude zero-point and pixel scale so the mag properties are correctly scaled, and R/R50/R90 are in arc-seconds rather than pixels. It is is worth checking the output:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">out_profound<span class="op">$</span>segstats[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,]</a></code></pre></div>
+<p>Next we will check the before and after photometry for the brightest 40 sources (the lists differ a bit in detail due to the different sky estimation routines used):</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">magplot</span>(out_segim<span class="op">$</span>segstats[<span class="dv">1</span><span class="op">:</span><span class="dv">40</span>,<span class="kw">c</span>(<span class="st">&quot;R50&quot;</span>, <span class="st">&quot;SB_N90&quot;</span>)], <span class="dt">col=</span><span class="kw">hsv</span>(<span class="kw">magmap</span>(out_segim<span class="op">$</span>segstats<span class="op">$</span>axrat, <span class="dt">flip=</span><span class="ot">TRUE</span>)<span class="op">$</span>map), <span class="dt">log=</span><span class="st">'x'</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="fl">0.4</span>,<span class="dv">5</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">22</span>,<span class="dv">25</span>), <span class="dt">grid=</span><span class="ot">TRUE</span>, <span class="dt">xlab=</span><span class="st">'R50 / asec'</span>, <span class="dt">ylab=</span><span class="st">'mag / asec^2'</span>)</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">points</span>(out_profound<span class="op">$</span>segstats[<span class="dv">1</span><span class="op">:</span><span class="dv">40</span>,<span class="kw">c</span>(<span class="st">&quot;R50&quot;</span>, <span class="st">&quot;SB_N90&quot;</span>)], <span class="dt">col=</span><span class="kw">hsv</span>(<span class="kw">magmap</span>(out_segim<span class="op">$</span>segstats<span class="op">$</span>axrat, <span class="dt">flip=</span><span class="ot">TRUE</span>)<span class="op">$</span>map), <span class="dt">pch=</span><span class="dv">16</span>)</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw">arrows</span>(out_segim<span class="op">$</span>segstats<span class="op">$</span>R50[<span class="dv">1</span><span class="op">:</span><span class="dv">40</span>], out_segim<span class="op">$</span>segstats<span class="op">$</span>SB_N90[<span class="dv">1</span><span class="op">:</span><span class="dv">40</span>], out_profound<span class="op">$</span>segstats<span class="op">$</span>R50[<span class="dv">1</span><span class="op">:</span><span class="dv">40</span>], out_profound<span class="op">$</span>segstats<span class="op">$</span>SB_N90[<span class="dv">1</span><span class="op">:</span><span class="dv">40</span>], <span class="dt">col=</span><span class="st">'lightgrey'</span>, <span class="dt">length=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="kw">rect</span>(<span class="fl">0.9</span>, <span class="fl">23.5</span>, <span class="fl">1.3</span>, <span class="fl">24.3</span>)</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="kw">legend</span>(<span class="st">'bottomleft'</span>, <span class="dt">legend=</span><span class="kw">c</span>(<span class="st">'profoundProFound'</span>, <span class="st">'profoundMakeSegim'</span>), <span class="dt">pch=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="kw">magbar</span>(<span class="st">'topright'</span>, <span class="dt">title=</span><span class="st">'Axrat'</span>, <span class="dt">titleshift=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb8-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb8-8" data-line-number="8"><span class="kw">magplot</span>(out_segim<span class="op">$</span>segstats[<span class="dv">1</span><span class="op">:</span><span class="dv">40</span>,<span class="kw">c</span>(<span class="st">&quot;R50&quot;</span>, <span class="st">&quot;con&quot;</span>)], <span class="dt">col=</span><span class="kw">hsv</span>(<span class="kw">magmap</span>(out_segim<span class="op">$</span>segstats<span class="op">$</span>axrat, <span class="dt">flip=</span><span class="ot">TRUE</span>)<span class="op">$</span>map), <span class="dt">log=</span><span class="st">'x'</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="fl">0.4</span>,<span class="dv">5</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">grid=</span><span class="ot">TRUE</span>, <span class="dt">xlab=</span><span class="st">'R50 / asec'</span>, <span class="dt">ylab=</span><span class="st">'Concentration'</span>)</a>
+<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="kw">points</span>(out_profound<span class="op">$</span>segstats[<span class="dv">1</span><span class="op">:</span><span class="dv">40</span>,<span class="kw">c</span>(<span class="st">&quot;R50&quot;</span>, <span class="st">&quot;con&quot;</span>)], <span class="dt">col=</span><span class="kw">hsv</span>(<span class="kw">magmap</span>(out_segim<span class="op">$</span>segstats<span class="op">$</span>axrat, <span class="dt">flip=</span><span class="ot">TRUE</span>)<span class="op">$</span>map), <span class="dt">pch=</span><span class="dv">16</span>)</a>
+<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="kw">arrows</span>(out_segim<span class="op">$</span>segstats<span class="op">$</span>R50[<span class="dv">1</span><span class="op">:</span><span class="dv">40</span>], out_segim<span class="op">$</span>segstats<span class="op">$</span>con[<span class="dv">1</span><span class="op">:</span><span class="dv">40</span>], out_profound<span class="op">$</span>segstats<span class="op">$</span>R50[<span class="dv">1</span><span class="op">:</span><span class="dv">40</span>], out_profound<span class="op">$</span>segstats<span class="op">$</span>con[<span class="dv">1</span><span class="op">:</span><span class="dv">40</span>], <span class="dt">col=</span><span class="st">'lightgrey'</span>, <span class="dt">length=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb8-11" data-line-number="11"><span class="kw">rect</span>(<span class="fl">0.9</span>, <span class="fl">0.4</span>, <span class="fl">1.3</span>, <span class="fl">0.6</span>)</a>
+<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="kw">legend</span>(<span class="st">'bottomleft'</span>, <span class="dt">legend=</span><span class="kw">c</span>(<span class="st">'profoundProFound'</span>, <span class="st">'profoundMakeSegim'</span>), <span class="dt">pch=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb8-13" data-line-number="13"><span class="kw">magbar</span>(<span class="st">'topright'</span>, <span class="dt">title=</span><span class="st">'Axrat'</span>, <span class="dt">titleshift=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb8-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb8-15" data-line-number="15"><span class="kw">magplot</span>(out_segim<span class="op">$</span>segstats[<span class="dv">1</span><span class="op">:</span><span class="dv">40</span>,<span class="kw">c</span>(<span class="st">&quot;R50&quot;</span>, <span class="st">&quot;mag&quot;</span>)], <span class="dt">col=</span><span class="kw">hsv</span>(<span class="kw">magmap</span>(out_segim<span class="op">$</span>segstats<span class="op">$</span>axrat, <span class="dt">flip=</span><span class="ot">TRUE</span>)<span class="op">$</span>map), <span class="dt">log=</span><span class="st">'x'</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="fl">0.4</span>,<span class="dv">5</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">17</span>,<span class="dv">24</span>), <span class="dt">grid=</span><span class="ot">TRUE</span>, <span class="dt">xlab=</span><span class="st">'R50 / asec'</span>, <span class="dt">ylab=</span><span class="st">'Mag'</span>)</a>
+<a class="sourceLine" id="cb8-16" data-line-number="16"><span class="kw">points</span>(out_profound<span class="op">$</span>segstats[<span class="dv">1</span><span class="op">:</span><span class="dv">40</span>,<span class="kw">c</span>(<span class="st">&quot;R50&quot;</span>, <span class="st">&quot;mag&quot;</span>)], <span class="dt">col=</span><span class="kw">hsv</span>(<span class="kw">magmap</span>(out_segim<span class="op">$</span>segstats<span class="op">$</span>axrat, <span class="dt">flip=</span><span class="ot">TRUE</span>)<span class="op">$</span>map), <span class="dt">pch=</span><span class="dv">16</span>)</a>
+<a class="sourceLine" id="cb8-17" data-line-number="17"><span class="kw">arrows</span>(out_segim<span class="op">$</span>segstats<span class="op">$</span>R50[<span class="dv">1</span><span class="op">:</span><span class="dv">40</span>], out_segim<span class="op">$</span>segstats<span class="op">$</span>mag[<span class="dv">1</span><span class="op">:</span><span class="dv">40</span>], out_profound<span class="op">$</span>segstats<span class="op">$</span>R50[<span class="dv">1</span><span class="op">:</span><span class="dv">40</span>], out_profound<span class="op">$</span>segstats<span class="op">$</span>mag[<span class="dv">1</span><span class="op">:</span><span class="dv">40</span>], <span class="dt">col=</span><span class="st">'lightgrey'</span>, <span class="dt">length=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb8-18" data-line-number="18"><span class="kw">rect</span>(<span class="fl">0.9</span>, <span class="dv">20</span>, <span class="fl">1.3</span>, <span class="dv">22</span>)</a>
+<a class="sourceLine" id="cb8-19" data-line-number="19"><span class="kw">legend</span>(<span class="st">'bottomleft'</span>, <span class="dt">legend=</span><span class="kw">c</span>(<span class="st">'profoundProFound'</span>, <span class="st">'profoundMakeSegim'</span>), <span class="dt">pch=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb8-20" data-line-number="20"><span class="kw">magbar</span>(<span class="st">'topright'</span>, <span class="dt">title=</span><span class="st">'Axrat'</span>, <span class="dt">titleshift=</span><span class="dv">1</span>)</a></code></pre></div>
+<p>It is notable that low surface brightness objects are seen to systematically grow when processing the image with <strong>profoundProFound</strong>. The box represents the location of likely stars, where redder objects are more circular sources. It is clear that <strong>profoundProFound</strong> moves stars onto a more uniform value of R50 (remember for a Gaussian PSF FWHM=2*R50).</p>
+<p>The <strong>profoundProFound</strong> function also returns a sky and sky RMS image matched to the input image:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">maghist</span>(out_profound<span class="op">$</span>sky, <span class="dt">xlab=</span><span class="st">'Sky'</span>)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">maghist</span>(out_profound<span class="op">$</span>skyRMS, <span class="dt">xlab=</span><span class="st">'Sky RMS'</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">magimageWCS</span>(image)</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw">magimageWCS</span>(out_profound<span class="op">$</span>sky, image<span class="op">$</span>hdr)</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="kw">magimageWCS</span>(out_profound<span class="op">$</span>skyRMS, image<span class="op">$</span>hdr)</a></code></pre></div>
+<p>The background mask we used here (the default 100x100 option) looks to be pretty good, with not much correlation between the image and the sky map. However, even with a slightly too small sky grid the photometric outputs should be mostly pretty robust- differing by at worst a couple of counts per pixel. This is much less than the typical sky RMS (roughly 9 throughout).</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">maghist</span>(out_profound<span class="op">$</span>segstats[,<span class="st">'N100'</span>]<span class="op">/</span>out_profound<span class="op">$</span>segstats[,<span class="st">'flux'</span>], <span class="dt">xlab=</span><span class="st">' Worst case fraction error'</span>)</a></code></pre></div>
+<p>In summary, you probably want to use <strong>profoundProFound</strong>, unless you really know what you are doing and are feeling a bit adventurous!</p>
+</div>
+<div id="profound-flags" class="section level2">
+<h2>ProFound Flags</h2>
+<p><strong>ProFound</strong> offers a few useful flags that will help extract high fidelity photometry. To access the boundary flags we have to set boundstats=TRUE when we run <strong>ProFound</strong>:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">out_profound=<span class="kw">profoundProFound</span>(image, <span class="dt">magzero=</span><span class="dv">30</span>, <span class="dt">verbose=</span><span class="ot">TRUE</span>, <span class="dt">boundstats=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<p>The output we get is in segstats is useful, telling us whether or not an object is isolated:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">out_profound<span class="op">$</span>segstats[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,<span class="kw">c</span>(<span class="st">&quot;Nedge&quot;</span>, <span class="st">&quot;Nsky&quot;</span>, <span class="st">&quot;Nobject&quot;</span>, <span class="st">&quot;Nborder&quot;</span>, <span class="st">&quot;edge_frac&quot;</span>, <span class="st">&quot;edge_excess&quot;</span>, <span class="st">&quot;flag_border&quot;</span>)]</a></code></pre></div>
+<p>The edge_frac column is simply Nsky/Nedge (the number of segment edge pixels purely touching sky divided by the number of pixels in the segment edge). Where it is 1 the segment must be well isolated, because none of its outer pixels are touching either an image boundary or another object.</p>
+<p>We can easily plot the isolated segments and the non-isolated segments:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">magimage</span>(out_profound<span class="op">$</span>segim<span class="op">*</span>(out_profound<span class="op">$</span>segim <span class="op">%in%</span><span class="st"> </span>out_profound<span class="op">$</span>segstats[out_profound<span class="op">$</span>segstats<span class="op">$</span>edge_frac<span class="op">==</span><span class="dv">1</span>,<span class="st">&quot;segID&quot;</span>]), <span class="dt">col=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">rainbow</span>(<span class="dv">100</span>)))</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="kw">magimage</span>(out_profound<span class="op">$</span>segim<span class="op">*</span>(out_profound<span class="op">$</span>segim <span class="op">%in%</span><span class="st"> </span>out_profound<span class="op">$</span>segstats[out_profound<span class="op">$</span>segstats<span class="op">$</span>edge_frac<span class="op">!=</span><span class="dv">1</span>,<span class="st">&quot;segID&quot;</span>]), <span class="dt">col=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">rainbow</span>(<span class="dv">100</span>)))</a></code></pre></div>
+<p>You might be more interested in removing segments touching an image edge:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">magimage</span>(out_profound<span class="op">$</span>segim<span class="op">*</span>(out_profound<span class="op">$</span>segim <span class="op">%in%</span><span class="st"> </span>out_profound<span class="op">$</span>segstats[out_profound<span class="op">$</span>segstats<span class="op">$</span>Nborder<span class="op">==</span><span class="dv">0</span>,<span class="st">&quot;segID&quot;</span>]), <span class="dt">col=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">rainbow</span>(<span class="dv">100</span>)))</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="kw">legend</span>(<span class="st">'topleft'</span>,<span class="dt">legend=</span><span class="st">'Isolated Segment'</span>)</a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="kw">magimage</span>(out_profound<span class="op">$</span>segim<span class="op">*</span>(out_profound<span class="op">$</span>segim <span class="op">%in%</span><span class="st"> </span>out_profound<span class="op">$</span>segstats[out_profound<span class="op">$</span>segstats<span class="op">$</span>Nborder<span class="op">&gt;</span><span class="dv">0</span>,<span class="st">&quot;segID&quot;</span>]), <span class="dt">col=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">rainbow</span>(<span class="dv">100</span>)))</a>
+<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="kw">legend</span>(<span class="st">'topleft'</span>,<span class="dt">legend=</span><span class="st">'Non_Isolated Segment'</span>)</a></code></pre></div>
+<p>The edge_excess column tells us how elliptical or non-elliptical the segments are. Generally values less than 1 are probably fairly sensible looking segments (i.e. ellipses). Larger than this and the segments might have weird gemoetry:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">magimage</span>(out_profound<span class="op">$</span>segim<span class="op">*</span>(out_profound<span class="op">$</span>segim <span class="op">%in%</span><span class="st"> </span>out_profound<span class="op">$</span>segstats[out_profound<span class="op">$</span>segstats<span class="op">$</span>edge_excess<span class="op">&lt;</span><span class="dv">1</span>,<span class="st">&quot;segID&quot;</span>]), <span class="dt">col=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">rainbow</span>(<span class="dv">100</span>)))</a>
+<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw">legend</span>(<span class="st">'topleft'</span>,<span class="dt">legend=</span><span class="st">'Fairly Elliptical Segment'</span>)</a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="kw">magimage</span>(out_profound<span class="op">$</span>segim<span class="op">*</span>(out_profound<span class="op">$</span>segim <span class="op">%in%</span><span class="st"> </span>out_profound<span class="op">$</span>segstats[out_profound<span class="op">$</span>segstats<span class="op">$</span>edge_excess<span class="op">&gt;</span><span class="dv">1</span>,<span class="st">&quot;segID&quot;</span>]), <span class="dt">col=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">rainbow</span>(<span class="dv">100</span>)))</a>
+<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="kw">legend</span>(<span class="st">'topleft'</span>,<span class="dt">legend=</span><span class="st">'Non-Elliptical Segment'</span>)</a></code></pre></div>
+<p>The flag_border column tells us which border of the image the segment touches. The bottom of the image is flagged 1, left=2, top=4 and right=8. A summed combination of these flags indicate the segment is in a corner touching two borders: bottom-left=3, top-left=6, top-right=12, bottom-right=9. In our case we can see we should find segments touching the bottom, left and top of the image:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">magimage</span>(out_profound<span class="op">$</span>segim<span class="op">*</span>(out_profound<span class="op">$</span>segim <span class="op">%in%</span><span class="st"> </span>out_profound<span class="op">$</span>segstats[out_profound<span class="op">$</span>segstats<span class="op">$</span>flag_border<span class="op">==</span><span class="dv">1</span>,<span class="st">&quot;segID&quot;</span>]), <span class="dt">col=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">rainbow</span>(<span class="dv">100</span>)))</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="kw">legend</span>(<span class="st">'topleft'</span>,<span class="dt">legend=</span><span class="st">'Segment Borders Bottom'</span>)</a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="kw">magimage</span>(out_profound<span class="op">$</span>segim<span class="op">*</span>(out_profound<span class="op">$</span>segim <span class="op">%in%</span><span class="st"> </span>out_profound<span class="op">$</span>segstats[out_profound<span class="op">$</span>segstats<span class="op">$</span>flag_border<span class="op">==</span><span class="dv">2</span>,<span class="st">&quot;segID&quot;</span>]), <span class="dt">col=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">rainbow</span>(<span class="dv">100</span>)))</a>
+<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="kw">legend</span>(<span class="st">'topleft'</span>,<span class="dt">legend=</span><span class="st">'Segment Borders Left'</span>)</a>
+<a class="sourceLine" id="cb17-5" data-line-number="5"><span class="kw">magimage</span>(out_profound<span class="op">$</span>segim<span class="op">*</span>(out_profound<span class="op">$</span>segim <span class="op">%in%</span><span class="st"> </span>out_profound<span class="op">$</span>segstats[out_profound<span class="op">$</span>segstats<span class="op">$</span>flag_border<span class="op">==</span><span class="dv">4</span>,<span class="st">&quot;segID&quot;</span>]), <span class="dt">col=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">rainbow</span>(<span class="dv">100</span>)))</a>
+<a class="sourceLine" id="cb17-6" data-line-number="6"><span class="kw">legend</span>(<span class="st">'topleft'</span>,<span class="dt">legend=</span><span class="st">'Segment Borders Top'</span>)</a>
+<a class="sourceLine" id="cb17-7" data-line-number="7"><span class="kw">magimage</span>(out_profound<span class="op">$</span>segim<span class="op">*</span>(out_profound<span class="op">$</span>segim <span class="op">%in%</span><span class="st"> </span>out_profound<span class="op">$</span>segstats[out_profound<span class="op">$</span>segstats<span class="op">$</span>flag_border<span class="op">==</span><span class="dv">8</span>,<span class="st">&quot;segID&quot;</span>]), <span class="dt">col=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">rainbow</span>(<span class="dv">100</span>)))</a>
+<a class="sourceLine" id="cb17-8" data-line-number="8"><span class="kw">legend</span>(<span class="st">'topleft'</span>,<span class="dt">legend=</span><span class="st">'Segment Borders Right'</span>)</a></code></pre></div>
+<p>Depending on your science requirements, users might want to make use of some or all of these useful flags. Practically the most useful flag is probably edge_frac, where values above 0.8 are usually a good cut off for fairly reliable photometry (i.e. the confused or missing flux is the sub-dominant form of error), but this cannot be treated as a guarantee!</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">magimage</span>(out_profound<span class="op">$</span>segim<span class="op">*</span>(out_profound<span class="op">$</span>segim <span class="op">%in%</span><span class="st"> </span>out_profound<span class="op">$</span>segstats[out_profound<span class="op">$</span>segstats<span class="op">$</span>edge_frac<span class="op">&gt;</span><span class="fl">0.8</span>,<span class="st">&quot;segID&quot;</span>]), <span class="dt">col=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">rainbow</span>(<span class="dv">100</span>)))</a>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="kw">legend</span>(<span class="st">'topleft'</span>,<span class="dt">legend=</span><span class="st">'Reliable Photometry Segments'</span>)</a>
+<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="kw">magimage</span>(out_profound<span class="op">$</span>segim<span class="op">*</span>(out_profound<span class="op">$</span>segim <span class="op">%in%</span><span class="st"> </span>out_profound<span class="op">$</span>segstats[out_profound<span class="op">$</span>segstats<span class="op">$</span>edge_frac<span class="op">&lt;</span><span class="fl">0.8</span>,<span class="st">&quot;segID&quot;</span>]), <span class="dt">col=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">rainbow</span>(<span class="dv">100</span>)))</a>
+<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="kw">legend</span>(<span class="st">'topleft'</span>,<span class="dt">legend=</span><span class="st">'Unreliable Photometry Segments'</span>)</a></code></pre></div>
+</div>
+<div id="advanced-profound-usage" class="section level2">
+<h2>Advanced ProFound Usage</h2>
+<p>The way <strong>ProFound</strong> handles the various inputs allows for great flexibility and power. AS an example, it is fairly trivial to run it in a mode where you can extract multiband photometry in pixel matched data. AS a pseudo code example imagine you have 3 pixel matched 2k*2K J/H/K band images with the same magnitude zero points. You can use the objects detected in, say, the K band to extract photometry in the others:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">pro_det_K=<span class="kw">profoundProFound</span>(<span class="dt">image=</span>Kim)</a></code></pre></div>
+<div id="total-photometry" class="section level3">
+<h3>Total Photometry</h3>
+<p>We can then extract matching photometry. Note that in practice pro_K_tot_fix = pro_det_K (since the K band was our detection band already), but we psuedo re-run it for clarity.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">pro_J_tot_fix=<span class="kw">profoundProFound</span>(<span class="dt">image=</span>Jim, <span class="dt">segim=</span>pro_det_K<span class="op">$</span>segim, <span class="dt">iters=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb20-2" data-line-number="2">pro_H_tot_fix=<span class="kw">profoundProFound</span>(<span class="dt">image=</span>Him, <span class="dt">segim=</span>pro_det_K<span class="op">$</span>segim, <span class="dt">iters=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb20-3" data-line-number="3">pro_K_tot_fix=<span class="kw">profoundProFound</span>(<span class="dt">image=</span>Kim, <span class="dt">segim=</span>pro_det_K<span class="op">$</span>segim, <span class="dt">iters=</span><span class="dv">0</span>)</a></code></pre></div>
+<p>A second option is to allow each target band to dynamically dilate based on the original segmentation map. The might help in situations where the target image PSFs are quite mismatched. The dynamic dilation will ensure close to total magnitudes regardless of the differing PSFs. Note that in practice pro_K_tot_dil = pro_det_K (since the K band was our detection band already), but we psuedo re-run it for clarity.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">pro_J_tot_dil=<span class="kw">profoundProFound</span>(<span class="dt">image=</span>Jim, <span class="dt">segim=</span>pro_det_K<span class="op">$</span>segim_orig, <span class="dt">objects=</span>pro_det_K<span class="op">$</span>objects)</a>
+<a class="sourceLine" id="cb21-2" data-line-number="2">pro_H_tot_dil=<span class="kw">profoundProFound</span>(<span class="dt">image=</span>Him, <span class="dt">segim=</span>pro_det_K<span class="op">$</span>segim_orig, <span class="dt">objects=</span>pro_det_K<span class="op">$</span>objects)</a>
+<a class="sourceLine" id="cb21-3" data-line-number="3">pro_K_tot_dil=<span class="kw">profoundProFound</span>(<span class="dt">image=</span>Kim, <span class="dt">segim=</span>pro_det_K<span class="op">$</span>segim_orig, <span class="dt">objects=</span>pro_det_K<span class="op">$</span>objects)</a></code></pre></div>
+</div>
+<div id="colour-photometry" class="section level3">
+<h3>Colour Photometry</h3>
+<p>The above options would extract close to total photometry given the K-band detection segments. You often find better colours running with the high surface brightness non-dilated segmentation map, which is also returned by <strong>ProFound</strong>. In this case you would need to re-run the K too. Notice we also pass the <strong>objects</strong> matrix to ProFound. This ensures a better sky estimation, since we are now using the brighter inner part of detected objects to extract colour photometry, but we want to know the location of the full object to obtain a good sky estimate.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">pro_J_col_fix=<span class="kw">profoundProFound</span>(<span class="dt">image=</span>Jim, <span class="dt">segim=</span>pro_det_K<span class="op">$</span>segim_orig, <span class="dt">objects=</span>pro_det_K<span class="op">$</span>objects, <span class="dt">iters=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb22-2" data-line-number="2">pro_H_col_fix=<span class="kw">profoundProFound</span>(<span class="dt">image=</span>Him, <span class="dt">segim=</span>pro_det_K<span class="op">$</span>segim_orig, <span class="dt">objects=</span>pro_det_K<span class="op">$</span>objects, <span class="dt">iters=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb22-3" data-line-number="3">pro_K_col_fix=<span class="kw">profoundProFound</span>(<span class="dt">image=</span>Kim, <span class="dt">segim=</span>pro_det_K<span class="op">$</span>segim_orig, <span class="dt">objects=</span>pro_det_K<span class="op">$</span>objects, <span class="dt">iters=</span><span class="dv">0</span>)</a></code></pre></div>
+</div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

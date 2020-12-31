@@ -1,0 +1,15 @@
+WARNING: No test specified, defaulting to first test defined (ggiraph_deepstate_test_set_tracer_on_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/ggiraph/inst/testfiles/set_tracer_on/set_tracer_on_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash`
+TRACE: Running: ggiraph_deepstate_test_set_tracer_on_test from /home/akhila/fuzzer_packages/fuzzedpackages/ggiraph/inst/testfiles/set_tracer_on/set_tracer_on_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+dn values: 467495432
+input ends
+==826179==  If you believe this happened as a result of a stack
+==826179==  overflow in your program's main thread (unlikely but
+==826179==  possible), you can try to increase the size of the
+==826179==  main thread stack using the --main-stacksize= flag.
+==826179==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: ggiraph_deepstate_test_set_tracer_on_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/ggiraph/inst/testfiles/set_tracer_on/set_tracer_on_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash crashed

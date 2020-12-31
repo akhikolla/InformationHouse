@@ -1,0 +1,5 @@
+useDynLib(PWD)
+importFrom(Rcpp, evalCpp)
+importFrom("graphics", "plot")
+importFrom("stats", "lm")
+exportPattern("^[[:alpha:]]+")

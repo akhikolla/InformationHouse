@@ -1,0 +1,15 @@
+---
+title: Small_max_width
+output:
+  Gmisc::docx_document:
+    css_max_width: 80em
+    self_contained: true
+---
+
+# Header 1
+
+```{r}
+stop("Asdasd")
+paste(rep(sprintf("test"), 40), collapse=" ")
+```
+

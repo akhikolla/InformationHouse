@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./buildCellList_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/openxlsx/inst/testfiles/buildCellList/buildCellList_output/a634f4a619c6874ddaa58717c9285a7f0a4ffe50.pass</line>
+</preamble>
+
+<pid>565870</pid>
+<ppid>565869</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/openxlsx/inst/testfiles/buildCellList/buildCellList_output/log_a634f4a619c6874ddaa58717c9285a7f0a4ffe50/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./buildCellList_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/openxlsx/inst/testfiles/buildCellList/buildCellList_output/a634f4a619c6874ddaa58717c9285a7f0a4ffe50.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.025 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 4</what>
+  <stack>
+    <frame>
+      <ip>0x4D68AB5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/openxlsx/src/openxlsx.so</obj>
+      <fn>buildCellList(Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/openxlsx/src</dir>
+      <file>write_data.cpp</file>
+      <line>230</line>
+    </frame>
+    <frame>
+      <ip>0x40A0E7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/openxlsx/inst/testfiles/buildCellList/buildCellList_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_openxlsx_deepstate_test_buildCellList_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/openxlsx/inst/testfiles/buildCellList</dir>
+      <file>buildCellList_DeepState_TestHarness.cpp</file>
+      <line>30</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/openxlsx/inst/testfiles/buildCellList/buildCellList_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_openxlsx_deepstate_test_buildCellList_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/openxlsx/inst/testfiles/buildCellList</dir>
+      <file>buildCellList_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D308</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/openxlsx/inst/testfiles/buildCellList/buildCellList_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D5A9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/openxlsx/inst/testfiles/buildCellList/buildCellList_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D684</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/openxlsx/inst/testfiles/buildCellList/buildCellList_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/openxlsx/inst/testfiles/buildCellList/buildCellList_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xa70de5c is 4 bytes after a block of size 280 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x4D68691</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/openxlsx/src/openxlsx.so</obj>
+      <fn>import_sugar_expression&lt;false, Rcpp::sugar::Not_Vector&lt;10, false, Rcpp::sugar::IsNa&lt;16, true, Rcpp::Vector&lt;16&gt; &gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector</dir>
+      <file>Vector.h</file>
+      <line>1070</line>
+    </frame>
+    <frame>
+      <ip>0x4D68691</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/openxlsx/src/openxlsx.so</obj>
+      <fn>Vector&lt;false, Rcpp::sugar::Not_Vector&lt;10, false, Rcpp::sugar::IsNa&lt;16, true, Rcpp::Vector&lt;16&gt; &gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector</dir>
+      <file>Vector.h</file>
+      <line>165</line>
+    </frame>
+    <frame>
+      <ip>0x4D68691</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/openxlsx/src/openxlsx.so</obj>
+      <fn>buildCellList(Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/openxlsx/src</dir>
+      <file>write_data.cpp</file>
+      <line>222</line>
+    </frame>
+    <frame>
+      <ip>0x40A0E7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/openxlsx/inst/testfiles/buildCellList/buildCellList_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_openxlsx_deepstate_test_buildCellList_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/openxlsx/inst/testfiles/buildCellList</dir>
+      <file>buildCellList_DeepState_TestHarness.cpp</file>
+      <line>30</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/openxlsx/inst/testfiles/buildCellList/buildCellList_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_openxlsx_deepstate_test_buildCellList_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/openxlsx/inst/testfiles/buildCellList</dir>
+      <file>buildCellList_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D308</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/openxlsx/inst/testfiles/buildCellList/buildCellList_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D5A9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/openxlsx/inst/testfiles/buildCellList/buildCellList_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D684</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/openxlsx/inst/testfiles/buildCellList/buildCellList_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/openxlsx/inst/testfiles/buildCellList/buildCellList_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:07.729 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>1</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.223 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

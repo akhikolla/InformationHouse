@@ -1,0 +1,17 @@
+Package: PenCoxFrail
+Type: Package
+Title: Regularization in Cox Frailty Models
+Version: 1.0.1
+Date: 2016-05-06
+Author: Andreas Groll
+Maintainer: Andreas Groll <groll@mathematik.uni-muenchen.de>
+Description: A regularization approach for Cox Frailty Models by penalization methods is provided.
+License: GPL (>= 2)
+Imports: Rcpp (>= 0.11.6), Matrix
+Depends: survival
+LinkingTo: Rcpp, RcppArmadillo
+Repository: CRAN
+SystemRequirements: C++11
+NeedsCompilation: yes
+Packaged: 2016-05-06 12:47:29 UTC; user
+Date/Publication: 2016-05-07 01:06:13

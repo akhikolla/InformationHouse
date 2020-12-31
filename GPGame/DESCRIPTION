@@ -1,0 +1,19 @@
+Package: GPGame
+Type: Package
+Title: Solving Complex Game Problems using Gaussian Processes
+Version: 1.1.0
+Date: 2018-03-21
+Author: Victor Picheny, Mickael Binois
+Maintainer: Victor Picheny <victor.picheny@inra.fr>
+Description: Sequential strategies for finding a game equilibrium are proposed in a black-box setting (expensive pay-off evaluations, no derivatives). The algorithm handles noiseless or noisy evaluations. Two acquisition functions are available. Graphical outputs can be generated automatically. 
+License: GPL-3
+LazyData: TRUE
+Imports: Rcpp (>= 0.12.5), DiceKriging, GPareto, KrigInv, DiceDesign,
+        MASS, mnormt, mvtnorm, methods
+Suggests: DiceOptim
+LinkingTo: Rcpp
+RoxygenNote: 6.0.1
+NeedsCompilation: yes
+Packaged: 2018-03-22 10:42:16 UTC; vpicheny
+Repository: CRAN
+Date/Publication: 2018-03-22 10:52:19 UTC

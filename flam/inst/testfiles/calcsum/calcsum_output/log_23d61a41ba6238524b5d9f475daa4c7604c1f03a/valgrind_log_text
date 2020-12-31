@@ -1,0 +1,13 @@
+WARNING: No test specified, defaulting to first test defined (flam_deepstate_test_calcsum_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/flam/inst/testfiles/calcsum/calcsum_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash`
+TRACE: Running: flam_deepstate_test_calcsum_test from /home/akhila/fuzzer_packages/fuzzedpackages/flam/inst/testfiles/calcsum/calcsum_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+thetamat values: 1.05415e-68 1.86447e-211 4.49059e+17 2.72551e-214 6.53679e-70 2.42643e+241 1.65687e+24
+
+n values: 644268439
+p values: 123721430
+input ends
+ERROR: Crashed: flam_deepstate_test_calcsum_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/flam/inst/testfiles/calcsum/calcsum_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash crashed

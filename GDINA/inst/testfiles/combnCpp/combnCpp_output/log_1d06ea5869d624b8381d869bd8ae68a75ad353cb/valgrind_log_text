@@ -1,0 +1,16 @@
+WARNING: No test specified, defaulting to first test defined (GDINA_deepstate_test_combnCpp_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/GDINA/inst/testfiles/combnCpp/combnCpp_output/1d06ea5869d624b8381d869bd8ae68a75ad353cb.fail`
+TRACE: Running: GDINA_deepstate_test_combnCpp_test from /home/akhila/fuzzer_packages/fuzzedpackages/GDINA/inst/testfiles/combnCpp/combnCpp_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+n values: -1.5615e-299
+k values: -1.20777e+13
+input ends
+
+error: Mat::col(): index out of bounds
+terminate called after throwing an instance of 'std::logic_error'
+  what():  Mat::col(): index out of bounds
+ERROR: Failed: GDINA_deepstate_test_combnCpp_test
+ERROR: Crashed: GDINA_deepstate_test_combnCpp_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/GDINA/inst/testfiles/combnCpp/combnCpp_output/1d06ea5869d624b8381d869bd8ae68a75ad353cb.fail crashed

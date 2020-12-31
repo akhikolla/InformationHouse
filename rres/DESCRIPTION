@@ -1,0 +1,16 @@
+Package: rres
+Type: Package
+Title: Realized Relatedness Estimation and Simulation
+Version: 1.1
+Date: 2018-03-27
+Author: Bowen Wang
+Maintainer: Bowen Wang <bowenwang7@gmail.com>
+Description: Functions for studying realized genetic relatedness between people. Users will be able to simulate inheritance patterns given pedigree structures, generate SNP marker data given inheritance patterns, and estimate realized relatedness between pairs of individuals using SNP marker data. See Wang (2017) <doi:10.1534/genetics.116.197004>. This work was supported by National Institutes of Health grants R37 GM-046255.
+License: GPL (>= 2)
+Imports: Rcpp (>= 0.12.16), kernlab
+LinkingTo: Rcpp
+RoxygenNote: 6.0.1
+NeedsCompilation: yes
+Packaged: 2018-06-04 19:32:09 UTC; bowenw54
+Repository: CRAN
+Date/Publication: 2018-06-04 21:54:23 UTC

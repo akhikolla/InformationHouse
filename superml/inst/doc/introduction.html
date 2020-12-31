@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Manish Saraswat" />
+
+<meta name="date" content="2020-04-27" />
+
+<title>Introduction to SuperML</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#header {
+text-align: center;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Introduction to SuperML</h1>
+<h4 class="author">Manish Saraswat</h4>
+<h4 class="date">2020-04-27</h4>
+
+
+
+<p>SuperML R package is designed to unify the model training process in R like Python. Generally, it’s seen that people spend lot of time in searching for packages, figuring out the syntax for training machine learning models in R. This behaviour is highly apparent in users who frequently switch between R and Python. This package provides a python´s scikit-learn interface (<code>fit</code>, <code>predict</code>) to train models faster.</p>
+<p>In addition to building machine learning models, there are handy functionalities to do feature engineering</p>
+<p>This ambitious package is my ongoing effort to help the r-community build ML models easily and faster in R.</p>
+<div id="install" class="section level2">
+<h2>Install</h2>
+<p>You can install latest cran version using (recommended):</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;superml&quot;</span>)</a></code></pre></div>
+<p>You can install the developmemt version directly from github using:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;saraswatmks/superml&quot;</span>)</a></code></pre></div>
+</div>
+<div id="caveats-on-superml-installation" class="section level2">
+<h2>Caveats on superml installation</h2>
+<p>For machine learning, superml is based on the existing R packages. Hence, while installing the package, we don’t install all the dependencies. However, while training any model, superml will automatically install the package if its not found. Still, if you want to install all dependencies at once, you can simply do:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;superml&quot;</span>, <span class="dt">dependencies=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+</div>
+<div id="examples---machine-learning-models" class="section level2">
+<h2>Examples - Machine Learning Models</h2>
+<p>This package uses existing r-packages to build machine learning model. In this tutorial, we’ll use data.table R package to do all tasks related to data manipulation.</p>
+<div id="regression-data" class="section level3">
+<h3>Regression Data</h3>
+<p>We’ll quickly prepare the data set to be ready to served for model training.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">load</span>(<span class="st">&quot;../data/reg_train.rda&quot;</span>)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co"># if the above doesn't work, you can try: load(&quot;reg_train.rda&quot;)</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw">library</span>(data.table)</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="kw">library</span>(caret)</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">#&gt; Loading required package: lattice</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt; Loading required package: ggplot2</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="kw">library</span>(superml)</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="kw">library</span>(Metrics)</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="co">#&gt; Attaching package: 'Metrics'</span></a>
+<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="co">#&gt; The following objects are masked from 'package:caret':</span></a>
+<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb4-15" data-line-number="15"><span class="co">#&gt;     precision, recall</span></a>
+<a class="sourceLine" id="cb4-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb4-17" data-line-number="17"><span class="kw">head</span>(reg_train)</a>
+<a class="sourceLine" id="cb4-18" data-line-number="18"><span class="co">#&gt;    Id MSSubClass MSZoning LotFrontage LotArea Street Alley LotShape LandContour</span></a>
+<a class="sourceLine" id="cb4-19" data-line-number="19"><span class="co">#&gt; 1:  1         60       RL          65    8450   Pave  &lt;NA&gt;      Reg         Lvl</span></a>
+<a class="sourceLine" id="cb4-20" data-line-number="20"><span class="co">#&gt; 2:  2         20       RL          80    9600   Pave  &lt;NA&gt;      Reg         Lvl</span></a>
+<a class="sourceLine" id="cb4-21" data-line-number="21"><span class="co">#&gt; 3:  3         60       RL          68   11250   Pave  &lt;NA&gt;      IR1         Lvl</span></a>
+<a class="sourceLine" id="cb4-22" data-line-number="22"><span class="co">#&gt; 4:  4         70       RL          60    9550   Pave  &lt;NA&gt;      IR1         Lvl</span></a>
+<a class="sourceLine" id="cb4-23" data-line-number="23"><span class="co">#&gt; 5:  5         60       RL          84   14260   Pave  &lt;NA&gt;      IR1         Lvl</span></a>
+<a class="sourceLine" id="cb4-24" data-line-number="24"><span class="co">#&gt; 6:  6         50       RL          85   14115   Pave  &lt;NA&gt;      IR1         Lvl</span></a>
+<a class="sourceLine" id="cb4-25" data-line-number="25"><span class="co">#&gt;    Utilities LotConfig LandSlope Neighborhood Condition1 Condition2 BldgType</span></a>
+<a class="sourceLine" id="cb4-26" data-line-number="26"><span class="co">#&gt; 1:    AllPub    Inside       Gtl      CollgCr       Norm       Norm     1Fam</span></a>
+<a class="sourceLine" id="cb4-27" data-line-number="27"><span class="co">#&gt; 2:    AllPub       FR2       Gtl      Veenker      Feedr       Norm     1Fam</span></a>
+<a class="sourceLine" id="cb4-28" data-line-number="28"><span class="co">#&gt; 3:    AllPub    Inside       Gtl      CollgCr       Norm       Norm     1Fam</span></a>
+<a class="sourceLine" id="cb4-29" data-line-number="29"><span class="co">#&gt; 4:    AllPub    Corner       Gtl      Crawfor       Norm       Norm     1Fam</span></a>
+<a class="sourceLine" id="cb4-30" data-line-number="30"><span class="co">#&gt; 5:    AllPub       FR2       Gtl      NoRidge       Norm       Norm     1Fam</span></a>
+<a class="sourceLine" id="cb4-31" data-line-number="31"><span class="co">#&gt; 6:    AllPub    Inside       Gtl      Mitchel       Norm       Norm     1Fam</span></a>
+<a class="sourceLine" id="cb4-32" data-line-number="32"><span class="co">#&gt;    HouseStyle OverallQual OverallCond YearBuilt YearRemodAdd RoofStyle RoofMatl</span></a>
+<a class="sourceLine" id="cb4-33" data-line-number="33"><span class="co">#&gt; 1:     2Story           7           5      2003         2003     Gable  CompShg</span></a>
+<a class="sourceLine" id="cb4-34" data-line-number="34"><span class="co">#&gt; 2:     1Story           6           8      1976         1976     Gable  CompShg</span></a>
+<a class="sourceLine" id="cb4-35" data-line-number="35"><span class="co">#&gt; 3:     2Story           7           5      2001         2002     Gable  CompShg</span></a>
+<a class="sourceLine" id="cb4-36" data-line-number="36"><span class="co">#&gt; 4:     2Story           7           5      1915         1970     Gable  CompShg</span></a>
+<a class="sourceLine" id="cb4-37" data-line-number="37"><span class="co">#&gt; 5:     2Story           8           5      2000         2000     Gable  CompShg</span></a>
+<a class="sourceLine" id="cb4-38" data-line-number="38"><span class="co">#&gt; 6:     1.5Fin           5           5      1993         1995     Gable  CompShg</span></a>
+<a class="sourceLine" id="cb4-39" data-line-number="39"><span class="co">#&gt;    Exterior1st Exterior2nd MasVnrType MasVnrArea ExterQual ExterCond Foundation</span></a>
+<a class="sourceLine" id="cb4-40" data-line-number="40"><span class="co">#&gt; 1:     VinylSd     VinylSd    BrkFace        196        Gd        TA      PConc</span></a>
+<a class="sourceLine" id="cb4-41" data-line-number="41"><span class="co">#&gt; 2:     MetalSd     MetalSd       None          0        TA        TA     CBlock</span></a>
+<a class="sourceLine" id="cb4-42" data-line-number="42"><span class="co">#&gt; 3:     VinylSd     VinylSd    BrkFace        162        Gd        TA      PConc</span></a>
+<a class="sourceLine" id="cb4-43" data-line-number="43"><span class="co">#&gt; 4:     Wd Sdng     Wd Shng       None          0        TA        TA     BrkTil</span></a>
+<a class="sourceLine" id="cb4-44" data-line-number="44"><span class="co">#&gt; 5:     VinylSd     VinylSd    BrkFace        350        Gd        TA      PConc</span></a>
+<a class="sourceLine" id="cb4-45" data-line-number="45"><span class="co">#&gt; 6:     VinylSd     VinylSd       None          0        TA        TA       Wood</span></a>
+<a class="sourceLine" id="cb4-46" data-line-number="46"><span class="co">#&gt;    BsmtQual BsmtCond BsmtExposure BsmtFinType1 BsmtFinSF1 BsmtFinType2</span></a>
+<a class="sourceLine" id="cb4-47" data-line-number="47"><span class="co">#&gt; 1:       Gd       TA           No          GLQ        706          Unf</span></a>
+<a class="sourceLine" id="cb4-48" data-line-number="48"><span class="co">#&gt; 2:       Gd       TA           Gd          ALQ        978          Unf</span></a>
+<a class="sourceLine" id="cb4-49" data-line-number="49"><span class="co">#&gt; 3:       Gd       TA           Mn          GLQ        486          Unf</span></a>
+<a class="sourceLine" id="cb4-50" data-line-number="50"><span class="co">#&gt; 4:       TA       Gd           No          ALQ        216          Unf</span></a>
+<a class="sourceLine" id="cb4-51" data-line-number="51"><span class="co">#&gt; 5:       Gd       TA           Av          GLQ        655          Unf</span></a>
+<a class="sourceLine" id="cb4-52" data-line-number="52"><span class="co">#&gt; 6:       Gd       TA           No          GLQ        732          Unf</span></a>
+<a class="sourceLine" id="cb4-53" data-line-number="53"><span class="co">#&gt;    BsmtFinSF2 BsmtUnfSF TotalBsmtSF Heating HeatingQC CentralAir Electrical</span></a>
+<a class="sourceLine" id="cb4-54" data-line-number="54"><span class="co">#&gt; 1:          0       150         856    GasA        Ex          Y      SBrkr</span></a>
+<a class="sourceLine" id="cb4-55" data-line-number="55"><span class="co">#&gt; 2:          0       284        1262    GasA        Ex          Y      SBrkr</span></a>
+<a class="sourceLine" id="cb4-56" data-line-number="56"><span class="co">#&gt; 3:          0       434         920    GasA        Ex          Y      SBrkr</span></a>
+<a class="sourceLine" id="cb4-57" data-line-number="57"><span class="co">#&gt; 4:          0       540         756    GasA        Gd          Y      SBrkr</span></a>
+<a class="sourceLine" id="cb4-58" data-line-number="58"><span class="co">#&gt; 5:          0       490        1145    GasA        Ex          Y      SBrkr</span></a>
+<a class="sourceLine" id="cb4-59" data-line-number="59"><span class="co">#&gt; 6:          0        64         796    GasA        Ex          Y      SBrkr</span></a>
+<a class="sourceLine" id="cb4-60" data-line-number="60"><span class="co">#&gt;    1stFlrSF 2ndFlrSF LowQualFinSF GrLivArea BsmtFullBath BsmtHalfBath FullBath</span></a>
+<a class="sourceLine" id="cb4-61" data-line-number="61"><span class="co">#&gt; 1:      856      854            0      1710            1            0        2</span></a>
+<a class="sourceLine" id="cb4-62" data-line-number="62"><span class="co">#&gt; 2:     1262        0            0      1262            0            1        2</span></a>
+<a class="sourceLine" id="cb4-63" data-line-number="63"><span class="co">#&gt; 3:      920      866            0      1786            1            0        2</span></a>
+<a class="sourceLine" id="cb4-64" data-line-number="64"><span class="co">#&gt; 4:      961      756            0      1717            1            0        1</span></a>
+<a class="sourceLine" id="cb4-65" data-line-number="65"><span class="co">#&gt; 5:     1145     1053            0      2198            1            0        2</span></a>
+<a class="sourceLine" id="cb4-66" data-line-number="66"><span class="co">#&gt; 6:      796      566            0      1362            1            0        1</span></a>
+<a class="sourceLine" id="cb4-67" data-line-number="67"><span class="co">#&gt;    HalfBath BedroomAbvGr KitchenAbvGr KitchenQual TotRmsAbvGrd Functional</span></a>
+<a class="sourceLine" id="cb4-68" data-line-number="68"><span class="co">#&gt; 1:        1            3            1          Gd            8        Typ</span></a>
+<a class="sourceLine" id="cb4-69" data-line-number="69"><span class="co">#&gt; 2:        0            3            1          TA            6        Typ</span></a>
+<a class="sourceLine" id="cb4-70" data-line-number="70"><span class="co">#&gt; 3:        1            3            1          Gd            6        Typ</span></a>
+<a class="sourceLine" id="cb4-71" data-line-number="71"><span class="co">#&gt; 4:        0            3            1          Gd            7        Typ</span></a>
+<a class="sourceLine" id="cb4-72" data-line-number="72"><span class="co">#&gt; 5:        1            4            1          Gd            9        Typ</span></a>
+<a class="sourceLine" id="cb4-73" data-line-number="73"><span class="co">#&gt; 6:        1            1            1          TA            5        Typ</span></a>
+<a class="sourceLine" id="cb4-74" data-line-number="74"><span class="co">#&gt;    Fireplaces FireplaceQu GarageType GarageYrBlt GarageFinish GarageCars</span></a>
+<a class="sourceLine" id="cb4-75" data-line-number="75"><span class="co">#&gt; 1:          0        &lt;NA&gt;     Attchd        2003          RFn          2</span></a>
+<a class="sourceLine" id="cb4-76" data-line-number="76"><span class="co">#&gt; 2:          1          TA     Attchd        1976          RFn          2</span></a>
+<a class="sourceLine" id="cb4-77" data-line-number="77"><span class="co">#&gt; 3:          1          TA     Attchd        2001          RFn          2</span></a>
+<a class="sourceLine" id="cb4-78" data-line-number="78"><span class="co">#&gt; 4:          1          Gd     Detchd        1998          Unf          3</span></a>
+<a class="sourceLine" id="cb4-79" data-line-number="79"><span class="co">#&gt; 5:          1          TA     Attchd        2000          RFn          3</span></a>
+<a class="sourceLine" id="cb4-80" data-line-number="80"><span class="co">#&gt; 6:          0        &lt;NA&gt;     Attchd        1993          Unf          2</span></a>
+<a class="sourceLine" id="cb4-81" data-line-number="81"><span class="co">#&gt;    GarageArea GarageQual GarageCond PavedDrive WoodDeckSF OpenPorchSF</span></a>
+<a class="sourceLine" id="cb4-82" data-line-number="82"><span class="co">#&gt; 1:        548         TA         TA          Y          0          61</span></a>
+<a class="sourceLine" id="cb4-83" data-line-number="83"><span class="co">#&gt; 2:        460         TA         TA          Y        298           0</span></a>
+<a class="sourceLine" id="cb4-84" data-line-number="84"><span class="co">#&gt; 3:        608         TA         TA          Y          0          42</span></a>
+<a class="sourceLine" id="cb4-85" data-line-number="85"><span class="co">#&gt; 4:        642         TA         TA          Y          0          35</span></a>
+<a class="sourceLine" id="cb4-86" data-line-number="86"><span class="co">#&gt; 5:        836         TA         TA          Y        192          84</span></a>
+<a class="sourceLine" id="cb4-87" data-line-number="87"><span class="co">#&gt; 6:        480         TA         TA          Y         40          30</span></a>
+<a class="sourceLine" id="cb4-88" data-line-number="88"><span class="co">#&gt;    EnclosedPorch 3SsnPorch ScreenPorch PoolArea PoolQC Fence MiscFeature</span></a>
+<a class="sourceLine" id="cb4-89" data-line-number="89"><span class="co">#&gt; 1:             0         0           0        0   &lt;NA&gt;  &lt;NA&gt;        &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-90" data-line-number="90"><span class="co">#&gt; 2:             0         0           0        0   &lt;NA&gt;  &lt;NA&gt;        &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-91" data-line-number="91"><span class="co">#&gt; 3:             0         0           0        0   &lt;NA&gt;  &lt;NA&gt;        &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-92" data-line-number="92"><span class="co">#&gt; 4:           272         0           0        0   &lt;NA&gt;  &lt;NA&gt;        &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-93" data-line-number="93"><span class="co">#&gt; 5:             0         0           0        0   &lt;NA&gt;  &lt;NA&gt;        &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-94" data-line-number="94"><span class="co">#&gt; 6:             0       320           0        0   &lt;NA&gt; MnPrv        Shed</span></a>
+<a class="sourceLine" id="cb4-95" data-line-number="95"><span class="co">#&gt;    MiscVal MoSold YrSold SaleType SaleCondition SalePrice</span></a>
+<a class="sourceLine" id="cb4-96" data-line-number="96"><span class="co">#&gt; 1:       0      2   2008       WD        Normal    208500</span></a>
+<a class="sourceLine" id="cb4-97" data-line-number="97"><span class="co">#&gt; 2:       0      5   2007       WD        Normal    181500</span></a>
+<a class="sourceLine" id="cb4-98" data-line-number="98"><span class="co">#&gt; 3:       0      9   2008       WD        Normal    223500</span></a>
+<a class="sourceLine" id="cb4-99" data-line-number="99"><span class="co">#&gt; 4:       0      2   2006       WD       Abnorml    140000</span></a>
+<a class="sourceLine" id="cb4-100" data-line-number="100"><span class="co">#&gt; 5:       0     12   2008       WD        Normal    250000</span></a>
+<a class="sourceLine" id="cb4-101" data-line-number="101"><span class="co">#&gt; 6:     700     10   2009       WD        Normal    143000</span></a>
+<a class="sourceLine" id="cb4-102" data-line-number="102"></a>
+<a class="sourceLine" id="cb4-103" data-line-number="103">split &lt;-<span class="st"> </span><span class="kw">createDataPartition</span>(<span class="dt">y =</span> reg_train<span class="op">$</span>SalePrice, <span class="dt">p =</span> <span class="fl">0.7</span>)</a>
+<a class="sourceLine" id="cb4-104" data-line-number="104">xtrain &lt;-<span class="st"> </span>reg_train[split<span class="op">$</span>Resample1]</a>
+<a class="sourceLine" id="cb4-105" data-line-number="105">xtest &lt;-<span class="st"> </span>reg_train[<span class="op">!</span>split<span class="op">$</span>Resample1]</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># remove features with 90% or more missing values</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co"># we will also remove the Id column because it doesn't contain</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co"># any useful information</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">na_cols &lt;-<span class="st"> </span><span class="kw">colSums</span>(<span class="kw">is.na</span>(xtrain)) <span class="op">/</span><span class="st"> </span><span class="kw">nrow</span>(xtrain)</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">na_cols &lt;-<span class="st"> </span><span class="kw">names</span>(na_cols[<span class="kw">which</span>(na_cols <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.9</span>)])</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">xtrain[, <span class="kw">c</span>(na_cols, <span class="st">&quot;Id&quot;</span>) <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="ot">NULL</span>]</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">xtest[, <span class="kw">c</span>(na_cols, <span class="st">&quot;Id&quot;</span>) <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="ot">NULL</span>]</a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co"># encode categorical variables</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11">cat_cols &lt;-<span class="st"> </span><span class="kw">names</span>(xtrain)[<span class="kw">sapply</span>(xtrain, is.character)]</a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="cf">for</span>(c <span class="cf">in</span> cat_cols){</a>
+<a class="sourceLine" id="cb5-14" data-line-number="14">    lbl &lt;-<span class="st"> </span>LabelEncoder<span class="op">$</span><span class="kw">new</span>()</a>
+<a class="sourceLine" id="cb5-15" data-line-number="15">    lbl<span class="op">$</span><span class="kw">fit</span>(<span class="kw">c</span>(xtrain[[c]], xtest[[c]]))</a>
+<a class="sourceLine" id="cb5-16" data-line-number="16">    xtrain[[c]] &lt;-<span class="st"> </span>lbl<span class="op">$</span><span class="kw">transform</span>(xtrain[[c]])</a>
+<a class="sourceLine" id="cb5-17" data-line-number="17">    xtest[[c]] &lt;-<span class="st"> </span>lbl<span class="op">$</span><span class="kw">transform</span>(xtest[[c]])</a>
+<a class="sourceLine" id="cb5-18" data-line-number="18">}</a>
+<a class="sourceLine" id="cb5-19" data-line-number="19"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-20" data-line-number="20"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-21" data-line-number="21"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-22" data-line-number="22"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-23" data-line-number="23"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-24" data-line-number="24"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-25" data-line-number="25"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-26" data-line-number="26"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-27" data-line-number="27"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-28" data-line-number="28"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-29" data-line-number="29"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-30" data-line-number="30"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-31" data-line-number="31"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-32" data-line-number="32"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-33" data-line-number="33"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-34" data-line-number="34"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-35" data-line-number="35"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-36" data-line-number="36"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-37" data-line-number="37"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-38" data-line-number="38"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-39" data-line-number="39"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-40" data-line-number="40"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-41" data-line-number="41"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-42" data-line-number="42"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-43" data-line-number="43"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-44" data-line-number="44"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-45" data-line-number="45"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-46" data-line-number="46"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-47" data-line-number="47"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-48" data-line-number="48"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-49" data-line-number="49"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-50" data-line-number="50"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-51" data-line-number="51"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-52" data-line-number="52"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-53" data-line-number="53"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-54" data-line-number="54"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-55" data-line-number="55"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA' </span></a>
+<a class="sourceLine" id="cb5-56" data-line-number="56"><span class="co">#&gt; The data contains NA values. Imputing NA with 'NA'</span></a>
+<a class="sourceLine" id="cb5-57" data-line-number="57"></a>
+<a class="sourceLine" id="cb5-58" data-line-number="58"><span class="co"># removing noise column</span></a>
+<a class="sourceLine" id="cb5-59" data-line-number="59">noise &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">'GrLivArea'</span>,<span class="st">'TotalBsmtSF'</span>)</a>
+<a class="sourceLine" id="cb5-60" data-line-number="60"></a>
+<a class="sourceLine" id="cb5-61" data-line-number="61">xtrain[, <span class="kw">c</span>(noise) <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="ot">NULL</span>]</a>
+<a class="sourceLine" id="cb5-62" data-line-number="62">xtest[, <span class="kw">c</span>(noise) <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="ot">NULL</span>]</a>
+<a class="sourceLine" id="cb5-63" data-line-number="63"></a>
+<a class="sourceLine" id="cb5-64" data-line-number="64"><span class="co"># fill missing value with  -1</span></a>
+<a class="sourceLine" id="cb5-65" data-line-number="65">xtrain[<span class="kw">is.na</span>(xtrain)] &lt;-<span class="st"> </span><span class="dv">-1</span></a>
+<a class="sourceLine" id="cb5-66" data-line-number="66">xtest[<span class="kw">is.na</span>(xtest)] &lt;-<span class="st"> </span><span class="dv">-1</span></a></code></pre></div>
+<p><strong>KNN Regression</strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">knn &lt;-<span class="st"> </span>KNNTrainer<span class="op">$</span><span class="kw">new</span>(<span class="dt">k =</span> <span class="dv">2</span>,<span class="dt">prob =</span> T,<span class="dt">type =</span> <span class="st">'reg'</span>)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">knn<span class="op">$</span><span class="kw">fit</span>(<span class="dt">train =</span> xtrain, <span class="dt">test =</span> xtest, <span class="dt">y =</span> <span class="st">'SalePrice'</span>)</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">probs &lt;-<span class="st"> </span>knn<span class="op">$</span><span class="kw">predict</span>(<span class="dt">type =</span> <span class="st">'prob'</span>)</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">labels &lt;-<span class="st"> </span>knn<span class="op">$</span><span class="kw">predict</span>(<span class="dt">type=</span><span class="st">'raw'</span>)</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="kw">rmse</span>(<span class="dt">actual =</span> xtest<span class="op">$</span>SalePrice, <span class="dt">predicted=</span>labels)</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt; [1] 49763.34</span></a></code></pre></div>
+<p><strong>SVM Regression</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">svm &lt;-<span class="st"> </span>SVMTrainer<span class="op">$</span><span class="kw">new</span>()</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">svm<span class="op">$</span><span class="kw">fit</span>(xtrain, <span class="st">'SalePrice'</span>)</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">pred &lt;-<span class="st"> </span>svm<span class="op">$</span><span class="kw">predict</span>(xtest)</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="kw">rmse</span>(<span class="dt">actual =</span> xtest<span class="op">$</span>SalePrice, <span class="dt">predicted =</span> pred)</a></code></pre></div>
+<p><strong>Simple Regresison</strong></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">lf &lt;-<span class="st"> </span>LMTrainer<span class="op">$</span><span class="kw">new</span>(<span class="dt">family=</span><span class="st">&quot;gaussian&quot;</span>)</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">lf<span class="op">$</span><span class="kw">fit</span>(<span class="dt">X =</span> xtrain, <span class="dt">y =</span> <span class="st">&quot;SalePrice&quot;</span>)</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw">summary</span>(lf<span class="op">$</span>model)</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="co">#&gt; Call:</span></a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="co">#&gt; stats::glm(formula = f, family = self$family, data = X, weights = self$weights)</span></a>
+<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb8-8" data-line-number="8"><span class="co">#&gt; Deviance Residuals: </span></a>
+<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="co">#&gt;     Min       1Q   Median       3Q      Max  </span></a>
+<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="co">#&gt; -342200   -14216    -1480    13463   245838  </span></a>
+<a class="sourceLine" id="cb8-11" data-line-number="11"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="co">#&gt; Coefficients:</span></a>
+<a class="sourceLine" id="cb8-13" data-line-number="13"><span class="co">#&gt;                 Estimate Std. Error t value Pr(&gt;|t|)    </span></a>
+<a class="sourceLine" id="cb8-14" data-line-number="14"><span class="co">#&gt; (Intercept)   -2.305e+05  1.632e+06  -0.141 0.887743    </span></a>
+<a class="sourceLine" id="cb8-15" data-line-number="15"><span class="co">#&gt; MSSubClass    -1.813e+02  5.370e+01  -3.375 0.000767 ***</span></a>
+<a class="sourceLine" id="cb8-16" data-line-number="16"><span class="co">#&gt; MSZoning       1.225e+03  1.759e+03   0.696 0.486333    </span></a>
+<a class="sourceLine" id="cb8-17" data-line-number="17"><span class="co">#&gt; LotFrontage   -7.683e+00  3.326e+01  -0.231 0.817388    </span></a>
+<a class="sourceLine" id="cb8-18" data-line-number="18"><span class="co">#&gt; LotArea        2.416e-01  1.190e-01   2.031 0.042486 *  </span></a>
+<a class="sourceLine" id="cb8-19" data-line-number="19"><span class="co">#&gt; Street        -2.528e+04  1.577e+04  -1.603 0.109193    </span></a>
+<a class="sourceLine" id="cb8-20" data-line-number="20"><span class="co">#&gt; LotShape       2.484e+03  2.084e+03   1.192 0.233505    </span></a>
+<a class="sourceLine" id="cb8-21" data-line-number="21"><span class="co">#&gt; LandContour   -3.151e+03  1.966e+03  -1.603 0.109201    </span></a>
+<a class="sourceLine" id="cb8-22" data-line-number="22"><span class="co">#&gt; Utilities     -6.564e+04  3.447e+04  -1.904 0.057157 .  </span></a>
+<a class="sourceLine" id="cb8-23" data-line-number="23"><span class="co">#&gt; LotConfig      1.708e+03  1.457e+03   1.173 0.241265    </span></a>
+<a class="sourceLine" id="cb8-24" data-line-number="24"><span class="co">#&gt; LandSlope      1.137e+04  4.738e+03   2.400 0.016564 *  </span></a>
+<a class="sourceLine" id="cb8-25" data-line-number="25"><span class="co">#&gt; Neighborhood   3.162e+02  2.001e+02   1.580 0.114487    </span></a>
+<a class="sourceLine" id="cb8-26" data-line-number="26"><span class="co">#&gt; Condition1    -2.336e+03  7.744e+02  -3.017 0.002625 ** </span></a>
+<a class="sourceLine" id="cb8-27" data-line-number="27"><span class="co">#&gt; Condition2    -1.040e+04  2.956e+03  -3.517 0.000457 ***</span></a>
+<a class="sourceLine" id="cb8-28" data-line-number="28"><span class="co">#&gt; BldgType      -7.246e+02  2.121e+03  -0.342 0.732673    </span></a>
+<a class="sourceLine" id="cb8-29" data-line-number="29"><span class="co">#&gt; HouseStyle     1.270e+03  1.135e+03   1.119 0.263355    </span></a>
+<a class="sourceLine" id="cb8-30" data-line-number="30"><span class="co">#&gt; OverallQual    1.537e+04  1.446e+03  10.630  &lt; 2e-16 ***</span></a>
+<a class="sourceLine" id="cb8-31" data-line-number="31"><span class="co">#&gt; OverallCond    6.011e+03  1.273e+03   4.720 2.71e-06 ***</span></a>
+<a class="sourceLine" id="cb8-32" data-line-number="32"><span class="co">#&gt; YearBuilt      4.013e+02  8.225e+01   4.879 1.25e-06 ***</span></a>
+<a class="sourceLine" id="cb8-33" data-line-number="33"><span class="co">#&gt; YearRemodAdd   1.197e+02  8.127e+01   1.473 0.141139    </span></a>
+<a class="sourceLine" id="cb8-34" data-line-number="34"><span class="co">#&gt; RoofStyle      7.258e+03  2.051e+03   3.539 0.000421 ***</span></a>
+<a class="sourceLine" id="cb8-35" data-line-number="35"><span class="co">#&gt; RoofMatl      -2.095e+04  2.710e+03  -7.732 2.69e-14 ***</span></a>
+<a class="sourceLine" id="cb8-36" data-line-number="36"><span class="co">#&gt; Exterior1st   -2.725e+02  5.223e+02  -0.522 0.602018    </span></a>
+<a class="sourceLine" id="cb8-37" data-line-number="37"><span class="co">#&gt; Exterior2nd    3.827e+02  5.561e+02   0.688 0.491527    </span></a>
+<a class="sourceLine" id="cb8-38" data-line-number="38"><span class="co">#&gt; MasVnrType     3.070e+03  1.659e+03   1.851 0.064529 .  </span></a>
+<a class="sourceLine" id="cb8-39" data-line-number="39"><span class="co">#&gt; MasVnrArea     2.379e+01  7.045e+00   3.377 0.000762 ***</span></a>
+<a class="sourceLine" id="cb8-40" data-line-number="40"><span class="co">#&gt; ExterQual      2.751e+03  2.423e+03   1.136 0.256450    </span></a>
+<a class="sourceLine" id="cb8-41" data-line-number="41"><span class="co">#&gt; ExterCond      1.855e+03  2.697e+03   0.688 0.491792    </span></a>
+<a class="sourceLine" id="cb8-42" data-line-number="42"><span class="co">#&gt; Foundation    -6.744e+02  1.041e+03  -0.648 0.517211    </span></a>
+<a class="sourceLine" id="cb8-43" data-line-number="43"><span class="co">#&gt; BsmtQual       4.414e+03  1.504e+03   2.936 0.003408 ** </span></a>
+<a class="sourceLine" id="cb8-44" data-line-number="44"><span class="co">#&gt; BsmtCond      -2.998e+03  2.060e+03  -1.456 0.145804    </span></a>
+<a class="sourceLine" id="cb8-45" data-line-number="45"><span class="co">#&gt; BsmtExposure   5.088e+03  1.009e+03   5.044 5.47e-07 ***</span></a>
+<a class="sourceLine" id="cb8-46" data-line-number="46"><span class="co">#&gt; BsmtFinType1  -7.513e+02  8.441e+02  -0.890 0.373714    </span></a>
+<a class="sourceLine" id="cb8-47" data-line-number="47"><span class="co">#&gt; BsmtFinSF1     5.249e+00  5.935e+00   0.884 0.376696    </span></a>
+<a class="sourceLine" id="cb8-48" data-line-number="48"><span class="co">#&gt; BsmtFinType2  -2.122e+03  1.443e+03  -1.471 0.141549    </span></a>
+<a class="sourceLine" id="cb8-49" data-line-number="49"><span class="co">#&gt; BsmtFinSF2     1.701e+01  9.997e+00   1.702 0.089119 .  </span></a>
+<a class="sourceLine" id="cb8-50" data-line-number="50"><span class="co">#&gt; BsmtUnfSF      3.625e+00  5.608e+00   0.647 0.518111    </span></a>
+<a class="sourceLine" id="cb8-51" data-line-number="51"><span class="co">#&gt; Heating        4.859e+03  5.226e+03   0.930 0.352707    </span></a>
+<a class="sourceLine" id="cb8-52" data-line-number="52"><span class="co">#&gt; HeatingQC     -2.789e+03  1.473e+03  -1.893 0.058691 .  </span></a>
+<a class="sourceLine" id="cb8-53" data-line-number="53"><span class="co">#&gt; CentralAir     9.743e+03  5.777e+03   1.686 0.092059 .  </span></a>
+<a class="sourceLine" id="cb8-54" data-line-number="54"><span class="co">#&gt; Electrical     1.737e+03  1.510e+03   1.150 0.250232    </span></a>
+<a class="sourceLine" id="cb8-55" data-line-number="55"><span class="co">#&gt; `1stFlrSF`     4.560e+01  7.435e+00   6.134 1.26e-09 ***</span></a>
+<a class="sourceLine" id="cb8-56" data-line-number="56"><span class="co">#&gt; `2ndFlrSF`     5.598e+01  6.169e+00   9.074  &lt; 2e-16 ***</span></a>
+<a class="sourceLine" id="cb8-57" data-line-number="57"><span class="co">#&gt; LowQualFinSF   4.220e+01  2.107e+01   2.003 0.045452 *  </span></a>
+<a class="sourceLine" id="cb8-58" data-line-number="58"><span class="co">#&gt; BsmtFullBath   9.524e+03  3.083e+03   3.089 0.002064 ** </span></a>
+<a class="sourceLine" id="cb8-59" data-line-number="59"><span class="co">#&gt; BsmtHalfBath   4.079e+03  4.459e+03   0.915 0.360529    </span></a>
+<a class="sourceLine" id="cb8-60" data-line-number="60"><span class="co">#&gt; FullBath       6.131e+03  3.273e+03   1.873 0.061336 .  </span></a>
+<a class="sourceLine" id="cb8-61" data-line-number="61"><span class="co">#&gt; HalfBath      -2.286e+03  3.030e+03  -0.754 0.450806    </span></a>
+<a class="sourceLine" id="cb8-62" data-line-number="62"><span class="co">#&gt; BedroomAbvGr  -5.536e+03  1.937e+03  -2.858 0.004359 ** </span></a>
+<a class="sourceLine" id="cb8-63" data-line-number="63"><span class="co">#&gt; KitchenAbvGr  -1.535e+04  6.145e+03  -2.498 0.012660 *  </span></a>
+<a class="sourceLine" id="cb8-64" data-line-number="64"><span class="co">#&gt; KitchenQual    8.386e+03  1.564e+03   5.363 1.03e-07 ***</span></a>
+<a class="sourceLine" id="cb8-65" data-line-number="65"><span class="co">#&gt; TotRmsAbvGrd   2.330e+03  1.445e+03   1.613 0.107047    </span></a>
+<a class="sourceLine" id="cb8-66" data-line-number="66"><span class="co">#&gt; Functional    -4.940e+03  1.530e+03  -3.229 0.001285 ** </span></a>
+<a class="sourceLine" id="cb8-67" data-line-number="67"><span class="co">#&gt; Fireplaces    -1.561e+03  2.673e+03  -0.584 0.559417    </span></a>
+<a class="sourceLine" id="cb8-68" data-line-number="68"><span class="co">#&gt; FireplaceQu    3.874e+03  1.370e+03   2.827 0.004799 ** </span></a>
+<a class="sourceLine" id="cb8-69" data-line-number="69"><span class="co">#&gt; GarageType    -1.041e+03  9.860e+02  -1.056 0.291409    </span></a>
+<a class="sourceLine" id="cb8-70" data-line-number="70"><span class="co">#&gt; GarageYrBlt    1.124e+00  5.971e+00   0.188 0.850699    </span></a>
+<a class="sourceLine" id="cb8-71" data-line-number="71"><span class="co">#&gt; GarageFinish   4.476e+02  1.517e+03   0.295 0.767971    </span></a>
+<a class="sourceLine" id="cb8-72" data-line-number="72"><span class="co">#&gt; GarageCars     1.296e+04  3.387e+03   3.827 0.000138 ***</span></a>
+<a class="sourceLine" id="cb8-73" data-line-number="73"><span class="co">#&gt; GarageArea     1.308e+01  1.145e+01   1.143 0.253427    </span></a>
+<a class="sourceLine" id="cb8-74" data-line-number="74"><span class="co">#&gt; GarageQual     7.405e+03  3.456e+03   2.143 0.032401 *  </span></a>
+<a class="sourceLine" id="cb8-75" data-line-number="75"><span class="co">#&gt; GarageCond    -9.136e+02  2.294e+03  -0.398 0.690543    </span></a>
+<a class="sourceLine" id="cb8-76" data-line-number="76"><span class="co">#&gt; PavedDrive    -3.015e+03  3.372e+03  -0.894 0.371518    </span></a>
+<a class="sourceLine" id="cb8-77" data-line-number="77"><span class="co">#&gt; WoodDeckSF     2.585e+01  8.821e+00   2.930 0.003469 ** </span></a>
+<a class="sourceLine" id="cb8-78" data-line-number="78"><span class="co">#&gt; OpenPorchSF   -7.037e-01  1.730e+01  -0.041 0.967564    </span></a>
+<a class="sourceLine" id="cb8-79" data-line-number="79"><span class="co">#&gt; EnclosedPorch -7.141e+00  2.055e+01  -0.347 0.728358    </span></a>
+<a class="sourceLine" id="cb8-80" data-line-number="80"><span class="co">#&gt; `3SsnPorch`    5.197e+01  4.075e+01   1.275 0.202543    </span></a>
+<a class="sourceLine" id="cb8-81" data-line-number="81"><span class="co">#&gt; ScreenPorch    6.234e+01  1.879e+01   3.317 0.000943 ***</span></a>
+<a class="sourceLine" id="cb8-82" data-line-number="82"><span class="co">#&gt; PoolArea       3.706e+01  2.669e+01   1.389 0.165266    </span></a>
+<a class="sourceLine" id="cb8-83" data-line-number="83"><span class="co">#&gt; Fence         -2.369e+03  1.358e+03  -1.745 0.081312 .  </span></a>
+<a class="sourceLine" id="cb8-84" data-line-number="84"><span class="co">#&gt; MiscVal       -7.650e-01  2.015e+00  -0.380 0.704273    </span></a>
+<a class="sourceLine" id="cb8-85" data-line-number="85"><span class="co">#&gt; MoSold        -3.008e+02  3.920e+02  -0.767 0.443126    </span></a>
+<a class="sourceLine" id="cb8-86" data-line-number="86"><span class="co">#&gt; YrSold        -4.324e+02  8.147e+02  -0.531 0.595781    </span></a>
+<a class="sourceLine" id="cb8-87" data-line-number="87"><span class="co">#&gt; SaleType       2.057e+03  1.339e+03   1.536 0.124885    </span></a>
+<a class="sourceLine" id="cb8-88" data-line-number="88"><span class="co">#&gt; SaleCondition  1.024e+03  1.241e+03   0.826 0.409259    </span></a>
+<a class="sourceLine" id="cb8-89" data-line-number="89"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb8-90" data-line-number="90"><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></a>
+<a class="sourceLine" id="cb8-91" data-line-number="91"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb8-92" data-line-number="92"><span class="co">#&gt; (Dispersion parameter for gaussian family taken to be 1042176816)</span></a>
+<a class="sourceLine" id="cb8-93" data-line-number="93"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb8-94" data-line-number="94"><span class="co">#&gt;     Null deviance: 6.5520e+12  on 1023  degrees of freedom</span></a>
+<a class="sourceLine" id="cb8-95" data-line-number="95"><span class="co">#&gt; Residual deviance: 9.8903e+11  on  949  degrees of freedom</span></a>
+<a class="sourceLine" id="cb8-96" data-line-number="96"><span class="co">#&gt; AIC: 24243</span></a>
+<a class="sourceLine" id="cb8-97" data-line-number="97"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb8-98" data-line-number="98"><span class="co">#&gt; Number of Fisher Scoring iterations: 2</span></a>
+<a class="sourceLine" id="cb8-99" data-line-number="99">predictions &lt;-<span class="st"> </span>lf<span class="op">$</span><span class="kw">predict</span>(<span class="dt">df =</span> xtest)</a>
+<a class="sourceLine" id="cb8-100" data-line-number="100"><span class="kw">rmse</span>(<span class="dt">actual =</span> xtest<span class="op">$</span>SalePrice, <span class="dt">predicted =</span> predictions)</a>
+<a class="sourceLine" id="cb8-101" data-line-number="101"><span class="co">#&gt; [1] 31444.3</span></a></code></pre></div>
+<p><strong>Lasso Regression</strong></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">lf &lt;-<span class="st"> </span>LMTrainer<span class="op">$</span><span class="kw">new</span>(<span class="dt">family =</span> <span class="st">&quot;gaussian&quot;</span>, <span class="dt">alpha =</span> <span class="dv">1</span>, <span class="dt">lambda =</span> <span class="dv">1000</span>)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">lf<span class="op">$</span><span class="kw">fit</span>(<span class="dt">X =</span> xtrain, <span class="dt">y =</span> <span class="st">&quot;SalePrice&quot;</span>)</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">predictions &lt;-<span class="st"> </span>lf<span class="op">$</span><span class="kw">predict</span>(<span class="dt">df =</span> xtest)</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="kw">rmse</span>(<span class="dt">actual =</span> xtest<span class="op">$</span>SalePrice, <span class="dt">predicted =</span> predictions)</a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="co">#&gt; [1] 37348.82</span></a></code></pre></div>
+<p><strong>Ridge Regression</strong></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">lf &lt;-<span class="st"> </span>LMTrainer<span class="op">$</span><span class="kw">new</span>(<span class="dt">family =</span> <span class="st">&quot;gaussian&quot;</span>, <span class="dt">alpha=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">lf<span class="op">$</span><span class="kw">fit</span>(<span class="dt">X =</span> xtrain, <span class="dt">y =</span> <span class="st">&quot;SalePrice&quot;</span>)</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">predictions &lt;-<span class="st"> </span>lf<span class="op">$</span><span class="kw">predict</span>(<span class="dt">df =</span> xtest)</a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="kw">rmse</span>(<span class="dt">actual =</span> xtest<span class="op">$</span>SalePrice, <span class="dt">predicted =</span> predictions)</a>
+<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="co">#&gt; [1] 37455.88</span></a></code></pre></div>
+<p><strong>Logistic Regression with CV</strong></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">lf &lt;-<span class="st"> </span>LMTrainer<span class="op">$</span><span class="kw">new</span>(<span class="dt">family =</span> <span class="st">&quot;gaussian&quot;</span>)</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">lf<span class="op">$</span><span class="kw">cv_model</span>(<span class="dt">X =</span> xtrain, <span class="dt">y =</span> <span class="st">'SalePrice'</span>, <span class="dt">nfolds =</span> <span class="dv">5</span>, <span class="dt">parallel =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">predictions &lt;-<span class="st"> </span>lf<span class="op">$</span><span class="kw">cv_predict</span>(<span class="dt">df =</span> xtest)</a>
+<a class="sourceLine" id="cb11-4" data-line-number="4">coefs &lt;-<span class="st"> </span>lf<span class="op">$</span><span class="kw">get_importance</span>()</a>
+<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="kw">rmse</span>(<span class="dt">actual =</span> xtest<span class="op">$</span>SalePrice, <span class="dt">predicted =</span> predictions)</a></code></pre></div>
+<p><strong>Random Forest</strong></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">rf &lt;-<span class="st"> </span>RFTrainer<span class="op">$</span><span class="kw">new</span>(<span class="dt">n_estimators =</span> <span class="dv">500</span>,<span class="dt">classification =</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2">rf<span class="op">$</span><span class="kw">fit</span>(<span class="dt">X =</span> xtrain, <span class="dt">y =</span> <span class="st">&quot;SalePrice&quot;</span>)</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3">pred &lt;-<span class="st"> </span>rf<span class="op">$</span><span class="kw">predict</span>(<span class="dt">df =</span> xtest)</a>
+<a class="sourceLine" id="cb12-4" data-line-number="4">rf<span class="op">$</span><span class="kw">get_importance</span>()</a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="co">#&gt;               tmp.order.tmp..decreasing...TRUE..</span></a>
+<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="co">#&gt; OverallQual                         806429001574</span></a>
+<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="co">#&gt; GarageCars                          514930089326</span></a>
+<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="co">#&gt; GarageArea                          477243445509</span></a>
+<a class="sourceLine" id="cb12-9" data-line-number="9"><span class="co">#&gt; 1stFlrSF                            432517479568</span></a>
+<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="co">#&gt; YearBuilt                           358248448858</span></a>
+<a class="sourceLine" id="cb12-11" data-line-number="11"><span class="co">#&gt; FullBath                            301425527294</span></a>
+<a class="sourceLine" id="cb12-12" data-line-number="12"><span class="co">#&gt; KitchenQual                         300103186644</span></a>
+<a class="sourceLine" id="cb12-13" data-line-number="13"><span class="co">#&gt; GarageYrBlt                         272675268003</span></a>
+<a class="sourceLine" id="cb12-14" data-line-number="14"><span class="co">#&gt; 2ndFlrSF                            258245739868</span></a>
+<a class="sourceLine" id="cb12-15" data-line-number="15"><span class="co">#&gt; ExterQual                           223237069256</span></a>
+<a class="sourceLine" id="cb12-16" data-line-number="16"><span class="co">#&gt; BsmtFinSF1                          198350632427</span></a>
+<a class="sourceLine" id="cb12-17" data-line-number="17"><span class="co">#&gt; TotRmsAbvGrd                        190770130705</span></a>
+<a class="sourceLine" id="cb12-18" data-line-number="18"><span class="co">#&gt; YearRemodAdd                        172029162481</span></a>
+<a class="sourceLine" id="cb12-19" data-line-number="19"><span class="co">#&gt; LotArea                             168886829326</span></a>
+<a class="sourceLine" id="cb12-20" data-line-number="20"><span class="co">#&gt; FireplaceQu                         167059277652</span></a>
+<a class="sourceLine" id="cb12-21" data-line-number="21"><span class="co">#&gt; Fireplaces                          161457140551</span></a>
+<a class="sourceLine" id="cb12-22" data-line-number="22"><span class="co">#&gt; MasVnrArea                          123525744395</span></a>
+<a class="sourceLine" id="cb12-23" data-line-number="23"><span class="co">#&gt; BsmtQual                             98629991433</span></a>
+<a class="sourceLine" id="cb12-24" data-line-number="24"><span class="co">#&gt; OpenPorchSF                          90468152090</span></a>
+<a class="sourceLine" id="cb12-25" data-line-number="25"><span class="co">#&gt; LotFrontage                          85832302736</span></a>
+<a class="sourceLine" id="cb12-26" data-line-number="26"><span class="co">#&gt; WoodDeckSF                           77688299712</span></a>
+<a class="sourceLine" id="cb12-27" data-line-number="27"><span class="co">#&gt; HeatingQC                            67258379025</span></a>
+<a class="sourceLine" id="cb12-28" data-line-number="28"><span class="co">#&gt; Foundation                           65382098600</span></a>
+<a class="sourceLine" id="cb12-29" data-line-number="29"><span class="co">#&gt; BsmtUnfSF                            63289097509</span></a>
+<a class="sourceLine" id="cb12-30" data-line-number="30"><span class="co">#&gt; Neighborhood                         60544343321</span></a>
+<a class="sourceLine" id="cb12-31" data-line-number="31"><span class="co">#&gt; BedroomAbvGr                         55533166596</span></a>
+<a class="sourceLine" id="cb12-32" data-line-number="32"><span class="co">#&gt; BsmtFinType1                         50990775237</span></a>
+<a class="sourceLine" id="cb12-33" data-line-number="33"><span class="co">#&gt; GarageType                           41772112087</span></a>
+<a class="sourceLine" id="cb12-34" data-line-number="34"><span class="co">#&gt; Exterior2nd                          40330143410</span></a>
+<a class="sourceLine" id="cb12-35" data-line-number="35"><span class="co">#&gt; BsmtExposure                         40104367529</span></a>
+<a class="sourceLine" id="cb12-36" data-line-number="36"><span class="co">#&gt; MoSold                               38855636050</span></a>
+<a class="sourceLine" id="cb12-37" data-line-number="37"><span class="co">#&gt; MSSubClass                           38650931883</span></a>
+<a class="sourceLine" id="cb12-38" data-line-number="38"><span class="co">#&gt; OverallCond                          34833193956</span></a>
+<a class="sourceLine" id="cb12-39" data-line-number="39"><span class="co">#&gt; HalfBath                             32241782664</span></a>
+<a class="sourceLine" id="cb12-40" data-line-number="40"><span class="co">#&gt; HouseStyle                           29979016930</span></a>
+<a class="sourceLine" id="cb12-41" data-line-number="41"><span class="co">#&gt; Exterior1st                          29092430396</span></a>
+<a class="sourceLine" id="cb12-42" data-line-number="42"><span class="co">#&gt; LotShape                             26889365788</span></a>
+<a class="sourceLine" id="cb12-43" data-line-number="43"><span class="co">#&gt; GarageFinish                         26274340608</span></a>
+<a class="sourceLine" id="cb12-44" data-line-number="44"><span class="co">#&gt; RoofStyle                            26212549983</span></a>
+<a class="sourceLine" id="cb12-45" data-line-number="45"><span class="co">#&gt; YrSold                               23276775094</span></a>
+<a class="sourceLine" id="cb12-46" data-line-number="46"><span class="co">#&gt; BsmtFullBath                         20186362425</span></a>
+<a class="sourceLine" id="cb12-47" data-line-number="47"><span class="co">#&gt; SaleCondition                        18449885260</span></a>
+<a class="sourceLine" id="cb12-48" data-line-number="48"><span class="co">#&gt; PoolArea                             17713804419</span></a>
+<a class="sourceLine" id="cb12-49" data-line-number="49"><span class="co">#&gt; LandContour                          16429903396</span></a>
+<a class="sourceLine" id="cb12-50" data-line-number="50"><span class="co">#&gt; RoofMatl                             15416822915</span></a>
+<a class="sourceLine" id="cb12-51" data-line-number="51"><span class="co">#&gt; ScreenPorch                          15244718786</span></a>
+<a class="sourceLine" id="cb12-52" data-line-number="52"><span class="co">#&gt; MSZoning                             14675692653</span></a>
+<a class="sourceLine" id="cb12-53" data-line-number="53"><span class="co">#&gt; MasVnrType                           14550979527</span></a>
+<a class="sourceLine" id="cb12-54" data-line-number="54"><span class="co">#&gt; LandSlope                            12991083252</span></a>
+<a class="sourceLine" id="cb12-55" data-line-number="55"><span class="co">#&gt; BsmtHalfBath                         12809765117</span></a>
+<a class="sourceLine" id="cb12-56" data-line-number="56"><span class="co">#&gt; LotConfig                            12520012881</span></a>
+<a class="sourceLine" id="cb12-57" data-line-number="57"><span class="co">#&gt; GarageQual                           11739965065</span></a>
+<a class="sourceLine" id="cb12-58" data-line-number="58"><span class="co">#&gt; Fence                                11703049011</span></a>
+<a class="sourceLine" id="cb12-59" data-line-number="59"><span class="co">#&gt; Condition1                           10885036153</span></a>
+<a class="sourceLine" id="cb12-60" data-line-number="60"><span class="co">#&gt; SaleType                             10882105335</span></a>
+<a class="sourceLine" id="cb12-61" data-line-number="61"><span class="co">#&gt; BldgType                             10589459949</span></a>
+<a class="sourceLine" id="cb12-62" data-line-number="62"><span class="co">#&gt; BsmtCond                              9917213827</span></a>
+<a class="sourceLine" id="cb12-63" data-line-number="63"><span class="co">#&gt; BsmtFinSF2                            8289027381</span></a>
+<a class="sourceLine" id="cb12-64" data-line-number="64"><span class="co">#&gt; EnclosedPorch                         8152482434</span></a>
+<a class="sourceLine" id="cb12-65" data-line-number="65"><span class="co">#&gt; GarageCond                            7907840713</span></a>
+<a class="sourceLine" id="cb12-66" data-line-number="66"><span class="co">#&gt; CentralAir                            7824960809</span></a>
+<a class="sourceLine" id="cb12-67" data-line-number="67"><span class="co">#&gt; BsmtFinType2                          6972322859</span></a>
+<a class="sourceLine" id="cb12-68" data-line-number="68"><span class="co">#&gt; Functional                            5741981926</span></a>
+<a class="sourceLine" id="cb12-69" data-line-number="69"><span class="co">#&gt; KitchenAbvGr                          5656757289</span></a>
+<a class="sourceLine" id="cb12-70" data-line-number="70"><span class="co">#&gt; PavedDrive                            5094126962</span></a>
+<a class="sourceLine" id="cb12-71" data-line-number="71"><span class="co">#&gt; ExterCond                             4585540342</span></a>
+<a class="sourceLine" id="cb12-72" data-line-number="72"><span class="co">#&gt; 3SsnPorch                             3509837398</span></a>
+<a class="sourceLine" id="cb12-73" data-line-number="73"><span class="co">#&gt; Electrical                            3425486950</span></a>
+<a class="sourceLine" id="cb12-74" data-line-number="74"><span class="co">#&gt; LowQualFinSF                          3282677678</span></a>
+<a class="sourceLine" id="cb12-75" data-line-number="75"><span class="co">#&gt; Condition2                            2945720294</span></a>
+<a class="sourceLine" id="cb12-76" data-line-number="76"><span class="co">#&gt; Heating                               2073545813</span></a>
+<a class="sourceLine" id="cb12-77" data-line-number="77"><span class="co">#&gt; MiscVal                               1488548092</span></a>
+<a class="sourceLine" id="cb12-78" data-line-number="78"><span class="co">#&gt; Street                                 348080224</span></a>
+<a class="sourceLine" id="cb12-79" data-line-number="79"><span class="co">#&gt; Utilities                               23425353</span></a>
+<a class="sourceLine" id="cb12-80" data-line-number="80"><span class="kw">rmse</span>(<span class="dt">actual =</span> xtest<span class="op">$</span>SalePrice, <span class="dt">predicted =</span> pred)</a>
+<a class="sourceLine" id="cb12-81" data-line-number="81"><span class="co">#&gt; [1] 29082.98</span></a></code></pre></div>
+<p><strong>Xgboost</strong></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">xgb &lt;-<span class="st"> </span>XGBTrainer<span class="op">$</span><span class="kw">new</span>(<span class="dt">objective =</span> <span class="st">&quot;reg:linear&quot;</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">                      , <span class="dt">n_estimators =</span> <span class="dv">500</span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3">                      , <span class="dt">eval_metric =</span> <span class="st">&quot;rmse&quot;</span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4">                      , <span class="dt">maximize =</span> F</a>
+<a class="sourceLine" id="cb13-5" data-line-number="5">                      , <span class="dt">learning_rate =</span> <span class="fl">0.1</span></a>
+<a class="sourceLine" id="cb13-6" data-line-number="6">                      ,<span class="dt">max_depth =</span> <span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb13-7" data-line-number="7">xgb<span class="op">$</span><span class="kw">fit</span>(<span class="dt">X =</span> xtrain, <span class="dt">y =</span> <span class="st">&quot;SalePrice&quot;</span>, <span class="dt">valid =</span> xtest)</a>
+<a class="sourceLine" id="cb13-8" data-line-number="8"><span class="co">#&gt; converting the data into xgboost format..</span></a>
+<a class="sourceLine" id="cb13-9" data-line-number="9"><span class="co">#&gt; starting with training...</span></a>
+<a class="sourceLine" id="cb13-10" data-line-number="10"><span class="co">#&gt; [1]  train-rmse:179201.328125    val-rmse:177621.484375 </span></a>
+<a class="sourceLine" id="cb13-11" data-line-number="11"><span class="co">#&gt; Multiple eval metrics are present. Will use val_rmse for early stopping.</span></a>
+<a class="sourceLine" id="cb13-12" data-line-number="12"><span class="co">#&gt; Will train until val_rmse hasn't improved in 50 rounds.</span></a>
+<a class="sourceLine" id="cb13-13" data-line-number="13"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb13-14" data-line-number="14"><span class="co">#&gt; [51] train-rmse:8308.346680  val-rmse:26317.550781 </span></a>
+<a class="sourceLine" id="cb13-15" data-line-number="15"><span class="co">#&gt; [101]    train-rmse:4910.869141  val-rmse:25718.234375 </span></a>
+<a class="sourceLine" id="cb13-16" data-line-number="16"><span class="co">#&gt; [151]    train-rmse:3218.866211  val-rmse:25672.822266 </span></a>
+<a class="sourceLine" id="cb13-17" data-line-number="17"><span class="co">#&gt; Stopping. Best iteration:</span></a>
+<a class="sourceLine" id="cb13-18" data-line-number="18"><span class="co">#&gt; [131]    train-rmse:3860.479004  val-rmse:25638.552734</span></a>
+<a class="sourceLine" id="cb13-19" data-line-number="19">pred &lt;-<span class="st"> </span>xgb<span class="op">$</span><span class="kw">predict</span>(xtest)</a>
+<a class="sourceLine" id="cb13-20" data-line-number="20"><span class="kw">rmse</span>(<span class="dt">actual =</span> xtest<span class="op">$</span>SalePrice, <span class="dt">predicted =</span> pred)</a>
+<a class="sourceLine" id="cb13-21" data-line-number="21"><span class="co">#&gt; [1] 25638.56</span></a></code></pre></div>
+<p><strong>Grid Search</strong></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">xgb &lt;-<span class="st"> </span>XGBTrainer<span class="op">$</span><span class="kw">new</span>(<span class="dt">objective =</span><span class="st">&quot;reg:linear&quot;</span>)</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3">gst &lt;-GridSearchCV<span class="op">$</span><span class="kw">new</span>(<span class="dt">trainer =</span> xgb,</a>
+<a class="sourceLine" id="cb14-4" data-line-number="4">                             <span class="dt">parameters =</span> <span class="kw">list</span>(<span class="dt">n_estimators =</span> <span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">50</span>), <span class="dt">max_depth =</span> <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">2</span>)),</a>
+<a class="sourceLine" id="cb14-5" data-line-number="5">                             <span class="dt">n_folds =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb14-6" data-line-number="6">                             <span class="dt">scoring =</span> <span class="kw">c</span>(<span class="st">'accuracy'</span>,<span class="st">'auc'</span>))</a>
+<a class="sourceLine" id="cb14-7" data-line-number="7">gst<span class="op">$</span><span class="kw">fit</span>(xtrain, <span class="st">&quot;SalePrice&quot;</span>)</a>
+<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="co">#&gt; [1] &quot;entering grid search&quot;</span></a>
+<a class="sourceLine" id="cb14-9" data-line-number="9"><span class="co">#&gt; [1] &quot;In total, 4 models will be trained&quot;</span></a>
+<a class="sourceLine" id="cb14-10" data-line-number="10"><span class="co">#&gt; converting the data into xgboost format..</span></a>
+<a class="sourceLine" id="cb14-11" data-line-number="11"><span class="co">#&gt; starting with training...</span></a>
+<a class="sourceLine" id="cb14-12" data-line-number="12"><span class="co">#&gt; [1]  train-rmse:144640.171875 </span></a>
+<a class="sourceLine" id="cb14-13" data-line-number="13"><span class="co">#&gt; Will train until train_rmse hasn't improved in 50 rounds.</span></a>
+<a class="sourceLine" id="cb14-14" data-line-number="14"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb14-15" data-line-number="15"><span class="co">#&gt; [10] train-rmse:16937.876953</span></a>
+<a class="sourceLine" id="cb14-16" data-line-number="16"><span class="co">#&gt; converting the data into xgboost format..</span></a>
+<a class="sourceLine" id="cb14-17" data-line-number="17"><span class="co">#&gt; starting with training...</span></a>
+<a class="sourceLine" id="cb14-18" data-line-number="18"><span class="co">#&gt; [1]  train-rmse:138590.734375 </span></a>
+<a class="sourceLine" id="cb14-19" data-line-number="19"><span class="co">#&gt; Will train until train_rmse hasn't improved in 50 rounds.</span></a>
+<a class="sourceLine" id="cb14-20" data-line-number="20"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb14-21" data-line-number="21"><span class="co">#&gt; [10] train-rmse:15151.860352</span></a>
+<a class="sourceLine" id="cb14-22" data-line-number="22"><span class="co">#&gt; converting the data into xgboost format..</span></a>
+<a class="sourceLine" id="cb14-23" data-line-number="23"><span class="co">#&gt; starting with training...</span></a>
+<a class="sourceLine" id="cb14-24" data-line-number="24"><span class="co">#&gt; [1]  train-rmse:144085.812500 </span></a>
+<a class="sourceLine" id="cb14-25" data-line-number="25"><span class="co">#&gt; Will train until train_rmse hasn't improved in 50 rounds.</span></a>
+<a class="sourceLine" id="cb14-26" data-line-number="26"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb14-27" data-line-number="27"><span class="co">#&gt; [10] train-rmse:15885.150391</span></a>
+<a class="sourceLine" id="cb14-28" data-line-number="28"><span class="co">#&gt; converting the data into xgboost format..</span></a>
+<a class="sourceLine" id="cb14-29" data-line-number="29"><span class="co">#&gt; starting with training...</span></a>
+<a class="sourceLine" id="cb14-30" data-line-number="30"><span class="co">#&gt; [1]  train-rmse:144640.171875 </span></a>
+<a class="sourceLine" id="cb14-31" data-line-number="31"><span class="co">#&gt; Will train until train_rmse hasn't improved in 50 rounds.</span></a>
+<a class="sourceLine" id="cb14-32" data-line-number="32"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb14-33" data-line-number="33"><span class="co">#&gt; [50] train-rmse:3556.593506</span></a>
+<a class="sourceLine" id="cb14-34" data-line-number="34"><span class="co">#&gt; converting the data into xgboost format..</span></a>
+<a class="sourceLine" id="cb14-35" data-line-number="35"><span class="co">#&gt; starting with training...</span></a>
+<a class="sourceLine" id="cb14-36" data-line-number="36"><span class="co">#&gt; [1]  train-rmse:138590.734375 </span></a>
+<a class="sourceLine" id="cb14-37" data-line-number="37"><span class="co">#&gt; Will train until train_rmse hasn't improved in 50 rounds.</span></a>
+<a class="sourceLine" id="cb14-38" data-line-number="38"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb14-39" data-line-number="39"><span class="co">#&gt; [50] train-rmse:3428.140137</span></a>
+<a class="sourceLine" id="cb14-40" data-line-number="40"><span class="co">#&gt; converting the data into xgboost format..</span></a>
+<a class="sourceLine" id="cb14-41" data-line-number="41"><span class="co">#&gt; starting with training...</span></a>
+<a class="sourceLine" id="cb14-42" data-line-number="42"><span class="co">#&gt; [1]  train-rmse:144085.812500 </span></a>
+<a class="sourceLine" id="cb14-43" data-line-number="43"><span class="co">#&gt; Will train until train_rmse hasn't improved in 50 rounds.</span></a>
+<a class="sourceLine" id="cb14-44" data-line-number="44"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb14-45" data-line-number="45"><span class="co">#&gt; [50] train-rmse:3331.416748</span></a>
+<a class="sourceLine" id="cb14-46" data-line-number="46"><span class="co">#&gt; converting the data into xgboost format..</span></a>
+<a class="sourceLine" id="cb14-47" data-line-number="47"><span class="co">#&gt; starting with training...</span></a>
+<a class="sourceLine" id="cb14-48" data-line-number="48"><span class="co">#&gt; [1]  train-rmse:145535.093750 </span></a>
+<a class="sourceLine" id="cb14-49" data-line-number="49"><span class="co">#&gt; Will train until train_rmse hasn't improved in 50 rounds.</span></a>
+<a class="sourceLine" id="cb14-50" data-line-number="50"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb14-51" data-line-number="51"><span class="co">#&gt; [10] train-rmse:32374.402344</span></a>
+<a class="sourceLine" id="cb14-52" data-line-number="52"><span class="co">#&gt; converting the data into xgboost format..</span></a>
+<a class="sourceLine" id="cb14-53" data-line-number="53"><span class="co">#&gt; starting with training...</span></a>
+<a class="sourceLine" id="cb14-54" data-line-number="54"><span class="co">#&gt; [1]  train-rmse:139217.687500 </span></a>
+<a class="sourceLine" id="cb14-55" data-line-number="55"><span class="co">#&gt; Will train until train_rmse hasn't improved in 50 rounds.</span></a>
+<a class="sourceLine" id="cb14-56" data-line-number="56"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb14-57" data-line-number="57"><span class="co">#&gt; [10] train-rmse:30047.097656</span></a>
+<a class="sourceLine" id="cb14-58" data-line-number="58"><span class="co">#&gt; converting the data into xgboost format..</span></a>
+<a class="sourceLine" id="cb14-59" data-line-number="59"><span class="co">#&gt; starting with training...</span></a>
+<a class="sourceLine" id="cb14-60" data-line-number="60"><span class="co">#&gt; [1]  train-rmse:144978.218750 </span></a>
+<a class="sourceLine" id="cb14-61" data-line-number="61"><span class="co">#&gt; Will train until train_rmse hasn't improved in 50 rounds.</span></a>
+<a class="sourceLine" id="cb14-62" data-line-number="62"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb14-63" data-line-number="63"><span class="co">#&gt; [10] train-rmse:29365.738281</span></a>
+<a class="sourceLine" id="cb14-64" data-line-number="64"><span class="co">#&gt; converting the data into xgboost format..</span></a>
+<a class="sourceLine" id="cb14-65" data-line-number="65"><span class="co">#&gt; starting with training...</span></a>
+<a class="sourceLine" id="cb14-66" data-line-number="66"><span class="co">#&gt; [1]  train-rmse:145535.093750 </span></a>
+<a class="sourceLine" id="cb14-67" data-line-number="67"><span class="co">#&gt; Will train until train_rmse hasn't improved in 50 rounds.</span></a>
+<a class="sourceLine" id="cb14-68" data-line-number="68"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb14-69" data-line-number="69"><span class="co">#&gt; [50] train-rmse:17672.855469</span></a>
+<a class="sourceLine" id="cb14-70" data-line-number="70"><span class="co">#&gt; converting the data into xgboost format..</span></a>
+<a class="sourceLine" id="cb14-71" data-line-number="71"><span class="co">#&gt; starting with training...</span></a>
+<a class="sourceLine" id="cb14-72" data-line-number="72"><span class="co">#&gt; [1]  train-rmse:139217.687500 </span></a>
+<a class="sourceLine" id="cb14-73" data-line-number="73"><span class="co">#&gt; Will train until train_rmse hasn't improved in 50 rounds.</span></a>
+<a class="sourceLine" id="cb14-74" data-line-number="74"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb14-75" data-line-number="75"><span class="co">#&gt; [50] train-rmse:17387.134766</span></a>
+<a class="sourceLine" id="cb14-76" data-line-number="76"><span class="co">#&gt; converting the data into xgboost format..</span></a>
+<a class="sourceLine" id="cb14-77" data-line-number="77"><span class="co">#&gt; starting with training...</span></a>
+<a class="sourceLine" id="cb14-78" data-line-number="78"><span class="co">#&gt; [1]  train-rmse:144978.218750 </span></a>
+<a class="sourceLine" id="cb14-79" data-line-number="79"><span class="co">#&gt; Will train until train_rmse hasn't improved in 50 rounds.</span></a>
+<a class="sourceLine" id="cb14-80" data-line-number="80"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb14-81" data-line-number="81"><span class="co">#&gt; [50] train-rmse:15668.986328</span></a>
+<a class="sourceLine" id="cb14-82" data-line-number="82">gst<span class="op">$</span><span class="kw">best_iteration</span>()</a>
+<a class="sourceLine" id="cb14-83" data-line-number="83"><span class="co">#&gt; $n_estimators</span></a>
+<a class="sourceLine" id="cb14-84" data-line-number="84"><span class="co">#&gt; [1] 10</span></a>
+<a class="sourceLine" id="cb14-85" data-line-number="85"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb14-86" data-line-number="86"><span class="co">#&gt; $max_depth</span></a>
+<a class="sourceLine" id="cb14-87" data-line-number="87"><span class="co">#&gt; [1] 5</span></a>
+<a class="sourceLine" id="cb14-88" data-line-number="88"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb14-89" data-line-number="89"><span class="co">#&gt; $accuracy_avg</span></a>
+<a class="sourceLine" id="cb14-90" data-line-number="90"><span class="co">#&gt; [1] 0</span></a>
+<a class="sourceLine" id="cb14-91" data-line-number="91"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb14-92" data-line-number="92"><span class="co">#&gt; $accuracy_sd</span></a>
+<a class="sourceLine" id="cb14-93" data-line-number="93"><span class="co">#&gt; [1] 0</span></a>
+<a class="sourceLine" id="cb14-94" data-line-number="94"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb14-95" data-line-number="95"><span class="co">#&gt; $auc_avg</span></a>
+<a class="sourceLine" id="cb14-96" data-line-number="96"><span class="co">#&gt; [1] NaN</span></a>
+<a class="sourceLine" id="cb14-97" data-line-number="97"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb14-98" data-line-number="98"><span class="co">#&gt; $auc_sd</span></a>
+<a class="sourceLine" id="cb14-99" data-line-number="99"><span class="co">#&gt; [1] NA</span></a></code></pre></div>
+<p><strong>Random Search</strong></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">rf &lt;-<span class="st"> </span>RFTrainer<span class="op">$</span><span class="kw">new</span>()</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">rst &lt;-<span class="st"> </span>RandomSearchCV<span class="op">$</span><span class="kw">new</span>(<span class="dt">trainer =</span> rf,</a>
+<a class="sourceLine" id="cb15-3" data-line-number="3">                             <span class="dt">parameters =</span> <span class="kw">list</span>(<span class="dt">n_estimators =</span> <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb15-4" data-line-number="4">                             <span class="dt">max_depth =</span> <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">2</span>)),</a>
+<a class="sourceLine" id="cb15-5" data-line-number="5">                             <span class="dt">n_folds =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb15-6" data-line-number="6">                             <span class="dt">scoring =</span> <span class="kw">c</span>(<span class="st">'accuracy'</span>,<span class="st">'auc'</span>),</a>
+<a class="sourceLine" id="cb15-7" data-line-number="7">                             <span class="dt">n_iter =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb15-8" data-line-number="8">rst<span class="op">$</span><span class="kw">fit</span>(xtrain, <span class="st">&quot;SalePrice&quot;</span>)</a>
+<a class="sourceLine" id="cb15-9" data-line-number="9"><span class="co">#&gt; [1] &quot;In total, 3 models will be trained&quot;</span></a>
+<a class="sourceLine" id="cb15-10" data-line-number="10">rst<span class="op">$</span><span class="kw">best_iteration</span>()</a>
+<a class="sourceLine" id="cb15-11" data-line-number="11"><span class="co">#&gt; $n_estimators</span></a>
+<a class="sourceLine" id="cb15-12" data-line-number="12"><span class="co">#&gt; [1] 10</span></a>
+<a class="sourceLine" id="cb15-13" data-line-number="13"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb15-14" data-line-number="14"><span class="co">#&gt; $max_depth</span></a>
+<a class="sourceLine" id="cb15-15" data-line-number="15"><span class="co">#&gt; [1] 2</span></a>
+<a class="sourceLine" id="cb15-16" data-line-number="16"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb15-17" data-line-number="17"><span class="co">#&gt; $accuracy_avg</span></a>
+<a class="sourceLine" id="cb15-18" data-line-number="18"><span class="co">#&gt; [1] 0.009772447</span></a>
+<a class="sourceLine" id="cb15-19" data-line-number="19"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb15-20" data-line-number="20"><span class="co">#&gt; $accuracy_sd</span></a>
+<a class="sourceLine" id="cb15-21" data-line-number="21"><span class="co">#&gt; [1] 0.004508824</span></a>
+<a class="sourceLine" id="cb15-22" data-line-number="22"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb15-23" data-line-number="23"><span class="co">#&gt; $auc_avg</span></a>
+<a class="sourceLine" id="cb15-24" data-line-number="24"><span class="co">#&gt; [1] NaN</span></a>
+<a class="sourceLine" id="cb15-25" data-line-number="25"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb15-26" data-line-number="26"><span class="co">#&gt; $auc_sd</span></a>
+<a class="sourceLine" id="cb15-27" data-line-number="27"><span class="co">#&gt; [1] NA</span></a></code></pre></div>
+</div>
+<div id="binary-classification-data" class="section level3">
+<h3>Binary Classification Data</h3>
+<p>Here, we will solve a simple binary classification problem (predict people who survived on titanic ship). The idea here is to demonstrate how to use this package to solve classification problems.</p>
+<p><strong>Data Preparation</strong></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="co"># load class</span></a>
+<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw">load</span>(<span class="st">'../data/cla_train.rda'</span>)</a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="co"># if the above doesn't work, you can try: load(&quot;cla_train.rda&quot;)</span></a>
+<a class="sourceLine" id="cb16-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb16-5" data-line-number="5"><span class="kw">head</span>(cla_train)</a>
+<a class="sourceLine" id="cb16-6" data-line-number="6"><span class="co">#&gt;    PassengerId Survived Pclass</span></a>
+<a class="sourceLine" id="cb16-7" data-line-number="7"><span class="co">#&gt; 1:           1        0      3</span></a>
+<a class="sourceLine" id="cb16-8" data-line-number="8"><span class="co">#&gt; 2:           2        1      1</span></a>
+<a class="sourceLine" id="cb16-9" data-line-number="9"><span class="co">#&gt; 3:           3        1      3</span></a>
+<a class="sourceLine" id="cb16-10" data-line-number="10"><span class="co">#&gt; 4:           4        1      1</span></a>
+<a class="sourceLine" id="cb16-11" data-line-number="11"><span class="co">#&gt; 5:           5        0      3</span></a>
+<a class="sourceLine" id="cb16-12" data-line-number="12"><span class="co">#&gt; 6:           6        0      3</span></a>
+<a class="sourceLine" id="cb16-13" data-line-number="13"><span class="co">#&gt;                                                   Name    Sex Age SibSp Parch</span></a>
+<a class="sourceLine" id="cb16-14" data-line-number="14"><span class="co">#&gt; 1:                             Braund, Mr. Owen Harris   male  22     1     0</span></a>
+<a class="sourceLine" id="cb16-15" data-line-number="15"><span class="co">#&gt; 2: Cumings, Mrs. John Bradley (Florence Briggs Thayer) female  38     1     0</span></a>
+<a class="sourceLine" id="cb16-16" data-line-number="16"><span class="co">#&gt; 3:                              Heikkinen, Miss. Laina female  26     0     0</span></a>
+<a class="sourceLine" id="cb16-17" data-line-number="17"><span class="co">#&gt; 4:        Futrelle, Mrs. Jacques Heath (Lily May Peel) female  35     1     0</span></a>
+<a class="sourceLine" id="cb16-18" data-line-number="18"><span class="co">#&gt; 5:                            Allen, Mr. William Henry   male  35     0     0</span></a>
+<a class="sourceLine" id="cb16-19" data-line-number="19"><span class="co">#&gt; 6:                                    Moran, Mr. James   male  NA     0     0</span></a>
+<a class="sourceLine" id="cb16-20" data-line-number="20"><span class="co">#&gt;              Ticket    Fare Cabin Embarked</span></a>
+<a class="sourceLine" id="cb16-21" data-line-number="21"><span class="co">#&gt; 1:        A/5 21171  7.2500              S</span></a>
+<a class="sourceLine" id="cb16-22" data-line-number="22"><span class="co">#&gt; 2:         PC 17599 71.2833   C85        C</span></a>
+<a class="sourceLine" id="cb16-23" data-line-number="23"><span class="co">#&gt; 3: STON/O2. 3101282  7.9250              S</span></a>
+<a class="sourceLine" id="cb16-24" data-line-number="24"><span class="co">#&gt; 4:           113803 53.1000  C123        S</span></a>
+<a class="sourceLine" id="cb16-25" data-line-number="25"><span class="co">#&gt; 5:           373450  8.0500              S</span></a>
+<a class="sourceLine" id="cb16-26" data-line-number="26"><span class="co">#&gt; 6:           330877  8.4583              Q</span></a>
+<a class="sourceLine" id="cb16-27" data-line-number="27"></a>
+<a class="sourceLine" id="cb16-28" data-line-number="28"><span class="co"># split the data</span></a>
+<a class="sourceLine" id="cb16-29" data-line-number="29">split &lt;-<span class="st"> </span><span class="kw">createDataPartition</span>(<span class="dt">y =</span> cla_train<span class="op">$</span>Survived,<span class="dt">p =</span> <span class="fl">0.7</span>)</a>
+<a class="sourceLine" id="cb16-30" data-line-number="30">xtrain &lt;-<span class="st"> </span>cla_train[split<span class="op">$</span>Resample1]</a>
+<a class="sourceLine" id="cb16-31" data-line-number="31">xtest &lt;-<span class="st"> </span>cla_train[<span class="op">!</span>split<span class="op">$</span>Resample1]</a>
+<a class="sourceLine" id="cb16-32" data-line-number="32"></a>
+<a class="sourceLine" id="cb16-33" data-line-number="33"><span class="co"># encode categorical variables - shorter way</span></a>
+<a class="sourceLine" id="cb16-34" data-line-number="34"><span class="cf">for</span>(c <span class="cf">in</span> <span class="kw">c</span>(<span class="st">'Embarked'</span>,<span class="st">'Sex'</span>,<span class="st">'Cabin'</span>)){</a>
+<a class="sourceLine" id="cb16-35" data-line-number="35">    lbl &lt;-<span class="st"> </span>LabelEncoder<span class="op">$</span><span class="kw">new</span>()</a>
+<a class="sourceLine" id="cb16-36" data-line-number="36">    lbl<span class="op">$</span><span class="kw">fit</span>(<span class="kw">c</span>(xtrain[[c]], xtest[[c]]))</a>
+<a class="sourceLine" id="cb16-37" data-line-number="37">    xtrain[[c]] &lt;-<span class="st"> </span>lbl<span class="op">$</span><span class="kw">transform</span>(xtrain[[c]])</a>
+<a class="sourceLine" id="cb16-38" data-line-number="38">    xtest[[c]] &lt;-<span class="st"> </span>lbl<span class="op">$</span><span class="kw">transform</span>(xtest[[c]])</a>
+<a class="sourceLine" id="cb16-39" data-line-number="39">}</a>
+<a class="sourceLine" id="cb16-40" data-line-number="40"><span class="co">#&gt; The data contains blank values. Imputing them with 'NA' </span></a>
+<a class="sourceLine" id="cb16-41" data-line-number="41"><span class="co">#&gt; The data contains blank values. Imputing them with 'NA' </span></a>
+<a class="sourceLine" id="cb16-42" data-line-number="42"><span class="co">#&gt; The data contains blank values. Imputing them with 'NA' </span></a>
+<a class="sourceLine" id="cb16-43" data-line-number="43"><span class="co">#&gt; The data contains blank values. Imputing them with 'NA' </span></a>
+<a class="sourceLine" id="cb16-44" data-line-number="44"><span class="co">#&gt; The data contains blank values. Imputing them with 'NA'</span></a>
+<a class="sourceLine" id="cb16-45" data-line-number="45"></a>
+<a class="sourceLine" id="cb16-46" data-line-number="46"><span class="co"># impute missing values</span></a>
+<a class="sourceLine" id="cb16-47" data-line-number="47">xtrain[, Age <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="kw">replace</span>(Age, <span class="kw">is.na</span>(Age), <span class="kw">median</span>(Age, <span class="dt">na.rm =</span> T))]</a>
+<a class="sourceLine" id="cb16-48" data-line-number="48">xtest[, Age <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="kw">replace</span>(Age, <span class="kw">is.na</span>(Age), <span class="kw">median</span>(Age, <span class="dt">na.rm =</span> T))]</a>
+<a class="sourceLine" id="cb16-49" data-line-number="49"></a>
+<a class="sourceLine" id="cb16-50" data-line-number="50"><span class="co"># drop these features</span></a>
+<a class="sourceLine" id="cb16-51" data-line-number="51">to_drop &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">'PassengerId'</span>,<span class="st">'Ticket'</span>,<span class="st">'Name'</span>)</a>
+<a class="sourceLine" id="cb16-52" data-line-number="52"></a>
+<a class="sourceLine" id="cb16-53" data-line-number="53">xtrain &lt;-<span class="st"> </span>xtrain[,<span class="op">-</span><span class="kw">c</span>(to_drop), with=F]</a>
+<a class="sourceLine" id="cb16-54" data-line-number="54">xtest &lt;-<span class="st"> </span>xtest[,<span class="op">-</span><span class="kw">c</span>(to_drop), with=F]</a></code></pre></div>
+<p>Now, our data is ready to be served for model training. Let’s do it.</p>
+<p><strong>KNN Classification</strong></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">knn &lt;-<span class="st"> </span>KNNTrainer<span class="op">$</span><span class="kw">new</span>(<span class="dt">k =</span> <span class="dv">2</span>,<span class="dt">prob =</span> T,<span class="dt">type =</span> <span class="st">'class'</span>)</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2">knn<span class="op">$</span><span class="kw">fit</span>(<span class="dt">train =</span> xtrain, <span class="dt">test =</span> xtest, <span class="dt">y =</span> <span class="st">'Survived'</span>)</a>
+<a class="sourceLine" id="cb17-3" data-line-number="3">probs &lt;-<span class="st"> </span>knn<span class="op">$</span><span class="kw">predict</span>(<span class="dt">type =</span> <span class="st">'prob'</span>)</a>
+<a class="sourceLine" id="cb17-4" data-line-number="4">labels &lt;-<span class="st"> </span>knn<span class="op">$</span><span class="kw">predict</span>(<span class="dt">type=</span><span class="st">'raw'</span>)</a>
+<a class="sourceLine" id="cb17-5" data-line-number="5"><span class="kw">auc</span>(<span class="dt">actual =</span> xtest<span class="op">$</span>Survived, <span class="dt">predicted=</span>labels)</a>
+<a class="sourceLine" id="cb17-6" data-line-number="6"><span class="co">#&gt; [1] 0.6385027</span></a></code></pre></div>
+<p><strong>Naive Bayes Classification</strong></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">nb &lt;-<span class="st"> </span>NBTrainer<span class="op">$</span><span class="kw">new</span>()</a>
+<a class="sourceLine" id="cb18-2" data-line-number="2">nb<span class="op">$</span><span class="kw">fit</span>(xtrain, <span class="st">'Survived'</span>)</a>
+<a class="sourceLine" id="cb18-3" data-line-number="3">pred &lt;-<span class="st"> </span>nb<span class="op">$</span><span class="kw">predict</span>(xtest)</a>
+<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="co">#&gt; Warning: predict.naive_bayes(): More features in the newdata are provided as</span></a>
+<a class="sourceLine" id="cb18-5" data-line-number="5"><span class="co">#&gt; there are probability tables in the object. Calculation is performed based on</span></a>
+<a class="sourceLine" id="cb18-6" data-line-number="6"><span class="co">#&gt; features to be found in the tables.</span></a>
+<a class="sourceLine" id="cb18-7" data-line-number="7"><span class="kw">auc</span>(<span class="dt">actual =</span> xtest<span class="op">$</span>Survived, <span class="dt">predicted=</span>pred)</a>
+<a class="sourceLine" id="cb18-8" data-line-number="8"><span class="co">#&gt; [1] 0.7771836</span></a></code></pre></div>
+<p><strong>SVM Classification</strong></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="co">#predicts labels</span></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2">svm &lt;-<span class="st"> </span>SVMTrainer<span class="op">$</span><span class="kw">new</span>()</a>
+<a class="sourceLine" id="cb19-3" data-line-number="3">svm<span class="op">$</span><span class="kw">fit</span>(xtrain, <span class="st">'Survived'</span>)</a>
+<a class="sourceLine" id="cb19-4" data-line-number="4">pred &lt;-<span class="st"> </span>svm<span class="op">$</span><span class="kw">predict</span>(xtest)</a>
+<a class="sourceLine" id="cb19-5" data-line-number="5"><span class="kw">auc</span>(<span class="dt">actual =</span> xtest<span class="op">$</span>Survived, <span class="dt">predicted=</span>pred)</a></code></pre></div>
+<p><strong>Logistic Regression</strong></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">lf &lt;-<span class="st"> </span>LMTrainer<span class="op">$</span><span class="kw">new</span>(<span class="dt">family=</span><span class="st">&quot;binomial&quot;</span>)</a>
+<a class="sourceLine" id="cb20-2" data-line-number="2">lf<span class="op">$</span><span class="kw">fit</span>(<span class="dt">X =</span> xtrain, <span class="dt">y =</span> <span class="st">&quot;Survived&quot;</span>)</a>
+<a class="sourceLine" id="cb20-3" data-line-number="3"><span class="kw">summary</span>(lf<span class="op">$</span>model)</a>
+<a class="sourceLine" id="cb20-4" data-line-number="4"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb20-5" data-line-number="5"><span class="co">#&gt; Call:</span></a>
+<a class="sourceLine" id="cb20-6" data-line-number="6"><span class="co">#&gt; stats::glm(formula = f, family = self$family, data = X, weights = self$weights)</span></a>
+<a class="sourceLine" id="cb20-7" data-line-number="7"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb20-8" data-line-number="8"><span class="co">#&gt; Deviance Residuals: </span></a>
+<a class="sourceLine" id="cb20-9" data-line-number="9"><span class="co">#&gt;     Min       1Q   Median       3Q      Max  </span></a>
+<a class="sourceLine" id="cb20-10" data-line-number="10"><span class="co">#&gt; -2.6102  -0.6018  -0.4367   0.7038   2.4493  </span></a>
+<a class="sourceLine" id="cb20-11" data-line-number="11"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb20-12" data-line-number="12"><span class="co">#&gt; Coefficients:</span></a>
+<a class="sourceLine" id="cb20-13" data-line-number="13"><span class="co">#&gt;              Estimate Std. Error z value Pr(&gt;|z|)    </span></a>
+<a class="sourceLine" id="cb20-14" data-line-number="14"><span class="co">#&gt; (Intercept)  1.830070   0.616894   2.967  0.00301 ** </span></a>
+<a class="sourceLine" id="cb20-15" data-line-number="15"><span class="co">#&gt; Pclass      -0.980785   0.192493  -5.095 3.48e-07 ***</span></a>
+<a class="sourceLine" id="cb20-16" data-line-number="16"><span class="co">#&gt; Sex          2.508241   0.230374  10.888  &lt; 2e-16 ***</span></a>
+<a class="sourceLine" id="cb20-17" data-line-number="17"><span class="co">#&gt; Age         -0.041034   0.009309  -4.408 1.04e-05 ***</span></a>
+<a class="sourceLine" id="cb20-18" data-line-number="18"><span class="co">#&gt; SibSp       -0.235520   0.117715  -2.001  0.04542 *  </span></a>
+<a class="sourceLine" id="cb20-19" data-line-number="19"><span class="co">#&gt; Parch       -0.098742   0.137791  -0.717  0.47361    </span></a>
+<a class="sourceLine" id="cb20-20" data-line-number="20"><span class="co">#&gt; Fare         0.001281   0.002842   0.451  0.65230    </span></a>
+<a class="sourceLine" id="cb20-21" data-line-number="21"><span class="co">#&gt; Cabin        0.008408   0.004786   1.757  0.07899 .  </span></a>
+<a class="sourceLine" id="cb20-22" data-line-number="22"><span class="co">#&gt; Embarked     0.248088   0.166616   1.489  0.13649    </span></a>
+<a class="sourceLine" id="cb20-23" data-line-number="23"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb20-24" data-line-number="24"><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></a>
+<a class="sourceLine" id="cb20-25" data-line-number="25"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb20-26" data-line-number="26"><span class="co">#&gt; (Dispersion parameter for binomial family taken to be 1)</span></a>
+<a class="sourceLine" id="cb20-27" data-line-number="27"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb20-28" data-line-number="28"><span class="co">#&gt;     Null deviance: 831.52  on 623  degrees of freedom</span></a>
+<a class="sourceLine" id="cb20-29" data-line-number="29"><span class="co">#&gt; Residual deviance: 564.76  on 615  degrees of freedom</span></a>
+<a class="sourceLine" id="cb20-30" data-line-number="30"><span class="co">#&gt; AIC: 582.76</span></a>
+<a class="sourceLine" id="cb20-31" data-line-number="31"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb20-32" data-line-number="32"><span class="co">#&gt; Number of Fisher Scoring iterations: 5</span></a>
+<a class="sourceLine" id="cb20-33" data-line-number="33">predictions &lt;-<span class="st"> </span>lf<span class="op">$</span><span class="kw">predict</span>(<span class="dt">df =</span> xtest)</a>
+<a class="sourceLine" id="cb20-34" data-line-number="34"><span class="kw">auc</span>(<span class="dt">actual =</span> xtest<span class="op">$</span>Survived, <span class="dt">predicted =</span> predictions)</a>
+<a class="sourceLine" id="cb20-35" data-line-number="35"><span class="co">#&gt; [1] 0.8832145</span></a></code></pre></div>
+<p><strong>Lasso Logistic Regression</strong></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">lf &lt;-<span class="st"> </span>LMTrainer<span class="op">$</span><span class="kw">new</span>(<span class="dt">family=</span><span class="st">&quot;binomial&quot;</span>, <span class="dt">alpha=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb21-2" data-line-number="2">lf<span class="op">$</span><span class="kw">cv_model</span>(<span class="dt">X =</span> xtrain, <span class="dt">y =</span> <span class="st">&quot;Survived&quot;</span>, <span class="dt">nfolds =</span> <span class="dv">5</span>, <span class="dt">parallel =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb21-3" data-line-number="3">pred &lt;-<span class="st"> </span>lf<span class="op">$</span><span class="kw">cv_predict</span>(<span class="dt">df =</span> xtest)</a>
+<a class="sourceLine" id="cb21-4" data-line-number="4"><span class="kw">auc</span>(<span class="dt">actual =</span> xtest<span class="op">$</span>Survived, <span class="dt">predicted =</span> pred)</a></code></pre></div>
+<p><strong>Ridge Logistic Regression</strong></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">lf &lt;-<span class="st"> </span>LMTrainer<span class="op">$</span><span class="kw">new</span>(<span class="dt">family=</span><span class="st">&quot;binomial&quot;</span>, <span class="dt">alpha=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb22-2" data-line-number="2">lf<span class="op">$</span><span class="kw">cv_model</span>(<span class="dt">X =</span> xtrain, <span class="dt">y =</span> <span class="st">&quot;Survived&quot;</span>, <span class="dt">nfolds =</span> <span class="dv">5</span>, <span class="dt">parallel =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb22-3" data-line-number="3">pred &lt;-<span class="st"> </span>lf<span class="op">$</span><span class="kw">cv_predict</span>(<span class="dt">df =</span> xtest)</a>
+<a class="sourceLine" id="cb22-4" data-line-number="4"><span class="kw">auc</span>(<span class="dt">actual =</span> xtest<span class="op">$</span>Survived, <span class="dt">predicted =</span> pred)</a></code></pre></div>
+<p><strong>Random Forest</strong></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">rf &lt;-<span class="st"> </span>RFTrainer<span class="op">$</span><span class="kw">new</span>(<span class="dt">n_estimators =</span> <span class="dv">500</span>,<span class="dt">classification =</span> <span class="dv">1</span>, <span class="dt">max_features =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb23-2" data-line-number="2">rf<span class="op">$</span><span class="kw">fit</span>(<span class="dt">X =</span> xtrain, <span class="dt">y =</span> <span class="st">&quot;Survived&quot;</span>)</a>
+<a class="sourceLine" id="cb23-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb23-4" data-line-number="4">pred &lt;-<span class="st"> </span>rf<span class="op">$</span><span class="kw">predict</span>(<span class="dt">df =</span> xtest)</a>
+<a class="sourceLine" id="cb23-5" data-line-number="5">rf<span class="op">$</span><span class="kw">get_importance</span>()</a>
+<a class="sourceLine" id="cb23-6" data-line-number="6"><span class="co">#&gt;          tmp.order.tmp..decreasing...TRUE..</span></a>
+<a class="sourceLine" id="cb23-7" data-line-number="7"><span class="co">#&gt; Sex                                67.80128</span></a>
+<a class="sourceLine" id="cb23-8" data-line-number="8"><span class="co">#&gt; Fare                               57.97193</span></a>
+<a class="sourceLine" id="cb23-9" data-line-number="9"><span class="co">#&gt; Age                                48.37045</span></a>
+<a class="sourceLine" id="cb23-10" data-line-number="10"><span class="co">#&gt; Pclass                             24.64915</span></a>
+<a class="sourceLine" id="cb23-11" data-line-number="11"><span class="co">#&gt; Cabin                              21.45972</span></a>
+<a class="sourceLine" id="cb23-12" data-line-number="12"><span class="co">#&gt; SibSp                              13.51637</span></a>
+<a class="sourceLine" id="cb23-13" data-line-number="13"><span class="co">#&gt; Parch                              10.45743</span></a>
+<a class="sourceLine" id="cb23-14" data-line-number="14"><span class="co">#&gt; Embarked                           10.23844</span></a>
+<a class="sourceLine" id="cb23-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb23-16" data-line-number="16"><span class="kw">auc</span>(<span class="dt">actual =</span> xtest<span class="op">$</span>Survived, <span class="dt">predicted =</span> pred)</a>
+<a class="sourceLine" id="cb23-17" data-line-number="17"><span class="co">#&gt; [1] 0.7976827</span></a></code></pre></div>
+<p><strong>Xgboost</strong></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">xgb &lt;-<span class="st"> </span>XGBTrainer<span class="op">$</span><span class="kw">new</span>(<span class="dt">objective =</span> <span class="st">&quot;binary:logistic&quot;</span></a>
+<a class="sourceLine" id="cb24-2" data-line-number="2">                      , <span class="dt">n_estimators =</span> <span class="dv">500</span></a>
+<a class="sourceLine" id="cb24-3" data-line-number="3">                      , <span class="dt">eval_metric =</span> <span class="st">&quot;auc&quot;</span></a>
+<a class="sourceLine" id="cb24-4" data-line-number="4">                      , <span class="dt">maximize =</span> T</a>
+<a class="sourceLine" id="cb24-5" data-line-number="5">                      , <span class="dt">learning_rate =</span> <span class="fl">0.1</span></a>
+<a class="sourceLine" id="cb24-6" data-line-number="6">                      ,<span class="dt">max_depth =</span> <span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb24-7" data-line-number="7">xgb<span class="op">$</span><span class="kw">fit</span>(<span class="dt">X =</span> xtrain, <span class="dt">y =</span> <span class="st">&quot;Survived&quot;</span>, <span class="dt">valid =</span> xtest)</a>
+<a class="sourceLine" id="cb24-8" data-line-number="8"><span class="co">#&gt; converting the data into xgboost format..</span></a>
+<a class="sourceLine" id="cb24-9" data-line-number="9"><span class="co">#&gt; starting with training...</span></a>
+<a class="sourceLine" id="cb24-10" data-line-number="10"><span class="co">#&gt; [1]  train-auc:0.886258  val-auc:0.879085 </span></a>
+<a class="sourceLine" id="cb24-11" data-line-number="11"><span class="co">#&gt; Multiple eval metrics are present. Will use val_auc for early stopping.</span></a>
+<a class="sourceLine" id="cb24-12" data-line-number="12"><span class="co">#&gt; Will train until val_auc hasn't improved in 50 rounds.</span></a>
+<a class="sourceLine" id="cb24-13" data-line-number="13"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb24-14" data-line-number="14"><span class="co">#&gt; [51] train-auc:0.972938  val-auc:0.866370 </span></a>
+<a class="sourceLine" id="cb24-15" data-line-number="15"><span class="co">#&gt; Stopping. Best iteration:</span></a>
+<a class="sourceLine" id="cb24-16" data-line-number="16"><span class="co">#&gt; [1]  train-auc:0.886258  val-auc:0.879085</span></a>
+<a class="sourceLine" id="cb24-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb24-18" data-line-number="18">pred &lt;-<span class="st"> </span>xgb<span class="op">$</span><span class="kw">predict</span>(xtest)</a>
+<a class="sourceLine" id="cb24-19" data-line-number="19"><span class="kw">auc</span>(<span class="dt">actual =</span> xtest<span class="op">$</span>Survived, <span class="dt">predicted =</span> pred)</a>
+<a class="sourceLine" id="cb24-20" data-line-number="20"><span class="co">#&gt; [1] 0.879085</span></a></code></pre></div>
+<p><strong>Grid Search</strong></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">xgb &lt;-<span class="st"> </span>XGBTrainer<span class="op">$</span><span class="kw">new</span>(<span class="dt">objective=</span><span class="st">&quot;binary:logistic&quot;</span>)</a>
+<a class="sourceLine" id="cb25-2" data-line-number="2">gst &lt;-GridSearchCV<span class="op">$</span><span class="kw">new</span>(<span class="dt">trainer =</span> xgb,</a>
+<a class="sourceLine" id="cb25-3" data-line-number="3">                             <span class="dt">parameters =</span> <span class="kw">list</span>(<span class="dt">n_estimators =</span> <span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">50</span>),</a>
+<a class="sourceLine" id="cb25-4" data-line-number="4">                             <span class="dt">max_depth =</span> <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">2</span>)),</a>
+<a class="sourceLine" id="cb25-5" data-line-number="5">                             <span class="dt">n_folds =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb25-6" data-line-number="6">                             <span class="dt">scoring =</span> <span class="kw">c</span>(<span class="st">'accuracy'</span>,<span class="st">'auc'</span>))</a>
+<a class="sourceLine" id="cb25-7" data-line-number="7">gst<span class="op">$</span><span class="kw">fit</span>(xtrain, <span class="st">&quot;Survived&quot;</span>)</a>
+<a class="sourceLine" id="cb25-8" data-line-number="8"><span class="co">#&gt; [1] &quot;entering grid search&quot;</span></a>
+<a class="sourceLine" id="cb25-9" data-line-number="9"><span class="co">#&gt; [1] &quot;In total, 4 models will be trained&quot;</span></a>
+<a class="sourceLine" id="cb25-10" data-line-number="10"><span class="co">#&gt; converting the data into xgboost format..</span></a>
+<a class="sourceLine" id="cb25-11" data-line-number="11"><span class="co">#&gt; starting with training...</span></a>
+<a class="sourceLine" id="cb25-12" data-line-number="12"><span class="co">#&gt; [1]  train-error:0.144231 </span></a>
+<a class="sourceLine" id="cb25-13" data-line-number="13"><span class="co">#&gt; Will train until train_error hasn't improved in 50 rounds.</span></a>
+<a class="sourceLine" id="cb25-14" data-line-number="14"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb25-15" data-line-number="15"><span class="co">#&gt; [10] train-error:0.108173</span></a>
+<a class="sourceLine" id="cb25-16" data-line-number="16"><span class="co">#&gt; converting the data into xgboost format..</span></a>
+<a class="sourceLine" id="cb25-17" data-line-number="17"><span class="co">#&gt; starting with training...</span></a>
+<a class="sourceLine" id="cb25-18" data-line-number="18"><span class="co">#&gt; [1]  train-error:0.134615 </span></a>
+<a class="sourceLine" id="cb25-19" data-line-number="19"><span class="co">#&gt; Will train until train_error hasn't improved in 50 rounds.</span></a>
+<a class="sourceLine" id="cb25-20" data-line-number="20"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb25-21" data-line-number="21"><span class="co">#&gt; [10] train-error:0.112981</span></a>
+<a class="sourceLine" id="cb25-22" data-line-number="22"><span class="co">#&gt; converting the data into xgboost format..</span></a>
+<a class="sourceLine" id="cb25-23" data-line-number="23"><span class="co">#&gt; starting with training...</span></a>
+<a class="sourceLine" id="cb25-24" data-line-number="24"><span class="co">#&gt; [1]  train-error:0.115385 </span></a>
+<a class="sourceLine" id="cb25-25" data-line-number="25"><span class="co">#&gt; Will train until train_error hasn't improved in 50 rounds.</span></a>
+<a class="sourceLine" id="cb25-26" data-line-number="26"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb25-27" data-line-number="27"><span class="co">#&gt; [10] train-error:0.084135</span></a>
+<a class="sourceLine" id="cb25-28" data-line-number="28"><span class="co">#&gt; converting the data into xgboost format..</span></a>
+<a class="sourceLine" id="cb25-29" data-line-number="29"><span class="co">#&gt; starting with training...</span></a>
+<a class="sourceLine" id="cb25-30" data-line-number="30"><span class="co">#&gt; [1]  train-error:0.144231 </span></a>
+<a class="sourceLine" id="cb25-31" data-line-number="31"><span class="co">#&gt; Will train until train_error hasn't improved in 50 rounds.</span></a>
+<a class="sourceLine" id="cb25-32" data-line-number="32"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb25-33" data-line-number="33"><span class="co">#&gt; [50] train-error:0.045673</span></a>
+<a class="sourceLine" id="cb25-34" data-line-number="34"><span class="co">#&gt; converting the data into xgboost format..</span></a>
+<a class="sourceLine" id="cb25-35" data-line-number="35"><span class="co">#&gt; starting with training...</span></a>
+<a class="sourceLine" id="cb25-36" data-line-number="36"><span class="co">#&gt; [1]  train-error:0.134615 </span></a>
+<a class="sourceLine" id="cb25-37" data-line-number="37"><span class="co">#&gt; Will train until train_error hasn't improved in 50 rounds.</span></a>
+<a class="sourceLine" id="cb25-38" data-line-number="38"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb25-39" data-line-number="39"><span class="co">#&gt; [50] train-error:0.045673</span></a>
+<a class="sourceLine" id="cb25-40" data-line-number="40"><span class="co">#&gt; converting the data into xgboost format..</span></a>
+<a class="sourceLine" id="cb25-41" data-line-number="41"><span class="co">#&gt; starting with training...</span></a>
+<a class="sourceLine" id="cb25-42" data-line-number="42"><span class="co">#&gt; [1]  train-error:0.115385 </span></a>
+<a class="sourceLine" id="cb25-43" data-line-number="43"><span class="co">#&gt; Will train until train_error hasn't improved in 50 rounds.</span></a>
+<a class="sourceLine" id="cb25-44" data-line-number="44"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb25-45" data-line-number="45"><span class="co">#&gt; [50] train-error:0.038462</span></a>
+<a class="sourceLine" id="cb25-46" data-line-number="46"><span class="co">#&gt; converting the data into xgboost format..</span></a>
+<a class="sourceLine" id="cb25-47" data-line-number="47"><span class="co">#&gt; starting with training...</span></a>
+<a class="sourceLine" id="cb25-48" data-line-number="48"><span class="co">#&gt; [1]  train-error:0.211538 </span></a>
+<a class="sourceLine" id="cb25-49" data-line-number="49"><span class="co">#&gt; Will train until train_error hasn't improved in 50 rounds.</span></a>
+<a class="sourceLine" id="cb25-50" data-line-number="50"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb25-51" data-line-number="51"><span class="co">#&gt; [10] train-error:0.158654</span></a>
+<a class="sourceLine" id="cb25-52" data-line-number="52"><span class="co">#&gt; converting the data into xgboost format..</span></a>
+<a class="sourceLine" id="cb25-53" data-line-number="53"><span class="co">#&gt; starting with training...</span></a>
+<a class="sourceLine" id="cb25-54" data-line-number="54"><span class="co">#&gt; [1]  train-error:0.201923 </span></a>
+<a class="sourceLine" id="cb25-55" data-line-number="55"><span class="co">#&gt; Will train until train_error hasn't improved in 50 rounds.</span></a>
+<a class="sourceLine" id="cb25-56" data-line-number="56"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb25-57" data-line-number="57"><span class="co">#&gt; [10] train-error:0.168269</span></a>
+<a class="sourceLine" id="cb25-58" data-line-number="58"><span class="co">#&gt; converting the data into xgboost format..</span></a>
+<a class="sourceLine" id="cb25-59" data-line-number="59"><span class="co">#&gt; starting with training...</span></a>
+<a class="sourceLine" id="cb25-60" data-line-number="60"><span class="co">#&gt; [1]  train-error:0.206731 </span></a>
+<a class="sourceLine" id="cb25-61" data-line-number="61"><span class="co">#&gt; Will train until train_error hasn't improved in 50 rounds.</span></a>
+<a class="sourceLine" id="cb25-62" data-line-number="62"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb25-63" data-line-number="63"><span class="co">#&gt; [10] train-error:0.141827</span></a>
+<a class="sourceLine" id="cb25-64" data-line-number="64"><span class="co">#&gt; converting the data into xgboost format..</span></a>
+<a class="sourceLine" id="cb25-65" data-line-number="65"><span class="co">#&gt; starting with training...</span></a>
+<a class="sourceLine" id="cb25-66" data-line-number="66"><span class="co">#&gt; [1]  train-error:0.211538 </span></a>
+<a class="sourceLine" id="cb25-67" data-line-number="67"><span class="co">#&gt; Will train until train_error hasn't improved in 50 rounds.</span></a>
+<a class="sourceLine" id="cb25-68" data-line-number="68"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb25-69" data-line-number="69"><span class="co">#&gt; [50] train-error:0.127404</span></a>
+<a class="sourceLine" id="cb25-70" data-line-number="70"><span class="co">#&gt; converting the data into xgboost format..</span></a>
+<a class="sourceLine" id="cb25-71" data-line-number="71"><span class="co">#&gt; starting with training...</span></a>
+<a class="sourceLine" id="cb25-72" data-line-number="72"><span class="co">#&gt; [1]  train-error:0.201923 </span></a>
+<a class="sourceLine" id="cb25-73" data-line-number="73"><span class="co">#&gt; Will train until train_error hasn't improved in 50 rounds.</span></a>
+<a class="sourceLine" id="cb25-74" data-line-number="74"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb25-75" data-line-number="75"><span class="co">#&gt; [50] train-error:0.132212</span></a>
+<a class="sourceLine" id="cb25-76" data-line-number="76"><span class="co">#&gt; converting the data into xgboost format..</span></a>
+<a class="sourceLine" id="cb25-77" data-line-number="77"><span class="co">#&gt; starting with training...</span></a>
+<a class="sourceLine" id="cb25-78" data-line-number="78"><span class="co">#&gt; [1]  train-error:0.206731 </span></a>
+<a class="sourceLine" id="cb25-79" data-line-number="79"><span class="co">#&gt; Will train until train_error hasn't improved in 50 rounds.</span></a>
+<a class="sourceLine" id="cb25-80" data-line-number="80"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb25-81" data-line-number="81"><span class="co">#&gt; [50] train-error:0.108173</span></a>
+<a class="sourceLine" id="cb25-82" data-line-number="82">gst<span class="op">$</span><span class="kw">best_iteration</span>()</a>
+<a class="sourceLine" id="cb25-83" data-line-number="83"><span class="co">#&gt; $n_estimators</span></a>
+<a class="sourceLine" id="cb25-84" data-line-number="84"><span class="co">#&gt; [1] 10</span></a>
+<a class="sourceLine" id="cb25-85" data-line-number="85"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb25-86" data-line-number="86"><span class="co">#&gt; $max_depth</span></a>
+<a class="sourceLine" id="cb25-87" data-line-number="87"><span class="co">#&gt; [1] 5</span></a>
+<a class="sourceLine" id="cb25-88" data-line-number="88"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb25-89" data-line-number="89"><span class="co">#&gt; $accuracy_avg</span></a>
+<a class="sourceLine" id="cb25-90" data-line-number="90"><span class="co">#&gt; [1] 0</span></a>
+<a class="sourceLine" id="cb25-91" data-line-number="91"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb25-92" data-line-number="92"><span class="co">#&gt; $accuracy_sd</span></a>
+<a class="sourceLine" id="cb25-93" data-line-number="93"><span class="co">#&gt; [1] 0</span></a>
+<a class="sourceLine" id="cb25-94" data-line-number="94"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb25-95" data-line-number="95"><span class="co">#&gt; $auc_avg</span></a>
+<a class="sourceLine" id="cb25-96" data-line-number="96"><span class="co">#&gt; [1] 0.8619512</span></a>
+<a class="sourceLine" id="cb25-97" data-line-number="97"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb25-98" data-line-number="98"><span class="co">#&gt; $auc_sd</span></a>
+<a class="sourceLine" id="cb25-99" data-line-number="99"><span class="co">#&gt; [1] 0.02280628</span></a></code></pre></div>
+<p><strong>Random Search</strong></p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">rf &lt;-<span class="st"> </span>RFTrainer<span class="op">$</span><span class="kw">new</span>()</a>
+<a class="sourceLine" id="cb26-2" data-line-number="2">rst &lt;-<span class="st"> </span>RandomSearchCV<span class="op">$</span><span class="kw">new</span>(<span class="dt">trainer =</span> rf,</a>
+<a class="sourceLine" id="cb26-3" data-line-number="3">                             <span class="dt">parameters =</span> <span class="kw">list</span>(<span class="dt">n_estimators =</span> <span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">50</span>), <span class="dt">max_depth =</span> <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">2</span>)),</a>
+<a class="sourceLine" id="cb26-4" data-line-number="4">                             <span class="dt">n_folds =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb26-5" data-line-number="5">                             <span class="dt">scoring =</span> <span class="kw">c</span>(<span class="st">'accuracy'</span>,<span class="st">'auc'</span>),</a>
+<a class="sourceLine" id="cb26-6" data-line-number="6">                             <span class="dt">n_iter =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb26-7" data-line-number="7">rst<span class="op">$</span><span class="kw">fit</span>(xtrain, <span class="st">&quot;Survived&quot;</span>)</a>
+<a class="sourceLine" id="cb26-8" data-line-number="8"><span class="co">#&gt; [1] &quot;In total, 3 models will be trained&quot;</span></a>
+<a class="sourceLine" id="cb26-9" data-line-number="9">rst<span class="op">$</span><span class="kw">best_iteration</span>()</a>
+<a class="sourceLine" id="cb26-10" data-line-number="10"><span class="co">#&gt; $n_estimators</span></a>
+<a class="sourceLine" id="cb26-11" data-line-number="11"><span class="co">#&gt; [1] 50</span></a>
+<a class="sourceLine" id="cb26-12" data-line-number="12"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb26-13" data-line-number="13"><span class="co">#&gt; $max_depth</span></a>
+<a class="sourceLine" id="cb26-14" data-line-number="14"><span class="co">#&gt; [1] 5</span></a>
+<a class="sourceLine" id="cb26-15" data-line-number="15"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb26-16" data-line-number="16"><span class="co">#&gt; $accuracy_avg</span></a>
+<a class="sourceLine" id="cb26-17" data-line-number="17"><span class="co">#&gt; [1] 0.7964744</span></a>
+<a class="sourceLine" id="cb26-18" data-line-number="18"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb26-19" data-line-number="19"><span class="co">#&gt; $accuracy_sd</span></a>
+<a class="sourceLine" id="cb26-20" data-line-number="20"><span class="co">#&gt; [1] 0.03090914</span></a>
+<a class="sourceLine" id="cb26-21" data-line-number="21"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb26-22" data-line-number="22"><span class="co">#&gt; $auc_avg</span></a>
+<a class="sourceLine" id="cb26-23" data-line-number="23"><span class="co">#&gt; [1] 0.7729436</span></a>
+<a class="sourceLine" id="cb26-24" data-line-number="24"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb26-25" data-line-number="25"><span class="co">#&gt; $auc_sd</span></a>
+<a class="sourceLine" id="cb26-26" data-line-number="26"><span class="co">#&gt; [1] 0.04283084</span></a></code></pre></div>
+<p>Let’s create some new feature based on target variable using target encoding and test a model.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="co"># add target encoding features</span></a>
+<a class="sourceLine" id="cb27-2" data-line-number="2">xtrain[, feat_<span class="dv">01</span> <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="kw">smoothMean</span>(<span class="dt">train_df =</span> xtrain,</a>
+<a class="sourceLine" id="cb27-3" data-line-number="3">                        <span class="dt">test_df =</span> xtest,</a>
+<a class="sourceLine" id="cb27-4" data-line-number="4">                        <span class="dt">colname =</span> <span class="st">&quot;Embarked&quot;</span>,</a>
+<a class="sourceLine" id="cb27-5" data-line-number="5">                        <span class="dt">target =</span> <span class="st">&quot;Survived&quot;</span>)<span class="op">$</span>train[[<span class="dv">2</span>]]]</a>
+<a class="sourceLine" id="cb27-6" data-line-number="6">xtest[, feat_<span class="dv">01</span> <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="kw">smoothMean</span>(<span class="dt">train_df =</span> xtrain,</a>
+<a class="sourceLine" id="cb27-7" data-line-number="7">                               <span class="dt">test_df =</span> xtest,</a>
+<a class="sourceLine" id="cb27-8" data-line-number="8">                               <span class="dt">colname =</span> <span class="st">&quot;Embarked&quot;</span>,</a>
+<a class="sourceLine" id="cb27-9" data-line-number="9">                               <span class="dt">target =</span> <span class="st">&quot;Survived&quot;</span>)<span class="op">$</span>test[[<span class="dv">2</span>]]]</a>
+<a class="sourceLine" id="cb27-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb27-11" data-line-number="11"><span class="co"># train a random forest</span></a>
+<a class="sourceLine" id="cb27-12" data-line-number="12"><span class="co"># Random Forest</span></a>
+<a class="sourceLine" id="cb27-13" data-line-number="13">rf &lt;-<span class="st"> </span>RFTrainer<span class="op">$</span><span class="kw">new</span>(<span class="dt">n_estimators =</span> <span class="dv">500</span>,<span class="dt">classification =</span> <span class="dv">1</span>, <span class="dt">max_features =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb27-14" data-line-number="14">rf<span class="op">$</span><span class="kw">fit</span>(<span class="dt">X =</span> xtrain, <span class="dt">y =</span> <span class="st">&quot;Survived&quot;</span>)</a>
+<a class="sourceLine" id="cb27-15" data-line-number="15">pred &lt;-<span class="st"> </span>rf<span class="op">$</span><span class="kw">predict</span>(<span class="dt">df =</span> xtest)</a>
+<a class="sourceLine" id="cb27-16" data-line-number="16">rf<span class="op">$</span><span class="kw">get_importance</span>()</a>
+<a class="sourceLine" id="cb27-17" data-line-number="17"><span class="co">#&gt;          tmp.order.tmp..decreasing...TRUE..</span></a>
+<a class="sourceLine" id="cb27-18" data-line-number="18"><span class="co">#&gt; Sex                               69.787235</span></a>
+<a class="sourceLine" id="cb27-19" data-line-number="19"><span class="co">#&gt; Fare                              60.832089</span></a>
+<a class="sourceLine" id="cb27-20" data-line-number="20"><span class="co">#&gt; Age                               52.982604</span></a>
+<a class="sourceLine" id="cb27-21" data-line-number="21"><span class="co">#&gt; Pclass                            24.419818</span></a>
+<a class="sourceLine" id="cb27-22" data-line-number="22"><span class="co">#&gt; Cabin                             21.419274</span></a>
+<a class="sourceLine" id="cb27-23" data-line-number="23"><span class="co">#&gt; SibSp                             13.112177</span></a>
+<a class="sourceLine" id="cb27-24" data-line-number="24"><span class="co">#&gt; Parch                             10.175269</span></a>
+<a class="sourceLine" id="cb27-25" data-line-number="25"><span class="co">#&gt; feat_01                            6.675399</span></a>
+<a class="sourceLine" id="cb27-26" data-line-number="26"><span class="co">#&gt; Embarked                           6.450819</span></a>
+<a class="sourceLine" id="cb27-27" data-line-number="27"></a>
+<a class="sourceLine" id="cb27-28" data-line-number="28"><span class="kw">auc</span>(<span class="dt">actual =</span> xtest<span class="op">$</span>Survived, <span class="dt">predicted =</span> pred)</a>
+<a class="sourceLine" id="cb27-29" data-line-number="29"><span class="co">#&gt; [1] 0.8018717</span></a></code></pre></div>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

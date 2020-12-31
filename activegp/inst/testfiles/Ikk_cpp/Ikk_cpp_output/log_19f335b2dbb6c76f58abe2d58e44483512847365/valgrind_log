@@ -1,0 +1,360 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./Ikk_cpp_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp/Ikk_cpp_output/19f335b2dbb6c76f58abe2d58e44483512847365.fail</line>
+</preamble>
+
+<pid>663284</pid>
+<ppid>663283</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp/Ikk_cpp_output/log_19f335b2dbb6c76f58abe2d58e44483512847365/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./Ikk_cpp_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp/Ikk_cpp_output/19f335b2dbb6c76f58abe2d58e44483512847365.fail</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.024 </time>
+</status>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:07.559 </time>
+</status>
+
+<error>
+  <unique>0x9</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>8 bytes in 1 blocks are definitely lost in loss record 10 of 1,321</text>
+    <leakedbytes>8</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D060F7</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::initialize(int, char const* const*, bool, bool, bool)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>198</line>
+    </frame>
+    <frame>
+      <ip>0x4D06483</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x409B73</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp/Ikk_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_activegp_deepstate_test_Ikk_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp</dir>
+      <file>Ikk_cpp_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp/Ikk_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_activegp_deepstate_test_Ikk_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp</dir>
+      <file>Ikk_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D388</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp/Ikk_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D629</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp/Ikk_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D704</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp/Ikk_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp/Ikk_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x19</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>54 bytes in 1 blocks are possibly lost in loss record 26 of 1,321</text>
+    <leakedbytes>54</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E3A308</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator&lt;char&gt; const&amp;)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E3BFB8</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>char* std::string::_S_construct&lt;char const*&gt;(char const*, char const*, std::allocator&lt;char&gt; const&amp;, std::forward_iterator_tag)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E3C484</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::basic_string(char const*, std::allocator&lt;char&gt; const&amp;)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E1D188</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::logic_error::logic_error(char const*)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E1D1EC</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::invalid_argument::invalid_argument(char const*)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D24170</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/src/activegp.so</obj>
+      <fn>Ikk_cpp(double, double, double, int) [clone .cold]</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/src</dir>
+      <file>kernelexps.cpp</file>
+      <line>441</line>
+    </frame>
+    <frame>
+      <ip>0x40A432</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp/Ikk_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_activegp_deepstate_test_Ikk_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp</dir>
+      <file>Ikk_cpp_DeepState_TestHarness.cpp</file>
+      <line>38</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp/Ikk_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_activegp_deepstate_test_Ikk_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp</dir>
+      <file>Ikk_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D388</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp/Ikk_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D629</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp/Ikk_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D704</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp/Ikk_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x34</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>144 bytes in 1 blocks are possibly lost in loss record 53 of 1,321</text>
+    <leakedbytes>144</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4DF52E3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>__cxa_allocate_exception</fn>
+    </frame>
+    <frame>
+      <ip>0x4D2415E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/src/activegp.so</obj>
+      <fn>Ikk_cpp(double, double, double, int) [clone .cold]</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/src</dir>
+      <file>kernelexps.cpp</file>
+      <line>441</line>
+    </frame>
+    <frame>
+      <ip>0x40A432</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp/Ikk_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_activegp_deepstate_test_Ikk_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp</dir>
+      <file>Ikk_cpp_DeepState_TestHarness.cpp</file>
+      <line>38</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp/Ikk_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_activegp_deepstate_test_Ikk_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp</dir>
+      <file>Ikk_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D388</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp/Ikk_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D629</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp/Ikk_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D704</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp/Ikk_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp/Ikk_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xb1</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>1,025 bytes in 1 blocks are definitely lost in loss record 178 of 1,321</text>
+    <leakedbytes>1025</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E8F3AF</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::reserve(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D04C55</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>MemBuf::MemBuf(int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>MemBuf.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x4D06467</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>56</line>
+    </frame>
+    <frame>
+      <ip>0x409B73</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp/Ikk_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_activegp_deepstate_test_Ikk_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp</dir>
+      <file>Ikk_cpp_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp/Ikk_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_activegp_deepstate_test_Ikk_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp</dir>
+      <file>Ikk_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D388</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp/Ikk_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D629</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp/Ikk_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D704</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp/Ikk_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/Ikk_cpp/Ikk_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.048 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

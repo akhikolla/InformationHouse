@@ -1,0 +1,33 @@
+citHeader("To cite HardyWeinberg in publications use:")
+
+citEntry(entry = "Article",
+  title        = "Exploring Diallelic Genetic Markers: The {HardyWeinberg} Package",
+  author       = personList(as.person("Jan Graffelman")),
+  journal      = "Journal of Statistical Software",
+  year         = "2015",
+  volume       = "64",
+  number       = "3",
+  pages        = "1--23",
+  url          = "https://www.jstatsoft.org/v64/i03/",
+  textVersion  =
+  paste("Jan Graffelman (2015).",
+        "Exploring Diallelic Genetic Markers: The HardyWeinberg Package.",
+        "Journal of Statistical Software, 64(3), 1-23.",
+        "URL https://www.jstatsoft.org/v64/i03/.")
+         )
+
+citEntry(entry = "Article",
+  title        = "Graphical tests for Hardy-Weinberg Equilibrium based on the ternary plot",
+  author       = personList(as.person("Jan Graffelman"),as.person("Jair Morales-Camarena")),
+  journal      = "Human Heredity",
+  year         = "2008",
+  volume       = "65",
+  number       = "2",
+  pages        = "77--84",
+  textVersion  =
+      paste("Graffelman, J. and Morales-Camarena, J. (2008).",
+            "Graphical tests for Hardy-Weinberg Equilibrium based on the ternary plot.",
+        "Human Heridity, 65(2), 77-84.",
+        "URL https://doi.org/10.1159/000108939")
+)
+

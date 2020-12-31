@@ -1,0 +1,36 @@
+WARNING: No test specified, defaulting to first test defined (amt_deepstate_test_simulate_udf_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/amt/inst/testfiles/simulate_udf/simulate_udf_output/2e5aab302e89b52034f16ca22667f5d132bddfdf.fail`
+TRACE: Running: amt_deepstate_test_simulate_udf_test from /home/akhila/fuzzer_packages/fuzzedpackages/amt/inst/testfiles/simulate_udf/simulate_udf_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+n_steps values: 954479852
+start values: -194229631
+nc values: -1020009618
+nr values: 1482512518
+mk values: 4.06957e+95
+6.59401e+135
+1.18393e-272
+5.35893e-173
+2.86978e-15
+2.23867e+270
+2.98853e+143
+3.08421e+276
+3.33889e-239
+2.00058e-113
+
+Missing value
+hk values: 3.79730e-286 1.23220e-289 7.03907e-08
+3.13076e-205 2.70433e-194 2.59971e+193
+9.88890e-275 1.11354e-241 8.72173e+307
+1.56786e-249 1.90072e+290     inf
+2.43883e+77 2.65321e+185 1.39401e-173
+7.04577e+103 2.15982e-87 1.47135e+192
+    inf 4.33126e+67 2.16047e+85
+5.06900e-28 1.90072e+290     inf
+
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Index out of bounds: [index=-194229631; extent=8].
+ERROR: Failed: amt_deepstate_test_simulate_udf_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/amt/inst/testfiles/simulate_udf/simulate_udf_output/2e5aab302e89b52034f16ca22667f5d132bddfdf.fail failed

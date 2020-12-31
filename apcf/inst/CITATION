@@ -1,0 +1,22 @@
+citHeader("To cite apcf in publications, please use:")
+
+citEntry(entry="Article",
+  title=paste("Adapting the pair-correlation function for analysing the",
+    "spatial distribution of canopy gaps"),
+  author=c(
+    person(c("Robert", "S." ), "Nuske"),
+    person("Susanne", "Sprauer"),
+    person("Joachim", "Saborowski")
+  ),
+  journal="Forest Ecology and Management",
+  volume="259",
+  number="1",
+  pages="107--116",
+  year="2009",
+  doi="10.1016/j.foreco.2009.09.050",
+  url="https://doi.org/10.1016/j.foreco.2009.09.050",
+  textVersion = paste("Nuske, R.S., Sprauer, S. and Saborowski J. (2009):",
+    "Adapting the pair-correlation function for analysing the spatial",
+    "distribution of canopy gaps. Forest Ecology and Management 259(1):",
+    "107–116. https://doi.org/10.1016/j.foreco.2009.09.050")
+)

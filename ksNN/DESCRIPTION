@@ -1,0 +1,24 @@
+Encoding: UTF-8
+Package: ksNN
+Type: Package
+Title: K* Nearest Neighbors Algorithm
+Version: 0.1.2
+Authors@R: c(
+            person("Kei","Nakagawa",email="kei.nak.0315@gmail.com",role=c("aut","cre"),comment = c(ORCID = "0000-0001-5046-8128")),
+            person("Shingo","Sashida",email="gs449901@gmail.com",role=c("aut"))
+          )
+Description: Prediction with k* nearest neighbor algorithm 
+    based on a publication by Anava and Levy (2016) <arXiv:1701.07266>.
+License: GPL (>= 2)
+Author: Kei Nakagawa [aut, cre] (<https://orcid.org/0000-0001-5046-8128>),
+  Shingo Sashida [aut]
+Maintainer: Kei Nakagawa <kei.nak.0315@gmail.com>
+LazyData: TRUE
+Imports: Rcpp
+Depends: R(>= 3.0.2)
+LinkingTo: Rcpp(>= 0.10.6)
+RoxygenNote: 6.1.1
+NeedsCompilation: yes
+Packaged: 2019-03-28 09:53:44 UTC; SSunix
+Repository: CRAN
+Date/Publication: 2019-04-11 12:02:37 UTC

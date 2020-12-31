@@ -1,0 +1,292 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./multinom_test_cpp_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp/multinom_test_cpp_output/e7932681bdc8676f0613462de28842b2945cadd5.crash</line>
+</preamble>
+
+<pid>400084</pid>
+<ppid>400083</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp/multinom_test_cpp_output/log_e7932681bdc8676f0613462de28842b2945cadd5/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./multinom_test_cpp_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp/multinom_test_cpp_output/e7932681bdc8676f0613462de28842b2945cadd5.crash</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.043 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>InvalidWrite</kind>
+  <what>Invalid write of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D27ADD</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/src/ExactMultinom.so</obj>
+      <fn>multinom_test_cpp(Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/src</dir>
+      <file>multinom_test.cpp</file>
+      <line>343</line>
+    </frame>
+    <frame>
+      <ip>0x40A151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp/multinom_test_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_ExactMultinom_deepstate_test_multinom_test_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp</dir>
+      <file>multinom_test_cpp_DeepState_TestHarness.cpp</file>
+      <line>31</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp/multinom_test_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_ExactMultinom_deepstate_test_multinom_test_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp</dir>
+      <file>multinom_test_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp/multinom_test_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D489</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp/multinom_test_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D564</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp/multinom_test_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp/multinom_test_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x701908810 is 0 bytes after a block of size 16,421,607,376 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483C583</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new[](unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D27A6E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/src/ExactMultinom.so</obj>
+      <fn>multinom_test_cpp(Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/src</dir>
+      <file>multinom_test.cpp</file>
+      <line>340</line>
+    </frame>
+    <frame>
+      <ip>0x40A151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp/multinom_test_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_ExactMultinom_deepstate_test_multinom_test_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp</dir>
+      <file>multinom_test_cpp_DeepState_TestHarness.cpp</file>
+      <line>31</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp/multinom_test_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_ExactMultinom_deepstate_test_multinom_test_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp</dir>
+      <file>multinom_test_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp/multinom_test_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D489</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp/multinom_test_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D564</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp/multinom_test_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp/multinom_test_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<fatal_signal>
+  <tid>1</tid>
+  <signo>11</signo>
+  <signame>SIGSEGV</signame>
+  <sicode>1</sicode>
+  <event>Access not within mapped region</event>
+  <siaddr>0x701909000</siaddr>
+  <stack>
+    <frame>
+      <ip>0x4D27ADD</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/src/ExactMultinom.so</obj>
+      <fn>multinom_test_cpp(Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/src</dir>
+      <file>multinom_test.cpp</file>
+      <line>343</line>
+    </frame>
+    <frame>
+      <ip>0x40A151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp/multinom_test_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_ExactMultinom_deepstate_test_multinom_test_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp</dir>
+      <file>multinom_test_cpp_DeepState_TestHarness.cpp</file>
+      <line>31</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp/multinom_test_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_ExactMultinom_deepstate_test_multinom_test_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp</dir>
+      <file>multinom_test_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp/multinom_test_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D489</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp/multinom_test_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D564</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp/multinom_test_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp/multinom_test_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</fatal_signal>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:15:24.247 </time>
+</status>
+
+<error>
+  <unique>0x688</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>6,081,506,008 bytes in 1 blocks are possibly lost in loss record 1,418 of 1,419</text>
+    <leakedbytes>6081506008</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483C583</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new[](unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D2782C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/src/ExactMultinom.so</obj>
+      <fn>multinom_test_cpp(Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/src</dir>
+      <file>multinom_test.cpp</file>
+      <line>312</line>
+    </frame>
+    <frame>
+      <ip>0x40A151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp/multinom_test_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_ExactMultinom_deepstate_test_multinom_test_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp</dir>
+      <file>multinom_test_cpp_DeepState_TestHarness.cpp</file>
+      <line>31</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp/multinom_test_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_ExactMultinom_deepstate_test_multinom_test_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp</dir>
+      <file>multinom_test_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp/multinom_test_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D489</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp/multinom_test_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D564</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp/multinom_test_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp/multinom_test_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<errorcounts>
+  <pair>
+    <count>255</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:19:24.334 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

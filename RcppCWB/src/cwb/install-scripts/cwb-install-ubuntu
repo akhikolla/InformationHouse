@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Note : this script works on Debian too.
+
+# run as root! su or sudo.
+
+who=$(whoami)
+
+if [[ "$who" != root ]]
+then
+	echo "This script must be run as root."
+	echo "Please try again: sudo cwb-install-ubuntu"
+	echo "Thanks!"
+	exit
+fi
+
+apt-get install autoconf bison flex gcc make pkg-config libc6-dev libncurses5 libncurses5-dev libpcre3-dev libglib2.0-0 libglib2.0-dev libreadline6 libreadline6-dev
+
+CONFIG_FLAGS=`./install-scripts/cwb-config-basic`
+
+make clean $CONFIG_FLAGS \
+&& make depend $CONFIG_FLAGS \
+&& make cl $CONFIG_FLAGS \
+&& make utils $CONFIG_FLAGS \
+&& make cqp $CONFIG_FLAGS \
+&& make install $CONFIG_FLAGS \
+&& make realclean $CONFIG_FLAGS
+

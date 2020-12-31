@@ -1,0 +1,31 @@
+Package: fbroc
+Type: Package
+Title: Fast Algorithms to Bootstrap Receiver Operating Characteristics
+        Curves
+Version: 0.4.1
+Date: 2019-03-24
+Authors@R: c(person("Erik", "Peter", email = "jerikpeter@googlemail.com", 
+             role = c("aut", "cre")))
+Description: Implements a very fast C++ algorithm to quickly bootstrap receiver
+    operating characteristics (ROC) curves and derived performance metrics,
+    including the area under the curve (AUC) and the partial area under the curve as well as 
+    the true and false positive rate. The analysis of paired receiver operating curves is supported as well,
+    so that a comparison of two predictors is possible. You can also plot the
+    results and calculate confidence intervals. On a typical desktop computer the time needed for 
+    the calculation of 100000 bootstrap replicates given 500 observations requires time on the
+    order of magnitude of one second.
+License: GPL-2
+URL: http://www.epeter-stats.de/roc-curve-analysis-with-fbroc/
+BugReports: http://github.com/erikpeter/fbroc/issues
+Depends: R (>= 3.2.0), ggplot2, methods, stats, utils
+Imports: Rcpp
+LinkingTo: Rcpp
+LazyData: true
+RoxygenNote: 6.1.1
+Encoding: UTF-8
+NeedsCompilation: yes
+Packaged: 2019-03-24 12:01:19 UTC; Erik
+Author: Erik Peter [aut, cre]
+Maintainer: Erik Peter <jerikpeter@googlemail.com>
+Repository: CRAN
+Date/Publication: 2019-03-24 12:20:03 UTC

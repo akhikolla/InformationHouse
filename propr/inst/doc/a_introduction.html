@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Introduction</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+<!-- MathJax scripts -->
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<h2>Introduction</h2>
+
+<p>The bioinformatic evaluation of gene co-expression often begins with correlation-based analyses. However, correlation lacks validity when applied to relative data, including count data generated by next-generation sequencing. This vignette describes three metrics of proportionality that measure dependence between relative features using compositional data analysis: \(\phi\) (Lovell 2015), \(\rho\) (Lovell 2015; Erb 2016), and \(\phi_s\) (Erb 2016; Quinn 2017). Unlike correlation, proportionality gives the same result for both relative and absolute data. Meanwhile, pairs that are strongly proportional in relative space are also strongly correlated in absolute space. Proportionality helps avoid the pitfall of spurious correlation.</p>
+
+<h2>Theory</h2>
+
+<p>Let \(A_i\) and \(A_j\) each represent a log-ratio transformed feature vector measured across \(N\) samples. We then define the metrics \(\phi\), \(\rho\), and \(\phi_s\):</p>
+
+<p>\[\phi(A_i, A_j) = \frac{var(A_i - A_j)}{var(A_i)}\]</p>
+
+<p>\[\rho(A_i, A_j) = 1 - \frac{var(A_i - A_j)}{var(A_i) + var(A_j)}\]</p>
+
+<p>\[\phi_s(A_i, A_j) = \frac{var(A_i - A_j)}{var(A_i + A_j)}\]</p>
+
+<p>Log-ratio transformation is applied to each subject vector \(\textrm{x}\) with \(D\) features (e.g., genes or microbes). In this vignette, we consider the centered log-ratio (clr) transformation and the additive log-ratio (alr) transformation. In clr-transformation, sample vectors undergo a transformation based on the logarithm of the ratio between the individual elements and the geometric mean of the vector, \(g(\textrm{x}) = \sqrt[D]{x_i&hellip;x_D}\). In alr-transformation, sample vectors undergo a transformation based on the logarithm of the ratio between the individual elements and a chosen reference feature, \(x_D\). We define these accordingly:</p>
+
+<p>\[\textrm{clr(x)} = \left[\ln\frac{x_i}{g(\textrm{x})};&hellip;;\ln\frac{x_D}{g(\textrm{x})}\right]\]</p>
+
+<p>\[\textrm{alr(x)} = \left[\ln\frac{x_i}{x_D};&hellip;;\ln\frac{x_{D-1}}{x_D}\right]\]</p>
+
+<p>Note that this package also implements the interquartile log-ratio transformation (iqlr) as used by the <code>ALDEx2</code> package. For more information on integrating <code>propr</code> with <code>ALDEx2</code>, we refer the reader to the &ldquo;Frequently Asked Questions&rdquo; vignette.</p>
+
+<h2>Calculating proportionality</h2>
+
+<p>The measures \(\phi\) and \(\rho\) differ in three ways. First, the values of \(\phi\) range from \([0, \infty)\) (with lower \(\phi\) values indicating more proportionality) while the values of \(\rho\) range from \([-1, 1]\) (with greater \(|\rho|\) values indicating more proportionality and negative \(\rho\) values indicating inverse proportionality). Second, \(\phi\) lacks symmetry, although one can force symmetry by reflecting the lower left triangle of the matrix across the diagonal (toggled by the argument <code>symmetrize = TRUE</code>). Third, \(\rho\) corrects for the individual variance of each feature in the pair, rather than for just one of the features. On the other hand, \(\phi_s\) is a naturally symmetric variant of \(\phi\) that also corrects for the individual variance of each feature in the pair. We advise against interpretting the negative proportionality directly; it does not always behave like one would expect!</p>
+
+<p>Let us begin by building an arbitrary data set of 4 features (e.g., genes) measured across 100 subjects. In this example, the feature pairs &ldquo;a&rdquo; and &ldquo;b&rdquo; will be highly proportional.</p>
+
+<pre><code class="r">set.seed(12345)
+N &lt;- 100
+X &lt;- data.frame(a=(1:N), b=(1:N) * rnorm(N, 10, 0.1),
+                c=(N:1), d=(N:1) * rnorm(N, 10, 1.0))
+</code></pre>
+
+<p>Let \(D\) represent any number of features measured across \(N\) observations exposed to a binary or continuous event (for example, case-control status, treatment status, treatment dose, or time). These functions convert a &ldquo;count matrix&rdquo; with \(N\) rows and \(D\) columns into a proportionality matrix of \(D\) rows and \(D\) columns measuring proportionality for each feature pair. One can think of this matrix as analogous to a dissimilarity matrix (in the case of \(\phi\)) or a correlation matrix (in the case of \(\rho\)). The <code>propr</code> function returns a proportionality matrix bundled within an object of the class <code>propr</code>. This object contains four key slots:</p>
+
+<ul>
+<li><code>@counts</code> A matrix. Stores the original &ldquo;count matrix&rdquo; input.</li>
+<li><code>@logratio</code> A matrix. Stores the log-ratio transformed &ldquo;count matrix&rdquo;.</li>
+<li><code>@matrix</code> A matrix. Stores the proportionality metrics.</li>
+<li><code>@pairs</code> A vector. Indexes proportionality of interest.</li>
+</ul>
+
+<pre><code class="r">library(propr)
+phi &lt;- propr(X, metric = &quot;phi&quot;, symmetrize = TRUE)
+rho &lt;- propr(X, metric = &quot;rho&quot;, ivar = 0)
+phs &lt;- propr(X, metric = &quot;phs&quot;, ivar = 0)
+</code></pre>
+
+<p>Note that the log-ratio transformation, by its nature, fails if the input data contain any zero values. By default, this function replaces all zero values with 1. Alternatively, the user may set the parameter <code>alpha</code> greater than zero to approximate log-ratios in the presence of zeros (via the Box-Cox transformation). However, the topic of zero replacement is controversial. Proceed carefully when analyzing data that contain zero values.</p>
+
+<h2>How proportional is proportional enough?</h2>
+
+<p>By default, the <code>propr</code> function creates 100 permutations of the original data set, optionally used later by <code>updateCutoffs</code> to permute the false discovery rate (FDR) for a set of proportionality cutoffs. This method works for all proportionality measures. In the example below, there are no false discoveries across the range of cutoffs.</p>
+
+<pre><code class="r">updateCutoffs(rho, cutoff =  seq(.05, .95, .3))
+</code></pre>
+
+<pre><code>## Alert: Try parallelizing updateCutoffs with ncores &gt; 1.
+</code></pre>
+
+<pre><code>## |------------(25%)----------(50%)----------(75%)----------|
+</code></pre>
+
+<pre><code>## Not weighted and not alpha-transformed 
+## @counts summary: 100 subjects by 4 features
+## @logratio summary: 100 subjects by 4 features
+## @matrix summary: 4 features by 4 features
+## @pairs summary: index with `[` method
+## @fdr summary: iterations
+##   cutoff randcounts truecounts FDR
+## 1   0.05          0          2   0
+## 2   0.35          0          2   0
+## 3   0.65          0          2   0
+## 4   0.95          0          2   0
+## See ?propr for object methods
+</code></pre>
+
+<p>Choose the largest cutoff that keeps the FDR below 0.05.</p>
+
+<h2>Subsetting propr objects</h2>
+
+<p>We have provided methods for indexing and subsetting objects belonging to the <code>propr</code> class. Using the familiar <code>[</code> method, we can efficiently index the proportionality matrix (i.e., the <code>@matrix</code> slot) based on an inequality operator and a reference value.</p>
+
+<p>In this first example, we use <code>[</code> to index the matrix by \(\rho > .95\). This indexes the location of all values satisfying that inequality (i.e., in the lower left triangle of the matrix), and saves those indices to the <code>@pairs</code> slot. Indexing helps guide some of the bundled visualization methods in lieu of copy-on-modify subsetting. Note that indexing an already indexed object appends the new index to the previous index (via a union merge).</p>
+
+<pre><code class="r">rho99 &lt;- rho[&quot;&gt;&quot;, .95]
+rho99@pairs
+</code></pre>
+
+<pre><code>## [1]  2 12
+</code></pre>
+
+<p>Alternatively, using the <code>subset</code> method, we can subset an <em>entire</em> <code>propr</code> object based on a vector of feature indices or names. However, this method does copy-on-modify the proportionality matrix, making it potentially unsuitable for large data sets.</p>
+
+<p>In this second example, we subset by the feature names &ldquo;a&rdquo; and &ldquo;b&rdquo;.</p>
+
+<pre><code class="r">rhoab &lt;- subset(rho, select = c(&quot;a&quot;, &quot;b&quot;))
+rhoab@matrix
+</code></pre>
+
+<pre><code>##           a         b
+## a 1.0000000 0.9999151
+## b 0.9999151 1.0000000
+</code></pre>
+
+<p>The convenience function, <code>simplify</code>, can subset an <em>entire</em> <code>propr</code> object based on the index saved in its <code>@pairs</code> slot. This function converts the saved index into a paired list of coordinates and passes them along to the <code>subset</code> method. As such, this method does copy-on-modify the proportionality matrix, making it potentially unsuitable for large data sets. Unlike <code>subset</code>, <code>simplify</code> returns an object with the <code>@pairs</code> slot updated. Most users will find <code>simplify</code> preferable to <code>subset.</code></p>
+
+<pre><code class="r">simplify(rho99)
+</code></pre>
+
+<pre><code>## Not weighted and not alpha-transformed 
+## @counts summary: 100 subjects by 4 features
+## @logratio summary: 100 subjects by 4 features
+## @matrix summary: 4 features by 4 features
+## @pairs summary: 2 feature pairs
+## @fdr summary: iterations
+## See ?propr for object methods
+</code></pre>
+
+<h2>Computational burden</h2>
+
+<p>High-throughput genomic sequencing has the ability to measure tens of thousands of features for each subject. Since calculating proportionality generates a matrix sized \(D^2\), this method uses a lot of RAM when applied to real biological data sets. To address this, <code>propr</code> harnesses the power of C++ (via the <code>Rcpp</code> package) to minimize the run-time and RAM overhead. Below, we provide a table that estimates the approximate amount of RAM needed to render a proportionality matrix based on the number of features studied. The user should account for up to 25% more RAM for subsequent <code>[</code> indexing.</p>
+
+<table><thead>
+<tr>
+<th align="right">Features</th>
+<th align="right">Peak RAM (MiB)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="right">1000</td>
+<td align="right">8</td>
+</tr>
+<tr>
+<td align="right">2000</td>
+<td align="right">31</td>
+</tr>
+<tr>
+<td align="right">4000</td>
+<td align="right">123</td>
+</tr>
+<tr>
+<td align="right">8000</td>
+<td align="right">491</td>
+</tr>
+<tr>
+<td align="right">16000</td>
+<td align="right">1959</td>
+</tr>
+<tr>
+<td align="right">24000</td>
+<td align="right">4405</td>
+</tr>
+<tr>
+<td align="right">32000</td>
+<td align="right">7829</td>
+</tr>
+<tr>
+<td align="right">64000</td>
+<td align="right">31301</td>
+</tr>
+<tr>
+<td align="right">100000</td>
+<td align="right">76406</td>
+</tr>
+</tbody></table>
+
+<h2>Limitations</h2>
+
+<p>Although we developed this package with biological count data in mind, compositional count data is not truly compositional in that count data contain integer values only. As such, measuring &ldquo;Gene A&rdquo; as \(1\) in one subject and &ldquo;Gene B&rdquo; as \(2\) in another subject (i.e., the feature vector \([1, 2]\)) does not carry the same information as measuring &ldquo;Gene A&rdquo; as \(1000\) in one subject and &ldquo;Gene B&rdquo; as \(2000\) in another subject (i.e., the feature vector \([1000, 2000]\)) due to how additive variation affects the relative abundance of small counts more than large counts (Quinn 2017). We advise the investigator to proceed with caution when analyzing low counts.</p>
+
+<h2>References</h2>
+
+<ol>
+<li><p>Erb, Ionas, and Cedric Notredame. “How Should We Measure Proportionality on Relative Gene Expression Data?” Theory in Biosciences = Theorie in Den Biowissenschaften 135, no. 1-2 (June 2016): 21-36. <a href="http://dx.doi.org/10.1007/s12064-015-0220-8">http://dx.doi.org/10.1007/s12064-015-0220-8</a>.</p></li>
+<li><p>Lovell, David, Vera Pawlowsky-Glahn, Juan José Egozcue, Samuel Marguerat, and Jürg Bähler. “Proportionality: A Valid Alternative to Correlation for Relative Data.” PLoS Computational Biology 11, no. 3 (March 2015): e1004075. <a href="http://dx.doi.org/10.1371/journal.pcbi.1004075">http://dx.doi.org/10.1371/journal.pcbi.1004075</a>.</p></li>
+<li><p>Quinn, Thomas P., Mark F. Richardson, David Lovell, and Tamsyn M. Crowley. “Propr: An R-Package for Identifying Proportionally Abundant Features Using Compositional Data Analysis.” Scientific Reports 7, no. 1 (November 24, 2017): 16252. <a href="https://doi.org/10.1038/s41598-017-16520-0">https://doi.org/10.1038/s41598-017-16520-0</a>.</p></li>
+</ol>
+
+</body>
+
+</html>

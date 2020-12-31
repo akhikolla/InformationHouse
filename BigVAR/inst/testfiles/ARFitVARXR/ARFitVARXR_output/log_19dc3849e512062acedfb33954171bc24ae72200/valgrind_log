@@ -1,0 +1,1334 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./ARFitVARXR_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_output/19dc3849e512062acedfb33954171bc24ae72200.fail</line>
+</preamble>
+
+<pid>290756</pid>
+<ppid>290755</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_output/log_19dc3849e512062acedfb33954171bc24ae72200/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./ARFitVARXR_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_output/19dc3849e512062acedfb33954171bc24ae72200.fail</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.026 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>FishyValue</kind>
+  <what>Argument 'size' of function malloc has a fishy (possibly negative) value: -3789524375372189816
+</what>  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4D4D0B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>aligned_malloc</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>159</line>
+    </frame>
+    <frame>
+      <ip>0x4D4D0B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>conditional_aligned_malloc&lt;true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>214</line>
+    </frame>
+    <frame>
+      <ip>0x4D4D0B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>conditional_aligned_new_auto&lt;double, true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>374</line>
+    </frame>
+    <frame>
+      <ip>0x4D4D0B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>DenseStorage.h</file>
+      <line>408</line>
+    </frame>
+    <frame>
+      <ip>0x4D4D0B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>293</line>
+    </frame>
+    <frame>
+      <ip>0x4D4D0B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>resizeLike&lt;Eigen::Block&lt;Eigen::Matrix&lt;double, -1, -1&gt;, -1, -1, false&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>377</line>
+    </frame>
+    <frame>
+      <ip>0x4D4D0B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>Eigen::PlainObjectBase&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt; &gt;::PlainObjectBase&lt;Eigen::Block&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt;, -1, -1, false&gt; &gt;(Eigen::DenseBase&lt;Eigen::Block&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt;, -1, -1, false&gt; &gt; const&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>536</line>
+    </frame>
+    <frame>
+      <ip>0x4D4A3FC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>Matrix&lt;Eigen::Block&lt;Eigen::Matrix&lt;double, -1, -1&gt;, -1, -1, false&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Matrix.h</file>
+      <line>377</line>
+    </frame>
+    <frame>
+      <ip>0x4D4A3FC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>ARFitVARXR(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, int, int, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src</dir>
+      <file>DataCons.cpp</file>
+      <line>363</line>
+    </frame>
+    <frame>
+      <ip>0x40A62D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_BigVAR_deepstate_test_ARFitVARXR_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR</dir>
+      <file>ARFitVARXR_DeepState_TestHarness.cpp</file>
+      <line>42</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_BigVAR_deepstate_test_ARFitVARXR_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR</dir>
+      <file>ARFitVARXR_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.052 </time>
+</status>
+
+<error>
+  <unique>0xa</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>8 bytes in 1 blocks are definitely lost in loss record 10 of 1,328</text>
+    <leakedbytes>8</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D060F7</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::initialize(int, char const* const*, bool, bool, bool)</fn>
+      <dir>/tmp/RtmpAPDRvx/R.INSTALL2c66eb2c3545f3/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>198</line>
+    </frame>
+    <frame>
+      <ip>0x4D06483</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/tmp/RtmpAPDRvx/R.INSTALL2c66eb2c3545f3/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x409BC3</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_BigVAR_deepstate_test_ARFitVARXR_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR</dir>
+      <file>ARFitVARXR_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_BigVAR_deepstate_test_ARFitVARXR_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR</dir>
+      <file>ARFitVARXR_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x21</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>56 bytes in 1 blocks are definitely lost in loss record 33 of 1,328</text>
+    <leakedbytes>56</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4D4A825</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>aligned_malloc</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>159</line>
+    </frame>
+    <frame>
+      <ip>0x4D4A825</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>conditional_aligned_malloc&lt;true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>214</line>
+    </frame>
+    <frame>
+      <ip>0x4D4A825</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>conditional_aligned_new_auto&lt;double, true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>374</line>
+    </frame>
+    <frame>
+      <ip>0x4D4A825</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>DenseStorage.h</file>
+      <line>557</line>
+    </frame>
+    <frame>
+      <ip>0x4D4A825</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>319</line>
+    </frame>
+    <frame>
+      <ip>0x4D4A825</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>_init1&lt;long int&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>780</line>
+    </frame>
+    <frame>
+      <ip>0x4D4A825</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>Matrix&lt;long int&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Matrix.h</file>
+      <line>294</line>
+    </frame>
+    <frame>
+      <ip>0x4D4A825</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>ARFitVARXR(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, int, int, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src</dir>
+      <file>DataCons.cpp</file>
+      <line>349</line>
+    </frame>
+    <frame>
+      <ip>0x40A62D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_BigVAR_deepstate_test_ARFitVARXR_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR</dir>
+      <file>ARFitVARXR_DeepState_TestHarness.cpp</file>
+      <line>42</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_BigVAR_deepstate_test_ARFitVARXR_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR</dir>
+      <file>ARFitVARXR_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x22</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>56 bytes in 1 blocks are definitely lost in loss record 34 of 1,328</text>
+    <leakedbytes>56</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4D5F2F7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>aligned_malloc</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>159</line>
+    </frame>
+    <frame>
+      <ip>0x4D5F2F7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>conditional_aligned_malloc&lt;true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>214</line>
+    </frame>
+    <frame>
+      <ip>0x4D5F2F7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>conditional_aligned_new_auto&lt;double, true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>374</line>
+    </frame>
+    <frame>
+      <ip>0x4D5F2F7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>DenseStorage.h</file>
+      <line>557</line>
+    </frame>
+    <frame>
+      <ip>0x4D5F2F7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>319</line>
+    </frame>
+    <frame>
+      <ip>0x4D5F2F7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>_init1&lt;long int&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>780</line>
+    </frame>
+    <frame>
+      <ip>0x4D5F2F7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>Matrix&lt;long int&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Matrix.h</file>
+      <line>294</line>
+    </frame>
+    <frame>
+      <ip>0x4D5F2F7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>Eigen::HouseholderQR&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt; &gt;::HouseholderQR&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt; &gt;(Eigen::EigenBase&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt; &gt;&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/QR</dir>
+      <file>HouseholderQR.h</file>
+      <line>119</line>
+    </frame>
+    <frame>
+      <ip>0x4D4A1DC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>ARFitVARXR(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, int, int, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src</dir>
+      <file>DataCons.cpp</file>
+      <line>360</line>
+    </frame>
+    <frame>
+      <ip>0x40A62D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_BigVAR_deepstate_test_ARFitVARXR_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR</dir>
+      <file>ARFitVARXR_DeepState_TestHarness.cpp</file>
+      <line>42</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_BigVAR_deepstate_test_ARFitVARXR_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR</dir>
+      <file>ARFitVARXR_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x23</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>56 bytes in 1 blocks are definitely lost in loss record 35 of 1,328</text>
+    <leakedbytes>56</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4D5F2BF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>aligned_malloc</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>159</line>
+    </frame>
+    <frame>
+      <ip>0x4D5F2BF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>conditional_aligned_malloc&lt;true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>214</line>
+    </frame>
+    <frame>
+      <ip>0x4D5F2BF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>conditional_aligned_new_auto&lt;double, true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>374</line>
+    </frame>
+    <frame>
+      <ip>0x4D5F2BF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>DenseStorage.h</file>
+      <line>557</line>
+    </frame>
+    <frame>
+      <ip>0x4D5F2BF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>317</line>
+    </frame>
+    <frame>
+      <ip>0x4D5F2BF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>_init1&lt;long int&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>780</line>
+    </frame>
+    <frame>
+      <ip>0x4D5F2BF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>Matrix&lt;long int&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Matrix.h</file>
+      <line>294</line>
+    </frame>
+    <frame>
+      <ip>0x4D5F2BF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>Eigen::HouseholderQR&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt; &gt;::HouseholderQR&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt; &gt;(Eigen::EigenBase&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt; &gt;&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/QR</dir>
+      <file>HouseholderQR.h</file>
+      <line>119</line>
+    </frame>
+    <frame>
+      <ip>0x4D4A1DC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>ARFitVARXR(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, int, int, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src</dir>
+      <file>DataCons.cpp</file>
+      <line>360</line>
+    </frame>
+    <frame>
+      <ip>0x40A62D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_BigVAR_deepstate_test_ARFitVARXR_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR</dir>
+      <file>ARFitVARXR_DeepState_TestHarness.cpp</file>
+      <line>42</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_BigVAR_deepstate_test_ARFitVARXR_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR</dir>
+      <file>ARFitVARXR_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x36</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>136 bytes in 1 blocks are possibly lost in loss record 54 of 1,328</text>
+    <leakedbytes>136</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4E652E3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>__cxa_allocate_exception</fn>
+    </frame>
+    <frame>
+      <ip>0x4D2D3A3</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>Eigen::internal::throw_std_bad_alloc()</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>70</line>
+    </frame>
+    <frame>
+      <ip>0x4D4D1C7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>aligned_malloc</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>168</line>
+    </frame>
+    <frame>
+      <ip>0x4D4D1C7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>conditional_aligned_malloc&lt;true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>214</line>
+    </frame>
+    <frame>
+      <ip>0x4D4D1C7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>conditional_aligned_new_auto&lt;double, true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>374</line>
+    </frame>
+    <frame>
+      <ip>0x4D4D1C7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>DenseStorage.h</file>
+      <line>408</line>
+    </frame>
+    <frame>
+      <ip>0x4D4D1C7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>293</line>
+    </frame>
+    <frame>
+      <ip>0x4D4D1C7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>resizeLike&lt;Eigen::Block&lt;Eigen::Matrix&lt;double, -1, -1&gt;, -1, -1, false&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>377</line>
+    </frame>
+    <frame>
+      <ip>0x4D4D1C7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>Eigen::PlainObjectBase&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt; &gt;::PlainObjectBase&lt;Eigen::Block&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt;, -1, -1, false&gt; &gt;(Eigen::DenseBase&lt;Eigen::Block&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt;, -1, -1, false&gt; &gt; const&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>536</line>
+    </frame>
+    <frame>
+      <ip>0x4D4A3FC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>Matrix&lt;Eigen::Block&lt;Eigen::Matrix&lt;double, -1, -1&gt;, -1, -1, false&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Matrix.h</file>
+      <line>377</line>
+    </frame>
+    <frame>
+      <ip>0x4D4A3FC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>ARFitVARXR(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, int, int, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src</dir>
+      <file>DataCons.cpp</file>
+      <line>363</line>
+    </frame>
+    <frame>
+      <ip>0x40A62D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_BigVAR_deepstate_test_ARFitVARXR_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR</dir>
+      <file>ARFitVARXR_DeepState_TestHarness.cpp</file>
+      <line>42</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_BigVAR_deepstate_test_ARFitVARXR_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR</dir>
+      <file>ARFitVARXR_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x7b</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>392 bytes in 1 blocks are definitely lost in loss record 123 of 1,328</text>
+    <leakedbytes>392</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4D4D02B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>aligned_malloc</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>159</line>
+    </frame>
+    <frame>
+      <ip>0x4D4D02B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>conditional_aligned_malloc&lt;true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>214</line>
+    </frame>
+    <frame>
+      <ip>0x4D4D02B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>conditional_aligned_new_auto&lt;double, true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>374</line>
+    </frame>
+    <frame>
+      <ip>0x4D4D02B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>DenseStorage.h</file>
+      <line>408</line>
+    </frame>
+    <frame>
+      <ip>0x4D4D02B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>Eigen::PlainObjectBase&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt; &gt;::resize(long, long)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>293</line>
+    </frame>
+    <frame>
+      <ip>0x4D49F58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>resizeLike&lt;Eigen::DiagonalWrapper&lt;const Eigen::Matrix&lt;double, -1, 1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>377</line>
+    </frame>
+    <frame>
+      <ip>0x4D49F58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>PlainObjectBase&lt;Eigen::DiagonalWrapper&lt;const Eigen::Matrix&lt;double, -1, 1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>547</line>
+    </frame>
+    <frame>
+      <ip>0x4D49F58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>Matrix&lt;Eigen::DiagonalWrapper&lt;const Eigen::Matrix&lt;double, -1, 1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Matrix.h</file>
+      <line>377</line>
+    </frame>
+    <frame>
+      <ip>0x4D49F58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>ARFitVARXR(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, int, int, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src</dir>
+      <file>DataCons.cpp</file>
+      <line>356</line>
+    </frame>
+    <frame>
+      <ip>0x40A62D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_BigVAR_deepstate_test_ARFitVARXR_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR</dir>
+      <file>ARFitVARXR_DeepState_TestHarness.cpp</file>
+      <line>42</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_BigVAR_deepstate_test_ARFitVARXR_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR</dir>
+      <file>ARFitVARXR_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x98</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>616 bytes in 1 blocks are definitely lost in loss record 152 of 1,328</text>
+    <leakedbytes>616</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4D4D02B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>aligned_malloc</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>159</line>
+    </frame>
+    <frame>
+      <ip>0x4D4D02B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>conditional_aligned_malloc&lt;true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>214</line>
+    </frame>
+    <frame>
+      <ip>0x4D4D02B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>conditional_aligned_new_auto&lt;double, true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>374</line>
+    </frame>
+    <frame>
+      <ip>0x4D4D02B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>DenseStorage.h</file>
+      <line>408</line>
+    </frame>
+    <frame>
+      <ip>0x4D4D02B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>Eigen::PlainObjectBase&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt; &gt;::resize(long, long)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>293</line>
+    </frame>
+    <frame>
+      <ip>0x4D4A090</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>_init2&lt;long int, long int&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>743</line>
+    </frame>
+    <frame>
+      <ip>0x4D4A090</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>Matrix&lt;long int, long int&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Matrix.h</file>
+      <line>302</line>
+    </frame>
+    <frame>
+      <ip>0x4D4A090</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>ARFitVARXR(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, int, int, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src</dir>
+      <file>DataCons.cpp</file>
+      <line>357</line>
+    </frame>
+    <frame>
+      <ip>0x40A62D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_BigVAR_deepstate_test_ARFitVARXR_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR</dir>
+      <file>ARFitVARXR_DeepState_TestHarness.cpp</file>
+      <line>42</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_BigVAR_deepstate_test_ARFitVARXR_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR</dir>
+      <file>ARFitVARXR_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x99</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>616 bytes in 1 blocks are definitely lost in loss record 153 of 1,328</text>
+    <leakedbytes>616</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4D5EE88</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>aligned_malloc</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>159</line>
+    </frame>
+    <frame>
+      <ip>0x4D5EE88</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>conditional_aligned_malloc&lt;true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>214</line>
+    </frame>
+    <frame>
+      <ip>0x4D5EE88</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>conditional_aligned_new_auto&lt;double, true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>374</line>
+    </frame>
+    <frame>
+      <ip>0x4D5EE88</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>DenseStorage</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>DenseStorage.h</file>
+      <line>354</line>
+    </frame>
+    <frame>
+      <ip>0x4D5EE88</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>PlainObjectBase</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>520</line>
+    </frame>
+    <frame>
+      <ip>0x4D5EE88</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>Matrix</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Matrix.h</file>
+      <line>368</line>
+    </frame>
+    <frame>
+      <ip>0x4D5EE88</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>Eigen::HouseholderQR&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt; &gt;::HouseholderQR&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt; &gt;(Eigen::EigenBase&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt; &gt;&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/QR</dir>
+      <file>HouseholderQR.h</file>
+      <line>119</line>
+    </frame>
+    <frame>
+      <ip>0x4D4A1DC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>ARFitVARXR(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, int, int, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src</dir>
+      <file>DataCons.cpp</file>
+      <line>360</line>
+    </frame>
+    <frame>
+      <ip>0x40A62D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_BigVAR_deepstate_test_ARFitVARXR_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR</dir>
+      <file>ARFitVARXR_DeepState_TestHarness.cpp</file>
+      <line>42</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_BigVAR_deepstate_test_ARFitVARXR_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR</dir>
+      <file>ARFitVARXR_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x9a</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>616 bytes in 1 blocks are definitely lost in loss record 154 of 1,328</text>
+    <leakedbytes>616</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4D4D02B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>aligned_malloc</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>159</line>
+    </frame>
+    <frame>
+      <ip>0x4D4D02B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>conditional_aligned_malloc&lt;true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>214</line>
+    </frame>
+    <frame>
+      <ip>0x4D4D02B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>conditional_aligned_new_auto&lt;double, true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>374</line>
+    </frame>
+    <frame>
+      <ip>0x4D4D02B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>DenseStorage.h</file>
+      <line>408</line>
+    </frame>
+    <frame>
+      <ip>0x4D4D02B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>Eigen::PlainObjectBase&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt; &gt;::resize(long, long)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>293</line>
+    </frame>
+    <frame>
+      <ip>0x4D4A245</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>resizeLike&lt;Eigen::TriangularView&lt;const Eigen::Matrix&lt;double, -1, -1&gt;, 2&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>377</line>
+    </frame>
+    <frame>
+      <ip>0x4D4A245</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>PlainObjectBase&lt;Eigen::TriangularView&lt;const Eigen::Matrix&lt;double, -1, -1&gt;, 2&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>547</line>
+    </frame>
+    <frame>
+      <ip>0x4D4A245</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>Matrix&lt;Eigen::TriangularView&lt;const Eigen::Matrix&lt;double, -1, -1&gt;, 2&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Matrix.h</file>
+      <line>377</line>
+    </frame>
+    <frame>
+      <ip>0x4D4A245</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src/BigVAR.so</obj>
+      <fn>ARFitVARXR(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, int, int, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/src</dir>
+      <file>DataCons.cpp</file>
+      <line>362</line>
+    </frame>
+    <frame>
+      <ip>0x40A62D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_BigVAR_deepstate_test_ARFitVARXR_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR</dir>
+      <file>ARFitVARXR_DeepState_TestHarness.cpp</file>
+      <line>42</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_BigVAR_deepstate_test_ARFitVARXR_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR</dir>
+      <file>ARFitVARXR_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xb9</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>1,025 bytes in 1 blocks are definitely lost in loss record 185 of 1,328</text>
+    <leakedbytes>1025</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4EFF3AF</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::reserve(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D04C55</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>MemBuf::MemBuf(int)</fn>
+      <dir>/tmp/RtmpAPDRvx/R.INSTALL2c66eb2c3545f3/RInside/src</dir>
+      <file>MemBuf.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x4D06467</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/tmp/RtmpAPDRvx/R.INSTALL2c66eb2c3545f3/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>56</line>
+    </frame>
+    <frame>
+      <ip>0x409BC3</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_BigVAR_deepstate_test_ARFitVARXR_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR</dir>
+      <file>ARFitVARXR_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_BigVAR_deepstate_test_ARFitVARXR_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR</dir>
+      <file>ARFitVARXR_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<errorcounts>
+  <pair>
+    <count>1</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.573 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

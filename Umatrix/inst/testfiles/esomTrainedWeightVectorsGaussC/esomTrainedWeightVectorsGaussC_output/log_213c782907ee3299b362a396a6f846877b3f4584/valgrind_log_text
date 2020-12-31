@@ -1,0 +1,28 @@
+WARNING: No test specified, defaulting to first test defined (Umatrix_deepstate_test_esomTrainedWeightVectorsGaussC_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/Umatrix/inst/testfiles/esomTrainedWeightVectorsGaussC/esomTrainedWeightVectorsGaussC_output/213c782907ee3299b362a396a6f846877b3f4584.crash`
+TRACE: Running: Umatrix_deepstate_test_esomTrainedWeightVectorsGaussC_test from /home/akhila/fuzzer_packages/fuzzedpackages/Umatrix/inst/testfiles/esomTrainedWeightVectorsGaussC/esomTrainedWeightVectorsGaussC_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+WeightVectors values: 4.49653e+83 2.62736e-264 8.95062e-07 5.10578e-14
+8.29783e+300 -4.30971e+256 1.86531e+250 9.71140e-241
+1.44694e-22 1.01363e+74     inf 7.70719e-71
+5.24924e+272 2.14829e+78 1.83374e-104 1.49741e+196
+4.59987e+18 1.56356e-81    -inf 1.44529e+91
+    inf 1.87145e+289 1088.08     nan
+6.61249e-257 4.33714e-104 8.88077e+282 8.78821e+143
+
+DataPoint values: 6.20752 8.27412e+256 1.04413e-152 1.74061e+94 -1.04615e+10 8.21606e-152 2.27705e+266 1.32765e-258 -6.58791e-221 -4.94509e-161 8.46075e+220 3.11767e-126 -1.19701e-137 2.95117e+279 -3.7338e-70 -1.59783e-233 -1.85162e+290 -3.23721e-308 -1.34852e+122 1.76776e+51 6.26373 -9.96287e-111 -8.23755e+198 -9.01896e-271 7.90107e-59 -7.51099e-234 -9.32149e-62 2.66297e-21 2.85695e-49 4.90458e-204 -1.3085e-253 -1.07333e-20 -8.85386e+100 -5.65013e+262 3.67043e+302 4.67768e+204 -5.56272e+234 -1.75246e-12 2.55794e-126 2.14792e-37 1.00923e+150 -2.10253e+301 4.60655e+48 4.45026e-24 1.90583e+18 -4.24328e-178 -1.1818e+60 1.39605e-232 5.99782e+279 -3.09313e-292 -5.95911e+123 -8.81075e+220 2.98751e-128 -4.14203e+177 1.16556e-185 -3.07168e-291 -1.09793e+07 -1.81481e+239 1.91904e+115 11596.7 8.39713e-79 -2.01498e+245 -1.10097e+43 -1.64586e-294 -2.3902e-229 -2.7598e-36 6.88627e-81
+indices values: -5.55964e+86 3.9963e+126 2.79426e-119 5.60965e-130 2.09906e+276 1.3265e-76 -8.82048e+18 5.0246e-302 -1.20202e-224 6.40738e+283 1.3285e-98 -3.96912e-144 -2.45962e+150 -2.83475e+92 2.11904e-258 2.57947e-127 2.29866e+40
+DistancesToBm values: 4.83099e+106 3.52563e-126 4.91556e+38 -3.63523e+91 -2.36985e-12 8.6167e+103 -1.78139e-283 -8.05838e+249 5.89215e-205 2.46532e-98 1.1255e-91 2.37046e+297 1.34859e+174 -1.20845e-77 2.8049e-263 8.90455e-97 -5.21477e+24 -96370.8 -2.1658e+87 1.16325e+293 -1.76081e+296 1.08404e-130 3.28867e+162 -1.61898e+187 2.29703e-39 -6.22288e+104 4.00094e-106 -5.43939e-277 6.01034e-84 -4.62523e-11 3.73463e-65 -6.07549e-218 6.84599e-102 4.4814e+163 6.6257e+40 3.55519e+83 -4.14588e-75 -3.54068e+169 -8.01954e-154 -1.45925e+139 -8.39211e-234 1.49575e-11 4.75797e-216 1.3213e-231 2.39829e-112 -4.24311e+155 -4.06646e-218 4.77677e-181 -2.57744e-39 -2.28879e+253 -2.90982e+296 -1.0032e+81 52232.9 -7.14156e+230 -3.79793e+145 -1.19103e+93 -6.11694e-26 4.55054e+294 -1.99031e+96 3.34583e-252 1.35232e-17 -1.09491e-162 3.42322e-84 -1.90633e+28 1.87862e+07 -4.74322e+145 2.11192e+305 -3.04263e-18 -7.04533e-82 -2.22121e+195 -6.54067e-298 -1.63303e+201 3.90696e+31 2.83118e+238 -2.04926e-128 -7.88828e+189 -2.20884e+194
+Radius values: 9.00257e-181
+LearningRate values: 1.20896e-270
+input ends
+==605625==  If you believe this happened as a result of a stack
+==605625==  overflow in your program's main thread (unlikely but
+==605625==  possible), you can try to increase the size of the
+==605625==  main thread stack using the --main-stacksize= flag.
+==605625==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: Umatrix_deepstate_test_esomTrainedWeightVectorsGaussC_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/Umatrix/inst/testfiles/esomTrainedWeightVectorsGaussC/esomTrainedWeightVectorsGaussC_output/213c782907ee3299b362a396a6f846877b3f4584.crash crashed

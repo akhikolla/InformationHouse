@@ -1,0 +1,43 @@
+2015-03-29 ~ 2015-09-22  Wush Wu <wush978@gmail.com>
+- Version 0.9.1
+- Include two vignettes.
+- Change the default behavior of `hashed.model.matrix`:
+    - The `signed.hash` is disabled.
+    - The output of `split` with type `\"existence\"` will filter the collision.
+- Add a helper function to calculate the index of interaction.
+- Add progress bar to `hashed.model.matrix`.
+- Add the type `tf-idf` to split.
+
+2015-01-01 ~ 2015-03-28  Wush Wu <wush978@gmail.com>
+
+- Version 0.9
+- Enhance the documentations.
+- Rename the original API:
+    - tag ==> split
+    - hash_size ==> hash.size
+    - is.create_mapping ==> create.mapping
+- Change the default argument:
+    - transpose ==> FALSE
+    - is.dgCMatrix ==> TRUE
+- The empty string after `split` is skipped.
+- The attribute `mapping` returned by `hashed.model.matrix` is the indices in the matrix now.
+- Add two API and add Michael Benesty to the Author list:
+    - hash.mapping : extract the `mapping` table from the returned matrix by `hashed.model.matrix`.
+    - hash.size : suggest a hash size.
+- Add an API for documentation intToRaw and remove the package pack from Suggests .
+
+2015-01-01  Wush Wu <wush978@gmail.com>
+
+- Version 0.8.1
+- Change the API
+    - Default `transpose` to `FALSE`
+    - Add the argument `is.dgCMatrix` and the default value is `TRUE`
+
+- Version 0.8
+- Use the implementation of murmurhash3 from the package digest
+    - Update the author list
+- Fix the following bugs
+    - Undefined behavior due to big endian system
+    - Inconsistent interaction result due to big endian system
+    - Incorrect indices when expanding tag feature. See #27
+- Correct some document errors in DESCRIPTION and Manual

@@ -1,0 +1,5 @@
+useDynLib(linearQ, .registration=TRUE)
+exportPattern("^[[:alpha:]]+")
+importFrom(Rcpp, evalCpp)
+importFrom(stats, quantile, rnorm, rpois)
+importFrom(stepR, sdrobnorm)

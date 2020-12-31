@@ -1,0 +1,738 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./constant_element_interpolator_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_output/074055ea86567ba629b65f4c2a6745a5ce5134bb.fail</line>
+</preamble>
+
+<pid>975840</pid>
+<ppid>975839</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_output/log_074055ea86567ba629b65f4c2a6745a5ce5134bb/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./constant_element_interpolator_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_output/074055ea86567ba629b65f4c2a6745a5ce5134bb.fail</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.026 </time>
+</status>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:07.474 </time>
+</status>
+
+<error>
+  <unique>0x9</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>8 bytes in 1 blocks are definitely lost in loss record 10 of 1,337</text>
+    <leakedbytes>8</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D060F7</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::initialize(int, char const* const*, bool, bool, bool)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>198</line>
+    </frame>
+    <frame>
+      <ip>0x4D06483</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x409B63</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_tweenr_deepstate_test_constant_element_interpolator_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator</dir>
+      <file>constant_element_interpolator_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_tweenr_deepstate_test_constant_element_interpolator_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator</dir>
+      <file>constant_element_interpolator_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D7E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA89</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DB64</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x27</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>73 bytes in 1 blocks are possibly lost in loss record 40 of 1,337</text>
+    <leakedbytes>73</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E51308</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator&lt;char&gt; const&amp;)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E52FB8</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>char* std::string::_S_construct&lt;char const*&gt;(char const*, char const*, std::allocator&lt;char&gt; const&amp;, std::forward_iterator_tag)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E53484</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::basic_string(char const*, std::allocator&lt;char&gt; const&amp;)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E34188</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::logic_error::logic_error(char const*)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E3420C</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::length_error::length_error(char const*)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E0434F</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::__throw_length_error(char const*)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D3BCD3</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>_S_check_init_len</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>stl_vector.h</file>
+      <line>1767</line>
+    </frame>
+    <frame>
+      <ip>0x4D3BCD3</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>vector</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>stl_vector.h</file>
+      <line>508</line>
+    </frame>
+    <frame>
+      <ip>0x4D3BCD3</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>easeSeq(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src</dir>
+      <file>interpolators.cpp</file>
+      <line>76</line>
+    </frame>
+    <frame>
+      <ip>0x4D458FA</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>constant_element_interpolator(Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src</dir>
+      <file>interpolators.cpp</file>
+      <line>657</line>
+    </frame>
+    <frame>
+      <ip>0x40A2A2</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_tweenr_deepstate_test_constant_element_interpolator_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator</dir>
+      <file>constant_element_interpolator_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_tweenr_deepstate_test_constant_element_interpolator_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator</dir>
+      <file>constant_element_interpolator_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D7E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x38</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>144 bytes in 1 blocks are possibly lost in loss record 57 of 1,337</text>
+    <leakedbytes>144</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4E0C2E3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>__cxa_allocate_exception</fn>
+    </frame>
+    <frame>
+      <ip>0x4E04339</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::__throw_length_error(char const*)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D3BCD3</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>_S_check_init_len</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>stl_vector.h</file>
+      <line>1767</line>
+    </frame>
+    <frame>
+      <ip>0x4D3BCD3</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>vector</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>stl_vector.h</file>
+      <line>508</line>
+    </frame>
+    <frame>
+      <ip>0x4D3BCD3</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>easeSeq(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src</dir>
+      <file>interpolators.cpp</file>
+      <line>76</line>
+    </frame>
+    <frame>
+      <ip>0x4D458FA</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>constant_element_interpolator(Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src</dir>
+      <file>interpolators.cpp</file>
+      <line>657</line>
+    </frame>
+    <frame>
+      <ip>0x40A2A2</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_tweenr_deepstate_test_constant_element_interpolator_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator</dir>
+      <file>constant_element_interpolator_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_tweenr_deepstate_test_constant_element_interpolator_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator</dir>
+      <file>constant_element_interpolator_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D7E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA89</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DB64</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x99</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>576 (64 direct, 512 indirect) bytes in 1 blocks are definitely lost in loss record 154 of 1,337</text>
+    <leakedbytes>576</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D4F4EC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>allocate</fn>
+      <dir>/usr/include/c++/9/ext</dir>
+      <file>new_allocator.h</file>
+      <line>114</line>
+    </frame>
+    <frame>
+      <ip>0x4D4F4EC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>allocate</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>alloc_traits.h</file>
+      <line>444</line>
+    </frame>
+    <frame>
+      <ip>0x4D4F4EC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>_M_allocate_map</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>stl_deque.h</file>
+      <line>634</line>
+    </frame>
+    <frame>
+      <ip>0x4D4F4EC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>std::_Deque_base&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, std::allocator&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt; &gt;::_M_initialize_map(unsigned long)</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>stl_deque.h</file>
+      <line>707</line>
+    </frame>
+    <frame>
+      <ip>0x4D4563E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>_Deque_base</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>stl_deque.h</file>
+      <line>510</line>
+    </frame>
+    <frame>
+      <ip>0x4D4563E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>deque</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>stl_deque.h</file>
+      <line>915</line>
+    </frame>
+    <frame>
+      <ip>0x4D4563E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>constant_element_interpolator(Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src</dir>
+      <file>interpolators.cpp</file>
+      <line>647</line>
+    </frame>
+    <frame>
+      <ip>0x40A2A2</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_tweenr_deepstate_test_constant_element_interpolator_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator</dir>
+      <file>constant_element_interpolator_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_tweenr_deepstate_test_constant_element_interpolator_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator</dir>
+      <file>constant_element_interpolator_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D7E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA89</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DB64</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x9a</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>576 (64 direct, 512 indirect) bytes in 1 blocks are definitely lost in loss record 155 of 1,337</text>
+    <leakedbytes>576</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D4F64C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>allocate</fn>
+      <dir>/usr/include/c++/9/ext</dir>
+      <file>new_allocator.h</file>
+      <line>114</line>
+    </frame>
+    <frame>
+      <ip>0x4D4F64C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>allocate</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>alloc_traits.h</file>
+      <line>444</line>
+    </frame>
+    <frame>
+      <ip>0x4D4F64C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>_M_allocate_map</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>stl_deque.h</file>
+      <line>634</line>
+    </frame>
+    <frame>
+      <ip>0x4D4F64C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>std::_Deque_base&lt;int, std::allocator&lt;int&gt; &gt;::_M_initialize_map(unsigned long)</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>stl_deque.h</file>
+      <line>707</line>
+    </frame>
+    <frame>
+      <ip>0x4D456CD</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>_Deque_base</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>stl_deque.h</file>
+      <line>510</line>
+    </frame>
+    <frame>
+      <ip>0x4D456CD</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>deque</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>stl_deque.h</file>
+      <line>915</line>
+    </frame>
+    <frame>
+      <ip>0x4D456CD</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>constant_element_interpolator(Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src</dir>
+      <file>interpolators.cpp</file>
+      <line>648</line>
+    </frame>
+    <frame>
+      <ip>0x40A2A2</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_tweenr_deepstate_test_constant_element_interpolator_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator</dir>
+      <file>constant_element_interpolator_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_tweenr_deepstate_test_constant_element_interpolator_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator</dir>
+      <file>constant_element_interpolator_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D7E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA89</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DB64</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x9d</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>597 (64 direct, 533 indirect) bytes in 1 blocks are definitely lost in loss record 158 of 1,337</text>
+    <leakedbytes>597</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D4F4EC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>allocate</fn>
+      <dir>/usr/include/c++/9/ext</dir>
+      <file>new_allocator.h</file>
+      <line>114</line>
+    </frame>
+    <frame>
+      <ip>0x4D4F4EC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>allocate</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>alloc_traits.h</file>
+      <line>444</line>
+    </frame>
+    <frame>
+      <ip>0x4D4F4EC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>_M_allocate_map</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>stl_deque.h</file>
+      <line>634</line>
+    </frame>
+    <frame>
+      <ip>0x4D4F4EC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>std::_Deque_base&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, std::allocator&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt; &gt;::_M_initialize_map(unsigned long)</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>stl_deque.h</file>
+      <line>707</line>
+    </frame>
+    <frame>
+      <ip>0x4D455AF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>_Deque_base</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>stl_deque.h</file>
+      <line>510</line>
+    </frame>
+    <frame>
+      <ip>0x4D455AF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>deque</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>stl_deque.h</file>
+      <line>915</line>
+    </frame>
+    <frame>
+      <ip>0x4D455AF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>constant_element_interpolator(Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src</dir>
+      <file>interpolators.cpp</file>
+      <line>646</line>
+    </frame>
+    <frame>
+      <ip>0x40A2A2</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_tweenr_deepstate_test_constant_element_interpolator_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator</dir>
+      <file>constant_element_interpolator_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_tweenr_deepstate_test_constant_element_interpolator_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator</dir>
+      <file>constant_element_interpolator_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D7E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA89</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DB64</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xbf</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>1,025 bytes in 1 blocks are definitely lost in loss record 192 of 1,337</text>
+    <leakedbytes>1025</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4EA63AF</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::reserve(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D04C55</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>MemBuf::MemBuf(int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>MemBuf.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x4D06467</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>56</line>
+    </frame>
+    <frame>
+      <ip>0x409B63</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_tweenr_deepstate_test_constant_element_interpolator_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator</dir>
+      <file>constant_element_interpolator_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_tweenr_deepstate_test_constant_element_interpolator_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator</dir>
+      <file>constant_element_interpolator_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D7E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA89</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DB64</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:07.953 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

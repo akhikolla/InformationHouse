@@ -1,0 +1,195 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./update1__DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/selectiveInference/inst/testfiles/update1_/update1__output/b120ca6d6f8dddeda1d965f69533c4975c816eec.crash</line>
+</preamble>
+
+<pid>445630</pid>
+<ppid>445629</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/selectiveInference/inst/testfiles/update1_/update1__output/log_b120ca6d6f8dddeda1d965f69533c4975c816eec/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./update1__DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/selectiveInference/inst/testfiles/update1_/update1__output/b120ca6d6f8dddeda1d965f69533c4975c816eec.crash</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.024 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D30F55</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/selectiveInference/src/selectiveInference.so</obj>
+      <fn>update1</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/selectiveInference/src</dir>
+      <file>matrixcomps.c</file>
+      <line>81</line>
+    </frame>
+    <frame>
+      <ip>0x4D267EC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/selectiveInference/src/selectiveInference.so</obj>
+      <fn>update1_(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/selectiveInference/src</dir>
+      <file>Rcpp-matrixcomps.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x40A3B3</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/selectiveInference/inst/testfiles/update1_/update1__DeepState_TestHarness</obj>
+      <fn>DeepState_Test_selectiveInference_deepstate_test_update1__test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/selectiveInference/inst/testfiles/update1_</dir>
+      <file>update1__DeepState_TestHarness.cpp</file>
+      <line>36</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/selectiveInference/inst/testfiles/update1_/update1__DeepState_TestHarness</obj>
+      <fn>DeepState_Run_selectiveInference_deepstate_test_update1__test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/selectiveInference/inst/testfiles/update1_</dir>
+      <file>update1__DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E0D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/selectiveInference/inst/testfiles/update1_/update1__DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E379</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/selectiveInference/inst/testfiles/update1_/update1__DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E454</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/selectiveInference/inst/testfiles/update1_/update1__DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/selectiveInference/inst/testfiles/update1_/update1__DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x33b386840 is not stack'd, malloc'd or (recently) free'd</auxwhat>
+</error>
+
+<fatal_signal>
+  <tid>1</tid>
+  <signo>11</signo>
+  <signame>SIGSEGV</signame>
+  <sicode>1</sicode>
+  <event>Access not within mapped region</event>
+  <siaddr>0x33B386840</siaddr>
+  <stack>
+    <frame>
+      <ip>0x4D30F55</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/selectiveInference/src/selectiveInference.so</obj>
+      <fn>update1</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/selectiveInference/src</dir>
+      <file>matrixcomps.c</file>
+      <line>81</line>
+    </frame>
+    <frame>
+      <ip>0x4D267EC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/selectiveInference/src/selectiveInference.so</obj>
+      <fn>update1_(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/selectiveInference/src</dir>
+      <file>Rcpp-matrixcomps.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x40A3B3</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/selectiveInference/inst/testfiles/update1_/update1__DeepState_TestHarness</obj>
+      <fn>DeepState_Test_selectiveInference_deepstate_test_update1__test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/selectiveInference/inst/testfiles/update1_</dir>
+      <file>update1__DeepState_TestHarness.cpp</file>
+      <line>36</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/selectiveInference/inst/testfiles/update1_/update1__DeepState_TestHarness</obj>
+      <fn>DeepState_Run_selectiveInference_deepstate_test_update1__test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/selectiveInference/inst/testfiles/update1_</dir>
+      <file>update1__DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E0D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/selectiveInference/inst/testfiles/update1_/update1__DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E379</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/selectiveInference/inst/testfiles/update1_/update1__DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E454</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/selectiveInference/inst/testfiles/update1_/update1__DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/selectiveInference/inst/testfiles/update1_/update1__DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</fatal_signal>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:07.651 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>1</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.269 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

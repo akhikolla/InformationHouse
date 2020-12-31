@@ -1,0 +1,243 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./latch_accel_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/AGread/inst/testfiles/latch_accel/latch_accel_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash</line>
+</preamble>
+
+<pid>589755</pid>
+<ppid>589754</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/AGread/inst/testfiles/latch_accel/latch_accel_output/log_23d61a41ba6238524b5d9f475daa4c7604c1f03a/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./latch_accel_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/AGread/inst/testfiles/latch_accel/latch_accel_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.025 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>InvalidWrite</kind>
+  <what>Invalid write of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D3E550</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/AGread/src/AGread.so</obj>
+      <fn>latch_accel(int, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/AGread/src</dir>
+      <file>get_latch.cpp</file>
+      <line>20</line>
+    </frame>
+    <frame>
+      <ip>0x40A1A1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/AGread/inst/testfiles/latch_accel/latch_accel_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_AGread_deepstate_test_latch_accel_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/AGread/inst/testfiles/latch_accel</dir>
+      <file>latch_accel_DeepState_TestHarness.cpp</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/AGread/inst/testfiles/latch_accel/latch_accel_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_AGread_deepstate_test_latch_accel_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/AGread/inst/testfiles/latch_accel</dir>
+      <file>latch_accel_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D148</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/AGread/inst/testfiles/latch_accel/latch_accel_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D3E9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/AGread/inst/testfiles/latch_accel/latch_accel_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D4C4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/AGread/inst/testfiles/latch_accel/latch_accel_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/AGread/inst/testfiles/latch_accel/latch_accel_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x138b520b0 is 0 bytes after a block of size 3,739,963,504 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x4D3E4AC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/AGread/src/AGread.so</obj>
+      <fn>Vector</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector</dir>
+      <file>Vector.h</file>
+      <line>130</line>
+    </frame>
+    <frame>
+      <ip>0x4D3E4AC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/AGread/src/AGread.so</obj>
+      <fn>latch_accel(int, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/AGread/src</dir>
+      <file>get_latch.cpp</file>
+      <line>16</line>
+    </frame>
+    <frame>
+      <ip>0x40A1A1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/AGread/inst/testfiles/latch_accel/latch_accel_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_AGread_deepstate_test_latch_accel_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/AGread/inst/testfiles/latch_accel</dir>
+      <file>latch_accel_DeepState_TestHarness.cpp</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/AGread/inst/testfiles/latch_accel/latch_accel_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_AGread_deepstate_test_latch_accel_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/AGread/inst/testfiles/latch_accel</dir>
+      <file>latch_accel_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D148</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/AGread/inst/testfiles/latch_accel/latch_accel_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D3E9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/AGread/inst/testfiles/latch_accel/latch_accel_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D4C4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/AGread/inst/testfiles/latch_accel/latch_accel_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/AGread/inst/testfiles/latch_accel/latch_accel_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<fatal_signal>
+  <tid>1</tid>
+  <signo>11</signo>
+  <signame>SIGSEGV</signame>
+  <sicode>1</sicode>
+  <event>Access not within mapped region</event>
+  <siaddr>0x138B53000</siaddr>
+  <stack>
+    <frame>
+      <ip>0x4D3E550</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/AGread/src/AGread.so</obj>
+      <fn>latch_accel(int, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/AGread/src</dir>
+      <file>get_latch.cpp</file>
+      <line>20</line>
+    </frame>
+    <frame>
+      <ip>0x40A1A1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/AGread/inst/testfiles/latch_accel/latch_accel_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_AGread_deepstate_test_latch_accel_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/AGread/inst/testfiles/latch_accel</dir>
+      <file>latch_accel_DeepState_TestHarness.cpp</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/AGread/inst/testfiles/latch_accel/latch_accel_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_AGread_deepstate_test_latch_accel_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/AGread/inst/testfiles/latch_accel</dir>
+      <file>latch_accel_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D148</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/AGread/inst/testfiles/latch_accel/latch_accel_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D3E9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/AGread/inst/testfiles/latch_accel/latch_accel_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D4C4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/AGread/inst/testfiles/latch_accel/latch_accel_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/AGread/inst/testfiles/latch_accel/latch_accel_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</fatal_signal>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:13.014 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>491</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:18.435 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

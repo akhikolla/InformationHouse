@@ -1,0 +1,149 @@
+---
+title: "Uncovering High-Dimensional Structures of Projections from Dimensionality Reduction Methods"
+author: "Michael C. Thrun"
+date: "`r format(Sys.time(), '%d %b %Y')`"
+output: 
+          html_document:
+            theme: united
+            highlight: tango 
+            toc: true
+            number_sections: true
+            doc_depth: 2
+            toc_float: true
+            dpi: 50
+            fig.width: 8
+            fig.height: 8
+vignette: >
+  %\VignetteIndexEntry{Uncovering High-Dimensional Structures of Projections from Dimensionality Reduction Methods}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+```{r setup, include=FALSE}
+library(rgl)
+setupKnitr()
+knitr::opts_chunk$set(echo = TRUE,
+                      warning = FALSE,
+                      dpi=100,
+                      fig.align='center',
+                      message = FALSE
+                      )
+library(GeneralizedUmatrix)
+```
+
+# Introduction
+Dimensionality Reduction methods are either manifold learning approaches or methods of projection. Projection methods should be prefered if the goal is the visualization of cluster structures [Thrun, 2018]. Two-dimensional projections are visualized as scatter plot. The Johnson–Lindenstrauss lemma states that in such a case the low-dimensional similarities does not represent high-dimensional distances coercively (details in [Thrun/Ultsch,2018]). To solve this problem the high-dimensional distances can be visualized in the two-dimensional projection as 3D landscape of a topographic map with hypsometric tints[Thrun, 2018; Ultsch/Thrun, 2017; Thrun  et al., 2016, Thrun/Ultsch, 2020].
+
+Exemplary we use the 3D artificial dataset of Chainlink showes below. Other examples can be found in [Ultsch/Thrun, 2017] or [Thrun/Ultsch, 2020].
+
+```{r testgl, webgl=TRUE, fig.width=6,fig.height = 6,fig.keep="none"}
+data(Chainlink)
+Data=Chainlink$Data
+Cls=Chainlink$Cls
+require(DataVisualizations)
+DataVisualizations::Plot3D(
+  Data,
+  Cls,
+  type = 's',
+  radius = 0.1,
+  box = F,
+  aspect = T,
+  top = T
+)
+rgl::grid3d(c("x", "y", "z"))
+```
+# Generate a Two-Dimensional Scatter Plot of High-Dimensional Data
+First, a two-dimensional projection has to be generated. In the example below, the common multidimensional scaling (MDS) method is used. For MDS a computation of distances is required priorly. Please see the ProjectionBasedClustering package on CRAN for other common projection methods.
+
+```{r, fig.width=1,fig.height = 1,fig.show='hide'}
+InputDistances = as.matrix(dist(Data))
+model = cmdscale(
+d = InputDistances,
+k = 2,
+eig = TRUE,
+add = FALSE,
+x.ret = FALSE
+)
+ProjectedPoints = as.matrix(model$points)
+```
+
+## Interpretation of Scatter Plot
+A common error of interpetation is to assume, that if the projected points in the scatter plot are similar to each other, they will be also similar in the high-dimensional space.
+
+```{r, fig.width=6,fig.height = 6,fig.keep='first'}
+plot(ProjectedPoints, col = Cls)
+```
+
+# Compute the Generalized Umatrix using sESOM
+Here the Generalized Umatrix is calculated using a simplified emergent self-organizing map algorithm (sESOM) published[Thrun/Ultsch, 2020]. Then, the visualization of Generalized Umatrix is done by a 3D landscape called topographic map with hypsometric tints. 
+The resulting visualization will be toroidal meaning that the left borders cyclically connects to the right border (and bottom to top). It means there are no "real" borders in this visualizations. Instead, the visualization is "continuous". This can be visualized using the 'Tiled=TRUE' option of 'plotTopographicMap'.
+
+```{r,results=FALSE,fig.show='hide',fig.keep="none"}
+genUmatrix = GeneralizedUmatrix(Data, ProjectedPoints)
+```
+
+## Interpretation of the Topographic Map
+"The result is a topographic map with hypsometric tints (Thrun, Lerch, Lötsch, & Ultsch, 2016). Hypsometric tints are surface colors  that represent ranges of elevation (see (Thrun et al., 2016)). Here, contour lines are combined with a specific color scale. The color scale is chosen to display various valleys, ridges, and basins: blue colors indicate small distances (sea level), green and brown colors indicate middle distances (low hills), and shades of white colors  indicate vast distances (high mountains covered with snow and ice)." cited from [Thrun, 2018].
+
+In our example below, we clearly see the projection errors in the MDS projection as hills in the visualization. MDS is unable to disentagle the two clusters of chainlink. 
+
+Note, that the 'NoLevels' option is only set to load this vignette faster and should normally not be set manually. It describes the number contour lines placed relative to the hypsometric tints. All visualizations here are small and a low dpi is set in knitr in order to load the vignette faster.
+
+```{r, fig.width=7,fig.height = 7,fig.keep='high',fig.show='asis', webgl=TRUE}
+plotTopographicMap(genUmatrix$Umatrix, 
+                   genUmatrix$Bestmatches, 
+                   NoLevels = 10
+)
+```
+
+## Saving Output
+You can save either the output as a STL for 3D printing (see [Thrun et al., 2016]) or as a picture: 
+
+```{}
+# To save as STL for 3D printing
+ rgl::writeSTL("GenerelizedUmatrix_3d_model.stl")
+
+# Save the visualization as a picture with
+rgl::rgl.snapshot('test.png')
+```
+
+# Generating the Shape of an Island out of the Topographic Map
+To generate the 3D landscape in the shape of an island from the toroidal topographic map visualization you may cut your island interactively around high mountain ranges. Currently, I am unable to show the output in R markdown :-(
+If you know how to resolve the Rmarkdown issue, please mail me: info@deepbionics.org
+
+```{}
+library(ProjectionBasedClustering)
+library(GeneralizedUmatrix)
+
+Imx = ProjectionBasedClustering::interactiveGeneralizedUmatrixIsland(
+  visualization$Umatrix, 
+  visualization$Bestmatches, 
+  Cls
+)
+
+plotTopographicMap(visualization$Umatrix,
+visualization$Bestmatches,
+Cls = Cls,
+Imx = Imx)
+```
+
+## Manually Clustering the Projection Using the Topographic Map
+In this example, the four outliers can be marked manually with mouse clicks using the shiny interface. Currently, I am unable to show the output in R markdown :-(
+Please try it out yourself:
+
+```{}
+library(ProjectionBasedClustering)
+Cls2 = ProjectionBasedClustering::interactiveClustering(
+  visualization$Umatrix, 
+  visualization$Bestmatches, 
+  Cls
+)
+```
+
+#References
+[Thrun/Ultsch 2020]    Thrun, M. C., & Ultsch, A.: Uncovering High-Dimensional Structures of Projections from Dimensionality Reduction Methods, MethodsX, Vol. 7, pp. 101093, DOI https://doi.org/10.1016/j.mex.2020.101093, 2020. 
+
+[Thrun, 2018]  Thrun, M. C.: Projection Based Clustering through Self-Organization and Swarm Intelligence, doctoral dissertation 2017, Springer, Heidelberg, ISBN: 978-3-658-20539-3, https://doi.org/10.1007/978-3-658-20540-9, 2018.
+
+[Ultsch/Thrun, 2017]  Ultsch, A., & Thrun, M. C.: Credible Visualizations for Planar Projections, in Cottrell, M. (Ed.), 12th International Workshop on Self-Organizing Maps and Learning Vector Quantization, Clustering and Data Visualization (WSOM), IEEE Xplore, France, 2017.
+
+[Thrun et al., 2016]  Thrun, M. C., Lerch, F., Loetsch, J., & Ultsch, A.: Visualization and 3D Printing of Multivariate Data of Biomarkers, in Skala, V. (Ed.), International Conference in Central Europe on Computer Graphics, Visualization and Computer Vision (WSCG), Vol. 24, Plzen, http://wscg.zcu.cz/wscg2016/short/A43-full.pdf, 2016.

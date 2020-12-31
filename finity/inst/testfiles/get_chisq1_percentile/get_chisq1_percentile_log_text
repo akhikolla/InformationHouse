@@ -1,0 +1,90 @@
+INFO: Starting fuzzing
+WARNING: No test specified, defaulting to first test defined (finity_deepstate_test_get_chisq1_percentile_test)
+input starts
+EXTERNAL: qs v0.23.4.
+
+value values: -2.43318e-187
+input ends
+terminate called after throwing an instance of 'boost::wrapexcept<std::domain_error>'
+  what():  Error in function boost::math::cdf(const chi_squared_distribution<double>&, double): Chi Square parameter was -2.433180233826634e-187, but must be > 0 !
+ERROR: Failed: finity_deepstate_test_get_chisq1_percentile_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/finity/inst/testfiles/get_chisq1_percentile/get_chisq1_percentile_output/15bd77e87e064258992c2832fca7faf1fae62ce9.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+value values: -1.5615e-299
+input ends
+terminate called after throwing an instance of 'boost::wrapexcept<std::domain_error>'
+  what():  Error in function boost::math::cdf(const chi_squared_distribution<double>&, double): Chi Square parameter was -1.5615044570048552e-299, but must be > 0 !
+ERROR: Failed: finity_deepstate_test_get_chisq1_percentile_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/finity/inst/testfiles/get_chisq1_percentile/get_chisq1_percentile_output/d9ffc67fe71f57f4739e0dc7542b5232c2189977.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+value values: 1.27048e-62
+input ends
+input starts
+EXTERNAL: qs v0.23.4.
+
+value values: 3.16522e+06
+input ends
+input starts
+EXTERNAL: qs v0.23.4.
+
+value values: -1.92672e-302
+input ends
+terminate called after throwing an instance of 'boost::wrapexcept<std::domain_error>'
+  what():  Error in function boost::math::cdf(const chi_squared_distribution<double>&, double): Chi Square parameter was -1.9267236316332704e-302, but must be > 0 !
+ERROR: Failed: finity_deepstate_test_get_chisq1_percentile_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/finity/inst/testfiles/get_chisq1_percentile/get_chisq1_percentile_output/51f9b9dcb227b1a6f68a505e517827178003adf5.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+value values: -8.5119e-07
+input ends
+terminate called after throwing an instance of 'boost::wrapexcept<std::domain_error>'
+  what():  Error in function boost::math::cdf(const chi_squared_distribution<double>&, double): Chi Square parameter was -8.5118980362116141e-07, but must be > 0 !
+ERROR: Failed: finity_deepstate_test_get_chisq1_percentile_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/finity/inst/testfiles/get_chisq1_percentile/get_chisq1_percentile_output/81c4cbd7fe2542f943f76ce13c8507e88ad56ac5.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+value values: -5.84486e+130
+input ends
+terminate called after throwing an instance of 'boost::wrapexcept<std::domain_error>'
+  what():  Error in function boost::math::cdf(const chi_squared_distribution<double>&, double): Chi Square parameter was -5.8448601750907617e+130, but must be > 0 !
+ERROR: Failed: finity_deepstate_test_get_chisq1_percentile_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/finity/inst/testfiles/get_chisq1_percentile/get_chisq1_percentile_output/a04db9cc10100e90c8b69e8a0acf58ff83c3d9fe.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+value values: -3.59873e+296
+input ends
+terminate called after throwing an instance of 'boost::wrapexcept<std::domain_error>'
+  what():  Error in function boost::math::cdf(const chi_squared_distribution<double>&, double): Chi Square parameter was -3.5987287749156466e+296, but must be > 0 !
+ERROR: Failed: finity_deepstate_test_get_chisq1_percentile_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/finity/inst/testfiles/get_chisq1_percentile/get_chisq1_percentile_output/63eafeca67fef5ac2f63645d09d5dfd42be19acf.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+value values: 7.56776e+303
+input ends
+input starts
+EXTERNAL: qs v0.23.4.
+
+value values: -2.06317e-192
+input ends
+terminate called after throwing an instance of 'boost::wrapexcept<std::domain_error>'
+  what():  Error in function boost::math::cdf(const chi_squared_distribution<double>&, double): Chi Square parameter was -2.0631675108153217e-192, but must be > 0 !
+ERROR: Failed: finity_deepstate_test_get_chisq1_percentile_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/finity/inst/testfiles/get_chisq1_percentile/get_chisq1_percentile_output/d3e8daea5827e1b96f778d3c01d7aa87d60a0e45.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+value values: -1.40738e+139
+input ends
+terminate called after throwing an instance of 'boost::wrapexcept<std::domain_error>'
+  what():  Error in function boost::math::cdf(const chi_squared_distribution<double>&, double): Chi Square parameter was -1.4073789580396052e+139, but must be > 0 !
+ERROR: Failed: finity_deepstate_test_get_chisq1_percentile_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/finity/inst/testfiles/get_chisq1_percentile/get_chisq1_percentile_output/d40ec70dd01ccb8b73b32248f62854739715f12c.fail`
+INFO: Done fuzzing! Ran 11 tests (5 tests/second) with 8 failed/3 passed/0 abandoned tests

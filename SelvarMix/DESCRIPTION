@@ -1,0 +1,22 @@
+Package: SelvarMix
+Type: Package
+Title: Regularization for Variable Selection in Model-Based Clustering
+        and Discriminant Analysis
+Version: 1.2.1
+Date: 2017-10-16
+Author: Mohammed Sedki, Gilles Celeux, Cathy Maugis-Rabusseau
+Maintainer: Mohammed Sedki <mohammed.sedki@u-psud.fr>
+Description: Performs a regularization approach to variable selection in the
+             model-based clustering and classification frameworks.
+             First, the variables are arranged in order with a lasso-like procedure. 
+             Second, the method of Maugis, Celeux, and Martin-Magniette (2009, 2011)
+             <doi:10.1016/j.csda.2009.04.013>, <doi:10.1016/j.jmva.2011.05.004> 
+             is adapted to define the role of variables in the two frameworks. 
+License: GPL (>= 3)
+Depends: R (>= 3.1.0), glasso, Rmixmod, parallel, base
+Imports: Rcpp (>= 0.11.1), methods
+LinkingTo: Rcpp, RcppArmadillo
+NeedsCompilation: yes
+Packaged: 2017-10-16 16:00:57 UTC; sedki
+Repository: CRAN
+Date/Publication: 2017-10-16 16:18:03 UTC

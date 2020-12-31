@@ -1,0 +1,245 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./round_up_core_prev_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/padr/inst/testfiles/round_up_core_prev/round_up_core_prev_output/4e3d8b29647588381464c154c1422b069331f5a5.pass</line>
+</preamble>
+
+<pid>4033945</pid>
+<ppid>4033944</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/padr/inst/testfiles/round_up_core_prev/round_up_core_prev_output/log_4e3d8b29647588381464c154c1422b069331f5a5/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./round_up_core_prev_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/padr/inst/testfiles/round_up_core_prev/round_up_core_prev_output/4e3d8b29647588381464c154c1422b069331f5a5.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.026 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x421D71</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/padr/inst/testfiles/round_up_core_prev/round_up_core_prev_DeepState_TestHarness</obj>
+      <fn>round_up_core_prev(Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/padr</dir>
+      <file>src/round_up_core_prev.cpp</file>
+      <line>16</line>
+    </frame>
+    <frame>
+      <ip>0x40954C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/padr/inst/testfiles/round_up_core_prev/round_up_core_prev_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_padr_deepstate_test_round_up_core_prev_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/padr/inst/testfiles/round_up_core_prev</dir>
+      <file>round_up_core_prev_DeepState_TestHarness.cpp</file>
+      <line>23</line>
+    </frame>
+    <frame>
+      <ip>0x409168</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/padr/inst/testfiles/round_up_core_prev/round_up_core_prev_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_padr_deepstate_test_round_up_core_prev_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/padr/inst/testfiles/round_up_core_prev</dir>
+      <file>round_up_core_prev_DeepState_TestHarness.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x418F48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/padr/inst/testfiles/round_up_core_prev/round_up_core_prev_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x4191E9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/padr/inst/testfiles/round_up_core_prev/round_up_core_prev_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x4192C4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/padr/inst/testfiles/round_up_core_prev/round_up_core_prev_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407695</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/padr/inst/testfiles/round_up_core_prev/round_up_core_prev_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x1</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 4</what>
+  <stack>
+    <frame>
+      <ip>0x421DA0</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/padr/inst/testfiles/round_up_core_prev/round_up_core_prev_DeepState_TestHarness</obj>
+      <fn>round_up_core_prev(Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/padr</dir>
+      <file>src/round_up_core_prev.cpp</file>
+      <line>18</line>
+    </frame>
+    <frame>
+      <ip>0x40954C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/padr/inst/testfiles/round_up_core_prev/round_up_core_prev_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_padr_deepstate_test_round_up_core_prev_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/padr/inst/testfiles/round_up_core_prev</dir>
+      <file>round_up_core_prev_DeepState_TestHarness.cpp</file>
+      <line>23</line>
+    </frame>
+    <frame>
+      <ip>0x409168</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/padr/inst/testfiles/round_up_core_prev/round_up_core_prev_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_padr_deepstate_test_round_up_core_prev_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/padr/inst/testfiles/round_up_core_prev</dir>
+      <file>round_up_core_prev_DeepState_TestHarness.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x418F48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/padr/inst/testfiles/round_up_core_prev/round_up_core_prev_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x4191E9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/padr/inst/testfiles/round_up_core_prev/round_up_core_prev_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x4192C4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/padr/inst/testfiles/round_up_core_prev/round_up_core_prev_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407695</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/padr/inst/testfiles/round_up_core_prev/round_up_core_prev_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x8cd6ec8 is 0 bytes after a block of size 360 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x40B49D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/padr/inst/testfiles/round_up_core_prev/round_up_core_prev_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;::Vector(int const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>130</line>
+    </frame>
+    <frame>
+      <ip>0x40866D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/padr/inst/testfiles/round_up_core_prev/round_up_core_prev_DeepState_TestHarness</obj>
+      <fn>RcppDeepState_IntegerVector()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppDeepState/include/RcppDeepState.h</file>
+      <line>57</line>
+    </frame>
+    <frame>
+      <ip>0x409344</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/padr/inst/testfiles/round_up_core_prev/round_up_core_prev_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_padr_deepstate_test_round_up_core_prev_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/padr/inst/testfiles/round_up_core_prev</dir>
+      <file>round_up_core_prev_DeepState_TestHarness.cpp</file>
+      <line>17</line>
+    </frame>
+    <frame>
+      <ip>0x409168</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/padr/inst/testfiles/round_up_core_prev/round_up_core_prev_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_padr_deepstate_test_round_up_core_prev_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/padr/inst/testfiles/round_up_core_prev</dir>
+      <file>round_up_core_prev_DeepState_TestHarness.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x418F48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/padr/inst/testfiles/round_up_core_prev/round_up_core_prev_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x4191E9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/padr/inst/testfiles/round_up_core_prev/round_up_core_prev_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x4192C4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/padr/inst/testfiles/round_up_core_prev/round_up_core_prev_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407695</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/padr/inst/testfiles/round_up_core_prev/round_up_core_prev_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:07.743 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>136</count>
+    <unique>0x1</unique>
+  </pair>
+  <pair>
+    <count>1</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.235 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

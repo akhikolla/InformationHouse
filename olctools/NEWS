@@ -1,0 +1,18 @@
+olctools 0.3.0
+-----------------------------------
+* NA support incorporated.
+* Bug in reference implementation with recovering shortened OLCs fixed over there, and subsequently
+fixed over here!
+
+olctools 0.2.1
+-----------------------------------
+* first CRAN release.
+* Bugfixes to allow for a Solaris release.
+
+olctools 0.2.0
+-----------------------------------
+
+* shorten_olc added, allowing for full Open Location Codes to be converted to short ones.
+* recover_olc added, allowing for shortened codes to be converted to full ones.
+* dependency on Boost::Regex deprecated, meaning this /should/ work on Windows.
+* vignette added.

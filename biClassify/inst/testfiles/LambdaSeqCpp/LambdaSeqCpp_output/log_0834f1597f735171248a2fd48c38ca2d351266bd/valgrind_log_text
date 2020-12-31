@@ -1,0 +1,17 @@
+WARNING: No test specified, defaulting to first test defined (biClassify_deepstate_test_LambdaSeqCpp_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/biClassify/inst/testfiles/LambdaSeqCpp/LambdaSeqCpp_output/0834f1597f735171248a2fd48c38ca2d351266bd.crash`
+TRACE: Running: biClassify_deepstate_test_LambdaSeqCpp_test from /home/akhila/fuzzer_packages/fuzzedpackages/biClassify/inst/testfiles/LambdaSeqCpp/LambdaSeqCpp_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+from values: 2.46668e-86
+to values: 2.28394e-55
+length values: 2.59435e+241
+input ends
+==694384==  If you believe this happened as a result of a stack
+==694384==  overflow in your program's main thread (unlikely but
+==694384==  possible), you can try to increase the size of the
+==694384==  main thread stack using the --main-stacksize= flag.
+==694384==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: biClassify_deepstate_test_LambdaSeqCpp_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/biClassify/inst/testfiles/LambdaSeqCpp/LambdaSeqCpp_output/0834f1597f735171248a2fd48c38ca2d351266bd.crash crashed

@@ -1,0 +1,71 @@
+---
+output: 
+  pdf_document:
+    citation_package: natbib
+    keep_tex: true
+    fig_caption: true
+    latex_engine: pdflatex
+    template: /Users/zhangh24/GoogleDrive/project/Ni/Utility/inst/svm.tex
+title: "Composite Kernel Machine Regression based on Likelihood Ratio Test with Application for Combined Genetic and Gene-environment Interaction Effect
+"
+#thanks: "Replication files are available on the author's Github account..."
+author:
+- name: Ni Zhao
+  affiliation: Department of Biostatistics, Johns Hopkins University, Baltimore, MD, USA
+- name: Haoyu Zhang
+  affiliation: Department of Biostatistics, Johns Hopkins University, Baltimore, MD, USA
+- name: Jennifer J. Clark
+  affiliation: Food and Drug Administration, Baltimore, MD, USA
+- name: Arnab Maity
+  affiliation: Department of Statistics, North Carolina State University, Raleigh, NC,USA
+- name: Michael C. Wu
+  affiliation: Public Health Sciences Division, Fred Hutchinson Cancer Research Center, Seattle, WA, USA
+
+abstract: "Most common human diseases are a result from the combined effect of genes, the environmental factors and their interactions such that including gene-environment (GE) interactions can improve power in gene mapping studies. The standard strategy is to test the SNPs, one-by-one, using a regression model that includes both the SNP effect and the GE interaction. However, the SNP-by-SNP approach has serious limitations, such as the inability to model epistatic SNP effects, biased estimation and reduced power. Thus, in this paper, we develop a kernel machine regression framework to model the overall genetic effect of a SNP-set, considering the possible GE interaction. Specifically, we use a composite kernel to specify the overall genetic effect via a nonparametric function and we model additional covariates parametrically within the regression framework. The composite kernel is constructed as a weighted average of two kernels, one corresponding to the genetic main effect and one corresponding to the GE interaction effect. We propose a likelihood ratio test (LRT) and a restricted likelihood ratio test (RLRT) for statistical significance. We derive a Monte Carlo approach for the finite sample distributions of LRT and RLRT statistics. Extensive simulations and real data analysis show that our proposed method has correct type I error and can have higher power than score-based approaches under many situations."
+keywords: "gene-environment interactions, kernel machine testing, likelihood ratio test, multiple variance compo- nents, spectral decomposition, unidentifiable conditions"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+geometry: margin=1in
+fontfamily: mathpazo
+fontsize: 11pt
+# spacing: double
+#bibliography: ~/Dropbox/master.bib
+#biblio-style: apsr
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# Overview
+This vegnette provides an introduction to the 'CKLRT' package. To load the package, users need to install package from CRAN and CKLRT from github. The package can be loaded with the following command:
+```{r, include=T}
+#install.packages("devtools")  
+library(devtools)  
+#install_github("andrewhaoyu/CKLRT")
+library(CKLRT)
+```
+
+# Example
+In this vegnette, we will decomstrate the methods with a simple example. 1. X present other covariates we want to adjust. 2. E represents the environment variable. 3. G is is the genotype matrix with two SNPs inside 4. y is the simulated outcomes. 
+```{r, include=T,echo=T,cache=T}
+library(mgcv); library(MASS); library(nlme);
+library(compiler);library(Rcpp);library(RcppEigen)
+library(CKLRT)
+set.seed(6)
+n = 200 # the number of observations
+X = rnorm(n) # the other covariates
+p = 2 # two snp in a gene will be simulated
+G = runif(n*p)< 0.5
+G = G + runif(n*p) < 0.5
+G = matrix(G, n,p) #genetic matrix
+E = (runif(n) < 0.5)^2 #enviroment effect
+y = rnorm(n) + G[,1] * 0.3 #observations
+#apply the likelihood ratio test
+omniLRT_fast(y, X =  cbind(X, E),K1 = G %*% t(G),K2 = (G*E) %*% t(G * E))
+#apply the restricted likelihood ratio test
+omniRLRT_fast(y, X =  cbind(X, E),K1 = G %*% t(G),K2 = (G*E) %*% t(G * E))
+```
+The results of the function contain three elements: 1. p.dir is the p-value of likelihood ratio test based on emprical distrition. 2. p.aud is the p-value by approximating the null distribution as a mixture of a point mass at zero with probability b and weighted chi square distribution with d degrees of freedom with probality of 1-b. 3. LR is the likelihood ratio test statistics.
+
+# References
+1. N. Zhao, H. Zhang, J. Clark, A. Maity, M. Wu. Composite Kernel Machine Regression based on Likelihood Ratio Test with Application for Combined Genetic and Gene-environment Interaction Effect (Submitted)
+

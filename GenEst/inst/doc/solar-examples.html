@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="J Mintz, D Dalthorp, J Simonis" />
+
+<meta name="date" content="2020-11-21" />
+
+<title>GenEst - Tutorial with Solar Example</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#header {
+text-align: center;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">GenEst - Tutorial with Solar Example</h1>
+<h4 class="author">J Mintz, D Dalthorp, J Simonis</h4>
+<h4 class="date">2020-11-21</h4>
+
+
+
+<div id="introduction" class="section level3">
+<h3>Introduction</h3>
+<p>In this vignette we walk through an example illustrating how <strong>GenEst</strong> command line utilities could be used to estimate mortality for different size birds at a large field of solar photovoltaic collectors. Our objective is to estimate overall mortality, as well as how mortality varies over time, whether it constant throughout the facility, and finally how different size classes of birds are affected.</p>
+<p>The general steps in the analysis are:</p>
+<ol style="list-style-type: decimal">
+<li>Construct a model for Searcher Efficiency</li>
+<li>Construct a model for Carcass Persistance</li>
+<li>Estimate mortality</li>
+<li>Specify the type of summary desired (for example, by season and species)</li>
+</ol>
+<p>There are five files in total which make up the example dataset. For convenience, these files can be accessed in R as a list:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(GenEst)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">data</span>(solar_PV)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">names</span>(solar_PV)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co">#&gt; [1] &quot;SE&quot;  &quot;CP&quot;  &quot;SS&quot;  &quot;DWP&quot; &quot;CO&quot;</span></a></code></pre></div>
+<p>Alternatively, the files may be downloaded as .csv files from <code>https://code.usgs.gov/ecosystems/GenEst/-/releases</code> in the “For more info” section.</p>
+</div>
+<div id="part-1-searcher-efficiency-modeling" class="section level3">
+<h3>Part 1: Searcher Efficiency Modeling</h3>
+<p>Searcher efficiency (SE) is modeled as a function of the number of times a carcass has been missed in previous searches and any number of covariates. The probability of finding a carcass that is present at the time of search is <code>p</code> on the first search after carcass arrival and is assumed to decrease by a factor of <code>k</code> each time the carcass is missed in searches. (For further background on field trials, and information about how to format the results for use with GenEst, see the User Guide, which is available at the <code>code.usgs.gov</code> page cited above).</p>
+<p>Results of the SE field trials used in this example are stored in the <code>data_SE</code> data frame:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">data_SE &lt;-<span class="st"> </span>solar_PV<span class="op">$</span>SE</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">head</span>(data_SE)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt;   seID Season  Size Search1 Search2 Search3 Search4 Distance</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; 1  se1 winter small       1      NA      NA      NA       17</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; 2  se2 winter small       1      NA      NA      NA       26</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt; 3  se3 winter small       0       1      NA      NA       54</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; 4  se4 winter small       0       1      NA      NA       28</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt; 5  se5 winter small       1      NA      NA      NA       46</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt; 6  se6 winter small       1      NA      NA      NA       40</span></a></code></pre></div>
+<p>GenEst provides tools to construct and compare specific individual models, to explore which subsets of variables are most useful, and to automatically construct entire sets of models. To start we will fit a basic model in which the probability of detecting a carcass, <code>p</code>, and compounding difficulty to detect, <code>k</code>, depend only on their respective intercepts (and not other factors such as season or size). The function <code>pkm</code> is used to create a searcher efficiency model, which is returned as a <code>pkm</code> object.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">SE_model &lt;-<span class="st"> </span><span class="kw">pkm</span>(p <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, k <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> data_SE)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">SE_model</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; $call</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt; pkm0(formula_p = formula_p, formula_k = formula_k, data = data, </span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt;     obsCol = obsCol, kFixed = kFixed, kInit = kInit, CL = CL, </span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt;     quiet = quiet)</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; $formula_p</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; p ~ 1</span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt; $formula_k</span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt; k ~ 1</span></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt; $predictors</span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt; character(0)</span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="co">#&gt; $AICc</span></a>
+<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="co">#&gt; [1] 489</span></a>
+<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="co">#&gt; $convergence</span></a>
+<a class="sourceLine" id="cb3-21" data-line-number="21"><span class="co">#&gt; [1] 0</span></a>
+<a class="sourceLine" id="cb3-22" data-line-number="22"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb3-23" data-line-number="23"><span class="co">#&gt; $cell_pk</span></a>
+<a class="sourceLine" id="cb3-24" data-line-number="24"><span class="co">#&gt;   cell   n p_median    p_lwr    p_upr k_median    k_lwr    k_upr</span></a>
+<a class="sourceLine" id="cb3-25" data-line-number="25"><span class="co">#&gt; 1  all 240 0.664805 0.615057 0.711143 0.846097 0.742135 0.913056</span></a>
+<a class="sourceLine" id="cb3-26" data-line-number="26"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb3-27" data-line-number="27"><span class="co">#&gt; $CL</span></a>
+<a class="sourceLine" id="cb3-28" data-line-number="28"><span class="co">#&gt; [1] 0.9</span></a></code></pre></div>
+<p>To explore whether use of covariate is warranted, <code>pkm</code> is used with the <code>allCombos = TRUE</code>. The specified model will be fit as will models formed using all combinations of predictors listed for the <code>p</code> and <code>k</code> parameters. orginal model. For example, <code>p ~ Season</code> can be simplified into <code>p ~ 1</code>, our original model in which <code>p</code> is independent of season.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">SE_model_set &lt;-<span class="st"> </span><span class="kw">pkm</span>(p<span class="op">~</span>Season, k<span class="op">~</span><span class="dv">1</span>, <span class="dt">data =</span> data_SE, <span class="dt">allCombos =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">class</span>(SE_model_set)</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt; [1] &quot;pkmSet&quot; &quot;list&quot;</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw">length</span>(SE_model_set)</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">#&gt; [1] 2</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="kw">names</span>(SE_model_set)</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt; [1] &quot;p ~ Season; k ~ 1&quot; &quot;p ~ 1; k ~ 1&quot;</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="kw">class</span>(SE_model_set[[<span class="dv">1</span>]])</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt; [1] &quot;pkm&quot;  &quot;list&quot;</span></a></code></pre></div>
+<p>The set of models is contained in a <code>pkmSet</code> object. We could inspect the two models stored in the <code>pkmSet</code> individually, or for convenience we can view the AICc values simultaneously for all models using the  function. Summary plots can be obtained by plotting any of the individual objects or the set as well.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">aicc</span>(SE_model_set)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt;   p Formula  k Formula   AICc &lt;U+0394&gt;AICc</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt; 2 p ~ 1      k ~ 1     489.00  0.00</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; 1 p ~ Season k ~ 1     492.11  3.11</span></a></code></pre></div>
+<p>Rather than one searcher efficiency model for all birds, it is often preferable to fit a seperate model for each size class. The <code>sizeCol</code> argument of the <code>pkm</code> function is the name of the column in <code>data_SE</code> that gives the size class for each carcass in the SE trials. If a <code>sizeCol</code> is provided, <code>pkm</code> returns a list of separate pk models fit for each size class.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">SE_size_model &lt;-<span class="st"> </span><span class="kw">pkm</span>(p <span class="op">~</span><span class="st"> </span>Season,</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">                     k <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">                     <span class="dt">sizeCol =</span> <span class="st">&quot;Size&quot;</span>,</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">                     <span class="dt">data =</span> data_SE)</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="kw">class</span>(SE_size_model)</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt; [1] &quot;pkmSize&quot; &quot;list&quot;</span></a>
+<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="kw">names</span>(SE_size_model)  <span class="co"># A list is created with a model set per size class.</span></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt; [1] &quot;lrg&quot;   &quot;med&quot;   &quot;small&quot;</span></a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="kw">class</span>(SE_size_model<span class="op">$</span>small)</a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co">#&gt; [1] &quot;pkm&quot;  &quot;list&quot;</span></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="kw">names</span>(SE_size_model<span class="op">$</span>small) <span class="co"># Each model set contains one model in this case.</span></a>
+<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="co">#&gt;  [1] &quot;call&quot;         &quot;data&quot;         &quot;data0&quot;        &quot;formula_p&quot;   </span></a>
+<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="co">#&gt;  [5] &quot;formula_k&quot;    &quot;predictors&quot;   &quot;predictors_p&quot; &quot;predictors_k&quot;</span></a>
+<a class="sourceLine" id="cb6-14" data-line-number="14"><span class="co">#&gt;  [9] &quot;AIC&quot;          &quot;AICc&quot;         &quot;convergence&quot;  &quot;varbeta&quot;     </span></a>
+<a class="sourceLine" id="cb6-15" data-line-number="15"><span class="co">#&gt; [13] &quot;cellMM_p&quot;     &quot;cellMM_k&quot;     &quot;nbeta_p&quot;      &quot;nbeta_k&quot;     </span></a>
+<a class="sourceLine" id="cb6-16" data-line-number="16"><span class="co">#&gt; [17] &quot;betahat_p&quot;    &quot;betahat_k&quot;    &quot;levels_p&quot;     &quot;cells&quot;       </span></a>
+<a class="sourceLine" id="cb6-17" data-line-number="17"><span class="co">#&gt; [21] &quot;ncell&quot;        &quot;cell_pk&quot;      &quot;CL&quot;           &quot;observations&quot;</span></a>
+<a class="sourceLine" id="cb6-18" data-line-number="18"><span class="co">#&gt; [25] &quot;carcCells&quot;    &quot;loglik&quot;       &quot;pOnly&quot;        &quot;data_adj&quot;</span></a></code></pre></div>
+<p>To fit all combinations of models for each size class, use <code>pkm</code> with a <code>sizeCol</code> parameter and with <code>allCombos = T</code>.</p>
+<p>Once we have decided on which models to use for each size class, we store the corresponding pkm objects in a list for future use. In this case, we will choose the models with the lower AICc.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">SE_size_model_set &lt;-<span class="st"> </span><span class="kw">pkm</span>(p <span class="op">~</span><span class="st"> </span>Season,</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">                     k <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">                     <span class="dt">sizeCol =</span> <span class="st">&quot;Size&quot;</span>,</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">                     <span class="dt">data =</span> data_SE, <span class="dt">allCombos =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="kw">aicc</span>(SE_size_model_set)</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="co">#&gt; $lrg</span></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co">#&gt;   p Formula  k Formula  AICc &lt;U+0394&gt;AICc</span></a>
+<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="co">#&gt; 1 p ~ Season k ~ 1     95.65  0.00</span></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">#&gt; 2 p ~ 1      k ~ 1     96.47  0.82</span></a>
+<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co">#&gt; $med</span></a>
+<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="co">#&gt;   p Formula  k Formula   AICc &lt;U+0394&gt;AICc</span></a>
+<a class="sourceLine" id="cb7-13" data-line-number="13"><span class="co">#&gt; 2 p ~ 1      k ~ 1     178.62  0.00</span></a>
+<a class="sourceLine" id="cb7-14" data-line-number="14"><span class="co">#&gt; 1 p ~ Season k ~ 1     182.40  3.78</span></a>
+<a class="sourceLine" id="cb7-15" data-line-number="15"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb7-16" data-line-number="16"><span class="co">#&gt; $small</span></a>
+<a class="sourceLine" id="cb7-17" data-line-number="17"><span class="co">#&gt;   p Formula  k Formula   AICc &lt;U+0394&gt;AICc</span></a>
+<a class="sourceLine" id="cb7-18" data-line-number="18"><span class="co">#&gt; 2 p ~ 1      k ~ 1     202.17  0.00</span></a>
+<a class="sourceLine" id="cb7-19" data-line-number="19"><span class="co">#&gt; 1 p ~ Season k ~ 1     206.48  4.31</span></a>
+<a class="sourceLine" id="cb7-20" data-line-number="20">SE_models &lt;-<span class="st"> </span><span class="kw">list</span>()</a></code></pre></div>
+<p>Size small:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">SE_models<span class="op">$</span>small &lt;-<span class="st"> </span>SE_size_model_set<span class="op">$</span>small[[<span class="dv">2</span>]]</a></code></pre></div>
+<p>Size Medium:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">SE_models<span class="op">$</span>med &lt;-<span class="st"> </span>SE_size_model_set<span class="op">$</span>med[[<span class="dv">2</span>]]</a></code></pre></div>
+<p>Size Large:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">SE_models<span class="op">$</span>lrg &lt;-<span class="st"> </span>SE_size_model_set<span class="op">$</span>lrg[[<span class="dv">1</span>]]</a></code></pre></div>
+</div>
+<div id="part-2-carcass-persistence-modeling" class="section level3">
+<h3>Part 2: Carcass Persistence Modeling</h3>
+<p>A carcass persistence model estimates the amount of time a carcass would persist for, given the conditions under which it arrived. A number of carcasses have been placed in the field and periodically checked for scavanging. Results of the CP field trials used in this example are stored in the <code>data_CP</code> data frame:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">data_CP &lt;-<span class="st"> </span>solar_PV<span class="op">$</span>CP</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">head</span>(data_CP)</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="co">#&gt;   cpID Season  Size LastPresent FirstAbsent</span></a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="co">#&gt; 1  cp1 winter small        0.00        1.05</span></a>
+<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="co">#&gt; 2  cp2 winter small       21.02       27.97</span></a>
+<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="co">#&gt; 3  cp3 winter small        4.03        7.01</span></a>
+<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="co">#&gt; 4  cp4 winter small        0.00        0.97</span></a>
+<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co">#&gt; 5  cp5 winter small       27.99          NA</span></a>
+<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="co">#&gt; 6  cp6 winter small       10.02       13.99</span></a></code></pre></div>
+<p> and  represent the left (start) and right (end) endpoints of the interval over which a carcass went missing. For further information about CP trials and how to format results for use with GenEst, see the User Guide (link found on help menu of the GUI, which can be accessed by entering <code>runGenEst()</code> from the R console).</p>
+<p>Four classes of parameteric models may be used for carcass persistance: exponential, Weibull, logistic, and lognormal. As with Searcher Efficiency we can fit one specific model, test a set of covariates and choose our favorite single model, or fit seperate models dependent on size class. First we will fit a single Weibull models for all birds. Weibull distributions have two parameters, location and scale. We will specify that the location depends on season by setting <code>l ~ season</code>, but scale only depends on the intercept using <code>s ~ 1</code>.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">cpm</span>(l <span class="op">~</span><span class="st"> </span>Season, s <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> data_CP,</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2">                <span class="dt">left =</span> <span class="st">&quot;LastPresent&quot;</span>,</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3">                <span class="dt">right =</span> <span class="st">&quot;FirstAbsent&quot;</span>,</a>
+<a class="sourceLine" id="cb12-4" data-line-number="4">                <span class="dt">dist =</span> <span class="st">&quot;weibull&quot;</span>)</a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="co">#&gt; $call</span></a>
+<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="co">#&gt; cpm0(formula_l = formula_l, formula_s = formula_s, data = data, </span></a>
+<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="co">#&gt;     left = left, right = right, dist = dist, CL = CL, quiet = quiet)</span></a>
+<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb12-9" data-line-number="9"><span class="co">#&gt; $formula_l</span></a>
+<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="co">#&gt; l ~ Season</span></a>
+<a class="sourceLine" id="cb12-11" data-line-number="11"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb12-12" data-line-number="12"><span class="co">#&gt; $formula_s</span></a>
+<a class="sourceLine" id="cb12-13" data-line-number="13"><span class="co">#&gt; s ~ 1</span></a>
+<a class="sourceLine" id="cb12-14" data-line-number="14"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb12-15" data-line-number="15"><span class="co">#&gt; $distribution</span></a>
+<a class="sourceLine" id="cb12-16" data-line-number="16"><span class="co">#&gt; [1] &quot;weibull&quot;</span></a>
+<a class="sourceLine" id="cb12-17" data-line-number="17"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb12-18" data-line-number="18"><span class="co">#&gt; $predictors</span></a>
+<a class="sourceLine" id="cb12-19" data-line-number="19"><span class="co">#&gt; [1] &quot;Season&quot;</span></a>
+<a class="sourceLine" id="cb12-20" data-line-number="20"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb12-21" data-line-number="21"><span class="co">#&gt; $AICc</span></a>
+<a class="sourceLine" id="cb12-22" data-line-number="22"><span class="co">#&gt; [1] 1051.61</span></a>
+<a class="sourceLine" id="cb12-23" data-line-number="23"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb12-24" data-line-number="24"><span class="co">#&gt; $convergence</span></a>
+<a class="sourceLine" id="cb12-25" data-line-number="25"><span class="co">#&gt; [1] 0</span></a>
+<a class="sourceLine" id="cb12-26" data-line-number="26"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb12-27" data-line-number="27"><span class="co">#&gt; $cell_ls</span></a>
+<a class="sourceLine" id="cb12-28" data-line-number="28"><span class="co">#&gt;     cell  n l_median l_lwr l_upr s_median s_lwr s_upr</span></a>
+<a class="sourceLine" id="cb12-29" data-line-number="29"><span class="co">#&gt; 1   fall 60    2.473 2.087 2.859    1.637 1.457 1.838</span></a>
+<a class="sourceLine" id="cb12-30" data-line-number="30"><span class="co">#&gt; 2 spring 60    2.801 2.395 3.208    1.637 1.457 1.838</span></a>
+<a class="sourceLine" id="cb12-31" data-line-number="31"><span class="co">#&gt; 3 summer 60    2.689 2.296 3.083    1.637 1.457 1.838</span></a>
+<a class="sourceLine" id="cb12-32" data-line-number="32"><span class="co">#&gt; 4 winter 60    2.509 2.127 2.891    1.637 1.457 1.838</span></a>
+<a class="sourceLine" id="cb12-33" data-line-number="33"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb12-34" data-line-number="34"><span class="co">#&gt; $cell_ab</span></a>
+<a class="sourceLine" id="cb12-35" data-line-number="35"><span class="co">#&gt;     cell  n pda_median pda_lwr pda_upr pdb_median pdb_lwr pdb_upr</span></a>
+<a class="sourceLine" id="cb12-36" data-line-number="36"><span class="co">#&gt; 1   fall 60      0.611   0.544   0.686     11.858   8.061  17.444</span></a>
+<a class="sourceLine" id="cb12-37" data-line-number="37"><span class="co">#&gt; 2 spring 60      0.611   0.544   0.686     16.461  10.968  24.730</span></a>
+<a class="sourceLine" id="cb12-38" data-line-number="38"><span class="co">#&gt; 3 summer 60      0.611   0.544   0.686     14.717   9.934  21.824</span></a>
+<a class="sourceLine" id="cb12-39" data-line-number="39"><span class="co">#&gt; 4 winter 60      0.611   0.544   0.686     12.293   8.390  18.011</span></a>
+<a class="sourceLine" id="cb12-40" data-line-number="40"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb12-41" data-line-number="41"><span class="co">#&gt; $CL</span></a>
+<a class="sourceLine" id="cb12-42" data-line-number="42"><span class="co">#&gt; [1] 0.9</span></a>
+<a class="sourceLine" id="cb12-43" data-line-number="43"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb12-44" data-line-number="44"><span class="co">#&gt; $cell_desc</span></a>
+<a class="sourceLine" id="cb12-45" data-line-number="45"><span class="co">#&gt;     cell medianCP        r1        r3        r7       r14       r28</span></a>
+<a class="sourceLine" id="cb12-46" data-line-number="46"><span class="co">#&gt; 1   fall 6.508736 0.8733664 0.7695707 0.6489244 0.5240883 0.3856577</span></a>
+<a class="sourceLine" id="cb12-47" data-line-number="47"><span class="co">#&gt; 2 spring 9.035276 0.8948948 0.8063180 0.7000989 0.5856841 0.4518313</span></a>
+<a class="sourceLine" id="cb12-48" data-line-number="48"><span class="co">#&gt; 3 summer 8.078012 0.8879564 0.7943671 0.6832539 0.5651042 0.4292548</span></a>
+<a class="sourceLine" id="cb12-49" data-line-number="49"><span class="co">#&gt; 4 winter 6.747503 0.8759150 0.7738696 0.6548159 0.5310385 0.3929133</span></a></code></pre></div>
+<p>Next, we try a CP model set considering whether the <code>season</code> covariate for location is necessary, by comparing the <code>l ~ season, s ~ 1</code> to <code>l ~ 1, s ~ 1</code>.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">  CP_weibull_set &lt;-<span class="st"> </span><span class="kw">cpm</span>(l <span class="op">~</span><span class="st"> </span>Season, s <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> data_CP,</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">                  <span class="dt">left =</span> <span class="st">&quot;LastPresent&quot;</span>,</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3">                  <span class="dt">right =</span> <span class="st">&quot;FirstAbsent&quot;</span>,</a>
+<a class="sourceLine" id="cb13-4" data-line-number="4">                  <span class="dt">dist =</span> <span class="st">&quot;weibull&quot;</span>, <span class="dt">allCombos =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="kw">class</span>(CP_weibull_set)</a>
+<a class="sourceLine" id="cb13-6" data-line-number="6"><span class="co">#&gt; [1] &quot;cpmSet&quot; &quot;list&quot;</span></a>
+<a class="sourceLine" id="cb13-7" data-line-number="7"><span class="kw">aicc</span>(CP_weibull_set)</a>
+<a class="sourceLine" id="cb13-8" data-line-number="8"><span class="co">#&gt;   Distribution Location Formula Scale Formula    AICc &lt;U+0394&gt;AICc</span></a>
+<a class="sourceLine" id="cb13-9" data-line-number="9"><span class="co">#&gt; 2 weibull      l ~ 1            s ~ 1         1046.65  0.00</span></a>
+<a class="sourceLine" id="cb13-10" data-line-number="10"><span class="co">#&gt; 1 weibull      l ~ Season       s ~ 1         1051.61  4.96</span></a></code></pre></div>
+<p>Finally we will construct sets of CP models for each size class, however this time we will also consider models based on both exponential and weibull distributions. To compare models for multiple distributions, set <code>dist</code> to a vector of the distribution names to be considered. With a <code>sizeCol</code> provided and <code>allCombos = TRUE</code>, <code>cpm</code> returns a list of <code>cpmSet</code> objects, one for each size class.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">CP_size_model_set &lt;-<span class="st"> </span><span class="kw">cpm</span>(<span class="dt">formula_l =</span> l <span class="op">~</span><span class="st"> </span>Season,</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">                           <span class="dt">formula_s =</span> s <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb14-3" data-line-number="3">                           <span class="dt">left =</span> <span class="st">&quot;LastPresent&quot;</span>,</a>
+<a class="sourceLine" id="cb14-4" data-line-number="4">                           <span class="dt">right =</span> <span class="st">&quot;FirstAbsent&quot;</span>,</a>
+<a class="sourceLine" id="cb14-5" data-line-number="5">                           <span class="dt">dist =</span> <span class="kw">c</span>(<span class="st">&quot;exponential&quot;</span>, <span class="st">&quot;weibull&quot;</span>),</a>
+<a class="sourceLine" id="cb14-6" data-line-number="6">                           <span class="dt">sizeCol =</span> <span class="st">&quot;Size&quot;</span>,</a>
+<a class="sourceLine" id="cb14-7" data-line-number="7">                           <span class="dt">data =</span> data_CP, <span class="dt">allCombos =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="kw">class</span>(CP_size_model_set)</a>
+<a class="sourceLine" id="cb14-9" data-line-number="9"><span class="co">#&gt; [1] &quot;cpmSetSize&quot; &quot;list&quot;</span></a>
+<a class="sourceLine" id="cb14-10" data-line-number="10"><span class="kw">names</span>(CP_size_model_set)</a>
+<a class="sourceLine" id="cb14-11" data-line-number="11"><span class="co">#&gt; [1] &quot;lrg&quot;   &quot;med&quot;   &quot;small&quot;</span></a>
+<a class="sourceLine" id="cb14-12" data-line-number="12"><span class="kw">class</span>(CP_size_model_set<span class="op">$</span>small)</a>
+<a class="sourceLine" id="cb14-13" data-line-number="13"><span class="co">#&gt; [1] &quot;cpmSet&quot; &quot;list&quot;</span></a>
+<a class="sourceLine" id="cb14-14" data-line-number="14"><span class="kw">length</span>(CP_size_model_set<span class="op">$</span>small)</a>
+<a class="sourceLine" id="cb14-15" data-line-number="15"><span class="co">#&gt; [1] 4</span></a>
+<a class="sourceLine" id="cb14-16" data-line-number="16"><span class="kw">names</span>(CP_size_model_set<span class="op">$</span>small)</a>
+<a class="sourceLine" id="cb14-17" data-line-number="17"><span class="co">#&gt; [1] &quot;dist: exponential; l ~ Season; NULL&quot;</span></a>
+<a class="sourceLine" id="cb14-18" data-line-number="18"><span class="co">#&gt; [2] &quot;dist: exponential; l ~ 1; NULL&quot;     </span></a>
+<a class="sourceLine" id="cb14-19" data-line-number="19"><span class="co">#&gt; [3] &quot;dist: weibull; l ~ Season; s ~ 1&quot;   </span></a>
+<a class="sourceLine" id="cb14-20" data-line-number="20"><span class="co">#&gt; [4] &quot;dist: weibull; l ~ 1; s ~ 1&quot;</span></a></code></pre></div>
+<p>We now have the flexibility to select models from different families for different size classes. We will choose to use the models with lower AICc, which requires storing the corresponding <code>cpm</code> objects in a list for later use.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">aicc</span>(CP_size_model_set)</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="co">#&gt; $lrg</span></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="co">#&gt;   Distribution Location Formula Scale Formula   AICc &lt;U+0394&gt;AICc</span></a>
+<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="co">#&gt; 2 exponential  l ~ 1            NULL          294.59  0.00</span></a>
+<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="co">#&gt; 4 weibull      l ~ 1            s ~ 1         295.60  1.01</span></a>
+<a class="sourceLine" id="cb15-6" data-line-number="6"><span class="co">#&gt; 1 exponential  l ~ Season       NULL          299.61  5.02</span></a>
+<a class="sourceLine" id="cb15-7" data-line-number="7"><span class="co">#&gt; 3 weibull      l ~ Season       s ~ 1         300.86  6.27</span></a>
+<a class="sourceLine" id="cb15-8" data-line-number="8"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb15-9" data-line-number="9"><span class="co">#&gt; $med</span></a>
+<a class="sourceLine" id="cb15-10" data-line-number="10"><span class="co">#&gt;   Distribution Location Formula Scale Formula   AICc &lt;U+0394&gt;AICc</span></a>
+<a class="sourceLine" id="cb15-11" data-line-number="11"><span class="co">#&gt; 4 weibull      l ~ 1            s ~ 1         352.44  0.00</span></a>
+<a class="sourceLine" id="cb15-12" data-line-number="12"><span class="co">#&gt; 3 weibull      l ~ Season       s ~ 1         356.47  4.03</span></a>
+<a class="sourceLine" id="cb15-13" data-line-number="13"><span class="co">#&gt; 2 exponential  l ~ 1            NULL          358.25  5.81</span></a>
+<a class="sourceLine" id="cb15-14" data-line-number="14"><span class="co">#&gt; 1 exponential  l ~ Season       NULL          361.45  9.01</span></a>
+<a class="sourceLine" id="cb15-15" data-line-number="15"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb15-16" data-line-number="16"><span class="co">#&gt; $small</span></a>
+<a class="sourceLine" id="cb15-17" data-line-number="17"><span class="co">#&gt;   Distribution Location Formula Scale Formula   AICc &lt;U+0394&gt;AICc</span></a>
+<a class="sourceLine" id="cb15-18" data-line-number="18"><span class="co">#&gt; 4 weibull      l ~ 1            s ~ 1         346.02  0.00</span></a>
+<a class="sourceLine" id="cb15-19" data-line-number="19"><span class="co">#&gt; 3 weibull      l ~ Season       s ~ 1         348.88  2.86</span></a>
+<a class="sourceLine" id="cb15-20" data-line-number="20"><span class="co">#&gt; 1 exponential  l ~ Season       NULL          380.56 34.54</span></a>
+<a class="sourceLine" id="cb15-21" data-line-number="21"><span class="co">#&gt; 2 exponential  l ~ 1            NULL          382.04 36.02</span></a>
+<a class="sourceLine" id="cb15-22" data-line-number="22">CP_models &lt;-<span class="st"> </span><span class="kw">list</span>()</a></code></pre></div>
+<p>Size small:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">CP_models<span class="op">$</span>small &lt;-<span class="st"> </span>CP_size_model_set<span class="op">$</span>small[[<span class="dv">4</span>]]</a></code></pre></div>
+<p>Size med:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">CP_models<span class="op">$</span>med &lt;-<span class="st"> </span>CP_size_model_set<span class="op">$</span>med[[<span class="dv">4</span>]]</a></code></pre></div>
+<p>Size lrg:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">CP_models<span class="op">$</span>lrg &lt;-<span class="st"> </span>CP_size_model_set<span class="op">$</span>lrg[[<span class="dv">2</span>]]</a></code></pre></div>
+</div>
+<div id="part-3-mortality-estimation" class="section level3">
+<h3>Part 3: Mortality Estimation</h3>
+<p>Estimating mortality requires bringing together models, carcass observation data (CO), and information on how the data was gathered. In particular the search schedule (SS) and proportion of carcasses in searchable areas (the density weighted proportion, or DWP), are needed. We will breifly inspect the files. Further information on the formatting of the CO, SS, and DWP files can be found in the User Guide.</p>
+<p>Carcass observations:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">data_CO &lt;-<span class="st"> </span>solar_PV<span class="op">$</span>CO</a>
+<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="kw">head</span>(data_CO)</a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="co">#&gt;   carcID    Unit Species  Size Row Distance  DateFound      X       Y</span></a>
+<a class="sourceLine" id="cb19-4" data-line-number="4"><span class="co">#&gt; 1     x1  Unit82      SA small  28       13 2018-01-26 524641 3857110</span></a>
+<a class="sourceLine" id="cb19-5" data-line-number="5"><span class="co">#&gt; 2     x2 Unit147      SA small  30       23 2018-01-13 525440 3857592</span></a>
+<a class="sourceLine" id="cb19-6" data-line-number="6"><span class="co">#&gt; 3     x3 Unit235      SA small  11       44 2018-03-18 526724 3858148</span></a>
+<a class="sourceLine" id="cb19-7" data-line-number="7"><span class="co">#&gt; 4     x4 Unit213      SA small  31       44 2018-02-04 526408 3858069</span></a>
+<a class="sourceLine" id="cb19-8" data-line-number="8"><span class="co">#&gt; 5     x5 Unit204      SA small  34       10 2018-04-29 524953 3858081</span></a>
+<a class="sourceLine" id="cb19-9" data-line-number="9"><span class="co">#&gt; 6     x6 Unit117      SA small  25       27 2018-04-06 527023 3857256</span></a></code></pre></div>
+<p>Search schedule:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">data_SS &lt;-<span class="st"> </span>solar_PV<span class="op">$</span>SS</a>
+<a class="sourceLine" id="cb20-2" data-line-number="2">data_SS[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span> , <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</a>
+<a class="sourceLine" id="cb20-3" data-line-number="3"><span class="co">#&gt;   DateSearched Season Unit1 Unit2 Unit3 Unit4 Unit5 Unit6 Unit7 Unit8</span></a>
+<a class="sourceLine" id="cb20-4" data-line-number="4"><span class="co">#&gt; 1   2017-12-20 winter     1     1     1     1     1     1     1     1</span></a>
+<a class="sourceLine" id="cb20-5" data-line-number="5"><span class="co">#&gt; 2   2017-12-21 winter     1     1     1     1     1     1     1     1</span></a>
+<a class="sourceLine" id="cb20-6" data-line-number="6"><span class="co">#&gt; 3   2017-12-22 winter     0     0     0     0     0     0     0     0</span></a>
+<a class="sourceLine" id="cb20-7" data-line-number="7"><span class="co">#&gt; 4   2017-12-23 winter     0     0     0     0     0     0     0     0</span></a>
+<a class="sourceLine" id="cb20-8" data-line-number="8"><span class="co">#&gt; 5   2017-12-24 winter     0     0     0     0     0     0     0     0</span></a></code></pre></div>
+<p>(Note that there are 300 arrays columns altogether: Unit1, …, Unit300)</p>
+<p>Density weighted proportion:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">data_DWP &lt;-<span class="st"> </span>solar_PV<span class="op">$</span>DWP</a>
+<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="kw">head</span>(data_DWP)</a>
+<a class="sourceLine" id="cb21-3" data-line-number="3"><span class="co">#&gt;    Unit small med lrg</span></a>
+<a class="sourceLine" id="cb21-4" data-line-number="4"><span class="co">#&gt; 1 Unit1     1   1   1</span></a>
+<a class="sourceLine" id="cb21-5" data-line-number="5"><span class="co">#&gt; 2 Unit2     1   1   1</span></a>
+<a class="sourceLine" id="cb21-6" data-line-number="6"><span class="co">#&gt; 3 Unit3     1   1   1</span></a>
+<a class="sourceLine" id="cb21-7" data-line-number="7"><span class="co">#&gt; 4 Unit4     1   1   1</span></a>
+<a class="sourceLine" id="cb21-8" data-line-number="8"><span class="co">#&gt; 5 Unit5     1   1   1</span></a>
+<a class="sourceLine" id="cb21-9" data-line-number="9"><span class="co">#&gt; 6 Unit6     1   1   1</span></a></code></pre></div>
+<p>These elements combine in the function <code>estM</code>, producing an object containing simulated arrival, detection, and mortality distributions. We also have the opportunity to provide the fraction of the facility being surveyed, <code>frac</code>, if it happens to be less than 100%. Increasing the number of simulations, <code>nsim</code>, will improve the accuracy of the estimates but comes at a cost of computer runtime.</p>
+<p>When estimating mortality, it is not currently possible to mix CP and SE models which differ in their dependence on size. Either both models depend on size class, or both models must be independent of size class. In this case we will choose here to use size dependence.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">  Mest &lt;-<span class="st"> </span><span class="kw">estM</span>(</a>
+<a class="sourceLine" id="cb22-2" data-line-number="2">    <span class="dt">nsim =</span> <span class="dv">100</span>, <span class="dt">frac =</span> <span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb22-3" data-line-number="3">    <span class="dt">data_CO =</span> data_CO, <span class="dt">data_SS =</span> data_SS, <span class="dt">data_DWP =</span> data_DWP,</a>
+<a class="sourceLine" id="cb22-4" data-line-number="4">    <span class="dt">model_SE =</span> SE_models, <span class="dt">model_CP =</span> CP_models,</a>
+<a class="sourceLine" id="cb22-5" data-line-number="5">    <span class="dt">unitCol =</span> <span class="st">&quot;Unit&quot;</span>, <span class="dt">sizeCol =</span> <span class="st">&quot;Size&quot;</span>,</a>
+<a class="sourceLine" id="cb22-6" data-line-number="6">    <span class="dt">COdate =</span> <span class="st">&quot;DateFound&quot;</span>, <span class="dt">SSdate =</span> <span class="st">&quot;DateSearched&quot;</span></a>
+<a class="sourceLine" id="cb22-7" data-line-number="7">  )</a></code></pre></div>
+<p>We are now able to get a confidence interval for estimated total mortality by taking summary of the estM object. Plotting it shows us us the estimated probability density for number of fatalities.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">plot</span>(Mest)</a></code></pre></div>
+<p><img src="data:image/png;base64,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" style="display: block; margin: auto;" /> A point estimate for overall sitewide mortality is listed at the top of the plot, satisfying our first objective. The period of inference only covers the period over which we have have fatality monitoring data, which in this case is from 2017-12-20 to 2018-12-19.</p>
+</div>
+<div id="part-4-summaries" class="section level3">
+<h3>Part 4: Summaries</h3>
+<p>Having calculated the estimated arrival densities for each of the carcases, we can now use them to create a variety of summaries. Suppose that we are interested in how mortality changes with respect to three kinds of variables:</p>
+<ol style="list-style-type: decimal">
+<li>Temporally - by season, or finer resolutions</li>
+<li>Spatially - summaries by search unit</li>
+<li>Among Size classes, or other groups</li>
+</ol>
+<p>To create summaries, we split the data by differnt covariates, using a function called <code>calcSplits</code>. This requires the simulated mortality <code>$Mhat</code> and arrival times <code>$Aj</code> stored in the <code>estM</code> object, plus the search schedule and carcass observation data.</p>
+<p>Splits to the search schedule (splits in time) are specified by assigning a covariate to <code>split_SS</code>. These must be variables present in the Search Schedule file. To investigate differences in mortality between season, we will set <code>split_SS</code> to <code>Season</code>.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">unique</span>(data_SS[, <span class="st">&quot;Season&quot;</span>])</a>
+<a class="sourceLine" id="cb24-2" data-line-number="2"><span class="co">#&gt; [1] &quot;winter&quot; &quot;spring&quot; &quot;summer&quot; &quot;fall&quot;</span></a>
+<a class="sourceLine" id="cb24-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb24-4" data-line-number="4">M_season &lt;-<span class="st"> </span><span class="kw">calcSplits</span>(<span class="dt">M =</span> Mest,</a>
+<a class="sourceLine" id="cb24-5" data-line-number="5">  <span class="dt">split_SS =</span> <span class="st">&quot;Season&quot;</span>, <span class="dt">data_SS =</span> data_SS,</a>
+<a class="sourceLine" id="cb24-6" data-line-number="6">  <span class="dt">split_CO =</span> <span class="ot">NULL</span>,  <span class="dt">data_CO =</span> data_CO</a>
+<a class="sourceLine" id="cb24-7" data-line-number="7">)</a></code></pre></div>
+<p>Splitting the estM creates a <code>splitFull</code> object, a plot of which shows boxplots for each season.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">plot</span>(M_season)</a></code></pre></div>
+<p><img src="data:image/png;base64,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" style="display: block; margin: auto;" /></p>
+<p>Taking a summary of the <code>splitFull</code> object gives us a confidence interval for each level of the split covariate. The size of the confidence interval can be specified for both plots or summaries using the CL argument.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">summary</span>(M_season, <span class="dt">CL =</span> <span class="fl">0.95</span>)</a>
+<a class="sourceLine" id="cb26-2" data-line-number="2"><span class="co">#&gt;               X      2.5%       25%       50%       75%     97.5%</span></a>
+<a class="sourceLine" id="cb26-3" data-line-number="3"><span class="co">#&gt; winter 28.93857  41.18001  49.33988  54.37020  61.80688  73.70444</span></a>
+<a class="sourceLine" id="cb26-4" data-line-number="4"><span class="co">#&gt; spring 84.89571 147.72201 187.83375 196.91397 209.54065 246.83686</span></a>
+<a class="sourceLine" id="cb26-5" data-line-number="5"><span class="co">#&gt; summer 73.70714 130.48043 151.19795 161.34303 172.40153 205.64579</span></a>
+<a class="sourceLine" id="cb26-6" data-line-number="6"><span class="co">#&gt; fall   45.45857  82.43028  91.69147  98.51951 112.46304 125.49912</span></a>
+<a class="sourceLine" id="cb26-7" data-line-number="7"><span class="co">#&gt; attr(,&quot;CL&quot;)</span></a>
+<a class="sourceLine" id="cb26-8" data-line-number="8"><span class="co">#&gt; [1] 0.95</span></a>
+<a class="sourceLine" id="cb26-9" data-line-number="9"><span class="co">#&gt; attr(,&quot;vars&quot;)</span></a>
+<a class="sourceLine" id="cb26-10" data-line-number="10"><span class="co">#&gt; [1] &quot;Season&quot;</span></a>
+<a class="sourceLine" id="cb26-11" data-line-number="11"><span class="co">#&gt; attr(,&quot;type&quot;)</span></a>
+<a class="sourceLine" id="cb26-12" data-line-number="12"><span class="co">#&gt; [1] &quot;SS&quot;</span></a>
+<a class="sourceLine" id="cb26-13" data-line-number="13"><span class="co">#&gt; attr(,&quot;times&quot;)</span></a>
+<a class="sourceLine" id="cb26-14" data-line-number="14"><span class="co">#&gt; [1]   0  89 182 276 364</span></a>
+<a class="sourceLine" id="cb26-15" data-line-number="15"><span class="co">#&gt; attr(,&quot;class&quot;)</span></a>
+<a class="sourceLine" id="cb26-16" data-line-number="16"><span class="co">#&gt; [1] &quot;splitSummary&quot;</span></a></code></pre></div>
+<p>To get a finer summary of mortality, we need to parse the search schedule, using the function <code>prepSS</code>. This allows us to specify the exact time intervals over which we will split, in this case we will create a weekly summary.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb27-2" data-line-number="2">SSdat &lt;-<span class="st"> </span><span class="kw">prepSS</span>(data_SS) <span class="co"># Creates an object of type prepSS.</span></a>
+<a class="sourceLine" id="cb27-3" data-line-number="3">schedule &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="kw">max</span>(SSdat<span class="op">$</span>days), <span class="dt">by =</span> <span class="dv">7</span>)</a>
+<a class="sourceLine" id="cb27-4" data-line-number="4"><span class="kw">tail</span>(schedule)</a>
+<a class="sourceLine" id="cb27-5" data-line-number="5"><span class="co">#&gt; [1] 329 336 343 350 357 364</span></a></code></pre></div>
+<p>When we plot the splitFull object for a split with a custom schedule, we must specify that the rate is per split catagory by setting <code>rate = T</code>.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">M_week &lt;-<span class="st"> </span><span class="kw">calcSplits</span>(<span class="dt">M =</span> Mest,</a>
+<a class="sourceLine" id="cb28-2" data-line-number="2">  <span class="dt">split_time =</span> schedule,</a>
+<a class="sourceLine" id="cb28-3" data-line-number="3">  <span class="dt">data_SS =</span> SSdat,</a>
+<a class="sourceLine" id="cb28-4" data-line-number="4">  <span class="dt">data_CO =</span> data_CO</a>
+<a class="sourceLine" id="cb28-5" data-line-number="5">)</a>
+<a class="sourceLine" id="cb28-6" data-line-number="6"><span class="kw">plot</span>(<span class="dt">x =</span> M_week, <span class="dt">rate =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p><img src="data:image/png;base64,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" style="display: block; margin: auto;" /></p>
+<p>Next we will look at at splitting by covariates present in the Carcass Observation file. We specify a CO split by assigning split_CO to the name (or names) of the variables we wish to split on. Suppose we would like a summary of estimated mortality by unit.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb29-2" data-line-number="2">M_unit &lt;-<span class="st"> </span><span class="kw">calcSplits</span>(<span class="dt">M =</span> Mest,</a>
+<a class="sourceLine" id="cb29-3" data-line-number="3">  <span class="dt">split_CO =</span> <span class="st">&quot;Unit&quot;</span>,</a>
+<a class="sourceLine" id="cb29-4" data-line-number="4">  <span class="dt">data_CO =</span> data_CO,</a>
+<a class="sourceLine" id="cb29-5" data-line-number="5">  <span class="dt">data_SS =</span> data_SS</a>
+<a class="sourceLine" id="cb29-6" data-line-number="6">)</a>
+<a class="sourceLine" id="cb29-7" data-line-number="7"><span class="kw">plot</span>(M_unit, <span class="dt">rate =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p><img src="data:image/png;base64,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" style="display: block; margin: auto;" /> There are 300 units in this example, each one gets a boxplot when we plot the splitFull. For those arrays which have at least one observation, we can create a summary. In this case we will only create a summary for arrays 8 and 100.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">dim</span>(<span class="kw">summary</span>(M_unit))  <span class="co"># only 164 arrays had observations.</span></a>
+<a class="sourceLine" id="cb30-2" data-line-number="2"><span class="co">#&gt; [1] 164   6</span></a>
+<a class="sourceLine" id="cb30-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb30-4" data-line-number="4"><span class="co"># A list of the arrays without observed carcasses:</span></a>
+<a class="sourceLine" id="cb30-5" data-line-number="5"><span class="kw">setdiff</span>(<span class="kw">paste0</span>(<span class="st">&quot;Unit&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">300</span>), data_CO<span class="op">$</span>Unit)</a>
+<a class="sourceLine" id="cb30-6" data-line-number="6"><span class="co">#&gt;   [1] &quot;Unit2&quot;   &quot;Unit3&quot;   &quot;Unit4&quot;   &quot;Unit5&quot;   &quot;Unit9&quot;   &quot;Unit13&quot;  &quot;Unit17&quot; </span></a>
+<a class="sourceLine" id="cb30-7" data-line-number="7"><span class="co">#&gt;   [8] &quot;Unit19&quot;  &quot;Unit20&quot;  &quot;Unit24&quot;  &quot;Unit25&quot;  &quot;Unit28&quot;  &quot;Unit29&quot;  &quot;Unit34&quot; </span></a>
+<a class="sourceLine" id="cb30-8" data-line-number="8"><span class="co">#&gt;  [15] &quot;Unit35&quot;  &quot;Unit36&quot;  &quot;Unit37&quot;  &quot;Unit38&quot;  &quot;Unit39&quot;  &quot;Unit40&quot;  &quot;Unit41&quot; </span></a>
+<a class="sourceLine" id="cb30-9" data-line-number="9"><span class="co">#&gt;  [22] &quot;Unit42&quot;  &quot;Unit45&quot;  &quot;Unit47&quot;  &quot;Unit48&quot;  &quot;Unit51&quot;  &quot;Unit55&quot;  &quot;Unit56&quot; </span></a>
+<a class="sourceLine" id="cb30-10" data-line-number="10"><span class="co">#&gt;  [29] &quot;Unit57&quot;  &quot;Unit59&quot;  &quot;Unit60&quot;  &quot;Unit62&quot;  &quot;Unit63&quot;  &quot;Unit66&quot;  &quot;Unit69&quot; </span></a>
+<a class="sourceLine" id="cb30-11" data-line-number="11"><span class="co">#&gt;  [36] &quot;Unit70&quot;  &quot;Unit71&quot;  &quot;Unit73&quot;  &quot;Unit74&quot;  &quot;Unit75&quot;  &quot;Unit81&quot;  &quot;Unit84&quot; </span></a>
+<a class="sourceLine" id="cb30-12" data-line-number="12"><span class="co">#&gt;  [43] &quot;Unit85&quot;  &quot;Unit86&quot;  &quot;Unit88&quot;  &quot;Unit90&quot;  &quot;Unit91&quot;  &quot;Unit93&quot;  &quot;Unit94&quot; </span></a>
+<a class="sourceLine" id="cb30-13" data-line-number="13"><span class="co">#&gt;  [50] &quot;Unit95&quot;  &quot;Unit97&quot;  &quot;Unit99&quot;  &quot;Unit102&quot; &quot;Unit103&quot; &quot;Unit104&quot; &quot;Unit105&quot;</span></a>
+<a class="sourceLine" id="cb30-14" data-line-number="14"><span class="co">#&gt;  [57] &quot;Unit108&quot; &quot;Unit109&quot; &quot;Unit111&quot; &quot;Unit119&quot; &quot;Unit120&quot; &quot;Unit121&quot; &quot;Unit122&quot;</span></a>
+<a class="sourceLine" id="cb30-15" data-line-number="15"><span class="co">#&gt;  [64] &quot;Unit124&quot; &quot;Unit125&quot; &quot;Unit127&quot; &quot;Unit128&quot; &quot;Unit132&quot; &quot;Unit133&quot; &quot;Unit136&quot;</span></a>
+<a class="sourceLine" id="cb30-16" data-line-number="16"><span class="co">#&gt;  [71] &quot;Unit143&quot; &quot;Unit146&quot; &quot;Unit148&quot; &quot;Unit149&quot; &quot;Unit151&quot; &quot;Unit164&quot; &quot;Unit166&quot;</span></a>
+<a class="sourceLine" id="cb30-17" data-line-number="17"><span class="co">#&gt;  [78] &quot;Unit169&quot; &quot;Unit172&quot; &quot;Unit175&quot; &quot;Unit179&quot; &quot;Unit181&quot; &quot;Unit185&quot; &quot;Unit186&quot;</span></a>
+<a class="sourceLine" id="cb30-18" data-line-number="18"><span class="co">#&gt;  [85] &quot;Unit188&quot; &quot;Unit189&quot; &quot;Unit191&quot; &quot;Unit192&quot; &quot;Unit193&quot; &quot;Unit197&quot; &quot;Unit199&quot;</span></a>
+<a class="sourceLine" id="cb30-19" data-line-number="19"><span class="co">#&gt;  [92] &quot;Unit200&quot; &quot;Unit201&quot; &quot;Unit202&quot; &quot;Unit205&quot; &quot;Unit209&quot; &quot;Unit211&quot; &quot;Unit216&quot;</span></a>
+<a class="sourceLine" id="cb30-20" data-line-number="20"><span class="co">#&gt;  [99] &quot;Unit221&quot; &quot;Unit222&quot; &quot;Unit225&quot; &quot;Unit226&quot; &quot;Unit228&quot; &quot;Unit231&quot; &quot;Unit233&quot;</span></a>
+<a class="sourceLine" id="cb30-21" data-line-number="21"><span class="co">#&gt; [106] &quot;Unit234&quot; &quot;Unit236&quot; &quot;Unit246&quot; &quot;Unit247&quot; &quot;Unit249&quot; &quot;Unit251&quot; &quot;Unit254&quot;</span></a>
+<a class="sourceLine" id="cb30-22" data-line-number="22"><span class="co">#&gt; [113] &quot;Unit255&quot; &quot;Unit256&quot; &quot;Unit257&quot; &quot;Unit259&quot; &quot;Unit261&quot; &quot;Unit262&quot; &quot;Unit264&quot;</span></a>
+<a class="sourceLine" id="cb30-23" data-line-number="23"><span class="co">#&gt; [120] &quot;Unit266&quot; &quot;Unit267&quot; &quot;Unit272&quot; &quot;Unit274&quot; &quot;Unit275&quot; &quot;Unit280&quot; &quot;Unit282&quot;</span></a>
+<a class="sourceLine" id="cb30-24" data-line-number="24"><span class="co">#&gt; [127] &quot;Unit283&quot; &quot;Unit285&quot; &quot;Unit288&quot; &quot;Unit289&quot; &quot;Unit291&quot; &quot;Unit293&quot; &quot;Unit294&quot;</span></a>
+<a class="sourceLine" id="cb30-25" data-line-number="25"><span class="co">#&gt; [134] &quot;Unit295&quot; &quot;Unit297&quot; &quot;Unit298&quot;</span></a>
+<a class="sourceLine" id="cb30-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb30-27" data-line-number="27"><span class="co"># Create summaries for arrays Unit12 and Unit100.</span></a>
+<a class="sourceLine" id="cb30-28" data-line-number="28">whichRow &lt;-<span class="st"> </span><span class="kw">rownames</span>(<span class="kw">summary</span>(M_unit))  <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Unit12&quot;</span>, <span class="st">&quot;Unit100&quot;</span>)</a>
+<a class="sourceLine" id="cb30-29" data-line-number="29"><span class="kw">summary</span>(M_unit)[whichRow, ]</a>
+<a class="sourceLine" id="cb30-30" data-line-number="30"><span class="co">#&gt;         X 5%      25%      50%      75%       95%</span></a>
+<a class="sourceLine" id="cb30-31" data-line-number="31"><span class="co">#&gt; Unit12  1  1 1.000000 2.436138 2.966872  5.251306</span></a>
+<a class="sourceLine" id="cb30-32" data-line-number="32"><span class="co">#&gt; Unit100 3  3 3.852121 5.774465 7.425038 10.325280</span></a></code></pre></div>
+<p>It is possible to create summaries that split on both Carcass Observation variables and Search Schedule variables. To do so, include both a <code>split_SS</code> and a <code>split_CO</code> argument.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb31-2" data-line-number="2">M_unit_and_species &lt;-<span class="st"> </span><span class="kw">calcSplits</span>(<span class="dt">M =</span> Mest,</a>
+<a class="sourceLine" id="cb31-3" data-line-number="3">  <span class="dt">split_SS =</span> <span class="kw">c</span>(<span class="st">&quot;Season&quot;</span>),</a>
+<a class="sourceLine" id="cb31-4" data-line-number="4">  <span class="dt">split_CO =</span> <span class="kw">c</span>(<span class="st">&quot;Size&quot;</span>),</a>
+<a class="sourceLine" id="cb31-5" data-line-number="5">  <span class="dt">data_CO =</span> data_CO,</a>
+<a class="sourceLine" id="cb31-6" data-line-number="6">  <span class="dt">data_SS =</span> data_SS</a>
+<a class="sourceLine" id="cb31-7" data-line-number="7">)</a>
+<a class="sourceLine" id="cb31-8" data-line-number="8"><span class="kw">plot</span>(M_unit_and_species, <span class="dt">rate =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p><img src="data:image/png;base64,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" style="display: block; margin: auto;" /></p>
+<p>Two CO variables can be compared simultaneously by specifying an ordered pair of covariates for <code>split_CO</code>, however currently there are a limited total number (two) of splits which can be allocated among temporal or carcass covariates.</p>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

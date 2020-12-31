@@ -1,0 +1,53 @@
+#' Moving Averages
+#' 
+#' Calculates moving averages or maximum moving average. For optimal speed, use 
+#' \code{integer = TRUE} if \code{x} is an integer vector and 
+#' \code{integer = FALSE} otherwise.
+#' 
+#' 
+#' @param x Integer or numeric vector.
+#' 
+#' @param window Integer value specifying window length.
+#' 
+#' @param integer Logical value for whether \code{x} is an integer vector.
+#' 
+#' @param max Logical value for whether to return maximum moving average (as 
+#' opposed to vector of moving averages).
+#' 
+#' 
+#' @return
+#' Numeric value or vector depending on \code{max}.
+#' 
+#' 
+#' @examples
+#' # Load accelerometer data for first 5 participants in NHANES 2003-2004
+#' data(unidata)
+#' 
+#' # Get data from ID number 21005
+#' id.part1 <- unidata[unidata[, "seqn"] == 21005, "seqn"]
+#' counts.part1 <- unidata[unidata[, "seqn"] == 21005, "paxinten"]
+#' 
+#' # Create vector of all 10-minute moving averages
+#' all.movingaves <- movingaves(x = counts.part1, window = 10, integer = TRUE)
+#' 
+#' # Calculate maximum 10-minute moving average
+#' max.movingave <- movingaves(x = counts.part1, window = 10, integer = TRUE, 
+#'                             max = TRUE)
+#' 
+#' 
+#' @export
+movingaves <- function(x, window, integer = FALSE, max = FALSE) {
+  
+  # Call C++ function depending on 'integer' and 'max'
+  if (integer) {
+    if (! max) {
+      return(.Call(`_accelerometry_movingaves_i`, x, window))
+    }
+    return(.Call(`_accelerometry_movingaves_i_max`, x, window))
+  }
+  if (! max) {
+    return(.Call(`_accelerometry_movingaves_n`, x, window))
+  }
+  return(.Call(`_accelerometry_movingaves_n_max`, x, window))
+  
+}

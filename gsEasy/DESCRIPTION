@@ -1,0 +1,19 @@
+Package: gsEasy
+Type: Package
+Title: Gene Set Enrichment Analysis in R
+Version: 1.3
+Date: 2018-05-23
+Author: Daniel Greene
+Maintainer: Daniel Greene <dg333@cam.ac.uk>
+Description: R-interface to C++ implementation of the rank/score permutation based GSEA test (Subramanian et al 2005 <doi: 10.1073/pnas.0506580102>).
+License: GPL (>= 2)
+Imports: Rcpp (>= 0.11.2), ontologyIndex (>= 2.0)
+LinkingTo: Rcpp
+Depends: R (>= 3.0.0)
+Suggests: knitr
+VignetteBuilder: knitr
+RoxygenNote: 6.0.1
+NeedsCompilation: yes
+Packaged: 2018-05-23 10:50:43 UTC; dg
+Repository: CRAN
+Date/Publication: 2018-05-23 11:04:45 UTC

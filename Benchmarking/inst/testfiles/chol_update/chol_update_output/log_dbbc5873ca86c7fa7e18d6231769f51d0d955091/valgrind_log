@@ -1,0 +1,855 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./chol_update_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_output/dbbc5873ca86c7fa7e18d6231769f51d0d955091.pass</line>
+</preamble>
+
+<pid>283581</pid>
+<ppid>283580</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_output/log_dbbc5873ca86c7fa7e18d6231769f51d0d955091/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./chol_update_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_output/dbbc5873ca86c7fa7e18d6231769f51d0d955091.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.027 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D302C1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src/Benchmarking.so</obj>
+      <fn>chol_update(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src</dir>
+      <file>chol_down.cpp</file>
+      <line>129</line>
+    </frame>
+    <frame>
+      <ip>0x409F8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Benchmarking_deepstate_test_chol_update_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update</dir>
+      <file>chol_update_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Benchmarking_deepstate_test_chol_update_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update</dir>
+      <file>chol_update_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DCD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x8a918f0 is 0 bytes after a block of size 272 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x41806F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector(Rcpp::Dimension const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>135</line>
+    </frame>
+    <frame>
+      <ip>0x40F336</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;::Matrix(int const&amp;, int const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Matrix.h</file>
+      <line>59</line>
+    </frame>
+    <frame>
+      <ip>0x408BAF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>RcppDeepState_NumericMatrix()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppDeepState/include/RcppDeepState.h</file>
+      <line>137</line>
+    </frame>
+    <frame>
+      <ip>0x409BFD</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Benchmarking_deepstate_test_chol_update_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update</dir>
+      <file>chol_update_DeepState_TestHarness.cpp</file>
+      <line>16</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Benchmarking_deepstate_test_chol_update_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update</dir>
+      <file>chol_update_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DCD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x1</unique>
+  <tid>1</tid>
+  <kind>InvalidWrite</kind>
+  <what>Invalid write of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D302CB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src/Benchmarking.so</obj>
+      <fn>chol_update(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src</dir>
+      <file>chol_down.cpp</file>
+      <line>129</line>
+    </frame>
+    <frame>
+      <ip>0x409F8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Benchmarking_deepstate_test_chol_update_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update</dir>
+      <file>chol_update_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Benchmarking_deepstate_test_chol_update_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update</dir>
+      <file>chol_update_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DCD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x8a918f0 is 0 bytes after a block of size 272 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x41806F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector(Rcpp::Dimension const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>135</line>
+    </frame>
+    <frame>
+      <ip>0x40F336</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;::Matrix(int const&amp;, int const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Matrix.h</file>
+      <line>59</line>
+    </frame>
+    <frame>
+      <ip>0x408BAF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>RcppDeepState_NumericMatrix()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppDeepState/include/RcppDeepState.h</file>
+      <line>137</line>
+    </frame>
+    <frame>
+      <ip>0x409BFD</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Benchmarking_deepstate_test_chol_update_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update</dir>
+      <file>chol_update_DeepState_TestHarness.cpp</file>
+      <line>16</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Benchmarking_deepstate_test_chol_update_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update</dir>
+      <file>chol_update_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DCD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x2</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D30316</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src/Benchmarking.so</obj>
+      <fn>chol_update(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src</dir>
+      <file>chol_down.cpp</file>
+      <line>130</line>
+    </frame>
+    <frame>
+      <ip>0x409F8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Benchmarking_deepstate_test_chol_update_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update</dir>
+      <file>chol_update_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Benchmarking_deepstate_test_chol_update_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update</dir>
+      <file>chol_update_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DCD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x8a918f0 is 0 bytes after a block of size 272 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x41806F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector(Rcpp::Dimension const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>135</line>
+    </frame>
+    <frame>
+      <ip>0x40F336</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;::Matrix(int const&amp;, int const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Matrix.h</file>
+      <line>59</line>
+    </frame>
+    <frame>
+      <ip>0x408BAF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>RcppDeepState_NumericMatrix()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppDeepState/include/RcppDeepState.h</file>
+      <line>137</line>
+    </frame>
+    <frame>
+      <ip>0x409BFD</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Benchmarking_deepstate_test_chol_update_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update</dir>
+      <file>chol_update_DeepState_TestHarness.cpp</file>
+      <line>16</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Benchmarking_deepstate_test_chol_update_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update</dir>
+      <file>chol_update_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DCD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x3de</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D3018C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src/Benchmarking.so</obj>
+      <fn>chol_update(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src</dir>
+      <file>chol_down.cpp</file>
+      <line>124</line>
+    </frame>
+    <frame>
+      <ip>0x409F8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Benchmarking_deepstate_test_chol_update_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update</dir>
+      <file>chol_update_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Benchmarking_deepstate_test_chol_update_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update</dir>
+      <file>chol_update_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DCD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x8a91900 is 16 bytes after a block of size 272 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x41806F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector(Rcpp::Dimension const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>135</line>
+    </frame>
+    <frame>
+      <ip>0x40F336</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;::Matrix(int const&amp;, int const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Matrix.h</file>
+      <line>59</line>
+    </frame>
+    <frame>
+      <ip>0x408BAF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>RcppDeepState_NumericMatrix()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppDeepState/include/RcppDeepState.h</file>
+      <line>137</line>
+    </frame>
+    <frame>
+      <ip>0x409BFD</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Benchmarking_deepstate_test_chol_update_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update</dir>
+      <file>chol_update_DeepState_TestHarness.cpp</file>
+      <line>16</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Benchmarking_deepstate_test_chol_update_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update</dir>
+      <file>chol_update_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DCD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x3df</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D3024F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src/Benchmarking.so</obj>
+      <fn>chol_update(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src</dir>
+      <file>chol_down.cpp</file>
+      <line>125</line>
+    </frame>
+    <frame>
+      <ip>0x409F8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Benchmarking_deepstate_test_chol_update_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update</dir>
+      <file>chol_update_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Benchmarking_deepstate_test_chol_update_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update</dir>
+      <file>chol_update_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DCD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x8a91900 is 16 bytes after a block of size 272 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x41806F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector(Rcpp::Dimension const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>135</line>
+    </frame>
+    <frame>
+      <ip>0x40F336</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;::Matrix(int const&amp;, int const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Matrix.h</file>
+      <line>59</line>
+    </frame>
+    <frame>
+      <ip>0x408BAF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>RcppDeepState_NumericMatrix()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppDeepState/include/RcppDeepState.h</file>
+      <line>137</line>
+    </frame>
+    <frame>
+      <ip>0x409BFD</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Benchmarking_deepstate_test_chol_update_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update</dir>
+      <file>chol_update_DeepState_TestHarness.cpp</file>
+      <line>16</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Benchmarking_deepstate_test_chol_update_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update</dir>
+      <file>chol_update_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DCD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x3e0</unique>
+  <tid>1</tid>
+  <kind>InvalidWrite</kind>
+  <what>Invalid write of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D30253</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src/Benchmarking.so</obj>
+      <fn>chol_update(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src</dir>
+      <file>chol_down.cpp</file>
+      <line>127</line>
+    </frame>
+    <frame>
+      <ip>0x409F8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Benchmarking_deepstate_test_chol_update_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update</dir>
+      <file>chol_update_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Benchmarking_deepstate_test_chol_update_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update</dir>
+      <file>chol_update_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DCD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x8a91900 is 16 bytes after a block of size 272 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x41806F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector(Rcpp::Dimension const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>135</line>
+    </frame>
+    <frame>
+      <ip>0x40F336</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;::Matrix(int const&amp;, int const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Matrix.h</file>
+      <line>59</line>
+    </frame>
+    <frame>
+      <ip>0x408BAF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>RcppDeepState_NumericMatrix()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppDeepState/include/RcppDeepState.h</file>
+      <line>137</line>
+    </frame>
+    <frame>
+      <ip>0x409BFD</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Benchmarking_deepstate_test_chol_update_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update</dir>
+      <file>chol_update_DeepState_TestHarness.cpp</file>
+      <line>16</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Benchmarking_deepstate_test_chol_update_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update</dir>
+      <file>chol_update_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DCD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+</valgrindoutput>
+  <stack>
+    <frame>
+      <ip>0x4D3028D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src/Benchmarking.so</obj>
+      <fn>chol_update(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/src</dir>
+      <file>chol_down.cpp</file>
+      <line>129</line>
+    </frame>
+    <frame>
+      <ip>0x409F8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_Benchmarking_deepstate_test_chol_update_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update</dir>
+      <file>chol_update_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_Benchmarking_deepstate_test_chol_update_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update</dir>
+      <file>chol_update_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DCD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/Benchmarking/inst/testfiles/chol_update/chol_update_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.437 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

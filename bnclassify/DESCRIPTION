@@ -1,0 +1,30 @@
+Package: bnclassify
+Title: Learning Discrete Bayesian Network Classifiers from Data
+Description: State-of-the art algorithms for learning discrete Bayesian network classifiers from data, including a number of those described in Bielza & Larranaga (2014) <doi:10.1145/2576868>, with functions for prediction, model evaluation and inspection.
+Version: 0.4.5
+Authors@R: c(person("Mihaljevic","Bojan",email="boki.mihaljevic@gmail.com",role=c("aut","cre")),
+    person("Bielza","Concha",email="mcbielza@fi.upm.es",role="aut"),
+    person("Larranaga","Pedro",email="pedro.larranaga@fi.upm.es",role="aut"), 
+    person("Wickham", "Hadley", role="ctb", comment="some code extracted from memoise package"))
+URL: http://github.com/bmihaljevic/bnclassify
+BugReports: http://github.com/bmihaljevic/bnclassify/issues
+Depends: R (>= 3.2.0)
+Imports: assertthat (>= 0.1), entropy(>= 1.2.0), matrixStats(>=
+        0.14.0), rpart(>= 4.1-8), Rcpp,
+Suggests: graph(>= 1.42.0), gRain(>= 1.2-3), gRbase(>= 1.7-0.1), mlr(>=
+        2.2), testthat(>= 0.8.1), knitr(>= 1.10.5), ParamHelpers(>=
+        1.5), Rgraphviz(>= 2.8.1), rmarkdown(>= 0.7), mlbench, covr
+License: GPL (>= 2)
+Maintainer: Mihaljevic Bojan <boki.mihaljevic@gmail.com>
+VignetteBuilder: knitr
+RoxygenNote: 7.0.2
+LinkingTo: Rcpp, BH
+SystemRequirements: C++11
+NeedsCompilation: yes
+Packaged: 2020-03-12 16:01:55 UTC; bmihaljevic
+Author: Mihaljevic Bojan [aut, cre],
+  Bielza Concha [aut],
+  Larranaga Pedro [aut],
+  Wickham Hadley [ctb] (some code extracted from memoise package)
+Repository: CRAN
+Date/Publication: 2020-03-12 17:40:02 UTC

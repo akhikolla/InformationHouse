@@ -1,0 +1,105 @@
+---
+title: "FlyingR: Predicting birds' flight range. A Tutorial."
+author: "Brian Masinde"
+date: "`r Sys.Date()`"
+vignette: >
+  %\VignetteIndexEntry{documentation}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+citation_package: natbib
+bibliography: references.bib
+---
+
+# Introduction
+In this tutorial, a sample of 28 birds from the program Flight is used to 
+demonstrate how to use the package to estimate flight ranges of migrating birds.
+Note that in package `FlyingR` two approaches are implemented for this estimation.
+The first from @penny75 and the second from @penny03 and @penny08. In this
+tutorial focus is on the second approach (a time-marching approach).
+
+## Basic usage with default settings.
+
+```{r}
+data("birds", package = "FlyingR")
+results <-
+  FlyingR::migrate(data = birds,
+                  method = "cmm",
+                  speed_control = 1,
+                  min_energy_protein = 0.05)
+
+# extract range as a vector
+results$range
+```
+
+
+In this case, the muscle mass adjustment criteria is the constant muscle mass 
+("cmm", meaning protein is not consumed from muscle mass). Run by holding 
+true airspeed at start of flight constant, the alternative is maintain the 
+ratio between true airspeed and minimum power speed constant (`speed_control = 0`). In this simulation, additional protein is consumed (5\% of the total energy)
+and this comes from the airframe mass.
+
+The default settings are as follows:
+
+\begin{table}[H]
+  \caption{Constants, denotation and default values}
+  \label{constants}
+  \begin{tabular}{|l|l|l|}
+  \toprule
+  \multicolumn{1}{|c|}{\textbf{Constant}}     & \textbf{denoted as} & \textbf{default value} \\ \midrule
+  Profile power constant             & ppc        & 8.40          \\ \midrule
+  Fat energy density                 & fed        & 3.9E+07       \\ \midrule
+  gravity                            & g          & 9.81          \\ \midrule
+  Mechanical conversion efficiency   & mce        & 0.23          \\ \midrule
+  Induced power factor               & ipf        & 1.20          \\ \midrule
+  Ventilation and circulation power  & vcp        & 1.10          \\ \midrule
+  Air density                        & airDensity & 1.00          \\ \midrule
+  Protein energy density             & ped        & 1.8E+07       \\ \midrule
+  Body drag coefficient              & bdc        & 0.10          \\ \midrule
+  %Basal metabolic rate               &            &               \\ \hline
+  Mitochondria inverse power density & mipd       & 1.2E-06       \\ \midrule
+  Muscle density                     & muscleDensity & 1060       \\ \midrule
+  Protein hydration ratio            & phr           & 2.2        \\ \midrule
+  Airspeed ratio                     & speedRatio    & 1.2        \\ \bottomrule
+  \end{tabular}
+\end{table}
+
+These settings could be adjusted. For example, the default value for the induced
+power factor is high, the recommended being 0.9. This can be adjusted as follows
+`settings = list(ipf =0.9)`. Basic knowledge of defining lists is required.
+
+```{r}
+results <-
+  FlyingR::migrate(data = birds,
+                  method = "cmm",
+                  settings = list(ipf = 0.9),
+                  speed_control = 1,
+                  min_energy_protein = 0.05)
+```
+
+
+Other methods are the constant specific work (`method = "csw"`) and constant 
+specific power (`method = "csp"`).
+
+```{r}
+results <-
+  FlyingR::migrate(data = birds,
+                  method = "csw",
+                  settings = list(ipf = 0.9),
+                  speed_control = 1,
+                  min_energy_protein = 0.05)
+
+
+# obtain remaining body mass
+results$bodyMass
+
+# starting minimum power speed
+results$startMinSpeed
+
+# end of flight minimum power speed
+results$endMinSpeed
+```
+
+\newpage 
+
+
+# References

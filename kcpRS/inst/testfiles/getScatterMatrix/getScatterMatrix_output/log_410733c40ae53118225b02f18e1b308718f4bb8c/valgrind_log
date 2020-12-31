@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./getScatterMatrix_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/kcpRS/inst/testfiles/getScatterMatrix/getScatterMatrix_output/410733c40ae53118225b02f18e1b308718f4bb8c.pass</line>
+</preamble>
+
+<pid>905333</pid>
+<ppid>905332</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/kcpRS/inst/testfiles/getScatterMatrix/getScatterMatrix_output/log_410733c40ae53118225b02f18e1b308718f4bb8c/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./getScatterMatrix_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/kcpRS/inst/testfiles/getScatterMatrix/getScatterMatrix_output/410733c40ae53118225b02f18e1b308718f4bb8c.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.077 </time>
+</status>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:14.013 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:14.844 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

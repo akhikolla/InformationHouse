@@ -1,0 +1,1 @@
+alacoxIC <- function(...) UseMethod("alacoxIC")

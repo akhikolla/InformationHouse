@@ -1,0 +1,12 @@
+WARNING: No test specified, defaulting to first test defined (phylobase_deepstate_test_nTipsSafe_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/phylobase/inst/testfiles/nTipsSafe/nTipsSafe_output/efea37000f3cc94d9db69da2639d199f879be9bf.fail`
+TRACE: Running: phylobase_deepstate_test_nTipsSafe_test from /home/akhila/fuzzer_packages/fuzzedpackages/phylobase/inst/testfiles/nTipsSafe/nTipsSafe_DeepState_TestHarness.cpp(10)
+input starts
+EXTERNAL: qs v0.23.4.
+
+ances values: -462605631 31622983 -1184375622 -1517457783 -741143924 121965505 -1857256285 -1696654722 1280065358 801543656 762421971 -15639342 -463053077 -1419137988 -1238245552 284872284 1175300725 -750822143 -1325345616 288391925 -1746804670 1250721536 -1117892403 1478371999 735319295 343015621 1926526339 83327131 -665264605 -463658078 -1149997292 -1835420738 1858583938 968705963 -1849938283 -1280953972 -32526365 1825735975 1190411225 -1896966148 -1235976465 298163106 -2147483648 1885913198 2003784163 1121323912 -884580007 905467371 1288952413 -2147483648 1060588975 -1626465001 2104490687 1157974032 1286171009 -1564578578 -1857663959
+input ends
+terminate called after throwing an instance of 'std::length_error'
+  what():  cannot create std::vector larger than max_size()
+ERROR: Failed: phylobase_deepstate_test_nTipsSafe_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/phylobase/inst/testfiles/nTipsSafe/nTipsSafe_output/efea37000f3cc94d9db69da2639d199f879be9bf.fail failed

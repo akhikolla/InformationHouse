@@ -1,0 +1,21 @@
+useDynLib(BoostMLR, .registration=TRUE)
+importFrom("graphics", "abline", "barplot", "layout", "legend",
+           "lines", "par", "plot", "points", "axis", "text", "filled.contour")
+importFrom("Rcpp", "sourceCpp")
+importFrom("splines", "bs")
+importFrom("nlme", "gls", "corSymm", "corCompSymm", "corAR1")
+importFrom("stats", "coef", "rnorm", "runif", "loess", "lowess", "quantile","predict")
+importFrom("grDevices", "colorRampPalette", "dev.off", "grey", "pdf")
+
+export(BoostMLR,
+       updateBoostMLR,
+       predictBoostMLR,
+       plotBoostMLR,
+       plotVIMP,
+       partial.BoostMLR,
+       vimp.BoostMLR,
+       simLong,
+       BoostMLR.news)
+
+
+

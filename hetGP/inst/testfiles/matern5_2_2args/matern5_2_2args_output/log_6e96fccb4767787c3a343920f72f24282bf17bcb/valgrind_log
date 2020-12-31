@@ -1,0 +1,577 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./matern5_2_2args_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_output/6e96fccb4767787c3a343920f72f24282bf17bcb.pass</line>
+</preamble>
+
+<pid>861696</pid>
+<ppid>861695</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_output/log_6e96fccb4767787c3a343920f72f24282bf17bcb/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./matern5_2_2args_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_output/6e96fccb4767787c3a343920f72f24282bf17bcb.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.027 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4FB8D41</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_exp_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_exp.c</file>
+      <line>105</line>
+    </frame>
+    <frame>
+      <ip>0x4F792C2</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>exp@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_exp_template.c</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D36B15</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/src/hetGP.so</obj>
+      <fn>matern5_2_2args(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/src</dir>
+      <file>Matern_utils.cpp</file>
+      <line>192</line>
+    </frame>
+    <frame>
+      <ip>0x409F8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_hetGP_deepstate_test_matern5_2_2args_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args</dir>
+      <file>matern5_2_2args_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_hetGP_deepstate_test_matern5_2_2args_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args</dir>
+      <file>matern5_2_2args_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D768</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA09</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DAE4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x1</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4FB8DE2</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_exp_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_exp.c</file>
+      <line>108</line>
+    </frame>
+    <frame>
+      <ip>0x4F792C2</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>exp@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_exp_template.c</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D36B15</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/src/hetGP.so</obj>
+      <fn>matern5_2_2args(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/src</dir>
+      <file>Matern_utils.cpp</file>
+      <line>192</line>
+    </frame>
+    <frame>
+      <ip>0x409F8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_hetGP_deepstate_test_matern5_2_2args_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args</dir>
+      <file>matern5_2_2args_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_hetGP_deepstate_test_matern5_2_2args_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args</dir>
+      <file>matern5_2_2args_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D768</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA09</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DAE4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x2</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4FB8DEE</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_exp_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_exp.c</file>
+      <line>112</line>
+    </frame>
+    <frame>
+      <ip>0x4F792C2</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>exp@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_exp_template.c</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D36B15</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/src/hetGP.so</obj>
+      <fn>matern5_2_2args(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/src</dir>
+      <file>Matern_utils.cpp</file>
+      <line>192</line>
+    </frame>
+    <frame>
+      <ip>0x409F8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_hetGP_deepstate_test_matern5_2_2args_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args</dir>
+      <file>matern5_2_2args_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_hetGP_deepstate_test_matern5_2_2args_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args</dir>
+      <file>matern5_2_2args_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D768</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA09</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DAE4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x3</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4FB8DFD</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_exp_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_exp.c</file>
+      <line>114</line>
+    </frame>
+    <frame>
+      <ip>0x4F792C2</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>exp@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_exp_template.c</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D36B15</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/src/hetGP.so</obj>
+      <fn>matern5_2_2args(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/src</dir>
+      <file>Matern_utils.cpp</file>
+      <line>192</line>
+    </frame>
+    <frame>
+      <ip>0x409F8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_hetGP_deepstate_test_matern5_2_2args_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args</dir>
+      <file>matern5_2_2args_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_hetGP_deepstate_test_matern5_2_2args_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args</dir>
+      <file>matern5_2_2args_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D768</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA09</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DAE4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x4</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4FB8E09</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_exp_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_exp.c</file>
+      <line>116</line>
+    </frame>
+    <frame>
+      <ip>0x4F792C2</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>exp@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_exp_template.c</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D36B15</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/src/hetGP.so</obj>
+      <fn>matern5_2_2args(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/src</dir>
+      <file>Matern_utils.cpp</file>
+      <line>192</line>
+    </frame>
+    <frame>
+      <ip>0x409F8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_hetGP_deepstate_test_matern5_2_2args_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args</dir>
+      <file>matern5_2_2args_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_hetGP_deepstate_test_matern5_2_2args_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args</dir>
+      <file>matern5_2_2args_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D768</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA09</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DAE4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x5</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4FB8E14</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_exp_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_exp.c</file>
+      <line>118</line>
+    </frame>
+    <frame>
+      <ip>0x4F792C2</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>exp@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_exp_template.c</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D36B15</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/src/hetGP.so</obj>
+      <fn>matern5_2_2args(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/src</dir>
+      <file>Matern_utils.cpp</file>
+      <line>192</line>
+    </frame>
+    <frame>
+      <ip>0x409F8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_hetGP_deepstate_test_matern5_2_2args_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args</dir>
+      <file>matern5_2_2args_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_hetGP_deepstate_test_matern5_2_2args_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args</dir>
+      <file>matern5_2_2args_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D768</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA09</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DAE4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x6</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F7930A</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__exp</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_exp_template.c</file>
+      <line>33</line>
+    </frame>
+    <frame>
+      <ip>0x4F7930A</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>exp@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_exp_template.c</file>
+      <line>30</line>
+    </frame>
+    <frame>
+      <ip>0x4D36B15</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/src/hetGP.so</obj>
+      <fn>matern5_2_2args(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/src</dir>
+      <file>Matern_utils.cpp</file>
+      <line>192</line>
+    </frame>
+    <frame>
+      <ip>0x409F8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_hetGP_deepstate_test_matern5_2_2args_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args</dir>
+      <file>matern5_2_2args_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_hetGP_deepstate_test_matern5_2_2args_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args</dir>
+      <file>matern5_2_2args_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D768</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA09</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DAE4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/matern5_2_2args/matern5_2_2args_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.390 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>54</count>
+    <unique>0x6</unique>
+  </pair>
+  <pair>
+    <count>54</count>
+    <unique>0x3</unique>
+  </pair>
+  <pair>
+    <count>54</count>
+    <unique>0x2</unique>
+  </pair>
+  <pair>
+    <count>54</count>
+    <unique>0x1</unique>
+  </pair>
+  <pair>
+    <count>54</count>
+    <unique>0x0</unique>
+  </pair>
+  <pair>
+    <count>30</count>
+    <unique>0x5</unique>
+  </pair>
+  <pair>
+    <count>30</count>
+    <unique>0x4</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.941 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

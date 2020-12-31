@@ -1,0 +1,32 @@
+Package: disclapmix
+Type: Package
+Title: Discrete Laplace Mixture Inference using the EM Algorithm
+Version: 1.7.3
+Authors@R: c(
+    person(given = "Mikkel Meyer", family = "Andersen", 
+        email = "mikl@math.aau.dk", role = c("aut", "cre")),
+    person(given = "Poul Svante", family = "Eriksen", 
+        email = "svante@math.aau.dk", role = c("aut"))
+  )
+Author: Mikkel Meyer Andersen [aut, cre],
+  Poul Svante Eriksen [aut]
+Maintainer: Mikkel Meyer Andersen <mikl@math.aau.dk>
+Description: Make inference in a mixture of discrete Laplace distributions using the EM algorithm. This can e.g. be used for modelling the distribution of Y chromosomal haplotypes as described in [1, 2] (refer to the URL section).
+License: GPL-2 | file LICENSE
+LinkingTo: Rcpp, RcppProgress
+Imports: Rcpp (>= 0.11), disclap (>= 1.4), cluster (>= 1.14.4), MASS,
+        stats, graphics, methods, utils
+Suggests: knitr, ggplot2, gridExtra, ggdendro, scales, seriation,
+        fwsim, testthat, rmarkdown
+LazyLoad: yes
+BugReports: https://github.com/mikldk/disclapmix/issues
+VignetteBuilder: knitr
+SystemRequirements: C++11
+Encoding: UTF-8
+URL: http://dx.doi.org/10.1016/j.jtbi.2013.03.009
+        http://arxiv.org/abs/1304.2129
+RoxygenNote: 6.1.1
+NeedsCompilation: yes
+Packaged: 2019-03-12 13:24:39 UTC; mikl
+Repository: CRAN
+Date/Publication: 2019-03-12 14:06:14 UTC

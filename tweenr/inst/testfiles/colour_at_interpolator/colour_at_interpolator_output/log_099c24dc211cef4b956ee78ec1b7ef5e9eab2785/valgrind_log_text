@@ -1,0 +1,19 @@
+WARNING: No test specified, defaulting to first test defined (tweenr_deepstate_test_colour_at_interpolator_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/colour_at_interpolator/colour_at_interpolator_output/099c24dc211cef4b956ee78ec1b7ef5e9eab2785.fail`
+TRACE: Running: tweenr_deepstate_test_colour_at_interpolator_test from /home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/colour_at_interpolator/colour_at_interpolator_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+from values: 9.72613e-288 2.18915e-247 8.80179e-174 1.96466e-246 6.20977e+120 7.18190e-28 2.49408e+292 1.57546e-262 5.22103e+290 1.31150e+91
+
+to values: 5.43347e-253 1.42259e+117 1.80250e+156
+2.24697e+185 4.11864e-170 2.69873e-257
+
+Missing value
+at values: 5.51175e-92 -1.66845e-79 2.61783e-270 3.98184e-48 -1.62078e+15 2.66341e+164 -9.48247e-247 4.5184e+290 5.80939e+81 2.51454e+247 5.45113e+89 -5.09243e-151 3.47494e+239 -inf 5.01832e-09 1.44102e+13 -9.88443e-148 -4.73841e+220 1.42774e+305 3.61891e+92 -2.07716e-80 -2.7628e-258 2.55506e+42 3.6562e-162 -8.92402e+167 nan 0.000193958 -4.75606e-23 -2.50112e-218 1.79289e+115 nan -4.57e+135 -6.98865e-259 nan
+ease values: "mallvjozpkhdquxoehuu" "NA" "v" "lwnopdxvmkyqdznujwia" "unkiurqmtvhpyjoeldnh" "xsjqnsegzdznmyjruruo" "NA" "NA" "rwmbozcayazeaskmicms" "acsovvhpqvz" "rkihkhtbbb" "NA" "aiazjtwgkdhjdctbhsil" "bcmejfxybootpmzasdvt" "NA" "worixwfwpytmwqehtofa" "NA" "NA" "NA" "asldqtvdloddatdlkagv" "rzebbhowkvjpmtkugfng" "kriiccwgejcdrstbfizf" "NA" "NA" "hackmuyymgsxztmxibov" "irhmw" "kjqeroxocebwyzwoukzp" "NA" "NA" "oklxosxloeqbzgfwnvtq" "vkhevuvitndjwnqjqkek" "NA" "fouihuiddqegarcpqruc" "koekfqgirpgaupdhsr" "oqrpajvggle" "zdomxp" "zwzkuqopedfesrcimmdr" "dpsniytvopilsmizo" "fbnajovehdaclrtkitsw" "kylywkabpucqrmotqace" "NA" "NA" "NA" "tfjuzkacbkdidvrbzcph" "NA" "gojl" "NA" "gxsspcpvpqljpvyrklsc" "ffkcbrbybdkyitmyakmw" "NA" "wavxagdzxpullglwiyve" "ihxkdxwruahiguqkyvtl" "NA" "qqcwtdlmom" "NA" "NA" "NA" "fduagwfpqojauwcjojdm" "pprqwwyfewggkfods" "NA" "yohmypjqdmzavahqer" "gquiwkughlbdaffdrtgt" "ozccxbeojiigshorjuwm" "ezyfljpqlcpyfirrgvjf" "NA" "" "gzuxfrjyjnevhndbtimv" "xzobbumkpmqsibuqtfbr" "ormdvibxcpmvrafulf" "NA" "quf" "gtpjrkervsbzayfwypzz" "ydeyjkmxmmztqrotxfra" "NA" "NA" "mtkrtvcodxuzjeeghwsp" "NA" "zsoujmpckbs" "ujchwdxzjpawxzlwt" "gmpnizzibxp"
+input ends
+terminate called after throwing an instance of 'Rcpp::not_compatible'
+  what():  Expecting a single string value: [type=character; extent=80].
+ERROR: Failed: tweenr_deepstate_test_colour_at_interpolator_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/colour_at_interpolator/colour_at_interpolator_output/099c24dc211cef4b956ee78ec1b7ef5e9eab2785.fail failed

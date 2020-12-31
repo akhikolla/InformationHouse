@@ -1,0 +1,14 @@
+WARNING: No test specified, defaulting to first test defined (icosa_deepstate_test_HexaFaces__test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/icosa/inst/testfiles/HexaFaces_/HexaFaces__output/208079e2085fc2fb86561338303e22b5335ad3dd.fail`
+TRACE: Running: icosa_deepstate_test_HexaFaces__test from /home/akhila/fuzzer_packages/fuzzedpackages/icosa/inst/testfiles/HexaFaces_/HexaFaces__DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+fOrd values:     nan    -inf    -inf     nan    -inf 1.55275e+40
+
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Index out of bounds: [index=0; extent=0].
+ERROR: Failed: icosa_deepstate_test_HexaFaces__test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/icosa/inst/testfiles/HexaFaces_/HexaFaces__output/208079e2085fc2fb86561338303e22b5335ad3dd.fail failed

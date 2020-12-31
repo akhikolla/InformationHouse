@@ -1,0 +1,301 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./gen_perlin2d_c_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/ambient/inst/testfiles/gen_perlin2d_c/gen_perlin2d_c_output/53f40180edd429b660bc4efc3052902e32233b41.pass</line>
+</preamble>
+
+<pid>670051</pid>
+<ppid>670050</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/ambient/inst/testfiles/gen_perlin2d_c/gen_perlin2d_c_output/log_53f40180edd429b660bc4efc3052902e32233b41/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./gen_perlin2d_c_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/inst/testfiles/gen_perlin2d_c/gen_perlin2d_c_output/53f40180edd429b660bc4efc3052902e32233b41.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.026 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D2A18C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/src/ambient.so</obj>
+      <fn>FastFloor</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/src</dir>
+      <file>FastNoise.cpp</file>
+      <line>184</line>
+    </frame>
+    <frame>
+      <ip>0x4D2A18C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/src/ambient.so</obj>
+      <fn>FastNoise::SinglePerlin(unsigned char, double, double) const</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/src</dir>
+      <file>FastNoise.cpp</file>
+      <line>1051</line>
+    </frame>
+    <frame>
+      <ip>0x4D3DD1A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/src/ambient.so</obj>
+      <fn>gen_perlin2d_c(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/src</dir>
+      <file>perlin.cpp</file>
+      <line>89</line>
+    </frame>
+    <frame>
+      <ip>0x40A588</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/inst/testfiles/gen_perlin2d_c/gen_perlin2d_c_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_ambient_deepstate_test_gen_perlin2d_c_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/inst/testfiles/gen_perlin2d_c</dir>
+      <file>gen_perlin2d_c_DeepState_TestHarness.cpp</file>
+      <line>41</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/inst/testfiles/gen_perlin2d_c/gen_perlin2d_c_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_ambient_deepstate_test_gen_perlin2d_c_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/inst/testfiles/gen_perlin2d_c</dir>
+      <file>gen_perlin2d_c_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D698</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/inst/testfiles/gen_perlin2d_c/gen_perlin2d_c_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D939</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/inst/testfiles/gen_perlin2d_c/gen_perlin2d_c_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/inst/testfiles/gen_perlin2d_c/gen_perlin2d_c_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/inst/testfiles/gen_perlin2d_c/gen_perlin2d_c_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x1</unique>
+  <tid>1</tid>
+  <kind>UninitValue</kind>
+  <what>Use of uninitialised value of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D2A202</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/src/ambient.so</obj>
+      <fn>Index2D_12</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/src</dir>
+      <file>FastNoise.cpp</file>
+      <line>259</line>
+    </frame>
+    <frame>
+      <ip>0x4D2A202</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/src/ambient.so</obj>
+      <fn>GradCoord2D</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/src</dir>
+      <file>FastNoise.cpp</file>
+      <line>327</line>
+    </frame>
+    <frame>
+      <ip>0x4D2A202</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/src/ambient.so</obj>
+      <fn>FastNoise::SinglePerlin(unsigned char, double, double) const</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/src</dir>
+      <file>FastNoise.cpp</file>
+      <line>1077</line>
+    </frame>
+    <frame>
+      <ip>0x4D3DD1A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/src/ambient.so</obj>
+      <fn>gen_perlin2d_c(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/src</dir>
+      <file>perlin.cpp</file>
+      <line>89</line>
+    </frame>
+    <frame>
+      <ip>0x40A588</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/inst/testfiles/gen_perlin2d_c/gen_perlin2d_c_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_ambient_deepstate_test_gen_perlin2d_c_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/inst/testfiles/gen_perlin2d_c</dir>
+      <file>gen_perlin2d_c_DeepState_TestHarness.cpp</file>
+      <line>41</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/inst/testfiles/gen_perlin2d_c/gen_perlin2d_c_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_ambient_deepstate_test_gen_perlin2d_c_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/inst/testfiles/gen_perlin2d_c</dir>
+      <file>gen_perlin2d_c_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D698</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/inst/testfiles/gen_perlin2d_c/gen_perlin2d_c_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D939</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/inst/testfiles/gen_perlin2d_c/gen_perlin2d_c_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/inst/testfiles/gen_perlin2d_c/gen_perlin2d_c_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/inst/testfiles/gen_perlin2d_c/gen_perlin2d_c_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x2</unique>
+  <tid>1</tid>
+  <kind>UninitValue</kind>
+  <what>Use of uninitialised value of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D2A25F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/src/ambient.so</obj>
+      <fn>Index2D_12</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/src</dir>
+      <file>FastNoise.cpp</file>
+      <line>259</line>
+    </frame>
+    <frame>
+      <ip>0x4D2A25F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/src/ambient.so</obj>
+      <fn>GradCoord2D</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/src</dir>
+      <file>FastNoise.cpp</file>
+      <line>327</line>
+    </frame>
+    <frame>
+      <ip>0x4D2A25F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/src/ambient.so</obj>
+      <fn>FastNoise::SinglePerlin(unsigned char, double, double) const</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/src</dir>
+      <file>FastNoise.cpp</file>
+      <line>1078</line>
+    </frame>
+    <frame>
+      <ip>0x4D3DD1A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/src/ambient.so</obj>
+      <fn>gen_perlin2d_c(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/src</dir>
+      <file>perlin.cpp</file>
+      <line>89</line>
+    </frame>
+    <frame>
+      <ip>0x40A588</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/inst/testfiles/gen_perlin2d_c/gen_perlin2d_c_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_ambient_deepstate_test_gen_perlin2d_c_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/inst/testfiles/gen_perlin2d_c</dir>
+      <file>gen_perlin2d_c_DeepState_TestHarness.cpp</file>
+      <line>41</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/inst/testfiles/gen_perlin2d_c/gen_perlin2d_c_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_ambient_deepstate_test_gen_perlin2d_c_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/inst/testfiles/gen_perlin2d_c</dir>
+      <file>gen_perlin2d_c_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D698</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/inst/testfiles/gen_perlin2d_c/gen_perlin2d_c_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D939</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/inst/testfiles/gen_perlin2d_c/gen_perlin2d_c_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/inst/testfiles/gen_perlin2d_c/gen_perlin2d_c_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/ambient/inst/testfiles/gen_perlin2d_c/gen_perlin2d_c_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.121 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>10</count>
+    <unique>0x2</unique>
+  </pair>
+  <pair>
+    <count>10</count>
+    <unique>0x1</unique>
+  </pair>
+  <pair>
+    <count>10</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.642 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

@@ -1,0 +1,20 @@
+WARNING: No test specified, defaulting to first test defined (ggraph_deepstate_test_partitionTree_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/ggraph/inst/testfiles/partitionTree/partitionTree_output/213c782907ee3299b362a396a6f846877b3f4584.crash`
+TRACE: Running: ggraph_deepstate_test_partitionTree_test from /home/akhila/fuzzer_packages/fuzzedpackages/ggraph/inst/testfiles/partitionTree/partitionTree_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+parent values: 1123438673 2069757405 -1364041863 1062769791 2120796143
+Missing value
+order values: 2022640883 -334901093 -1137699589 -996531609 289535729 257629907 -180340114 -1032246982 -2147483648 1056805114 765851062 1315945823 -1330425665 242193156 -1345490319 1201384272 -791132914 -690616061 2080291273
+Missing value
+weight values: -3.58047e-10 4.92682e-88 1.49439e+214 1.39766e-176 -1.46674e+64 1.5471e-298 6.0141e+221 8.84504e-195 1.58469e+132 -4.87411e+199 -6.57814e-121 -3.95541e-64 -6.06987e-92 1.99298e+185 2.76504e-247 1.7345e-218 -7.99673e+32 -2.65452e-24 2.90992e-226 1.59363e-85 -9.60586e-14 1.94017e+245 -7.08033e+11 2.70557e-169 1.94564e-174 2.16962e-222 2.86187e+259 -1.701e-276 5.99249e+109 -6.87851e+103 1.49439e+214 1.15534e+107 5.71274e-194 2.01701e+253 -3.11231e-229 nan -2.19771e-185 9.33597e-293 7.34305e-165 inf 2.15177e+165 -6.94314e-208 -3.019e-156 -4.27378e+148 1.23323e+130 1.48547e-143 -1.0431e-116 8.16764e-111 -2.09545e-22 -5.70401e-238 -2.07082e-80 8.54554e+192 3.13881e-45 -1.3183e-67 -3.88007e+111 -2.7335e-273 3.74347e+144 0
+height values: 1.33397e-166 -3.22048e-233 -8.99109e+11 -5.80326e+65 -3.02867e+104 -0.00296575 -9.06851e+282 4.63877e+62 -5.6241e-74 -1.44589e-68 0.00715435 -1.7006e-43 -1.85921e+32 8.69729e+14 -6.40224e+262 -6.25281e+211 -1.23564e-266 -3.01267e-77 1.38497e+41 -2.7018e-176 -7.77753e-298 -1.63732e-198 -4.62759e-205 1.66633e-32 1.45343e-268 1.44482e-188 2.38396e+148 7.77331e+295 -1.2051e+99 -3.30076e-47 7.69574e-24 -2.5991e+272 -1.25426e-99 -2.73128e+126 7.04771e-119 -8.70419e-200 -3.29073e-118 4.53742e+27 1.83022e-288 7.0988e+239 -1.80471e-217 -9.8769e+14 -3.35262e+233 -7.52335e-175 5.26801e-74 -1.73243e-255 1.89046e-83 4.62993e+141 -2.96832e+248 2.26229e-308 -1.28463e+49 4.45232e+103 -2.17954e-274 -2.80374e-33 2.75943e-307 -6.2609e+56 0.00033692 -5.29721e-305
+input ends
+==821976==  If you believe this happened as a result of a stack
+==821976==  overflow in your program's main thread (unlikely but
+==821976==  possible), you can try to increase the size of the
+==821976==  main thread stack using the --main-stacksize= flag.
+==821976==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: ggraph_deepstate_test_partitionTree_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/ggraph/inst/testfiles/partitionTree/partitionTree_output/213c782907ee3299b362a396a6f846877b3f4584.crash crashed

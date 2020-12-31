@@ -1,0 +1,30 @@
+WARNING: No test specified, defaulting to first test defined (immer_deepstate_test_immer_latent_regression_calc_mu_sigma_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/immer/inst/testfiles/immer_latent_regression_calc_mu_sigma/immer_latent_regression_calc_mu_sigma_output/213c782907ee3299b362a396a6f846877b3f4584.crash`
+TRACE: Running: immer_deepstate_test_immer_latent_regression_calc_mu_sigma_test from /home/akhila/fuzzer_packages/fuzzedpackages/immer/inst/testfiles/immer_latent_regression_calc_mu_sigma/immer_latent_regression_calc_mu_sigma_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+X values: 4.49653e+83 2.62736e-264 8.95062e-07 5.10578e-14
+8.29783e+300 -4.30971e+256 1.86531e+250 9.71140e-241
+1.44694e-22 1.01363e+74     inf 7.70719e-71
+5.24924e+272 2.14829e+78 1.83374e-104 1.49741e+196
+4.59987e+18 1.56356e-81    -inf 1.44529e+91
+    inf 1.87145e+289 1088.08     nan
+6.61249e-257 4.33714e-104 8.88077e+282 8.78821e+143
+
+Missing value
+group values: 1191040014 -342746351 -2133583808 1389384494 -821410187 -1073136707 -612409056 728423538 1739620435 1117480130 1887175618 1297543196 1614188832 1087168027 1262435447 -1457985263 -932617206 97045877 1171273618 640134790 1581229726 193247574 -1007301267 230063829 551739429 -1431463185 2110882211 -131126954 1859122297 1420742679 -1549957967 1409451636 -463038065 322141840 -2147483648 794579870 742856576 -169371751 -2061743399 516967683 -36551517 420535069 269359424 1802296983 -1259006039 -575782302 -896779287 1569254548 1853808263 -1900436321 -927080653 717081310 -1293842545 -1882525350 1445741491 -1271970014 -1389975237 -548545881 196729397 1990464297 -2053457899 1688891323 -692949365 -508121714 -598226501 -1532730449 1564337364
+G values: -697430862
+Missing value
+beta values: 3.74347e+144 -1.11691e+197 -inf inf -2.71545e+175 -8.99303e+140 1.38165e+132 1.04275e-173 inf -3.22048e-233 -8.99109e+11 -5.80326e+65 -3.02867e+104 -inf
+Missing value
+gamma values: -1.85921e+32 nan -6.40224e+262 -6.25281e+211 -1.09793e+07 -3.01267e-77 nan -2.7018e-176 -7.77753e-298 -1.63732e-198 nan
+input ends
+==881141==  If you believe this happened as a result of a stack
+==881141==  overflow in your program's main thread (unlikely but
+==881141==  possible), you can try to increase the size of the
+==881141==  main thread stack using the --main-stacksize= flag.
+==881141==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: immer_deepstate_test_immer_latent_regression_calc_mu_sigma_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/immer/inst/testfiles/immer_latent_regression_calc_mu_sigma/immer_latent_regression_calc_mu_sigma_output/213c782907ee3299b362a396a6f846877b3f4584.crash crashed

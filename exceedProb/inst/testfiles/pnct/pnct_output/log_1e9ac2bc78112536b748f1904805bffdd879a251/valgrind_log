@@ -1,0 +1,994 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./pnct_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_output/1e9ac2bc78112536b748f1904805bffdd879a251.fail</line>
+</preamble>
+
+<pid>803211</pid>
+<ppid>803210</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_output/log_1e9ac2bc78112536b748f1904805bffdd879a251/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./pnct_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_output/1e9ac2bc78112536b748f1904805bffdd879a251.fail</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.025 </time>
+</status>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:07.943 </time>
+</status>
+
+<error>
+  <unique>0x9</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>8 bytes in 1 blocks are definitely lost in loss record 10 of 1,325</text>
+    <leakedbytes>8</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D060F7</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::initialize(int, char const* const*, bool, bool, bool)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>198</line>
+    </frame>
+    <frame>
+      <ip>0x4D06483</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x409B73</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_exceedProb_deepstate_test_pnct_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct</dir>
+      <file>pnct_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_exceedProb_deepstate_test_pnct_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct</dir>
+      <file>pnct_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41CF58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D1F9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D2D4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x12</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>31 bytes in 1 blocks are definitely lost in loss record 19 of 1,325</text>
+    <leakedbytes>31</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4EA1E7D</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::_M_mutate(unsigned long, unsigned long, char const*, unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4EA2DB5</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::_M_replace(unsigned long, unsigned long, char const*, unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D3C0C1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>replace</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>basic_string.h</file>
+      <line>1941</line>
+    </frame>
+    <frame>
+      <ip>0x4D3C0C1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>replace</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>basic_string.h</file>
+      <line>2130</line>
+    </frame>
+    <frame>
+      <ip>0x4D3C0C1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>assign&lt;char*&gt;</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>basic_string.h</file>
+      <line>1471</line>
+    </frame>
+    <frame>
+      <ip>0x4D3C0C1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>str</fn>
+      <dir>/usr/include/c++/9</dir>
+      <file>sstream</file>
+      <line>185</line>
+    </frame>
+    <frame>
+      <ip>0x4D3C0C1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>str</fn>
+      <dir>/usr/include/c++/9</dir>
+      <file>sstream</file>
+      <line>832</line>
+    </frame>
+    <frame>
+      <ip>0x4D3C0C1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; boost::math::policies::detail::prec_format&lt;double&gt;(double const&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/policies</dir>
+      <file>error_handling.hpp</file>
+      <line>87</line>
+    </frame>
+    <frame>
+      <ip>0x4D3C5E1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>void boost::math::policies::detail::raise_error&lt;std::domain_error, double&gt;(char const*, char const*, double const&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/policies</dir>
+      <file>error_handling.hpp</file>
+      <line>165</line>
+    </frame>
+    <frame>
+      <ip>0x4D37151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>raise_domain_error&lt;double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/policies</dir>
+      <file>error_handling.hpp</file>
+      <line>180</line>
+    </frame>
+    <frame>
+      <ip>0x4D37151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>raise_domain_error&lt;double, boost::math::policies::policy&lt;boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/policies</dir>
+      <file>error_handling.hpp</file>
+      <line>616</line>
+    </frame>
+    <frame>
+      <ip>0x4D37151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>check_df_gt0_to_inf&lt;double, boost::math::policies::policy&lt;boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/distributions/detail</dir>
+      <file>common_error_handling.hpp</file>
+      <line>56</line>
+    </frame>
+    <frame>
+      <ip>0x4D37151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>non_central_t_distribution</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/distributions</dir>
+      <file>non_central_t.hpp</file>
+      <line>727</line>
+    </frame>
+    <frame>
+      <ip>0x4D37151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>pnct(double, double, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src</dir>
+      <file>pnct.cpp</file>
+      <line>19</line>
+    </frame>
+    <frame>
+      <ip>0x40A215</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_exceedProb_deepstate_test_pnct_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct</dir>
+      <file>pnct_DeepState_TestHarness.cpp</file>
+      <line>33</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_exceedProb_deepstate_test_pnct_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct</dir>
+      <file>pnct_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41CF58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D1F9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D2D4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x2c</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>107 bytes in 1 blocks are definitely lost in loss record 45 of 1,325</text>
+    <leakedbytes>107</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4EA1E7D</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::_M_mutate(unsigned long, unsigned long, char const*, unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4EA2DB5</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::_M_replace(unsigned long, unsigned long, char const*, unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D39E3E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>replace</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>basic_string.h</file>
+      <line>1941</line>
+    </frame>
+    <frame>
+      <ip>0x4D39E3E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>replace</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>basic_string.h</file>
+      <line>1964</line>
+    </frame>
+    <frame>
+      <ip>0x4D39E3E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>boost::math::policies::detail::replace_all_in_string(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;&amp;, char const*, char const*)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/policies</dir>
+      <file>error_handling.hpp</file>
+      <line>97</line>
+    </frame>
+    <frame>
+      <ip>0x4D3C5F5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>void boost::math::policies::detail::raise_error&lt;std::domain_error, double&gt;(char const*, char const*, double const&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/policies</dir>
+      <file>error_handling.hpp</file>
+      <line>166</line>
+    </frame>
+    <frame>
+      <ip>0x4D37151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>raise_domain_error&lt;double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/policies</dir>
+      <file>error_handling.hpp</file>
+      <line>180</line>
+    </frame>
+    <frame>
+      <ip>0x4D37151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>raise_domain_error&lt;double, boost::math::policies::policy&lt;boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/policies</dir>
+      <file>error_handling.hpp</file>
+      <line>616</line>
+    </frame>
+    <frame>
+      <ip>0x4D37151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>check_df_gt0_to_inf&lt;double, boost::math::policies::policy&lt;boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/distributions/detail</dir>
+      <file>common_error_handling.hpp</file>
+      <line>56</line>
+    </frame>
+    <frame>
+      <ip>0x4D37151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>non_central_t_distribution</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/distributions</dir>
+      <file>non_central_t.hpp</file>
+      <line>727</line>
+    </frame>
+    <frame>
+      <ip>0x4D37151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>pnct(double, double, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src</dir>
+      <file>pnct.cpp</file>
+      <line>19</line>
+    </frame>
+    <frame>
+      <ip>0x40A215</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_exceedProb_deepstate_test_pnct_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct</dir>
+      <file>pnct_DeepState_TestHarness.cpp</file>
+      <line>33</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_exceedProb_deepstate_test_pnct_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct</dir>
+      <file>pnct_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41CF58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D1F9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D2D4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x37</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>163 bytes in 1 blocks are definitely lost in loss record 56 of 1,325</text>
+    <leakedbytes>163</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4EA1E7D</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::_M_mutate(unsigned long, unsigned long, char const*, unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4EA2DB5</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::_M_replace(unsigned long, unsigned long, char const*, unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D39E3E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>replace</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>basic_string.h</file>
+      <line>1941</line>
+    </frame>
+    <frame>
+      <ip>0x4D39E3E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>replace</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>basic_string.h</file>
+      <line>1964</line>
+    </frame>
+    <frame>
+      <ip>0x4D39E3E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>boost::math::policies::detail::replace_all_in_string(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;&amp;, char const*, char const*)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/policies</dir>
+      <file>error_handling.hpp</file>
+      <line>97</line>
+    </frame>
+    <frame>
+      <ip>0x4D3C5B3</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>void boost::math::policies::detail::raise_error&lt;std::domain_error, double&gt;(char const*, char const*, double const&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/policies</dir>
+      <file>error_handling.hpp</file>
+      <line>158</line>
+    </frame>
+    <frame>
+      <ip>0x4D37151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>raise_domain_error&lt;double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/policies</dir>
+      <file>error_handling.hpp</file>
+      <line>180</line>
+    </frame>
+    <frame>
+      <ip>0x4D37151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>raise_domain_error&lt;double, boost::math::policies::policy&lt;boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/policies</dir>
+      <file>error_handling.hpp</file>
+      <line>616</line>
+    </frame>
+    <frame>
+      <ip>0x4D37151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>check_df_gt0_to_inf&lt;double, boost::math::policies::policy&lt;boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/distributions/detail</dir>
+      <file>common_error_handling.hpp</file>
+      <line>56</line>
+    </frame>
+    <frame>
+      <ip>0x4D37151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>non_central_t_distribution</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/distributions</dir>
+      <file>non_central_t.hpp</file>
+      <line>727</line>
+    </frame>
+    <frame>
+      <ip>0x4D37151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>pnct(double, double, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src</dir>
+      <file>pnct.cpp</file>
+      <line>19</line>
+    </frame>
+    <frame>
+      <ip>0x40A215</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_exceedProb_deepstate_test_pnct_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct</dir>
+      <file>pnct_DeepState_TestHarness.cpp</file>
+      <line>33</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_exceedProb_deepstate_test_pnct_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct</dir>
+      <file>pnct_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41CF58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D1F9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D2D4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x47</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>192 bytes in 1 blocks are possibly lost in loss record 72 of 1,325</text>
+    <leakedbytes>192</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4E082E3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>__cxa_allocate_exception</fn>
+    </frame>
+    <frame>
+      <ip>0x4D30384</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>void boost::throw_exception&lt;std::domain_error&gt;(std::domain_error const&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost</dir>
+      <file>throw_exception.hpp</file>
+      <line>70</line>
+    </frame>
+    <frame>
+      <ip>0x4D3C61D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>void boost::math::policies::detail::raise_error&lt;std::domain_error, double&gt;(char const*, char const*, double const&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/policies</dir>
+      <file>error_handling.hpp</file>
+      <line>170</line>
+    </frame>
+    <frame>
+      <ip>0x4D37151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>raise_domain_error&lt;double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/policies</dir>
+      <file>error_handling.hpp</file>
+      <line>180</line>
+    </frame>
+    <frame>
+      <ip>0x4D37151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>raise_domain_error&lt;double, boost::math::policies::policy&lt;boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/policies</dir>
+      <file>error_handling.hpp</file>
+      <line>616</line>
+    </frame>
+    <frame>
+      <ip>0x4D37151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>check_df_gt0_to_inf&lt;double, boost::math::policies::policy&lt;boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/distributions/detail</dir>
+      <file>common_error_handling.hpp</file>
+      <line>56</line>
+    </frame>
+    <frame>
+      <ip>0x4D37151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>non_central_t_distribution</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/distributions</dir>
+      <file>non_central_t.hpp</file>
+      <line>727</line>
+    </frame>
+    <frame>
+      <ip>0x4D37151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>pnct(double, double, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src</dir>
+      <file>pnct.cpp</file>
+      <line>19</line>
+    </frame>
+    <frame>
+      <ip>0x40A215</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_exceedProb_deepstate_test_pnct_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct</dir>
+      <file>pnct_DeepState_TestHarness.cpp</file>
+      <line>33</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_exceedProb_deepstate_test_pnct_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct</dir>
+      <file>pnct_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41CF58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D1F9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D2D4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x4a</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>204 bytes in 1 blocks are possibly lost in loss record 75 of 1,325</text>
+    <leakedbytes>204</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E4D308</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator&lt;char&gt; const&amp;)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E4EFB8</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>char* std::string::_S_construct&lt;char const*&gt;(char const*, char const*, std::allocator&lt;char&gt; const&amp;, std::forward_iterator_tag)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E4F055</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::basic_string(char const*, unsigned long, std::allocator&lt;char&gt; const&amp;)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E30331</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+    </frame>
+    <frame>
+      <ip>0x4E406D5</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::logic_error::logic_error(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E406FC</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::domain_error::domain_error(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D3C615</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>void boost::math::policies::detail::raise_error&lt;std::domain_error, double&gt;(char const*, char const*, double const&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/policies</dir>
+      <file>error_handling.hpp</file>
+      <line>169</line>
+    </frame>
+    <frame>
+      <ip>0x4D37151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>raise_domain_error&lt;double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/policies</dir>
+      <file>error_handling.hpp</file>
+      <line>180</line>
+    </frame>
+    <frame>
+      <ip>0x4D37151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>raise_domain_error&lt;double, boost::math::policies::policy&lt;boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/policies</dir>
+      <file>error_handling.hpp</file>
+      <line>616</line>
+    </frame>
+    <frame>
+      <ip>0x4D37151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>check_df_gt0_to_inf&lt;double, boost::math::policies::policy&lt;boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/distributions/detail</dir>
+      <file>common_error_handling.hpp</file>
+      <line>56</line>
+    </frame>
+    <frame>
+      <ip>0x4D37151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>non_central_t_distribution</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/distributions</dir>
+      <file>non_central_t.hpp</file>
+      <line>727</line>
+    </frame>
+    <frame>
+      <ip>0x4D37151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>pnct(double, double, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src</dir>
+      <file>pnct.cpp</file>
+      <line>19</line>
+    </frame>
+    <frame>
+      <ip>0x40A215</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_exceedProb_deepstate_test_pnct_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct</dir>
+      <file>pnct_DeepState_TestHarness.cpp</file>
+      <line>33</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_exceedProb_deepstate_test_pnct_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct</dir>
+      <file>pnct_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41CF58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x4d</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>217 bytes in 1 blocks are definitely lost in loss record 78 of 1,325</text>
+    <leakedbytes>217</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4EA1E7D</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::_M_mutate(unsigned long, unsigned long, char const*, unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4EA3682</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::_M_append(char const*, unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D3C5D4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>operator+=</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>basic_string.h</file>
+      <line>1178</line>
+    </frame>
+    <frame>
+      <ip>0x4D3C5D4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>void boost::math::policies::detail::raise_error&lt;std::domain_error, double&gt;(char const*, char const*, double const&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/policies</dir>
+      <file>error_handling.hpp</file>
+      <line>163</line>
+    </frame>
+    <frame>
+      <ip>0x4D37151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>raise_domain_error&lt;double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/policies</dir>
+      <file>error_handling.hpp</file>
+      <line>180</line>
+    </frame>
+    <frame>
+      <ip>0x4D37151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>raise_domain_error&lt;double, boost::math::policies::policy&lt;boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/policies</dir>
+      <file>error_handling.hpp</file>
+      <line>616</line>
+    </frame>
+    <frame>
+      <ip>0x4D37151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>check_df_gt0_to_inf&lt;double, boost::math::policies::policy&lt;boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/distributions/detail</dir>
+      <file>common_error_handling.hpp</file>
+      <line>56</line>
+    </frame>
+    <frame>
+      <ip>0x4D37151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>non_central_t_distribution</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/BH/include/boost/math/distributions</dir>
+      <file>non_central_t.hpp</file>
+      <line>727</line>
+    </frame>
+    <frame>
+      <ip>0x4D37151</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src/exceedProb.so</obj>
+      <fn>pnct(double, double, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/src</dir>
+      <file>pnct.cpp</file>
+      <line>19</line>
+    </frame>
+    <frame>
+      <ip>0x40A215</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_exceedProb_deepstate_test_pnct_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct</dir>
+      <file>pnct_DeepState_TestHarness.cpp</file>
+      <line>33</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_exceedProb_deepstate_test_pnct_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct</dir>
+      <file>pnct_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41CF58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D1F9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D2D4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xb5</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>1,025 bytes in 1 blocks are definitely lost in loss record 182 of 1,325</text>
+    <leakedbytes>1025</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4EA23AF</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::reserve(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D04C55</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>MemBuf::MemBuf(int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>MemBuf.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x4D06467</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>56</line>
+    </frame>
+    <frame>
+      <ip>0x409B73</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_exceedProb_deepstate_test_pnct_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct</dir>
+      <file>pnct_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_exceedProb_deepstate_test_pnct_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct</dir>
+      <file>pnct_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41CF58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D1F9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D2D4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.475 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

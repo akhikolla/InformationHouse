@@ -1,0 +1,30 @@
+Package: libstableR
+Version: 1.0.2
+Date: 2018-08-06
+Title: Fast and Accurate Evaluation, Random Number Generation and
+        Parameter Estimation of Skew Stable Distributions
+Authors@R: c(
+  person("Javier", "Royuela del Val", role = c("aut", "cre"), email = "jroyval@lpi.tel.uva.es"),
+  person("Federico", "Simmross-Wattenberg", role = "aut"), 
+  person("Carlos", "Alberola López", role = "aut"),
+  person("Bob", "Rudis", role = "ctb", comment = "Several bugs fixed and added macOS compatibility"),
+  person("Bruce", "Swihart", role = "ctb", comment = "Several bugs fixed and added macOS compatibility"))
+Description: Tools for fast and accurate evaluation of skew stable distributions (CDF, PDF 
+  and quantile functions), random number generation and parameter estimation.
+Author: Javier Royuela del Val [aut, cre],
+  Federico Simmross-Wattenberg [aut],
+  Carlos Alberola López [aut],
+  Bob Rudis [ctb] (Several bugs fixed and added macOS compatibility),
+  Bruce Swihart [ctb] (Several bugs fixed and added macOS compatibility)
+License: GPL-3
+Imports: Rcpp (>= 0.12.9)
+LinkingTo: Rcpp, RcppGSL
+SystemRequirements: GNU GSL
+Encoding: UTF-8
+NeedsCompilation: yes
+Packaged: 2018-08-09 21:31:18 UTC; jroyval
+Maintainer: Javier Royuela del Val <jroyval@lpi.tel.uva.es>
+Repository: CRAN
+Date/Publication: 2018-08-10 13:30:03 UTC
+RoxygenNote: 6.1.0
+Suggests: testthat

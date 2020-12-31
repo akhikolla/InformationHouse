@@ -1,0 +1,13 @@
+WARNING: No test specified, defaulting to first test defined (autothresholdr_deepstate_test_sum_pillars_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/autothresholdr/inst/testfiles/sum_pillars/sum_pillars_output/46ded5533ce21d1746c682f64815528a8585be9e.fail`
+TRACE: Running: autothresholdr_deepstate_test_sum_pillars_test from /home/akhila/fuzzer_packages/fuzzedpackages/autothresholdr/inst/testfiles/sum_pillars/sum_pillars_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+arr3d values: 1.27891e-188 7.52749e+12 -2.14488e+105 inf -2.02048e-44 nan 3.42032e-93 8.27932e-269 -4.36409e-38 inf 0
+input ends
+terminate called after throwing an instance of 'Rcpp::not_compatible'
+  what():  Not compatible with requested type: [type=NULL; target=integer].
+ERROR: Failed: autothresholdr_deepstate_test_sum_pillars_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/autothresholdr/inst/testfiles/sum_pillars/sum_pillars_output/46ded5533ce21d1746c682f64815528a8585be9e.fail failed

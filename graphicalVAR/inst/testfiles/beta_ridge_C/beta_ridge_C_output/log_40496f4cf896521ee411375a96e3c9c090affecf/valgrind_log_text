@@ -1,0 +1,17 @@
+WARNING: No test specified, defaulting to first test defined (graphicalVAR_deepstate_test_beta_ridge_C_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/beta_ridge_C/beta_ridge_C_output/40496f4cf896521ee411375a96e3c9c090affecf.pass`
+TRACE: Running: graphicalVAR_deepstate_test_beta_ridge_C_test from /home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/beta_ridge_C/beta_ridge_C_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+X values: 3.60909e+224 9.37481e+280 1.27048e-62 4.71376e-48     nan 7.46115e-258 1.41003e-86
+1.11742e+83 3.07504e-136 2.13410e-145 1.75062e-260 2.90402e-286 5.01413e+184 1.93644e+180
+1.97870e+143 1.01645e-124 2.01769e+47 4.13273e+261 3.56215e-230     nan 1.99326e-62
+    nan 1.00679e-73     nan 7.50348e-71 1.43678e-133 29072.6 1.39816e-16
+
+Y values: 4.71727e-75 2.98963e-36 1.44019e-33 2.16906e-76
+
+lambda_beta values: -1.99602e-140
+input ends
+TRACE: Passed: graphicalVAR_deepstate_test_beta_ridge_C_test

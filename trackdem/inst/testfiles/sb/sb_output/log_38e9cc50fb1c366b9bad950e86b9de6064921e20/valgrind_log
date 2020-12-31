@@ -1,0 +1,302 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./sb_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/trackdem/inst/testfiles/sb/sb_output/38e9cc50fb1c366b9bad950e86b9de6064921e20.fail</line>
+</preamble>
+
+<pid>934201</pid>
+<ppid>934200</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/trackdem/inst/testfiles/sb/sb_output/log_38e9cc50fb1c366b9bad950e86b9de6064921e20/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./sb_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/trackdem/inst/testfiles/sb/sb_output/38e9cc50fb1c366b9bad950e86b9de6064921e20.fail</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.023 </time>
+</status>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:07.221 </time>
+</status>
+
+<error>
+  <unique>0x9</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>8 bytes in 1 blocks are definitely lost in loss record 10 of 1,324</text>
+    <leakedbytes>8</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D060F7</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::initialize(int, char const* const*, bool, bool, bool)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>198</line>
+    </frame>
+    <frame>
+      <ip>0x4D06483</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x409B73</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/trackdem/inst/testfiles/sb/sb_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_trackdem_deepstate_test_sb_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/trackdem/inst/testfiles/sb</dir>
+      <file>sb_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/trackdem/inst/testfiles/sb/sb_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_trackdem_deepstate_test_sb_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/trackdem/inst/testfiles/sb</dir>
+      <file>sb_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D428</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/trackdem/inst/testfiles/sb/sb_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D6C9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/trackdem/inst/testfiles/sb/sb_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D7A4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/trackdem/inst/testfiles/sb/sb_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/trackdem/inst/testfiles/sb/sb_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x31</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>136 bytes in 1 blocks are possibly lost in loss record 50 of 1,324</text>
+    <leakedbytes>136</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4DEE2E3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>__cxa_allocate_exception</fn>
+    </frame>
+    <frame>
+      <ip>0x4D2440A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/trackdem/src/trackdem.so</obj>
+      <fn>dims</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector</dir>
+      <file>Vector.h</file>
+      <line>614</line>
+    </frame>
+    <frame>
+      <ip>0x4D2440A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/trackdem/src/trackdem.so</obj>
+      <fn>dims</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector</dir>
+      <file>Vector.h</file>
+      <line>613</line>
+    </frame>
+    <frame>
+      <ip>0x4D2440A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/trackdem/src/trackdem.so</obj>
+      <fn>Matrix</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector</dir>
+      <file>Matrix.h</file>
+      <line>53</line>
+    </frame>
+    <frame>
+      <ip>0x4D2440A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/trackdem/src/trackdem.so</obj>
+      <fn>sb(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;) [clone .cold]</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/trackdem/src</dir>
+      <file>sb.cpp</file>
+      <line>11</line>
+    </frame>
+    <frame>
+      <ip>0x40A2B2</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/trackdem/inst/testfiles/sb/sb_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_trackdem_deepstate_test_sb_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/trackdem/inst/testfiles/sb</dir>
+      <file>sb_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/trackdem/inst/testfiles/sb/sb_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_trackdem_deepstate_test_sb_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/trackdem/inst/testfiles/sb</dir>
+      <file>sb_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D428</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/trackdem/inst/testfiles/sb/sb_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D6C9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/trackdem/inst/testfiles/sb/sb_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D7A4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/trackdem/inst/testfiles/sb/sb_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/trackdem/inst/testfiles/sb/sb_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xb4</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>1,025 bytes in 1 blocks are definitely lost in loss record 181 of 1,324</text>
+    <leakedbytes>1025</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E883AF</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::reserve(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D04C55</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>MemBuf::MemBuf(int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>MemBuf.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x4D06467</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>56</line>
+    </frame>
+    <frame>
+      <ip>0x409B73</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/trackdem/inst/testfiles/sb/sb_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_trackdem_deepstate_test_sb_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/trackdem/inst/testfiles/sb</dir>
+      <file>sb_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/trackdem/inst/testfiles/sb/sb_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_trackdem_deepstate_test_sb_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/trackdem/inst/testfiles/sb</dir>
+      <file>sb_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D428</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/trackdem/inst/testfiles/sb/sb_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D6C9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/trackdem/inst/testfiles/sb/sb_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D7A4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/trackdem/inst/testfiles/sb/sb_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/trackdem/inst/testfiles/sb/sb_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:07.684 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

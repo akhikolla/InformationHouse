@@ -1,0 +1,2 @@
+PKG_CPPFLAGS=-I$(GSL_LIBS)/include
+PKG_LIBS= -lgsl -lgslcblas -lm

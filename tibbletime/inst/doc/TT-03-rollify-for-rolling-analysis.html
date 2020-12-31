@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="Davis Vaughan" />
+
+<meta name="date" content="2020-07-21" />
+
+<title>Rolling calculations in tibbletime</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
+// v0.0.1
+// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
+
+document.addEventListener('DOMContentLoaded', function() {
+  const codeList = document.getElementsByClassName("sourceCode");
+  for (var i = 0; i < codeList.length; i++) {
+    var linkList = codeList[i].getElementsByTagName('a');
+    for (var j = 0; j < linkList.length; j++) {
+      if (linkList[j].innerHTML === "") {
+        linkList[j].setAttribute('aria-hidden', 'true');
+      }
+    }
+  }
+});
+</script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Rolling calculations in tibbletime</h1>
+<h4 class="author">Davis Vaughan</h4>
+<h4 class="date">2020-07-21</h4>
+
+
+<div id="TOC">
+<ul>
+<li><a href="#introducing-rollify">Introducing rollify()</a>
+<ul>
+<li><a href="#datasets-required">Datasets required</a></li>
+<li><a href="#a-rolling-average">A rolling average</a></li>
+<li><a href="#purrr-functional-syntax">Purrr functional syntax</a></li>
+<li><a href="#optional-arguments">Optional arguments</a></li>
+<li><a href="#returning-more-than-1-value-per-call">Returning more than 1 value per call</a></li>
+<li><a href="#custom-missing-values">Custom missing values</a></li>
+<li><a href="#rolling-regressions">Rolling regressions</a></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="introducing-rollify" class="section level1">
+<h1>Introducing rollify()</h1>
+<p>A common task in financial analyses is to perform a rolling calculation. This might be a single value like a rolling mean or standard deviation, or it might be more complicated like a rolling linear regression. To account for this flexibility, <code>tibbletime</code> has the <code>rollify()</code> function. This function allows you to turn <em>any</em> function into a rolling version of itself.</p>
+<p>In the <code>tidyverse</code>, this type of function is known as an <em>adverb</em> because it <em>modifies</em> an existing function, which are typically given <em>verb</em> names.</p>
+<div id="datasets-required" class="section level2">
+<h2>Datasets required</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(tibbletime)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">library</span>(tidyr)</span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="co"># Facebook stock prices.</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="kw">data</span>(FB)</span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="co"># Only a few columns</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>FB &lt;-<span class="st"> </span><span class="kw">select</span>(FB, symbol, date, open, close, adjusted)</span></code></pre></div>
+</div>
+<div id="a-rolling-average" class="section level2">
+<h2>A rolling average</h2>
+<p>To calculate a rolling average, picture a column in a data frame where you take the average of the values in rows 1-5, then in rows 2-6, then in 3-7, and so on until you reach the end of the dataset. This type of 5-period moving window is a rolling calculation, and is often used to smooth out noise in a dataset.</p>
+<p>Let’s see how to do this with <code>rollify()</code>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># The function to use at each step is `mean`.</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># The window size is 5</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>rolling_mean &lt;-<span class="st"> </span><span class="kw">rollify</span>(mean, <span class="dt">window =</span> <span class="dv">5</span>)</span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a>rolling_mean</span></code></pre></div>
+<pre><code>## function (...) 
+## {
+##     roller(..., .f = .f, window = window, unlist = unlist, na_value = na_value)
+## }
+## &lt;bytecode: 0x7ff47d871208&gt;
+## &lt;environment: 0x7ff47d8741c8&gt;</code></pre>
+<p>We now have a rolling version of the function, <code>mean()</code>. You use it in a similar way to how you might use <code>mean()</code>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">mutate</span>(FB, <span class="dt">mean_5 =</span> <span class="kw">rolling_mean</span>(adjusted))</span></code></pre></div>
+<pre><code>## # A tibble: 1,008 x 6
+##    symbol date        open close adjusted mean_5
+##    &lt;chr&gt;  &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+##  1 FB     2013-01-02  27.4  28       28     NA  
+##  2 FB     2013-01-03  27.9  27.8     27.8   NA  
+##  3 FB     2013-01-04  28.0  28.8     28.8   NA  
+##  4 FB     2013-01-07  28.7  29.4     29.4   NA  
+##  5 FB     2013-01-08  29.5  29.1     29.1   28.6
+##  6 FB     2013-01-09  29.7  30.6     30.6   29.1
+##  7 FB     2013-01-10  30.6  31.3     31.3   29.8
+##  8 FB     2013-01-11  31.3  31.7     31.7   30.4
+##  9 FB     2013-01-14  32.1  31.0     31.0   30.7
+## 10 FB     2013-01-15  30.6  30.1     30.1   30.9
+## # … with 998 more rows</code></pre>
+<p>You can create multiple versions of the rolling function if you need to calculate the mean at multiple window lengths.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>rolling_mean_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">rollify</span>(mean, <span class="dt">window =</span> <span class="dv">2</span>)</span>
+<span id="cb6-2"><a href="#cb6-2"></a>rolling_mean_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw">rollify</span>(mean, <span class="dt">window =</span> <span class="dv">3</span>)</span>
+<span id="cb6-3"><a href="#cb6-3"></a>rolling_mean_<span class="dv">4</span> &lt;-<span class="st"> </span><span class="kw">rollify</span>(mean, <span class="dt">window =</span> <span class="dv">4</span>)</span>
+<span id="cb6-4"><a href="#cb6-4"></a></span>
+<span id="cb6-5"><a href="#cb6-5"></a>FB <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(</span>
+<span id="cb6-6"><a href="#cb6-6"></a>  <span class="dt">rm10 =</span> <span class="kw">rolling_mean_2</span>(adjusted),</span>
+<span id="cb6-7"><a href="#cb6-7"></a>  <span class="dt">rm20 =</span> <span class="kw">rolling_mean_3</span>(adjusted),</span>
+<span id="cb6-8"><a href="#cb6-8"></a>  <span class="dt">rm30 =</span> <span class="kw">rolling_mean_4</span>(adjusted)</span>
+<span id="cb6-9"><a href="#cb6-9"></a>)</span></code></pre></div>
+<pre><code>## # A tibble: 1,008 x 8
+##    symbol date        open close adjusted  rm10  rm20  rm30
+##    &lt;chr&gt;  &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 FB     2013-01-02  27.4  28       28    NA    NA    NA  
+##  2 FB     2013-01-03  27.9  27.8     27.8  27.9  NA    NA  
+##  3 FB     2013-01-04  28.0  28.8     28.8  28.3  28.2  NA  
+##  4 FB     2013-01-07  28.7  29.4     29.4  29.1  28.6  28.5
+##  5 FB     2013-01-08  29.5  29.1     29.1  29.2  29.1  28.8
+##  6 FB     2013-01-09  29.7  30.6     30.6  29.8  29.7  29.5
+##  7 FB     2013-01-10  30.6  31.3     31.3  30.9  30.3  30.1
+##  8 FB     2013-01-11  31.3  31.7     31.7  31.5  31.2  30.7
+##  9 FB     2013-01-14  32.1  31.0     31.0  31.3  31.3  31.1
+## 10 FB     2013-01-15  30.6  30.1     30.1  30.5  30.9  31.0
+## # … with 998 more rows</code></pre>
+</div>
+<div id="purrr-functional-syntax" class="section level2">
+<h2>Purrr functional syntax</h2>
+<p><code>rollify()</code> is built using pieces from the <code>purrr</code> package. One of those is the ability to accept an anonymous function using the <code>~</code> function syntax.</p>
+<p>The documentation, <code>?rollify</code>, gives a thorough walkthrough of the different forms you can pass to <code>rollify()</code>, but let’s see a few more examples.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Rolling mean, but with function syntax</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>rolling_mean &lt;-<span class="st"> </span><span class="kw">rollify</span>(<span class="dt">.f =</span> <span class="op">~</span><span class="kw">mean</span>(.x), <span class="dt">window =</span> <span class="dv">5</span>)</span>
+<span id="cb8-3"><a href="#cb8-3"></a></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="kw">mutate</span>(FB, <span class="dt">mean_5 =</span> <span class="kw">rolling_mean</span>(adjusted))</span></code></pre></div>
+<pre><code>## # A tibble: 1,008 x 6
+##    symbol date        open close adjusted mean_5
+##    &lt;chr&gt;  &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+##  1 FB     2013-01-02  27.4  28       28     NA  
+##  2 FB     2013-01-03  27.9  27.8     27.8   NA  
+##  3 FB     2013-01-04  28.0  28.8     28.8   NA  
+##  4 FB     2013-01-07  28.7  29.4     29.4   NA  
+##  5 FB     2013-01-08  29.5  29.1     29.1   28.6
+##  6 FB     2013-01-09  29.7  30.6     30.6   29.1
+##  7 FB     2013-01-10  30.6  31.3     31.3   29.8
+##  8 FB     2013-01-11  31.3  31.7     31.7   30.4
+##  9 FB     2013-01-14  32.1  31.0     31.0   30.7
+## 10 FB     2013-01-15  30.6  30.1     30.1   30.9
+## # … with 998 more rows</code></pre>
+<p>You can create anonymous functions (functions without a name) on the fly.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># 5 period average of 2 columns (open and close)</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>rolling_avg_sum &lt;-<span class="st"> </span><span class="kw">rollify</span>(<span class="op">~</span><span class="st"> </span><span class="kw">mean</span>(.x <span class="op">+</span><span class="st"> </span>.y), <span class="dt">window =</span> <span class="dv">5</span>)</span>
+<span id="cb10-3"><a href="#cb10-3"></a></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="kw">mutate</span>(FB, <span class="dt">avg_sum =</span> <span class="kw">rolling_avg_sum</span>(open, close))</span></code></pre></div>
+<pre><code>## # A tibble: 1,008 x 6
+##    symbol date        open close adjusted avg_sum
+##    &lt;chr&gt;  &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+##  1 FB     2013-01-02  27.4  28       28      NA  
+##  2 FB     2013-01-03  27.9  27.8     27.8    NA  
+##  3 FB     2013-01-04  28.0  28.8     28.8    NA  
+##  4 FB     2013-01-07  28.7  29.4     29.4    NA  
+##  5 FB     2013-01-08  29.5  29.1     29.1    56.9
+##  6 FB     2013-01-09  29.7  30.6     30.6    57.9
+##  7 FB     2013-01-10  30.6  31.3     31.3    59.1
+##  8 FB     2013-01-11  31.3  31.7     31.7    60.4
+##  9 FB     2013-01-14  32.1  31.0     31.0    61.4
+## 10 FB     2013-01-15  30.6  30.1     30.1    61.8
+## # … with 998 more rows</code></pre>
+</div>
+<div id="optional-arguments" class="section level2">
+<h2>Optional arguments</h2>
+<p>To pass optional arguments (not <code>.x</code> or <code>.y</code>) to your rolling function, they must be specified in the non-rolling form in the call to <code>rollify()</code>.</p>
+<p>For instance, say our dataset had <code>NA</code> values, but we still wanted to calculate an average. We need to specify <code>na.rm = TRUE</code> as an argument to <code>mean()</code>.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>FB<span class="op">$</span>adjusted[<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="co"># Do this</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a>rolling_mean_na &lt;-<span class="st"> </span><span class="kw">rollify</span>(<span class="op">~</span><span class="kw">mean</span>(.x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), <span class="dt">window =</span> <span class="dv">5</span>)</span>
+<span id="cb12-5"><a href="#cb12-5"></a></span>
+<span id="cb12-6"><a href="#cb12-6"></a>FB <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">mean_na =</span> <span class="kw">rolling_mean_na</span>(adjusted))</span></code></pre></div>
+<pre><code>## # A tibble: 1,008 x 6
+##    symbol date        open close adjusted mean_na
+##    &lt;chr&gt;  &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+##  1 FB     2013-01-02  27.4  28       NA      NA  
+##  2 FB     2013-01-03  27.9  27.8     27.8    NA  
+##  3 FB     2013-01-04  28.0  28.8     28.8    NA  
+##  4 FB     2013-01-07  28.7  29.4     29.4    NA  
+##  5 FB     2013-01-08  29.5  29.1     29.1    28.8
+##  6 FB     2013-01-09  29.7  30.6     30.6    29.1
+##  7 FB     2013-01-10  30.6  31.3     31.3    29.8
+##  8 FB     2013-01-11  31.3  31.7     31.7    30.4
+##  9 FB     2013-01-14  32.1  31.0     31.0    30.7
+## 10 FB     2013-01-15  30.6  30.1     30.1    30.9
+## # … with 998 more rows</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># Don&#39;t try this!</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="co"># rolling_mean_na &lt;- rollify(~mean(.x), window = 5)</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="co"># FB %&gt;% mutate(mean_na = rolling_mean_na(adjusted, na.rm = TRUE))</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a></span>
+<span id="cb14-5"><a href="#cb14-5"></a><span class="co"># Reset FB</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a><span class="kw">data</span>(FB)</span>
+<span id="cb14-7"><a href="#cb14-7"></a>FB &lt;-<span class="st"> </span><span class="kw">select</span>(FB, symbol, date, adjusted)</span></code></pre></div>
+</div>
+<div id="returning-more-than-1-value-per-call" class="section level2">
+<h2>Returning more than 1 value per call</h2>
+<p>Say our rolling function returned a call to a custom <code>summary_df()</code> function. This function calculates a 5 number number summary and returns it as a tidy data frame.</p>
+<p>We won’t be able to use the rolling version of this out of the box. <code>dplyr::mutate()</code> will complain that an incorrect number of values were returned since <code>rollify()</code> attempts to unlist at each call. Essentially, each call would be returning 5 values instead of 1. What we need is to be able to create a list-column. To do this, specify <code>unlist = FALSE</code> in the call to <code>rollify()</code>.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># Our data frame summary</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>summary_df &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb15-3"><a href="#cb15-3"></a>  <span class="kw">data.frame</span>(  </span>
+<span id="cb15-4"><a href="#cb15-4"></a>    <span class="dt">rolled_summary_type =</span> <span class="kw">c</span>(<span class="st">&quot;mean&quot;</span>, <span class="st">&quot;sd&quot;</span>,  <span class="st">&quot;min&quot;</span>,  <span class="st">&quot;max&quot;</span>,  <span class="st">&quot;median&quot;</span>),</span>
+<span id="cb15-5"><a href="#cb15-5"></a>    <span class="dt">rolled_summary_val  =</span> <span class="kw">c</span>(<span class="kw">mean</span>(x), <span class="kw">sd</span>(x), <span class="kw">min</span>(x), <span class="kw">max</span>(x), <span class="kw">median</span>(x))</span>
+<span id="cb15-6"><a href="#cb15-6"></a>  )</span>
+<span id="cb15-7"><a href="#cb15-7"></a>}</span>
+<span id="cb15-8"><a href="#cb15-8"></a></span>
+<span id="cb15-9"><a href="#cb15-9"></a><span class="co"># A rolling version, with unlist = FALSE</span></span>
+<span id="cb15-10"><a href="#cb15-10"></a>rolling_summary &lt;-<span class="st"> </span><span class="kw">rollify</span>(<span class="op">~</span><span class="kw">summary_df</span>(.x), <span class="dt">window =</span> <span class="dv">5</span>, </span>
+<span id="cb15-11"><a href="#cb15-11"></a>                           <span class="dt">unlist =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb15-12"><a href="#cb15-12"></a></span>
+<span id="cb15-13"><a href="#cb15-13"></a>FB_summarised &lt;-<span class="st"> </span><span class="kw">mutate</span>(FB, <span class="dt">summary_list_col =</span> <span class="kw">rolling_summary</span>(adjusted))</span>
+<span id="cb15-14"><a href="#cb15-14"></a>FB_summarised</span></code></pre></div>
+<pre><code>## # A tibble: 1,008 x 4
+##    symbol date       adjusted summary_list_col
+##    &lt;chr&gt;  &lt;date&gt;        &lt;dbl&gt; &lt;list&gt;          
+##  1 FB     2013-01-02     28   &lt;lgl [1]&gt;       
+##  2 FB     2013-01-03     27.8 &lt;lgl [1]&gt;       
+##  3 FB     2013-01-04     28.8 &lt;lgl [1]&gt;       
+##  4 FB     2013-01-07     29.4 &lt;lgl [1]&gt;       
+##  5 FB     2013-01-08     29.1 &lt;df[,2] [5 × 2]&gt;
+##  6 FB     2013-01-09     30.6 &lt;df[,2] [5 × 2]&gt;
+##  7 FB     2013-01-10     31.3 &lt;df[,2] [5 × 2]&gt;
+##  8 FB     2013-01-11     31.7 &lt;df[,2] [5 × 2]&gt;
+##  9 FB     2013-01-14     31.0 &lt;df[,2] [5 × 2]&gt;
+## 10 FB     2013-01-15     30.1 &lt;df[,2] [5 × 2]&gt;
+## # … with 998 more rows</code></pre>
+<p>The neat thing is that after removing the <code>NA</code> values at the beginning, the list-column can be unnested using <code>tidyr::unnest()</code> giving us a nice tidy 5-period rolling summary.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>FB_summarised <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(summary_list_col)) <span class="op">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a><span class="st">  </span><span class="kw">unnest</span>()</span></code></pre></div>
+<pre><code>## Warning: `cols` is now required when using unnest().
+## Please use `cols = c(summary_list_col)`</code></pre>
+<pre><code>## # A tibble: 5,020 x 5
+##    symbol date       adjusted rolled_summary_type rolled_summary_val
+##    &lt;chr&gt;  &lt;date&gt;        &lt;dbl&gt; &lt;chr&gt;                            &lt;dbl&gt;
+##  1 FB     2013-01-08     29.1 mean                            28.6  
+##  2 FB     2013-01-08     29.1 sd                               0.700
+##  3 FB     2013-01-08     29.1 min                             27.8  
+##  4 FB     2013-01-08     29.1 max                             29.4  
+##  5 FB     2013-01-08     29.1 median                          28.8  
+##  6 FB     2013-01-09     30.6 mean                            29.1  
+##  7 FB     2013-01-09     30.6 sd                               1.03 
+##  8 FB     2013-01-09     30.6 min                             27.8  
+##  9 FB     2013-01-09     30.6 max                             30.6  
+## 10 FB     2013-01-09     30.6 median                          29.1  
+## # … with 5,010 more rows</code></pre>
+</div>
+<div id="custom-missing-values" class="section level2">
+<h2>Custom missing values</h2>
+<p>The last example was a little clunky because to unnest we had to remove the first few missing rows manually. If those missing values were empty data frames then <code>unnest()</code> would have known how to handle them. Luckily, the <code>na_value</code> argument will allow us to specify a value to fill the <code>NA</code> spots at the beginning of the roll.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>rolling_summary &lt;-<span class="st"> </span><span class="kw">rollify</span>(<span class="op">~</span><span class="kw">summary_df</span>(.x), <span class="dt">window =</span> <span class="dv">5</span>, </span>
+<span id="cb20-2"><a href="#cb20-2"></a>                           <span class="dt">unlist =</span> <span class="ot">FALSE</span>, <span class="dt">na_value =</span> <span class="kw">data.frame</span>())</span>
+<span id="cb20-3"><a href="#cb20-3"></a></span>
+<span id="cb20-4"><a href="#cb20-4"></a>FB_summarised &lt;-<span class="st"> </span><span class="kw">mutate</span>(FB, <span class="dt">summary_list_col =</span> <span class="kw">rolling_summary</span>(adjusted))</span>
+<span id="cb20-5"><a href="#cb20-5"></a>FB_summarised</span></code></pre></div>
+<pre><code>## # A tibble: 1,008 x 4
+##    symbol date       adjusted summary_list_col
+##    &lt;chr&gt;  &lt;date&gt;        &lt;dbl&gt; &lt;list&gt;          
+##  1 FB     2013-01-02     28   &lt;df[,0] [0 × 0]&gt;
+##  2 FB     2013-01-03     27.8 &lt;df[,0] [0 × 0]&gt;
+##  3 FB     2013-01-04     28.8 &lt;df[,0] [0 × 0]&gt;
+##  4 FB     2013-01-07     29.4 &lt;df[,0] [0 × 0]&gt;
+##  5 FB     2013-01-08     29.1 &lt;df[,2] [5 × 2]&gt;
+##  6 FB     2013-01-09     30.6 &lt;df[,2] [5 × 2]&gt;
+##  7 FB     2013-01-10     31.3 &lt;df[,2] [5 × 2]&gt;
+##  8 FB     2013-01-11     31.7 &lt;df[,2] [5 × 2]&gt;
+##  9 FB     2013-01-14     31.0 &lt;df[,2] [5 × 2]&gt;
+## 10 FB     2013-01-15     30.1 &lt;df[,2] [5 × 2]&gt;
+## # … with 998 more rows</code></pre>
+<p>Now unnesting directly:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>FB_summarised <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="st">  </span><span class="kw">unnest</span>()</span></code></pre></div>
+<pre><code>## Warning: `cols` is now required when using unnest().
+## Please use `cols = c(summary_list_col)`</code></pre>
+<pre><code>## # A tibble: 5,020 x 5
+##    symbol date       adjusted rolled_summary_type rolled_summary_val
+##    &lt;chr&gt;  &lt;date&gt;        &lt;dbl&gt; &lt;chr&gt;                            &lt;dbl&gt;
+##  1 FB     2013-01-08     29.1 mean                            28.6  
+##  2 FB     2013-01-08     29.1 sd                               0.700
+##  3 FB     2013-01-08     29.1 min                             27.8  
+##  4 FB     2013-01-08     29.1 max                             29.4  
+##  5 FB     2013-01-08     29.1 median                          28.8  
+##  6 FB     2013-01-09     30.6 mean                            29.1  
+##  7 FB     2013-01-09     30.6 sd                               1.03 
+##  8 FB     2013-01-09     30.6 min                             27.8  
+##  9 FB     2013-01-09     30.6 max                             30.6  
+## 10 FB     2013-01-09     30.6 median                          29.1  
+## # … with 5,010 more rows</code></pre>
+<p>Finally, if you want to actually keep those first few NA rows in the unnest, you can pass a data frame that is initialized with the same column names as the rest of the values.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>rolling_summary &lt;-<span class="st"> </span><span class="kw">rollify</span>(<span class="op">~</span><span class="kw">summary_df</span>(.x), <span class="dt">window =</span> <span class="dv">5</span>, </span>
+<span id="cb25-2"><a href="#cb25-2"></a>                           <span class="dt">unlist =</span> <span class="ot">FALSE</span>, </span>
+<span id="cb25-3"><a href="#cb25-3"></a>                           <span class="dt">na_value =</span> <span class="kw">data.frame</span>(<span class="dt">rolled_summary_type =</span> <span class="ot">NA</span>,</span>
+<span id="cb25-4"><a href="#cb25-4"></a>                                                 <span class="dt">rolled_summary_val  =</span> <span class="ot">NA</span>))</span>
+<span id="cb25-5"><a href="#cb25-5"></a></span>
+<span id="cb25-6"><a href="#cb25-6"></a>FB_summarised &lt;-<span class="st"> </span><span class="kw">mutate</span>(FB, <span class="dt">summary_list_col =</span> <span class="kw">rolling_summary</span>(adjusted))</span>
+<span id="cb25-7"><a href="#cb25-7"></a>FB_summarised <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unnest</span>()</span></code></pre></div>
+<pre><code>## Warning: `cols` is now required when using unnest().
+## Please use `cols = c(summary_list_col)`</code></pre>
+<pre><code>## # A tibble: 5,024 x 5
+##    symbol date       adjusted rolled_summary_type rolled_summary_val
+##    &lt;chr&gt;  &lt;date&gt;        &lt;dbl&gt; &lt;chr&gt;                            &lt;dbl&gt;
+##  1 FB     2013-01-02     28   &lt;NA&gt;                            NA    
+##  2 FB     2013-01-03     27.8 &lt;NA&gt;                            NA    
+##  3 FB     2013-01-04     28.8 &lt;NA&gt;                            NA    
+##  4 FB     2013-01-07     29.4 &lt;NA&gt;                            NA    
+##  5 FB     2013-01-08     29.1 mean                            28.6  
+##  6 FB     2013-01-08     29.1 sd                               0.700
+##  7 FB     2013-01-08     29.1 min                             27.8  
+##  8 FB     2013-01-08     29.1 max                             29.4  
+##  9 FB     2013-01-08     29.1 median                          28.8  
+## 10 FB     2013-01-09     30.6 mean                            29.1  
+## # … with 5,014 more rows</code></pre>
+</div>
+<div id="rolling-regressions" class="section level2">
+<h2>Rolling regressions</h2>
+<p>A final use of this flexible function is to calculate rolling regressions.</p>
+<p>A very ficticious example is to perform a rolling regression on the <code>FB</code> dataset of the form <code>close ~ high + low + volume</code>. Notice that we have 4 columns to pass here. This is more complicated than a <code>.x</code> and <code>.y</code> example, but have no fear. The arguments can be specified in order as <code>..1</code>, <code>..2</code>, … for as far as is required, or you can pass a freshly created anonymous function. The latter is what we will do so we can preserve the names of the variables in the regression.</p>
+<p>Again, since this returns a linear model object, we will specify <code>unlist = FALSE</code>. Unfortunately there is no easy default NA value to pass here.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="co"># Reset FB</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a><span class="kw">data</span>(FB)</span>
+<span id="cb28-3"><a href="#cb28-3"></a></span>
+<span id="cb28-4"><a href="#cb28-4"></a>rolling_lm &lt;-<span class="st"> </span><span class="kw">rollify</span>(<span class="dt">.f =</span> <span class="cf">function</span>(close, high, low, volume) {</span>
+<span id="cb28-5"><a href="#cb28-5"></a>                              <span class="kw">lm</span>(close <span class="op">~</span><span class="st"> </span>high <span class="op">+</span><span class="st"> </span>low <span class="op">+</span><span class="st"> </span>volume)</span>
+<span id="cb28-6"><a href="#cb28-6"></a>                           }, </span>
+<span id="cb28-7"><a href="#cb28-7"></a>                      <span class="dt">window =</span> <span class="dv">5</span>, </span>
+<span id="cb28-8"><a href="#cb28-8"></a>                      <span class="dt">unlist =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb28-9"><a href="#cb28-9"></a></span>
+<span id="cb28-10"><a href="#cb28-10"></a>FB_reg &lt;-<span class="st"> </span><span class="kw">mutate</span>(FB, <span class="dt">roll_lm =</span> <span class="kw">rolling_lm</span>(close, high, low, volume))</span>
+<span id="cb28-11"><a href="#cb28-11"></a>FB_reg</span></code></pre></div>
+<pre><code>## # A tibble: 1,008 x 9
+##    symbol date        open  high   low close    volume adjusted roll_lm  
+##    &lt;chr&gt;  &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;list&gt;   
+##  1 FB     2013-01-02  27.4  28.2  27.4  28    69846400     28   &lt;lgl [1]&gt;
+##  2 FB     2013-01-03  27.9  28.5  27.6  27.8  63140600     27.8 &lt;lgl [1]&gt;
+##  3 FB     2013-01-04  28.0  28.9  27.8  28.8  72715400     28.8 &lt;lgl [1]&gt;
+##  4 FB     2013-01-07  28.7  29.8  28.6  29.4  83781800     29.4 &lt;lgl [1]&gt;
+##  5 FB     2013-01-08  29.5  29.6  28.9  29.1  45871300     29.1 &lt;lm&gt;     
+##  6 FB     2013-01-09  29.7  30.6  29.5  30.6 104787700     30.6 &lt;lm&gt;     
+##  7 FB     2013-01-10  30.6  31.5  30.3  31.3  95316400     31.3 &lt;lm&gt;     
+##  8 FB     2013-01-11  31.3  32.0  31.1  31.7  89598000     31.7 &lt;lm&gt;     
+##  9 FB     2013-01-14  32.1  32.2  30.6  31.0  98892800     31.0 &lt;lm&gt;     
+## 10 FB     2013-01-15  30.6  31.7  29.9  30.1 173242600     30.1 &lt;lm&gt;     
+## # … with 998 more rows</code></pre>
+<p>To get some useful information about the regressions, we will use <code>broom::tidy()</code> and apply it to each regression using a <code>mutate() + map()</code> combination.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>FB_reg <span class="op">%&gt;%</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(roll_lm)) <span class="op">%&gt;%</span></span>
+<span id="cb30-3"><a href="#cb30-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">tidied =</span> purrr<span class="op">::</span><span class="kw">map</span>(roll_lm, broom<span class="op">::</span>tidy)) <span class="op">%&gt;%</span></span>
+<span id="cb30-4"><a href="#cb30-4"></a><span class="st">  </span><span class="kw">unnest</span>(tidied) <span class="op">%&gt;%</span></span>
+<span id="cb30-5"><a href="#cb30-5"></a><span class="st">  </span><span class="kw">select</span>(symbol, date, term, estimate, std.error, statistic, p.value)</span></code></pre></div>
+<pre><code>## # A tibble: 4,016 x 7
+##    symbol date       term         estimate     std.error statistic p.value
+##    &lt;chr&gt;  &lt;date&gt;     &lt;chr&gt;           &lt;dbl&gt;         &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+##  1 FB     2013-01-08 (Intercept) -2.84e- 1 10.2           -0.0279    0.982
+##  2 FB     2013-01-08 high         7.09e- 1  1.95           0.364     0.778
+##  3 FB     2013-01-08 low          2.70e- 1  2.16           0.125     0.921
+##  4 FB     2013-01-08 volume       1.12e- 8  0.0000000266   0.422     0.746
+##  5 FB     2013-01-09 (Intercept) -5.95e+ 0  7.48          -0.796     0.572
+##  6 FB     2013-01-09 high         2.08e+ 0  1.88           1.10      0.468
+##  7 FB     2013-01-09 low         -9.20e- 1  1.75          -0.526     0.692
+##  8 FB     2013-01-09 volume      -1.45e-10  0.0000000168  -0.00861   0.995
+##  9 FB     2013-01-10 (Intercept)  9.55e- 1  4.46           0.214     0.866
+## 10 FB     2013-01-10 high         7.17e- 1  1.30           0.553     0.679
+## # … with 4,006 more rows</code></pre>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

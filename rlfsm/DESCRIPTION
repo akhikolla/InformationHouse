@@ -1,0 +1,32 @@
+Package: rlfsm
+Type: Package
+Title: Simulations and Statistical Inference for Linear Fractional
+        Stable Motions
+Version: 1.0.1
+Authors@R: c(
+  person("Dmitry", "Otryakhin", , "d.otryakhin.acad@protonmail.ch", c("aut", "cre"),
+         comment = c(ORCID = "0000-0002-4700-7221")),
+  person("Stepan", "Mazur", , "mazurstepanm@gmail.com", "aut",
+         comment = c(ORCID = "0000-0002-1395-9427")),
+  person("Mathias", "Ljungdahl", , "ljungdahl@math.au.dk", "ctb")
+  )
+Maintainer: Dmitry Otryakhin <d.otryakhin.acad@protonmail.ch>
+Author: Dmitry Otryakhin [aut, cre] (<https://orcid.org/0000-0002-4700-7221>),
+  Stepan Mazur [aut] (<https://orcid.org/0000-0002-1395-9427>),
+  Mathias Ljungdahl [ctb]
+Description: Contains functions for simulating linear fractional stable motions, according to techniques developed by Stoev and Taqqu (2004) <doi:10.1142/S0218348X04002379>, as well as functions for computing important statistics used with these processes introduced by Mazur, Otryakhin and Podolskij (2018) <arXiv:1802.06373>, and also different quantities related to those statistics.
+License: GPL-3
+URL:
+        https://gitlab.com/Dmitry_Otryakhin/Tools-for-parameter-estimation-of-the-linear-fractional-stable-motion
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+Depends: methods, foreach, doParallel
+Imports: ggplot2, stabledist, reshape2, plyr, Rdpack, Rcpp
+Suggests: elliptic, spatstat, testthat, stringi
+RdMacros: Rdpack
+LinkingTo: Rcpp
+NeedsCompilation: yes
+Packaged: 2020-10-27 20:28:06 UTC; d
+Repository: CRAN
+Date/Publication: 2020-10-27 21:00:03 UTC

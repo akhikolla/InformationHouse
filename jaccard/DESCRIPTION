@@ -1,0 +1,23 @@
+Package: jaccard
+Type: Package
+Title: Test Similarity Between Binary Data using Jaccard/Tanimoto
+        Coefficients
+Version: 0.1.0
+Date: 2018-06-06
+Author: Neo Christopher Chung <nchchung@gmail.com>, Błażej Miasojedow
+    <bmiasojedow@gmail.com>, Michał Startek <M.Startek@mimuw.edu.pl>, Anna Gambin <aniag@mimuw.edu.pl>
+Maintainer: Neo Christopher Chung <nchchung@gmail.com>
+Description: Calculate statistical significance of Jaccard/Tanimoto similarity
+    coefficients for binary data.
+biocViews:
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+Imports: Rcpp (>= 0.12.6), qvalue, dplyr, magrittr
+LinkingTo: Rcpp
+NeedsCompilation: yes
+SystemRequirements: C++11
+RoxygenNote: 6.0.1
+Packaged: 2018-06-10 01:52:22 UTC; nc
+Repository: CRAN
+Date/Publication: 2018-06-14 17:53:00 UTC

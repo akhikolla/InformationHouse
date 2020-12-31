@@ -1,0 +1,84 @@
+---
+title: "Mixtures"
+output: rmarkdown::html_vignette
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+author: Mikkel Meyer Andersen
+bibliography: refs.bib
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Mixtures}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(fig.width = 5, fig.height = 5)
+```
+
+# Introduction
+
+This vignette shows how to use the R package `disclapmix` that implements the method described in [@AndersenDisclap2013] and [@AndersenDisclapMixture2015]. For a more gentle introduction to the method, refer to the introduction vignette and [@AndersenDisclapIntroduction2013].
+
+# Mixture analysis
+
+We again use the Danish reference database [@Hallenberg2005YchromosomeSH] with $n = 185$ observations (male Y-STR haplotypes) at $r=10$ loci is available in the `danes` dataset. 
+Let us load the package as well as the data:
+
+```{r}
+library(disclapmix)
+data(danes)
+```
+
+The database is in compact format, i.e. one unique haplotype per row.
+To fit the model, we need one observation per row. 
+This is done for example like this:
+
+```{r}
+db <- as.matrix(danes[rep(seq_len(nrow(danes)), danes$n), seq_len(ncol(danes)-1)])
+str(db)
+```
+
+Also, note that the database is now an integer matrix.
+
+Assume now that we have a mixture and that the reference database are without these two contributors:
+
+```{r}
+donor1 <- db[1, ]
+donor2 <- db[20, ]
+refdb <- db[-c(1, 20), ]
+```
+
+We now construct the mixture:
+
+```{r}
+mix <- generate_mixture(list(donor1, donor2))
+```
+
+We can then see some properties of possible pairs:
+
+```{r}
+pairs <- contributor_pairs(mix)
+pairs
+```
+
+To do much more, we need a model assigning hpalotype probabilies. 
+In the introduction vignette, we found that 4 clusters seemed fine, so let us fit this model:
+
+```{r}
+fit <- disclapmix(x = refdb, clusters = 4L)
+```
+
+We can now use this model to e.g. rank the contributor pairs:
+
+```{r}
+ranked_pairs <- rank_contributor_pairs(pairs, fit)
+ranked_pairs
+```
+
+We can get the ranks for the donors:
+
+```{r}
+get_rank(ranked_pairs, donor1)
+get_rank(ranked_pairs, donor2)
+```
+
+# References

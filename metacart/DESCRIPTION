@@ -1,0 +1,20 @@
+Package: metacart
+Type: Package
+Title: Meta-CART: A Flexible Approach to Identify Moderators in
+        Meta-Analysis
+Version: 2.0-3
+Date: 2020-7-10
+Encoding: UTF-8
+Author: Xinru Li [aut, cre], Elise Dusseldorp [aut, cph], Kaihua Liu [ctb] (supported with the plot function), Juan Claramunt [ctb], Jacqueline Meulman [ctb]
+Maintainer: Juan Claramunt <j.claramunt.gonzalez@fsw.leidenuniv.nl>
+Description: Meta-CART integrates classification and regression trees (CART) into meta-analysis. Meta-CART is a flexible approach to identify interaction effects between moderators in meta-analysis. The method is described in Dusseldorp et al. (2014) <doi:10.1037/hea0000018> and Li et al. (2017) <doi:10.1111/bmsp.12088>.
+LazyData: TRUE
+License: GPL (>= 2)
+Depends: R (>= 3.0.2), stats, ggplot2, gridExtra, methods, rpart
+Imports: Rcpp
+LinkingTo: Rcpp
+RoxygenNote: 7.0.2
+NeedsCompilation: yes
+Packaged: 2020-07-10 11:01:19 UTC; jclaramunt
+Repository: CRAN
+Date/Publication: 2020-07-10 11:30:05 UTC

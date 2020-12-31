@@ -1,0 +1,483 @@
+----------------------------------------------------------------
+
+	CHANGES IN transport VERSION 0.12-2  (2020-03-11)
+
+OVERVIEW
+
+    o  We thank Christoph Weitkamp for contributions.
+
+    o  Fixes a serious bug in the main transport function.
+       For method = "networkflow" and mass vectors a, b
+       containing zeroes, the results were typically wrong before.
+
+    o  Function transport_track now uses argument fps (frames
+       per second) instead of delay.time for generation of
+       animated gifs. This argument is used consistently. 
+
+----------------------------------------------------------------
+
+	CHANGES IN transport VERSION 0.12-1  (2019-08-07)
+
+OVERVIEW
+
+    o  Fixes a compilation error under Solaris.
+
+    o  Returns to using a Makevars file instead of the
+       configure script for the same openmp functionality
+       as in the previous version.
+
+    o  We thank Brian Ripley for pertinent hints on both. 
+
+
+----------------------------------------------------------------
+
+	CHANGES IN transport VERSION 0.12-0  (2019-08-05)
+
+OVERVIEW
+
+    o  We thank Nicolas Bonneel for contributions.
+
+    o  The main workhorse function transport has a new method
+       "networkflow". This is currently the recommended method for
+       solving the discrete optimal transport problems directly
+       via a simplex algorithm (it is fastest unless special
+       structure is known, e.g. p=2).
+       The method is available for objects of classes pp, wpp,
+       pgrid. The code is based on the modified version of
+       the Lemon Library provided by Nicolas Bonneel.
+       https://github.com/nbonneel/network_simplex
+       
+    o  A new configure script checks for openmp support at install time.
+       If supported the installed version allows the user to run a
+       multithreaded version of the "networkflow" method via a new
+       argument "threads" in the appropriate transport functions.
+       
+    o  Fixes a bug in the transport.track function which could cause
+       an error when trying to generate a gif using this function.
+       Also adds some minor customization options to this function.
+ 
+
+----------------------------------------------------------------
+
+	CHANGES IN transport VERSION 0.11-2  (2019-06-12)
+
+OVERVIEW
+
+    o  We thank Luc Lehericy for contributions.
+
+    o  A bug in the function transport.wpp was fixed which
+       for strongly unbalanced weights created sometimes
+       an infinite loop.
+ 
+
+----------------------------------------------------------------
+
+	CHANGES IN transport VERSION 0.11-1  (2019-04-17)
+
+OVERVIEW
+
+    o  We thank Samuel Ackerman for contributions.
+
+    o  The functions subwasserstein and transport.pp are
+       faster now. Depending on the example the speed increase
+       can be very substantial.      
+
+SIGNIFICANT CHANGES
+
+    o  Function subwasserstein is much faster now for large objects
+       because distance matrixes are not precomputed anymore. Set
+       the new argument precompute=TRUE if you must reproduce the
+       old behaviour.       
+
+BUG FIXES
+
+    o  Due to the misplacement of a line of code, epsilon-scaling
+       in the auction algorithm was not working properly for the
+       function transport.pp. In some simple pathological examples
+       the algorithm took very long. Reported by Samuel Ackerman.
+       Fixed.
+
+
+----------------------------------------------------------------
+
+	CHANGES IN transport VERSION 0.11-0  (2019-02-03)
+
+OVERVIEW
+
+    o  Several improvements regarding exact and approximate
+       computations of Wasserstein distances, including a
+       bug fix.       
+
+NEW FUNCTIONS
+    
+    o  subwasserstein
+    Allow for approximate computation of Wasserstein distances
+    via subsampling. Code by Jörn Schrieber
+
+SIGNIFICANT CHANGES
+
+    o  Function wasserstein can now also compute Wasserstein
+       distances in the vanilla case of two mass vectors with
+       cost matrix.
+
+BUG FIXES
+
+    o  The result was incorrectly normed when applying function
+       wasserstein to objects of class "wpp" with prob=TRUE. Fixed.
+
+
+----------------------------------------------------------------
+
+	CHANGES IN transport VERSION 0.10-0  (2018-12-24)
+
+OVERVIEW
+
+    o  Semidiscrete optimal transport can now also be
+       computed for p=1 (in addition to p=2) if CGAL is
+       available. Adapt then src/Makevars and install this
+       package from source. This functionality is based on
+       stand-alone C++ code by Valentin Hartmann
+       
+    o  Easier extraction of the Wasserstein distance
+       from semidiscrete optimal transport results
+
+NEW FUNCTIONS
+    
+    o  semidiscrete1
+    The workhorse function for computing semidiscrete
+    optimal transport for p=1. This is called by the
+    function transport (if first input object has class
+    pgrid, second input object has class wpp and p=1) and
+    by the function semidiscrete (if p=1).
+    Calling semidiscrete1 directly offers finer control
+    of the algorithm.
+
+    o  plot_apollonius
+    The workhorse function for plotting the semidiscrete
+    optimal transport plan for p=1. This is called by the
+    function plot.pgrid (if the second input object has
+    class wpp and p=1).
+    Calling plot_apollonius directly allows to plot
+    arbitrary Apollonius diagrams (a.k.a. weighted Voronoi
+    tesselations) based on a two-column matrix of centers
+    and a vector of weights. It allows offers finer
+    control over plotting.
+
+
+SIGNIFICANT CHANGES
+
+    o  Functions transport and plot.pgrid can now compute
+       and plot semidiscrete optimal transport plans also
+       for p=1 (in addition to p=2) using an object of class
+       pgrid and an object of class wpp. The result of the
+       plot is an Apollonius diagram (a.k.a. weighted
+       Voronoi tesselations) consisting of hyperbola
+       segments.
+
+    o  The object returned by semidiscrete now always contains
+       a component giving the Wasserstein distance between the
+       input objects. The function wasserstein simply extracts
+       this component.
+
+----------------------------------------------------------------
+
+	CHANGES IN transport VERSION 0.9-4  (2017-10-03)
+
+OVERVIEW
+
+    o  Compilation with the most recent version of clang resulted in
+       an error. Fixed.
+
+----------------------------------------------------------------
+
+	CHANGES IN transport VERSION 0.9-3  (2017-09-29)
+
+OVERVIEW
+
+    o  Minor change to remove a compiler warning    
+
+----------------------------------------------------------------
+
+	CHANGES IN transport VERSION 0.9-2  (2017-09-28)
+
+OVERVIEW
+
+    o  Minor changes in Makevars to enable compilation under Windows and
+       pass CRAN checks     
+
+----------------------------------------------------------------
+
+	CHANGES IN transport VERSION 0.9-1  (2017-09-15)
+
+OVERVIEW
+
+    o  Minor bug fixes     
+
+----------------------------------------------------------------
+
+	CHANGES IN transport VERSION 0.9-0  (2017-08-24)
+
+OVERVIEW
+
+    o  Fixed serious bug, introduced in version 0.7-0,
+       by which the algorithm hanged for pgrid-objects if p>1
+       method="revsimplex" (the default) if masses are not integer valued    
+
+    o  New method "shielding" for pgrid-objects if p=2 that is considerably
+       faster than the existing methods. Option to link package
+       against CPLEX makes this combination even much faster and enables
+       computation for 128x128 grids within a few seconds.
+       C++ code by Bernhard Schmitzer 
+
+----------------------------------------------------------------
+
+	CHANGES IN transport VERSION 0.8-2  (2017-03-09)
+
+OVERVIEW
+
+    o  New function wasserstein1d to compute the Wasserstein
+       distance between two univariate samples (with weights)
+
+
+----------------------------------------------------------------
+
+	CHANGES IN transport VERSION 0.8-1  (2016-12-03)
+
+OVERVIEW
+
+    o  We thank Atreju Tauschinsky for contributions
+
+    o  The wasserstein function supports now the wpp class
+
+    o  Several minor bug fixes
+
+
+----------------------------------------------------------------
+
+	CHANGES IN transport VERSION 0.8-0  (2016-10-15)
+
+OVERVIEW
+
+    o  We thank Florian Heinemann and Timo Wilm for contributions
+
+    o  New class weighted point patterns with full functionality
+
+    o  Optimal transport between pgrid and wpp that returns 
+       transport tesselation
+
+    o  Dynamic optimal transport (displacement interpolation)
+
+NEW CLASSES
+
+    o  wpp
+    The class wpp describes general discrete measures with
+    finite support, i.e. patterns of finitely many "weighted"
+    points (without specific structure for the locations or
+    weights). There are constructors for this class,
+    as well as plot, print and summary functions. The
+    function 'transport' can deal with this class.
+    We thank Timo Wilm for help with creating this class.
+    
+NEW FUNCTIONS
+    
+    o  semidiscrete
+    Computes the transport map (in the form of a power
+    diagram) for the semidiscrete transport problem
+    from a pgrid to a wpp object for the case p=2.
+    This function is not usually called by the user
+    because the function transport offers the same
+    flexibility now.
+
+    o  plot_pgrid_wpp
+    Plots a representation of a transport map (available
+    as a power diagram) between a pgrid and a wpp object.
+    This function gets called when using the generic plot
+    function with a pgrid and a wpp object (in that order),
+    but a direct call to plot_pgrid_wpp by the user offers
+    more possibilites for customizing the plot.
+
+    o  transport_track
+    Computes a dynamic version of a given transference plan
+    by interpolating in time. The linear interpolation of
+    the projections of the transference plan is computed,
+    which in many important cases corresponds to the
+    displacement interpolation. The result can be either
+    returned as an array or is saved as an animated gif.
+    We thank Florian Heinemann for contributing large
+    parts of this function.
+
+SIGNIFICANT CHANGES
+
+    o  transport
+    Can now deal with two wpp objects and in the case p=2
+    also with one pgrid and one wpp object as inputs
+    (in that order).
+
+    o  aha
+    It is now possible to return the parameters for the optimal
+    power diagram, rather than the (approximative) optimal transference
+    plan in terms of the pixel centers of the source measure. For
+    this, use the new option powerdiag.
+
+OTHER USER-VISIBLE CHANGES
+
+    o  pgrid
+    If no information is provided on the positions of the pixels, it is
+    now assumed that we have square pixels and the boundary points
+    in the first dimension are 0 and 1 (previous behaviour: boundary
+    points in every dimension are 0 and 1, leading to non-square pixels
+    if the pgrid is non-square).
+
+    o  pgrid
+    A pgrid object has two additional components 'totmass' giving
+    the sum of pixel values, and 'totcontmass' giving the sum of
+    pixel values divided by pixel areas. The former may be interpreted
+    as totol mass of pgrid if interpreted as a discrete measure on the
+    grid of pixel centers. The latter may be interpreted as total
+    mass of pgrid if interpreted as a continuous measure with constant
+    density on each pixel (seen as small contiguous rectangles).
+
+BUG FIXES
+
+    Various smaller bug fixes for special input.
+
+
+----------------------------------------------------------------
+
+	CHANGES IN transport VERSION 0.7-5  (2016-09-28)
+
+OVERVIEW
+
+    o  We thank Ramon Diaz-Uriarte for contributions
+
+    o  aha can return optimal power diagram now
+
+    o  Several minor bug fixes
+
+SIGNIFICANT CHANGES
+
+    o  aha
+    It is now possible to return the parameters for the optimal
+    power diagram, rather than the (approximative) optimal transference
+    plan in terms of the pixel centers of the source measure. For
+    this, use the new option powerdiag.
+
+BUG FIXES
+
+    o  transport.pp, transport.default
+    Computing the optimal transport from a mass distribution
+    to itself resulted in an error.
+    Fixed.
+
+
+----------------------------------------------------------------
+
+	CHANGES IN transport VERSION 0.7-4  (2016-06-28)
+
+OVERVIEW
+
+    o  We thank Yann Abraham and Stefan Kain for contributions
+
+    o  Several unnecessary outputs are now suppressed by default
+       (timing information, warnings about degenerate bases that 
+       did not affect the result)
+
+    o  Several minor bug fixes
+
+BUG FIXES
+
+    o  transport.pgrid
+    For p=1 computing the optimal transport from a mass distribution
+    to itself resulted in a segfault or an error (depending on the
+    method used).
+    Fixed.
+
+    o  transport.pgrid
+    Having a mass distribution of integers and at least one zero could
+    cause an integer overflow.
+    Fixed.
+
+
+----------------------------------------------------------------
+
+	CHANGES IN transport VERSION 0.7-3  (2016-02-24)
+
+OVERVIEW
+
+    o  We thank Ludo Daemen and Stefan Kain for contributions
+
+    o  Minor changes in the documentation and a bug fix
+
+BUG FIXES
+
+    o  transport.default
+    Using transport.default with the shortlist method gave an error
+    message if no shortlist parameters were set.
+    Fixed.
+
+
+----------------------------------------------------------------
+
+	CHANGES IN transport VERSION 0.7-0  (2015-10-21)
+
+OVERVIEW
+
+    o  There are two new ways for computing starting solutions
+    in transport.default and transport.pgrid with
+    method="revsimplex", which lead to substantial speed
+    improvements (mainly in transport.pgrid)
+       
+    o  Several minor bugfixes
+
+SIGNIFICANT CHANGES
+
+    o  transport.pgrid, transport.default
+    When method="revsimplex" is chosen, transport.pgrid can now
+    start from a solution that is based on the optimal transport
+    between two coarsened problems. This "multiscale" behaviour is invoked
+    automatically if p>1, the grid is 2-dimensional, of a certain
+    minimal size, and has an even number of vertices in each direction
+    (for p=1 use the control parameter nscales as in previous
+    versions). Both transport.pgrid and transport.default can also
+    be started from a solution based on the "Modified Row Minimum
+    Rule" (newly implemented in C Code). This is the default
+    behaviour now for transport.default, and also for transport.pgrid
+    if the multiscale starting solution described above cannot
+    be computed.
+
+    To get the behaviour of older versions, say
+    control=list(start="nwcorner") in the transport function.
+
+
+----------------------------------------------------------------
+
+	CHANGES IN transport VERSION 0.6-3  (2014-10-16)
+
+OVERVIEW
+
+    o  Minor changes in the documentation
+
+
+----------------------------------------------------------------
+
+	CHANGES IN transport VERSION 0.6-2  (2014-06-21)
+
+OVERVIEW
+
+    o  Minor changes in the documentation and a bug fix
+
+BUG FIXES
+
+    o  aha
+    In the underlying C code integer overflows were possible (usually
+    without noticable effects on the result).
+    Fixed.
+
+
+----------------------------------------------------------------
+
+	CHANGES IN transport VERSION 0.6-1  (2014-05-30)
+
+OVERVIEW
+
+    o  First public release

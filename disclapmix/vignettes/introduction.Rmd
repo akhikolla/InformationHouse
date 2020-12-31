@@ -1,0 +1,111 @@
+---
+title: "Introduction"
+output: rmarkdown::html_vignette
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+author: Mikkel Meyer Andersen
+bibliography: refs.bib
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Introduction}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(fig.width = 5, fig.height = 5)
+```
+
+# Introduction
+
+This vignette shows how to use the R package `disclapmix` that implements the method described in [@AndersenDisclap2013]. For a more gentle introduction to the method, refer to [@AndersenDisclapIntroduction2013].
+
+# Analysis
+
+A Danish reference database [@Hallenberg2005YchromosomeSH] with $n = 185$ observations (male Y-STR haplotypes) at $r=10$ loci is available in the `danes` dataset. 
+Let us load the package as well as the data:
+
+```{r}
+library(ggplot2)
+
+library(disclapmix)
+data(danes)
+```
+
+The database is in compact format, i.e. one unique haplotype per row.
+To fit the model, we need one observation per row. 
+This is done for example like this:
+
+```{r}
+db <- as.matrix(danes[rep(seq_len(nrow(danes)), danes$n), seq_len(ncol(danes)-1)])
+str(db)
+```
+
+Also, note that the database is now an integer matrix.
+
+To fit a model using 2 clusters, the following command can be used (note the `L` postfix to emphasize that the number is an integer):
+
+```{r, eval=FALSE}
+fit <- disclapmix(x = db, clusters = 2L)
+```
+
+The number of clusters is not known beforehand. 
+Here, the numbers 1 through 5 are tried and the best one according to the BIC criteria [@BIC] is taken:
+
+```{r}
+clusters <- 1L:5L
+fits <- lapply(clusters, function(clusters) {
+  fit <- disclapmix(x = db, clusters = clusters)
+  return(fit)
+})
+
+marginalBICs <- sapply(fits, function(fit) {
+  fit$BIC_marginal
+})
+
+bestfit <- fits[[which.min(marginalBICs)]]
+```
+
+The best fit is now in the `bestfit` that can be inspected by `print` (default method called when the variable is just written) or `summary` which (currently) give the same output: 
+
+```{r}
+bestfit
+summary(bestfit)
+```
+
+We can also plot the fitted model:
+
+```{r, fig.width=10}
+plot(bestfit)
+```
+
+There are important information returned by `disclapmix`, e.g. the central haplotypes and the dispersion parameters for the discrete Laplace distributions:
+
+```{r}
+bestfit$y
+bestfit$disclap_parameters
+```
+
+The returned object is described in `?disclapmix` and objects can be inspected using e.g. `str()`.
+
+
+Haplotype frequencies can be obtained using the `predict` function. Note, that this is done per haplotype (`danes`) and not per observation (`db`):
+
+```{r}
+disclap_estimates <- predict(bestfit, 
+                             newdata = as.matrix(danes[, 1:(ncol(danes) - 1)]))
+```
+
+These can be compared to the database frequencies:
+
+```{r}
+ggplot() +
+  geom_abline(intercept = 0, slope = 1) +
+  geom_point(aes(x = danes$n/sum(danes$n), y = disclap_estimates)) +
+  labs(x = "Observed frequency",
+       y = "Predicted frequency (discrete Laplace)") +
+  theme_bw() +
+  scale_x_log10() +
+  scale_y_log10()
+```
+
+
+# References

@@ -1,0 +1,17 @@
+useDynLib(PenCoxFrail)
+
+importFrom(Rcpp, evalCpp)
+importFrom(Matrix, bdiag)   
+importFrom(Matrix, crossprod)  
+importFrom(utils, tail) 
+import(survival)   
+import(stats)
+import(graphics)
+
+S3method(print, pencoxfrail)
+S3method(summary, pencoxfrail)
+S3method(print, summary.pencoxfrail)
+S3method(predict, pencoxfrail)
+S3method(plot, pencoxfrail)
+
+export(pencoxfrail, pencoxfrailControl, bs.design, int.approx)

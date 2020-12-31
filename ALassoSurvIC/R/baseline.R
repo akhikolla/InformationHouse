@@ -1,0 +1,1 @@
+baseline <- function(...) UseMethod("baseline")

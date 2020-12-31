@@ -1,0 +1,65 @@
+INFO: Starting fuzzing
+WARNING: No test specified, defaulting to first test defined (exceedProb_deepstate_test_pnct_test)
+input starts
+EXTERNAL: qs v0.23.4.
+
+x values: -2.43318e-187
+df values: -1.64581e+174
+ncp values: -1.66668e-49
+input ends
+terminate called after throwing an instance of 'boost::wrapexcept<std::domain_error>'
+  what():  Error in function boost::math::non_central_t_distribution<double>::non_central_t_distribution(double,double): Degrees of freedom argument is -1.6458136929908321e+174, but must be > 0 !
+ERROR: Failed: exceedProb_deepstate_test_pnct_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_output/385152ef29131be1ff3204841194e0e1832e50d7.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+x values: -1.5615e-299
+df values: -1.20777e+13
+ncp values: 2.79236e-196
+input ends
+terminate called after throwing an instance of 'boost::wrapexcept<std::domain_error>'
+  what():  Error in function boost::math::non_central_t_distribution<double>::non_central_t_distribution(double,double): Degrees of freedom argument is -12077746961269.146, but must be > 0 !
+ERROR: Failed: exceedProb_deepstate_test_pnct_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_output/1e9ac2bc78112536b748f1904805bffdd879a251.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+x values: 1.27048e-62
+df values: -2.88162e-134
+ncp values: 8.18711e+299
+input ends
+terminate called after throwing an instance of 'boost::wrapexcept<std::domain_error>'
+  what():  Error in function boost::math::non_central_t_distribution<double>::non_central_t_distribution(double,double): Degrees of freedom argument is -2.8816221444231684e-134, but must be > 0 !
+ERROR: Failed: exceedProb_deepstate_test_pnct_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_output/a361db9fe089b63a590cf025f53f5b20f81c3ac1.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+x values: 3.16522e+06
+df values: 3.72126e-82
+ncp values: 5.29799e-243
+input ends
+input starts
+EXTERNAL: qs v0.23.4.
+
+x values: -1.92672e-302
+df values: -4.2952e-278
+ncp values: 4.24195e+22
+input ends
+terminate called after throwing an instance of 'boost::wrapexcept<std::domain_error>'
+  what():  Error in function boost::math::non_central_t_distribution<double>::non_central_t_distribution(double,double): Degrees of freedom argument is -4.2952045105899666e-278, but must be > 0 !
+ERROR: Failed: exceedProb_deepstate_test_pnct_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_output/3b251808761ff058455d190e25022e26a5bbdb34.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+x values: -8.5119e-07
+df values: -5.48117e-145
+ncp values: 4.79212e-250
+input ends
+terminate called after throwing an instance of 'boost::wrapexcept<std::domain_error>'
+  what():  Error in function boost::math::non_central_t_distribution<double>::non_central_t_distribution(double,double): Degrees of freedom argument is -5.4811731754710156e-145, but must be > 0 !
+ERROR: Failed: exceedProb_deepstate_test_pnct_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/exceedProb/inst/testfiles/pnct/pnct_output/7f96546a5630c3c9a141a1d3f7bccc23cba100c5.fail`
+INFO: Done fuzzing! Ran 6 tests (3 tests/second) with 5 failed/1 passed/0 abandoned tests

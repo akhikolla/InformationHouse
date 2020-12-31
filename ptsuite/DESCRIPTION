@@ -1,0 +1,41 @@
+Package: ptsuite
+Title: Tail Index Estimation for Power Law Distributions
+Version: 1.0.0
+Authors@R: c(person("Ranjiva", "Munasinghe", email = "ranjiva@mindlanka.org", 
+  role = "aut"),
+  person("Pathum", "Kossinna", email = "pathum@mindlanka.org", 
+  role = c("cre", "aut")),
+  person("Dovini", "Jayasinghe", email = "dovini@mindlanka.org", 
+  role = "aut"),
+  person("Dilanka", "Wijeratne", email = "dilanka@mindlanka.org", 
+  role = "aut"))
+Description: Various estimation methods for the shape parameter of Pareto
+    distributed data. This package contains functions for various estimation 
+    methods such as maximum likelihood 
+    (Newman, 2005)<doi:10.1016/j.cities.2012.03.001>, 
+    Hill's estimator (Hill, 1975)<doi:10.1214/aos/1176343247>, 
+    least squares (Zaher et al., 2014)<doi:10.9734/BJMCS/2014/10890>, 
+    method of moments (Rytgaard, 1990)<doi:10.2143/AST.20.2.2005443>, 
+    percentiles (Bhatti et al., 2018)<doi:10.1371/journal.pone.0196456>,
+    and weighted least squares (Nair et al., 2019) to estimate the shape 
+    parameter of Pareto distributed data. It also provides both a heuristic 
+    method (Hubert et al., 2013)<doi:10.1016/j.csda.2012.07.011> and a 
+    goodness of fit test 
+    (Gulati and Shapiro, 2008)<doi:10.1007/978-0-8176-4619-6> for testing for 
+    Pareto data as well as a method for generating Pareto distributed data.
+Depends: R (>= 3.5.0)
+License: GPL-3
+LazyData: true
+LinkingTo: Rcpp
+Imports: Rcpp
+RoxygenNote: 6.1.1
+Suggests: plotly
+NeedsCompilation: yes
+Packaged: 2019-04-01 10:00:35 UTC; Asus
+Author: Ranjiva Munasinghe [aut],
+  Pathum Kossinna [cre, aut],
+  Dovini Jayasinghe [aut],
+  Dilanka Wijeratne [aut]
+Maintainer: Pathum Kossinna <pathum@mindlanka.org>
+Repository: CRAN
+Date/Publication: 2019-04-02 15:10:03 UTC

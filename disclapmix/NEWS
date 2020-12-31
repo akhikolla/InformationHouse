@@ -1,0 +1,85 @@
+Changes in version 1.7.3
+  * Adding suppressWarnings(RNGversion("3.5.0")) to tests as a result 
+    of https://bugs.r-project.org/bugzilla/show_bug.cgi?id=17494.
+
+Changes in version 1.7.2
+  * Maintenance updates
+  * Remove Makevars files as not required by Rcpp >= 0.11.
+
+Changes in version 1.7.1
+  * Tag for the The Journal of Open Source Software paper: 
+    http://joss.theoj.org/papers/10.21105/joss.00748
+
+Changes in version 1.7
+  * Moving to Github
+  * Roxygen
+  * testthat
+  * Travis CI
+  
+Changes in version 1.6.3
+  * Avoid two centers being equal (mainly a problem for very few loci)
+  * Internal: PedigreeSums added with increased stack size and progress indicator
+  
+Changes in version 1.6.2
+  * Minor technical changes for keeping CRAN checks happy
+    
+Changes in version 1.6.1
+  * Plot functionality for disclapmix was broken for fits with only one 
+    subpopulation/cluster.
+
+Changes in version 1.6
+  * Plot functionality for disclapmix fit takes an argument for the 
+    distances between clusters (defaults to clusterdist(x)). This
+    can be used if the distances have been precalculated.
+  * Minor technical changes for keeping CRAN checks happy
+  
+Changes in version 1.5
+  * Added AICc (Akaike Information Criterium with finite sample correction)
+  * Added plot functionality for a disclapmix fit
+  * Corrected number of model observations, leading to corrected BIC values (AIC not affected)
+  * Error in full likelihood ratio corrected (not used for model selection)
+    
+Changes in version 1.4
+  * Added separation of two persons mixtures (see example in ?rank_contributor_pairs)
+  * Added AIC (Akaike Information Criterium) for a model disclapmixfit
+
+Changes in version 1.3
+  * Added simulate from fitted model
+  * Added haplotype diversity calculation from a fitted model
+  * Added parameter to control number of IRLS iterations (glm_control_maxit)
+  * Added parameter to control IRLS convergence (glm_control_eps)
+  * Changed default iterations to 100L, glm_control_maxit to 50L and 
+    glm_control_eps to 1e-6
+  * Fixed error with no IRLS output for verbose = 2L expect for glm.fit
+  * Small changes in verbose output
+  
+Changes in version 1.2
+  * Changed default glm_method to internal_coef due to speed considerations
+  * Fixed issues when having one cluster, one locus or both
+
+Changes in version 1.1
+  * Code changes for OS X, Windows and Solaris compatibility
+
+Changes in version 1.0
+  * Totally rewritten such that the algorithm is more memory and CPU 
+    efficient and can be used to analyse larger datasets
+  * Internal IRLS algorithm implemented, much faster than glm.fit for this
+    kind of data. glm.fit is still available. See glm_method in ?disclapmix.
+  * NOTE: Updated API
+
+Changes in version 0.4
+  * Fixed error when there is no variation in a subpopulation
+
+Changes in version 0.3
+  * Fixed error such that verbose = 1 outputs progress information
+  * Number of model parameters corrected, which changes marginal and
+    full BIC slightly, but only with a constant change meaning that for the 
+    same data, the optimal number of centers is the same
+
+Changes in version 0.2
+	* disclapmix: verbose more fine grained
+	* FIXED: disclapmix: use.parallel = TRUE created problems under Windows
+	* Corrected minor documentation errors
+
+Changes in version 0.1
+	* Initial release

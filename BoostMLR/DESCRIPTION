@@ -1,0 +1,17 @@
+Package: BoostMLR
+Type: Package
+Title: Boosting for Multivariate Longitudinal Response
+Version: 1.0.2
+Date: 2020-03-15
+Author: Amol Pande, Hemant Ishwaran
+Maintainer: Amol Pande <amoljpande@gmail.com>
+Description: Jointly models the multivariate longitudinal response and multiple covariates and time using gradient boosting approach.
+License: GPL (>= 2)
+Depends: R (>= 3.5.0)
+Imports: Rcpp (>= 0.12.18), stats, splines, nlme
+Suggests: mlbench
+LinkingTo: Rcpp, RcppArmadillo
+NeedsCompilation: yes
+Packaged: 2020-03-15 12:39:44 UTC; pandea2
+Repository: CRAN
+Date/Publication: 2020-03-15 22:00:11 UTC

@@ -1,0 +1,17 @@
+Package: carSurv
+Title: Correlation-Adjusted Regression Survival (CARS) Scores
+Version: 1.0.0
+Author: Thomas Welchowski
+Maintainer: Thomas Welchowski <welchow@imbie.meb.uni-bonn.de>
+Description: Contains functions to estimate the Correlation-Adjusted Regression Survival (CARS) Scores. The method is described in Welchowski, T. and Zuber, V. and Schmid, M., (2018), Correlation-Adjusted Regression Survival Scores for High-Dimensional Variable Selection, <arXiv:1802.08178>.
+Depends: R (>= 3.2.2)
+Imports: Rcpp, survival, corpcor, mboost, fdrtool
+Suggests: microbenchmark, mvtnorm
+License: GPL-3
+LazyLoad: yes
+LinkingTo: Rcpp
+RoxygenNote: 6.0.1
+NeedsCompilation: yes
+Packaged: 2018-02-24 10:36:15 UTC; Thomas
+Repository: CRAN
+Date/Publication: 2018-02-26 12:34:39 UTC

@@ -1,0 +1,45 @@
+INFO: Starting fuzzing
+WARNING: No test specified, defaulting to first test defined (wk_deepstate_test_cpp_wkt_translate_wkb_test)
+input starts
+EXTERNAL: qs v0.23.4.
+
+wkt values: "oeythlfrxtfjxzdeejol" "mrwgmurgjf" "NA" "tglpvzndhadidxnofcd" "NA" "NA" "NA" "kkifqamgnkrmdnypk" "alwsl" "NA" "NA" "deyblbjnrxlmflq" "drufrhgu" "NA" "" "NA" "rpufgzsjlfrfxj" "k" "debdigxot" "hnqccwqunjtqwtlmwuvl" "cvtybxyehosv" "tyxywzcahlzvygwwlxio" "NA" "bxdyoyljwaovxnit" "NA" "qkbbzzvfqrkkcakktvou" "ylirspbmtsiebt" "NA" "oyvfplfjkdgyblkuclje" "iqfhzwsn" "hlbjrcphtbflmknkgkso" "cyvft" "fvbbuvwkfdolmvvsfoy" "gnhcdo" "dkvsodovrmropxuetwq" "mmaezhmlzmduyceoiuvp" "zsktexlho" "vrfjgsjlle" "bonem" "smedmqbn" "djpwkhrnbomtudmlvtxl" "NA" "ehiatrkevxwpouxmotnz" "tnpepvmngtignueovd" "tayheeeiznxujffvyicb" "psymffi" "" "NA" "gqpdoqpwftndjkepcotj" "javywxovxeofevjfbmcg" "focvjjnsjffzlybzxmyq" "btcxkjxvbcuyd" "NA" "jiobfmxyrb" "aucksxjefgvswxepdewo" "hszddhypebywrnpazbjt" "NA" "NA" "NA" "hqzbqxhrrgbbcrjwnzuj" "gvwzegyainqmqbhri" "onvppuuvdnjhtexeekdo" "lvevwglscgkr" "" "topbogcerek"
+includeZ values: -568592799
+includeM values: -158683130
+includeSRID values: -426592579
+endian values: 778171779
+bufferSize values: 1357777111
+input ends
+terminate called after throwing an instance of 'WKParseException'
+  what():  Expected geometry type or 'SRID=' but found 'oeythlfrxtfjxzdeejol' (:0)
+ERROR: Failed: wk_deepstate_test_cpp_wkt_translate_wkb_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wkb/cpp_wkt_translate_wkb_output/a72843778d7f501422b5f0f70cb6b5e5d0d1349c.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+wkt values: "mozzwixsehisnavbbddi" "qlticntqpfnnscjohrgy" "nhtu" "i" "NA" "qnlycdwvtkfvzzoccnok" "uwipaisslycgbssjilab" "glgvvpthbifdhynnnhde" "NA" "NA" "NA" "cvcpdqbsreswfdvdrnug" "brmenikbxdebyxnxpq" "NA" "nmxn" "NA" "NA" "llkvpktmolaaewly" "NA" "NA" "m" "NA" "hgwkqhcahwyy" "NA" "fgrtsaew" "iggputknaunv" "bansvuushyvlzobrvkxf" "dpteytnatxnznsqgchow" "smuwpxzavzaaiazroiqx" "NA" "pxhxvsphrwgosziwpohu" "hrvjerojzkytyodcbzya" "czfnkwkfqtjlzihedjet" "io" "ywphvwvawjlikwq" "NA" "tfklrynvjaplktclgz" "NA" "NA" "NA" "NA" "yfhakygjujzifwonnxlc" "eqkaybzxrhiuxyerozlj" "bqwcenwloascalhacoo" "lgvypdqtctpyvijwuwvl" "" "esifsdnqpeasirdw" "fiysxeatzsidgjnqoswq" "NA" "wxweopnavjspwjaghzkj" "NA" "NA" "NA" "bdkjeejrftbjcykunrse" "NA" "NA" "amrobelckuahkbafbsbx"
+includeZ values: 2113400008
+includeM values: -1354212959
+includeSRID values: 1639523616
+endian values: -1635714286
+bufferSize values: -1166635176
+input ends
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Attempt to set zero or negative buffer size
+ERROR: Failed: wk_deepstate_test_cpp_wkt_translate_wkb_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wkb/cpp_wkt_translate_wkb_output/456ddcb024af1d38ec9c8a2abc53886cdcab95bb.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+wkt values: "NA" "bgobpurvacavhln" "qterqunhsyoyrgxyguqe" "vxdcntgugwviqlckmcqs" "mzg" "nbsilul" "zmnlill" "NA" "jkzktbg" "rqclgizxmotxikntswwb" "jmljbgiwjenzzoeoolev" "idpvpfhzfxlfdrdzxekh" "jo" "NA" "qzaxioopcjjee" "tmtzwvwqglmyoznijqbs" "vponncurdqnbh" "NA" "safbzscmzowhzfsyfxer" "qrsywdifbeotxgpwvuem" "NA" "lv" "NA" "NA" "NA" "axiiceupzrqegiy" "qxohmjwazoqghlzusgrj" "NA"
+includeZ values: -295419902
+includeM values: -1609337821
+includeSRID values: 729433903
+endian values: 2050929450
+bufferSize values: 1932357237
+input ends
+terminate called after throwing an instance of 'WKParseException'
+  what():  Expected geometry type or 'SRID=' but found 'bgobpurvacavhln' (:0)
+ERROR: Failed: wk_deepstate_test_cpp_wkt_translate_wkb_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wkb/cpp_wkt_translate_wkb_output/4fcaea9cec7fd9fc0e9d5937160b269766140a1e.fail`
+INFO: Done fuzzing! Ran 3 tests (1 tests/second) with 3 failed/0 passed/0 abandoned tests

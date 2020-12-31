@@ -1,0 +1,20 @@
+* bbl 0.3.0
+** Summary of changes
+- Added methods formula.bbl(), model.frame.bbl(), nobs.bbl(), residuals.bbl(), weights.bbl()
+- Added function mcSample(...) for inferring most probable configurations in each response group
+
+* bbl 0.2.3
+** Summary of changes
+- Added methods fitted.bbl(), formula.bbl(), model.frame.bbl(), nobs.bbl(), residuals.bbl(), and weights.bbl()
+- Changed name of "freq" argument to "weights" 
+
+* bbl 0.2.1
+** Summary of changes
+- Changed argument mlestimate(..., prior.count=1)
+
+* bbl 0.2.0
+** Summary of changes
+- Changed from S4 to S3 object (bbl)
+- Function call to bbl() uses formula and data input and fits model directly
+- Methods print.bbl(), summary.bbl(), plot.bbl(), and predict.bbl() are for S3 object bbl
+- CrossVal runs multiple calls to bbl() and generates derived object

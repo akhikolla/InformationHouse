@@ -1,0 +1,53 @@
+WARNING: No test specified, defaulting to first test defined (pcIRT_deepstate_test_gamfunk_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/pcIRT/inst/testfiles/gamfunk/gamfunk_output/09dc652ae6bf72b5f37bee352c8b34b3d804d2eb.fail`
+TRACE: Running: pcIRT_deepstate_test_gamfunk_test from /home/akhila/fuzzer_packages/fuzzedpackages/pcIRT/inst/testfiles/gamfunk/gamfunk_DeepState_TestHarness.cpp(10)
+input starts
+EXTERNAL: qs v0.23.4.
+
+epsmat values: 1.36294e-210 1.06719e+207 4.84719e+60 -1.4647e+97 -2.02632e-88 -5.5981e-106 5.30999e+104 3.21482e+177 2.32095e-241 -7.5593e+186 -1.11161e-187 -2.772e+48 -inf 2.18976e+167 9.22786e+272 4.53135e-211 2.84137e-266 4.82426e-269 2.28506e+158 3.86514e-244 1.44752e-222 -2.16928e-178 -2.63713e-267 -8.51384e+306 -3.63143e+148 2.16505e+102 -1.01276e-244 -8.83368e-82 8.14986e-224 7.87192e+245 1.95944e-51 -8.45665e+41 6.87034e-265 -2.87842e-301 -1.65154e+10 5.80062e-133 -5.47488e+94 7.12181e-116 5.25245e+265 -1.37158e-263 -1.50616e-16 5.0508e-101 -1.82833e-172 -6.24108e-24 -3.37099e+203 1.02853e+183 9.05071e+283 -1.46915e-189 nan 1.67476e-73 6.40514e+211 -3.47916e-248 -2.41612e-245 4.33295e+267 2.97627e+172 -2.83668e-46 -1.26669e-82 -7.11572e-268 -8.8679e+241 -6.26183e+244 1.10527e-251 -1.5532e+31 -3.11688e-164 -1.01038e+167 1.08373e+135 9.73684e+162 -inf 2.09892e-08 -inf -1.85735e+58 2.58348e-172 0.0623076 2.90651e-162 -8.44614e+254 1.62073e+136 -1.0253e+239 -4.27637e-239 2.68457 -1.03712e+119 6.7248e+33 inf 4.15357e-152 -6.73124e+07 -3.76605e-151 -2.6338e-209 -3.81702e+98 3.00746e+122 -2.5404e+274 0
+gammat values: 4.47068e+106 2.11716e+62
+5.89832e+198 2.08755e-254
+3.04581e+272 2.48003e+141
+1.76621e+194 2.02077e+65
+1.51749e-117 5.40291e+292
+1.18126e-272 8.17355e-46
+1.11644e-08 1.73805e+186
+9.52199e-246 4.75682e-88
+2.77764e-46 2.26887e+99
+
+input ends
+--4037209-- VALGRIND INTERNAL ERROR: Valgrind received a signal 11 (SIGSEGV) - exiting
+--4037209-- si_code=128;  Faulting address: 0x0;  sp: 0x1002cb5df0
+
+valgrind: the 'impossible' happened:
+   Killed by fatal signal
+
+host stacktrace:
+==4037209==    at 0x5804F887: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/memcheck-amd64-linux)
+==4037209==    by 0x580505F1: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/memcheck-amd64-linux)
+==4037209==    by 0x58004EBB: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/memcheck-amd64-linux)
+==4037209==    by 0x58005C44: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/memcheck-amd64-linux)
+==4037209==    by 0x580A7204: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/memcheck-amd64-linux)
+==4037209==    by 0x580F5FD4: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/memcheck-amd64-linux)
+
+sched status:
+  running_tid=1
+
+Thread 1: status = VgTs_Runnable (lwpid 4037209)
+client stack range: [0x1FFEF77000 0x1FFF000FFF] client SP: 0x1FFEFFF700
+valgrind stack range: [0x1002BB6000 0x1002CB5FFF] top usage: 14592 of 1048576
+
+
+Note: see also the FAQ in the source distribution.
+It contains workarounds to several common problems.
+In particular, if Valgrind aborted or crashed after
+identifying problems in your program, there's a good chance
+that fixing those problems will prevent Valgrind aborting or
+crashing, especially if it happened in m_mallocfree.c.
+
+If that doesn't help, please report this bug to: www.valgrind.org
+
+In the bug report, send all the above text, the valgrind
+version, and what OS and version you are using.  Thanks.
+
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/pcIRT/inst/testfiles/gamfunk/gamfunk_output/09dc652ae6bf72b5f37bee352c8b34b3d804d2eb.fail failed

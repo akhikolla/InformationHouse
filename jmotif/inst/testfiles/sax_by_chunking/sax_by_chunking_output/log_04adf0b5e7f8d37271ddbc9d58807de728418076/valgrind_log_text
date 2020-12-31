@@ -1,0 +1,15 @@
+WARNING: No test specified, defaulting to first test defined (jmotif_deepstate_test_sax_by_chunking_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/jmotif/inst/testfiles/sax_by_chunking/sax_by_chunking_output/04adf0b5e7f8d37271ddbc9d58807de728418076.fail`
+TRACE: Running: jmotif_deepstate_test_sax_by_chunking_test from /home/akhila/fuzzer_packages/fuzzedpackages/jmotif/inst/testfiles/sax_by_chunking/sax_by_chunking_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+ts values: 8.18711e+299 0.00468189 9.28697e-257 -4.47314e+269 -1.08462e-247 -1.0696e+114 -3.47955e-216 -8.95181e+215 1.38348e-136 6.24605e+181 -4.11368e+80 -nan 2.79008e+291 -2.43673e+290 1.13722e+165 1.24929e+186 -9.06014e-190 1.24372e-163 1.07357e-51 -6.7207e-236 3.93269e-254 -3.45571e+99 8.95779e+89 -1.04429e+114 2.77225e+43 -2.18557e+139 -2.63808e-55 -1.77674e-44
+paa_size values: -1184194678
+a_size values: 1318245361
+n_threshold values: 6.84064e+216
+input ends
+terminate called after throwing an instance of 'std::length_error'
+  what():  cannot create std::vector larger than max_size()
+ERROR: Failed: jmotif_deepstate_test_sax_by_chunking_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/jmotif/inst/testfiles/sax_by_chunking/sax_by_chunking_output/04adf0b5e7f8d37271ddbc9d58807de728418076.fail failed

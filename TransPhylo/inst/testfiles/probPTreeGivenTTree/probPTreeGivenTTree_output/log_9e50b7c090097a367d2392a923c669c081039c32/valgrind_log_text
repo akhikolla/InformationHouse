@@ -1,0 +1,15 @@
+WARNING: No test specified, defaulting to first test defined (TransPhylo_deepstate_test_probPTreeGivenTTree_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/TransPhylo/inst/testfiles/probPTreeGivenTTree/probPTreeGivenTTree_output/9e50b7c090097a367d2392a923c669c081039c32.fail`
+TRACE: Running: TransPhylo_deepstate_test_probPTreeGivenTTree_test from /home/akhila/fuzzer_packages/fuzzedpackages/TransPhylo/inst/testfiles/probPTreeGivenTTree/probPTreeGivenTTree_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+ctree values: 1.05415e-68 1.86447e-211 4.49059e+17 2.72551e-214 6.53679e-70 2.42643e+241 1.65687e+24
+
+neg values: -2.10159e+110
+w values: 49753534 37686913 -822602508 1591053158 878787584 742630714 -164119883 -423997720 -1317296461 -1145752183 -1387692533 503935315 1806521239 -235286041 814455830 1173028855 1722133025 1524607495 673715015 847551133
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Index out of bounds: [index=449058805123160512; extent=2].
+ERROR: Failed: TransPhylo_deepstate_test_probPTreeGivenTTree_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/TransPhylo/inst/testfiles/probPTreeGivenTTree/probPTreeGivenTTree_output/9e50b7c090097a367d2392a923c669c081039c32.fail failed

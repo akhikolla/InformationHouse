@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Create Makevar file
+if test ! -f "./src/Makevars"; then
+   touch ./src/Makevars
+fi
+
+# Write the Makevars seperately for different platforms
+if test "$(uname)" = "Darwin"; then
+    echo ' ' >> ./src/Makevars
+else
+    echo 'PKG_LIBS = $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS)' >> ./src/Makevars
+fi

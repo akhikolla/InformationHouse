@@ -1,0 +1,252 @@
+---
+title: "Functions for Processing Accelerometer Data"
+author: "Dane Van Domelen <br> vandomed@gmail.com"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+bibliography: bibliography.bib
+nocite: | 
+  @rcpp2,
+  @rcpp3
+vignette: >
+  %\VignetteIndexEntry{Functions for Processing Accelerometer Data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  message = FALSE, 
+  fig.width = 5.75, 
+  fig.height = 4.5
+)
+
+# Load packages
+library("dvmisc")
+library("knitr")
+library("accelerometry")
+```
+
+## Introduction
+
+The **accelerometry** package has functions for processing time series accelerometer data from research studies. It was primarily developed for uniaxial minute-to-minute count data. It is also compatible with triaxial data, and could potentially also be used with epochs other than 1 minute.
+
+If you have "raw data," meaning your device recorded actual acceleration data at 30 Hz or some other sampling frequency, this package probably won't be very helpful. Then again, you can usually convert raw data to counts after data collection, e.g. using [ActiLife software](https://www.actigraphcorp.com/support/software/actilife/) for ActiGraph devices.
+
+C++ is used for most of the functions, through the **Rcpp** package [@rcpp1], so they should be pretty fast. For example, the **nhanesaccel** package, which relies on **accelerometry**'s functions to process data from the 2003-2006 National Health and Nutrition Examination Survey (NHANES), can process that dataset about 90 times faster than a SAS script provided by the National Cancer Institute [@rjournal].
+
+## Installation
+
+The package is available to download from either CRAN or GitHub. To install from CRAN:
+
+```{r, eval = FALSE}
+install.packages("accelerometry")
+```
+
+And to install from GitHub (**devtools** package must be installed):
+
+```{r, eval = FALSE}
+library("devtools")
+install_github("vandomed/accelerometry")
+```
+
+## Typical usage
+
+Converting time series accelerometer data to meaningful physical activity variables typically requires 3 steps:
+
+1. Identify periods in which the accelerometer was removed (assuming it could be removed), and determine which days have sufficient wear time.
+2. Calculate physical activity variables of interest for each day.
+3. Calculate averages across valid days, and perhaps for weekdays/weekends separately.
+
+In using the **accelerometry** package, you can either call separate functions to implement these steps (e.g. *nonwear* for 1, *bouts* and *intensities* for 2, and *personvars* for 3) or call an umbrella function that does it all internally (e.g. *process_uni* or *process_tri*). The composite functions should be sufficient for most users.
+
+I'll use data from the first 5 subjects in NHANES 2003-2004 (included with the package) to illustrate the various functions. Here's what the dataset looks like:
+
+```{r}
+head(unidata)
+dim(unidata)
+```
+
+There are 3 variables -- `seqn` is the subject ID, `paxday` is the day of the week (1 = Sunday, ..., 7 = Saturday), and `paxinten` is the count value recorded for each minute -- and 50,400 observations (1 obs/min x 1,440 min/day x 7 days/subject x 5 subjects).
+
+Here's what 7 days of data looks like, for the 3rd subject in the dataset, SEQN = 21007. You can see the 7 separate clouds of data corresponding to each day of the week.
+
+```{r}
+seqn <- unidata[, "seqn"]
+counts <- unidata[, "paxinten"]
+counts.21007 <- counts[seqn == 21007]
+plot(counts.21007, main = "Counts for Subject 21007")
+```
+
+
+## Individual functions
+
+### `weartime`
+
+There are two distinct approaches for identifying non-wear time:
+
+1. Have subjects keep a journal, writing down the precise times that they take the device off and put it back on.
+2. Identify non-wear periods based on the accelerometer signal itself, under the assumption that long periods of 0 counts are probably non-wear time.
+
+Approach 2 is seriously flawed, in my opinion, because it is very possible for somebody wearing the device to record 0 counts for several hours consecutively. But this is the only option for studies like NHANES, where journals were not part of the protocol.
+
+The *weartime* function is for implementing the signal-based approach of removing non-wear time. The default behavior is to classify as non-wear any interval 60 minutes or longer with 0 counts. To do that for our subject of interest:
+
+```{r}
+wear1 <- weartime(counts.21007)
+```
+
+If you have reason to prefer a 90- rather than 60-minute window size, and perhaps want to allow for up 2 nonzero count values as long as they are below 100, you could use:
+
+```{r}
+wear2 <- weartime(counts.21007, 
+                  window = 90, 
+                  tol = 2, 
+                  tol_upper = 99)
+```
+
+Let's see how these two compare (multiplying 0/1 vectors by 5000 and 5100 just to make it easier to visualize):
+
+```{r, fig.width = 8}
+par(mfrow = c(1, 2))
+
+plot(counts.21007, main = "Subject 21007 (whole week)")
+points(wear1 * 5000, type = "l", col = "blue")
+points(wear2 * 5100, type = "l", col = "red")
+
+plot(counts.21007, xlim = c(4321, 5760), main = "Subject 21007 (day 4)")
+points(wear1 * 5000, type = "l", col = "blue")
+points(wear2 * 5100, type = "l", col = "red")
+```
+
+It looks like the main difference here is an extra non-wear period for the 60-minute method on the 4th day of monitoring. Personally, I wouldn't go higher than 60 minutes. Even at 60, you'll have no chance of removing short non-wear periods, e.g. when subjects are showering or swimming for exercise. That's all going to be classified as sedentary time, unfortunately.
+
+### `bouts`
+
+A "bout" is a sustained period of activity of some intensity for some time. Bouted MVPA (moderate-to-vigorous physical activity) is a popular bout variable because physical activity guidelines are often based on MVPA accumulated in bouts of $\ge$ 10 minutes [@troiano2008physical]. Bouted sedentary time can also be interesting, given recent enthusiasm for studying sedentary behaviors.
+
+Here is how you would use *bouts* to identify bouted MVPA for our subject of interest. Note that 2020 is a common cutpoint used to classify MVPA [@troiano2008physical].
+
+```{r}
+mvpa <- bouts(counts = counts.21007, 
+              bout_length = 10, 
+              thresh_lower = 2020)
+sum(mvpa)
+```
+
+Zero bouted MVPA for the entire week - not good! That's actually not uncommon in NHANES. And we're using a strict definition of a bout, not allowing for any minutes to dip below 2020 counts during a 10-minute window. We could be more liberal and define bouted MVPA as any 10-minute interval with counts $\ge$ 2020, allowing for 1-2 minutes with counts < 2020, as long as they are still $\ge$ 100. To implement that algorithm:
+
+```{r}
+mvpa <- bouts(counts = counts.21007, 
+              bout_length = 10, 
+              thresh_lower = 2020, 
+              tol = 2, 
+              tol_lower = 100)
+sum(mvpa)
+```
+
+With this more forgiving algorithm, the subject is considered to have 21 rather than 0 minutes of bouted MVPA over the course of the week.
+
+### `intensities`
+
+This is a simple function that calculates the number of minutes spent in 5 different intensity levels, and the number of counts accumulated from each intensity level. Default behavior is to categorize counts as follows:
+
+* 0-99 = intensity 1 (sedentary)
+* 100-759 = intensity 2 (light)
+* 760-2019 = intensity 3 (lifestyle)
+* 2020-5998 = intensity 4 (moderate)
+* $\ge$ 5999 = intensity 5 (vigorous)
+
+It also lumps intensities 2-3, 4-5, and 2-5 together, for a total of 8 categories. Applied to our subject:
+
+```{r}
+(intensity.data <- intensities(counts = counts.21007[wear1 == 1]))
+```
+
+I subsetted just the valid wear time for this subject, to avoid classifying non-wear time as sedentary time. The first 8 numbers are time spent in the various intensities (e.g. 3379 minutes of sedentary time), and the next 8 are counts accumulated from those intensities (e.g. 62933 counts accumulated during sedentary time). 
+
+### `sedbreaks`
+
+There is some evidence in the epidemiological literature that "sedentary breaks" are beneficial [@stamatakis2018time], i.e. that breaking up prolonged periods of sedentary time can lead to improved health. To count the number of sedentary breaks over the 7-day period for our subject of interest:
+
+```{r}
+breakcount <- sedbreaks(counts = counts.21007, 
+                        weartime = wear1)
+sum(breakcount)
+```
+
+This subject had 729 sedentary breaks over the 7-day period, or a little more than 100 a day. The definition of a sedentary break here is having a minute with counts $\ge$ 100 after a minute of counts < 100. Note that we had to give *sedbreaks* the wear time vector; this prevents the first minute after each non-wear periods being classified as a sedentary break.
+
+
+## Umbrella functions
+
+### `process_uni`
+
+With uniaxial accelerometer data, you can use *process_uni* to calculate physical activity variables for each subject. To calculate a few basic activity variables for our subject of interest, you can run:
+
+```{r}
+(averages.21007 <- process_uni(counts.21007))
+```
+
+It looks like all 7 days were valid for analysis, meaning they had at least 10 hours of wear time. The subject averaged about 928 minutes (15.5 hours) of wear time per day. The variables `counts` and `cpm` (counts per minute of wear time) are probably the two most popular measures of total physical activity volume; this subject averaged about 361,000 counts per day, and 402.3 counts per minute of wear time.
+
+All we specified was the vector of counts, so the function used default values for everything, which basically means the data-processing parameters that I personally prefer. But if you look at the help file (`?process_uni`), you'll see a long list of parameters that you can adjust if you like.
+
+Oftentimes researchers want more detailed variables than just counts and cpm. You can request a lot more variables with the `brevity` input. If we set it to 2 rather than 1:
+
+```{r}
+averages.21007 <- process_uni(counts = counts.21007, 
+                              brevity = 2)
+colnames(averages.21007)
+```
+
+Now we get a lot more variables, with various measures of intensity, sedentary behaviors, and bouted activity. Let's look at a few of the variables:
+
+```{r}
+averages.21007[, c("sed_percent", "sed_bouted_60min", "max_1min_counts")]
+```
+
+The subject on average spent 50.4\% of wear time sedentary, 570.7 minutes per day in sedentary bouts $\ge$ 1 hour, and achieved a max 5-minute count average of 3371 counts/min.
+
+If you set `brevity = 3`, you also get hourly count averages, which can be interesting to plot for individual subjects and/or across subgroups.
+
+If you want a daily summary rather than averages across all valid days, you can set `return_form = "daily"`.
+
+```{r}
+(daily.21007 <- process_uni(counts = counts.21007, 
+                            return_form = "daily"))
+```
+
+
+### `process_tri`
+
+This function is very similar to *process_uni*, but works on triaxial rather than uniaxial accelerometer data. To illustrate, we can use the `tridata` dataset included with the package:
+
+```{r}
+head(tridata)
+```
+
+This is not real data and doesn't closely resemble real data; I generated it as 0's from midnight to 8 am and then multivariate normal for the rest of the day. The 3 columns are intended to represent counts in 3 axes: vertical, anteroposterior (AP), and mediolateral (ML). 
+
+Let's see what happens when we run *process_tri*:
+
+```{r}
+(daily.tri <- process_tri(tridata))
+```
+
+Results are similar to what *process_uni* produced, but instead of a single `counts` and `cpm` variable for each day, we have 5: one for each axis of the accelerometer, plus one for the triaxial sum and one for the triaxial vector magnitude. 
+
+I won't give a full tutorial here, but to illustrate adjusting data-processing parameters, suppose we wanted to define non-wear time as 45 minutes of 0 counts in all 3 axes, as opposed to 60 minutes of 0 counts in the vertical axis only. You would run:
+
+```{r}
+(daily.tri <- process_tri(counts = tridata, 
+                          nonwear_axis = "sum", 
+                          nonwear_window = 45))
+```
+
+
+
+## References

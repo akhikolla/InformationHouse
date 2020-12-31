@@ -1,0 +1,24 @@
+Package: landscapeR
+Title: Categorical Landscape Simulation Facility
+Version: 1.2
+Date: 2017-07-05
+Authors@R: c(person(given = "Dario", family = "Masante", role = c("aut", "cre"), email = "dario.masante@gmail.com"))
+Copyright: Natural Environment Research Council (NERC) and Centre for
+        Ecology and Hydrology (CEH)
+URL: https://github.com/dariomasante/landscapeR
+BugReports: https://github.com/dariomasante/landscapeR/issues
+Imports: raster, Rcpp
+Suggests: knitr, rmarkdown
+Description: Simulates categorical maps on actual geographical realms, starting from either empty landscapes or landscapes provided by the user (e.g. land use maps). Allows to tweak or create landscapes while retaining a high degree of control on its features, without the hassle of specifying each location attribute. In this it differs from other tools which generate null or neutral landscapes in a theoretical space. The basic algorithm currently implemented uses a simple agent style/cellular automata growth model, with no rules (apart from areas of exclusion) and von Neumann neighbourhood (four cells, aka Rook case). Outputs are raster dataset exportable to any common GIS format.
+License: GPL (>= 3)
+LazyLoad: yes
+LazyData: TRUE
+NeedsCompilation: yes
+RoxygenNote: 6.0.1
+VignetteBuilder: knitr
+LinkingTo: Rcpp
+Packaged: 2017-07-05 12:46:53 UTC; masanda
+Author: Dario Masante [aut, cre]
+Maintainer: Dario Masante <dario.masante@gmail.com>
+Repository: CRAN
+Date/Publication: 2017-07-05 14:54:40 UTC

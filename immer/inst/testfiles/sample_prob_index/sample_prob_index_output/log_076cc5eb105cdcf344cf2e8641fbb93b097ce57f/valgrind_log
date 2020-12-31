@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./sample_prob_index_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/immer/inst/testfiles/sample_prob_index/sample_prob_index_output/076cc5eb105cdcf344cf2e8641fbb93b097ce57f.pass</line>
+</preamble>
+
+<pid>892027</pid>
+<ppid>892026</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/immer/inst/testfiles/sample_prob_index/sample_prob_index_output/log_076cc5eb105cdcf344cf2e8641fbb93b097ce57f/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./sample_prob_index_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/immer/inst/testfiles/sample_prob_index/sample_prob_index_output/076cc5eb105cdcf344cf2e8641fbb93b097ce57f.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.025 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D72392</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/immer/src/immer.so</obj>
+      <fn>subimmer_sample_prob_index(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/immer/src</dir>
+      <file>immer_rcpp_hrm.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x4D72461</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/immer/src/immer.so</obj>
+      <fn>sample_prob_index(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp</dir>
+      <file>routines.h</file>
+      <line>222</line>
+    </frame>
+    <frame>
+      <ip>0x409F8C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/immer/inst/testfiles/sample_prob_index/sample_prob_index_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_immer_deepstate_test_sample_prob_index_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/immer/inst/testfiles/sample_prob_index</dir>
+      <file>sample_prob_index_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/immer/inst/testfiles/sample_prob_index/sample_prob_index_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_immer_deepstate_test_sample_prob_index_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/immer/inst/testfiles/sample_prob_index</dir>
+      <file>sample_prob_index_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D958</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/immer/inst/testfiles/sample_prob_index/sample_prob_index_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DBF9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/immer/inst/testfiles/sample_prob_index/sample_prob_index_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DCD4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/immer/inst/testfiles/sample_prob_index/sample_prob_index_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/immer/inst/testfiles/sample_prob_index/sample_prob_index_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:07.691 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>58</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.168 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

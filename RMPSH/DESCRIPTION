@@ -1,0 +1,24 @@
+Package: RMPSH
+Type: Package
+Title: Recursive Modified Pattern Search on Hyper-Rectangle
+Version: 1.1.1
+Authors@R: c(
+      person("Priyam","Das", ,"pdas@ncsu.edu" , role = c("cre", "aut")),
+      person("Debsurya","De", ,"debsurya001@gmail.com", role = "aut")
+      )
+Depends: R (>= 3.5.0)
+Imports: Rcpp
+Collate: 'imports.R' 'RcppExports.R' 'RMPSolveH.R' 'RMPSH-package.R'
+Maintainer: Priyam Das <pdas@ncsu.edu>
+Description: Optimization of any Black-Box/Non-Convex Function on Hyper-Rectangular Parameter Space. It uses a Variation of Pattern Search Technique. Described in the paper : Das (2016) <arXiv:1604.08616> .
+License: GPL-3
+NeedsCompilation: yes
+Encoding: UTF-8
+LazyData: true
+LinkingTo: Rcpp
+RoxygenNote: 7.1.0
+Packaged: 2020-06-25 21:57:13 UTC; Debsurya
+Author: Priyam Das [cre, aut],
+  Debsurya De [aut]
+Repository: CRAN
+Date/Publication: 2020-06-26 14:20:03 UTC

@@ -1,0 +1,57 @@
+Package: foreSIGHT
+Version: 1.0.0
+Depends: R (>= 3.5.0),GA (>= 3.0.2), zoo
+LinkingTo: Rcpp
+Imports: doParallel, ggplot2 (>= 3.3.0), directlabels, cowplot, stats,
+        graphics, grDevices, utils, moments, Rcpp, jsonlite, progress,
+        rcorpora, scales, viridisLite, fields, RColorBrewer, rlang
+Suggests: knitr (>= 1.8), rmarkdown (>= 1.18),testthat, evd
+Title: Systems Insights from Generation of Hydroclimatic Timeseries
+Authors@R: 
+    c(person(given = "Bree",
+             family = "Bennett",
+             role = c("aut", "cre"),
+             email = "bree.bennett@adelaide.edu.au",
+             comment = c(ORCID = "0000-0002-2131-088X")),
+      person(given = "Sam",
+             family = "Culley",
+             role = "aut",
+             email = "sam.culley@adelaide.edu.au",
+             comment = c(ORCID = "0000-0003-4798-8522")),
+      person(given = "Anjana",
+             family = "Devanand",
+             role = "aut",
+             email = "anjana.devanand@adelaide.edu.au",
+             comment = c(ORCID = "0000-0001-9422-3894")),
+      person(given = "Seth",
+             family = "Westra",
+             role = "aut",
+             email = "seth.westra@adelaide.edu.au",
+             comment = c(ORCID = "0000-0003-4023-6061")),
+      person(given = "Danlu",
+             family = "Guo",
+             role = "ctb",
+             email = "danlu.guo@adelaide.edu.au",
+             comment = c(ORCID = "0000-0003-1083-1214")),
+      person(given = "Holger",
+             family = "Maier",
+             role = "ths",
+             email = "holger.maier@adelaide.edu.au",
+             comment = c(ORCID = "0000-0002-0277-6887")))
+Author: Bree Bennett [aut, cre] (<https://orcid.org/0000-0002-2131-088X>),
+  Sam Culley [aut] (<https://orcid.org/0000-0003-4798-8522>),
+  Anjana Devanand [aut] (<https://orcid.org/0000-0001-9422-3894>),
+  Seth Westra [aut] (<https://orcid.org/0000-0003-4023-6061>),
+  Danlu Guo [ctb] (<https://orcid.org/0000-0003-1083-1214>),
+  Holger Maier [ths] (<https://orcid.org/0000-0002-0277-6887>)
+Maintainer: Bree Bennett <bree.bennett@adelaide.edu.au>
+BugReports: https://github.com/bsbennett/foreSIGHT/issues
+Description: A tool to create hydroclimate scenarios, stress test systems and visualize system performance in scenario-neutral climate change impact assessments. Scenario-neutral approaches 'stress-test' the performance of a modelled system by applying a wide range of plausible hydroclimate conditions (see Brown & Wilby (2012) <doi:10.1029/2012EO410001> and Prudhomme et al. (2010) <doi:10.1016/j.jhydrol.2010.06.043>). These approaches allow the identification of hydroclimatic variables that affect the vulnerability of a system to hydroclimate variation and change. This tool enables the generation of perturbed time series using a range of approaches including simple scaling of observed time series (e.g. Culley et al. (2016) <doi:10.1002/2015WR018253>) and stochastic simulation of perturbed time series via an inverse approach (see Guo et al. (2018) <doi:10.1016/j.jhydrol.2016.03.025>). It incorporates 'Richardson-type' weather generator model configurations documented in Richardson (1981) <doi:10.1029/WR017i001p00182>, Richardson and Wright (1984), as well as latent variable type model configurations documented in Bennett et al. (2018) <doi:10.1016/j.jhydrol.2016.12.043>, Rasmussen (2013) <doi:10.1002/wrcr.20164>, Bennett et al. (2019) <doi:10.5194/hess-23-4783-2019> to generate hydroclimate variables on a daily basis (e.g. precipitation, temperature, potential evapotranspiration) and allows a variety of different hydroclimate variable properties, herein called attributes, to be perturbed. Options are included for the easy integration of existing system models both internally in R and externally for seamless 'stress-testing'. A suite of visualization options for the results of a scenario-neutral analysis (e.g. plotting performance spaces and overlaying climate projection information) are also included. As further developments in scenario-neutral approaches occur the tool will be updated to incorporate these advances.
+License: GPL-3
+NeedsCompilation: yes
+VignetteBuilder: knitr
+LazyData: true
+RoxygenNote: 7.1.1
+Packaged: 2020-12-17 08:30:50 UTC; anjanadevanand
+Repository: CRAN
+Date/Publication: 2020-12-17 09:00:12 UTC

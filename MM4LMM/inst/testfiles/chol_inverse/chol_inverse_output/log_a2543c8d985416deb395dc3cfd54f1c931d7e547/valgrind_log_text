@@ -1,0 +1,20 @@
+WARNING: No test specified, defaulting to first test defined (MM4LMM_deepstate_test_chol_inverse_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_output/a2543c8d985416deb395dc3cfd54f1c931d7e547.pass`
+TRACE: Running: MM4LMM_deepstate_test_chol_inverse_test from /home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+X values: 1.71990e-51 1.51667e-225 1.86531e+250 1.44529e+91
+4.07917e+165 6.61249e-257 1.02818e-81 4.09428e+146
+11.4127 2.62736e-264 1.83374e-104 8.78821e+143
+5.71162e+62 8.62422e-89 9.93170e-171 1.60646e-158
+3.92548e+14 1.01363e+74 1088.08 2.54096e-21
+4.49653e+83 2.14829e+78 8.88077e+282 2.36295e+123
+8.29783e+300 1.56356e-81 5.10578e-14 1.93465e-43
+1.44694e-22 1.87145e+289 9.71140e-241 0.00892625
+5.24924e+272 4.33714e-104 7.70719e-71 1.30327e+122
+4.59987e+18 8.95062e-07 1.49741e+196 4.33867e+27
+
+input ends
+ERROR: Crashed: MM4LMM_deepstate_test_chol_inverse_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_output/a2543c8d985416deb395dc3cfd54f1c931d7e547.pass crashed

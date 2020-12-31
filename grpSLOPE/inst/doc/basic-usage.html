@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Alexej Gossmann" />
+
+<meta name="date" content="2020-04-07" />
+
+<title>Basic usage of grpSLOPE</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#header {
+text-align: center;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Basic usage of grpSLOPE</h1>
+<h4 class="author">Alexej Gossmann</h4>
+<h4 class="date">2020-04-07</h4>
+
+
+
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>Group SLOPE (<em>gSLOPE</em>) is a penalized linear regression method that is used for adaptive selection of groups of significant predictors in a high-dimensional linear model. A unique property of the Group SLOPE method is that it offers group false discovery rate (<em>gFDR</em>) control (i.e., control of the expected proportion of irrelevant groups among the total number of groups selected by Group SLOPE). A detailed description of the method can be found in <a href="https://arxiv.org/abs/1610.04960">D. Brzyski, A. Gossmann, W. Su, and M. Bogdan (2016) <em>Group SLOPE — adaptive selection of groups of predictors</em></a>.</p>
+<p>Group SLOPE is implemented in the R package <code>grpSLOPE</code>. As an introduction to the R package, in the following we will walk through a basic usage demonstration. First, we will simulate some data, before we feed it into <code>grpSLOPE</code>, and subsequently examine the output.</p>
+</div>
+<div id="data-generation" class="section level2">
+<h2>Data generation</h2>
+<p>We simulate a <span class="math inline">\(500 \times 500\)</span> SNP-data-like model matrix.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">17082016</span>)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">p     &lt;-<span class="st"> </span><span class="dv">500</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">probs &lt;-<span class="st"> </span><span class="kw">runif</span>(p, <span class="fl">0.1</span>, <span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">probs &lt;-<span class="st"> </span><span class="kw">t</span>(probs) <span class="op">%x%</span><span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span>,p,<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">X0    &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rbinom</span>(<span class="dv">2</span><span class="op">*</span>p<span class="op">*</span>p, <span class="dv">1</span>, probs), p, <span class="dv">2</span><span class="op">*</span>p)</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">X     &lt;-<span class="st"> </span>X0 <span class="op">%*%</span><span class="st"> </span>(<span class="kw">diag</span>(p) <span class="op">%x%</span><span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>))</a></code></pre></div>
+<p>For example, the upper left <span class="math inline">\(10 \times 10\)</span> corner of <span class="math inline">\(X\)</span> looks as follows.</p>
+<table style="width:56%;">
+<colgroup>
+<col width="5%"></col>
+<col width="5%"></col>
+<col width="5%"></col>
+<col width="5%"></col>
+<col width="5%"></col>
+<col width="5%"></col>
+<col width="5%"></col>
+<col width="5%"></col>
+<col width="5%"></col>
+<col width="5%"></col>
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">2</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">2</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> In fact, with the default settings, the Group SLOPE method is guaranteed to control gFDR only when applied to a data matrix, where the columns corresponding to different groups of predictors are nearly uncorrelated. The relevant theoretical results can be found in <a href="https://arxiv.org/abs/1610.04960">Brzyski et. al. (2016)</a>. Only for the brevity of exposition we neither check for nor enforce low between-group correlations in this example.</p>
+<p>We divide the 500 predictor variables into 100 groups of sizes ranging from 3 to 7.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">group &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">each=</span><span class="dv">3</span>),</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">           <span class="kw">rep</span>(<span class="dv">21</span><span class="op">:</span><span class="dv">40</span>, <span class="dt">each=</span><span class="dv">4</span>),</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">           <span class="kw">rep</span>(<span class="dv">41</span><span class="op">:</span><span class="dv">60</span>, <span class="dt">each=</span><span class="dv">5</span>),</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">           <span class="kw">rep</span>(<span class="dv">61</span><span class="op">:</span><span class="dv">80</span>, <span class="dt">each=</span><span class="dv">6</span>),</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">           <span class="kw">rep</span>(<span class="dv">81</span><span class="op">:</span><span class="dv">100</span>, <span class="dt">each=</span><span class="dv">7</span>))</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">group &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;grp&quot;</span>, group)</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="kw">str</span>(group)</a></code></pre></div>
+<pre><code>##  chr [1:500] &quot;grp1&quot; &quot;grp1&quot; &quot;grp1&quot; &quot;grp2&quot; &quot;grp2&quot; &quot;grp2&quot; &quot;grp3&quot; &quot;grp3&quot; ...</code></pre>
+<p>For further usage we keep additional information about the grouping structure of predictors, such as the total number of groups and the group sizes.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># this generates a list containing a vector of indices for each group:</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">group.id &lt;-<span class="st"> </span>grpSLOPE<span class="op">::</span><span class="kw">getGroupID</span>(group)</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co"># this extracts the total number of groups:</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">n.group &lt;-<span class="st"> </span><span class="kw">length</span>(group.id)</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co"># this vector collects the sizes of every group of predictors:</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">group.length &lt;-<span class="st"> </span><span class="kw">sapply</span>(group.id, <span class="dt">FUN=</span>length)</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co"># this vector collects the group names:</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">group.names &lt;-<span class="st"> </span><span class="kw">names</span>(group.id)</a></code></pre></div>
+<p>In order to simulate a response variable, we randomly select 10 groups to be truly significant.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">ind.relevant &lt;-<span class="st"> </span><span class="kw">sort</span>(<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span>n.group, <span class="dv">10</span>)) <span class="co"># indices of relevant groups</span></a></code></pre></div>
+<p>The randomly selected truly significant groups are:</p>
+<table style="width:100%;">
+<colgroup>
+<col width="8%"></col>
+<col width="10%"></col>
+<col width="10%"></col>
+<col width="10%"></col>
+<col width="10%"></col>
+<col width="10%"></col>
+<col width="10%"></col>
+<col width="10%"></col>
+<col width="10%"></col>
+<col width="10%"></col>
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">grp4</td>
+<td align="center">grp12</td>
+<td align="center">grp25</td>
+<td align="center">grp34</td>
+<td align="center">grp35</td>
+<td align="center">grp38</td>
+<td align="center">grp66</td>
+<td align="center">grp67</td>
+<td align="center">grp81</td>
+<td align="center">grp89</td>
+</tr>
+</tbody>
+</table>
+<p>Then we generate the vector of regression coefficients, by sampling effect sizes for the significant groups from the Uniform(0,1) distribution.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">b &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, p)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="cf">for</span> (j <span class="cf">in</span> ind.relevant) {</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">  b[group.id[[j]]] &lt;-<span class="st"> </span><span class="kw">runif</span>(group.length[j])</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">}</a></code></pre></div>
+<p>Finally, we generate the response vector according to a linear model with i.i.d. <span class="math inline">\(\mathcal{N}(0, 1)\)</span> noise terms.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">y &lt;-<span class="st"> </span>X <span class="op">%*%</span><span class="st"> </span>b <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(p)</a></code></pre></div>
+</div>
+<div id="fitting-the-group-slope-model" class="section level2">
+<h2>Fitting the Group SLOPE model</h2>
+<p>We fit the Group SLOPE model to the simulated data. The function argument <code>fdr</code> signifies the target group-wise false discovery rate (gFDR) of the variable selection procedure.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">library</span>(grpSLOPE)</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">model &lt;-<span class="st"> </span><span class="kw">grpSLOPE</span>(<span class="dt">X=</span>X, <span class="dt">y=</span>y, <span class="dt">group=</span>group, <span class="dt">fdr=</span><span class="fl">0.1</span>)</a></code></pre></div>
+</div>
+<div id="model-fit-results" class="section level2">
+<h2>Model fit results</h2>
+<p>The resulting object <code>model</code> of class “grpSLOPE” contains a lot of information about the resulting Group SLOPE model. Some of these parameters are shown below.</p>
+<ul>
+<li><p>Groups that were selected as significant by the Group SLOPE method.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">model<span class="op">$</span>selected</a></code></pre></div>
+<pre><code>##  [1] &quot;grp4&quot;  &quot;grp12&quot; &quot;grp20&quot; &quot;grp25&quot; &quot;grp34&quot; &quot;grp35&quot; &quot;grp38&quot; &quot;grp64&quot;
+##  [9] &quot;grp65&quot; &quot;grp66&quot; &quot;grp67&quot; &quot;grp81&quot; &quot;grp89&quot;</code></pre>
+<p>Notice that the model has correctly identified all significant groups, and additionally has falsely reported the group “grp11” as significant.</p></li>
+<li><p>The estimated noise level <span class="math inline">\(\hat{\sigma}\)</span> (true <span class="math inline">\(\sigma\)</span> is equal to one).</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">sigma</span>(model) <span class="co"># or equivalently: model$sigma</span></a></code></pre></div>
+<pre><code>## [1] 0.9529587</code></pre></li>
+<li><p>The regression coefficients, which can be displayed either on the normalized scale (i.e., the scale corresponding to the normalized versions of <span class="math inline">\(X\)</span> and <span class="math inline">\(y\)</span>, on which all the parameter estimates are computed internally),</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># the first 13 coefficient estimates</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="kw">coef</span>(model)[<span class="dv">1</span><span class="op">:</span><span class="dv">13</span>]</a></code></pre></div>
+<pre><code>##   grp1_1   grp1_2   grp1_3   grp2_1   grp2_2   grp2_3   grp3_1   grp3_2 
+## 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 
+##   grp3_3   grp4_1   grp4_2   grp4_3   grp5_1 
+## 0.000000 2.418774 9.119495 6.620014 0.000000</code></pre>
+<p>or on the original scale of <span class="math inline">\(X\)</span> and <span class="math inline">\(y\)</span>,</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="co"># intercept and the first 13 coefficient estimates</span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="kw">coef</span>(model, <span class="dt">scaled =</span> <span class="ot">FALSE</span>)[<span class="dv">1</span><span class="op">:</span><span class="dv">14</span>]</a></code></pre></div>
+<pre><code>## (Intercept)      grp1_1      grp1_2      grp1_3      grp2_1      grp2_2 
+##   3.5794874   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000 
+##      grp2_3      grp3_1      grp3_2      grp3_3      grp4_1      grp4_2 
+##   0.0000000   0.0000000   0.0000000   0.0000000   0.1598203   0.5656019 
+##      grp4_3      grp5_1 
+##   0.5158554   0.0000000</code></pre>
+<p>(notice that the coefficients are named corresponding to the given grouping structure). As expected from a penalized regression method, we observe some shrinkage, when we compare the above to the true parameters.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="co"># true first 13 coefficients</span></a>
+<a class="sourceLine" id="cb17-2" data-line-number="2">b[<span class="dv">1</span><span class="op">:</span><span class="dv">13</span>]</a></code></pre></div>
+<pre><code>##  [1] 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000
+##  [8] 0.0000000 0.0000000 0.1713692 0.6425599 0.6218365 0.0000000</code></pre></li>
+<li><p>It might also be interesting to plot the first few elements of the regularizing sequence <span class="math inline">\(\lambda\)</span> used by the Group SLOPE method for the given inputs.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">plot</span>(model<span class="op">$</span>lambda[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>], <span class="dt">xlab =</span> <span class="st">&quot;Index&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Lambda&quot;</span>, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>)</a></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p></li>
+</ul>
+<p>We can further check the performance of the method by computing the resulting group false discovery proportion (gFDP) and power.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">true.relevant &lt;-<span class="st"> </span>group.names[ind.relevant]</a>
+<a class="sourceLine" id="cb20-2" data-line-number="2">truepos       &lt;-<span class="st"> </span><span class="kw">intersect</span>(model<span class="op">$</span>selected, true.relevant)</a>
+<a class="sourceLine" id="cb20-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb20-4" data-line-number="4">n.truepos  &lt;-<span class="st"> </span><span class="kw">length</span>(truepos)</a>
+<a class="sourceLine" id="cb20-5" data-line-number="5">n.selected &lt;-<span class="st"> </span><span class="kw">length</span>(model<span class="op">$</span>selected)</a>
+<a class="sourceLine" id="cb20-6" data-line-number="6">n.falsepos &lt;-<span class="st"> </span>n.selected <span class="op">-</span><span class="st"> </span>n.truepos</a>
+<a class="sourceLine" id="cb20-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb20-8" data-line-number="8">gFDP &lt;-<span class="st"> </span>n.falsepos <span class="op">/</span><span class="st"> </span><span class="kw">max</span>(<span class="dv">1</span>, n.selected)</a>
+<a class="sourceLine" id="cb20-9" data-line-number="9">pow &lt;-<span class="st"> </span>n.truepos <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(true.relevant)</a>
+<a class="sourceLine" id="cb20-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb20-11" data-line-number="11"><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;gFDP =&quot;</span>, gFDP))</a></code></pre></div>
+<p>[1] “gFDP = 0.230769230769231”</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;Power =&quot;</span>, pow))</a></code></pre></div>
+<p>[1] “Power = 1”</p>
+<p>We see that the method indeed did not exceed the target gFDR, while maintaining a high power.</p>
+</div>
+<div id="lambda-sequences" class="section level2">
+<h2>Lambda sequences</h2>
+<p>Multiple ways to select the regularizing sequence <span class="math inline">\(\lambda\)</span> are available.</p>
+<p>If a group structure with little correlation between groups can be assumed (i.e., groups in the standardized model matrix are nearly orthogonal), then we suggest to use the sequence “corrected”, which is the default.</p>
+<p>The <span class="math inline">\(\lambda\)</span> sequences “mean” and “max” can be used together with the options <code>orthogonalize = FALSE</code> and <code>normalize = FALSE</code>, when the columns of the model matrix are exactly orthogonal to each other (“max” is more conservative, giving exact gFDR control only when all groups have the same size, and otherwise resulting in a lower gFDR than the target level).</p>
+<p>Alternatively, any non-increasing sequence of appropriate length can be utilized. However, we do not recommend to use any other <span class="math inline">\(\lambda\)</span> sequences unless you really know what you are doing.</p>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<ul>
+<li><p><a href="https://arxiv.org/pdf/1407.3824v2.pdf">Bogdan, M., van den Berg, E., Sabatti, C., Su, W., and Candès, E. J. (2015). <em>SLOPE — Adaptive Variable Selection via Convex Optimization.</em></a> The Annals of Applied Statistics, vol. 9, no. 3, p. 1103.</p></li>
+<li><p><a href="https://arxiv.org/abs/1610.04960">Brzyski, D., Gossmann, A., Su, W., and Bogdan, M. (2016). <em>Group SLOPE — adaptive selection of groups of predictors</em></a> (under review).</p></li>
+<li><p><a href="http://dx.doi.org/10.1145/2808719.2808743">Gossmann, A., Cao, S., and Wang, Y.-P. (2015). <em>Identification of Significant Genetic Variants via SLOPE, and Its Extension to Group SLOPE.</em></a> In Proceedings of the 6th ACM Conference on Bioinformatics, Computational Biology and Health Informatics, BCB ’15 (pp. 232–240). New York, NY, USA: ACM.</p></li>
+</ul>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

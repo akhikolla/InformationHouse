@@ -1,0 +1,18 @@
+WARNING: No test specified, defaulting to first test defined (ExactMultinom_deepstate_test_multinom_test_cpp_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp/multinom_test_cpp_output/e7932681bdc8676f0613462de28842b2945cadd5.crash`
+TRACE: Running: ExactMultinom_deepstate_test_multinom_test_cpp_test from /home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp/multinom_test_cpp_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+x values: -621726556 -1331494887 1854878590 314985932 1361933119 -1262797933 -1571830262 -555281357 1176038391 -1125445590 2051319948 -555281357 600611799 -2015925719 640758675 -2045256755 818332908 -1294723540 415152419 -1290633258 -568676763 -250049000 1237429200 -645489399 1298265599 889924430 -907775620 -152022060
+p values: -4.43406e+267 -1.32396e-49 -1.28038e-25 2.06308e+285 1.47411e+187 1.02108e-250 -5.07224e+195 1.27789e-261 3.11495e+30 2.03377e-295 -1.63466e-257 5.55857e-198 4.71098e+56 -9.58604e-76
+theta values: -6.403e+218
+input ends
+==400085==  If you believe this happened as a result of a stack
+==400085==  overflow in your program's main thread (unlikely but
+==400085==  possible), you can try to increase the size of the
+==400085==  main thread stack using the --main-stacksize= flag.
+==400085==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: ExactMultinom_deepstate_test_multinom_test_cpp_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/ExactMultinom/inst/testfiles/multinom_test_cpp/multinom_test_cpp_output/e7932681bdc8676f0613462de28842b2945cadd5.crash crashed

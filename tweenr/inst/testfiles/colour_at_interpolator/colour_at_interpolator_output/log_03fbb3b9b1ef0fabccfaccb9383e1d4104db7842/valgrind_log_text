@@ -1,0 +1,22 @@
+WARNING: No test specified, defaulting to first test defined (tweenr_deepstate_test_colour_at_interpolator_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/colour_at_interpolator/colour_at_interpolator_output/03fbb3b9b1ef0fabccfaccb9383e1d4104db7842.fail`
+TRACE: Running: tweenr_deepstate_test_colour_at_interpolator_test from /home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/colour_at_interpolator/colour_at_interpolator_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+from values: 1.37787e+242
+    nan
+    inf
+
+to values: 1.23235e-157 3.88059e+133 3.35485e-276
+1.26929e-244 1.99497e+289 2.45508e-230
+
+Missing value
+at values: 4.13399e-41 inf -1.68909e+213 -7.73531e+29 -4.15096e+106 -5.75002e+303 -6.59827e+87 3.77725e+273 -4.29331e+272 8.67179e+52 -inf -9.33266e+117 1.54931e-254 6.62707e-211 -1.80983e-203 7.63919e-56 6.36583e+28 -6.97444e+193 7.59864e-239 -5.73534e-25 6.41809e-301 -6.61755e+125 -5.57387e+218 8.77938e+250 -7.82144e-280 nan -1.97728e+198 1.40871e-129 -6.66818e-128 inf 0
+ease values: "NA" "xfwo" "NA" "cuyoznhhtuptfhohfgi" "xziyrdzkbggtdgxdqsdt" "NA" "qkqqriervatlzukx" "nxujakxeewrscpxnzafe" "NA" "xpkaxeqbixurzf" "NA" "NA" "omzfsiylayikrggdtguj" "" "tjimusfwkx" "xmuodmlzainbu" "NA" "alocpytqudmnkiogyhsg" "xjvbhytqkpxjxtlmxxnr" "fkiylalkaxmedjwscsiz" "emkpmdhkcgkbtcsxmxd" "dnirxpoxckhnzwim" "byxakayuezxxsjwoiusd" "qngdogzsusnvfzshyqew" "NA" "cebaomnbhddavab" "NA" "jpgceal" "iluaslhcjoifdyhstjlp" "rzpox" "NA" "NA" "uasovnyhp" "NA" "uxcafdnsclrycpiba" "bhugbnxgjzvnbs" "NA" "hhhxibaedwviaxiqlgjg" "NA" "lzzf" "hmwgsndcilsmtuqczsfn" "qsnysjhghwtwxpmayqzq" "wqbbstmrovjrntwgpjxz"
+input ends
+terminate called after throwing an instance of 'Rcpp::not_compatible'
+  what():  Expecting a single string value: [type=character; extent=43].
+ERROR: Failed: tweenr_deepstate_test_colour_at_interpolator_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/colour_at_interpolator/colour_at_interpolator_output/03fbb3b9b1ef0fabccfaccb9383e1d4104db7842.fail failed

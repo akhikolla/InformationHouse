@@ -1,0 +1,7 @@
+useDynLib(ProbReco)
+importFrom(Rcpp, evalCpp)
+exportPattern("^[[:alpha:]]+")
+importFrom(stats, rnorm, sd,cov)
+importFrom(purrr,invoke_map)
+importFrom(mvtnorm, rmvnorm)
+importFrom(tools, vignetteInfo)

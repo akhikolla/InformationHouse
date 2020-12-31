@@ -1,0 +1,38 @@
+Package: transport
+Version: 0.12-2
+Date: 2020-03-11
+Title: Computation of Optimal Transport Plans and Wasserstein Distances
+Authors@R: c(person("Dominic", "Schuhmacher", email = "dominic.schuhmacher@mathematik.uni-goettingen.de", role = c("aut","cre")),
+             person("Björn", "Bähre", role = "aut", comment = "aha and power diagrams"),
+             person("Nicolas", "Bonneel", role = "aut", comment = "networkflow"),
+             person("Carsten", "Gottschlich", role = "aut", comment = "simplex and shortlist"),
+             person("Valentin", "Hartmann", role = "aut", comment = "semidiscrete1"),
+             person("Florian", "Heinemann", role = "aut", comment = "transport_track and networkflow integration"),
+             person("Bernhard", "Schmitzer", role = "aut", comment = "shielding"),
+             person("Jörn", "Schrieber", role = "aut", comment = "subsampling"),
+             person("Timo", "Wilm", role = "ctb", comment = "wpp"))
+Maintainer: Dominic Schuhmacher <dominic.schuhmacher@mathematik.uni-goettingen.de>
+Depends: R (>= 3.0.0)
+Imports: grDevices, graphics, methods, stats, Rcpp (>= 0.12.10),
+        data.table
+Suggests: animation, ks, testthat
+LinkingTo: RcppEigen, Rcpp
+Description: Solve optimal transport problems. Compute Wasserstein distances (a.k.a. Kantorovitch, Fortet--Mourier, Mallows, Earth Mover's, or minimal L_p distances), return the corresponding transference plans, and display them graphically. Objects that can be compared include grey-scale images, (weighted) point patterns, and mass vectors.
+LazyData: yes
+Encoding: UTF-8
+License: GPL (>= 2)
+URL: http://www.dominic.schuhmacher.name
+RoxygenNote: 6.1.1
+NeedsCompilation: yes
+Packaged: 2020-03-11 17:28:45 UTC; schumi
+Author: Dominic Schuhmacher [aut, cre],
+  Björn Bähre [aut] (aha and power diagrams),
+  Nicolas Bonneel [aut] (networkflow),
+  Carsten Gottschlich [aut] (simplex and shortlist),
+  Valentin Hartmann [aut] (semidiscrete1),
+  Florian Heinemann [aut] (transport_track and networkflow integration),
+  Bernhard Schmitzer [aut] (shielding),
+  Jörn Schrieber [aut] (subsampling),
+  Timo Wilm [ctb] (wpp)
+Repository: CRAN
+Date/Publication: 2020-03-11 18:30:02 UTC

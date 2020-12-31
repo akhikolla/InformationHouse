@@ -1,0 +1,15 @@
+WARNING: No test specified, defaulting to first test defined (lsbclust_deepstate_test_ComputeMeans_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/lsbclust/inst/testfiles/ComputeMeans/ComputeMeans_output/73f4958c2af9a72c20342ceef25affb63bbc0383.crash`
+TRACE: Running: lsbclust_deepstate_test_ComputeMeans_test from /home/akhila/fuzzer_packages/fuzzedpackages/lsbclust/inst/testfiles/ComputeMeans/ComputeMeans_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+cm values: 1324072422 -18377662 -2147483648 2782169 -860384301 1354602832 -418633294 -1204374778 577825824 1468031606 -1438232886 2064440135 -1016194541 733176594 -1064450952
+data values: 2.12641e+147 1.04854e-302 23.0430 3.26719e+277 1.25097e+270
+
+weight values: 
+nclust values: 808762519
+input ends
+ERROR: Crashed: lsbclust_deepstate_test_ComputeMeans_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/lsbclust/inst/testfiles/ComputeMeans/ComputeMeans_output/73f4958c2af9a72c20342ceef25affb63bbc0383.crash crashed

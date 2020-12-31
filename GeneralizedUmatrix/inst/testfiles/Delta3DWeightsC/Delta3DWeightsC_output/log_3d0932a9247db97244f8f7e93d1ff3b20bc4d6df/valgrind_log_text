@@ -1,0 +1,13 @@
+WARNING: No test specified, defaulting to first test defined (GeneralizedUmatrix_deepstate_test_Delta3DWeightsC_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/GeneralizedUmatrix/inst/testfiles/Delta3DWeightsC/Delta3DWeightsC_output/3d0932a9247db97244f8f7e93d1ff3b20bc4d6df.fail`
+TRACE: Running: GeneralizedUmatrix_deepstate_test_Delta3DWeightsC_test from /home/akhila/fuzzer_packages/fuzzedpackages/GeneralizedUmatrix/inst/testfiles/Delta3DWeightsC/Delta3DWeightsC_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+vx values: 8.18711e+299 0.00468189 9.28697e-257 -4.47314e+269 -1.08462e-247 -1.0696e+114 -3.47955e-216 -8.95181e+215 1.38348e-136 6.24605e+181 -4.11368e+80 -nan 2.79008e+291 -2.43673e+290 1.13722e+165 1.24929e+186 -9.06014e-190 1.24372e-163 1.07357e-51 -6.7207e-236 3.93269e-254 -3.45571e+99 8.95779e+89 -1.04429e+114 2.77225e+43 -2.18557e+139 -2.63808e-55 -1.77674e-44
+Datasample values: 5.05107e+120 -5.78936e+93 6.89414e+47 2.44539e-86 1.09354e-207 1.38725e-134 1.55249e+275 2.49738e+56 -2.19682e+60 -4.87441e-213 -1.99602e-140 -4.69939e-20 -1.11593e+170 1.82803e+153 3.12842e+187 -2.39683e-245 -4.72787e-172 -3.60394e+41 3.78789e-243 1.83257e+116 -4.42594e+160 3.21759e+40 3.48325e-264 1.12041e-122 -5.49906e+23 -5.57064e-183 6.77668e+126 2.64895e-139 1.31811e+39 1.8798e-221 -6.70939e-151 5.4869e+38 1.31455e-288 7.17786e-77 3.11404e+159 2.25842e+27 -4.16599e+69 8.52222e-255 -3.63794e+124 1.26699e+289 -2.21209e+287 -2.94686e+143 -3.85942e+192 -3.19723e+172 -1.00345e+304 4.02347e-135 1.07531e+242 -9.29177e+274 -1.70271e-87 -1.01235e-219 3.4363e-270 510923 3.51942e+166 1.22041e+170 -1.23725e+278 -4.01622e+183 1.66633e-279 -1.66037e+30 -4.7689e-91 -1.86037e+269 1.6357e+203 -7.94839e+111 -2.98405e-201 1.31121e-197 -5.57969e+116 2.34827e+206 -2.762e-182 2.27995e-219 4.27593e-50 5.63565e+75 2.28467e-104 1.06801e+83 1.1073e+184 -7.79654e+247 -5.53919e-274 -3.78769e+108 6.7189e-14 2.16039e-138 -4.06338e-221
+input ends
+terminate called after throwing an instance of 'Rcpp::not_compatible'
+  what():  Not compatible with requested type: [type=NULL; target=integer].
+ERROR: Failed: GeneralizedUmatrix_deepstate_test_Delta3DWeightsC_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/GeneralizedUmatrix/inst/testfiles/Delta3DWeightsC/Delta3DWeightsC_output/3d0932a9247db97244f8f7e93d1ff3b20bc4d6df.fail failed

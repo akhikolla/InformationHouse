@@ -1,0 +1,102 @@
+---
+title: "Introduction to apcf"
+author: "Robert Nuske"
+date: "2020-02-20"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+    toc_depth: 2
+vignette: >
+  %\VignetteIndexEntry{Introduction to apcf}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+```{r include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+library(apcf)
+```
+
+The apcf package provides methods to analyse patterns of objects of finite size and irregular shape using the adapted Pair-Correlation Function (PCF) as proposed by Nuske et al. (2009).
+
+## Background
+The method suggested by Nuske et al. (2009) requires a certain number of null models for correcting the biased PCF and constructing a pointwise critical envelope. Null models are constructed by randomly moving (shift and rotation) the objects within the study area.
+
+The alpha level of the pointwise critical envelope is $\alpha = {n\_rank * 2} / {n\_sim + 1}$ according to (Besag and Diggle 1977, Buckland 1984, Stoyan and Stoyan, 1994).
+
+For the edge correction (based on Ripley, 1981) a buffer with buffer distance $r_{ij}$ is constructed around the object *i* for each pair of objects *i* and *j*. The object *j* is then weighted by the inverse of the proportion $p_{ij}$ of the buffer perimeter being within the study area.
+
+Being a density function the frequently used Epanechnikov kernel (Silverman, 1986; Stoyan and Stoyan, 1994) is used for smoothing the PCF. The smoothing is controlled by the bandwith parameter $\delta$ and the step size *r*. Penttinen et al. (1992) and Stoyan and Stoyan (1994) suggest to set *c* aka stoyan-parameter of $c / {\sqrt{\lambda}}$ between 0.1 and 0.2 with $\lambda$ being the intensity of the pattern.
+
+To separate the computationally intensive part (randomization of the objects and the calculation of the proportion of the buffer inside the study area) from the smoothing of the PCF we use a two step approach:
+
+- calculate distances and buffer fractions for original and randomized patterns
+- turn the distances and buffer fractions into a PCF together with a pointwise critical envelope
+
+
+## Example Data
+To present the workflow we make use of the simulated patterns presented in Nuske et al. (2009). The Shapefiles are part of the package apcf and documented as `?simulated patterns`
+
+![Simulated patterns (a: regular, b: random, c: clustered)](simulated_patterns.png)
+
+
+## From Pattern to Distances
+`pat2dists()` calculates distances between all object of a pattern closer than `max_dist` and determines the fraction of a buffer with distance `dist` inside the study area (needed for edge correction). It randomizes the original pattern to generate `n_sim` null models used for correcting the biased PCF and constructing an envelope. 
+
+It returns an object of class `dists` containing a data.frame with the columns `sim`, `dist`, and `prop` with an indicator of the model run (`0:n_sim`), distances between the objects of the patterns, and the proportion of a buffer with distance dist inside the study area. The size of the study area, the total number of objects, and the maximum distance are passed along as well.
+
+```{r}
+dists <- pat2dists(area=system.file("shapes/sim_area.shp", package="apcf"),
+                   pattern=system.file("shapes/sim_pat_reg.shp", package="apcf"),
+                   max_dist=25, n_sim=9, verbose=FALSE)
+head(dists)
+```
+
+
+## From Distances to PCF
+`dists2pcf()` estimates the adapted pair correlation function of a pattern of polygons together with a pointwise critical envelope using kernel methods based on distances between objects.
+
+It returns an object of class `fv_pcf` containing the function values of the PCF and the pointwise critical envelope. The number of null models, the rank of envelope value among the n_sim values and the bandwith/stoyan parameter are passed along as well.
+
+```{r}
+pcf <- dists2pcf(dists, r=0.2, r_max=25, stoyan=0.15, n_rank=1)
+head(pcf)
+```
+
+
+## Plotting the PCF
+`plot.fv_pcf()` is a plot method for the class `fv_pcf`. It draws a pair correlation function and a pointwise critical envelope if available.
+
+```{r, fig.width=4, fig.height=3.5}
+plot(pcf)
+```
+
+```{r fig.show='hold', fig.width=7, fig.height=5}
+# a panel of four plots
+op <- par(mfrow=c(2,2), oma=c(3,3,0,0), mar=c(0,0,2,2),
+          mgp=c(2,0.5,0), tcl=-0.3)
+plot(pcf, xaxis='t', yaxis='o', ann=FALSE)
+plot(pcf, xaxis='t', yaxis='t', ann=FALSE)
+plot(pcf, xaxis='o', yaxis='o', ann=FALSE)
+plot(pcf, xaxis='o', yaxis='t')
+par(op)
+```
+
+
+## Technical Details
+The adapted pair-corelation functions was original implemented in the Geodatabase `PostGIS`. `PostGIS` offers all necessary methods and is easy to handle knowing databases and SQL. The need to create lots of temporary tables and countless transformations of geodata from WKB stored in the table to the `GEOS` format for all geometric operations rendered the process quite slow.
+
+In this package the geometric operations (measuring distances between objects, buffers, intersects, and randomly moving objects) are carried out by [`GEOS`](https://trac.osgeo.org/geos/). The geodata is read and transformed to `GEOS` format only once (thanks to [`GDAL/OGR`](http://www.gdal.org/) all conceivable formats are understood). All further manipulations are within the `GEOS` world. The usage of these two libaries was made possible by [`Rcpp`](http://www.rcpp.org/).
+
+
+## References
+Besag, J. and Diggle, P.J. (1977): Simple Monte Carlo tests for spatial pattern. Appl. Sta. 26, 327–333.
+
+Buckland, S.T. (1984). Monte Carlo Confidence Intervals. Biometrics, 40(3), 811-817. 
+
+Nuske, R.S., Sprauer, S. and Saborowski J. (2009): Adapting the pair-correlation function for analysing the spatial distribution of canopy gaps. Forest Ecology and Management (259): 107–116. https://doi.org/10.1016/j.foreco.2009.09.050
+
+Ripley, B.D., 1981. Spatial Statistics. Wiley, New York.
+
+Silverman, B.W., 1986. Density Estimation for Statistics and Data Analysis. Chapman and Hall, London.
+
+Stoyan, D. and Stoyan, H. (1994) Fractals, random shapes and point fields: methods of geometrical statistics. John Wiley and Sons.

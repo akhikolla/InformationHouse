@@ -1,0 +1,20 @@
+citHeader("To cite clogitL1 in publications use:")
+
+citEntry(entry = "Article",
+  title        = "Regularization Paths for Conditional Logistic Regression: The {clogitL1} Package",
+  author       = personList(as.person("Stephen Reid"),
+                   as.person("Rob Tibshirani")),
+  journal      = "Journal of Statistical Software",
+  year         = "2014",
+  volume       = "58",
+  number       = "12",
+  pages        = "1--23",
+  url          = "http://www.jstatsoft.org/v58/i12/",
+
+  textVersion  =
+  paste("Stephen Reid, Rob Tibshirani (2014).",
+        "Regularization Paths for Conditional Logistic Regression: The clogitL1 Package.",
+        "Journal of Statistical Software, 58(12), 1-23.",
+        "URL http://www.jstatsoft.org/v58/i12/.")
+)
+

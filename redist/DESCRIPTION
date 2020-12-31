@@ -1,0 +1,45 @@
+Package: redist
+Version: 2.0.2
+Date: 2020-10-03
+Title: Simulation Methods for Legislative Redistricting
+Authors@R: c(
+    person("Ben", "Fifield", email = "benfifield@gmail.com", role = c("aut", "cre")),
+    person("Christopher T.", "Kenny", email = "christopherkenny@fas.harvard.edu", role = "aut"),
+    person("Cory", "McCartan", email = "cmccartan@g.harvard.edu", role = "aut"),
+    person("Alexander", "Tarr", email = "atarr@princeton.edu", role = "aut"),
+    person("Michael", "Higgins", email = "mikehiggins@k-state.edu", role = "ctb"),
+    person("Jun", "Kawahara", email = "jkawahara@i.kyoto-u.ac.jp", role = "aut"),
+    person("Kosuke", "Imai", email = "imai@harvard.edu", role = "aut"))
+Maintainer: Ben Fifield <benfifield@gmail.com>
+Description: Enables researchers to sample redistricting plans from a pre-specified
+    target distribution using Sequential Monte Carlo and Markov Chain Monte Carlo
+    algorithms.  The package allows for the implementation of various constraints in
+    the redistricting process such as geographic compactness and population parity
+    requirements. Tools for analysis such as computation of various summary statistics
+    and plotting functionality are also included. The package implements methods
+    described in Fifield, Higgins, Imai and Tarr (2020) <doi: 10.1080/10618600.2020.1739532>,
+    Fifield, Imai, Kawahara, and Kenny (2020) <doi: 10.1080/2330443X.2020.1791773>,
+    and McCartan and Imai (2020) <arXiv: 2008.06131>.
+Depends: R (>= 3.5.0)
+Imports: Rcpp (>= 0.11.0), spdep, sp, sf, coda, parallel, doParallel,
+        foreach, lwgeom, dplyr, ggplot2, magrittr, readr, servr, sys,
+        tibble, stringr
+Suggests: testthat, Rmpi, knitr, rmarkdown, igraph
+LinkingTo: Rcpp, RcppArmadillo, RcppEigen, BH
+License: GPL (>= 2)
+SystemRequirements: gmp, libxml2, python
+Packaged: 2020-10-04 16:33:44 UTC; benfifield
+NeedsCompilation: yes
+BugReports: https://github.com/kosukeimai/redist/issues
+RoxygenNote: 7.1.1
+VignetteBuilder: knitr
+Encoding: UTF-8
+Author: Ben Fifield [aut, cre],
+  Christopher T. Kenny [aut],
+  Cory McCartan [aut],
+  Alexander Tarr [aut],
+  Michael Higgins [ctb],
+  Jun Kawahara [aut],
+  Kosuke Imai [aut]
+Repository: CRAN
+Date/Publication: 2020-10-13 23:50:07 UTC

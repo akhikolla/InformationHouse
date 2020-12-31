@@ -1,0 +1,14 @@
+WARNING: No test specified, defaulting to first test defined (Quartet_deepstate_test_which_index_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/Quartet/inst/testfiles/which_index/which_index_output/7359faf565f005ca6e2bf54aa31c9fd032a2d973.fail`
+TRACE: Running: Quartet_deepstate_test_which_index_test from /home/akhila/fuzzer_packages/fuzzedpackages/Quartet/inst/testfiles/which_index/which_index_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+indices values: -621726556 -1331494887 1854878590 314985932 1361933119 -1262797933 -1571830262 -555281357 1176038391 -1125445590 2051319948 -555281357 600611799 -2015925719 640758675 -2045256755 818332908 -1294723540 415152419 -1290633258 -568676763 -250049000 1237429200 -645489399 1298265599 889924430 -907775620 -152022060
+m values: 352546080 77995038 1848672759 -273393355 -2067478347 609885071 416334778 -176991733 2009017211 1715968468 1998244710 -836461486 -396097780 -1088185385
+input ends
+terminate called after throwing an instance of 'std::length_error'
+  what():  4 indices needed
+ERROR: Failed: Quartet_deepstate_test_which_index_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/Quartet/inst/testfiles/which_index/which_index_output/7359faf565f005ca6e2bf54aa31c9fd032a2d973.fail failed

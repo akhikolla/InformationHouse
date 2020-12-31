@@ -1,0 +1,1006 @@
+2020-12-17  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION (Version, Date): CRAN Release 0.3.3.9.1 (following
+	coordinated update of reverse dependency StanHeaders)
+	* inst/NEWS.Rd: Release 0.3.3.9.1
+
+2020-12-14  Dirk Eddelbuettel  <edd@debian.org>
+
+	* .github/workflows/ci.yaml: Add CI runner using r-ci
+	* README.md: Add new badge
+
+2020-12-05  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION (Version, Date): Release 0.3.3.9.0
+
+	* inst/include/Eigen: Upgraded to Eigen 3.3.9
+	* inst/include/unsupported/Eigen: Idem
+	* patches/eigen-3.3.9.diff: Carried local CRAN patches forward
+
+	* .travis.yml: Switch to r-ci using focal and bspm
+
+	* README.md: Updated URLs to https and/or redirect location
+	* inst/CITATION: Idem
+	* man/RcppEigen-package.Rd: Idem
+	* man/fastLm.Rd: Idem
+
+2020-08-16  Dirk Eddelbuettel  <edd@debian.org>
+
+	* README.md: Add JSS badge
+
+2020-03-29  Dirk Eddelbuettel  <edd@debian.org>
+
+	* README.md: Added commit badge, edited
+
+2020-01-22  Dirk Eddelbuettel  <edd@debian.org>
+
+	* README.md: README.md: Add a Debian badge
+
+2019-11-16  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION (Version, Date): Release 0.3.3.7.0
+
+	* inst/include/Eigen: Upgraded to Eigen 3.3.7
+	* inst/include/unsupported/Eigen: Idem
+	* patches/eigen-3.3.7.diff: Carried local CRAN patches forward
+
+2019-11-01  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/unit.test.R (compile_unit_tests): Removed as no longer needed
+
+2019-10-31  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/tinytest/test_transform.R: Switch from RUnit to tinytest
+	* inst/tinytest/test_wrap.R: Idem
+
+	* inst/tinytest/cpp/transform.cpp: Added using Rcpp Attributes
+	* inst/tinytest/cpp/wrap.cpp: Idem
+
+	* inst/tinytest/cpp/sparse.cpp: More idiomatic Eigen code
+	* inst/tinytest/test_sparse.R: Idem
+
+	* .editorconfig: Added
+
+2019-10-30  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION (Suggests): Switch from RUnit to tinytest
+	* .travis.yml (install): Ditto
+
+	* tests/tinytest.R: Converted to tinytest
+
+        * test_sparse.R: Converted to tinytest
+	* cpp/sparse.cpp: Added using Rcpp Attributes
+
+2019-10-29  Dirk Eddelbuettel  <edd@debian.org>
+
+        * test_fastLm.R: Converted to tinytest
+        * test_RcppEigen.R: Idem
+        * test_solution.R: Idem
+
+	* cpp/rcppeigen.cpp: Added using Rcpp Attributes
+        * cpp/solution.cpp: Idem
+
+2019-10-28  Dirk Eddelbuettel  <edd@debian.org>
+
+	* tests/tinytest.R: Renamed from tests/doRUnit.R
+	* inst/tinytest/test_fastLm.R: Renamed from inst/unitTests/runit*
+	* inst/tinytest/test_RcppEigen.R: Idem
+	* inst/tinytest/test_solution.R: Idem
+	* inst/tinytest/test_sparse.R: Idem
+	* inst/tinytest/test_transform.R: Idem
+	* inst/tinytest/test_wrap.R: Idem
+
+2019-10-13  Dirk Eddelbuettel  <edd@debian.org>
+
+	* README.md: Added CRAN + BioConductor badges for reverse depends,
+	add StackOverflow badge to recommend help searches under 'Rcpp'
+
+	* DESCRIPTION (Version, Date): Roll minor version
+
+	* R/RcppEigen.package.skeleton.R (RcppEigen.package.skeleton): Test for
+	example_code outside of haveKitten test; remove force argument if unused
+
+2019-05-24  Dirk Eddelbuettel  <edd@debian.org>
+
+	* vignettes/RcppEigen-Introduction.Rnw: Update vignette to use
+	RcppEigen:::eigen_version() instead of .Call()
+
+2019-03-29  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/skeleton/rcppeigen_hello_world.cpp: Rework first example to
+	not rely on Eigen RNG which R CMD check would complain about.
+
+2019-02-16  James Joseph Balamuta <balamut2@illinois.edu>
+
+	* R/runit.RcppEigen.R: Removed listing RcppEigen in Imports during
+	skeleton package creation.
+
+2018-11-24  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION (Version, Date): Release 0.3.3.5.0
+
+2018-11-23  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/include/Eigen: Updated to release 3.3.5
+	* inst/include/unsupported: Idem
+	* patches/eigen-3.3.5.diff: Diff of local patches
+
+2018-09-02  Dirk Eddelbuettel  <edd@debian.org>
+
+	* .travis.yml: Switch Travis CI to R 3.5 repo
+
+2018-05-30  Michael Weylandt  <michael.weylandt@gmail.com>
+
+	* inst/examples/lmBenchmark.R: Update benchmark script to use
+	microbenchmark and to use exposed fastLm functions from Rcpp
+	packages rather than invoking .Call directly
+
+2018-05-25  Ralf Stubner  <ralf.stubner@daqana.com>
+
+	* inst/include/RcppEigenWrap.h: Use Rf_xlength and R_xlen_t to
+	support long vectors
+
+2018-02-07  Dirk Eddelbuettel  <edd@debian.org>
+
+	* patches/eigen-3.3.4.diff: Diff to upstream Eigen 3.3.4,
+	cherry-picked in the 3.3.4 branch of Yixuan
+
+2018-02-05  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION (Version, Date): Release 0.3.3.4.0
+
+	* inst/include/Eigen/src/Core/arch/CUDA/Half.h (Eigen): Condition use
+	of long long and unsigned long on C++11
+
+	* inst/include/Eigen/src/Core/arch/SSE/Complex.h (Eigen): Comment-out
+	use of diagnostic-suppressing pragma for gcc + clang to satisfy CRAN
+	* inst/include/Eigen/src/Core/util/DisableStupidWarnings.h: Idem
+
+2018-02-04  Yixuan Qiu  <yixuan.qiu@cos.name>
+
+	[ In RcppEigen 0.3.3.* branch ]
+	* inst/include/Eigen: Updated to the upstream 3.3 branch of Eigen
+	based on version 3.3.4
+	* inst/include/unsupported: Idem
+	* DESCRIPTION: Idem
+	* README.md: Idem
+
+	* inst/include/Eigen/src/Core/util/DisableStupidWarnings.h:
+	Patch from upstream Eigen that has not been ported to the 3.3 branch
+	(cf GitHub issue #48)
+
+2017-11-19  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION (Version, Date): Release 0.3.3.3.1
+
+	* R/inline.R: Use '::' not ':::' for Rcpp.plugin.maker
+
+2017-08-26  Dirk Eddelbuettel  <edd@debian.org>
+
+	* .travis.yml (before_install): Use https for curl fetch
+
+2017-06-06  Yu Gong  <armgong@yahoo.com>
+
+	* inst/include/unsupported/Eigen/src/SparseExtra/MatrixMarketIterator.h:
+	Also permit compilation under Haiku-OS
+
+2017-05-28  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/examples/lmBenchmark.R (do_bench): Remove spurious argument in
+	call to RcppEigen:::Eigen_SSE() (cf github issue #44)
+
+2017-04-29  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION: Release 0.3.3.3.0
+
+	[ which again owes a very big thank you to Yixuan for doing the work! ]
+
+2017-04-27  Dirk Eddelbuettel  <edd@debian.org>
+
+	* .travis.yml: Switch to using run.sh for Travis CI
+
+2017-04-27  Yixuan Qiu  <yixuan.qiu@cos.name>
+
+	[ In RcppEigen 0.3.3.* branch ]
+
+	* inst/include/Eigen/src/Core/arch/CUDA/Half.h: Fixed compiler warning
+	on 'long long' type in C++ 98 mode
+
+2017-03-14  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION (Version, Date): Release 0.3.2.9.1
+
+	* src/init.c (R_init_RcppEigen): Call R_registerRoutines()
+	and R_useDynamicSymbols()
+
+	* NAMESPACE: Use .registration=TRUE on useDynLib
+
+	* R/fastLm.R (fastLmPure): Remove erroneous fourth argument from .Call
+
+2017-03-13  Martin Maechler  <maechler@r-project.org>
+
+	* inst/include/RcppEigenCholmod.h: Synchronize with Matrix package
+
+2017-02-21  Yixuan Qiu  <yixuan.qiu@cos.name>
+
+	[ In RcppEigen 0.3.3.* branch ]
+
+	* inst/include/Eigen: Updated to release 3.3.3 of Eigen
+	* inst/include/unsupported: Idem
+	* DESCRIPTION: Idem
+	* README.md: Idem
+
+2017-01-20  Yixuan Qiu  <yixuan.qiu@cos.name>
+
+	[ In RcppEigen 0.3.3.* branch ]
+
+	* inst/include/Eigen: Updated to release 3.3.2 of Eigen
+	* inst/include/unsupported: Idem
+	* DESCRIPTION: Idem
+	* README.md: Idem
+
+	* inst/unitTests/runit.RcppEigen.R, inst/unitTests/runit.sparse.R:
+	Explicitly convert matrix size to `double` type such that Rcpp can
+	properly return the value to R, thanks to ChingChuan and Dirk
+
+2017-01-20  ChingChuan Chen  <zw12356@gmail.com>
+
+	[ In RcppEigen 0.3.3.* branch ]
+
+	* inst/include/Eigen: Updated to release 3.3.1 of Eigen
+	* inst/include/unsupported: Idem
+	* DESCRIPTION: Idem
+
+	* inst/examples/lmBenchmark.R: Fixed function names
+
+2016-12-22  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION (URL, BugReports): Added / updated
+
+2016-11-12  Yixuan Qiu  <yixuan.qiu@cos.name>
+
+	[ In RcppEigen 0.3.3.* branch ]
+
+	* inst/include/Eigen: Updated to release 3.3.0 of Eigen
+	* inst/include/unsupported: Idem
+	* DESCRIPTION: Idem
+	* README.md: Idem
+
+	* inst/include/RcppEigenForward.h, inst/include/RcppEigenWrap.h:
+	Added exporters for the new Map<SparseMatrix<T> > type
+	* inst/unitTests/runit.sparse.R: Unit tests for the new type
+
+2016-08-20  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION: Release 0.3.2.9.0 with big thanks to Yixuan for doing
+	the work!
+
+2016-08-19  Yixuan Qiu  <yixuan.qiu@cos.name>
+
+	* inst/include/Eigen: Updated to release 3.2.9 of Eigen
+
+	* README.md: Updated version number and fixed the NOTE from CRAN URL
+	check
+
+2016-04-30  Dirk Eddelbuettel  <edd@debian.org>
+
+	* README.md: Expanded
+
+2016-04-28  James Joseph Balamuta <balamut2@illinois.edu>
+
+	* inst/include/RcppEigenWrap.h: Added an exporter class for
+	Map::RowVectorX<t> per http://stackoverflow.com/questions/36920689/
+	* inst/include/unitTests/runit.RcppEigen.R: Added row exporter unit
+	test.
+
+2016-02-29  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION (Version): Release 0.3.2.8.1
+	* inst/NEWS.Rd: Release 0.3.2.8.1
+	* debian/*: Changes for Debian release of 0.3.2.8.1
+
+2016-02-28  Yixuan Qiu  <yixuan.qiu@cos.name>
+
+	* inst/include/Eigen/src/SparseCore/CompressedStorage.h,
+	  inst/include/Eigen/src/SparseCore/SparseBlock.h,
+	  inst/include/Eigen/src/SparseCore/SparseMatrix.h,
+	  inst/include/Eigen/src/SparseCore/SparseRedux.h,
+	  inst/include/Eigen/src/SparseCore/SparseVector.h:
+	Another patch from upstream to fix UBSAN null pointer errors
+
+2016-02-23  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION (Version): Release 0.3.2.8.0
+	* DESCRIPTION (Author): Added Yixuan Qiu
+
+	* inst/NEWS.Rd: Release 0.3.2.8.0
+
+2016-02-22  Yixuan Qiu  <yixuan.qiu@cos.name>
+
+	* inst/include/Eigen: Updated to release 3.2.8 of Eigen
+	* inst/include/unsupported: Idem
+	* DESCRIPTION: Idem
+	* README.md: Idem
+
+	* inst/include/Eigen/src/SparseCore/CompressedStorage.h,
+	inst/include/Eigen/src/Core/util/Memory.h: Applied patch from
+	upstream to fix UBSAN errors
+
+2016-01-20  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION: Release 0.3.2.7.0
+
+	* debian/*: Changes for Debian release of 0.3.2.7.0
+
+2016-01-19  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/unitTests/runit.sparse.R (test.sparseCholesky.R): Accomodate
+	stricter as.vector() requirements in R-devel
+
+2016-01-18  Yixuan Qiu  <yixuan.qiu@cos.name>
+
+	* inst/include/Eigen: Updated to release 3.2.7 of Eigen
+	* inst/include/unsupported: Idem
+	* DESCRIPTION: Idem
+	* README.md: Idem
+
+2015-11-01  Alexey Stukalov <alyst@users.noreply.github.com>
+
+	* src/fastLm.cpp: Do not include R's LAPACK header if MKL defined
+
+2015-09-23  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION: Release 0.3.2.5.1
+
+	* debian/*: Changes for Debian release of 0.3.2.5.1
+
+2015-09-21  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/include/Eigen/src/SparseCore/CompressedStorage.h: Added
+	somewhat adapted code from upstream PR #118 to address UBSAN
+
+2015-08-21  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/RcppEigen.cpp: Updated code to use Rcpp Attributes
+	* src/fastLm.cpp: Ditto
+	* src/fastLm.h: Ditto
+	* R/fastLm.R: Ditto
+	* inst/unitTests/runit.fastLm.R: Ditto
+
+2015-08-04  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/RcppEigen.package.skeleton.R: Correct kitten() use based on patch
+	kindly supplied by Grant Brown	(cf GitHub issue #21)
+
+2015-07-13  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION: Version 0.3.2.5.0
+
+2015-07-13  Yixuan Qiu  <yixuan.qiu@cos.name>
+
+	* inst/include/Eigen/src/Core/Assign.h: Applied patch from upstream
+	Eigen that will appear in the next release
+
+2015-07-12  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION: Added more explicitly quoting per R CMD check
+
+	* NAMESPACE: Explicitly importFrom() stats and utils packages
+
+2015-07-11  Yixuan Qiu  <yixuan.qiu@cos.name>
+
+	* inst/include/Eigen: Updated to release 3.2.5 of Eigen
+	* inst/include/unsupported: Idem
+	* DESCRIPTION: Idem
+	* README.md: Idem
+
+	* inst/include/RcppEigenWrap.h: Fixed three incorrect error messages
+
+2015-06-06  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/RcppEigen.package.skeleton.R: Correct use of requireNamespace()
+
+2015-02-26  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION: Version 0.3.2.4.0
+
+	* debian/*: Updated
+
+2015-02-23  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/include/Eigen: Updated to release 3.2.4 of Eigen
+
+	* DESCRIPTION: Updated Version: and Date:
+	* README.md: Idem
+
+	* .travis.yml: Switch to ppa:edd/misc for binaries
+
+	* R/RcppEigen.package.skeleton.R: Use pkgKitten::kitten, if installed
+	* inst/skeleton/rcppeigen_hello_world.Rd: Added new page
+
+	* inst/skeleton/Makevars: Minor edits
+	* inst/skeleton/Makevars.win: Idem
+
+	* DESCRIPTION: Added Suggests: for pkgKitten
+	* .travis.yml: Also install pkgKitten
+
+2014-12-22  Yixuan Qiu  <yixuan.qiu@cos.name>
+
+	* inst/include/Eigen: Updated to release 3.2.3 of Eigen
+	* DESCRIPTION: Idem
+	* README.md: Idem
+
+2014-11-23  Yixuan Qiu  <yixuan.qiu@cos.name>
+
+	* inst/unitTests/runit.wrap.R: Added a number of unit tests
+	* inst/unitTests/runit.transform.R: Idem
+	* inst/unitTests/runit.sparse.R: Idem
+
+2014-10-20  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/examples/lmBenchmark.R: Updated RcppArmadillo .Call in example
+
+2014-08-21  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION: New version 0.3.2.2.0 which was prepared expertly by
+	Yixuan Qiu in a nice and clean pull request -- a big thank you for that!
+
+	* DESCRIPTION: Adjusting Date: as well
+
+2014-08-19  Yixuan Qiu  <yixuan.qiu@cos.name>
+
+	* inst/include/Eigen: Updated to release 3.2.2 of Eigen
+	* inst/unitTests/runit.wrap.R: More unit tests to reflect changes in
+	as() exporters
+
+2014-05-29  Yixuan Qiu  <yixuan.qiu@cos.name>
+
+	* inst/include/RcppEigenWrap.h: Added as() conversion from R vector to
+	Eigen::Array<T, 1, Eigen::Dynamic>
+	* inst/include/RcppEigenWrap.h: Fixed incorrect as() exporters
+	* inst/include/RcppEigenWrap.h: Check matrix type of "dgCMatrix"
+	instead of "CsparseMatrix"
+	* inst/include/RcppEigenWrap.h, inst/include/RcppEigenForward.h:
+	Added as() conversion from "dgRMatrix" to
+	Eigen::MappedSparseMatrix<T, Eigen::RowMajor>
+
+2014-05-01  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/include/Eigen/src/Core/util/Memory.h: Applied patch by Gael
+	Guennebaud created in response to Doug's bug report (#803) which in
+	turn is based on the UBSAN report at CRAN by Brian Ripley
+
+2014-03-06  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION: New version 0.3.2.1.1
+
+2014-03-05  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/include/unsupported/Eigen/src/SparseExtra/MatrixMarketIterator.h:
+	Better, more general test for DIRENT feature thanks to Brian Ripley
+
+2014-03-04  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/include/unsupported/Eigen/src/SparseExtra/MatrixMarketIterator.h:
+	(re-)add another #ifndef excluding a line on Solaris
+
+2014-03-03  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION: New release version 0.3.2.1.0
+
+2014-03-03  Douglas Bates  <bates@stat.wisc.edu>
+
+	* inst/include/Eigen: Update to release 3.2.1 of Eigen
+
+2014-03-01  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION: New minor version 3.2.0.3
+
+	* DESCRIPTION: Switched to 'Imports: Rcpp (>= 0.11.0)'
+
+	* src/Makevars: Updated for Rcpp 0.11.0
+	* src/Makevars.win: Ditto
+
+	* R/RcppEigen.package.skeleton.R: Updated for Rcpp 0.11.0, also
+	updated for current R versions by removing deprecated 'namespace' arg
+
+	* man/RcppEigen.package.skeleton.Rd: Removed 'namespace' for current R
+
+	* inst/skeleton/rcppeigen_hello_world.cpp: Rewritten / extended
+	similar to the RcppArmadillo variant; now contains four functions
+	exported by Rcpp Attributes
+
+	* inst/skeleton/Makevars: Updated for Rcpp 0.11.0, also noted C++11 option
+	via setting of 'USE_CXX1X=' with R 3.1.0 or later
+	* inst/skeleton/Makevars.win: Ditto
+
+2014-01-26  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION: New minor version 3.2.0.2
+
+2014-01-22  Dirk Eddelbuettel  <edd@debian.org>
+
+	* NAMESPACE: Added importFrom(Rcpp, evalCpp) needed for next Rcpp
+
+2014-01-12  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/SHLIB.maker: Commented-out, file to be removed
+
+2013-12-19  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION: Updated Description to mention MPL-2 license for Eigen
+
+        * inst/unitTests/runit.solutions.R: RUnit file converted from testthat
+	* inst/unitTests/runit.transform.R: Idem
+	* inst/unitTests/runit.wrap.R: Idem
+	* DESCRIPTION: Remove Suggests: of testthat
+
+2013-12-18  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION: New minor version 3.2.0.1
+	* DESCRIPTION: New maintainer
+	* DESCRIPTION: Added Copyright: reference to new COPYRIGHTS file
+	* DESCRIPTION: Added reference to new LICENSE file
+
+	* inst/COPYRIGHTS: Added, based on existing debian/copyright file
+	* LICENSE: Added to state MPL-2 for Eigen, GPL (>=2) for RcppEigen
+
+	* inst/include/Eigen/src/SparseLU/SparseLU.h: Applied Solaris patch
+	* inst/include/unsupported/Eigen/src/SparseExtra/MatrixMarketIterator.h:
+	  Idem
+	* inst/include/RcppEigenForward.h: Idem
+
+2013-12-04  Dirk Eddelbuettel  <edd@debian.org>
+
+	* debian/*: Added after emails with Doug
+
+	* .Rbuildignore: Added debian/
+
+2013-11-13  Douglas Bates  <bates@stat.wisc.edu>
+
+	* DESCRIPTION: New version, release date and dependencies
+
+	* inst/include/Eigen: Update to release 3.2.0 of Eigen
+
+2013-02-03  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION: New minor version 0.3.1.2.1 for upload to CRAN and JSS
+
+	* NEWS.org: Updated
+
+2013-01-26  Dirk Eddelbuettel  <edd@debian.org>
+
+	* vignettes/jss835/: Regroup all related files in this directory
+	* .Rbuildignore: Ignore vignettes/jss835
+
+2013-01-14  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/CITATION: Added as provided by JSS editor
+	* man/fastLm.Rd: Added reference to JSS paper
+	* man/RcppEigen-package.Rd: Idem
+
+2012-11-29  Douglas Bates  <bates@stat.wisc.edu>
+
+	* DESCRIPTION: New version
+	* inst/include/Eigen, inst/include/unsupported: Update to version
+	3.1.2 of Eigen.
+
+2012-11-29  Romain Francois  <romain@r-enthusiasts.com>
+
+	* include/RcppEigenWrap.h: compatibility issue with Rcpp 0.10.1
+
+2012-08-14  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/flags.R: Add two (unexported) functions CxxFlags() and
+	  RcppEigenCxxFlags() for use in Makefiles etc
+
+2012-07-30  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/RcppEigenWrap.h, inst/unitTests/runit.RcppEigen.R:
+	  Another suggestion from Gael Guennebaud to allow row vectors to be
+	  wrapped.
+
+2012-07-28  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/RcppEigenWrap.h, inst/unitTests/runit.RcppEigen.R: More
+	  fixes to RcppEigenWrap.h and adjustment of tests accordingly.
+	  The changes allow RowMajor matrices to be wrapped (thanks to Gael
+	  Guennebaud) but cannot handle RowVector types. There will need to be
+	  more template metaprogramming done to redirect the case of RowVector,
+	  which cannot be changed to a ColMajor form.
+	* src/Makevars: Because of changes in R, -DNDEBUG is automatic.
+	  One must override it with -UNDEBUG in the local ~/.R/Makevars to
+	  activate the debugging code.
+	* inst/doc/code.R: New version of wrap code provides correct answer to
+	  the badtrans example
+	* DESCRIPTION: Bump the date.
+
+2012-07-27  Douglas Bates <bates@stat.wisc.edu>
+	* inst/include/Eigen/*: Changed to released version of Eigen-3.1.0
+	  using the MPL2 license.
+
+2012-07-19  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/fastLm.R: correct residual standard error display
+	* R/fastLm.R: improved test for intercept once more with a tip of the
+	  hat to Doug
+
+2012-07-17  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/fastLm.R: Corrections for R^2 in no-intercept case
+
+2012-06-26  Douglas Bates  <bates@stat.wisc.edu>
+
+	* DESCRIPTION, R/unit.test.R, inst/include/Eigen/*: Massive
+	changes related to upgrade to Eigen-3.1.0
+
+2012-03-13  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/RcppEigenWrap.h: Change the wrap methods to avoid
+	  creating Rcpp::Dimension objects (which are implicitly created by the
+	  Rcpp::Matrix constructor).
+	* inst/tests/test-solutions.R: Clean up. I defined the results then
+	  reevaluated them.
+
+2012-03-08  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/RcppEigenForward.h: Remove an include of
+	  RcppEigenConfig.h which is no longer needed.
+	* ChangeLog, NEWS, NEWS.org: Update Changelog and NEWS which is
+	  generated from an org-mode file NEWS.org
+	* inst/include/RcppEigenConfig.h,
+	  inst/include/unsupported/Eigen/MoreVectorization,
+	  inst/include/unsupported/Eigen/src/MoreVectorization/CMakeLists.txt:
+	  Delete the unsupported/Eigen/src/MoreVectorization module which we
+	  don't need
+	* inst/include/unsupported/Eigen/src/MoreVectorization/MathFunctions.h:
+	  Delete the unsupported/Eigen/src/MoreVectorization module which we
+	  don't need
+	* inst/tests/test-solutions.R, inst/tests/test-transform.R,
+	  inst/tests/test-wrap.R: Add testthat test files, temporarily disabled
+	  for R CMD check because of an unknown conflict
+	* DESCRIPTION, R/unit.test.R, inst/include/Eigen/Cholesky,
+	 ..., src/Makevars: Massive changes in upgrade to Eigen-3.1.0-alpha2
+
+2012-03-03  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/RcppEigenWrap.h: Correct a typo.
+
+2012-02-28  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/RcppEigenForward.h, inst/include/RcppEigenWrap.h: Add as
+	  templates for ArrayXd and ArrayXXd
+
+2012-02-03  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/RcppEigenWrap.h, inst/unitTests/runit.sparse.R: Allow
+	  import of compressed row sparse matrices. Add test of same.
+
+2012-01-18  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/RcppEigenWrap.h: Allow for wrapping sparse row-major
+	  matrices.
+
+2011-12-31  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/RcppEigenCholmod.h: Minor typo in a comment
+
+2011-12-23  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/unitTests/runTests.R: unit tests output 'fallback' directory
+	changed to '..' and files are now in top-level of $pkg.Rcheck/
+
+2011-11-14  Douglas Bates  <bates@stat.wisc.edu>
+
+	* vignettes/RcppEigen-intro-nojss.Rnw: Many, many changes by Dirk
+	and by Doug over the last two weeks to create a JSS paper and
+	updated package.  Too many changes to list.
+
+2011-10-26  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/doc/Rcpp.bib, inst/doc/RcppEigen-Intro.Rnw,
+	  inst/doc/RcppEigen-Intro.pdf: Add an introductory vignette.
+	* src/fastLm.cpp, src/fastLm.h: Use a method for XtX but returning a
+	  MatrixXd, not a view.
+	* inst/doc/RcppEigen-Intro.Rnw: Describe the SymmEig method correctly.
+	* src/fastLm.cpp, src/fastLm.h: Use a macro for XtX temporarily. Clean
+	  up code.
+	* inst/include/RcppEigenCholmod.h, inst/include/RcppEigenStubs.h: Update
+	  to Matrix_1.0.2 versions
+	* inst/include/Eigen, inst/include/unsupported: update to eigen 3.0.3
+	* src/RcppEigen.cpp: Add externally callable functions for Eigen version
+	  and SSE instruction sets in use.
+	* inst/examples/lmBenchmark.R: Suppress messages and provide additional
+	  information about Eigen version and SSE instructions in use.
+	* R/fastLm.R: Allow optional arguments to be passed to printCoefmat;
+	  adapt to new returned structure.
+
+2011-09-16  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/unsupported/Eigen/src/SparseExtra/CholmodSupport.h: Avoid
+	  compiler warnings about comparing signed and unsigned values.
+
+2011-09-13  Douglas Bates <bates@stat.wisc.edu>
+
+	* src/Makevars: Force the -DNDEBUG flag to satisfy R CMD check in
+	  R-2.14.0 and higher
+
+2011-09-12  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/unsupported/Eigen/src/SparseExtra/CholmodSupport.h:
+	  Remove the solvetype specification for the solve method (but type is
+	  retained for solveInPlace).
+
+2011-09-11  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/RcppEigenForward.h: Remove forward declaration of
+	  non-existent templated function.
+
+2011-09-02  Douglas Bates <bates@stat.wisc.edu>
+
+	* DESCRIPTION, inst/include/Eigen/src/Core/util/Meta.h: New release.
+	  ifdef the use of "long long" using RCPP_HAS_LONG_LONG_TYPES (thanks,
+	  Dirk)
+
+2011-08-31  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/unsupported/Eigen/src/SparseExtra/CholmodSupport.h:
+	  Delete my addition of a CholmodAutoLLt mode, which is not needed (I
+	  misunderstood something previously).
+
+2011-08-28  Douglas Bates <bates@stat.wisc.edu>
+
+	* many files in inst/include/Eigen and inst/include/unsupported:
+	  Upgrade to Eigen release 3.0.2
+
+2011-08-12  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/unsupported/Eigen/src/SparseExtra/CholmodSupport.h:
+	  By-passing the const reference
+
+2011-08-11  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/unsupported/Eigen/src/SparseExtra/CholmodSupport.h: Add a
+	  solveInPlace method to try to avoid memory problems.
+
+2011-08-10  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/unsupported/Eigen/src/SparseExtra/CholmodSupport.h:
+	  Attempted fix of problem of freeing Map'ed memory in the Cholmod
+	  solve.
+
+2011-07-31  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/unsupported/Eigen/src/SparseExtra/CholmodSupport.h:
+	  Trying to fix the memory problems from the CholmodDecomposition solve
+	  methods - apparently unsuccessfully.
+
+2011-07-29  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/unsupported/Eigen/src/SparseExtra/CholmodSupport.h: Add
+	  LLtAuto method (which doesn't seem to work), more extractors and a
+	  factorize_p method for a const_CHM_SP argument.
+	* inst/include/RcppEigenCholmod.h: Add a declaration of log determinant
+	  squared function.
+	* inst/include/unsupported/Eigen/src/SparseExtra/CholmodSupport.h,
+	  inst/unitTests/runit.sparse.R: Allow rectangular matrix in
+	  CholmodDecomposition's factorize method. Test rectangular version of
+	  KNex example.
+
+2011-07-28  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/unsupported/Eigen/src/SparseExtra/CholmodSupport.h: Added
+	  a solveType member - there will be better ways of doing this
+	* inst/include/RcppEigenForward.h: Include the stubs unconditionally
+	* inst/include/RcppEigenStubs.cpp:
+	* inst/include/RcppEigenStubs.h: Inlined the function definitions so it
+	  is a header file now
+	* inst/include/unsupported/Eigen/src/SparseExtra/CholmodSupport.h:
+	  Extended CholmodDecomposition analyzePattern and factorize to support
+	  rectangular matrices. Added factorize_p method, primarily for the
+	  factorization of A'A + I.
+	* DESCRIPTION, NAMESPACE, R/SHLIB.R, R/inline.R,
+	  inst/include/RcppEigen.h, inst/include/RcppEigenConfig.h,
+	  inst/include/RcppEigenForward.h, inst/include/RcppEigenWrap.h,
+	  inst/include/unsupported/Eigen/SparseExtra,
+	  inst/include/unsupported/Eigen/src/SparseExtra/CholmodSupport.h,
+	  inst/skeleton/Makevars, inst/unitTests/runit.sparse.R: Add support for
+	  Cholmod functions linked through the Matrix package. Tests for same.
+	  Wrap of an Eigen::SparseMatrix now returns an S4 dgCMatrix object.
+	* inst/include/RcppEigenCholmod.h, inst/include/RcppEigenStubs.cpp:
+	  Create stubs and the Cholmod header. (To Do: make the stubs inline
+	  functions in a header file.)
+
+2011-07-27  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/unitTests/runit.sparse.R: Separate the tests for sparse matrices.
+2011-07-26  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/unsupported/Eigen/src/SparseExtra/SimplicialCholesky.h:
+	  Added matrixLDL method
+
+2011-07-18  Douglas Bates <bates@stat.wisc.edu>
+
+	* src/fastLm.cpp: clean up code, taking advantage of the more general
+	  wrap methods
+
+2011-07-15  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/RcppEigenForward.h, inst/include/RcppEigenWrap.h,
+	  inst/unitTests/runit.RcppEigen.R: added as methods for
+	  Eigen::SparseMatrix and Eigen::MappedSparseMatrix classes and tests of
+	  same
+
+2011-07-13  Douglas Bates <bates@stat.wisc.edu>
+
+	* DESCRIPTION, inst/include/RcppEigenWrap.h,
+	  inst/unitTests/runit.RcppEigen.R: Dispatch on wrap to vector according
+	  to T::ColsAtCompileTime; modify tests to avoid the .eval() methods;
+	  bump Rcpp version dependence
+
+2011-07-13  Romain Francois  <romain@r-enthusiasts.com>
+
+	* inst/include/RcppEigenWrap.h: dispatch sparse/dense and generalizes
+	  dealing with sparse objects
+	* inst/include/RcppEigenWrap.h: comment non generic implementations
+	* inst/include/RcppEigenForward.h, inst/include/RcppEigenWrap.h: comment
+	  non generic implementations
+	* inst/include/RcppEigenWrap.h: deal with dimensions in
+	  eigen_wrap_is_plain
+	* inst/include/RcppEigenForward.h, inst/include/RcppEigenWrap.h: first
+	  steps into dealing with Eigen expressions
+
+2011-07-10  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/PlainObjectBaseAddon.h: Added some begin and end methods
+	  to PlainObjectBase template through the extension mechanism. Should
+	  make these legitimate iterators to simplify some wrap methods (need a
+	  value_type member).
+	* inst/include/RcppEigenForward.h, inst/include/RcppEigenWrap.h,
+	  inst/unitTests/runit.RcppEigen.R: Added as methods for mapped vectors
+	  and mapped matrices (still some code duplication) and tests of same.
+
+2011-07-09  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/unitTests/runit.RcppEigen.R: s/Armadillo/Eigen/ in a few places
+
+2011-07-09  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/unitTests/runit.RcppEigen.R: Added tests of wrap and as. Need to
+	  create an as method for mapped arrays.
+
+2011-07-08  Douglas Bates <bates@stat.wisc.edu>
+
+	* DESCRIPTION: Prepare for a new release.
+	* inst/include/RcppEigen.h, inst/include/RcppEigenForward.h,
+	  inst/include/RcppEigenWrap.h: Add wrap methods for mapped Eigen
+	  objects; Initial support for as<> with some Eigen classes.
+	* inst/include/unsupported/Eigen/src/SparseExtra/SimplicialCholesky.h:
+	  Commit interim version of the SimplicialLLT and SimplicialLDLT classes
+	  that will appear in Eigen 3.0.2
+
+2011-06-30  Douglas Bates <bates@stat.wisc.edu>
+
+	* src/fastLm.cpp: Code simplification suggested by Gael Guennebaud
+
+2011-06-29  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION: make Maintainers equal to Authors (but keep our joint
+	  email address)
+
+2011-06-29  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/RcppEigenWrap.h: Syntax errors corrected.
+
+2011-06-28  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/examples/lmBenchmark.R: Print the results from do_bench() so
+	  echo=TRUE is not needed when sourcing; add a suppressSVD argument to
+	  do_bench().
+
+2011-06-27  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/RcppEigenForward.h, inst/include/RcppEigenWrap.h: Add a
+	  wrap method (compiles but currently untested) for
+	  Eigen::SparseMatrix<T>
+	* src/fastLm.cpp: Include sample code for the Moore-Penrose inverse.
+	  There are better ways of doing this but I can't work out the syntax.
+
+2011-06-25  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/examples, inst/examples/lmBenchmark.R: Add lm benchmark example
+	* src/fastLm.cpp: tighten code a bit
+
+2011-06-23  Douglas Bates <bates@stat.wisc.edu>
+
+	* src/fastLm.cpp: Don't try to extract names that aren't there.
+	* man/fastLm.Rd: Add a simple example.
+	* src/fastLm.cpp, src/fastLm.h: Add the SymmEig lm method. Preliminary
+	  support for setting a tolerance for the rank calculation.
+	* src/RcppEigen.cpp: Use the correct macros for eigen_version.
+	* man/fastLm.Rd, tests/simple.R: Add examples and test cases for simple
+	  crossprod and tcrossprod functions
+	* inst/include/RcppEigenForward.h, inst/include/RcppEigenWrap.h: bypass
+	  the incomplete exporter functions to support as<>
+
+2011-06-21  Douglas Bates <bates@stat.wisc.edu>
+
+	* src/fastLm.cpp, src/fastLm.h: Add an SVD method for fastLm
+	* DESCRIPTION: Minor fix in punctuation.
+	* R/fastLm.R, inst/unitTests/runit.fastLm.R, man/fastLm.Rd,
+	  src/fastLm.cpp, src/fastLm.h: Refactoring of the fastLm code to allow
+	  algorithms to be added easily. Adjust docs and R code accordingly.
+
+2011-06-17  Douglas Bates <bates@stat.wisc.edu>
+
+	* inst/include/RcppEigenForward.h, inst/include/RcppEigenWrap.h: Add
+	  wrap instantiations for ArrayXd, ArrayXXd classes in Eigen
+
+2011-06-15  Douglas Bates <bates@stat.wisc.edu>
+
+	* DESCRIPTION, R/RcppEigen.package.skeleton.R, R/SHLIB.R, R/fastLm.R,
+	  R/inline.R, R/unit.test.R, inst/doc/RcppEigen-unitTests.Rnw,
+	  inst/include/RcppEigen.h, inst/include/RcppEigenConfig.h,
+	  inst/include/RcppEigenForward.h, inst/include/RcppEigenWrap.h,
+	  inst/unitTests/runit.fastLm.R, man/fastLm.Rd, src/RcppEigen.cpp,
+	  src/fastLm.cpp: Change references to Armadillo into Eigen; author
+	  order in copyright statements.
+
+2011-06-15  Dirk Eddelbuettel  <edd@debian.org>
+
+	* tests/doRUnit.R: oops: s/Armadillo/Eigen/
+
+2011-06-15  Douglas Bates <bates@stat.wisc.edu>
+
+	* src/fastLm.cpp: Initial (not very good) implementation of "fastLmSVD",
+	  which isn't really that fast.
+	* man/fastLm.Rd: Minor clarification.
+
+2011-06-15  Douglas Bates <bates@stat.wisc.edu>
+
+	* cleanup, inst/doc/*: Documentation based on unit tests.
+	* R/SHLIB.R, R/inline.R, R/unit.test.R: Add support for inline package
+	* inst/include/RcppEigen.h: Add support for sparse Cholesky and LU
+	* inst/include/unsupported, inst/include/unsupported/*: Add
+	  support for sparse Cholesky and LU
+	* man/RcppEigen-package.Rd: Add reference to web page
+	* NAMESPACE, R/RcppEigen.package.skeleton.R, inst/skeleton/*,
+	  man/RcppEigen.package.skeleton.Rd: Add RcppEigen.package.skeleton and
+	  support files.
+	* DESCRIPTION: Remove Conrad's text about Armadillo, as suggested by
+	  Dirk
+
+2011-06-15  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/unitTests/runit.fastLm.R: better way to load trees dataset
+	* man/fastLm.Rd: better way to load trees dataset
+	* inst/unitTests/runit.fastLm.R, man/fastLm.Rd: added unit tests for
+	  fastLm{Bench,Chol1,Chol2}
+	* ChangeLog, inst/unitTests, inst/unitTests/runTests.R,
+	  inst/unitTests/runit.fastLm.R, tests, tests/doRUnit.R: added initial
+	  unit tests
+
+2011-06-14  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/unitTests/*: Added initial unit tests
+	* tests/doRUnit.R: Added hook to run RUnit tests
+
+2011-06-14  Douglas Bates <bates@stat.wisc.edu>
+
+	* src/fastLm.cpp: Cosmetic fixes.
+	* DESCRIPTION: New version.
+	* man/fastLm.Rd: Change order of fastLmPure arguments in the example.
+	  Dirk said I would miss one of these. :-)
+	* R/fastLm.R, man/fastLm.Rd, src/fastLm.cpp: Change order of fastLmPure
+	  arguments and the various fastLm* C++ functions. Add fastLmChol1 and
+	  fastLmChol2.
+
+2011-06-13  Douglas Bates <bates@stat.wisc.edu>
+
+	* ChangeLog: Add ChangeLog
+	* src/fastLm.cpp: Handle the rank-deficient case.
+	* inst/include/Eigen/src/LU/arch/Inverse_SSE.h: Use an _m128d type
+	  instead of long long int for the mask.
+	* R/fastLm.R: Associate names with coefficients. Clean up fastLm.
+	  Forward the object through summary.
+	* inst/include/Eigen/src/Core/util/Meta.h: Suppress use of long long

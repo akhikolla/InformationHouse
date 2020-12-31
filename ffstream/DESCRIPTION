@@ -1,0 +1,21 @@
+Package: ffstream
+Title: Forgetting Factor Methods for Change Detection in Streaming Data
+Version: 0.1.6
+Date: 2018-05-12
+Author: Dean Bodenham 
+Maintainer: Dean Bodenham <deanbodenhampkgs@gmail.com>
+Description: An implementation of the adaptive forgetting factor scheme described in Bodenham and Adams (2016) <doi:10.1007/s11222-016-9684-8> which adaptively estimates the mean and variance of a stream in order to detect multiple changepoints in streaming data. The implementation is in C++ and uses Rcpp. Additionally, implementations of the fixed forgetting factor scheme from the same paper, as well as the classic CUSUM and EWMA methods, are included.
+Depends: R (>= 3.5.0), Rcpp (>= 0.12.16)
+License: GPL-2 | GPL-3
+URL: http://www.deanbodenham.com/ffstream
+LazyData: true
+LinkingTo: Rcpp
+Imports: methods
+Suggests: testthat (>= 2.0.0), knitr, rmarkdown
+Encoding: UTF-8
+RoxygenNote: 6.0.1
+VignetteBuilder: knitr
+NeedsCompilation: yes
+Packaged: 2018-05-13 09:28:17 UTC; dean
+Repository: CRAN
+Date/Publication: 2018-05-14 08:03:21 UTC

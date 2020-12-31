@@ -1,0 +1,38 @@
+Package: CMF
+Type: Package
+Title: Collective Matrix Factorization
+Version: 1.0.2
+Date: 2020-03-12
+Authors@R: c(
+	person(given = "Arto", family = "Klami", email = "arto.klami@cs.helsinki.fi",
+		   role = "aut"),
+	person(given = "Lauri", family = "Väre", role = "aut"),
+	person(given = "Felix", family = "Held", email = "felix.held@chalmers.se",
+		   role = c("ctb", "cre")))
+Description: Collective matrix factorization (CMF) finds joint low-rank
+	representations for a collection of matrices with shared row or column
+	entities. This code learns a variational Bayesian approximation for CMF,
+	supporting multiple likelihood potentials and missing data, while
+	identifying both factors shared by multiple matrices and factors private
+	for each matrix. For further details on the method see
+	Klami et al. (2014) <arXiv:1312.5921>.
+	The package can also be used to learn Bayesian canonical correlation
+	analysis (CCA) and group factor analysis (GFA) models, both of which are
+	special cases of CMF. This is likely to be useful for people looking for
+	CCA and GFA solutions supporting missing data and non-Gaussian likelihoods.
+	See Klami et al. (2013) <http://www.jmlr.org/papers/v14/klami13a.html> and
+	Virtanen et al. (2012) <http://proceedings.mlr.press/v22/virtanen12.html>
+	for details on Bayesian CCA and GFA, respectively.
+License: GPL (>= 2)
+Imports: Rcpp, stats
+LinkingTo: Rcpp
+Encoding: UTF-8
+NeedsCompilation: yes
+RoxygenNote: 7.1.0
+Packaged: 2020-03-13 13:47:53 UTC; hefelix
+Author: Arto Klami [aut],
+  Lauri Väre [aut],
+  Felix Held [ctb, cre]
+Maintainer: Felix Held <felix.held@chalmers.se>
+Repository: CRAN
+Date/Publication: 2020-03-13 23:00:15 UTC

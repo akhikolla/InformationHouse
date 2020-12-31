@@ -1,0 +1,15 @@
+WARNING: No test specified, defaulting to first test defined (imager_deepstate_test_getYc_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getYc/getYc_output/4cb757233fca8652d7a9b76aca06f113dca34d67.fail`
+TRACE: Running: imager_deepstate_test_getYc_test from /home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getYc/getYc_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+x values: -293123844
+y values: -555281357
+z values: 1746767833
+c values: -621726556
+input ends
+terminate called after throwing an instance of 'cimg_library::CImgIOException'
+  what():  cimg::stderr(): Reference to 'stderr' stream not allowed in R mode ('cimg_use_r' is defined).
+ERROR: Failed: imager_deepstate_test_getYc_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getYc/getYc_output/4cb757233fca8652d7a9b76aca06f113dca34d67.fail failed

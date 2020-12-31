@@ -1,0 +1,136 @@
+INFO: Starting fuzzing
+WARNING: No seed provided; using 1608765781
+WARNING: No test specified, defaulting to first test defined (rhoR_deepstate_test_calcRho_c_test)
+input starts
+x values: 3.51019e-15
+OcSBaserate values: -5.35024e-26
+testSetLength values: 127131939
+testSetBaserateInflation values: 9.68029e+130
+OcSLength values: 2088788335
+replicates values: -1563292780
+ScSKappaThreshold values: 4.52441e+22
+ScSKappaMin values: -6.82979e+76
+ScSPrecisionMin values: -1.26252e+212
+ScSPrecisionMax values: -3.53702e-175
+EXTERNAL: qs v0.23.4.
+
+KPs values: 8.51281e+192 50.5870
+3.48968e-298 1.07391e-38
+4.06098e+266 1.03364e-103
+1.52157e-241 3.65908e+170
+
+input ends
+
+error: Mat::init(): requested size is too large
+terminate called after throwing an instance of 'std::logic_error'
+  what():  Mat::init(): requested size is too large
+ERROR: Failed: rhoR_deepstate_test_calcRho_c_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_output/d0ba119ceb2f5c18f1392c1dba9f986681093961.fail`
+input starts
+x values: -4.88792e-275
+OcSBaserate values: 7.66417e+307
+testSetLength values: -1268468221
+testSetBaserateInflation values: -3.95251e-35
+OcSLength values: 594503983
+replicates values: 50164661
+ScSKappaThreshold values: -4.40029e-17
+ScSKappaMin values: -2.96286e+175
+ScSPrecisionMin values: -3.91423e-42
+ScSPrecisionMax values: -9.94548e+57
+EXTERNAL: qs v0.23.4.
+
+KPs values: 0.00385381
+85053.3
+2.41213e-113
+9.31666e+282
+6.01348e+87
+1.19004e+63
+7.16938e-120
+1.46076e+259
+9.28683e+49
+8.52102e+189
+
+input ends
+
+error: randi(): incorrect distribution parameters: a must be less than b
+terminate called after throwing an instance of 'std::logic_error'
+  what():  randi(): incorrect distribution parameters: a must be less than b
+ERROR: Failed: rhoR_deepstate_test_calcRho_c_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_output/23625e36d56ccf9964eefa4b89c44be6e4833ba0.fail`
+input starts
+x values: 6.96676e-286
+OcSBaserate values: 2.96883e-164
+testSetLength values: 24277182
+testSetBaserateInflation values: -4.37778e-29
+OcSLength values: -878402399
+replicates values: 1275812254
+ScSKappaThreshold values: -3.25769e-122
+ScSKappaMin values: -6.84599e-36
+ScSPrecisionMin values: -1.67063e-174
+ScSPrecisionMax values: 1.21799e-178
+EXTERNAL: qs v0.23.4.
+
+KPs values: 7.48571e+72 7.58925e+80 5.46706e+298 1.39274e-152 3.43198e-173 6.65953e+22 1.83951e-178 8.35633e-81 3.33677e-238
+4.31037e+127 1.66476e-96 3.01825e-42 2.97520e-260 1.20118e+32 5.83779e-252 8.50801e-11 8.08202e-17 2.34709e+288
+4.62410e+292 1.79266e-135 8.64218e+230 3.07216e-60 4.43822e-102 3.88828e-32 9.21556e-195 6.70321e-211 2.22988e+225
+6.17672e-188 3.80007e+17 1.65264e-199 3.31757e-25 4.57607e+06 2.37450e-198 4.00091e+13 5.16605e-299 2.82837e-13
+1.67110e+230 1.72464e-173 2.04066e+143 5.99093e+57 4.67208e+253 1.35574e+300 7.32415e-181 1.27156e-53 1.15386e-123
+2.04898e-101 4.17500e+135 5.94590e-65 8.14490e-246 1.30844e+111 1.10578e-70 6.93617e+37 6.22038e+286 5.11011e+34
+
+input ends
+
+error: randi(): incorrect distribution parameters: a must be less than b
+terminate called after throwing an instance of 'std::logic_error'
+  what():  randi(): incorrect distribution parameters: a must be less than b
+ERROR: Failed: rhoR_deepstate_test_calcRho_c_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_output/b69c34c01fbcd0952418acad594e040ba97dd4de.fail`
+input starts
+x values: -9.65408e-38
+OcSBaserate values: 5.0412e+183
+testSetLength values: -124313295
+testSetBaserateInflation values: 3.40137e+237
+OcSLength values: -1191059565
+replicates values: -1501793129
+ScSKappaThreshold values: 1.26998e-132
+ScSKappaMin values: -2.87883e+231
+ScSPrecisionMin values: 1.78857e+211
+ScSPrecisionMax values: 4.42706e-239
+EXTERNAL: qs v0.23.4.
+
+KPs values: 3.62352e-109 1.05253e-56 1.29999e-255 2.82252e-225 1.32696e+220
+9.11555e-62 8.09048e+36 3.58159e-245 5.65597e-187 1.87999e+204
+
+input ends
+
+error: Mat::init(): requested size is too large
+terminate called after throwing an instance of 'std::logic_error'
+  what():  Mat::init(): requested size is too large
+ERROR: Failed: rhoR_deepstate_test_calcRho_c_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_output/632a21be9c32d7ea31b1d695b387489abc4ed0c6.fail`
+input starts
+x values: 4.33073e+27
+OcSBaserate values: 2.2025e-260
+testSetLength values: -314587656
+testSetBaserateInflation values: 4.80746e-292
+OcSLength values: 1035829685
+replicates values: 1014687443
+ScSKappaThreshold values: -3.42461e+170
+ScSKappaMin values: -2.38029e-283
+ScSPrecisionMin values: -1.08108e+298
+ScSPrecisionMax values: 5.39934e+06
+EXTERNAL: qs v0.23.4.
+
+KPs values: 1.34348e+171 1.02812e+164
+5.56097e+222 5.31656e+198
+1.55523e+135 1.39584e-22
+1.72152e-146 7.49729e+294
+3.20389e+153 1.99477e+266
+8.15322e-268 8.63307e-249
+8.68312e+173 3.38407e-25
+3.08880e-88 9.48362e+57
+3.57219e-270 2.60653e-101
+
+input ends
+ERROR: Crashed: rhoR_deepstate_test_calcRho_c_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_output/db38954cf1bf2414e61d4a8b676d3d619a92fdfe.crash`
+INFO: Done fuzzing! Ran 5 tests (0 tests/second) with 5 failed/0 passed/0 abandoned tests

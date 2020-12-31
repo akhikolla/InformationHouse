@@ -1,0 +1,15 @@
+WARNING: No test specified, defaulting to first test defined (autothresholdr_deepstate_test_Li_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/autothresholdr/inst/testfiles/Li/Li_output/620b37c6b50d4d2da5560733c552b1f13fc769d1.crash`
+TRACE: Running: autothresholdr_deepstate_test_Li_test from /home/akhila/fuzzer_packages/fuzzedpackages/autothresholdr/inst/testfiles/Li/Li_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+data values: -1573189618 1675375032 -1103017210 -368495844 -275941429 2139177432 585935995 1842876943 320478838 -162582604 -1871004805 -2064738445 2064531195 -1887382607 1820274137 1463806314 1493688656 1443890407 -1967169010 -1376157143 130032790 1089947820 1987413709 -1267779827 1981308364 677557171 555073999 239335445 68987972 334819721 1769428509 -426956196 -1501026098 -354647797 -247211520 -2033052278 -289288447 -1245672930 937442077 1852209428 -291380520 2103763823 -1480691923 -1870350209 1183285499 1191910014 -346711207
+input ends
+==666915==  If you believe this happened as a result of a stack
+==666915==  overflow in your program's main thread (unlikely but
+==666915==  possible), you can try to increase the size of the
+==666915==  main thread stack using the --main-stacksize= flag.
+==666915==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: autothresholdr_deepstate_test_Li_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/autothresholdr/inst/testfiles/Li/Li_output/620b37c6b50d4d2da5560733c552b1f13fc769d1.crash crashed

@@ -1,0 +1,17 @@
+WARNING: No test specified, defaulting to first test defined (splithalf_deepstate_test_Speedloop_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/splithalf/inst/testfiles/Speedloop/Speedloop_output/5c4a90bdfcc0fc78ef056661d636ab908da1d6fd.fail`
+TRACE: Running: splithalf_deepstate_test_Speedloop_test from /home/akhila/fuzzer_packages/fuzzedpackages/splithalf/inst/testfiles/Speedloop/Speedloop_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+A values:     nan    -inf    -inf     nan    -inf 1.55275e+40
+
+x values: 1649522050
+Missing value
+y values: 5.14867e+83 4.38983e+276 -2.83919e+230 5.50641e+255 -1.5601e+246 inf -9.27444e+240 9.49004e+222 -2.74092e+256 -6.06629e-44 -0.0010194 3.06108e+238 5.50641e+255 -1.484e+47 9.16905e-35 -2.07468e-284 6.94131e+164 -5.59672e-168 inf 4.92682e-88 -1.11189e-72 1.39766e-176 -1.46674e+64 1.5471e-298 0
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Column index is out of bounds: [index=6; column extent=6].
+ERROR: Failed: splithalf_deepstate_test_Speedloop_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/splithalf/inst/testfiles/Speedloop/Speedloop_output/5c4a90bdfcc0fc78ef056661d636ab908da1d6fd.fail failed

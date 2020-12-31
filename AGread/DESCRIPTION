@@ -1,0 +1,45 @@
+Package: AGread
+Title: Read Data Files from ActiGraph Monitors
+Version: 1.1.1
+Authors@R: c(
+    person(c("Paul", "R."), "Hibbing", email = "paulhibbing@gmail.com",
+		  role = c("aut","cre")),
+    person(c("Vincent", "T."), "van Hees", role = "ctb"),
+    person(c("Samuel", "R."), "LaMunion", role = "ctb"),
+    person(c("John"), "Muschelli", role = "ctb"),
+    person("Daniel", "Judge", role = "ctb"),
+    person("Judge", "Maygarden", role = "ctb"),
+    person(c("ActiGraph", "LLC"), role = "cph")
+    )
+Description: Standardize the process of bringing various modes of output files
+    into R. Additionally, processes are provided to read and minimally pre-
+    process raw data from primary accelerometer and inertial measurement unit files,
+    as well as binary .gt3x files. ActiGraph monitors are used to estimate physical
+    activity outcomes via body-worn sensors that measure (e.g.) acceleration or
+    rotational velocity.
+Depends: R (>= 3.1.0)
+License: MIT + file LICENSE
+Imports: anytime (>= 0.3.0), binaryLogic (>= 0.3.9), data.table (>=
+        1.10.4), DescTools (>= 0.99.20), dplyr (>= 0.5.0), GGIR (>=
+        1.5.0), lubridate (>= 1.7.4), magrittr (>= 1.5), PAutilities
+        (>= 0.2.0), rlang (>= 0.2.0), reshape2 (>= 1.4.3), seewave (>=
+        2.0.5), stats, stringr (>= 1.3.0), utils, Rcpp (>= 1.0.1)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
+URL: https://github.com/paulhibbing/AGread
+BugReports: https://github.com/paulhibbing/AGread/issues
+Suggests: testthat
+LinkingTo: Rcpp
+NeedsCompilation: yes
+Packaged: 2020-02-20 21:40:05 UTC; Paul
+Author: Paul R. Hibbing [aut, cre],
+  Vincent T. van Hees [ctb],
+  Samuel R. LaMunion [ctb],
+  John Muschelli [ctb],
+  Daniel Judge [ctb],
+  Judge Maygarden [ctb],
+  ActiGraph LLC [cph]
+Maintainer: Paul R. Hibbing <paulhibbing@gmail.com>
+Repository: CRAN
+Date/Publication: 2020-02-26 14:30:02 UTC

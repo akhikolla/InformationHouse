@@ -1,0 +1,34 @@
+INFO: Starting fuzzing
+WARNING: No test specified, defaulting to first test defined (imagerExtra_deepstate_test_DCTdenoising_test)
+input starts
+EXTERNAL: qs v0.23.4.
+
+ipixelsR values: 1.05415e-68 1.86447e-211 4.49059e+17 2.72551e-214 6.53679e-70 2.42643e+241 1.65687e+24
+
+width values: 644268439
+height values: 123721430
+sigma values: -6.65583e-306
+flag_dct16x16 values: -1079050344
+input ends
+terminate called after throwing an instance of 'std::length_error'
+  what():  vector::_M_default_append
+ERROR: Failed: imagerExtra_deepstate_test_DCTdenoising_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/imagerExtra/inst/testfiles/DCTdenoising/DCTdenoising_output/60e988908746dabad95a00fcd7421257231abaa3.fail`
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+ipixelsR values: 1.02532e+261 1.12756e-57     nan
+1.46340e+288     inf 4.12846e-51
+5.67165e-306 4.85713e-272     inf
+    nan     inf 61.3403
+5.43908e-105 3.30698e+94 6.30847e-13
+
+width values: -1622927679
+height values: -1028905841
+sigma values: -8.95918e-135
+flag_dct16x16 values: 24767479
+input ends
+ERROR: Crashed: imagerExtra_deepstate_test_DCTdenoising_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/imagerExtra/inst/testfiles/DCTdenoising/DCTdenoising_output/e78ce7438df9a1440309ef3e26dc1d3f4bb32f6a.crash`
+INFO: Done fuzzing! Ran 2 tests (0 tests/second) with 2 failed/0 passed/0 abandoned tests

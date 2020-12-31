@@ -1,0 +1,28 @@
+Package: lcopula
+Type: Package
+Title: Liouville Copulas
+Version: 1.0.4
+Date: 2019-07-06
+Authors@R: c(person("Leo", "Belzile", role = c("aut", "cre"), email = "belzilel@gmail.com", comment = c(ORCID = "0000-0002-9135-014X")),
+              person("Christian", " Genest", role = c("aut","ctb")),
+              person("Alexander", "J. McNeil", role = "ctb"),
+              person("Johanna", "G. Neslehova", role = "ctb"))
+Description: Collections of functions allowing random number generations and
+    estimation of 'Liouville' copulas, as described in Belzile and Neslehova (2017) <doi:10.1016/j.jmva.2017.05.008>.
+License: GPL-3
+BugReports: https://github.com/lbelzile/lcopula/issues
+Imports: Rcpp (>= 0.11.4), pcaPP, utils, graphics, stats
+Depends: copula (>= 0.999-12), R (>= 2.12.0)
+LinkingTo: Rcpp
+RoxygenNote: 6.1.1
+Encoding: UTF-8
+LazyData: true
+NeedsCompilation: yes
+Packaged: 2019-07-06 07:50:38 UTC; leo
+Author: Leo Belzile [aut, cre] (<https://orcid.org/0000-0002-9135-014X>),
+  Christian Genest [aut, ctb],
+  Alexander J. McNeil [ctb],
+  Johanna G. Neslehova [ctb]
+Maintainer: Leo Belzile <belzilel@gmail.com>
+Repository: CRAN
+Date/Publication: 2019-07-06 22:01:57 UTC

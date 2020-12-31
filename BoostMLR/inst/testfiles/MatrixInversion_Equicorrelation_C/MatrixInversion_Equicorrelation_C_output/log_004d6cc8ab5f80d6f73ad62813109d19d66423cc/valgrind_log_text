@@ -1,0 +1,16 @@
+WARNING: No test specified, defaulting to first test defined (BoostMLR_deepstate_test_MatrixInversion_Equicorrelation_C_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/BoostMLR/inst/testfiles/MatrixInversion_Equicorrelation_C/MatrixInversion_Equicorrelation_C_output/004d6cc8ab5f80d6f73ad62813109d19d66423cc.fail`
+TRACE: Running: BoostMLR_deepstate_test_MatrixInversion_Equicorrelation_C_test from /home/akhila/fuzzer_packages/fuzzedpackages/BoostMLR/inst/testfiles/MatrixInversion_Equicorrelation_C/MatrixInversion_Equicorrelation_C_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+N_Value values: -369132878
+phi values: 4.80994e-213
+rho values: -2.52838e+135
+input ends
+
+error: Mat::init(): requested size is too large
+terminate called after throwing an instance of 'std::logic_error'
+  what():  Mat::init(): requested size is too large
+ERROR: Failed: BoostMLR_deepstate_test_MatrixInversion_Equicorrelation_C_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/BoostMLR/inst/testfiles/MatrixInversion_Equicorrelation_C/MatrixInversion_Equicorrelation_C_output/004d6cc8ab5f80d6f73ad62813109d19d66423cc.fail failed

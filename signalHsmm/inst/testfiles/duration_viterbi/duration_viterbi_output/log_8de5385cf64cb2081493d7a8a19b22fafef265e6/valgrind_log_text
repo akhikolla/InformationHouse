@@ -1,0 +1,35 @@
+WARNING: No test specified, defaulting to first test defined (signalHsmm_deepstate_test_duration_viterbi_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/signalHsmm/inst/testfiles/duration_viterbi/duration_viterbi_output/8de5385cf64cb2081493d7a8a19b22fafef265e6.crash`
+TRACE: Running: signalHsmm_deepstate_test_duration_viterbi_test from /home/akhila/fuzzer_packages/fuzzedpackages/signalHsmm/inst/testfiles/duration_viterbi/duration_viterbi_DeepState_TestHarness.cpp(10)
+input starts
+EXTERNAL: qs v0.23.4.
+
+aa_sample values: 1.59458e+171 -1.02325e+09 6.15719e+131 nan -inf 4.27088e+15 -2.08161e+186 -1.15689e+146 -2.15966e-302 0
+pipar values: -2.01715e+124 -inf 1.98748e+127 9.45771e-81 1.95062e-109 -3.16465e-243 -1.85532e-266 nan nan -1.1927e+179 2.05097e+49 -inf
+tpmpar values: 1.07980e+239 8.89183e-221 2.34872e+88 3.84652e+248 0.00737153 2.86697e-242 3.19928e+201
+3.34448e-236 6.38123e-299 2.75886e-60 9.56935e+17 6.05004e+196 1.32396e+297 5.52501e+256
+9.14057e-221 2.43925e+120 2.17131e-157 2.93593e-136 1.95729e+137 1.39614e-304 2.56396e-258
+6.44953e-96 1.13825e-141 5.07531e+137 1.53558e+293 1.69395e+164 7.96027e+121 7.42606e-09
+
+od values: 7.31951e-267 1.51003e-211 1.59043e+182 2.43469e-169 1.05623e+100
+1.47036e-61 2.58101e+287 1.92331e-145 356.648 3.01210e-275
+1.07601e+216 3.86146e+240 1.53303e-246 7.75716e-263 6.71961e-186
+3.45608e-120 1.21377e+253 0.00134614 3.33971e+31 2287.43
+
+params values: 4.15991e+25
+5.40819e+84
+2.80808e-74
+2.46867e+185
+8.48515e-129
+2.10637e+43
+2.82327e+84
+2.91962e+268
+
+input ends
+==3896143==  If you believe this happened as a result of a stack
+==3896143==  overflow in your program's main thread (unlikely but
+==3896143==  possible), you can try to increase the size of the
+==3896143==  main thread stack using the --main-stacksize= flag.
+==3896143==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: signalHsmm_deepstate_test_duration_viterbi_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/signalHsmm/inst/testfiles/duration_viterbi/duration_viterbi_output/8de5385cf64cb2081493d7a8a19b22fafef265e6.crash crashed

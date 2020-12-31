@@ -1,0 +1,40 @@
+Package: CDM
+Type: Package
+Title: Cognitive Diagnosis Modeling
+Version: 7.5-15
+Date: 2020-03-10 14:19:21
+Author: 
+    Alexander Robitzsch [aut, cre], Thomas Kiefer [aut],
+    Ann Cathrice George [aut], Ali Uenlue [aut]
+Maintainer: Alexander Robitzsch <robitzsch@leibniz-ipn.de>
+Description: 
+    Functions for cognitive diagnosis modeling and multidimensional item response modeling 
+    for dichotomous and polytomous item responses. This package enables the estimation of 
+    the DINA and DINO model (Junker & Sijtsma, 2001, <doi:10.1177/01466210122032064>),
+    the multiple group (polytomous) GDINA model (de la Torre, 2011, 
+    <doi:10.1007/s11336-011-9207-7>), the multiple choice DINA model (de la Torre, 2009, 
+    <doi:10.1177/0146621608320523>), the general diagnostic model (GDM; von Davier, 2008, 
+    <doi:10.1348/000711007X193957>), the structured latent class model (SLCA; Formann, 1992, 
+    <doi:10.1080/01621459.1992.10475229>) and regularized latent class analysis 
+    (Chen, Li, Liu, & Ying, 2017, <doi:10.1007/s11336-016-9545-6>). 
+    See George, Robitzsch, Kiefer, Gross, and Uenlue (2017) <doi:10.18637/jss.v074.i02> 
+    or Robitzsch and George (2019, <doi:10.1007/978-3-030-05584-4_26>)     
+    for further details on estimation and the package structure.
+    For tutorials on how to use the CDM package see 
+    George and Robitzsch (2015, <doi:10.20982/tqmp.11.3.p189>) as well as
+    Ravand and Robitzsch (2015).
+Depends: R (>= 3.1), mvtnorm
+Imports: graphics, grDevices, methods, polycor, Rcpp, stats, utils
+Suggests: BIFIEsurvey, lattice, MASS, miceadds, ROI, sirt, sfsmisc
+LinkingTo: Rcpp, RcppArmadillo
+Enhances: dina, GDINA, mirt, rrum, TAM
+LazyLoad: yes
+LazyData: yes
+URL: https://github.com/alexanderrobitzsch/CDM,
+        https://sites.google.com/site/alexanderrobitzsch2/software
+License: GPL (>= 2)
+BugReports: https://github.com/alexanderrobitzsch/CDM/issues?state=open
+NeedsCompilation: yes
+Packaged: 2020-03-10 13:33:55 UTC; sunpn563
+Repository: CRAN
+Date/Publication: 2020-03-10 15:40:02 UTC

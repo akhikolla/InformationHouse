@@ -1,0 +1,15 @@
+WARNING: No test specified, defaulting to first test defined (idefix_deepstate_test_det_cpp_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/idefix/inst/testfiles/det_cpp/det_cpp_output/5f9001c55f0ab98607a241c825f9f49432433088.fail`
+TRACE: Running: idefix_deepstate_test_det_cpp_test from /home/akhila/fuzzer_packages/fuzzedpackages/idefix/inst/testfiles/det_cpp/det_cpp_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+set values: 1.05415e-68 1.86447e-211 4.49059e+17 2.72551e-214 6.53679e-70 2.42643e+241 1.65687e+24
+
+input ends
+
+error: det(): given matrix must be square sized
+terminate called after throwing an instance of 'std::logic_error'
+  what():  det(): given matrix must be square sized
+ERROR: Failed: idefix_deepstate_test_det_cpp_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/idefix/inst/testfiles/det_cpp/det_cpp_output/5f9001c55f0ab98607a241c825f9f49432433088.fail failed

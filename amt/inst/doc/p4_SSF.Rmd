@@ -1,0 +1,172 @@
+---
+title: "Fitting Step-Selection Functions with `amt`"
+author: "Johannes Signer"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Fitting a Step-Selection Function}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include=FALSE}
+library(knitr)
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+set.seed(20161113)
+```
+
+
+## About
+
+This vignette briefly introduces how one can fit a Step-Selection Function (SSF) with the `amt` package. We will be using the example data of one red deer from northern Germany and one covariate: a forest cover map.
+
+## Getting the data ready
+
+First we load the required libraries and the relocation data (called `deer`)
+
+```{r}
+library(lubridate)
+library(raster)
+library(amt)
+data("deer")
+deer
+```
+
+In order to continue, we need a regular sampling rate. To check the current sampling rate, we use `summarize_sampling_rate`:
+
+```{r}
+summarize_sampling_rate(deer)
+```
+
+The median sampling rate is 6h, which is what we aimed for.
+
+
+Next, we have to get the environmental covariates. A forest layer is included in the package. Note, that this a regular `RasterLayer`. 
+
+```{r}
+data("sh_forest")
+sh_forest
+```
+
+## Prepare Data for SSF
+
+### Steps
+
+Before fitting a SSF we have to do some data preparation. First, we change from a point representation to a step representation, using the function `steps_by_burst`, which in contrast to the `steps` function accounts for bursts.
+
+```{r}
+ssf1 <- deer %>% steps_by_burst()
+```
+
+### Control/random steps
+
+The generic function `random_steps` provides a methods for a `track_xy*`, where each observed step is paired with `n_control` control steps (i.e., steps that share the same starting location but have different turn angles and step lengths). The distributions for drawing step lengths and turning angles are usually obtained by fitting known parametric distribution to the observed step length and turn angles. 
+
+The function `random_steps` has seven arguments. For most use cases the defaults are just fine, but there might situation where the user wants to adjust some of the arguments. The arguments are:  
+
+1. `x`: This is the `track_xy*` for which the random steps are created. That is, for each step in `x` `n_control` random steps are created. 
+2. `n_control`: The number of random steps that should be created for each observed step.
+3. `sl_distr`: This is the distribution of the step lengths. By default a gamma distribution is fit to the observed step lengths of the `x`. But any `amt_distr` is suitable here. ^[See also `?fit_distr`.]
+4. `ta_distr`: This is the turn angle distribution, with the default being a von Mises distribution.
+5. `rand_sl`: These are the random step lengths, by default 1e5 random numbers from the distribution fitted in 3^[Note, this possible because of the [Glivenko-Cantelli theorem](https://en.wikipedia.org/wiki/Glivenko%E2%80%93Cantelli_theorem) and works as long as the sample from the original distribution (the sample you provide here) is large enough.].
+6. `rand_ta`: These are the random turn angles, by default 1e4 random numbers from the distribution fitted in 4.
+7. `include_observed`: This argument is by default `TRUE` and indicates if the observed steps should be included or not.
+
+
+#### The default situation
+
+In most situations the following code snippet should work^[And how it was implemented in `amt` up to version 0.0.6. This **should** be backward compatible and not break existing code.]. 
+
+```{r}
+ssf1 <- ssf1 %>% random_steps(n_control = 15)
+```
+
+#### A exponential distribution for step lengths
+
+*todo*
+
+
+### Extract covariates
+
+As a last step, we have to extract the covariates at the end point of each step. We can do this with `extract_covariates`.
+
+```{r}
+ssf1 <- ssf1 %>% extract_covariates(sh_forest) 
+```
+
+
+Since the forest layers is coded as `1 = forest` and `2 != forest`, we create a factor with appropriate levels. We also calculate the log of the step length and the cosine of the turn angle, which we may use later for a integrated step selection function.
+
+
+```{r}
+ssf1 <- ssf1 %>% 
+  mutate(forest = factor(sh.forest, levels = 1:2, labels = c("forest", "non-forest")), 
+         cos_ta = cos(ta_), 
+         log_sl = log(sl_)) 
+```
+
+## Fitting SSF 
+
+Now all pieces are there to fit a SSF. We will use `fit_clogit`, which is a wrapper around `survival::clogit`.
+
+```{r}
+m0 <- ssf1 %>% fit_clogit(case_ ~ forest + strata(step_id_))
+m1 <- ssf1 %>% fit_clogit(case_ ~ forest + forest:cos_ta + forest:log_sl + log_sl * cos_ta + strata(step_id_))
+m2 <- ssf1 %>% fit_clogit(case_ ~ forest + forest:cos_ta + forest:log_sl + log_sl + cos_ta + strata(step_id_))
+summary(m0)
+summary(m1)
+summary(m2)
+#AIC(m0$model)
+#AIC(m1$model)
+#AIC(m2$model)
+```
+
+### Interpretation of coefficients
+
+To be done.
+
+<!---
+The coefficients are:
+
+```{r}
+coef(m2)
+```
+
+
+- `forestnon-forest`: There is positive selection for non-forested areas, although it is not significant (at a $\alpha = 0.05$ level). Exponentiating the selection coefficient for forest, results with a relative selection strength of `r round(exp(coef(m2)[1]))`.
+
+
+
+
+- The coefficients for `log_sl` and `cos_ta` are both signicant and indicating that the intial parameters need to be adjusted.
+- The interaction between 
+- 
+- 
+
+--->
+
+## A note on piping
+
+All steps described above, could easily be wrapped into one piped workflow:
+
+```{r}
+m1 <- deer %>% 
+  steps_by_burst() %>% random_steps(n = 15) %>% 
+  extract_covariates(sh_forest) %>% 
+  mutate(forest = factor(sh.forest, levels = 1:2, labels = c("forest", "non-forest")), 
+         cos_ta = cos(ta_), 
+         log_sl = log(sl_)) %>% 
+  fit_clogit(case_ ~ forest + forest:cos_ta + forest:sl_ + sl_ * cos_ta + strata(step_id_))
+```
+
+```{r}
+summary(m1)
+```
+
+
+## Session
+
+```{r}
+devtools::session_info()
+```
+

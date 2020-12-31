@@ -1,0 +1,9 @@
+useDynLib(FDRSeg)
+# specifying all other functions to be exported except ones starting with a .
+exportPattern("^[^\\.]")
+# exportPattern("^[[:alpha:]]+")
+importFrom(Rcpp, evalCpp)
+importFrom(stats, fft, quantile, rnorm)
+import(stepR)
+
+

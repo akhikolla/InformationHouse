@@ -1,0 +1,43 @@
+useDynLib(iRF)
+importFrom(Rcpp, evalCpp)
+importFrom(Matrix, Matrix, t, sparseMatrix)
+importFrom(methods, is)
+importFrom(AUC, auc, roc)
+importFrom(data.table, data.table, rbindlist)
+importFrom(dplyr, select, select_)
+importFrom(grDevices, rainbow, dev.new, colorRampPalette)
+importFrom(graphics, axis, barplot, dotchart, lines,
+           matplot, mtext, pairs, par, plot, plot.default,
+           points, rect)
+importFrom(stats, delete.response, mad, median, model.frame,
+           model.response, na.fail, na.omit, napredict,
+           predict, quantile, reformulate, terms, update,
+           var, weighted.mean, sd)
+importFrom(doParallel, registerDoParallel)
+importFrom(foreach, foreach, "%dopar%")
+importFrom(RColorBrewer, brewer.pal)
+
+export(combine, getTree, grow, importance, margin, MDSplot, na.roughfix,
+       partialPlot, randomForest, rfImpute, treesize, tuneRF, varImpPlot, 
+       varUsed, rfNews, outlier, classCenter, rfcv, readForest, iRF, 
+       partialPlot2var, RIT)
+
+
+S3method(print, randomForest)
+S3method(predict, randomForest)
+S3method(plot, randomForest)
+S3method(plot, margin)
+S3method(margin, randomForest)
+S3method(partialPlot, randomForest)
+S3method(grow, randomForest)
+S3method(importance, randomForest)
+S3method(outlier, randomForest)
+S3method(outlier, default)
+
+S3method(randomForest, formula)
+S3method(randomForest, default)
+S3method(rfImpute, formula)
+S3method(rfImpute, default)
+
+S3method(na.roughfix, data.frame)
+S3method(na.roughfix, default)

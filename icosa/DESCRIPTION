@@ -1,0 +1,37 @@
+Package: icosa
+Title: Global Triangular and Penta-Hexagonal Grids Based on Tessellated
+        Icosahedra
+Version: 0.10.0
+Authors@R: person("Adam T.", "Kocsis", email = "adam.t.kocsis@gmail.com", 
+	role = c("aut", "cre"))
+Collate: zzz.R data.R utils-conversion.R utils-spherical.R
+        utils-vectors.R grid-build.R grid-lookup.R grid-move.R
+        grid-subset.R grid-attributes.R grid-graphs.R grid-sp-lines.R
+        grid-sp-polygons.R grid-resample.R data-gridlayer-basic.R
+        data-gridlayer-attributes.R data-gridlayer-groupgen.R
+        data-gridlayer-subset.R data-facelayer-basic.R
+        data-facelayer-graphs.R data-facelayer-resample.R plot-legend.R
+        plot-2d-grid.R plot-2d-facelayer.R plot-rgl-util.R
+        plot-rgl-grid.R plot-rgl-facelayer.R plot-rgl-sp3d.R
+Description: Employs triangular tessellation to refine icosahedra
+    defined in 3d space. The procedures can be set to provide a grid with a
+    custom resolution. Both the primary triangular and their inverted penta-
+    hexagonal grids are available for implementation. Additional functions
+    are provided to position points (latitude-longitude data) on the grids,
+    to allow 2D and 3D plotting, use raster data and shapefiles.
+Depends: R (>= 3.2.2)
+Date: 2020-02-15
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Suggests: knitr, rmarkdown, rgdal, raster, rgl
+VignetteBuilder: knitr
+RoxygenNote: 7.0.2
+LinkingTo: Rcpp
+Imports: Rcpp, sp, igraph, methods, stats
+NeedsCompilation: yes
+Packaged: 2020-02-15 22:46:03 UTC; Adam
+Author: Adam T. Kocsis [aut, cre]
+Maintainer: Adam T. Kocsis <adam.t.kocsis@gmail.com>
+Repository: CRAN
+Date/Publication: 2020-02-17 15:20:05 UTC

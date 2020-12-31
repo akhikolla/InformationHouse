@@ -1,0 +1,418 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./factor_to_dummy_cpp_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp/factor_to_dummy_cpp_output/699aef842a138a32c83378044495e564effce711.fail</line>
+</preamble>
+
+<pid>592950</pid>
+<ppid>592949</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp/factor_to_dummy_cpp_output/log_699aef842a138a32c83378044495e564effce711/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./factor_to_dummy_cpp_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp/factor_to_dummy_cpp_output/699aef842a138a32c83378044495e564effce711.fail</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.025 </time>
+</status>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:07.697 </time>
+</status>
+
+<error>
+  <unique>0x9</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>8 bytes in 1 blocks are definitely lost in loss record 10 of 1,327</text>
+    <leakedbytes>8</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D060F7</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::initialize(int, char const* const*, bool, bool, bool)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>198</line>
+    </frame>
+    <frame>
+      <ip>0x4D06483</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x409B63</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp/factor_to_dummy_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_RSSL_deepstate_test_factor_to_dummy_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp</dir>
+      <file>factor_to_dummy_cpp_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp/factor_to_dummy_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_RSSL_deepstate_test_factor_to_dummy_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp</dir>
+      <file>factor_to_dummy_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41CD08</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp/factor_to_dummy_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41CFA9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp/factor_to_dummy_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D084</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp/factor_to_dummy_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp/factor_to_dummy_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x32</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>100 bytes in 1 blocks are possibly lost in loss record 51 of 1,327</text>
+    <leakedbytes>100</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E55308</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator&lt;char&gt; const&amp;)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E56FB8</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>char* std::string::_S_construct&lt;char const*&gt;(char const*, char const*, std::allocator&lt;char&gt; const&amp;, std::forward_iterator_tag)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E57055</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::basic_string(char const*, unsigned long, std::allocator&lt;char&gt; const&amp;)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E38331</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+    </frame>
+    <frame>
+      <ip>0x4E486D5</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::logic_error::logic_error(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D2A7E1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/src/RSSL.so</obj>
+      <fn>void arma::arma_stop_logic_error&lt;char const*&gt;(char const* const&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>debug.hpp</file>
+      <line>144</line>
+    </frame>
+    <frame>
+      <ip>0x4D2A909</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/src/RSSL.so</obj>
+      <fn>arma_check&lt;char const*&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>debug.hpp</file>
+      <line>382</line>
+    </frame>
+    <frame>
+      <ip>0x4D2A909</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/src/RSSL.so</obj>
+      <fn>init_cold</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>Mat_meat.hpp</file>
+      <line>205</line>
+    </frame>
+    <frame>
+      <ip>0x4D2A909</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/src/RSSL.so</obj>
+      <fn>Mat&lt;arma::Mat&lt;double&gt;, arma::gen_zeros&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>Mat_meat.hpp</file>
+      <line>4671</line>
+    </frame>
+    <frame>
+      <ip>0x4D2A909</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/src/RSSL.so</obj>
+      <fn>factor_to_dummy_cpp(Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, int) [clone .cold]</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/src</dir>
+      <file>utils.cpp</file>
+      <line>67</line>
+    </frame>
+    <frame>
+      <ip>0x409F7E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp/factor_to_dummy_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_RSSL_deepstate_test_factor_to_dummy_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp</dir>
+      <file>factor_to_dummy_cpp_DeepState_TestHarness.cpp</file>
+      <line>27</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp/factor_to_dummy_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_RSSL_deepstate_test_factor_to_dummy_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp</dir>
+      <file>factor_to_dummy_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41CD08</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp/factor_to_dummy_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41CFA9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp/factor_to_dummy_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x3a</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>144 bytes in 1 blocks are possibly lost in loss record 59 of 1,327</text>
+    <leakedbytes>144</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4E102E3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>__cxa_allocate_exception</fn>
+    </frame>
+    <frame>
+      <ip>0x4D2A74D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/src/RSSL.so</obj>
+      <fn>void arma::arma_stop_logic_error&lt;char const*&gt;(char const* const&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>debug.hpp</file>
+      <line>144</line>
+    </frame>
+    <frame>
+      <ip>0x4D2A909</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/src/RSSL.so</obj>
+      <fn>arma_check&lt;char const*&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>debug.hpp</file>
+      <line>382</line>
+    </frame>
+    <frame>
+      <ip>0x4D2A909</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/src/RSSL.so</obj>
+      <fn>init_cold</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>Mat_meat.hpp</file>
+      <line>205</line>
+    </frame>
+    <frame>
+      <ip>0x4D2A909</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/src/RSSL.so</obj>
+      <fn>Mat&lt;arma::Mat&lt;double&gt;, arma::gen_zeros&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>Mat_meat.hpp</file>
+      <line>4671</line>
+    </frame>
+    <frame>
+      <ip>0x4D2A909</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/src/RSSL.so</obj>
+      <fn>factor_to_dummy_cpp(Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, int) [clone .cold]</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/src</dir>
+      <file>utils.cpp</file>
+      <line>67</line>
+    </frame>
+    <frame>
+      <ip>0x409F7E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp/factor_to_dummy_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_RSSL_deepstate_test_factor_to_dummy_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp</dir>
+      <file>factor_to_dummy_cpp_DeepState_TestHarness.cpp</file>
+      <line>27</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp/factor_to_dummy_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_RSSL_deepstate_test_factor_to_dummy_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp</dir>
+      <file>factor_to_dummy_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41CD08</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp/factor_to_dummy_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41CFA9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp/factor_to_dummy_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D084</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp/factor_to_dummy_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp/factor_to_dummy_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xb7</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>1,025 bytes in 1 blocks are definitely lost in loss record 184 of 1,327</text>
+    <leakedbytes>1025</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4EAA3AF</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::reserve(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D04C55</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>MemBuf::MemBuf(int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>MemBuf.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x4D06467</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>56</line>
+    </frame>
+    <frame>
+      <ip>0x409B63</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp/factor_to_dummy_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_RSSL_deepstate_test_factor_to_dummy_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp</dir>
+      <file>factor_to_dummy_cpp_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp/factor_to_dummy_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_RSSL_deepstate_test_factor_to_dummy_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp</dir>
+      <file>factor_to_dummy_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41CD08</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp/factor_to_dummy_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41CFA9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp/factor_to_dummy_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D084</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp/factor_to_dummy_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/RSSL/inst/testfiles/factor_to_dummy_cpp/factor_to_dummy_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.198 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

@@ -1,0 +1,18 @@
+WARNING: No test specified, defaulting to first test defined (lsbclust_deepstate_test_ClustMeans_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/lsbclust/inst/testfiles/ClustMeans/ClustMeans_output/2756f05a51d5983971803332eae169781ce0c3b1.crash`
+TRACE: Running: lsbclust_deepstate_test_ClustMeans_test from /home/akhila/fuzzer_packages/fuzzedpackages/lsbclust/inst/testfiles/ClustMeans/ClustMeans_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+nclust values: 1264540160
+Missing value
+start values: 1584439641 1076999671 -2047111874 1650254766 -1153585568 1308185212 1823999863 -528972225 -383215575 1498292702 -2147483648 167795141 1040721547 24643437 806282513 -2039787409 -1813472788 918211455 1760045938 -393988314 -1940016755 -709297402 -958392499 796092043 1331022726 261490039 2117134695 -1256092351 2118111060 -137733442 -1435431947 -657992665 497069356 917742773 -477291368 -1364600275 -391544352 1943772701 1286148644 1894206349 -2013676867 -1403096433 -343005030 939706144 -1421344738 597572463 1196266424 886982075 -671123069
+Missing value
+data values: 7.62028e+162 7.35816e+212 4.24911e+165     nan
+2.11311e+54 1.10801e-264 1.10600e-150 8.26907e-294
+    inf 1.07516e-250 7.69834e+08    -inf
+-7.69756e+16 2.05972e+233 8.12813e+292     nan
+
+input ends
+ERROR: Crashed: lsbclust_deepstate_test_ClustMeans_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/lsbclust/inst/testfiles/ClustMeans/ClustMeans_output/2756f05a51d5983971803332eae169781ce0c3b1.crash crashed

@@ -1,0 +1,18 @@
+Package: ivsacim
+Type: Package
+Title: Structural Additive Cumulative Intensity Models with IV
+Version: 1.0
+Date: 2020-10-09
+Author: Andrew Ying
+Maintainer: Andrew Ying <aying9339@gmail.com>
+Description: An instrumental variable estimator under structural cumulative additive intensity model is fitted, that leverages initial randomization as the IV. We also provide a consistent variance estimate.
+License: GPL (>= 2)
+Imports: Rcpp (>= 1.0.5), survival, lava, timereg
+LinkingTo: Rcpp
+Depends: R (>= 3.5.0)
+RoxygenNote: 7.1.0
+Encoding: UTF-8
+NeedsCompilation: yes
+Packaged: 2020-10-20 03:35:22 UTC; andrewying
+Repository: CRAN
+Date/Publication: 2020-10-28 08:40:02 UTC

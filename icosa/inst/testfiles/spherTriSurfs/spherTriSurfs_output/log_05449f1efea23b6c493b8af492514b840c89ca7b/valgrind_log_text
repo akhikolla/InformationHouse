@@ -1,0 +1,20 @@
+WARNING: No test specified, defaulting to first test defined (icosa_deepstate_test_spherTriSurfs_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/icosa/inst/testfiles/spherTriSurfs/spherTriSurfs_output/05449f1efea23b6c493b8af492514b840c89ca7b.fail`
+TRACE: Running: icosa_deepstate_test_spherTriSurfs_test from /home/akhila/fuzzer_packages/fuzzedpackages/icosa/inst/testfiles/spherTriSurfs/spherTriSurfs_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+v values: 1.05415e-68 1.86447e-211 4.49059e+17 2.72551e-214 6.53679e-70 2.42643e+241 1.65687e+24
+
+f values: 2.26826e-294 1.75553e+70 2.94576e+186 2.44528e-89 8.53546e+161 2.14755e-74 1.73775e-47
+1.69215e-72 2.86555e+90 3.05509e-115 7.36897e-209 3.09938e-158 3.05572e-170 1.66721e+131
+2.19648e-56 4.82067e+210 2.21844e-63 1.66337e+72 3.95465e-169 1.51007e+259 1.26729e+79
+1.54154e-261 7.63015e-75 2.44675e+228 1.45746e-84 1.51562e-167 1.05370e+280 3.84739e-178
+
+origin values: 2.71379e-129 -2.99574e+172 -3.92218e+180 3.87645e+40 2.8753e-21 2.16137e-216 -1.24268e+93 1.12959e-232 3.9216e-79 -15667.2 4.57085e-49 -1.25757e+73 -8.79374e+217 -9.77937e+240 -6.91902e+224 -1.16799e+232 -1.96546e+138 -2.97634e-92 -2.12535e-12 3.06887e+143 -3.91469e-243 -5.48275e+103 9.28986e-15 -3.80098e-13 4.66046e-69 1.5295e-61 2.3442e-253 -1.2448e-108 -1.64218e+131 -2.84707e-150 4.23067e+207 2.48183e+47 8.28182e-108 1.3868e-275 -7.75062e+242 5.782e-237 6.23201e-30 -2.11814e-273 -1.27001e-269 1.09458e+240 -3.14298e+178 -2.74506e+143 4.27914e+225 6.36261e-209 -8.98935e-156 2.33085e+48 3.00618e+174 -8.78388e+63 7.56033e-26 -1.25716e-14 2.25199e-184 4.80297e-280 2.79116e+80 -9.57805e-212 2.1019e-146 -3.03863e+111 1.00153e+155 5.48809e-286 -0.285797 3.04072e-162 8.52171e+151 -2.56101e-166 -3.89638e-120 -4.91734e+205 -1.18678e+78 -0.007058 1.01764e-153 2.31049e-29 0.00047502 -2.14716e-215 4.73446e-268 1.61816e-44 -2.27837e-20 -4.81214e+277 -6.96078e-217 1.42247e+132 1.93259e+205 -3.62537e+117 1.19032e-153 5.15898e+27 1.21582e+10 2.84038e-159 -3.06676e+159
+pi values: -6.00482e-68
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Row index is out of bounds: [index=-2147483648; row extent=1].
+ERROR: Failed: icosa_deepstate_test_spherTriSurfs_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/icosa/inst/testfiles/spherTriSurfs/spherTriSurfs_output/05449f1efea23b6c493b8af492514b840c89ca7b.fail failed

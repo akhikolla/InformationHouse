@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Thomas W. Jones" />
+
+<meta name="date" content="2019-04-17" />
+
+<title>6. Using tidytext with textmineR</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#header {
+text-align: center;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">6. Using tidytext with textmineR</h1>
+<h4 class="author">Thomas W. Jones</h4>
+<h4 class="date">2019-04-17</h4>
+
+
+
+<div id="using-tidytext-with-textminer" class="section level1">
+<h1>Using tidytext with textmineR</h1>
+<p>The <a href="https://CRAN.R-project.org/package=tidytext"><code>tidytext</code></a> package is one of the more popular natural language processing packages in R’s ecosystem. It follows conventions and syntax of the “tidyverse.”</p>
+<p>You may prefer to use <code>tidytext</code> for a couple of reasons. First, <code>tidytext</code> has its own philosophy and syntax for handling text, particularly at early stages. You may be more familiar or comfortable with this approach. Second, <code>tidytext</code> does, theoretically, offer some more flexibility in options creating DTMs or TCMs. This early stage is critical to successful topic modeling.</p>
+<p>See <em><a href="https://www.tidytextmining.com/">Text Mining with R: A Tidy Approach</a></em> for more details about tidytext.</p>
+<p>What follows is a short script combining <code>tidytext</code> with <code>textmineR</code>. Initial data curation and DTM creation is done with <code>tidytext</code>. Topic modeling is done with <code>textmineR</code> and the outputs are re-formatted in the flavor of <code>tidytext</code>’s “tidiers” for other topic models.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co">################################################################################</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co"># Example: Using tidytext with textmineR</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co">################################################################################</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">library</span>(tidytext)</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw">library</span>(textmineR)</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="co">#&gt; Attaching package: 'dplyr'</span></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="co">#&gt; The following objects are masked from 'package:igraph':</span></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="co">#&gt;     as_data_frame, groups, union</span></a>
+<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="co">#&gt; The following objects are masked from 'package:stats':</span></a>
+<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="co">#&gt;     filter, lag</span></a>
+<a class="sourceLine" id="cb1-16" data-line-number="16"><span class="co">#&gt; The following objects are masked from 'package:base':</span></a>
+<a class="sourceLine" id="cb1-17" data-line-number="17"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb1-18" data-line-number="18"><span class="co">#&gt;     intersect, setdiff, setequal, union</span></a>
+<a class="sourceLine" id="cb1-19" data-line-number="19"><span class="kw">library</span>(tidyr)</a>
+<a class="sourceLine" id="cb1-20" data-line-number="20"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb1-21" data-line-number="21"><span class="co">#&gt; Attaching package: 'tidyr'</span></a>
+<a class="sourceLine" id="cb1-22" data-line-number="22"><span class="co">#&gt; The following object is masked from 'package:igraph':</span></a>
+<a class="sourceLine" id="cb1-23" data-line-number="23"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb1-24" data-line-number="24"><span class="co">#&gt;     crossing</span></a>
+<a class="sourceLine" id="cb1-25" data-line-number="25"><span class="co">#&gt; The following object is masked from 'package:Matrix':</span></a>
+<a class="sourceLine" id="cb1-26" data-line-number="26"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb1-27" data-line-number="27"><span class="co">#&gt;     expand</span></a>
+<a class="sourceLine" id="cb1-28" data-line-number="28"></a>
+<a class="sourceLine" id="cb1-29" data-line-number="29"><span class="co"># load documents in a data frame</span></a>
+<a class="sourceLine" id="cb1-30" data-line-number="30">docs &lt;-<span class="st"> </span>textmineR<span class="op">::</span>nih_sample </a>
+<a class="sourceLine" id="cb1-31" data-line-number="31"></a>
+<a class="sourceLine" id="cb1-32" data-line-number="32"><span class="co"># tokenize using tidytext's unnest_tokens</span></a>
+<a class="sourceLine" id="cb1-33" data-line-number="33">tidy_docs &lt;-<span class="st"> </span>docs <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-34" data-line-number="34"><span class="st">  </span><span class="kw">select</span>(APPLICATION_ID, ABSTRACT_TEXT) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-35" data-line-number="35"><span class="st">  </span><span class="kw">unnest_tokens</span>(<span class="dt">output =</span> word, </a>
+<a class="sourceLine" id="cb1-36" data-line-number="36">                <span class="dt">input =</span> ABSTRACT_TEXT,</a>
+<a class="sourceLine" id="cb1-37" data-line-number="37">                <span class="dt">stopwords =</span> <span class="kw">c</span>(stopwords<span class="op">::</span><span class="kw">stopwords</span>(<span class="st">&quot;en&quot;</span>), </a>
+<a class="sourceLine" id="cb1-38" data-line-number="38">                              stopwords<span class="op">::</span><span class="kw">stopwords</span>(<span class="dt">source =</span> <span class="st">&quot;smart&quot;</span>)),</a>
+<a class="sourceLine" id="cb1-39" data-line-number="39">                <span class="dt">token =</span> <span class="st">&quot;ngrams&quot;</span>,</a>
+<a class="sourceLine" id="cb1-40" data-line-number="40">                <span class="dt">n_min =</span> <span class="dv">1</span>, <span class="dt">n =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-41" data-line-number="41"><span class="st">  </span><span class="kw">count</span>(APPLICATION_ID, word) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-42" data-line-number="42"><span class="st">  </span><span class="kw">filter</span>(n<span class="op">&gt;</span><span class="dv">1</span>) <span class="co">#Filtering for words/bigrams per document, rather than per corpus</span></a>
+<a class="sourceLine" id="cb1-43" data-line-number="43"></a>
+<a class="sourceLine" id="cb1-44" data-line-number="44">tidy_docs &lt;-<span class="st"> </span>tidy_docs <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># filter words that are just numbers</span></a>
+<a class="sourceLine" id="cb1-45" data-line-number="45"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="st"> </span>stringr<span class="op">::</span><span class="kw">str_detect</span>(tidy_docs<span class="op">$</span>word, <span class="st">&quot;^[0-9]+$&quot;</span>))</a>
+<a class="sourceLine" id="cb1-46" data-line-number="46"></a>
+<a class="sourceLine" id="cb1-47" data-line-number="47"><span class="co"># turn a tidy tbl into a sparse dgCMatrix for use in textmineR</span></a>
+<a class="sourceLine" id="cb1-48" data-line-number="48">d &lt;-<span class="st"> </span>tidy_docs <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-49" data-line-number="49"><span class="st">  </span><span class="kw">cast_sparse</span>(APPLICATION_ID, word, n)</a>
+<a class="sourceLine" id="cb1-50" data-line-number="50"></a>
+<a class="sourceLine" id="cb1-51" data-line-number="51"></a>
+<a class="sourceLine" id="cb1-52" data-line-number="52"><span class="co"># create a topic model</span></a>
+<a class="sourceLine" id="cb1-53" data-line-number="53">m &lt;-<span class="st"> </span><span class="kw">FitLdaModel</span>(<span class="dt">dtm =</span> d, </a>
+<a class="sourceLine" id="cb1-54" data-line-number="54">                 <span class="dt">k =</span> <span class="dv">20</span>,</a>
+<a class="sourceLine" id="cb1-55" data-line-number="55">                 <span class="dt">iterations =</span> <span class="dv">200</span>,</a>
+<a class="sourceLine" id="cb1-56" data-line-number="56">                 <span class="dt">burnin =</span> <span class="dv">175</span>)</a>
+<a class="sourceLine" id="cb1-57" data-line-number="57"></a>
+<a class="sourceLine" id="cb1-58" data-line-number="58"></a>
+<a class="sourceLine" id="cb1-59" data-line-number="59"><span class="co"># below is equivalent to tidy_beta &lt;- tidy(x = m, matrix = &quot;beta&quot;)</span></a>
+<a class="sourceLine" id="cb1-60" data-line-number="60">tidy_beta &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">topic =</span> <span class="kw">as.integer</span>(stringr<span class="op">::</span><span class="kw">str_replace_all</span>(<span class="kw">rownames</span>(m<span class="op">$</span>phi), <span class="st">&quot;t_&quot;</span>, <span class="st">&quot;&quot;</span>)), </a>
+<a class="sourceLine" id="cb1-61" data-line-number="61">                        m<span class="op">$</span>phi, </a>
+<a class="sourceLine" id="cb1-62" data-line-number="62">                        <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-63" data-line-number="63"><span class="st">  </span><span class="kw">gather</span>(term, beta, <span class="op">-</span>topic) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-64" data-line-number="64"><span class="st">  </span>tibble<span class="op">::</span><span class="kw">as_tibble</span>()</a>
+<a class="sourceLine" id="cb1-65" data-line-number="65"></a>
+<a class="sourceLine" id="cb1-66" data-line-number="66"><span class="co"># below is equivalent to tidy_gamma &lt;- tidy(x = m, matrix = &quot;gamma&quot;)</span></a>
+<a class="sourceLine" id="cb1-67" data-line-number="67">tidy_gamma &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">document =</span> <span class="kw">rownames</span>(m<span class="op">$</span>theta),</a>
+<a class="sourceLine" id="cb1-68" data-line-number="68">                         m<span class="op">$</span>theta,</a>
+<a class="sourceLine" id="cb1-69" data-line-number="69">                         <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-70" data-line-number="70"><span class="st">  </span><span class="kw">gather</span>(topic, gamma, <span class="op">-</span>document) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-71" data-line-number="71"><span class="st">  </span>tibble<span class="op">::</span><span class="kw">as_tibble</span>()</a></code></pre></div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

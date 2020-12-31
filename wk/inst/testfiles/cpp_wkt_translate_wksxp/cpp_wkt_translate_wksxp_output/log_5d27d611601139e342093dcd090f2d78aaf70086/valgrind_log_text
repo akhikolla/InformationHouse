@@ -1,0 +1,15 @@
+WARNING: No test specified, defaulting to first test defined (wk_deepstate_test_cpp_wkt_translate_wksxp_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_output/5d27d611601139e342093dcd090f2d78aaf70086.fail`
+TRACE: Running: wk_deepstate_test_cpp_wkt_translate_wksxp_test from /home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+wkt values: "mplwicdtmoyhdmcruigf" "rlsfnjgpcjekqbfgpwwi" "gauzcvleuptzdtwslize" "vhwfzloprswzmmdoneuf" "jtwltvrhjupirapcwqoq" "foofbyybnnszpucecdbk" "hjcevpp" "NA" "fpzwwfsmjqlxxwgnjb" "tffdfpeslwvxzakvfxwn" "NA" "NA" "NA" "cerkdyxornbxfjjwcviz" "zocgkeexnzcudnliauzs" "uzmeiukzuitonyyarcsn" "NA" "fthcdbjvfajbfkgqwzor" "zurtddhtyvrsqsefnzsj" "aspimbxthfulpyaqymky" "NA" "hdkgfvesuyrmtvewbnwi" "bjcyizxhdp" "NA" "gnnrveuygou" "NA" "NA" "NA" "NA" "ytyvjxxlglbwhphmrern" "NA" "hmhngoppjhreqpvkilup" "qntlzlaowudjhxdnjvkp" "uuflsddvhadtavoglh" "eq" "cachb" "ciciyrrgpsrdtgsuipgt" "muyflbbadmmmkdlbjqef" "qbgdaiphvvgkcrgsmmus" "NA" "mpnjxhadsimvksjiskaq" "NA" "" "NA" "NA" "NA" "" "fnewcdlwv" "dgykuahruhisqwwavubb" "NA" "NA" "vdangggqjtoxhsekcyom" "gjmogvnwvvglffndlzhs" "NA" "NA" "wj" "wmamsqyrbuxygzcchnf" "NA" "hytgtxdiyhusiiquazzg" "NA" "NA" "NA" "NA" "NA" "qv" "dsayktn" "kqfmq" "wvmnya" "bhfxqzlwolcdv" "cmnztedc" "wvpqubfltulqtsirqove" "NA" "uzxkplxlfzsthkwzsacl" "lnmyhoqmmkdrxgogwdcw" "NA" "o" "ggbf" "yqzckklshtfywbkqdpfb" "snoeryywvqaynclbadwo" "fzbyobmqewfbpvnzzxhv" "anasgomfavjbrelvlmev" "exjvgbfcm" "ydcyajjmywgyzyieiikn" "eovfzeidudners"
+includeZ values: 839998170
+includeM values: -946444749
+includeSRID values: 892656866
+input ends
+terminate called after throwing an instance of 'WKParseException'
+  what():  Expected geometry type or 'SRID=' but found 'mplwicdtmoyhdmcruigf' (:0)
+ERROR: Failed: wk_deepstate_test_cpp_wkt_translate_wksxp_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_output/5d27d611601139e342093dcd090f2d78aaf70086.fail failed

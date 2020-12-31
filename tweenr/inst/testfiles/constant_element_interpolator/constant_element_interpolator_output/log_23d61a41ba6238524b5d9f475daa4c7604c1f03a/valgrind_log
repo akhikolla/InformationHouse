@@ -1,0 +1,252 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./constant_element_interpolator_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash</line>
+</preamble>
+
+<pid>975854</pid>
+<ppid>975853</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_output/log_23d61a41ba6238524b5d9f475daa4c7604c1f03a/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./constant_element_interpolator_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.024 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 1</what>
+  <stack>
+    <frame>
+      <ip>0x49CD594</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>TYPEOF</fn>
+    </frame>
+    <frame>
+      <ip>0x4D52233</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>Rcpp::internal::check_single_string(SEXPREC*)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp</dir>
+      <file>as.h</file>
+      <line>48</line>
+    </frame>
+    <frame>
+      <ip>0x4D458DC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>as_string&lt;std::__cxx11::basic_string&lt;char&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp</dir>
+      <file>as.h</file>
+      <line>67</line>
+    </frame>
+    <frame>
+      <ip>0x4D458DC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>as&lt;std::__cxx11::basic_string&lt;char&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp</dir>
+      <file>as.h</file>
+      <line>71</line>
+    </frame>
+    <frame>
+      <ip>0x4D458DC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>as&lt;std::__cxx11::basic_string&lt;char&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp</dir>
+      <file>as.h</file>
+      <line>152</line>
+    </frame>
+    <frame>
+      <ip>0x4D458DC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>constant_element_interpolator(Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src</dir>
+      <file>interpolators.cpp</file>
+      <line>657</line>
+    </frame>
+    <frame>
+      <ip>0x40A2A2</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_tweenr_deepstate_test_constant_element_interpolator_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator</dir>
+      <file>constant_element_interpolator_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_tweenr_deepstate_test_constant_element_interpolator_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator</dir>
+      <file>constant_element_interpolator_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D7E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA89</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DB64</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x646877726b617667 is not stack'd, malloc'd or (recently) free'd</auxwhat>
+</error>
+
+<fatal_signal>
+  <tid>1</tid>
+  <signo>11</signo>
+  <signame>SIGSEGV</signame>
+  <sicode>128</sicode>
+  <event>General Protection Fault</event>
+  <stack>
+    <frame>
+      <ip>0x49CD594</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>TYPEOF</fn>
+    </frame>
+    <frame>
+      <ip>0x4D52233</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>Rcpp::internal::check_single_string(SEXPREC*)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp</dir>
+      <file>as.h</file>
+      <line>48</line>
+    </frame>
+    <frame>
+      <ip>0x4D458DC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>as_string&lt;std::__cxx11::basic_string&lt;char&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp</dir>
+      <file>as.h</file>
+      <line>67</line>
+    </frame>
+    <frame>
+      <ip>0x4D458DC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>as&lt;std::__cxx11::basic_string&lt;char&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp</dir>
+      <file>as.h</file>
+      <line>71</line>
+    </frame>
+    <frame>
+      <ip>0x4D458DC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>as&lt;std::__cxx11::basic_string&lt;char&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp</dir>
+      <file>as.h</file>
+      <line>152</line>
+    </frame>
+    <frame>
+      <ip>0x4D458DC</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src/tweenr.so</obj>
+      <fn>constant_element_interpolator(Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;16, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/src</dir>
+      <file>interpolators.cpp</file>
+      <line>657</line>
+    </frame>
+    <frame>
+      <ip>0x40A2A2</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_tweenr_deepstate_test_constant_element_interpolator_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator</dir>
+      <file>constant_element_interpolator_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_tweenr_deepstate_test_constant_element_interpolator_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator</dir>
+      <file>constant_element_interpolator_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D7E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA89</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DB64</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/tweenr/inst/testfiles/constant_element_interpolator/constant_element_interpolator_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</fatal_signal>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:07.435 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>1</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.077 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

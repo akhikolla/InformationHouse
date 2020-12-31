@@ -1,0 +1,30 @@
+Package: HDLSSkST
+Type: Package
+Title: Distribution-Free Exact High Dimensional Low Sample Size
+        k-Sample Tests
+Version: 1.0.1
+Date: 2020-08-05
+Authors@R: c(person("Biplab", "Paul", role = c("aut", "cre"), email = "biplab.paul@niser.ac.in"),
+    person("Shyamal K.", "De", role = c("aut")),
+    person("Anil K.", "Ghosh", role = c("aut")))
+Maintainer: Biplab Paul <biplab.paul@niser.ac.in>
+Description: We construct four new exact level (size) alpha tests for testing the equality 
+             of k distributions, which can be conveniently used in high dimensional low sample 
+             size setup based on clustering. These tests are easy to implement and distribution-free.  
+             Under mild conditions, we have proved the consistency of these tests as the dimension 
+             d of each observation grows to infinity, whereas the sample size remains fixed. 
+             We also apply step-down-procedure (1979) for multiple testing. Details are in 
+             Biplab Paul, Shyamal K De and Anil K Ghosh (2020); Soham Sarkar and Anil K Ghosh (2019) 
+             <doi:10.1109/TPAMI.2019.2912599>; William M Rand (1971) <doi:10.1080/01621459.1971.10482356>;  
+             Cyrus R Mehta and Nitin R Patel (1983) <doi:10.2307/2288652>; Joseph C Dunn (1973) 
+             <doi:10.1080/01969727308546046>; Sture Holm (1979) <doi:10.2307/4615733>.
+License: GPL (>= 2)
+Imports: Rcpp (>= 1.0.3), stats, utils
+LinkingTo: Rcpp
+Author: Biplab Paul [aut, cre],
+  Shyamal K. De [aut],
+  Anil K. Ghosh [aut]
+NeedsCompilation: yes
+Packaged: 2020-08-05 14:22:18 UTC; GOBINDO
+Repository: CRAN
+Date/Publication: 2020-08-07 09:42:15 UTC

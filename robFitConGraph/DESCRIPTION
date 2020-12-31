@@ -1,0 +1,17 @@
+Package: robFitConGraph
+Type: Package
+Title: Graph-Constrained Robust Covariance Estimation
+Version: 0.1.0
+Author: Stuart Watt, Daniel Vogel
+Maintainer: Stuart Watt <s.watt.15@aberdeen.ac.uk>
+Description: Contains a single function named robFitConGraph() which includes two algorithms for robust estimation of scatter matrices subject to zero-constraints in its inverse. The methodology is described in Vogel & Tyler (2014) <doi:10.1093/biomet/asu041>. See robFitConGraph() function documentation for further details.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
+LinkingTo: Rcpp
+Imports: Rcpp, mvtnorm, MASS
+NeedsCompilation: yes
+Packaged: 2019-02-03 23:56:37 UTC; stuar
+Repository: CRAN
+Date/Publication: 2019-02-08 12:30:03 UTC

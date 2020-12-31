@@ -1,0 +1,29 @@
+WARNING: No test specified, defaulting to first test defined (Quartet_deepstate_test_all_quartets_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/Quartet/inst/testfiles/all_quartets/all_quartets_output/e7932681bdc8676f0613462de28842b2945cadd5.crash`
+TRACE: Running: Quartet_deepstate_test_all_quartets_test from /home/akhila/fuzzer_packages/fuzzedpackages/Quartet/inst/testfiles/all_quartets/all_quartets_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+nTips values: -621726556 -1331494887 1854878590 314985932 1361933119 -1262797933 -1571830262 -555281357 1176038391 -1125445590 2051319948 -555281357 600611799 -2015925719 640758675 -2045256755 818332908 -1294723540 415152419 -1290633258 -568676763 -250049000 1237429200 -645489399 1298265599 889924430 -907775620 -152022060
+input ends
+==549383==  If you believe this happened as a result of a stack
+==549383==  overflow in your program's main thread (unlikely but
+==549383==  possible), you can try to increase the size of the
+==549383==  main thread stack using the --main-stacksize= flag.
+==549383==  The main thread stack size used in this run was 8388608.
+--549383-- VALGRIND INTERNAL ERROR: Valgrind received a signal 11 (SIGSEGV) - exiting
+--549383-- si_code=128;  Faulting address: 0x0;  sp: 0x1002cb5e80
+
+valgrind: the 'impossible' happened:
+   Killed by fatal signal
+
+host stacktrace:
+==549383==    at 0x580A4481: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/memcheck-amd64-linux)
+==549383==    by 0x580A6292: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/memcheck-amd64-linux)
+==549383==    by 0x580F5FD4: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/memcheck-amd64-linux)
+
+sched status:
+  running_tid=1
+ERROR: Crashed: Quartet_deepstate_test_all_quartets_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/Quartet/inst/testfiles/all_quartets/all_quartets_output/e7932681bdc8676f0613462de28842b2945cadd5.crash crashed

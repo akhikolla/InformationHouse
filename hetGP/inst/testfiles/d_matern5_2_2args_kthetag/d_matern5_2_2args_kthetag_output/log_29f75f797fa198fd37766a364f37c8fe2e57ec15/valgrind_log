@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./d_matern5_2_2args_kthetag_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/d_matern5_2_2args_kthetag/d_matern5_2_2args_kthetag_output/29f75f797fa198fd37766a364f37c8fe2e57ec15.pass</line>
+</preamble>
+
+<pid>860508</pid>
+<ppid>860507</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/d_matern5_2_2args_kthetag/d_matern5_2_2args_kthetag_output/log_29f75f797fa198fd37766a364f37c8fe2e57ec15/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./d_matern5_2_2args_kthetag_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/d_matern5_2_2args_kthetag/d_matern5_2_2args_kthetag_output/29f75f797fa198fd37766a364f37c8fe2e57ec15.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.027 </time>
+</status>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.771 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:09.333 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./immer_cml_splitvec_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/immer/inst/testfiles/immer_cml_splitvec/immer_cml_splitvec_output/844c4ca1333e8d869b5b271438a7aa32e7e23836.crash</line>
+</preamble>
+
+<pid>880918</pid>
+<ppid>880917</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/immer/inst/testfiles/immer_cml_splitvec/immer_cml_splitvec_output/log_844c4ca1333e8d869b5b271438a7aa32e7e23836/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./immer_cml_splitvec_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/immer/inst/testfiles/immer_cml_splitvec/immer_cml_splitvec_output/844c4ca1333e8d869b5b271438a7aa32e7e23836.crash</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.027 </time>
+</status>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:24.653 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

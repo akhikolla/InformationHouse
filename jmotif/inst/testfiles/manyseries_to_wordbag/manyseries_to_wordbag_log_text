@@ -1,0 +1,152 @@
+INFO: Starting fuzzing
+WARNING: No test specified, defaulting to first test defined (jmotif_deepstate_test_manyseries_to_wordbag_test)
+input starts
+EXTERNAL: qs v0.23.4.
+
+data values: 1.05415e-68 1.86447e-211 4.49059e+17 2.72551e-214 6.53679e-70 2.42643e+241 1.65687e+24
+
+w_size values: 644268439
+paa_size values: 123721430
+a_size values: -859175003
+nr_strategy values: "rwgmurgjfdndtglpvzn" "NA" "di" "nofcdvsy" "kkifqamgnkrmdnypk" "alwsl" "NA" "NA" "deyblbjnrxlmflq" "drufrhgu" "NA"
+n_threshold values: -2.08852e-34
+input ends
+terminate called after throwing an instance of 'Rcpp::not_compatible'
+  what():  Expecting a single string value: [type=character; extent=11].
+ERROR: Failed: jmotif_deepstate_test_manyseries_to_wordbag_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/jmotif/inst/testfiles/manyseries_to_wordbag/manyseries_to_wordbag_output/83719079a69b4e96d74af8879648be331a5bbc45.fail`
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+data values: 1.02532e+261 1.12756e-57     nan
+1.46340e+288     inf 4.12846e-51
+5.67165e-306 4.85713e-272     inf
+    nan     inf 61.3403
+5.43908e-105 3.30698e+94 6.30847e-13
+
+w_size values: -1622927679
+paa_size values: -1028905841
+a_size values: -317502747
+nr_strategy values: "i"
+n_threshold values: 8.724e-16
+input ends
+ERROR: Crashed: jmotif_deepstate_test_manyseries_to_wordbag_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/jmotif/inst/testfiles/manyseries_to_wordbag/manyseries_to_wordbag_output/e78ce7438df9a1440309ef3e26dc1d3f4bb32f6a.crash`
+input starts
+EXTERNAL: qs v0.23.4.
+
+data values: 3.07504e-136 1.01645e-124 1.00679e-73 1.72389e-189 2.13410e-145 2.01769e+47 5.91096e+64 4.71376e-48 1.75062e-260
+
+w_size values: -1983958174
+paa_size values: 1188064147
+a_size values: 828412518
+nr_strategy values: "NA" "elvxdcntgugwviqlckmc" "rqmzgklnb" "NA" "uliizmnlilldamjkzk" "gsrqclgizxmotx" "ntswwbujmljbgiwj" "NA" "zoeoolevlidpvp" "NA" "fxlfdrdzxekhw" "NA" "fw" "zaxioopc" "jeeqtmtzwvwqglmyozni" "qbswsvponncurdqnbhbl" "NA" "NA" "bzscmzowhzfsyfxersqr" "wdifbeotxgpwvuemd" "lv" "NA" "NA" "NA" "axiiceupzrqegiy" "qxohmjwazoqghlzusgrj" "NA" "NA" "dyfbhsphvdokwcrellhx" "lpbmliapcxocuhtjylmt" "ytotpnivdghucotglhcj" "myomzfipwnitvzefsaxe" "NA" "NA" "NA" "cmtrengqgsqxrhljqsmq" "uuzwfkh" "rclbjpnbeksroiengcnv" "anlbhmvug" "chzrrqgbquptnugbtlvj" "jjjfyqirfrrafyoyriix" "NA" "iiguhuwxehhxaztzgaaa" "wibwgofgeyeygquyrhkl" "hkwhcp" "d" "weqcrlwz" "ztefspkcaqdbyvvqbdvj" "NA" "vvkrxvjnmicqxmybnota" "NA" "NA" "xysdzvzjfyktbuuwitmk" "sxmprbszpnndzdmgfkpu" "mehyq" "" "mbvsxoghyqvqadehtbvo" "yospvvjjxnc" "iwllbuoqu" "cc" "dimkezoqdfnkwgniogub" "lxfoi" "mavsipzzqgagl" "svybnjkqpl" "koggmklhzhkibv" "ishhslojbxovuuhhjtli" "NA" "petdsnxxdleqqyfvcgrd" "sghuzqkgdgpirtwxuwal" "zdfxvkmedubfzdafd" "mteodxqdsuljvistfgke" "NA" "xukwodzaaeipmybgcbfz"
+n_threshold values: 9.73225e-124
+input ends
+terminate called after throwing an instance of 'Rcpp::not_compatible'
+  what():  Expecting a single string value: [type=character; extent=73].
+ERROR: Failed: jmotif_deepstate_test_manyseries_to_wordbag_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/jmotif/inst/testfiles/manyseries_to_wordbag/manyseries_to_wordbag_output/47530117c135f68d6119cc2b72d7a0be711723fe.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+data values: 1.55275e+40 4.07917e+165 1.44694e-22 8.62422e-89 8.95062e-07 8.88077e+282 4.09428e+146 0.00892625 1.53510e-99
+1.26562e-12 11.4127 5.24924e+272 1.01363e+74 1.86531e+250 5.10578e-14 8.78821e+143 1.30327e+122 7.52989e+12
+7.78977e+159 5.71162e+62 4.59987e+18 2.14829e+78 1.02818e-81 9.71140e-241 1.60646e-158 4.33867e+27 3.77445e+64
+5.68507e+80 3.92548e+14 1.51667e-225 1.56356e-81 1.83374e-104 7.70719e-71 2.54096e-21 2.84159e-210 14780.2
+2.19993e-285 4.49653e+83 6.61249e-257 1.87145e+289 9.93170e-171 1.49741e+196 2.36295e+123 8.31362e+90 4.33815e+110
+1.71990e-51 8.29783e+300 2.62736e-264 4.33714e-104 1088.08 1.44529e+91 1.93465e-43 1.42291 8.53986e-281
+
+w_size values: 640134790
+paa_size values: 1581229726
+a_size values: 193247574
+nr_strategy values: "hnjmtfxinuagutvlotwt" "NA" "evfrkbszgvjhd" "pfahtstkqkycdudzzbmi" "NA" "NA" "iqizjvforrwflgspxhnf" "ps" "gnlltlzvahfikvdqsmye" "xsafcwbspdkumvmfzzk" "rr" "NA" "rakxjeypfztk" "hownbgkubpitliu" "vjrzijktfzjnbzgkhrbd" "NA" "hesgekkqrrer" "an" "vcwk" "o" "rbulsiiwpekqhouhbuua" "grpzuvmwnqwceyfueppw" "fcozejddigvzcnrkrttv" "opmjxlhme" "jniorcozutxrwxdihlpn" "onleshy" "yehxwikhbqfkxeq" "NA" "xsdnqnhxpkwsb" "zrpiuqkmubuqngvwupip" "zozsmzpnpvyysoljnwwf" "NA" "bjtdbap" "rvuvmjvyfnfymqhaik" "askqkbpgnxevdvtckexc" "NA" "NA" "NA" "kmpmmsnwgypqxkxpqfsc" "NA" "NA" "mudrwfkahbghaffxxyma" "hlryacjdpqiftjkdtzfb" "NA" "uctnyvxfbjsvdnwcbd" "NA" "aaigv" "bb" "pbexarsazsfvqgheuqxc" "NA" "y" "NA" "zywi" "NA" "NA" "ihzpivcjrmpfghivk" "dsz" "ofpffkftqbaxrymskogs" "txjnbfpscqgkqhkwvjpc" "saybvvugjgefdquhzczv" "pvkkeqogyyosipknd" "NA" "NA" "eiyqnalnywovyupdaj" "sngfjfzyyqmeojtuqcj" "bjbmycbdngtwoyr" "srtx" "duumhmwuqkkrfbgahwne" "xggjszmvradmtzpcscbr" "piorizdqwdhfzqxh" "gygjpx" "hfdtskexpgzsjphkkpzv" "leilcdstilzpcawdtyas" "jjwxsqeqdhocdqglhwkm" "NA" "NA" "mfzmqxayqosf" "NA" "bslghgeub" "NA" "NA" "NA" "dayrrgnmvasts" "ovwcrgl" "NA" "NA" "gfbayvbpoamttiakgcfy" "wwhdnwrnpjsshotjkatw"
+n_threshold values: 1.58179e-260
+input ends
+terminate called after throwing an instance of 'Rcpp::not_compatible'
+  what():  Expecting a single string value: [type=character; extent=88].
+ERROR: Failed: jmotif_deepstate_test_manyseries_to_wordbag_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/jmotif/inst/testfiles/manyseries_to_wordbag/manyseries_to_wordbag_output/386e85021df25049bb9287b036b212b5a1326358.fail`
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+data values: 5.35893e-173 1.78433e+169 1.95532e-132 6.79398e+55 3.02439e+234 1.92200e-190 1.27133e+256 1.15617e+141 6.20307e-218 3.71541e-06
+2.86978e-15 9.46802e-51 2.24216e+243 7.20263e+40 1.08708e+120 4.96534e+107 7.79327e-189 5.35953e+194 27.5113 3.78367e+12
+    inf 2.48283e-176 3.15962e-133 3.80927e-156 2.96592e-146 1.35722e-292 2.58069e+92 1.83289e-105 7.46244e+67 3.14083e+65
+2.98853e+143 8.21196e+288 6.92527e+137 1.33550e+204 1.95817e-131 3.18497e+232 1.83132e+43 3.22121e-307 2460.22 9.02995e+247
+3.08421e+276 4.55606e+117 1.03502e-277 2.62539e+129    -inf 3.64104e-233 2.30802e-243 5.10253e-139 1.04830e-244 1.17292e-128
+3.33889e-239 1.07973e+245     inf 6.85769e-16 1.09362e-194 2.88131e+218 3.00755e+162 1.55281e-61 5.53633e-147 3.09268e+12
+2.00058e-113 3.91727e-283 2.15561e+185 1.98743e+154 6.71963e-160 7.60658e+07 9.88725e+56 2.06419e+82 9.06604e+20 0.492182
+2.46562e-85 2.36534e+188 1.75933e-114 1.51886e-282 1.66250e-250 1.29769e+247 6.83874e-277 8.83203e-282 6.86116e-162 3.93285e+237
+1.89262e-113 4.62887e+149 8.24222e-287 9.00123e+84 7.25181e-123     nan 4.07539e+27 9.96356e-247 1.59071e-134 8.66867e-200
+
+w_size values: -402083794
+paa_size values: 1272374993
+a_size values: 1330180433
+nr_strategy values: "xacupvudujkexmbttrfm" "grepkytllzrditpiyffv" "fui" "NA" "vebsketagamupskbh" "NA" "yzthal" "NA" "vfojfhwnraiydwkqtcvi" "NA" "fbsxxwjkggrgrxbdogeo" "kuvbdpnfrhiqgemfoaql" "gfxjwruegpkayewgdwau" "NA" "ozccpgcszh" "NA" "gejsjstpgcjuhfecazum" "" "ludvowuwooajpnnahzzy" "NA" "NA" "hbsazyeqwzxfio" "NA" "nhpqeaizxmcueiavfllf" "NA" "wfykvaodgqrnodebwtma" "NA" "yczosbhqb" "wbsfoofllevjmfrflqdt" "cmjeoxaj" "iirmtzayuztsrqhvpvts" "odbntc" "ufnnewbrgzovbqqoxzma" "gmqeub" "os"
+n_threshold values: 2.63634e-79
+input ends
+terminate called after throwing an instance of 'Rcpp::not_compatible'
+  what():  Expecting a single string value: [type=character; extent=35].
+ERROR: Failed: jmotif_deepstate_test_manyseries_to_wordbag_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/jmotif/inst/testfiles/manyseries_to_wordbag/manyseries_to_wordbag_output/b22625bc987bf53d5458ad9ac8e59cb5edb026cb.fail`
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+data values:     inf 3.62674e+276 2.85289e-14 5.15177e+08 5.62204e+284 4.23654e+262
+4.85848e-155 9.30831e-138 5.17781e+105 1.90988e-229 4.19856e+214 7.49286e+260
+9.73252e-257    -inf 2.59099e-68 1.88112e-140 7.70806e+120 2.65866e-149
+9.77106e-95     inf 8.40608e+118 1.18386e-216 7.52379e-133 7.35556e-289
+1.59936e-219 4.02270e+176 5.11394e+143 1.61223e+229 2.38724e-271 1.11643e+200
+
+w_size values: -1480691923
+paa_size values: -1870350209
+a_size values: 1183285499
+nr_strategy values: "tvrhjupirapcwqoqjfoo" "yybnnszpucecdbka" "jcevppbpcfp" "wf" "NA" "jqlxxwgnjbltffdfpesl" "xzakvfx" "naetvcerkdyxornbxfjj" "cvizzzocgkeexnzcudnl" "NA" "zsju" "NA" "iukzuitonyyarcsn" "NA" "fthcdbjvfajbfkgqwzor" "zurtddhtyvrsqsefnzsj" "aspimbxthfulpyaqymky" "NA" "hdkgfvesuyrmtvewbnwi" "bjcyizxhdp" "NA" "gnnrveuygou" "NA" "NA" "NA"
+n_threshold values: 4.26516e-306
+input ends
+terminate called after throwing an instance of 'Rcpp::not_compatible'
+  what():  Expecting a single string value: [type=character; extent=25].
+ERROR: Failed: jmotif_deepstate_test_manyseries_to_wordbag_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/jmotif/inst/testfiles/manyseries_to_wordbag/manyseries_to_wordbag_output/da0666f2d44bfa08db9e248096e5f91d313972c5.fail`
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+data values: 1.05926e+69 1.18796e-216 2.06460e-90     nan 5.23732e-77 1.92872e-182 1.65258e+117 2.16571e-153
+2.42002e+54 2.24371e+115 2.85353e-137 8.82760e+208 1.40525e+109 2.29111e-102     inf 7.64575e+09
+2.26741e+104 1.55723e+234 1.24664e-33 6.32727e+43 0.00274153 1.10377e+42 -3.79864e-121 4.41492e+242
+   -inf 2.40647e-78 5.07853e+212     inf 7.47790e-305 1.10241e+303 4.25306e-218 2.42546e+143
+2.66027e-251 2.96154e-179 4.27062e+251 3.25350e-58 0.000847739 1.85220e-70 9.54687e-196 4.59244e-129
+
+w_size values: -1353099470
+paa_size values: -563849296
+a_size values: -1918941281
+nr_strategy values: "NA" "NA" "vaw" "tyvnyozkprpmmwwwbqsm" "sxr" "yuvwbvdbmllvzynloxwu" "uqyevuvcziikfotxevod" "nvcbnz" "NA" "olkudoagnygbnrjbbnil" "rmliiqolkn" "ptrukg" "iltpuydecwmfxe" "NA" "NA" "NA" "cfgbinwlowvbdhmavrfb" "ihozmlwcgtykvmufnq" "lesglplolsylxcudbnxj" "udezecjhfardymjrxamb" "NA" "NA" "NA" "NA" "kprzsquis" "NA" "NA" "gqvqnqpzbbfqtuyqmogm" "fivhtxolyrlkkxnvdtis" "rghfzpuighihynftlgwz" "NA" "cfcsweneyqpxhchczuwi" "NA" "huwpzogyfnlmowx" "NA" "tquum" "zmjyrbwftkly" "pzulgvvacker" "yjlfzcrskcxqwyxubmkb" "kzkxokqgqwcmdszxezic" "mtdngwpsqmuggpk" "NA" "fnztqkqsvqztvloqhryy" "NA" "NA" "NA" "klmhewqnjpqidw" "bkrffxuwgxosoxiqkidf" "zkx" "tggmlfvpyqhwhibzdcdj" "NA" "mydsqtwarzlhpxfviisa" "NA" "NA" "mesdwlxmuh" "wmznqi" "eahpfklwolj" "uarkoclrmicfpgxtezpy" "ppxuvudsrymwhjwffjwo" "t" "hrbaveestfbojm" "xqkmutrekdfk" "NA" "temmkdqhitfnonlgzxkk" "qmeounsjgftuufapllhg"
+n_threshold values: 6.20167e-294
+input ends
+terminate called after throwing an instance of 'Rcpp::not_compatible'
+  what():  Expecting a single string value: [type=character; extent=65].
+ERROR: Failed: jmotif_deepstate_test_manyseries_to_wordbag_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/jmotif/inst/testfiles/manyseries_to_wordbag/manyseries_to_wordbag_output/a45525b6fe73c9fda7bc5c2fdcf9d7a7c0ce5744.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+data values: 1.14427e+25 3.00408e+142 7.94253e-109
+2.07465e-190 3.16529e-77 3.38809e-119
+1.54512e+193 1.32627e-207 5.78661e+63
+
+w_size values: 1343735465
+paa_size values: -111109936
+a_size values: -473996444
+nr_strategy values: "erktdtsjwrjlqzmzjecl" "NA" "clowecxswljnmwmxksmb" "NA" "NA" "NA" "xtlrpmyffzo" "gsjjqpghfgzuspcsxahj" "sdojkcucmatdqx" "mztzfufbbosoxlequyga" "qyrlwgaoazhgl" "jkjhqkqidglahboappvl" "qlmntmkjlkktjomxczkp" "NA" "NA" "oadwxg" "evqnurgafpraifebxjbm" "NA" "" "NA" "NA" "NA" "liwgdlsdpbuvamnsefsh" "NA" "uzmwwthnlzolhydlruv" "sjoeluqdhqnumzaepf" "NA" "avleeyjr" "NA" "NA" "uidkkobgqzrtbvaqclfx" "NA" "stmqsf" "wyghidccx" "fzgnvwasfegy" "qsnitwplhbwbcbilroho" "vukjpklaurkzhfawakzq" "hlblnkunlyh" "vniinhwksxbcobgezmsp" "c" "qqcpmrobugpsmwjpylia" "NA" "jmsyoixemxrexmsyiptq" "lesdhvtwkghjenxmqfpz" "NA" "NA" "pizznyyotqcyzdjlweb" "vnafrrrzwecuepstii" "grmjod" "rtdatrcajtrnmto" "wesmmctbnwtdidvttrbh" "tfjgt" "tilhloqptlwidhjvjkzn" "kpitxrhowuoacorbjytv" "bkhggjp" "fpaaobpkmgzssgmpgwde" "nvvxxrqbmkbrktzqgkfo" "NA"
+n_threshold values: -3.58938e+11
+input ends
+terminate called after throwing an instance of 'Rcpp::not_compatible'
+  what():  Expecting a single string value: [type=character; extent=58].
+ERROR: Failed: jmotif_deepstate_test_manyseries_to_wordbag_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/jmotif/inst/testfiles/manyseries_to_wordbag/manyseries_to_wordbag_output/568782e75ed3ff787322cc742a51a7a0d27556ca.fail`
+INFO: Done fuzzing! Ran 8 tests (4 tests/second) with 8 failed/0 passed/0 abandoned tests

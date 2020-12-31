@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Gian-Andrea Thanei, Nicolai Meinshausen and Rajen D. Shah" />
+
+
+<title>The xyz Algorithm for Fast Interaction Search in High-Dimensional Data</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">The ‘xyz’ Algorithm for Fast Interaction Search in High-Dimensional Data</h1>
+<h4 class="author"><em>Gian-Andrea Thanei, Nicolai Meinshausen and Rajen D. Shah</em></h4>
+
+
+
+<p>The <code>R</code>-Package xyz contains an algorithm to estimate product interactions between a response vector <span class="math inline">\(Y\)</span> and predictors <span class="math inline">\(X\)</span>. For example if all data were binary in <span class="math inline">\(\{-1,1\}\)</span> one would like to find the pair <span class="math inline">\((l,k)\)</span> maximizing: <span class="math display">\[
+\begin{equation}
+\mathbb{P}(Y=X_l X_k).
+\end{equation}
+\]</span> A brute force approach would cycle through all possible pairs, which implies a quadratic run-time if there are <span class="math inline">\(p\)</span> variables. The xyz-Algorithm provably solves this problem in sub-quadratic runt-ime. Its run-time depends on the interaction strength of the strongest pair. xyz can recover pairs in almost linerar run-time if the interaction is strong.</p>
+<div id="functions" class="section level2">
+<h2>Functions</h2>
+<p>The xyz package offers two functions for interaction search:</p>
+<ul>
+<li><code>xyz_search</code>: If you want to search for the single pair that maximizes the probability <span class="math display">\[
+\begin{equation}
+\mathbb{P}(Y=X_l X_k) \textrm{ or } |Y^T X_l X_k|
+\end{equation}
+\]</span> you use the function <code>xyz_search(X,Y,L,N,binary,negative)</code>. The inputs are defined as: <code>X</code>: n x p design matrix. Can be either continuous or binary. <code>Y</code>: n dimensional response vector. Continuous or binary. <code>L</code>: number of projection steps. Run-time scales linear in <code>L</code>. <code>N</code>: number of closest pairs that will be returned. <code>binary</code>: set to true if <code>X</code> is binary. <code>negative</code>: set to true if you also want to consider interactions with a negative sign.</li>
+<li><code>xyz_regression</code>: If you want to fit a regression model, of the form: <span class="math display">\[
+\begin{equation}
+Y_i=\beta_0 + \sum_{l=1}^p \beta_l X_{il} + \sum_{l=1}^p \sum_{k \geq l}^p \theta_{lk} X_{il} X_{ik}.
+\end{equation}
+\]</span> The elastic net estimator puts a penalty of the form <span class="math display">\[
+\begin{equation}
+\lambda (\alpha (\|\beta\|_1+\|\theta\|_1)+(1-\alpha)(\|\beta\|_2+\|\theta\|_2))
+\end{equation}
+\]</span> on the parameter vectors. To fit such a model you use the function <code>xyz_regression(X,Y,lambdas,n_lambda,alpha,L)</code>. The inputs are defined as: <code>X</code>: n x p design matrix. Can be either continuous or binary. <code>Y</code>: n dimensional continuous response vector. <code>lambdas</code>: user defined path (not recommended). <code>n_lambda</code>: Number of lambdas on path. Either <code>n_lambda</code> or <code>lambdas</code> have to be set. <code>alpha</code> elastic net parameter. <code>L</code>: number of projection steps. Run-time scales linear in <code>L</code>.</li>
+</ul>
+</div>
+<div id="examples" class="section level2">
+<h2>Examples</h2>
+<p><code>xyz_search</code>:</p>
+<pre><code>## Warning in normalizePath(path.expand(path), winslash, mustWork):
+## path[1]=&quot;C:/Users/rds37/AppData/Local/Temp/Rtmp6xMSEF/Rbuild39447baa666f/
+## xyz/vignettes/../inst/include&quot;: The system cannot find the path specified</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#set dimensions</span>
+n&lt;-<span class="dv">100</span>;p&lt;-<span class="dv">1000</span>;
+<span class="co">#create data</span>
+X&lt;-<span class="kw">matrix</span>(<span class="dv">2</span>*<span class="kw">rbinom</span>(n*p,<span class="dv">1</span>,<span class="fl">0.5</span>)-<span class="dv">1</span>,n,p)
+Y&lt;-X[,<span class="dv">1</span>]*X[,<span class="dv">2</span>]
+
+<span class="co">#find top 10 interactions</span>
+result&lt;-<span class="kw">xyz_search</span>(X,Y,<span class="dt">L=</span><span class="dv">5</span>,<span class="dt">N=</span><span class="dv">10</span>,<span class="dt">binary=</span><span class="ot">TRUE</span>,<span class="dt">negative=</span><span class="ot">TRUE</span>)
+<span class="co">#the first element contains the interaction pairs the second element contains their strength</span>
+<span class="kw">print</span>(result)</code></pre></div>
+<pre><code>## intereaction pair: (1,2) strength: 1
+## intereaction pair: (217,398) strength: 0.46
+## intereaction pair: (524,888) strength: 0.42
+## intereaction pair: (685,921) strength: 0.42
+## intereaction pair: (18,105) strength: 0.4
+## intereaction pair: (360,945) strength: 0.38
+## intereaction pair: (23,68) strength: 0.38
+## intereaction pair: (405,643) strength: 0.38
+## intereaction pair: (415,668) strength: 0.38
+## intereaction pair: (123,554) strength: 0.38</code></pre>
+<p>These were now just <code>L=10</code> runs. This means we discovered the interaction in about <span class="math inline">\(\mathcal{O}(np^{1.005})\)</span> operations instead of <span class="math inline">\(\mathcal{O}(np^2)\)</span>.</p>
+<p><code>xyz_regression</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#set dimensions</span>
+n&lt;-<span class="dv">100</span>;p&lt;-<span class="dv">1000</span>;
+<span class="co">#create data</span>
+X&lt;-<span class="kw">matrix</span>(<span class="kw">rnorm</span>(n*p),n,p)
+
+<span class="co">#build model</span>
+Y&lt;-<span class="dv">3</span>*X[,<span class="dv">5</span>]+<span class="dv">2</span>*X[,<span class="dv">1</span>]*X[,<span class="dv">2</span>]-<span class="dv">3</span>*X[,<span class="dv">7</span>]*X[,<span class="dv">4</span>]+<span class="kw">rnorm</span>(n)
+
+<span class="co">#find top 10 interactions</span>
+result&lt;-<span class="kw">xyz_regression</span>(X,Y,<span class="dt">L=</span><span class="dv">10</span>,<span class="dt">n_lambda=</span><span class="dv">10</span>,<span class="dt">alpha=</span><span class="fl">0.9</span>)
+<span class="co">#the first element contains the main effects and the third the interaction effects, we look at the fifth lambda</span>
+<span class="kw">print</span>(result)</code></pre></div>
+<pre><code>## Lambda sequence:
+## lambda1=0.57601
+##  lambda2=0.44598
+##  lambda3=0.34531
+##  lambda4=0.26736
+##  lambda5=0.20701
+##  lambda6=0.16028
+##  lambda7=0.1241
+##  lambda8=0.09608
+##  lambda9=0.07439
+##  lambda10=0.0576
+## Discovered main effects: 1 Discovered interaction effects: 42
+## Model parameters:
+## intercept: -4.566117e-18
+## Printing effects for lambda10=0.0576
+## Main effects:
+## Main effect: 5 coefficient: 0.3840953
+## Interaction effect:
+## Interaction effect: (4,7) coefficient: -0.4812117
+## Interaction effect: (1,2) coefficient: 0.3750244
+## Interaction effect: (208,479) coefficient: 0.06235549
+## Interaction effect: (170,203) coefficient: -0.04201977
+## Interaction effect: (891,931) coefficient: -0.03821096
+## Interaction effect: (104,271) coefficient: -0.03634871
+## Interaction effect: (393,592) coefficient: -0.03041407
+## Interaction effect: (38,610) coefficient: 0.02600682
+## Interaction effect: (23,847) coefficient: -0.02076678
+## Interaction effect: (570,630) coefficient: -0.02047379
+## Interaction effect: (423,481) coefficient: 0.01993759
+## Interaction effect: (26,450) coefficient: 0.01842155
+## Interaction effect: (583,825) coefficient: -0.01752191
+## Interaction effect: (7,981) coefficient: -0.01726098
+## Interaction effect: (104,453) coefficient: 0.01579584
+## Interaction effect: (464,798) coefficient: -0.01543339
+## Interaction effect: (449,911) coefficient: -0.01507906
+## Interaction effect: (305,484) coefficient: 0.01480733
+## Interaction effect: (338,809) coefficient: -0.01444916
+## Interaction effect: (584,681) coefficient: -0.01396515
+## Interaction effect: (214,615) coefficient: -0.01351377
+## Interaction effect: (329,677) coefficient: -0.01337054
+## Interaction effect: (562,565) coefficient: 0.01256765
+## Interaction effect: (247,392) coefficient: -0.0123604
+## Interaction effect: (23,186) coefficient: -0.01199699
+## Interaction effect: (20,58) coefficient: -0.01157434
+## Interaction effect: (332,712) coefficient: 0.01049054
+## Interaction effect: (553,659) coefficient: -0.009991351
+## Interaction effect: (596,708) coefficient: -0.009258795
+## Interaction effect: (11,237) coefficient: -0.009236588
+## Interaction effect: (354,876) coefficient: -0.008922487
+## Interaction effect: (467,499) coefficient: -0.008647326
+## Interaction effect: (708,812) coefficient: 0.006859055
+## Interaction effect: (236,946) coefficient: -0.005231367
+## Interaction effect: (531,709) coefficient: -0.004513708
+## Interaction effect: (479,822) coefficient: 0.003664453
+## Interaction effect: (106,691) coefficient: 0.003388497
+## Interaction effect: (77,830) coefficient: -0.002939483
+## Interaction effect: (661,694) coefficient: -0.002512046
+## Interaction effect: (584,675) coefficient: 0.002174015
+## Interaction effect: (114,941) coefficient: -0.00206018
+## Interaction effect: (106,831) coefficient: 0.001846254</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(result)
+<span class="co">#predict</span>
+<span class="kw">predict</span>(result,<span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">10</span>*p),<span class="dv">10</span>,p))</code></pre></div>
+<pre><code>##              [,1]
+##  [1,]  1.05718927
+##  [2,]  0.10747538
+##  [3,]  0.12871009
+##  [4,] -0.66864664
+##  [5,]  0.64332971
+##  [6,] -0.04412215
+##  [7,] -0.05661955
+##  [8,] -0.19031556
+##  [9,]  0.33553702
+## [10,]  1.20085180</code></pre>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

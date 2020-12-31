@@ -1,0 +1,38 @@
+useDynLib(augSIMEX)
+export(augSIMEX)
+export(summary.augSIMEX)
+export(plot.augSIMEX)
+export(glmscore)
+export(coef.augSIMEX)
+export(logLik.augSIMEX)
+export(vcov.augSIMEX)
+export(residuals.augSIMEX)
+export(predict.augSIMEX)
+importFrom(Rcpp, evalCpp)
+importFrom(Formula,as.Formula)
+importFrom("graphics", "legend", "lines", "plot", "points")
+importFrom("stats", "binomial", "coef", "contrasts", "cov", "formula",
+             "gaussian", "glm", "is.empty.model", "lm", "model.matrix",
+             "model.offset", "model.response", "model.weights",
+             "naprint", "offset", "pnorm", "predict", "printCoefmat",
+             "rnorm", "sd", "symnum", "var")
+importFrom("stats", ".getXlevels", "family", "model.frame", "na.pass",
+             "napredict", "naresid", "predict.lm", "na.omit", "complete.cases")
+import(nleqslv)
+import(MASS)
+S3method(summary, augSIMEX)
+S3method(plot, augSIMEX)
+S3method(coef, augSIMEX)
+S3method(logLik, augSIMEX)
+S3method(predict, augSIMEX)
+S3method(residuals, augSIMEX)
+S3method(vcov, augSIMEX)
+S3method(print, summary.augSIMEX)
+
+
+
+
+
+
+
+

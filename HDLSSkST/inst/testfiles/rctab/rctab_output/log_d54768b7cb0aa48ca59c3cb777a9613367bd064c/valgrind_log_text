@@ -1,0 +1,17 @@
+WARNING: No test specified, defaulting to first test defined (HDLSSkST_deepstate_test_rctab_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/HDLSSkST/inst/testfiles/rctab/rctab_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash`
+TRACE: Running: HDLSSkST_deepstate_test_rctab_test from /home/akhila/fuzzer_packages/fuzzedpackages/HDLSSkST/inst/testfiles/rctab/rctab_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+M values: 2.58036e-206    -inf     nan
+
+input ends
+==519507==  If you believe this happened as a result of a stack
+==519507==  overflow in your program's main thread (unlikely but
+==519507==  possible), you can try to increase the size of the
+==519507==  main thread stack using the --main-stacksize= flag.
+==519507==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: HDLSSkST_deepstate_test_rctab_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/HDLSSkST/inst/testfiles/rctab/rctab_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash crashed

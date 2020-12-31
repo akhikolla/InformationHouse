@@ -1,0 +1,16 @@
+Package: imp4p
+Type: Package
+Title: Imputation for Proteomics
+Version: 1.0
+Author: Quentin Giai Gianetto
+Maintainer: Quentin Giai Gianetto <quentin2g@yahoo.fr>
+Description: Functions to analyse missing value mechanisms and to impute data sets in the context of bottom-up MS-based proteomics.
+License: GPL-3
+Depends: R (>= 3.3.0), Iso, stats, truncnorm, norm, missForest, missMDA
+Encoding: UTF-8
+Imports: Rcpp (>= 0.12.8)
+LinkingTo: Rcpp
+NeedsCompilation: yes
+Packaged: 2020-07-28 14:29:54 UTC; qgiaigia
+Repository: CRAN
+Date/Publication: 2020-07-28 14:50:02 UTC

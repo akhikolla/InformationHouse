@@ -1,0 +1,37 @@
+Package: particles
+Type: Package
+Title: A Graph Based Particle Simulator Based on D3-Force
+Version: 0.2.2
+Date: 2019-01-14
+Authors@R: 
+    c(person(given = "Thomas Lin",
+             family = "Pedersen",
+             role = c("aut", "cre"),
+             email = "thomasp85@gmail.com"),
+      person(given = "Andrei",
+             family = "Kashcha",
+             role = "ctb"))
+Maintainer: Thomas Lin Pedersen <thomasp85@gmail.com>
+Description: Simulating particle movement in 2D space has many application. The
+    'particles' package implements a particle simulator based on the ideas 
+    behind the 'd3-force' 'JavaScript' library. 'particles' implements all 
+    forces defined in 'd3-force' as well as others such as vector fields, traps, 
+    and attractors.
+License: MIT + file LICENSE
+SystemRequirements: C++11
+Encoding: UTF-8
+LazyData: true
+Imports: tidygraph, rlang, igraph, stats, magrittr, Rcpp, mgcv, digest,
+        dplyr
+RoxygenNote: 6.1.1
+LinkingTo: Rcpp
+Suggests: knitr, rmarkdown, ggraph
+VignetteBuilder: knitr
+URL: https://github.com/thomasp85/particles
+BugReports: https://github.com/thomasp85/particles/issues
+NeedsCompilation: yes
+Packaged: 2019-01-14 08:57:41 UTC; thomas
+Author: Thomas Lin Pedersen [aut, cre],
+  Andrei Kashcha [ctb]
+Repository: CRAN
+Date/Publication: 2019-01-14 09:20:03 UTC

@@ -1,0 +1,23 @@
+WARNING: No test specified, defaulting to first test defined (segmenTier_deepstate_test_ccor_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/segmenTier/inst/testfiles/ccor/ccor_output/0950cc97d16676a06ca5f144eb827117a67631d0.fail`
+TRACE: Running: segmenTier_deepstate_test_ccor_test from /home/akhila/fuzzer_packages/fuzzedpackages/segmenTier/inst/testfiles/ccor/ccor_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+k values: -498905818
+j values: 569042049
+c values: 1273656994
+seq values: -4.39208e-147 2.45153e+303 -1.96437e+262 -2.50808e+199 1.20498e-80 -2.24616e-139 6.13766e-71 -6.83842e-207 -5.13992e-188 -3.84941e+177 7.62487e+266 -7.01398e+67 3.2809e-274 -2.92076e-207 1.9849e-257 8.28971e+166 9.66783e-50 1.21833e+303 2.46993e+76 -1.016e-235 -8.95918e-135 -6.0625e-109 2.12439e-244 2.70876e-266 4.30627e-136 -1.02423e+174 3.58716e-115 -4.07203e+259 7.96035e+55 -1.5203e+179 2.11423e-279 -3.33059e+212 -1.33409e+176 1.28592e-74 -1.90603e+273 -1.10316e-225 -1.89331e+185 3.35532e-161 -6.48053e-229 2.78354e-180 1.56605e-82 -9.35042e-273 -8.20919e-196 8.08085e-255 1.11189e+119 1.12491e+250 -3.45329e+258 3.96709e+161 1.27909e-52 4.78605e+109 -1.44507e+77 2.29014e-47 5.04401e+140 1.38234e+180 -2.46067e+197 2.10881e-35 -2.6548e+246 4.46513e+151 1.46517e+258 2.1447e+273 4.41473e-172 -3.18572e-239 -1.36638e+130 5.15707e-165 8.70571e+101 1.49439e-138 2.65977e-25 -1.70862e+300 -3.61832e+111 -6.85014e+251 -9.53485e+225 1.84033e+34 4.17796e+181 -3.84155e-213 5.27197e+211 1.26526e+268 1.937e+164 -8.62443e-06 -1.73524e-184 3.97771e+93 -3.28381e-71 2.54336e+296 2.55989e+114 5.03309e+14 2.80853e+296 9.22551e+111 -8.36617e-256 1.74222e-221 -4.54461e+70 1.68081e+152 -2.44249e+91 1.46632e+227 7.02531e-171 6.23775e+283 8.4924e-262 1.00334e-74
+M values: 438238564
+Missing value
+csim values: 4.43714e+300
+   -inf
+    inf
+    nan
+   -inf
+
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Index out of bounds: [index=-498905818; extent=96].
+ERROR: Failed: segmenTier_deepstate_test_ccor_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/segmenTier/inst/testfiles/ccor/ccor_output/0950cc97d16676a06ca5f144eb827117a67631d0.fail failed

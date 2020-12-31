@@ -1,0 +1,35 @@
+Package: bmotif
+Title: Motif Analyses of Bipartite Networks
+Version: 2.0.2
+Date: 2020-09-04
+Authors@R: c(
+    person("Benno", "Simmons", email = "benno.simmons@gmail.com", role = c("aut", "cre")),
+    person("Michelle", "Sweering", email = "michelle.sweering@gmail.com", role = c("aut")),
+    person("Maybritt", "Schillinger", email = "maybritt.schillinger@gmail.com", role = c("aut")),
+    person("Riccardo", "Di Clemente", email = "rdicle@mit.edu", role = c("aut")))
+Description: Counts occurrences of motifs in bipartite networks, as well as the number of
+    times each node or link appears in each unique position within motifs. Has support for both
+    binary and weighted motifs: can calculate the mean weight of motifs and the standard deviation 
+    of their mean weights. Intended for use in ecology, but its methods are general and can be
+    applied to any bipartite network. Full details are given in Simmons et al. (2019)
+    <doi:10.1111/2041-210X.13149>.
+Depends: R (>= 3.5.0)
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+Imports: tensor (>= 1.5), Rcpp (>= 0.12.18), reshape2 (>= 1.4.3),
+        gtools (>= 3.8.1), stats (>= 3.5.0)
+Suggests: testthat, knitr, rmarkdown
+LinkingTo: Rcpp
+VignetteBuilder: knitr
+Language: en-GB
+NeedsCompilation: yes
+Packaged: 2020-09-04 10:20:35 UTC; bennosimmons
+Author: Benno Simmons [aut, cre],
+  Michelle Sweering [aut],
+  Maybritt Schillinger [aut],
+  Riccardo Di Clemente [aut]
+Maintainer: Benno Simmons <benno.simmons@gmail.com>
+Repository: CRAN
+Date/Publication: 2020-09-11 09:40:06 UTC

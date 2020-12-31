@@ -1,0 +1,279 @@
+\documentclass[9pt,xcolor=x11names,compress]{beamer}
+
+\usetheme{Rochester}
+%\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{booktabs}
+\usepackage[round]{natbib}
+
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{intcensROC}
+\newcommand{\R}{\texttt{R}}
+\newcommand{\pkgname}{\texttt{intcensROC}}
+\newcommand{\Rcpp}{\texttt{Rcpp}}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{enumerate item}{\insertenumlabel}
+\setbeamertemplate{enumerate subitem}{\alph{enumii}.}
+
+\begin{document}
+<<setup1, include=FALSE, echo=FALSE>>=
+require(knitr)
+@
+
+<<setup2, include=FALSE,echo=FALSE>>=
+old_ops <- options(width=80)  # make the printing fit on the page
+set.seed(1121)     # make the results repeatable
+stdt<-date()
+@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% title page
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\title{\pkgname}
+	\subtitle{Fast Spline Based Sieve AUC Estimator for Interval Censored Data}
+	\author{Jiaxing Lin \and Yuan Wu \and Xiaofei Wang \and Kouros Owzar}
+	\date{2018-05-01}
+	\titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+    \tableofcontents[]
+\end{frame}
+
+\small
+\section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Introduction page 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Introduction}
+This document provides an comprehensive example for using the \pkgname{} 
+package to estimate the receiver operating characteristic (ROC) curve 
+and time-dependent area under the curve (AUC) for interval censored survival data, that is 
+not not applicable for existing methods. \\
+\vspace{3mm}
+The estimator applies a generalized gradient projection method on Spline based likelihood function to obtain the joint distribution function between survival time
+and biomarker and compute the ROC curve and time-dependent AUC with the estimated joint distribution function. 
+\vspace{3mm}
+Features of this package include:
+\begin{enumerate}
+    \item The algorithm is implemented in \texttt{C++}, and ported to 
+          \R{} by \Rcpp{}, to facilitate fast computation. 
+    \item The estimator uses a constrained minimization method and is designed 
+          for the interval survival data.
+\end{enumerate}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% intcensROC page 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{intcensROC}
+\begin{frame}[fragile]{Function Signature and Return of \texttt{intcensROC}}
+Function to compute ROC curve
+<<beta, eval=FALSE>>=
+res <- intcensROC(U, V, Marker, Delta, PredictTime, gridNumber = 500)
+@
+Function arguments:
+\begin{description}
+	\item[\texttt{U}:] An array contains left times of the censored intervals
+        for the sample.
+ 	\item[\texttt{V}:] An array contains right times of the censored intervals 
+        for the sample.
+ 	\item[\texttt{Marker}:] An array contains marker levels for the samples.
+	\item[\texttt{Delta}:] An array of indicator for the censoring type, use 
+        1, 2, 3 for left, interval and right censoring types, correspondingly.
+	\item[\texttt{PredictTime}:] A scalar for predict time for the ROC.
+	\item[\texttt{gridNumber}:] A integer for the number of grid of the ROC 
+        curve, the default value is 500.
+\end{description}
+\vspace{3mm}
+Function return:\\
+A \texttt{dataframe} contains two columns
+\begin{description}
+	\item[\texttt{tp}:] A array for true positive rate.
+	\item[\texttt{fp}:] A array for false positive rate.
+\end{description}
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% intcensAUC page 4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Function Signature and Return of \texttt{intcensAUC}}
+Function to compute AUC
+<<var, eval=FALSE>>=
+auc <- intcensAUC(ROCdata)
+@
+Function argument:
+\begin{description}
+	\item[\texttt{ROCdata}:] A dataframe from the function \texttt{intcensROC}.
+\end{description}
+Function return:\\
+\begin{description}
+	\item[\texttt{auc}:] A scalar for AUC.
+\end{description}
+\end{frame}
+
+
+\section{Example}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% example page 5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Simple Example}
+\begin{frame}[fragile]{A Simple Start Off Example}
+A start off example to use function \tt{intcensROC} and \tt{intcensAUC}
+<<startOffExample>>=
+library(intcensROC)
+## example interval censored data
+U <- runif(100, min = 0.1, max = 5)
+V <- runif(100, min = 0.1, max = 5) + U
+Marker <- runif(100, min = 5, max = 10)
+Delta  <- sample.int(3, size = 100, replace = TRUE)
+pTime  <- 4
+## compute the ROC curve
+res <- intcensROC(U, V, Marker, Delta, pTime, gridNumber = 500)
+head(res)
+##compute the AUC
+auc <- intcensAUC(res)
+print(auc)
+@
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% example page 6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{A Comprehensive Example}
+\begin{frame}[fragile]{Example-Background}
+Here, we present a comprehensive example as a tutorial on how to use \pkgname{}
+package. 
+\begin{itemize}
+\item {We assume the survival time \tt{T} follows an exponential distribution with 
+      hazard rate $\lambda = \frac{\log(2)}{24}$.}
+\item {The marker \tt{M} is assumed to follow a \tt{beta} distribution with 
+      parameter $\alpha = 2.35$ and $\beta = 1.87$.}
+\item {The joint distribution of $(T, M)$ is assumed to be generated by 
+      \texttt{Clayton Coupla} with parameter $\alpha > 1$
+      \begin{equation*}
+          F_{T,M}(t, m) = Pr(T < t, M < m) 
+          = \{ F_T(t)^{\alpha-1} + F_M(m)^{\alpha-1} - 1\}^{\frac{1}{\alpha -1}}
+      \end{equation*}
+      Here $F_T(.)$ and $F_M(.)$ denote the distribution functions of $T$ and 
+       $M$ respectively. The dependence between $T$ and $M$ is denote by Kendall
+      $\tau =\frac{\alpha-1}{\alpha+1}$
+      }
+\item {The random assessment interval $[U, V]$ are sampled from uniform
+      distribution, $V$'s are sampled within $[L_0, L_c]$, and $U$ is generated
+      from uniform distribution on $[0, V-L_0]$. Here $L_c$ is determined by 
+      the censoring rate $\rho = 0.3$ and $L_0 = 0.1$ is the minimum time
+      difference between $U$ and $V$.}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Data Simulation}
+
+<<inputPara, eval=TRUE, echo=FALSE>>=
+library(copula)
+f<-function(x,L0,rate,censor){
+  1/((x-L0)*rate)*exp(-L0*rate)-1/((x-L0)*rate)*exp(-x*rate)-censor}
+dataSim <- function(kendall_tau = 0.3, n = 100, rho = 0.3, lambda = log(2)/6)
+{
+  b_alpha     <- 2.35
+  b_beta      <- 1.87
+  scale       <- 10
+  kendall_tau <- iTau( claytonCopula(), kendall_tau)
+  Int_cop     <- claytonCopula(param = kendall_tau, dim = 2)
+  Int_mvdc    <- mvdc(Int_cop, c("exp","beta"),  paramMargins =
+                 list(list(rate = lambda), list(shape1=b_alpha,shape2=b_beta)))
+  Int_obs_data <- rMvdc(n, Int_mvdc)
+  colnames(Int_obs_data) <- c("event_time", "marker")
+  Int_obs_data[,"marker"] <- Int_obs_data[,"marker"]*scale
+  L0       <-0.1; size     <-n; U        <-rep(0,size)
+  L        <-uniroot(f, lower = 10^(-6), upper = 500, tol=0.000001, 
+             L0=L0, rate=lambda, censor=rho)
+  V        <-runif(size,L0,L$root)
+  for (i in 1:size)
+      U[i] <-runif(1,0,(V[i]-L0))
+  delta_1      <- Int_obs_data[ ,"event_time"] < U
+  delta_2      <- Int_obs_data[ ,"event_time"] >= U&
+                  Int_obs_data[ ,"event_time"] <= V
+  delta_3      <- Int_obs_data[ ,"event_time"] > V
+  data         <- data.frame(U = U, V = V, delta = delta_1+2*delta_2+3*delta_3, 
+                  marker=Int_obs_data[,"marker"])
+}
+@ 
+
+<<inputPara_1, eval=FALSE, echo=TRUE>>=
+library(copula)
+f<-function(x,L0,rate,censor){
+  1/((x-L0)*rate)*exp(-L0*rate)-1/((x-L0)*rate)*exp(-x*rate)-censor}
+dataSim <- function(kendall_tau = 0.3, n = 100, rho = 0.3, lambda = log(2)/6)
+{
+  b_alpha     <- 2.35
+  b_beta      <- 1.87
+  scale       <- 10
+  kendall_tau <- iTau( claytonCopula(), kendall_tau)
+  Int_cop     <- claytonCopula(param = kendall_tau, dim = 2)
+  Int_mvdc    <- mvdc(Int_cop, c("exp","beta"),  paramMargins =
+                 list(list(rate = lambda), 
+                 list(shape1=b_alpha,shape2=b_beta)))
+  Int_obs_data <- rMvdc(n, Int_mvdc)
+  colnames(Int_obs_data) <- c("event_time", "marker")
+@
+\end{frame}
+
+\begin{frame}[fragile]{Data Simulation-Continued}
+
+<<inputPara_2, eval=FALSE, echo=TRUE>>=
+  Int_obs_data[,"marker"] <- Int_obs_data[,"marker"]*scale
+  L0       <-0.1; size     <-n; U        <-rep(0,size)
+  L        <-uniroot(f, lower = 10^(-6), upper = 500, tol=0.000001, 
+             L0=L0, rate=lambda, censor=rho)
+  V        <-runif(size,L0,L$root)
+  for (i in 1:size)
+      U[i] <-runif(1,0,(V[i]-L0))
+  delta_1      <- Int_obs_data[ ,"event_time"] < U
+  delta_2      <- Int_obs_data[ ,"event_time"] >= U&
+                  Int_obs_data[ ,"event_time"] <= V
+  delta_3      <- Int_obs_data[ ,"event_time"] > V
+  data         <- data.frame(U = U, V = V, delta = 
+                  delta_1+2*delta_2+3*delta_3, 
+                  marker=Int_obs_data[,"marker"])
+}
+@ 
+\end{frame}
+
+\begin{frame}[fragile]{Compute ROC and AUC}
+\scriptsize
+\begin{figure} \begin{center}
+<<loadpkg,out.width='2.5in', fig.width=5, fig.height=4>>=
+mydata <- dataSim(kendall_tau = 0.7, n = 300, rho = 0.3, lambda = log(2)/24)
+roc    <- intcensROC(U=mydata[,"U"],V=mydata[,"V"], Marker=mydata[,"marker"],
+                  Delta=mydata[,"delta"], PredictTime=12)
+print(intcensAUC(roc))
+plot(roc$fp, roc$tp, type = "l", lwd = 1.2, col="blue", main = "Example ROC",
+     xlab = "False Positive Rate", ylab = "True Positive Rate" )
+@ 
+\end{center}\end{figure} 
+\end{frame}
+
+
+\section{Session Information}
+\begin{frame}[fragile]{Session Information}
+<<sessinfo, echo=FALSE, include=TRUE, results='asis'>>=
+toLatex(sessionInfo(), locale=FALSE)
+@ 
+<<times, echo=FALSE, include=TRUE>>=
+print(paste("Start Time",stdt))
+print(paste("End Time  ",date()))
+### reset options
+options(old_ops)
+@ 
+\end{frame}
+
+\end{document}

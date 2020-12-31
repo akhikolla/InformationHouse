@@ -1,0 +1,50 @@
+#' Concrete Compressive Strength Data Set
+#'
+#' Concrete strength is very important in civil engineering and is a highly nonlinear function of age and
+#' ingredients. This dataset contains 1030 instances and there are 8 features relevant to concrete strength.
+#' The description of the varaibles are given below. The description is from \url{https://archive.ics.uci.edu/ml/datasets/Concrete+Compressive+Strength}.
+
+#' Name -- Data Type -- Measurement -- Description
+#'
+#' Cement (component 1) -- quantitative -- kg in a m3 mixture -- Input Variable
+#'
+#' Blast Furnace Slag (component 2) -- quantitative -- kg in a m3 mixture -- Input Variable
+#'
+#' Fly Ash (component 3) -- quantitative -- kg in a m3 mixture -- Input Variable
+#'
+#' Water (component 4) -- quantitative -- kg in a m3 mixture -- Input Variable
+#'
+#' Superplasticizer (component 5) -- quantitative -- kg in a m3 mixture -- Input Variable
+#'
+#' Coarse Aggregate (component 6) -- quantitative -- kg in a m3 mixture -- Input Variable
+#'
+#' Fine Aggregate (component 7) -- quantitative -- kg in a m3 mixture -- Input Variable
+#'
+#' Age -- quantitative -- Day (1~365) -- Input Variable
+#'
+#' Concrete compressive strength -- quantitative -- MPa -- Output Variable
+
+#'
+#'
+#' @docType data
+#' @keywords datasets
+#' @format A data frame with 1030 rows and 8 covariate variables and 1 response variable
+#' @source \url{https://archive.ics.uci.edu/ml/datasets/Concrete+Compressive+Strength}
+#' @references -Cheng Yeh, "Modeling of strength of high performance concrete using artificial neural networks," Cement and Concrete Research, Vol. 28, No. 12, pp. 1797-1808 (1998).
+#' @name Concrete
+#' @examples
+#' data(Concrete)
+#' train = sample(1:1030)[1:500]
+#' x.train = as.matrix(Concrete[train,1:8])
+#' y.train = as.matrix(Concrete[train,9])
+#' x.test  = as.matrix(Concrete[-train,1:8])
+#' y.test  = as.matrix(Concrete[-train,9])
+#'
+#' dr = mave.compute(x.train,y.train, method='meanopg',max.dim=8)
+#' dr.dim = mave.dim(dr)
+#' y.pred = predict(dr.dim,x.test)
+#' #estimation error
+#' mean((y.pred-y.test)^2)
+#'
+
+NULL

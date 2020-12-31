@@ -1,0 +1,13 @@
+PKG_CPPFLAGS=-I/home/akhila/fuzzer_packages/fuzzedpackages/RcppCWB/src/cwb/cqp -I/home/akhila/fuzzer_packages/fuzzedpackages/RcppCWB/src/cwb/cl -I/home/akhila/fuzzer_packages/fuzzedpackages/RcppCWB/src/cwb/CQi
+PKG_LIBS=-L/home/akhila/fuzzer_packages/fuzzedpackages/RcppCWB/src/cwb/cl -L/home/akhila/fuzzer_packages/fuzzedpackages/RcppCWB/src/cwb/cqp -L/home/akhila/fuzzer_packages/fuzzedpackages/RcppCWB/src/cwb/utils  -lpcre -lcwb -lcqp -lcl -lglib-2.0   
+${SHLIB}: libcl.a libcqp.a libcwb.a
+libcl.a: depend
+	cd cwb; R_PACKAGE_SOURCE=/home/akhila/fuzzer_packages/fuzzedpackages/RcppCWB/src/cwb PKG_CONFIG_PATH= ${MAKE} cl
+libcqp.a: depend
+	cd cwb; R_PACKAGE_SOURCE=/home/akhila/fuzzer_packages/fuzzedpackages/RcppCWB/src/cwb PKG_CONFIG_PATH= ${MAKE} cqp
+libcwb.a: depend
+	cd cwb; R_PACKAGE_SOURCE=/home/akhila/fuzzer_packages/fuzzedpackages/RcppCWB/src/cwb PKG_CONFIG_PATH= ${MAKE} utils
+depend: clean
+	cd cwb; R_PACKAGE_SOURCE=/home/akhila/fuzzer_packages/fuzzedpackages/RcppCWB/src/cwb PKG_CONFIG_PATH= ${MAKE} depend
+clean:
+	cd cwb; R_PACKAGE_SOURCE=/home/akhila/fuzzer_packages/fuzzedpackages/RcppCWB/src/cwb PKG_CONFIG_PATH= ${MAKE} clean

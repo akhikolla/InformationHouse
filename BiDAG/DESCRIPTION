@@ -1,0 +1,38 @@
+Package: BiDAG
+Type: Package
+Title: Bayesian Inference for Directed Acyclic Graphs
+Version: 1.4.1
+Date: 2020-06-18
+Author: Polina Suter [aut, cre], Jack Kuipers [aut]
+Maintainer: Polina Suter <polina.minkina@bsse.ethz.ch>
+Description: Implementation of a collection of MCMC methods for Bayesian structure learning
+    of directed acyclic graphs (DAGs), both from continuous and discrete data. For efficient
+    inference on larger DAGs, the space of DAGs is pruned according to the data. To filter
+    the search space, the algorithm employs a hybrid approach, combining constraint-based 
+    learning with search and score. A reduced search space is initially defined on the basis
+    of a skeleton obtained by means of the PC-algorithm, and then iteratively improved with
+    search and score. Search and score is then performed following two approaches:
+    Order MCMC, or Partition MCMC.
+    The BGe score is implemented for continuous data and the BDe score is implemented
+    for binary data or categorical data. The algorithms may provide the maximum a posteriori 
+    (MAP) graph or a sample (a collection of DAGs) from the posterior distribution given the data.
+    All algorithms are also applicable for structure learning and sampling for dynamic Bayesian networks.
+    References:
+    J. Kuipers, P. Suter and G. Moffa (2018) <arXiv:1803.07859v2>,
+    N. Friedman and D. Koller (2003) <doi:10.1023/A:1020249912095>, 
+    D. Geiger and D. Heckerman (2002) <doi:10.1214/aos/1035844981>, 
+    J. Kuipers and G. Moffa (2017) <doi:10.1080/01621459.2015.1133426>, 
+    M. Kalisch et al.(2012) <doi:10.18637/jss.v047.i11>.
+Acknowledgments: We would like to thank Giusi Moffa for discussion and
+        comments on the package and its manual.
+License: GPL (>= 2)
+Imports: Rcpp (>= 0.12.7), methods, pcalg, graph, Rgraphviz
+Depends: R (>= 3.5.0), graphics
+LinkingTo: Rcpp
+RoxygenNote: 7.1.1
+Encoding: UTF-8
+LazyData: TRUE
+NeedsCompilation: yes
+Packaged: 2020-07-14 10:56:24 UTC; me664
+Repository: CRAN
+Date/Publication: 2020-07-14 11:40:02 UTC

@@ -1,0 +1,1074 @@
+---
+title: "Piecewise Linear Segmentation by Dynamic Programming"
+author: "Rainer Machne, Peter F. Stadler"
+date: "`r format(Sys.time(), '%d %m %Y')`"
+output:
+    bookdown::html_document2:
+        base_format: rmarkdown::html_vignette
+        toc: true
+        toc_depth: 2
+        fig_caption: true
+bibliography: dpseg.bib
+vignette: >
+  %\VignetteIndexEntry{Piecewise Linear Segmentation by Dynamic Programming}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, global.par=TRUE,
+                      fig.path = ".", fig.pos = 'h',
+                      fig.height = 2.7, fig.width = 4, fig.align = "center")
+knitr::opts_knit$set(global.par = TRUE)
+
+## redo benchmarking or use existing figure?
+REDOLONG <- FALSE
+times <- 100
+```
+
+```{r, include=FALSE}
+par(mai=c(.5,.5,.3,.5),mgp=c(1.2,.3,0),tcl=-.25, cex.main=.75)
+```
+
+$$
+\newcommand{\Ell}{\mathcal{L}}
+\newcommand{\jump}{\mathcal{J}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\lmax}{\ell_\text{max}}
+\newcommand{\lmin}{\ell_\text{min}}
+\newcommand{\def}{\stackrel{\mathrm{def}}{=}}
+$$
+
+The R package `dpseg` performs piecewise linear segmentation of
+2-dimensional data by a dynamic programming algorithm. It was developed
+for time series data, dissection of bacterial growth phases, and for
+genome-wide read-count data from next generation sequencing.
+
+`print`, `plot` and `predict` methods allow quick evaluation of the
+results.  Parameter scanning routines (`estimateP`, `scanP`) help to
+evaluate the best choice of parameters for a given problem.
+
+The package and its documentation are also intended to serve as a
+tutorial on the concepts of linear regression, dynamic programming and
+the segmentation problem. The `movie` function animates the progress
+of the algorithm through the data. Generic implementations of dynamic
+programming routines allow to test alternative segmentation criteria.
+
+
+# Theory {#theory}
+
+## Recursion
+
+The problem is to find break-points in 2-dimensional ordered data
+$\{(x_i,y_i), i=1,...,n\}$, eg., a time series.  This can be
+formulated as a dynamic programming recursion:
+
+$$
+\begin{equation}
+S_j = \max_{i\le j} (S_{i-\jump} + \text{score}(i,j)) - P\;, (\#eq:recur)
+\end{equation}
+$$
+
+where the scoring function $\text{score}(i,j)$ quantifies how well a
+segment between points $i$ and $j$ is defined.
+
+The break-point penalty term $P$ sets bounds on segment lengths and
+should be chosen close to the optimal value of the scoring function
+(section \@ref(selectp)).  Higher $P$ will yield longer segments, and
+especially for non-monotonic data $P$ lower than the optimal value for
+the scoring function can work better.
+
+<!--If the scoring
+function would take values between 0 and 1, the jump penalty parameter
+$P$ would serve as a lower bound on the length of a segment, $(j-i)>P$.-->
+<!--It will accumulate in $S_j$, subtracted for each $k>i$, leading to a
+maximum further back at $i$.-->
+<!--
+Initialization of $S_0$ to a relatively large value avoids
+spurious segments of length 1 at $j=1$ by enforcing a break-point
+before $i=1$. $S_1$ is initialized to $S_1=-P$.
+-->
+
+The binary jump parameter $\jump \in \{0,1\}$ determines whether the
+break-point $i$ is both, the end of the previous and start of the
+current segment ($\jump=0$), or the previous segments ends at $i-1$
+($\jump=1$). The latter choice allows discontinuous jumps between
+adjacent segments.
+
+## Scoring Functions
+
+Segmentation into linear segments can be achieved by using a
+goodness-of-fit measure. Linear models are often evaluated by the
+r-squared value $R^2$, and we can use this directly as a scoring
+function (`type="r2"` in `dpseg`):
+
+$$
+\begin{equation}
+\text{score}(i,j)= \frac{\sum (\hat y_i - \bar y)^2}{\sum (y_i - \bar y)^2}-1\;,
+(\#eq:scorer2)
+\end{equation}
+$$
+
+where $\hat y_i$ is the linear model and $\bar y$ the mean of the
+original data, see section \@ref(appii) and equation \@ref(eq:r2) for
+details. <!--; in R: `summary(lm(y~x))$r.squared -1`.-->
+
+Subtraction of 1 simply aligns different scoring functions in `dpseg`
+at $\text{score} \le 0$ and thereby allows the use of a consistent
+default penalty parameter of $P=0$.
+
+$R^2$ depends on the slope (eq. \@ref(eq:r2)) and will score poorly
+for segments without slope (Fig. \@ref(fig:custom)).  The negative
+variance of the residuals $r_i$ between data and the regression line
+does not depend on the slope (eq. \@ref(eq:var)) and is for many cases
+a better choice
+
+$$
+\begin{equation}
+\text{score}(i,j)= - \frac{1}{n-1} \sum r_i^2\;,
+(\#eq:score)
+\end{equation}
+$$
+
+and this is the default  `type="var"` in `dpseg`.
+
+<!--in R: `-var(residuals(lm(y~x)))`.-->
+
+Notably, incremental calculation of the variances (section \@ref(appii)) allows
+for a computationally efficient implementation of the recursion
+(Fig. \@ref(fig:benchmark)).
+
+<!--Custom scoring functions can be passed as an argument to `dpseg` to
+test alternative optimization criteria (section \@ref(generic)).-->
+
+
+## Backtracing 
+
+During calculation of $S_j$ the position $i_\text{max}<j$ that yielded
+the maximal score is stored as a vector.  The segmentation can be
+easily retrieved by starting at the last position $j=n$, the end of
+the last segment, looking up its $i_\text{max}$, the start of the
+segment, and proceed from $j=i_\text{max} - \jump$ (the end of the
+next segment).  If jumps were allowed ($\jump=1$) the previous segment
+ended one position ahead of the next segment at $i-1$, and this must be
+accounted for in backtracing.
+
+
+```{r, eval=FALSE}
+simple_backtrace <- function (imax, jumps = 0) {
+    end <- length(imax) # end of the first segment = end of the data
+    ends <- c(end)      # initiate vector
+    while (end > 1) {
+        end <- imax[end] - jumps # end of previous segment
+        ends <- c(end, ends)     # note the order, new end is prepended
+    }
+    ends
+}
+```
+
+
+## Segment Length Restrictions
+
+Depending on the scoring function, short segments may not be
+meaningful, eg.  goodness-of-fit measures for linear regression such
+as the variance of residuals are 0 for segments of length $\ell=2$ and
+an "optimal" segmentation would split the data in pairs with perfect
+"fits". Thus, we can restrict score function maximization for only
+$i\le(j-\lmin+1)$.
+
+When handling data sets much larger then the expected segment length,
+one can also define a maximal segment length, and thereby save memory
+and computation time by only considering $i\ge(j-\lmax +1)$.
+
+Combining both restrictions, and with $\Ell_x=\ell_x+1$ the recursion
+becomes:
+
+$$
+\begin{equation}
+S_j = \max_{\substack{i\le j-\Ell_{\min}\\i\ge j-\Ell_{\max}}} (S_{i-\jump} + \text{score}(i,j)) - P\;.
+(\#eq:recurl)
+\end{equation}
+$$
+
+
+<!--
+## Planned Extensions (TODOs)
+
+The following functionalities are not yet implemented. **Feel free
+to contact the authors if you want to contribute.**
+
+### Normalize Scoring Functions
+
+normalize scoring function between 0 and 1;
+for -var(res) this would mean setting a maximal variance
+
+\begin{equation}
+\text{score}(i,j) = 1 - var(res)/var_\text{max}
+\end{equation}
+
+$min(var(res))$ ?
+
+### Handling Special Segments
+
+
+Short constant segments with all residuals $r_i=0$ can arise eg. in
+next generation sequencing data for regions without any matching reads
+(ie. $y_i=0$). The penalty $P$ would still accumulate and cause
+undesired effects.  Such segments can be treated specially by a novel
+parameter $Z>0$, which allows for segments of 0 variance:
+
+\begin{equation}
+\text{score}(i,j)= 
+    \begin{cases}
+      - s_r^2, & \text{if } s_r^2>0\\
+       Z,      & \text{otherwise}
+    \end{cases}
+\end{equation}
+
+
+### Consensus Backtracing
+
+Generate different scoring matrices, eg. by the `segmenTier` package
+[@Machne2017], store $S_j$ and $i_\text{max}$, align scorings to a
+similar distribution $S_j'$ and use in `segmenTier`'s backtracing
+function.
+
+-->
+
+# Usage
+
+## Basic
+
+The main function `dpseg` returns an object of class `dpseg` and
+results can be inspected by `print`, `plot` and `predict` methods.
+
+The result object is a simple list (`S3` object) with the list item
+`segments` as the main result: a table (data frame) that lists the
+start and end x-values of the segments, the start and end indices in
+the data vectors, the linear regression coefficients and
+goodness-of-fit measures for the segments (intercept, slope,
+r-squared, variance of residuals).
+
+
+```{r dpsegdemo, fig.cap="Segmentation of a growth curve (*E. coli* in M9 minimal medium) by `dpseg`. Vertical lines indicate segment starts (dashed red) and ends (solid black). The `predict` method returns the piecewise linear model (dashed yellow).\\label{fig:dpseg}"}
+library(dpseg)
+
+type <- "var"  # use the (default) scoring, -var(residuals(lm(y~x)))
+jumps <- FALSE # allow discrete jumps between segments?
+P <- 1e-4      # break-point penalty, use higher P for longer segments
+
+# get example data `oddata` - bacterial growth measured as optical density OD
+x <- oddata$Time
+y <- log(oddata[,"A2"]) # note: exponential growth -> log(y) is linear
+
+# NOTE: the scoring function results are stored as a matrix for re-use below
+segs <- dpseg(x=x, y=y, jumps=jumps, P=P, type=type, store.matrix=TRUE)
+print(segs)
+plot(segs)
+lines(predict(segs),lty=2, lwd=3, col="yellow")
+```
+
+### Exploratory & Educational Movies
+
+For both, educational purposes or detailed evaluation of novel scoring
+functions (section \@ref(generic)) or parameters,
+the `movie` function allows to visualize the performance of the
+dynamic programming as it progresses through the data:
+
+```{r, eval=FALSE}
+# use options frames, and res to control file size
+movie(segs, format="gif", file.name="movie", path="pkg/vignettes/figures",
+      frames=seq(1,length(x),3), delay=.3,res=50)
+```
+
+This will plot each step of the algorithm and visualize the development
+of the scoring function. For this function to work, the option
+`store.matrix=TRUE` must be set in the call to `dpseg`.
+
+```{r movie, echo=FALSE, fig.cap="Animation of the progress of the algorithm through the data (gray circles and right y-axis). The black vertical line is the current position $j$, and the black circles are the values of the scoring function $\\text{score}(i,j)$ for all $i<j$. The blue line was the $i_\\text{max}$ where the maximal value of the recursion $S_j$ was found. The thin red line indicates $j-\\lmin$. Colors indicate the final segmentation after backtracing. \\label{fig:movie}"}
+
+# NOTE: results pre-calculated with above command
+knitr::include_graphics(c("figures/movie.gif"))
+```
+
+
+
+## Selection of the Penalty Parameter $P$ {#selectp}
+
+The minimal and maximal segment length parameters `minl` and `maxl`
+are the easiest way to restrict the algorithm (and memory usage) to
+certain segment lengths. However, this overrules potentially better
+segmentations with lower variance.
+
+A more meaningful way to restrict segment lengths for given data is to
+explicitly allow higher variance of segments.  This can be achieved
+with the break-point penalty parameter $P$. This parameter can be
+directly used to tune segmentation. It can be chosen in the order of
+magnitude of the tolerated variances. A higher $P$ will allow higher
+variance of the individual segments and yield longer segments.
+
+
+To choose an optimal $P$ for a given application, the package offers
+two functions: `estimateP` and `scanP`.  `estimateP` makes use of the
+excellent performance of base R's `smooth.spline` implementation and
+reports the variance of the residuals; option `plot=TRUE` allows to
+evaluate results:
+
+```{r, include=FALSE}
+par(mai=c(.5,.5,.3,.5),mgp=c(1.2,.3,0),tcl=-.25, cex.main=.75)
+```
+
+```{r}
+p <- estimateP(x=x, y=y, plot=TRUE)
+plot(dpseg(x=x, y=y, jumps=jumps, P=round(p,3)))
+```
+
+The reported value is a good starting point. For our example data,
+values an order of magnitude lower than this estimate,
+$P$`=estimateP(x=x,y=y)/10` achieved a satisfying segmentation, but
+this will strongly depend on the type of data and noise around
+expected segments.
+
+Alternative estimators can be easily defined, eg. `estimateP`
+simply calls `smooth.spline`:
+
+```{r estimatesource}
+simple_estimateP <- function (x, y, ...) {
+    var(smooth.spline(x, y, ...)$y - y)
+}
+```
+
+The convenience function `scanP` calculates segmentations for a vector
+of $P$ values and returns (plots) the resulting numbers of segments and the
+median of segment variances of residuals. Based on these values one
+can select a value of $P$ that splits the data into a reasonable
+number of segments with acceptable variance of residuals:
+
+```{r, include=FALSE}
+par(mai=c(.5,.5,.3,.5),mgp=c(1.2,.3,0),tcl=-.25, cex.main=.75)
+```
+
+```{r scanp, eval=TRUE, fig.cap="A higher $P$ will yield fewer and longer segments. $P$ should be chosen close to the optimal value of the scoring function. \\label{fig:pscan}"}
+
+## NOTE: dpseg is slower for many segments!
+sp <- scanP(x=x, y=y, P=seq(-.01,.1,length.out=50), plot=TRUE)
+```
+
+
+## Pre-Calculated Scoring Matrix
+
+When the scoring function can be pre-calculated, a simple look-up in
+the triangular matrix (banded by $\lmin$ and $\lmax$) suffices for the
+recursion.  This option is available in `dpseg` by passing a scoring
+matrix $\mathbf{S}_{ij}$ as argument `y` (instead of a numeric
+vector).
+
+For example, we can use the scoring matrix generated above (stored due
+to option `store.matrix=TRUE`) and test different parameters $P$,
+$\jump$, $\lmin'>\lmin$ and $\lmax'<\lmax$ more efficiently (section
+\@ref(benchmarking)). This approach is also used in the `scanP`
+function (section \@ref(selectp)).
+
+```{r precalcmatrix}
+## use the scoring matrix from previous run for generic recursion,
+## with store.matrix=TRUE, and test different parameters.
+segm <- dpseg(y=segs$SCR, jumps=jumps, P=2*P, minl=5, maxl=50) 
+print(segm)
+```
+
+Note, that in this case the algorithm does not use or know of the
+original $x,y$ data and the result therefore contains only the segment
+break-point indices in the original data vectors. The `predict` and
+`plot` functions will not work. We can use the convenience function
+`addLm` to add the original $x,y$ data and linear regression
+coefficients (via `lm`) for the calculated segments:
+
+```{r, include=FALSE}
+par(mai=c(.5,.5,.3,.5),mgp=c(1.2,.3,0),tcl=-.25, cex.main=.75)
+```
+
+```{r addlm, fig.cap="Compared to the first run above both, the larger $\\lmin=5$ and $P=0.0002$, contributed to get fewer segments, while the lower $\\lmax=50$ split the last segment in two."}
+
+## add lm-based regression coefficients
+segm <- addLm(segm, x=x, y=y)
+plot(segm)
+```
+
+## Alternative Scoring Functions {#alternative}
+
+The performance of different scoring functions and penalty parameters
+depends on the type of data. Using the non-monotonic, sine-based
+[example data from the `RcppDynProg` R
+package](https://win-vector.com/2018/12/31/introducing-rcppdynprog/)
+[@Mount2019], we can first use `scanP` to test different penalties for
+different scoring functions. Here, `dpseg` yields the intended
+segmentation with the default scoring function (`type="var"`) and a
+negative penalty, while the Pearson correlation (`type="cor"`) worked
+well with default penalty $P=0$:
+
+
+```{r rcppdynprogdata, warning=FALSE, message=FALSE, fig.cap="Segmentation of the test data from the RcppDynProg package with the default scoring function, negative variance of residuals (left), and with Pearson correlation (right).", fig.height = 5.4, fig.width = 8}
+
+## example from https://winvector.github.io/RcppDynProg/articles/SegmentationL.html
+set.seed(2018)
+d <- data.frame(x = 0.05*(1:(300))) # ordered in x
+d$y_real <- sin((0.3*d$x)^2) 
+d$y <- d$y_real + 0.25*rnorm(length(d$y_real))
+
+par(mfrow=c(2,2))
+scanP(x=d$x, y=d$y, P=seq(-0.005,0,length.out=50), verb=0) # note: no messages by verb=0
+scanP(x=d$x, y=d$y, P=seq(-0.05,0,length.out=50), type="cor", verb=0)
+plot(dpseg(x=d$x, y=d$y, P=-.0025, verb=0)) 
+plot(dpseg(x=d$x, y=d$y, type="cor", verb=0))
+```
+
+
+
+## Custom Scoring Functions {#generic}
+
+Alternative scoring functions can be tested easily by either providing
+a scoring matrix $\mathbf{S}_{ij}$ as described above, or by providing
+the `score(i,j)` function directly. The latter can be achieved by
+defining a score function with the signature as in the following
+example, testing to use the coefficient of determination $R^2$
+(r-squared) for segmentation:
+
+Since our scoring function doesn't provide linear regression
+parameters, we can use the option `add.lm=TRUE`
+to add intercept and slope data via base R's `lm`, required for the
+`predict` and `plot` methods.
+
+```{r, include=FALSE}
+par(mfcol=c(1,1), mai=c(.5,.5,.3,.5),mgp=c(1.2,.3,0),tcl=-.25, cex.main=.75)
+```
+
+```{r customscoring, eval=FALSE}
+score_rsq <- function(i, j, x, y,...) summary(lm(y[i:j]~x[i:j]))$r.squared
+segn <- dpseg(x=x, y=y, jumps=jumps, P=.99, scoref=score_rsq, add.lm=TRUE)
+plot(segn) 
+```
+
+```{r custom, echo=FALSE, fig.cap="Note, that as above a meaningful penalty term $P$ should be close to the optimal value of the scoring function, here $R^2=1$."}
+
+# NOTE: since running custom scoring functions takes long,
+# the results were pre-calculated for the vignette
+knitr::include_graphics(c("figures/customscoring-1.png"))
+```
+
+
+
+# Benchmarking
+
+The implementation of equation \@ref(eq:recurl) is straightforward.
+Section \@ref(appi) shows a fully functional implementation in
+about 30 lines of code in R. However, this is highly inefficient. The
+theoretical complexity is quadratic, ie. $\mathcal{O}(n^2)$, and even
+with segment length restrictions a linear regression with base R's
+`lm` function is performed $(n-1)*(\lmax-\lmin+1)$ times.
+
+A more efficient implementation calculates the linear regression
+parameters incrementally (eq. \@ref(eq:score) and section \@ref(appii))
+while looping through the data.  Benchmarking of different
+implementations, using a growth curve of a culture of *Escherichia
+coli* cells, showed that this incremental implementation was about 2
+orders of magnitude faster then the generic implementation, and
+another 2 orders of magnitude faster when implemented in `C++` via the
+`Rcpp` package (Fig. \@ref(fig:benchmark)). The latter approach is
+thus the default recursion used in `dpseg`.
+
+Without incremental regression, using a pre-calculated scoring matrix
+as input to `dpseg`, the recursion was ca. 25% faster. This allows to
+scan over parameters $P$, $\jump$, $\lmin$ and $\lmax$ more
+efficiently.
+
+The function `piecewise_linear` of the related package `RcppDynProg`
+[@Mount2019] (version 0.1.3, without weights) was only slightly faster
+than incremental calculation in base R and ca. 100x slower than the
+default implementation of `dpseg`.
+
+```{r rcppdynprog, echo=FALSE, eval=FALSE}
+yp <- RcppDynProg::piecewise_linear(x=x,y=y)
+plot(x,y)
+lines(x,yp, col=2, lwd=2)
+```
+
+```{r benchmark, echo=FALSE, warning=FALSE, message=FALSE, fig.cap="Benchmarking of R & Rcpp implementations."}
+
+if (!REDOLONG) {
+    knitr::include_graphics("figures/benchmark-1_100.png")
+}else{
+    ## time recursion_generic, recursion_linreg and recursion_linreg_c
+    library(microbenchmark)
+    library(ggplot2)
+
+    ## USE check_results to compare different implementations
+    ## currently deactivated, since RcppDynProg is also tested
+    check_results <- function(values) {
+        error <- FALSE
+        for ( i in 2:length(values) )
+            error <- error|any(values[[1]]!=values[[i]])
+        !error
+    }
+    
+    
+    ## for pre-calculated matrix
+    Sj<- dpseg(x=x, y=y,  jumps=jumps, P=P, store.matrix=TRUE, verb=0)
+    SCR <- Sj$SCR
+    
+    ## NOTE `times` defined in knitr pre-amble to speed up compilation
+    ## generic_r takes very long, only for final figure
+    mbm <- microbenchmark::microbenchmark(times=times,
+                          "generic_r" = {
+                              Sjg<- dpseg(x=x, y=y, jumps=jumps, P=P, verb=0, 
+                                          recursion=dpseg:::recursion_generic,
+                                          store.values=FALSE)
+                              Sjg$traceback},
+                          "incremental_r" = {
+                              Sji<- dpseg(x=x, y=y, jumps=jumps, P=P, verb=0,
+                                          recursion=dpseg:::recursion_linreg) 
+                              Sji$traceback},
+                          "precalculated_r" = {                          
+                              Sjp <- dpseg(y=SCR, jumps=jumps, P=P, verb=0,
+                                           recursion=dpseg:::recursion_generic)
+                              Sjp$traceback},
+                          "incremental_rcpp" = {
+                              Sjc<- dpseg(x=x, y=y, jumps=jumps, P=P, verb=0,
+                                          recursion=dpseg:::recursion_linreg_c) 
+                              Sjc$traceback},
+                          "precalculated_rcpp" = {                          
+                              Sjp <- dpseg(y=SCR, jumps=jumps, P=P, verb=0)
+                              Sjp$traceback},
+			  "RcppDynProg" = {
+			      Sjp <- RcppDynProg::piecewise_linear(x=x,y=y)
+			      Sjp
+			      },    
+                          check = NULL) #check_results)
+    
+    #mbm
+    ggplot2::autoplot(mbm)
+    ##boxplot(mbm$time ~ mbm$expr, horizontal=TRUE, axes=FALSE)
+    ##axis(2, las=2)
+}
+```
+
+# Related Packages and Algorithms
+
+
+Segmentation by dynamic programming:
+
+* Segmentation by dynamic programming [@Lemire2007] and more detailed arXive
+  version in [@Lemire2006],
+* The `RcppDynProg` R package [@Mount2019] follows a very similar approach to
+  `dpseg`, see https://cran.r-project.org/package=RcppDynProg and
+  https://win-vector.com/2018/12/31/introducing-rcppdynprog/ ,
+* Similarity-based segmentation of multi-dimensional signal by dynamic
+  programming [@Machne2017] is implemented with time-series clustering-based
+  similarities in the R package https://cran.r-project.org/package=segmenTier.
+
+Piecewise linear segmentation by alternative approaches:
+
+* Piecewise linear segmentation , where initial values for a fixed
+  number of break-points must be specified [@Muggeo2003]; implemented in
+  R package `segmented` uses a Boolean restarting method [@Muggeo2008],
+* Bayesian piecewise growth mixture models with pre-defined number of
+  segments in R package `BayesPGGM` [@Lock2018].
+
+
+
+# Dynamic Programming in base R {#appi}
+
+The implementation of the recursion \@ref(eq:recurl),
+the scoring function  \@ref(eq:score) and the `backtrace` is
+straightforward:
+
+```{r, eval=TRUE, echo=TRUE}
+## RECURSION
+recursion <- function(x, y,  maxl, jumps=0, P=0, minl=3, S0=1) {
+  N = length(x)
+  S = numeric(N) # init to 0
+  imax = numeric(N)
+  S[1] = -P
+  for ( j in 2:N) {
+    si = rep(-Inf, maxl-minl+1)
+    irng = (j-maxl):(j-minl) +1
+    irng = irng[irng>0]
+    for ( i in irng ) { 
+      idx = i-(j-maxl) 
+      sij = ifelse(i==1&jumps==1, S0, S[i-jumps])
+      si[idx] = sij + score(x, y, i, j) - P
+    }
+    S[j] = max(si)
+    idx = which.max(si)
+    imax[j] = idx + (j-maxl)
+  }
+  imax
+}
+
+## SCORING FUNCTION
+score <- function(x, y, k, l) -var(residuals(lm(y[k:l]~x[k:l])))
+
+## backtracing
+backtrace <- function(imax, jumps=0) {
+  end = length(imax) # end of last segment
+  ends = end
+  while( end>1 ) {
+    end = imax[end] - jumps
+    ends = c(end, ends) 
+  }
+  ends[1] <- ends[1] + jumps # note: start of first segment
+  ends
+}
+```
+
+We construct a simple test case, with three linear segments without
+jumps, and added noise:
+
+
+```{r, include=FALSE}
+par(mai=c(.5,.5,.3,.5),mgp=c(1.2,.3,0),tcl=-.25, cex.main=.75)
+```
+
+```{r, eval=TRUE, echo=TRUE, fig.cap="Correction segmentation (horizontal lines) for a primitive test case."}
+# simple test case 
+k1=1
+k2=.05
+k3=-.5
+y1 <- k1*1:5
+y2 <- k2*1:5 + k1*5
+y3 <- k3*1:5 + k2*5 + k1*5
+set.seed(1)
+ym <- c(y1, y2, y3)
+nsd <- .25 # noise, standard deviation
+y <- ym + rnorm(length(ym), 0, nsd) # add noise
+x <- 1:length(y)
+
+## run recursion
+JUMPS = 0
+imax = recursion(x, y, maxl=length(x), jumps=JUMPS, P=0, minl=3, S0=1)
+
+## backtrace
+ends = backtrace(imax, jumps=JUMPS)
+print(ends)
+
+## plot
+plot(x,y)
+lines(x,ym)
+legend("bottom", title="slopes:", legend=paste(k1,k2,k3,sep=", "), bty="n")
+abline(v=ends)
+```
+
+```{r, echo=FALSE, eval=TRUE}
+## for development only: silently reload data to test code
+jumps <- FALSE # allow discrete jumps between segments?
+P <- 1e-4      # break-point penalty, use higher P for longer segments
+
+# get example data `oddata` - bacterial growth measured as optical density OD
+x <- oddata$Time
+y <- log(oddata[,"A2"]) # note: exponential growth -> log(y) is linear
+```
+
+
+# Incremental Linear Regression  {#appii}
+
+Summarized values such as the `mean` can not be calculated
+incrementally, ie. while looping through the data $i=1,...,n$.  We are
+looking for a method to calculate linear regression parameters
+incrementally for an efficient implementation of the dynamic
+programming recursions (eq. \@ref(eq:recur) and \@ref(eq:recurl)).
+
+
+## Least-Squares Method
+
+Consider $n$ measured data pairs $\{(x_i,y_i), i=1,...,n\}$, with the
+dependent variable $y_i$ (eg. a measured value) and independent
+variable $x_i$ (eg. the time of measurement), for which we suspect a
+linear relation with intercept $\beta_0$ and slope $\beta_1$, and with
+added random measurement errors, in regression analysis denoted the
+residuals $r_i$:
+
+\begin{align}
+y_i &= \beta_0 + \beta_1 x_i + r_i
+\end{align}
+
+The goal is to find a straight line, denoted the regression line, that
+best describes this linear relation:
+
+\begin{align}
+\hat{y}_i &= b_0 + b_1  x_i\;.
+\end{align}
+
+The gold standard approach to find the regression line is to minimize
+the sum of squares of the residuals: $\min\limits_{\beta_0,\beta_1}
+\sum r_i^2$.  We treat the data as constants and look for parameters
+$b_0$ and $b_1$, estimators of the real parameters $\beta_0$ and
+$\beta_1$, that minimize the deviation of the data from this line.
+
+$$
+\begin{equation}
+f(\beta_0, \beta_1) = \sum_{i=1}^n r_i^2 = \sum_{i=1}^n (y_i-\beta_0-\beta_1 x_i)^2 (\#eq:beta)
+\end{equation}
+$$
+
+Note that for clarity we shorten the sum symbol from now on as: $\sum
+= \sum_{i=1}^n$.  It is important not to mix such estimators with the
+real parameters, since we do not know how accurate our estimation will
+be. The real parameters $\beta_0$ and $\beta_1$ reflect the actual
+physical process that underlies the data we measured.
+
+To minimize the residuals, we get the partial
+derivatives and set them to 0.
+
+<!-- TODO: explain how b0 gets in there suddenly via minimum of deriv -->
+
+$$
+\begin{align}
+\frac{\partial f}{\partial \beta_0} \vert_{b_0} &= \sum 2\cdot (y_i-b_0-\beta_1 x_i)\cdot 1 &=0\\
+&= 2 \sum y_i - 2 n  b_0 - 2 \beta_1 \sum x_i &=0\\
+b_0 &= \frac{1}{n}\sum y_i - \beta_1 \frac{1}{n} \sum x_i\\\hline
+\frac{\partial f}{\partial \beta_1} \vert_{b_1} &= \sum 2\cdot (y_i-\beta_0-b_1 x_i)\cdot x_i &=0\\
+&= \sum x_i y_i - \beta_0 \sum x_i - b_1 \sum x_i^2 &=0
+\end{align}
+$$
+
+Combining both minimization criteria, with $b_0=\beta_0$ and $b_1=\beta_1$:
+
+$$
+\begin{align}
+\sum x_i y_i - \left(\frac{1}{n}\sum y_i - b_1 \frac{1}{n} \sum x_i\right) \sum x_i - b_1 \sum x_i^2 =0\\
+\sum x_i y_i - \frac{1}{n}\sum y_i \sum x_i + b_1 \frac{1}{n} \left(\sum x_i\right)^2 - b_1 \sum x_i^2 =0\\
+\sum x_i y_i - \frac{1}{n}\sum y_i \sum x_i =  b_1 \left(\sum x_i^2 - \frac{1}{n} \left(\sum x_i\right)^2\right)\\
+b_1 = \frac{\sum x_i y_i - \frac{1}{n}\sum y_i \sum x_i}{\sum x_i^2 - \frac{1}{n} \left(\sum x_i\right)^2}
+\end{align}
+$$
+
+Introducing the arithmetic mean, $\bar{x} = \frac{1}{n} \sum_{i=1}^n
+x_i$, and using the centered form of the variance, we obtain the well
+known equation for linear regression:
+
+$$
+\begin{align}
+b_0 &= \bar y - b_1 \bar x\\
+b_1 &= \frac{\sum(x_i-\bar x )(y_i-\bar y)}{\sum(x_i-\bar x)^2}\;. (\#eq:emin)
+\end{align}
+$$
+
+This can be understood intuitively, especially the centered form. It
+contains the sum of the squared differences of the $x_i$ data points
+from their arithmetic mean $\bar x$, as well as a similar expression
+with the products of $x$ and $y$ data. These "sums of squares
+(products)" ($SQ$) are a measure of the spread of the data around
+their mean, known as variance (covariance).
+
+Required Differentiation Rules:
+
+* $(f(x)+g(x))' = f'(x) + g'(x)$,
+* $(f(x)^2)' = 2 \cdot f(x) \cdot f'(x)$.
+
+Required Summation Rules:
+
+* $\sum_{i=1}^n (a_i+b_i) = \sum_{i=1}^n a_i + \sum_{i=1}^n b_i$,
+* $\sum_{i=1}^n(c a_i) = c \sum_{i=1}^n a_i$,
+* $\sum_{i=1}^n c = n c$,
+* also good to know, no rule for $\sum_{i=1}^n (a_i b_i)$.
+
+
+
+## Incremental Calculation
+
+The last step to obtain equation \@ref(eq:emin) is known in German as
+*Verschiebungssatz von Steiner* (Steiner translation theorem), in
+French as *théorème de König-Huygens*. In English this transformation
+has no special name and the two forms are just known as the centered
+(left) and expanded (right) forms of the variance:
+
+\begin{equation}
+  \sum(x_i-\bar x)^2= \sum x_i^2 - n \bar x^2 =
+  \sum x_i^2 - \frac{1}{n}(\sum x_i)^2\;.
+\end{equation}
+
+We can apply this to all sum of squares required to calculate various
+statistical measures of the data:
+
+$$
+\begin{align}
+S_{xx} \def & \sum(x_i - \bar x)^2 &=& \sum x_i^2 - \frac{1}{n} (\sum x_i)^2\\ 
+S_{yy} \def & \sum(y_i - \bar y)^2 &=& \sum y_i^2 - \frac{1}{n} (\sum y_i)^2\\ 
+S_{xy} \def & \sum(y_i - \bar y)(x_i - \bar x) &=& \sum y_i x_i - \frac{1}{n} \sum y_i\sum x_i
+(\#eq:sos)
+\end{align}
+$$
+
+Their expanded forms consist of additions of simple sums of the data,
+and will thus allow to calculate the sum of squares incrementally by
+adding up the sum expressions $\sum x_i^2$, $\sum x_i$, $\sum y_i^2$,
+$\sum y_i$, and $\sum x_i y_i$.
+
+An important caveat is that the expanded forms
+can become 0 for large $\bar x^2$, known as "catastrophic cancellation".
+
+
+## Useful Definitions
+
+For completeness and context, we provide some standard definitions
+in statistics literature.
+
+### Variance & Covariance 
+
+Normalizing the sum of squares by the number of data points provides 
+the **variance**, $\Var(x)$:
+
+$$
+\begin{align}
+ &\; \tilde s_x^2 =& \frac{1}{n} S_{xx}\\
+ \Var(x) \def &\; s_x^2 =& \frac{1}{n-1}S_{xx}
+\end{align}
+$$
+
+The intuitive normalization by all data points $n$ is often denoted
+the "empirical variance", in German "mittleres
+Abweichungsquadrat". Statistics packages usually use the second
+version, normalized by $n-1$, the "degrees of freedom", and denoted
+the "theoretical variance" or "inductive variance", in German
+*Stichprobenvarianz*. This corrected version accounts for the fact
+that the deviation of the last value $x_n$ from the mean is already
+defined by the first 1 to $n-1$ values. It does not further contribute
+to the spread of the data. Correcting $\tilde s^2$ by multiplication
+with $\frac{n}{n-1}$ is in German textbooks sometimes called
+*Bessel-Korrektur*.
+
+Again a similar concept exists combining $x$ and $y$ data, and this is called 
+**co-variance**, $\Cov(x,y)$:
+
+$$
+\Cov(x,y) \def  s_{xy}^2 = \frac{1}{n-1} S_{xy}\;.
+$$
+
+Going back to our residual error minimization in equation
+\@ref(eq:emin), we see that the slope of our regression line is given
+by the ratio of the data co-variance over the variance of the $x$
+data, and the normalization terms are canceled out:
+
+$$
+b_1 = \frac{\Cov(x,y)}{\Var(x)}\;.
+$$
+
+### Standard Deviation & Standard Error
+
+Above symbols $s^2$ refer to the sum of squares or products and
+accordingly have squared or two different units. To directly compare
+the spread of the data with the data itself, eg. the mean of the data,
+we simple take the (positive) square root of the variances to obtain
+the well known **standard deviation**:
+
+$$
+s = \sqrt{s^2} \;.
+$$
+
+The standard deviation is a very useful measure in conjunction with the
+mean, if we a are interested how wide the population data are spread
+around a mean, consider eg.  body height distributions. Ie. if the
+thing we measure actually varies.
+
+If we are more interested in the "precision of the mean" value of our
+measurements, ie. if we are sure that the thing we measure does not
+vary, eg. the mass of an atom, and most variation of measurement
+values just comes from errors of our measurement device, we further
+normalize the standard deviation to obtain the **standard error**:
+
+$$
+e = \frac{s}{\sqrt n}\;.
+$$
+
+In short, if we expect actual variation of the measured phenomenon,
+the standard deviation is the measure of choice, while standard error
+is an estimate of the precision of a measurement device, eg. chemical
+or optical probes.
+
+## Incremental Calculation of Scoring Functions
+
+Let's keep these definitions in mind but return to linear
+regression. The aim was to obtain expressions that we can calculate
+incrementally. We have found a regression line that minimizes the sum
+of squares of the residuals, the distance of actual measured values
+$y$ from the regression line $\hat y_i$.
+
+### Coefficient of Determination: $R^2$ {#r2}
+
+To judge how well the regression line describes our data we can define
+a new term that quantifies the fraction of the spread of the data that
+can be explained by the regression line. Again "sum of squares"
+measures are used. The "Sum of sQuares Explained" ($SQE$) describes
+the spread of our prognosed data $\hat y_i$ around the mean of the
+original data $\bar y$:
+
+
+\begin{equation}
+SQE \def  \sum (\hat y_i - \bar y)^2\;,
+\end{equation}
+
+and the "Sum of sQuares Total" ($SQT$) describes
+the total spread of the data around its mean:
+
+\begin{equation}
+SQT \def  \sum (y_i - \bar y)^2 = S_{yy}\;.
+\end{equation}
+
+ 
+Their ratio is the fraction of the total data spread that we can
+explain by our regression line, often denoted **r-squared**:
+
+$$
+R^2 \def  \frac{SQE}{SQT}\;,
+$$
+
+which reaches $R^2\rightarrow 1$ for a perfect fit.  We have already
+introduced $SQT$ as $S_{yy}$ in equation \@ref(eq:sos). To calculate
+$SQE$ we replace the defining terms by our regression results:
+
+$$
+\begin{align}
+SQE = \sum (\hat y_i - \bar y)^2 &= \sum(b_0 + b_1 x_i - (b_0 + b_1 \bar x))^2\\
+&= \sum(b_1(x_i - \bar x))^2\\
+&= b_1^2 \sum (x_i - \bar x)^2\\
+&= \left(\frac{S_{xy}}{S_{xx}}\right)^2S_{xx} = \frac{S_{xy}^2}{S_{xx}}
+\end{align}
+$$
+
+and get:
+
+$$
+\begin{equation}
+R^2 = \frac{SQE}{SQT} = \frac{S_{xy}^2}{S_{xx}S_{yy}} = b_1 \frac{S_{xy}}{S_{yy}} = \frac{\Cov(x,y)}{\Var(x)}\cdot\frac{\Cov(x,y)}{\Var(y)}\;,
+(\#eq:r2)
+\end{equation}
+$$
+
+for which we can obtain all values incrementally *via* the expanded
+forms of the sum of squares $S_{xy}$, $S_{xx}$ and $S_{xy}$ in
+equation \@ref(eq:sos).
+
+Notably, r-squared is also the squared version of the **Pearson
+correlation** $r$:
+
+$$
+| r | = \sqrt{R^2} = \frac{| S_{xy} |}{\sqrt{S_{xx}S_{yy}}}  \;,
+$$
+
+and both, r-squared (`type="r2"`) and Pearson correlation
+(`type="cor"`) can be used as optional scoring functions of `dpseg`,
+where -1 is subtracted (eq. \@ref(eq:scorer2)) to allow a consistent
+default penalty parameter $P=0$.
+
+### Variance of Residuals: $s_r^2$ {#var}
+
+The r-squared value reflects a direct linear dependence of $y$ on $x$
+values, and depends on the slope $b_1\ne0$. When segmenting a curve
+into linear parts, the $R^2$-based goodness-of-fit measure ignores
+regions without change in $y$ at $b_1\approx 0$, where data spreads
+around a mean value $\bar y= b_0$. This can be seen in Figure
+\@ref(fig:custom) where a short "horizontal" segment of the data is
+ignored when using $R^2$ as scoring functions.
+
+Minimization of the variance of the residuals is independent of the
+slope and is thus a better optimization criterium for such cases:
+
+$$
+s_r^2 = \frac{1}{n-1} \sum (r_i-\bar r)^2= \frac{1}{n-1} \sum r_i^2\;,
+$$
+
+where $\sum r_i = \bar r=0$ follows from the condition of the
+minimization $\frac{\partial f}{\partial \beta_0} \vert_{b_0}=0$ of
+equation \@ref(eq:beta).
+
+<!-- TODO: proof $\bar r=0$ -->
+
+<!--$$ proof from:
+https://www.talkstats.com/threads/sum-of-the-residuals.16048/?p=45548&highlight=#post45548
+
+\(\sum e=\sum\left ( y-\hat{y} \right )=\sum \left ( y-\left ( \bar{y}+r\frac{s_{y}}{s_{x}}\left ( x-\bar{x} \right ) \right ) \right )\)
+
+\(=\sum y-\sum \bar{y}-r\frac{s_{y}}{s_{x}}\sum \left ( x-\bar{x} \right )=n\bar{y}-n\bar{y}=0\).
+$$
+-->
+
+<!-- proof from:
+https://math.stackexchange.com/questions/494181/why-the-sum-of-residuals-equals-0-when-we-do-a-sample-regression-by-ols
+
+Specify the regression model $$y_i = a +bx_i + u_i\,,\; i=1,...,n$$
+
+Then the OLS estimator $(\hat a, \hat b)$ minimizes the sum of squared
+residuals, i.e.
+
+$$(\hat a, \hat b) : \sum_{i=1}^n(y_i - \hat a - \hat bx_i)^2 = \min$$
+
+For the OLS estimator to be the argmin of the objective function, it
+must be the case as a necessary condition, that the first partial
+derivatives with respect to $a$ and $b$, evaluated at $(\hat a, \hat
+b)$ equal zero. For our result, we need only consider the partial
+w.r.t. $a$:
+
+$$\frac {\partial}{\partial a} \sum_{i=1}^n(y_i - a - bx_i)^2 \Big
+|_{(\hat a, \hat b)} = 0 \Rightarrow -2\sum_{i=1}^n(y_i - \hat a -
+\hat bx_i) = 0 $$
+
+But $y_i - \hat a - \hat bx_i = \hat u_i$, i.e. is equal to the
+residual, so we have that
+
+$$\sum_{i=1}^n(y_i - \hat a - \hat bx_i) = \sum_{i=1}^n\hat u_i = 0 $$
+-->
+
+Minimization of the "Sum of sQuares of the Residuals" ($SQR$) was the
+initial optimization criterium (eq. \@ref(eq:beta)):
+
+$$
+SQR \def  \sum r_i^2 = \sum(y_i- \hat y_i)^2\;, 
+$$
+
+and an expression for incremental calculation is obtained by
+partitioning the residual sum of squares (*Quadratsummenzerlegung*):
+
+$$
+\begin{align}
+\sum(y_i- \bar y_i)^2 &= \sum(y_i- \bar y_i + \hat y_i - \hat y_i)^2\\
+&= \sum((\hat y_i -\bar y)+(y_i- \hat y_i))^2\\
+&= \sum((\hat y_i -\bar y)+ r_i)^2\\
+&= \sum((\hat y_i - \bar y)^2  + r_i^2 + 2 r_i \hat y_i - 2 r_i \bar y)\\
+&= \sum(\hat y_i - \bar y)^2  + \sum r_i^2 + 2 \sum r_i \hat y_i - 2 \bar y \sum r_i\\
+\sum(y_i- \bar y_i)^2  &= \sum(\hat y_i - \bar y)^2  + \sum r_i^2 \\
+SQT &= SQE + SQR\;,
+\end{align}
+$$
+
+again with $\sum r_i = 0$.
+<!-- NOTE: $\sum r_i \hat y_i = 0$ and $\bar y \sum r_i =0$ since \sum
+r_i =0-->
+
+In other words the total spread of the data is the sum of the spread
+explained by our regression line $\hat y$ and the spread that remains
+in the un-explained residuals. We can obtain the latter as:
+
+$$
+\begin{align}
+\sum r_i^2 &= \sum(y_i- \bar y_i)^2 - \sum(\hat y_i - \bar y)^2  = SQT - SQE\;,
+\end{align}
+$$
+
+and the variance of the residuals as:
+
+$$
+\begin{equation}
+s_r^2 = \frac{1}{n-1} \sum r_i^2
+= \frac{1}{n-1}\left(S_{yy} - \frac{S_{xy}^2}{S_{xx}}\right)
+= \Var(y) - \frac{\Cov(x,y)^2}{\Var(x)}\,,
+(\#eq:var)
+\end{equation}
+$$
+
+which allows incremental calculation from the expanded forms of the
+sum of squares $S_{xy}$, $S_{xx}$ and $S_{xy}$ in equation \@ref(eq:sos).
+
+The negative $-s_r^2$ is used as the default scoring function
+(`type="var"`, eq. \@ref(eq:score)) of `dpseg`.
+
+# References

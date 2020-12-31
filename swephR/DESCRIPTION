@@ -1,0 +1,38 @@
+Package: swephR
+Type: Package
+Title: High Precision Swiss Ephemeris
+Version: 0.3.0
+Authors@R: c(
+    person("Ralf", "Stubner", email = "ralf.stubner@gmail.com", role = c("aut", "cre")),
+    person("Victor", "Reijs", role = "aut"),
+    person("Authors and copyright holder of the Swiss Ephemeris", role = c("aut", "cph"), comment = "see LICENSE for details"))
+Description: The Swiss Ephemeris (version 2.08) is a high precision ephemeris based upon the
+    DE431 ephemerides from NASA's JPL. It covers the time range 13201 BCE to
+    17191 CE. This package uses the semi-analytic theory by Steve Moshier.
+    For faster and more accurate calculations, the compressed Swiss Ephemeris
+    data is available in the 'swephRdata' package. To access this data package,
+    run 'install.packages("swephRdata", repos = "https://rstub.github.io/drat/",
+    type = "source")'. The size of the 'swephRdata' package is approximately
+    115 MB. The user can also use the original JPL DE431 data.
+License: AGPL | file LICENSE
+Imports: Rcpp (>= 0.12.18)
+LinkingTo: Rcpp
+RoxygenNote: 6.1.1
+Suggests: testthat, swephRdata, knitr, rmarkdown
+Encoding: UTF-8
+URL: https://github.com/rstub/swephR/, https://rstub.github.io/swephR/,
+        http://www.astro.com/swisseph/
+BugReports: https://github.com/rstub/swephR/issues/
+Additional_repositories: https://rstub.github.io/drat
+VignetteBuilder: knitr
+LazyData: true
+Language: en-US
+NeedsCompilation: yes
+Packaged: 2019-08-28 13:41:15 UTC; ralf
+Author: Ralf Stubner [aut, cre],
+  Victor Reijs [aut],
+  Authors and copyright holder of the Swiss Ephemeris [aut, cph] (see
+    LICENSE for details)
+Maintainer: Ralf Stubner <ralf.stubner@gmail.com>
+Repository: CRAN
+Date/Publication: 2019-08-28 14:00:05 UTC

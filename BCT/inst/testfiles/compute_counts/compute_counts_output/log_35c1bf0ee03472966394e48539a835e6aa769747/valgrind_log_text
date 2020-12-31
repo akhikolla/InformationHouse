@@ -1,0 +1,13 @@
+WARNING: No test specified, defaulting to first test defined (BCT_deepstate_test_compute_counts_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/BCT/inst/testfiles/compute_counts/compute_counts_output/35c1bf0ee03472966394e48539a835e6aa769747.fail`
+TRACE: Running: BCT_deepstate_test_compute_counts_test from /home/akhila/fuzzer_packages/fuzzedpackages/BCT/inst/testfiles/compute_counts/compute_counts_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+input_data values: "sgfefsqksogrldtbchaq" "olwjythkvqfyacxxedna" "drefqnkeibsrdgwkjrlc" "NA" "lwjofrkbeecxopxugonv" "NA" "NA" "zsllmqzdodqkrtbgfzzl" "hsvzwqbkpwbzhexhdtbc" "bobtiirrekyjbmnwwsem" "cotfw" "xgtsomu" "NA" "wdggznlicbfqezvcwczr" "xfrjmyzr" "gs" "ot" "NA" "xacupvudujke" "NA" "ttrfm" "grepkytllzrditpiyffv" "fui" "NA" "vebsketagamupskbh" "NA" "yzthal" "NA" "vfojfhwnraiydwkqtcvi" "NA" "fbsxxwjkggrgrxbdogeo" "kuvbdpnfrhiqgemfoaql" "gfxjwruegpkayewgdwau" "NA" "ozccpgcszh" "NA" "gejsjstpgcjuhfecazum" "" "ludvowuwooajpnnahzzy" "NA" "NA" "hbsazyeqwzxfio" "NA" "nhpqeaizxmcueiavfllf" "NA" "wfykvaodgqrnodebwtma" "NA" "yczosbhqb" "wbsfoofllevjmfrflqdt" "cmjeoxaj" "iirmtzayuztsrqhvpvts" "odbntc" "ufnnewbrgzovbqqoxzma" "gmqeub" "os" "hvakikmabwgaudslwetm" "NA"
+depth values: -1557274596 1346892834 657832403 -1035293283 58018725 -871382133 -1510186748 1362871540 1755582649 -335160557 982836988 -560686367 166037461 -196451943 1187159447 -43938970 110895090 -1577450021 -1897146516 2138132105 1456823883 532669542 -2122121857 -477501975 621075398 -18833012 -864487349 -364456896 456362811 -227499660 -224463915 668516172 -593882406 2075354695 744395286 -1519954240 -1696400500 1385955396 1005787490 -874991705 1942061550 1978086817 1187493867 772647880 -274246335 1129678206 1235214612 2005974250 1363007686 621635435 -719432189 738315291 -1474208276 1994549951 -2125736711 -611261651 -843254798 -916759138 2041815717 -1251032739 -1893840635 11847042 -6718501 694028534
+input ends
+terminate called after throwing an instance of 'Rcpp::not_compatible'
+  what():  Expecting a single string value: [type=character; extent=57].
+ERROR: Failed: BCT_deepstate_test_compute_counts_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/BCT/inst/testfiles/compute_counts/compute_counts_output/35c1bf0ee03472966394e48539a835e6aa769747.fail failed

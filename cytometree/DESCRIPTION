@@ -1,0 +1,29 @@
+Package: cytometree
+Type: Package
+Title: Automated Cytometry Gating and Annotation
+Version: 2.0.2
+Date: 2019-12-04
+Author: Chariff Alkhassim, Boris P Hejblum, Anthony Devaux, Van Hung Huynh Tran
+Maintainer: Boris P Hejblum <boris.hejblum@u-bordeaux.fr>
+LinkingTo: Rcpp, RcppArmadillo
+Description: Given the hypothesis of a bi-modal distribution of cells for
+    each marker, the algorithm constructs a binary tree, the nodes of which are
+    subpopulations of cells. At each node, observed cells and markers are modeled
+    by both a family of normal distributions and a family of bi-modal normal mixture
+    distributions. Splitting is done according to a normalized difference of AIC
+    between the two families. Method is detailed in: Commenges, Alkhassim, Gottardo, 
+    Hejblum & Thiebaut (2018) <doi: 10.1002/cyto.a.23601>. 
+License: LGPL-3 | file LICENSE
+LazyData: true
+Depends: R (>= 3.1.0), Rcpp (>= 0.12.11)
+Imports: ggplot2, graphics, igraph, mclust, methods, stats, cowplot,
+        GoFKernel
+RoxygenNote: 7.0.2
+BugReports: https://github.com/sistm/Cytometree/issues
+Encoding: UTF-8
+Suggests: knitr, formatR, rmarkdown, viridis
+VignetteBuilder: knitr
+NeedsCompilation: yes
+Packaged: 2019-12-04 20:27:58 UTC; boris
+Repository: CRAN
+Date/Publication: 2019-12-04 22:20:19 UTC

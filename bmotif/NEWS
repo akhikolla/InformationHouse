@@ -1,0 +1,41 @@
+# bmotif 2.0.2
+=====
+## Minor changes
+- Addition of a reference in the package description.
+
+# bmotif 2.0.1
+=====
+## Bug fixes
+- Fixed noLD issue in unit tests that would occur when checking normalised motif frequencies sum to 1
+- Added failure message to expect() unit tests to remove WARNINGS
+
+# bmotif 2.0.0
+=====
+## New features
+- New function: link_positions(). Counts the number of times each link in a network occurs in each unique link position within motifs up to 6 nodes (to quantify a link's structural role). Also has support for weighted networks by multiplying link position counts by the link weight.
+- Support for weighted motif counts: mcount() now has the ability to calculate the mean weight of motifs and the standard deviation of these weights
+- Support for weighted node position counts: node_positions() now has the ability to calculate a wide range of weighted node position metrics
+- Added new normalisation options for all functions
+
+## Major changes
+- positions() function has been renamed node_positions() to allow node_positions and the link_positions() function to be distinguished
+- Column names in node_position() function are changed from px to npx, where x is the ID of the position. This is to distinguish node positions (np) from link positions (lp) in the link_positions() functions
+- mcount 'normalise' argument has been renamed 'normalistion' for consistency with node_positions()
+- bmotif now requires R 3.5.0 or higher
+
+## Minor changes
+- Changed default row and column names to lower-case; added information on default row and column names to documentation; removed warning if default row and column names are assigned
+- Updated README with citation, license and references section. Added links to MATLAB and Python versions
+- Added Methods in Ecology and Evolution citation in CITATION file
+- Some minor documentation updates to node_positions()
+- Added a new author of the package
+- Updated documentation for all functions
+
+## Bug fixes
+- Fixed bug where positions() (now called node_positions()) would break for 1 x 1 matrices when using 'sum' or 'size class' normalisation
+- Added check to prevent the use of a matrix with duplicate row or column names in node_positions() or link_positions() as this would break these functions
+
+# bmotif 1.0.0
+=====
+- mcount() counts the number of motifs up to 6 nodes in a bipartite network.
+- positions() counts the number of times each node in a bipartite network occurs in each unique position in each of the motifs up to 6 nodes.

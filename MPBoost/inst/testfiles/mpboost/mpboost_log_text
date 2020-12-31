@@ -1,0 +1,23 @@
+INFO: Starting fuzzing
+WARNING: No test specified, defaulting to first test defined (MPBoost_deepstate_test_mpboost_test)
+input starts
+EXTERNAL: qs v0.23.4.
+
+N1 values: 467495432
+N2 values: 1827680409
+MTI values: -1053990400
+input ends
+terminate called after throwing an instance of 'std::length_error'
+  what():  cannot create std::vector larger than max_size()
+ERROR: Failed: MPBoost_deepstate_test_mpboost_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/MPBoost/inst/testfiles/mpboost/mpboost_output/42e78ba56809e220f1ec3e0e2d29f79397a22479.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+N1 values: -498905818
+N2 values: 569042049
+MTI values: 1273656994
+input ends
+ERROR: Crashed: MPBoost_deepstate_test_mpboost_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/MPBoost/inst/testfiles/mpboost/mpboost_output/e78ce7438df9a1440309ef3e26dc1d3f4bb32f6a.crash`
+INFO: Done fuzzing! Ran 2 tests (0 tests/second) with 2 failed/0 passed/0 abandoned tests

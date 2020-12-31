@@ -1,0 +1,63 @@
+useDynLib(foreSIGHT, .registration = TRUE)
+export(createExpSpace)
+export(plotExpSpace)
+export(viewVariables)
+export(viewAttributes)
+export(viewAttributeDef)
+export(viewDefaultOptimArgs)
+export(viewModels)
+export(viewModelParameters)
+export(writeControlFile)
+export(generateScenario)
+export(generateScenarios)
+export(plotScenarios)
+export(runSystemModel)
+export(viewTankMetrics)
+export(tankWrapper)
+export(tankPerformance)
+export(getSimSummary)
+export(plotPerformanceSpace)
+export(plotPerformanceOAT)
+export(plotPerformanceSpaceMulti)
+export(plotOptions)
+export(calculateAttributes)
+export(modCalibrator)
+export(modSimulator)
+
+import(GA)
+import(zoo)
+import(doParallel)
+
+importFrom(cowplot,ggdraw)
+importFrom(cowplot,draw_label)
+importFrom(cowplot,plot_grid)
+importFrom(cowplot,save_plot)
+
+importFrom("ggplot2","aes","coord_cartesian","element_blank",
+             "element_rect","element_text","geom_line","geom_point",
+             "geom_text","geom_tile","ggplot","guide_colorbar",
+             "guides","margin","scale_colour_continuous","scale_color_continuous","scale_fill_continuous",
+             "scale_fill_gradient","scale_x_continuous","scale_y_continuous","scale_colour_manual",
+             "stat_contour","geom_contour", "theme","unit","xlab","xlim","ylab","ylim","stat","labs","guide_legend","element_line","theme_set",
+             "scale_fill_gradientn", "scale_x_discrete", "geom_vline", "dup_axis", "scale_y_discrete", "geom_hline",
+             "geom_label", "scale_shape_manual", "scale_shape", "facet_wrap", "geom_ribbon", "as_labeller", "vars", "label_wrap_gen",
+             "stat_contour_filled", "scale_fill_manual", "stat_smooth", "ggplot_build", "geom_smooth")
+
+
+importFrom(directlabels,geom_dl)
+
+importFrom("grDevices", "adjustcolor", "col2rgb", "contourLines",
+             "dev.off", "pdf", "rgb")
+importFrom("graphics", "axis", "barplot", "boxplot", "bxp", "legend",
+             "lines", "mtext", "par", "polygon", "text", "title", "box", "contour", "points")
+importFrom("stats", "loess", "median", "predict", "quantile", "rgamma",
+             "runif", "sd", "rnorm","acf","na.pass", "aggregate", "qnorm", "arima.sim", "filter")
+importFrom("utils", "modifyList", "read.table", "write.table", "write.csv", "tail", "capture.output", "read.csv")
+
+importFrom("moments","skewness")
+
+importFrom("Rcpp", "sourceCpp")
+
+importFrom("rlang", ".data")
+
+

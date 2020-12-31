@@ -1,0 +1,35 @@
+Package: RStoolbox
+Type: Package
+Title: Tools for Remote Sensing Data Analysis
+Version: 0.2.6
+Authors@R: c(
+    person("Benjamin", "Leutner", role=c("cre", "aut"), email="rstoolboxpackage@gmail.com"),
+    person("Ned", "Horning", role ="aut", email="horning@amnh.org"),
+    person("Jakob", "Schwalb-Willmann", role ="aut", email="movevis@schwalb-willmann.de"),
+    person("Robert J.", "Hijmans", role = "ctb",  email = "r.hijmans@gmail.com")
+    )
+Description: Toolbox for remote sensing image processing and analysis such as
+    calculating spectral indices, principal component transformation, unsupervised
+    and supervised classification or fractional cover analyses.
+URL: http://bleutner.github.io/RStoolbox,
+        https://github.com/bleutner/RStoolbox
+BugReports: https://github.com/bleutner/RStoolbox/issues
+Encoding: UTF-8
+Depends: R (>= 3.5.0)
+Imports: raster (>= 2.3-40), caret (>= 6.0-79), sp, XML, geosphere,
+        ggplot2, reshape2, rgeos, rgdal, codetools, parallel,
+        doParallel, foreach, Rcpp, methods
+Suggests: randomForest, kernlab, e1071, gridExtra, pls, testthat
+LinkingTo: Rcpp, RcppArmadillo
+License: GPL (>= 3)
+LazyData: true
+RoxygenNote: 6.1.1
+NeedsCompilation: yes
+Packaged: 2019-07-23 15:26:35 UTC; bel03nu
+Author: Benjamin Leutner [cre, aut],
+  Ned Horning [aut],
+  Jakob Schwalb-Willmann [aut],
+  Robert J. Hijmans [ctb]
+Maintainer: Benjamin Leutner <rstoolboxpackage@gmail.com>
+Repository: CRAN
+Date/Publication: 2019-07-23 23:12:10 UTC

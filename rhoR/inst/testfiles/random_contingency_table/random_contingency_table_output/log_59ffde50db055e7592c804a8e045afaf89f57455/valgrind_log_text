@@ -1,0 +1,18 @@
+WARNING: No test specified, defaulting to first test defined (rhoR_deepstate_test_random_contingency_table_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_output/59ffde50db055e7592c804a8e045afaf89f57455.crash`
+TRACE: Running: rhoR_deepstate_test_random_contingency_table_test from /home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness.cpp(10)
+input starts
+setLength values: -1834365155
+baserate values: -6.67146e+25
+kappaMin values: 1.26387e-69
+kappaMax values: -6.02826e-270
+minPrecision values: -2.12562e-136
+maxPrecision values: -4.94713e+246
+input ends
+==3958883==  If you believe this happened as a result of a stack
+==3958883==  overflow in your program's main thread (unlikely but
+==3958883==  possible), you can try to increase the size of the
+==3958883==  main thread stack using the --main-stacksize= flag.
+==3958883==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: rhoR_deepstate_test_random_contingency_table_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_output/59ffde50db055e7592c804a8e045afaf89f57455.crash crashed

@@ -1,0 +1,15 @@
+WARNING: No test specified, defaulting to first test defined (FSSF_deepstate_test_fssf_b_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b/fssf_b_output/3391437b0486e9da81afd591c2d1e2325c3a0a50.fail`
+TRACE: Running: FSSF_deepstate_test_fssf_b_test from /home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b/fssf_b_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+d values: -293123844
+nMax values: -555281357
+N values: 1746767833
+eps values: 2.98766e-188
+input ends
+terminate called after throwing an instance of 'std::bad_array_new_length'
+  what():  std::bad_array_new_length
+ERROR: Failed: FSSF_deepstate_test_fssf_b_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b/fssf_b_output/3391437b0486e9da81afd591c2d1e2325c3a0a50.fail failed

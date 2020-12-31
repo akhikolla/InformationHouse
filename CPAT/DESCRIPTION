@@ -1,0 +1,25 @@
+Package: CPAT
+Title: Change Point Analysis Tests
+Version: 0.1.0
+Date: 2018-12-06
+Authors@R: person("Curtis", "Miller", email = "cmiller@math.utah.edu", role = c("aut", "cre"))
+Maintainer: Curtis Miller <cmiller@math.utah.edu>
+Description: Implements several statistical tests for structural change, specifically the tests featured in Horváth, Rice and Miller (in press): CUSUM (with weighted/trimmed variants), Darling-Erdös, Hidalgo-Seo, Andrews, and the new Rényi-type test.
+Depends: R (>= 3.2)
+Suggests: cointReg (>= 0.2), foreach (>= 1.4), doRNG (>= 1.7),
+        doParallel (>= 1.0), ggplot2 (>= 2.2), dplyr (>= 0.7),
+        tikzDevice (>= 0.12), testthat (>= 2.0)
+Imports: stats (>= 3.2), utils (>= 3.2), grDevices (>= 3.2), Rdpack (>=
+        0.9), methods (>= 3.2), Rcpp (>= 0.12), purrr (>= 0.2)
+RdMacros: Rdpack
+SystemRequirements: GNU make
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+LinkingTo: Rcpp, RcppArmadillo
+RoxygenNote: 6.1.0
+NeedsCompilation: yes
+Packaged: 2018-12-17 04:31:52 UTC; curtis
+Author: Curtis Miller [aut, cre]
+Repository: CRAN
+Date/Publication: 2018-12-25 22:40:08 UTC

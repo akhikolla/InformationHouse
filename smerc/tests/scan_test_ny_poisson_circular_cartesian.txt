@@ -1,0 +1,188 @@
+                                 _____________________________
+
+                                         SaTScan v9.6
+                                 _____________________________
+
+
+Program run on: Mon Sep 10 14:14:26 2018
+
+Purely Spatial analysis
+scanning for clusters with high rates
+using the Discrete Poisson model.
+_______________________________________________________________________________________________
+
+SUMMARY OF DATA
+
+Study period.......................: 2000/1/1 to 2000/12/31
+Number of locations................: 281
+Population, averaged over time.....: 1057673
+Total number of cases..............: 552
+Annual cases / 100000..............: 52.1
+_______________________________________________________________________________________________
+
+CLUSTERS DETECTED
+
+1.Location IDs included.: 52, 50, 37, 49, 38, 48, 53, 39, 15, 47, 51, 1, 40, 44, 16, 2, 55, 36,
+                          14, 43, 13, 45, 3, 35, 17, 11, 12, 46
+  Overlap with clusters.: No Overlap
+  Coordinates / radius..: (42.0838,-75.9898) / 0.087
+  Gini Cluster..........: Yes
+  Population............: 111674
+  Number of cases.......: 100
+  Expected cases........: 58.28
+  Annual cases / 100000.: 89.4
+  Observed / expected...: 1.72
+  Relative risk.........: 1.87
+  Log likelihood ratio..: 14.083511
+  P-value...............: 0.00015
+
+2.Location IDs included.: 89, 88, 87, 84, 90, 86, 92, 85
+  Overlap with clusters.: No Overlap
+  Coordinates / radius..: (42.628,-76.1041) / 0.13
+  Gini Cluster..........: Yes
+  Population............: 34083
+  Number of cases.......: 38
+  Expected cases........: 17.79
+  Annual cases / 100000.: 111.3
+  Observed / expected...: 2.14
+  Relative risk.........: 2.22
+  Log likelihood ratio..: 9.019716
+  P-value...............: 0.016
+
+3.Location IDs included.: 112, 113, 115, 111, 116, 219, 117, 123, 218, 114, 122, 110, 124, 220,
+                          118, 133, 121, 125, 216, 120, 134, 217, 126, 139, 215, 132, 141, 140,
+                          127, 142, 138, 131, 119
+  Overlap with clusters.: No Overlap
+  Coordinates / radius..: (43.0814,-76.1481) / 0.040
+  Gini Cluster..........: No
+  Population............: 78280
+  Number of cases.......: 64
+  Expected cases........: 40.85
+  Annual cases / 100000.: 81.6
+  Observed / expected...: 1.57
+  Relative risk.........: 1.64
+  Log likelihood ratio..: 6.114140
+  P-value...............: 0.248
+
+4.Location IDs included.: 62, 64, 67, 65
+  Overlap with clusters.: No Overlap
+  Coordinates / radius..: (42.9637,-76.528) / 0.061
+  Gini Cluster..........: No
+  Population............: 24571
+  Number of cases.......: 25
+  Expected cases........: 12.82
+  Annual cases / 100000.: 101.5
+  Observed / expected...: 1.95
+  Relative risk.........: 1.99
+  Log likelihood ratio..: 4.651839
+  P-value...............: 0.645
+
+5.Location IDs included.: 266, 281, 267, 265
+  Overlap with clusters.: No Overlap
+  Coordinates / radius..: (42.4722,-76.4635) / 0.026
+  Gini Cluster..........: No
+  Population............: 9840
+  Number of cases.......: 12
+  Expected cases........: 5.14
+  Annual cases / 100000.: 121.7
+  Observed / expected...: 2.34
+  Relative risk.........: 2.37
+  Log likelihood ratio..: 3.363518
+  P-value...............: 0.965
+
+6.Location IDs included.: 166, 159, 167
+  Overlap with clusters.: No Overlap
+  Coordinates / radius..: (43.0152,-76.1629) / 0.012
+  Gini Cluster..........: No
+  Population............: 8839
+  Number of cases.......: 11
+  Expected cases........: 4.61
+  Annual cases / 100000.: 124.2
+  Observed / expected...: 2.38
+  Relative risk.........: 2.41
+  Log likelihood ratio..: 3.209485
+  P-value...............: 0.982
+_______________________________________________________________________________________________
+
+PARAMETER SETTINGS
+
+Input
+-----
+  Case File        : C:\Users\joshu\Documents\Dropbox\Code\GitHub\smerc\tests\satscannycases.txt
+  Population File  : C:\Users\joshu\Documents\Dropbox\Code\GitHub\smerc\tests\satscannypop.txt
+  Time Precision   : Year
+  Start Time       : 2000/1/1
+  End Time         : 2000/12/31
+  Coordinates File : C:\Users\joshu\Documents\Dropbox\Code\GitHub\smerc\tests\satscannycoords.txt
+  Coordinates      : Cartesian
+
+Analysis
+--------
+  Type of Analysis    : Purely Spatial
+  Probability Model   : Discrete Poisson
+  Scan for Areas with : High Rates
+
+Output
+------
+  Main Results File : C:\Users\joshu\Documents\Dropbox\Code\GitHub\smerc\tests\satscannyoutpoisson_cartesian.txt
+
+Data Checking
+-------------
+  Temporal Data Check     : Check to ensure that all cases and controls are within the specified temporal study period.
+  Geographical Data Check : Check to ensure that all observations (cases, controls and populations) are within the specified geographical area.
+
+Spatial Neighbors
+-----------------
+  Use Non-Euclidian Neighbors file : No
+  Use Meta Locations File          : No
+  Multiple Coordinates Type        : Allow only one set of coordinates per location ID.
+
+Spatial Window
+--------------
+  Maximum Spatial Cluster Size : 50 percent of population at risk
+  Window Shape                 : Circular
+  Isotonic Scan                : No
+
+Cluster Restrictions
+--------------------
+  Minimum Cases in Cluster for High Rates : 2
+  Restrict High Rate Clusters             : No
+
+Space And Time Adjustments
+--------------------------
+  Adjust for known relative risks : No
+
+Inference
+---------
+  P-Value Reporting                  : Default Combination
+  Number of Replications             : 999
+  Adjusting for More Likely Clusters : No
+
+Border Analysis
+---------------
+  Report Oliveira's F : No
+
+Spatial Output
+--------------
+  Report Hierarchical Clusters              : Yes
+  Criteria for Reporting Secondary Clusters : No Geographical Overlap
+  Report Gini Optimized Cluster Collection  : Yes
+  Gini Index Based Collection Reporting     : Optimal Only
+  Report Gini Index Cluster Coefficents     : No
+  Restrict Reporting to Smaller Clusters    : No
+
+Other Output
+------------
+  Report Critical Values  : No
+  Report Monte Carlo Rank : No
+
+Run Options
+-----------
+  Processor Usage   : All Available Processors
+  Suppress Warnings : No
+  Logging Analysis  : No
+_______________________________________________________________________________________________
+
+Program completed  : Mon Sep 10 14:14:27 2018
+Total Running Time : 1 second
+Processor Usage    : 4 processors

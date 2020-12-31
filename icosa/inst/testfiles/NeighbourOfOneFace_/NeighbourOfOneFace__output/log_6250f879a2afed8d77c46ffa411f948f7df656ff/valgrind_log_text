@@ -1,0 +1,14 @@
+WARNING: No test specified, defaulting to first test defined (icosa_deepstate_test_NeighbourOfOneFace__test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/icosa/inst/testfiles/NeighbourOfOneFace_/NeighbourOfOneFace__output/6250f879a2afed8d77c46ffa411f948f7df656ff.fail`
+TRACE: Running: icosa_deepstate_test_NeighbourOfOneFace__test from /home/akhila/fuzzer_packages/fuzzedpackages/icosa/inst/testfiles/NeighbourOfOneFace_/NeighbourOfOneFace__DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+faces values: 1.05415e-68 1.86447e-211 4.49059e+17 2.72551e-214 6.53679e-70 2.42643e+241 1.65687e+24
+
+faceNo values: 644268439
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Row index is out of bounds: [index=644268439; row extent=1].
+ERROR: Failed: icosa_deepstate_test_NeighbourOfOneFace__test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/icosa/inst/testfiles/NeighbourOfOneFace_/NeighbourOfOneFace__output/6250f879a2afed8d77c46ffa411f948f7df656ff.fail failed

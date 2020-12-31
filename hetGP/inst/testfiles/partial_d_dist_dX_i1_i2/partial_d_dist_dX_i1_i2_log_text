@@ -1,0 +1,59 @@
+INFO: Starting fuzzing
+WARNING: No test specified, defaulting to first test defined (hetGP_deepstate_test_partial_d_dist_dX_i1_i2_test)
+input starts
+EXTERNAL: qs v0.23.4.
+
+X1 values: 1.05415e-68 1.86447e-211 4.49059e+17 2.72551e-214 6.53679e-70 2.42643e+241 1.65687e+24
+
+i1 values: 644268439
+i2 values: 123721430
+input ends
+ERROR: Crashed: hetGP_deepstate_test_partial_d_dist_dX_i1_i2_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/partial_d_dist_dX_i1_i2/partial_d_dist_dX_i1_i2_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash`
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+X1 values: 2.58036e-206    -inf     nan
+
+i1 values: 1078897549
+i2 values: -289987065
+input ends
+ERROR: Crashed: hetGP_deepstate_test_partial_d_dist_dX_i1_i2_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/partial_d_dist_dX_i1_i2/partial_d_dist_dX_i1_i2_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash`
+input starts
+EXTERNAL: qs v0.23.4.
+
+X1 values: 2.01769e+47 1.43678e-133 3.24864e+70 1.20447e-16
+5.91096e+64 7.46115e-258 6.40668e-255 1.62054e+203
+4.71376e-48 5.01413e+184 4.51599e-206 1.34759e+170
+1.75062e-260 1.58739e-68 1.92056e-182 1.67897e-132
+4.13273e+261 29072.6 1.10966e+192 2.30932e+295
+7.50348e-71 1.41003e-86 4.42315e+80 1.54458e+60
+1.28334e+144 1.93644e+180 1.54664e-118 3.41101e+171
+2.90402e-286 1.99326e-62 5.07882e+283 3.58420e+261
+3.56215e-230 1.39816e-16 1.74133e+63 1.53532e+63
+
+i1 values: -767861348
+i2 values: -1778988495
+input ends
+ERROR: Crashed: hetGP_deepstate_test_partial_d_dist_dX_i1_i2_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/partial_d_dist_dX_i1_i2/partial_d_dist_dX_i1_i2_output/f97703d88b5f44f18c8a5478e4cc2152bc9b0638.crash`
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+X1 values: 4.49653e+83 2.62736e-264 8.95062e-07 5.10578e-14
+8.29783e+300 -4.30971e+256 1.86531e+250 9.71140e-241
+1.44694e-22 1.01363e+74     inf 7.70719e-71
+5.24924e+272 2.14829e+78 1.83374e-104 1.49741e+196
+4.59987e+18 1.56356e-81    -inf 1.44529e+91
+    inf 1.87145e+289 1088.08     nan
+6.61249e-257 4.33714e-104 8.88077e+282 8.78821e+143
+
+i1 values: -1497971770
+i2 values: -36551517
+input ends
+ERROR: Crashed: hetGP_deepstate_test_partial_d_dist_dX_i1_i2_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/partial_d_dist_dX_i1_i2/partial_d_dist_dX_i1_i2_output/213c782907ee3299b362a396a6f846877b3f4584.crash`
+INFO: Done fuzzing! Ran 4 tests (2 tests/second) with 4 failed/0 passed/0 abandoned tests

@@ -1,0 +1,22 @@
+WARNING: No test specified, defaulting to first test defined (Rrelperm_deepstate_test_kr2p_ow_cpp_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/Rrelperm/inst/testfiles/kr2p_ow_cpp/kr2p_ow_cpp_output/7e3ef9bbc85102a38fe9e2875b00943036e209ec.fail`
+TRACE: Running: Rrelperm_deepstate_test_kr2p_ow_cpp_test from /home/akhila/fuzzer_packages/fuzzedpackages/Rrelperm/inst/testfiles/kr2p_ow_cpp/kr2p_ow_cpp_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+SWCON values: -2.43318e-187
+SWCRIT values: -1.64581e+174
+SOIRW values: -1.66668e-49
+SORW values: 1.91698e-80
+KRWIRO values: 2.93871e+294
+KROCW values: 6.2389e-80
+NW values: 4.73594e-68
+NOW values: 1.92375e+304
+NP values: -648742763
+input ends
+
+error: Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+terminate called after throwing an instance of 'std::logic_error'
+  what():  Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+ERROR: Failed: Rrelperm_deepstate_test_kr2p_ow_cpp_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/Rrelperm/inst/testfiles/kr2p_ow_cpp/kr2p_ow_cpp_output/7e3ef9bbc85102a38fe9e2875b00943036e209ec.fail failed

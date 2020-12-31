@@ -1,0 +1,164 @@
+                                 _____________________________
+
+                                        SaTScan v9.3.1
+                                 _____________________________
+
+
+Program run on: Tue Sep 22 16:05:14 2015
+
+Purely Spatial analysis
+scanning for clusters with high rates
+using the Discrete Poisson model.
+_______________________________________________________________________________________________
+
+SUMMARY OF DATA
+
+Study period.......................: 2000/1/1 to 2000/12/31
+Number of locations................: 281
+Total population...................: 1057673
+Total number of cases..............: 552
+Annual cases / 100000..............: 52.1
+_______________________________________________________________________________________________
+
+CLUSTERS DETECTED
+
+1.Location IDs included.: 52, 50, 53, 38, 49, 48, 15, 39, 37, 1, 16, 44, 47, 40, 14, 2, 51, 13,
+                          43, 45, 17, 55, 11, 3, 12, 46, 36, 35, 54, 10, 5
+  Coordinates / radius..: (42.083800 N, 75.989827 W) / 7.70 km
+  Population............: 119050
+  Number of cases.......: 106
+  Expected cases........: 62.13
+  Annual cases / 100000.: 88.9
+  Observed / expected...: 1.71
+  Relative risk.........: 1.87
+  Log likelihood ratio..: 14.780276
+  P-value...............: 0.000087
+
+2.Location IDs included.: 88, 87, 92, 86, 89, 91, 93, 85, 90
+  Coordinates / radius..: (42.599055 N, 76.172807 W) / 13.01 km
+  Population............: 40696
+  Number of cases.......: 42
+  Expected cases........: 21.24
+  Annual cases / 100000.: 103.0
+  Observed / expected...: 1.98
+  Relative risk.........: 2.06
+  Log likelihood ratio..: 8.287056
+  P-value...............: 0.033
+
+3.Location IDs included.: 113, 117, 116, 112, 220, 118, 115, 123, 124, 111, 114, 125, 219, 122,
+                          126, 119
+  Coordinates / radius..: (43.076454 N, 76.137613 W) / 2.35 km
+  Population............: 45667
+  Number of cases.......: 44
+  Expected cases........: 23.83
+  Annual cases / 100000.: 96.2
+  Observed / expected...: 1.85
+  Relative risk.........: 1.92
+  Log likelihood ratio..: 7.199672
+  P-value...............: 0.105
+
+4.Location IDs included.: 62, 64, 67, 65
+  Coordinates / radius..: (42.963728 N, 76.528029 W) / 5.82 km
+  Population............: 24571
+  Number of cases.......: 25
+  Expected cases........: 12.82
+  Annual cases / 100000.: 101.5
+  Observed / expected...: 1.95
+  Relative risk.........: 1.99
+  Log likelihood ratio..: 4.651839
+  P-value...............: 0.653
+
+5.Location IDs included.: 132, 138, 121, 131, 139, 120
+  Coordinates / radius..: (43.052425 N, 76.164414 W) / 1.16 km
+  Population............: 6985
+  Number of cases.......: 10
+  Expected cases........: 3.65
+  Annual cases / 100000.: 142.9
+  Observed / expected...: 2.74
+  Relative risk.........: 2.78
+  Log likelihood ratio..: 3.773422
+  P-value...............: 0.901
+
+6.Location IDs included.: 166, 159, 167
+  Coordinates / radius..: (43.015231 N, 76.162912 W) / 1.01 km
+  Population............: 8839
+  Number of cases.......: 11
+  Expected cases........: 4.61
+  Annual cases / 100000.: 124.2
+  Observed / expected...: 2.38
+  Relative risk.........: 2.41
+  Log likelihood ratio..: 3.209485
+  P-value...............: 0.982
+_______________________________________________________________________________________________
+
+PARAMETER SETTINGS
+
+Input
+-----
+  Case File        : /Users/jfrench/Desktop/cases.txt
+  Population File  : /Users/jfrench/Desktop/pop.txt
+  Time Precision   : Year
+  Start Time       : 2000/1/1
+  End Time         : 2000/12/31
+  Coordinates File : /Users/jfrench/Desktop/coords.txt
+  Coordinates      : Latitude/Longitude
+
+Analysis
+--------
+  Type of Analysis    : Purely Spatial
+  Probability Model   : Discrete Poisson
+  Scan for Areas with : High Rates
+
+Output
+------
+  Results File : /Users/jfrench/Desktop/satscannyout.txt
+
+Data Checking
+-------------
+  Temporal Data Check     : Check to ensure that all cases and controls are within the specified temporal study period.
+  Geographical Data Check : Check to ensure that all observations (cases, controls and populations) are within the specified geographical area.
+
+Spatial Neighbors
+-----------------
+  Use Non-Euclidian Neighbors file : No
+  Use Meta Locations File          : No
+  Multiple Coordinates Type        : Allow only one set of coordinates per location ID.
+
+Spatial Window
+--------------
+  Maximum Spatial Cluster Size : 50 percent of population at risk
+  Window Shape                 : Circular
+  Isotonic Scan                : No
+
+Space And Time Adjustments
+--------------------------
+  Adjust for known relative risks : No
+
+Inference
+---------
+  P-Value Reporting                  : Default Combination
+  Number of Replications             : 999
+  Adjusting for More Likely Clusters : No
+
+Spatial Output
+--------------
+  Report Hierarchical Clusters              : Yes
+  Criteria for Reporting Secondary Clusters : No Geographical Overlap
+  Report Gini Optimized Cluster Collection  : No
+  Restrict Reporting to Smaller Clusters    : No
+
+Other Output
+------------
+  Report Critical Values  : No
+  Report Monte Carlo Rank : No
+
+Run Options
+-----------
+  Processer Usage   : All Available Proccessors
+  Suppress Warnings : No
+  Logging Analysis  : Yes
+_______________________________________________________________________________________________
+
+Program completed  : Tue Sep 22 16:05:15 2015
+Total Running Time : 1 second
+Processor Usage    : 8 processors

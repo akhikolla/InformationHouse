@@ -1,0 +1,59 @@
+useDynLib(FENmlm, .registration = TRUE)
+
+#
+# EXPORT
+#
+
+export(femlm, res2tex, res2table, getFE, diagnostic, obs2remove)
+
+# Base methods
+S3method(print, femlm)
+S3method(summary, femlm.allClusters)
+S3method(summary, femlm)
+S3method(plot, femlm.allClusters)
+
+# Stats methods
+S3method(nobs, femlm)
+S3method(logLik, femlm)
+S3method(AIC, femlm)
+S3method(BIC, femlm)
+S3method(vcov, femlm)
+S3method(resid, femlm)
+S3method(residuals, femlm)
+S3method(coef, femlm)
+S3method(coefficients, femlm)
+S3method(fitted, femlm)
+S3method(fitted.values, femlm)
+S3method(update, femlm)
+S3method(predict, femlm)
+S3method(confint, femlm)
+S3method(formula, femlm)
+S3method(model.matrix, femlm)
+
+#
+# IMPORT
+#
+
+importFrom(numDeriv, hessian, jacobian, genD)
+
+importFrom(stats, cor, dnorm, lm, model.matrix, nlminb, optim,
+			  pnorm, qnorm, as.formula, terms, var, sd, formula,
+			  nobs, AIC, BIC, update, predict, fitted, fitted.values,
+			  resid, residuals, logLik, coef, coefficients,
+			  confint, vcov, na.omit, model.frame, "na.pass")
+
+importFrom(MASS, ginv)
+
+importFrom(utils, combn, head, tail)
+
+importFrom(Formula, Formula)
+
+importFrom(Rcpp, evalCpp)
+
+importFrom(parallel, detectCores)
+
+importFrom(graphics, par, plot, box, axis, abline, points, text, title)
+
+
+
+

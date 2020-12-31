@@ -1,0 +1,18 @@
+WARNING: No test specified, defaulting to first test defined (jmotif_deepstate_test_manyseries_to_wordbag_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/jmotif/inst/testfiles/manyseries_to_wordbag/manyseries_to_wordbag_output/47530117c135f68d6119cc2b72d7a0be711723fe.fail`
+TRACE: Running: jmotif_deepstate_test_manyseries_to_wordbag_test from /home/akhila/fuzzer_packages/fuzzedpackages/jmotif/inst/testfiles/manyseries_to_wordbag/manyseries_to_wordbag_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+data values: 3.07504e-136 1.01645e-124 1.00679e-73 1.72389e-189 2.13410e-145 2.01769e+47 5.91096e+64 4.71376e-48 1.75062e-260
+
+w_size values: -1983958174
+paa_size values: 1188064147
+a_size values: 828412518
+nr_strategy values: "NA" "elvxdcntgugwviqlckmc" "rqmzgklnb" "NA" "uliizmnlilldamjkzk" "gsrqclgizxmotx" "ntswwbujmljbgiwj" "NA" "zoeoolevlidpvp" "NA" "fxlfdrdzxekhw" "NA" "fw" "zaxioopc" "jeeqtmtzwvwqglmyozni" "qbswsvponncurdqnbhbl" "NA" "NA" "bzscmzowhzfsyfxersqr" "wdifbeotxgpwvuemd" "lv" "NA" "NA" "NA" "axiiceupzrqegiy" "qxohmjwazoqghlzusgrj" "NA" "NA" "dyfbhsphvdokwcrellhx" "lpbmliapcxocuhtjylmt" "ytotpnivdghucotglhcj" "myomzfipwnitvzefsaxe" "NA" "NA" "NA" "cmtrengqgsqxrhljqsmq" "uuzwfkh" "rclbjpnbeksroiengcnv" "anlbhmvug" "chzrrqgbquptnugbtlvj" "jjjfyqirfrrafyoyriix" "NA" "iiguhuwxehhxaztzgaaa" "wibwgofgeyeygquyrhkl" "hkwhcp" "d" "weqcrlwz" "ztefspkcaqdbyvvqbdvj" "NA" "vvkrxvjnmicqxmybnota" "NA" "NA" "xysdzvzjfyktbuuwitmk" "sxmprbszpnndzdmgfkpu" "mehyq" "" "mbvsxoghyqvqadehtbvo" "yospvvjjxnc" "iwllbuoqu" "cc" "dimkezoqdfnkwgniogub" "lxfoi" "mavsipzzqgagl" "svybnjkqpl" "koggmklhzhkibv" "ishhslojbxovuuhhjtli" "NA" "petdsnxxdleqqyfvcgrd" "sghuzqkgdgpirtwxuwal" "zdfxvkmedubfzdafd" "mteodxqdsuljvistfgke" "NA" "xukwodzaaeipmybgcbfz"
+n_threshold values: 9.73225e-124
+input ends
+terminate called after throwing an instance of 'Rcpp::not_compatible'
+  what():  Expecting a single string value: [type=character; extent=73].
+ERROR: Failed: jmotif_deepstate_test_manyseries_to_wordbag_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/jmotif/inst/testfiles/manyseries_to_wordbag/manyseries_to_wordbag_output/47530117c135f68d6119cc2b72d7a0be711723fe.fail failed

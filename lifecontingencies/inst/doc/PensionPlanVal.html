@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Ivan Williams" />
+
+
+<title>Pension valuation with lifecontingencies package</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#header {
+text-align: center;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Pension valuation with lifecontingencies package</h1>
+<h4 class="author"><em>Ivan Williams</em></h4>
+<h4 class="date"><em>05 marzo, 2019</em></h4>
+
+
+
+<div id="function-pensfund" class="section level3">
+<h3>Function <em>PensFund</em></h3>
+<p>In this brief document we present a general function to valuate actuarial liabilities and normal costs, allowing different methods in pension funding for defined benefit schemes.</p>
+<p>Each method is defined by the way that contributions are accrued in the active age before the specific risk apply. Following <span class="citation">(Winklevoss 1993)</span> and <span class="citation">(Bowers et al. 1997)</span>, the Normal Cost and Actuarial Liability can be seen as portions of <span class="math inline">\(PVFNC^{r}_x\)</span>, the present value of future benefit at age <span class="math inline">\(x\)</span> for the risk in <span class="math inline">\(r\)</span>, and that’s the way that we treat this in the function’s code. The methods that are implemented here are the “Benefit Prorate Method, Constant Dollar”, “Benefit Prorate Method, Constant Percent”, “Cost Prorate Method, Constant Dollar” and “Cost Prorate Method, Constant Benefit” (the last two also called “entry age methods”). For formula details the reader can go to chapters 5 and 6 on <span class="citation">(Winklevoss 1993)</span>.</p>
+<p>We define a general function that allows to perform the calculations in a multi-decrement environment, with flexibility to consider different kind of benefit scheme, using functions of the “lifecontingencies” package (Spedicato et. al., 2018). The arguments (following general notation in Gian Paolo Clemente’s vignette titled “Pension Funding with lifecontingencies”) are:</p>
+<ul>
+<li><span class="math inline">\(x\)</span>: the age of the insured at the time of valuation</li>
+<li><span class="math inline">\(y\)</span>: the age which the person entered to the job. This age is usually different than the age that the plan began</li>
+<li><span class="math inline">\(r\)</span>: age where the risk is evaluated</li>
+<li><span class="math inline">\(acttableAccPeriod\)</span>: multi-decrement object lifetable, where one of its decrements is the risk of interest. One of the most common applications is for and obligated retirement at age <span class="math inline">\(r\)</span>, and even in this case is needed a multi-decrement table with risks of death and retirement (with certainty for age <span class="math inline">\(r\)</span>)</li>
+<li><span class="math inline">\(decrement\)</span>: decrement to evaluate</li>
+<li><span class="math inline">\(i\)</span>: interest rate (real)</li>
+<li><span class="math inline">\(j\)</span>: salary rate increment (real, productivity and seniority included)</li>
+<li><span class="math inline">\(delta\)</span>: benefit rate increment (real)</li>
+<li><span class="math inline">\(n\)</span>: years that the benefit will be payed (can be 0 for single payments). If it is omitted, will take value <span class="math inline">\(\omega-r\)</span></li>
+<li><span class="math inline">\(avg\)</span>: number of past salaries to be considered for average</li>
+<li><span class="math inline">\(acttablePaymPeriod\)</span>: lifetable object for payment period</li>
+<li><span class="math inline">\(CostMet\)</span>: Method Cost, that could be “BPM_CD” (Benefit Prorate Method, Constant Dollar), “BPM_CP” (Benefit Prorate Method, Constant Percent), “CPM_CD” (Cost Prorate Method, Constant Dollar), “CPM_CB” (Cost Prorate Method, Constant Benefit).</li>
+</ul>
+<p>The general function is:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">require</span>(<span class="st">&quot;lifecontingencies&quot;</span>)</a>
+<a class="sourceLine" id="cb1-2" title="2">PensFund &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, r, acttableAccPeriod, decrement, i, j, delta, n, </a>
+<a class="sourceLine" id="cb1-3" title="3">    avg, acttablePaymPeriod, CostMet) {</a>
+<a class="sourceLine" id="cb1-4" title="4">    <span class="cf">if</span> (<span class="kw">missing</span>(n)) </a>
+<a class="sourceLine" id="cb1-5" title="5">        n &lt;-<span class="st"> </span><span class="kw">getOmega</span>(acttableAccPeriod) <span class="op">-</span><span class="st"> </span>x <span class="op">-</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb1-6" title="6">    <span class="cf">if</span> (x <span class="op">&lt;</span><span class="st"> </span>y) </a>
+<a class="sourceLine" id="cb1-7" title="7">        <span class="kw">stop</span>(<span class="st">&quot;Entry age greater than actual age&quot;</span>)</a>
+<a class="sourceLine" id="cb1-8" title="8">    <span class="cf">if</span> (<span class="kw">missing</span>(decrement)) </a>
+<a class="sourceLine" id="cb1-9" title="9">        <span class="kw">stop</span>(<span class="st">&quot;Which is the contingency of benefit?&quot;</span>)</a>
+<a class="sourceLine" id="cb1-10" title="10">    <span class="cf">if</span> (<span class="kw">class</span>(acttableAccPeriod) <span class="op">!=</span><span class="st"> &quot;mdt&quot;</span>) </a>
+<a class="sourceLine" id="cb1-11" title="11">        <span class="kw">stop</span>(<span class="st">&quot;Error! Needed Mdt&quot;</span>)</a>
+<a class="sourceLine" id="cb1-12" title="12">    <span class="cf">if</span> (<span class="op">!</span>(decrement <span class="op">%in%</span><span class="st"> </span><span class="kw">getDecrements</span>(acttableAccPeriod))) </a>
+<a class="sourceLine" id="cb1-13" title="13">        <span class="kw">stop</span>(<span class="st">&quot;Error! Not recognized decrement type&quot;</span>)</a>
+<a class="sourceLine" id="cb1-14" title="14">    <span class="cf">if</span> (<span class="kw">missing</span>(acttableAccPeriod)) </a>
+<a class="sourceLine" id="cb1-15" title="15">        <span class="kw">stop</span>(<span class="st">&quot;Error! Need a lifetable or actuarialtable&quot;</span>)</a>
+<a class="sourceLine" id="cb1-16" title="16">    <span class="cf">if</span> (<span class="kw">missing</span>(x) <span class="op">|</span><span class="st"> </span><span class="kw">missing</span>(y)) </a>
+<a class="sourceLine" id="cb1-17" title="17">        <span class="kw">stop</span>(<span class="st">&quot;Error! Need age and seniority!&quot;</span>)</a>
+<a class="sourceLine" id="cb1-18" title="18">    <span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="kw">getOmega</span>(acttableAccPeriod)) {</a>
+<a class="sourceLine" id="cb1-19" title="19">        out =<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb1-20" title="20">        <span class="kw">return</span>(out)</a>
+<a class="sourceLine" id="cb1-21" title="21">    }</a>
+<a class="sourceLine" id="cb1-22" title="22">    <span class="cf">if</span> (<span class="kw">missing</span>(CostMet)) </a>
+<a class="sourceLine" id="cb1-23" title="23">        CostMet =<span class="st"> &quot;BPM_CD&quot;</span></a>
+<a class="sourceLine" id="cb1-24" title="24">    <span class="cf">if</span> (<span class="kw">missing</span>(avg)) </a>
+<a class="sourceLine" id="cb1-25" title="25">        <span class="kw">stop</span>(<span class="st">&quot;Error! Need avg period of computing benefit&quot;</span>)</a>
+<a class="sourceLine" id="cb1-26" title="26">    <span class="cf">if</span> (<span class="kw">missing</span>(j)) </a>
+<a class="sourceLine" id="cb1-27" title="27">        <span class="kw">stop</span>(<span class="st">&quot;Error! Need average salary increase rate&quot;</span>)</a>
+<a class="sourceLine" id="cb1-28" title="28">    <span class="cf">if</span> (<span class="kw">any</span>(x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>, y <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>, avg <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>, delta <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>)) </a>
+<a class="sourceLine" id="cb1-29" title="29">        <span class="kw">stop</span>(<span class="st">&quot;Error! Negative parameters&quot;</span>)</a>
+<a class="sourceLine" id="cb1-30" title="30">    </a>
+<a class="sourceLine" id="cb1-31" title="31">    <span class="co">########## survive all casuses</span></a>
+<a class="sourceLine" id="cb1-32" title="32">    acttableAccPeriodTotal =<span class="st"> </span><span class="kw">pxt</span>(acttableAccPeriod, <span class="dt">x =</span> <span class="dv">0</span><span class="op">:</span>(<span class="kw">getOmega</span>(acttableAccPeriod)), </a>
+<a class="sourceLine" id="cb1-33" title="33">        <span class="dt">t =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb1-34" title="34">    acttableAccPeriodTotal =<span class="st"> </span><span class="kw">probs2lifetable</span>(acttableAccPeriodTotal, <span class="dt">type =</span> <span class="st">&quot;px&quot;</span>)</a>
+<a class="sourceLine" id="cb1-35" title="35">    <span class="cf">if</span> (<span class="kw">missing</span>(acttablePaymPeriod)) </a>
+<a class="sourceLine" id="cb1-36" title="36">        acttablePaymPeriod =<span class="st"> </span>acttableAccPeriodTotal</a>
+<a class="sourceLine" id="cb1-37" title="37">    </a>
+<a class="sourceLine" id="cb1-38" title="38">    <span class="co">########## Set benefit fix age valuation</span></a>
+<a class="sourceLine" id="cb1-39" title="39">    x0 =<span class="st"> </span>x</a>
+<a class="sourceLine" id="cb1-40" title="40">    B =<span class="st"> </span><span class="kw">ifelse</span>(avg <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, <span class="dv">1</span>, (<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>j)<span class="op">^</span>(r <span class="op">-</span><span class="st"> </span>x0) <span class="op">*</span><span class="st"> </span><span class="kw">annuity</span>(j, avg, <span class="dt">m =</span> <span class="dv">0</span>, <span class="dt">k =</span> <span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb1-41" title="41">        <span class="dt">type =</span> <span class="st">&quot;immediate&quot;</span>)<span class="op">/</span>avg)</a>
+<a class="sourceLine" id="cb1-42" title="42">    q.r =<span class="st"> </span><span class="kw">qxt</span>(<span class="dt">object =</span> acttableAccPeriod, <span class="dt">x =</span> r, <span class="dt">t =</span> <span class="dv">1</span>, <span class="dt">decrement =</span> decrement)</a>
+<a class="sourceLine" id="cb1-43" title="43">    Br =<span class="st"> </span>q.r <span class="op">*</span><span class="st"> </span><span class="kw">axn</span>(acttablePaymPeriod, r, <span class="dt">i =</span> (<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>i)<span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>delta) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">n =</span> n, </a>
+<a class="sourceLine" id="cb1-44" title="44">        <span class="dt">k =</span> <span class="dv">1</span>) <span class="op">*</span><span class="st"> </span>B</a>
+<a class="sourceLine" id="cb1-45" title="45">    </a>
+<a class="sourceLine" id="cb1-46" title="46">    <span class="co">########## handle errors</span></a>
+<a class="sourceLine" id="cb1-47" title="47">    <span class="cf">if</span> (<span class="kw">missing</span>(n)) </a>
+<a class="sourceLine" id="cb1-48" title="48">        n &lt;-<span class="st"> </span><span class="kw">getOmega</span>(acttableAccPeriod) <span class="op">-</span><span class="st"> </span>x <span class="op">-</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb1-49" title="49">    <span class="cf">if</span> (x <span class="op">&lt;</span><span class="st"> </span>y) </a>
+<a class="sourceLine" id="cb1-50" title="50">        <span class="kw">stop</span>(<span class="st">&quot;Entry age greater than actual age&quot;</span>)</a>
+<a class="sourceLine" id="cb1-51" title="51">    <span class="cf">if</span> (<span class="kw">missing</span>(decrement)) </a>
+<a class="sourceLine" id="cb1-52" title="52">        <span class="kw">stop</span>(<span class="st">&quot;Which is the contingency of benefit?&quot;</span>)</a>
+<a class="sourceLine" id="cb1-53" title="53">    <span class="cf">if</span> (<span class="kw">class</span>(acttableAccPeriod) <span class="op">!=</span><span class="st"> &quot;mdt&quot;</span>) </a>
+<a class="sourceLine" id="cb1-54" title="54">        <span class="kw">stop</span>(<span class="st">&quot;Error! Needed Mdt&quot;</span>)</a>
+<a class="sourceLine" id="cb1-55" title="55">    <span class="cf">if</span> (<span class="op">!</span>(decrement <span class="op">%in%</span><span class="st"> </span><span class="kw">getDecrements</span>(acttableAccPeriod))) </a>
+<a class="sourceLine" id="cb1-56" title="56">        <span class="kw">stop</span>(<span class="st">&quot;Error! Not recognized decrement type&quot;</span>)</a>
+<a class="sourceLine" id="cb1-57" title="57">    <span class="cf">if</span> (<span class="kw">missing</span>(acttableAccPeriod)) </a>
+<a class="sourceLine" id="cb1-58" title="58">        <span class="kw">stop</span>(<span class="st">&quot;Error! Need a lifetable or actuarialtable&quot;</span>)</a>
+<a class="sourceLine" id="cb1-59" title="59">    <span class="cf">if</span> (<span class="kw">missing</span>(x) <span class="op">|</span><span class="st"> </span><span class="kw">missing</span>(y)) </a>
+<a class="sourceLine" id="cb1-60" title="60">        <span class="kw">stop</span>(<span class="st">&quot;Error! Need age and seniority!&quot;</span>)</a>
+<a class="sourceLine" id="cb1-61" title="61">    <span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="kw">getOmega</span>(acttableAccPeriod)) {</a>
+<a class="sourceLine" id="cb1-62" title="62">        out =<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb1-63" title="63">        <span class="kw">return</span>(out)</a>
+<a class="sourceLine" id="cb1-64" title="64">    }</a>
+<a class="sourceLine" id="cb1-65" title="65">    <span class="cf">if</span> (<span class="kw">missing</span>(CostMet)) </a>
+<a class="sourceLine" id="cb1-66" title="66">        CostMet =<span class="st"> &quot;BPM_CD&quot;</span></a>
+<a class="sourceLine" id="cb1-67" title="67">    <span class="cf">if</span> (<span class="kw">missing</span>(avg)) </a>
+<a class="sourceLine" id="cb1-68" title="68">        <span class="kw">stop</span>(<span class="st">&quot;Error! Need avg period of computing benefit&quot;</span>)</a>
+<a class="sourceLine" id="cb1-69" title="69">    <span class="cf">if</span> (<span class="kw">missing</span>(j)) </a>
+<a class="sourceLine" id="cb1-70" title="70">        <span class="kw">stop</span>(<span class="st">&quot;Error! Need average salary increase rate&quot;</span>)</a>
+<a class="sourceLine" id="cb1-71" title="71">    <span class="cf">if</span> (<span class="kw">any</span>(x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>, y <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>, avg <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>, delta <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>)) </a>
+<a class="sourceLine" id="cb1-72" title="72">        <span class="kw">stop</span>(<span class="st">&quot;Error! Negative parameters&quot;</span>)</a>
+<a class="sourceLine" id="cb1-73" title="73">    </a>
+<a class="sourceLine" id="cb1-74" title="74">    <span class="co">########## survive all casuses</span></a>
+<a class="sourceLine" id="cb1-75" title="75">    acttableAccPeriodTotal =<span class="st"> </span><span class="kw">pxt</span>(acttableAccPeriod, <span class="dt">x =</span> <span class="dv">0</span><span class="op">:</span>(<span class="kw">getOmega</span>(acttableAccPeriod)), </a>
+<a class="sourceLine" id="cb1-76" title="76">        <span class="dt">t =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb1-77" title="77">    acttableAccPeriodTotal =<span class="st"> </span><span class="kw">probs2lifetable</span>(acttableAccPeriodTotal, <span class="dt">type =</span> <span class="st">&quot;px&quot;</span>)</a>
+<a class="sourceLine" id="cb1-78" title="78">    <span class="cf">if</span> (<span class="kw">missing</span>(acttablePaymPeriod)) </a>
+<a class="sourceLine" id="cb1-79" title="79">        acttablePaymPeriod =<span class="st"> </span>acttableAccPeriodTotal</a>
+<a class="sourceLine" id="cb1-80" title="80">    </a>
+<a class="sourceLine" id="cb1-81" title="81">    <span class="co">########## Set benefit fix age valuation</span></a>
+<a class="sourceLine" id="cb1-82" title="82">    x0 =<span class="st"> </span>x</a>
+<a class="sourceLine" id="cb1-83" title="83">    B =<span class="st"> </span><span class="kw">ifelse</span>(avg <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, <span class="dv">1</span>, (<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>j)<span class="op">^</span>(r <span class="op">-</span><span class="st"> </span>x0) <span class="op">*</span><span class="st"> </span><span class="kw">annuity</span>(j, avg, <span class="dt">m =</span> <span class="dv">0</span>, <span class="dt">k =</span> <span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb1-84" title="84">        <span class="dt">type =</span> <span class="st">&quot;immediate&quot;</span>)<span class="op">/</span>avg)</a>
+<a class="sourceLine" id="cb1-85" title="85">    q.r =<span class="st"> </span><span class="kw">qxt</span>(<span class="dt">object =</span> acttableAccPeriod, <span class="dt">x =</span> r, <span class="dt">t =</span> <span class="dv">1</span>, <span class="dt">decrement =</span> decrement)</a>
+<a class="sourceLine" id="cb1-86" title="86">    Br =<span class="st"> </span>q.r <span class="op">*</span><span class="st"> </span><span class="kw">axn</span>(acttablePaymPeriod, r, <span class="dt">i =</span> (<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>i)<span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>delta) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">n =</span> n, </a>
+<a class="sourceLine" id="cb1-87" title="87">        <span class="dt">k =</span> <span class="dv">1</span>) <span class="op">*</span><span class="st"> </span>B</a>
+<a class="sourceLine" id="cb1-88" title="88">    </a>
+<a class="sourceLine" id="cb1-89" title="89">    <span class="co">########## Actuarial liability in age x, fot the age r (r&gt;=x)</span></a>
+<a class="sourceLine" id="cb1-90" title="90">    </a>
+<a class="sourceLine" id="cb1-91" title="91">    ALyNC.x.r =<span class="st"> </span><span class="cf">function</span>(x, r) {</a>
+<a class="sourceLine" id="cb1-92" title="92">        </a>
+<a class="sourceLine" id="cb1-93" title="93">        <span class="co">## PVFB</span></a>
+<a class="sourceLine" id="cb1-94" title="94">        </a>
+<a class="sourceLine" id="cb1-95" title="95">        PVFB.x =<span class="st"> </span><span class="kw">Exn</span>(acttableAccPeriodTotal, x, r <span class="op">-</span><span class="st"> </span>x, <span class="dt">i =</span> i) <span class="op">*</span><span class="st"> </span>Br</a>
+<a class="sourceLine" id="cb1-96" title="96">        </a>
+<a class="sourceLine" id="cb1-97" title="97">        <span class="co">## Normal Costs and liabilities under Actuarial Cost Methods</span></a>
+<a class="sourceLine" id="cb1-98" title="98">        </a>
+<a class="sourceLine" id="cb1-99" title="99">        <span class="cf">if</span> (CostMet <span class="op">==</span><span class="st"> &quot;BPM_CD&quot;</span>) {</a>
+<a class="sourceLine" id="cb1-100" title="100">            K &lt;-<span class="st"> </span>(x <span class="op">-</span><span class="st"> </span>y)<span class="op">/</span>(r <span class="op">-</span><span class="st"> </span>y)</a>
+<a class="sourceLine" id="cb1-101" title="101">            k &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">/</span>(r <span class="op">-</span><span class="st"> </span>y)</a>
+<a class="sourceLine" id="cb1-102" title="102">        }</a>
+<a class="sourceLine" id="cb1-103" title="103">        </a>
+<a class="sourceLine" id="cb1-104" title="104">        <span class="cf">if</span> (CostMet <span class="op">==</span><span class="st"> &quot;BPM_CP&quot;</span>) {</a>
+<a class="sourceLine" id="cb1-105" title="105">            K &lt;-<span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>j)<span class="op">^</span>(x <span class="op">-</span><span class="st"> </span>x0) <span class="op">*</span><span class="st"> </span><span class="kw">annuity</span>(j, x <span class="op">-</span><span class="st"> </span>y <span class="op">+</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">m =</span> <span class="dv">0</span>, <span class="dt">k =</span> <span class="dv">1</span>, <span class="dt">type =</span> <span class="st">&quot;immediate&quot;</span>)<span class="op">/</span>((<span class="dv">1</span> <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-106" title="106"><span class="st">                </span>j)<span class="op">^</span>(r <span class="op">-</span><span class="st"> </span>x0) <span class="op">*</span><span class="st"> </span><span class="kw">annuity</span>(j, r <span class="op">-</span><span class="st"> </span>y <span class="op">+</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">m =</span> <span class="dv">0</span>, <span class="dt">k =</span> <span class="dv">1</span>, <span class="dt">type =</span> <span class="st">&quot;immediate&quot;</span>))</a>
+<a class="sourceLine" id="cb1-107" title="107">            k &lt;-<span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>j)<span class="op">^</span>(x <span class="op">-</span><span class="st"> </span>x0)<span class="op">/</span>(<span class="kw">annuity</span>(j, r <span class="op">-</span><span class="st"> </span>y, <span class="dt">m =</span> <span class="dv">0</span>, <span class="dt">k =</span> <span class="dv">1</span>, <span class="dt">type =</span> <span class="st">&quot;immediate&quot;</span>) <span class="op">*</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-108" title="108"><span class="st">                </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>j)<span class="op">^</span>(r <span class="op">-</span><span class="st"> </span>x0))</a>
+<a class="sourceLine" id="cb1-109" title="109">        }</a>
+<a class="sourceLine" id="cb1-110" title="110">        </a>
+<a class="sourceLine" id="cb1-111" title="111">        <span class="cf">if</span> (CostMet <span class="op">==</span><span class="st"> &quot;CPM_CD&quot;</span>) {</a>
+<a class="sourceLine" id="cb1-112" title="112">            K &lt;-<span class="st"> </span><span class="kw">axn</span>(acttableAccPeriodTotal, y, <span class="dt">i =</span> i, <span class="dt">n =</span> x <span class="op">-</span><span class="st"> </span>y, <span class="dt">k =</span> <span class="dv">1</span>)<span class="op">/</span><span class="kw">axn</span>(acttableAccPeriodTotal, </a>
+<a class="sourceLine" id="cb1-113" title="113">                y, <span class="dt">i =</span> i, <span class="dt">n =</span> r <span class="op">-</span><span class="st"> </span>y, <span class="dt">k =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb1-114" title="114">            </a>
+<a class="sourceLine" id="cb1-115" title="115">            k &lt;-<span class="st"> </span><span class="kw">Exn</span>(acttableAccPeriodTotal, y, x <span class="op">-</span><span class="st"> </span>y, <span class="dt">i =</span> i)<span class="op">/</span><span class="kw">axn</span>(acttableAccPeriodTotal, </a>
+<a class="sourceLine" id="cb1-116" title="116">                y, <span class="dt">i =</span> i, <span class="dt">n =</span> r <span class="op">-</span><span class="st"> </span>y, <span class="dt">k =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb1-117" title="117">        }</a>
+<a class="sourceLine" id="cb1-118" title="118">        </a>
+<a class="sourceLine" id="cb1-119" title="119">        <span class="cf">if</span> (CostMet <span class="op">==</span><span class="st"> &quot;CPM_CB&quot;</span>) {</a>
+<a class="sourceLine" id="cb1-120" title="120">            K &lt;-<span class="st"> </span><span class="kw">axn</span>(acttableAccPeriodTotal, y, <span class="dt">i =</span> (<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>i)<span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>j) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">n =</span> x <span class="op">-</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-121" title="121"><span class="st">                </span>y, <span class="dt">k =</span> <span class="dv">1</span>)<span class="op">/</span><span class="kw">axn</span>(acttableAccPeriodTotal, y, <span class="dt">i =</span> (<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>i)<span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>j) <span class="op">-</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-122" title="122"><span class="st">                </span><span class="dv">1</span>, <span class="dt">n =</span> r <span class="op">-</span><span class="st"> </span>y, <span class="dt">k =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb1-123" title="123">            </a>
+<a class="sourceLine" id="cb1-124" title="124">            k &lt;-<span class="st"> </span><span class="kw">Exn</span>(acttableAccPeriodTotal, y, x <span class="op">-</span><span class="st"> </span>y, <span class="dt">i =</span> i) <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>j)<span class="op">^</span>(x <span class="op">-</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-125" title="125"><span class="st">                </span>y)<span class="op">/</span><span class="kw">axn</span>(acttableAccPeriodTotal, y, <span class="dt">i =</span> (<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>i)<span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>j) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">n =</span> r <span class="op">-</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-126" title="126"><span class="st">                </span>y, <span class="dt">k =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb1-127" title="127">        }</a>
+<a class="sourceLine" id="cb1-128" title="128">        </a>
+<a class="sourceLine" id="cb1-129" title="129">        <span class="co">## Results</span></a>
+<a class="sourceLine" id="cb1-130" title="130">        </a>
+<a class="sourceLine" id="cb1-131" title="131">        outAL.x.r &lt;-<span class="st"> </span>PVFB.x <span class="op">*</span><span class="st"> </span>K</a>
+<a class="sourceLine" id="cb1-132" title="132">        outNC.x.r &lt;-<span class="st"> </span>PVFB.x <span class="op">*</span><span class="st"> </span>k</a>
+<a class="sourceLine" id="cb1-133" title="133">        outPVFB.x &lt;-<span class="st"> </span>PVFB.x</a>
+<a class="sourceLine" id="cb1-134" title="134">        out.x.r &lt;-<span class="st"> </span><span class="kw">c</span>(outAL.x.r, outNC.x.r, outPVFB.x)</a>
+<a class="sourceLine" id="cb1-135" title="135">        </a>
+<a class="sourceLine" id="cb1-136" title="136">        <span class="kw">return</span>(out.x.r)</a>
+<a class="sourceLine" id="cb1-137" title="137">    }</a>
+<a class="sourceLine" id="cb1-138" title="138">    </a>
+<a class="sourceLine" id="cb1-139" title="139">    <span class="co">######## AL y NC for the rest of ages</span></a>
+<a class="sourceLine" id="cb1-140" title="140">    </a>
+<a class="sourceLine" id="cb1-141" title="141">    ages_risk =<span class="st"> </span>x<span class="op">:</span>r</a>
+<a class="sourceLine" id="cb1-142" title="142">    outAL.x =<span class="st"> </span><span class="kw">sapply</span>(ages_risk, <span class="cf">function</span>(x) <span class="kw">ALyNC.x.r</span>(x, r)[<span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb1-143" title="143">    outNC.x =<span class="st"> </span><span class="kw">sapply</span>(ages_risk, <span class="cf">function</span>(x) <span class="kw">ALyNC.x.r</span>(x, r)[<span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb1-144" title="144">    outPVFB.x =<span class="st"> </span><span class="kw">sapply</span>(ages_risk, <span class="cf">function</span>(x) <span class="kw">ALyNC.x.r</span>(x, r)[<span class="dv">3</span>])</a>
+<a class="sourceLine" id="cb1-145" title="145">    outNC.x[<span class="kw">length</span>(ages_risk)] =<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb1-146" title="146">    out.x &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> ages_risk, <span class="dt">AL =</span> outAL.x, <span class="dt">NC =</span> outNC.x, <span class="dt">PVFB =</span> outPVFB.x)</a>
+<a class="sourceLine" id="cb1-147" title="147">    </a>
+<a class="sourceLine" id="cb1-148" title="148">    <span class="co">########## Actuarial liability in age x, fot the age r (r&gt;=x)</span></a>
+<a class="sourceLine" id="cb1-149" title="149">    </a>
+<a class="sourceLine" id="cb1-150" title="150">    ALyNC.x.r =<span class="st"> </span><span class="cf">function</span>(x, r) {</a>
+<a class="sourceLine" id="cb1-151" title="151">        </a>
+<a class="sourceLine" id="cb1-152" title="152">        <span class="co">## PVFB</span></a>
+<a class="sourceLine" id="cb1-153" title="153">        </a>
+<a class="sourceLine" id="cb1-154" title="154">        PVFB.x =<span class="st"> </span><span class="kw">Exn</span>(acttableAccPeriodTotal, x, r <span class="op">-</span><span class="st"> </span>x, <span class="dt">i =</span> i) <span class="op">*</span><span class="st"> </span>Br</a>
+<a class="sourceLine" id="cb1-155" title="155">        </a>
+<a class="sourceLine" id="cb1-156" title="156">        <span class="co">## Normal Costs and liabilities under Actuarial Cost Methods</span></a>
+<a class="sourceLine" id="cb1-157" title="157">        </a>
+<a class="sourceLine" id="cb1-158" title="158">        <span class="cf">if</span> (CostMet <span class="op">==</span><span class="st"> &quot;BPM_CD&quot;</span>) {</a>
+<a class="sourceLine" id="cb1-159" title="159">            K &lt;-<span class="st"> </span>(x <span class="op">-</span><span class="st"> </span>y)<span class="op">/</span>(r <span class="op">-</span><span class="st"> </span>y)</a>
+<a class="sourceLine" id="cb1-160" title="160">            k &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">/</span>(r <span class="op">-</span><span class="st"> </span>y)</a>
+<a class="sourceLine" id="cb1-161" title="161">        }</a>
+<a class="sourceLine" id="cb1-162" title="162">        </a>
+<a class="sourceLine" id="cb1-163" title="163">        <span class="cf">if</span> (CostMet <span class="op">==</span><span class="st"> &quot;BPM_CP&quot;</span>) {</a>
+<a class="sourceLine" id="cb1-164" title="164">            K &lt;-<span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>j)<span class="op">^</span>(x <span class="op">-</span><span class="st"> </span>x0) <span class="op">*</span><span class="st"> </span><span class="kw">annuity</span>(j, x <span class="op">-</span><span class="st"> </span>y <span class="op">+</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">m =</span> <span class="dv">0</span>, <span class="dt">k =</span> <span class="dv">1</span>, <span class="dt">type =</span> <span class="st">&quot;immediate&quot;</span>)<span class="op">/</span>((<span class="dv">1</span> <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-165" title="165"><span class="st">                </span>j)<span class="op">^</span>(r <span class="op">-</span><span class="st"> </span>x0) <span class="op">*</span><span class="st"> </span><span class="kw">annuity</span>(j, r <span class="op">-</span><span class="st"> </span>y <span class="op">+</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">m =</span> <span class="dv">0</span>, <span class="dt">k =</span> <span class="dv">1</span>, <span class="dt">type =</span> <span class="st">&quot;immediate&quot;</span>))</a>
+<a class="sourceLine" id="cb1-166" title="166">            k &lt;-<span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>j)<span class="op">^</span>(x <span class="op">-</span><span class="st"> </span>x0)<span class="op">/</span>(<span class="kw">annuity</span>(j, r <span class="op">-</span><span class="st"> </span>y, <span class="dt">m =</span> <span class="dv">0</span>, <span class="dt">k =</span> <span class="dv">1</span>, <span class="dt">type =</span> <span class="st">&quot;immediate&quot;</span>) <span class="op">*</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-167" title="167"><span class="st">                </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>j)<span class="op">^</span>(r <span class="op">-</span><span class="st"> </span>x0))</a>
+<a class="sourceLine" id="cb1-168" title="168">        }</a>
+<a class="sourceLine" id="cb1-169" title="169">        </a>
+<a class="sourceLine" id="cb1-170" title="170">        <span class="cf">if</span> (CostMet <span class="op">==</span><span class="st"> &quot;CPM_CD&quot;</span>) {</a>
+<a class="sourceLine" id="cb1-171" title="171">            K &lt;-<span class="st"> </span><span class="kw">axn</span>(acttableAccPeriodTotal, y, <span class="dt">i =</span> i, <span class="dt">n =</span> x <span class="op">-</span><span class="st"> </span>y, <span class="dt">k =</span> <span class="dv">1</span>)<span class="op">/</span><span class="kw">axn</span>(acttableAccPeriodTotal, </a>
+<a class="sourceLine" id="cb1-172" title="172">                y, <span class="dt">i =</span> i, <span class="dt">n =</span> r <span class="op">-</span><span class="st"> </span>y, <span class="dt">k =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb1-173" title="173">            k &lt;-<span class="st"> </span><span class="kw">Exn</span>(acttableAccPeriodTotal, y, x <span class="op">-</span><span class="st"> </span>y, <span class="dt">i =</span> i)<span class="op">/</span><span class="kw">axn</span>(acttableAccPeriodTotal, </a>
+<a class="sourceLine" id="cb1-174" title="174">                y, <span class="dt">i =</span> i, <span class="dt">n =</span> r <span class="op">-</span><span class="st"> </span>y, <span class="dt">k =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb1-175" title="175">        }</a>
+<a class="sourceLine" id="cb1-176" title="176">        </a>
+<a class="sourceLine" id="cb1-177" title="177">        <span class="cf">if</span> (CostMet <span class="op">==</span><span class="st"> &quot;CPM_CB&quot;</span>) {</a>
+<a class="sourceLine" id="cb1-178" title="178">            K &lt;-<span class="st"> </span><span class="kw">axn</span>(acttableAccPeriodTotal, y, <span class="dt">i =</span> (<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>i)<span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>j) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">n =</span> x <span class="op">-</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-179" title="179"><span class="st">                </span>y, <span class="dt">k =</span> <span class="dv">1</span>)<span class="op">/</span><span class="kw">axn</span>(acttableAccPeriodTotal, y, <span class="dt">i =</span> (<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>i)<span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>j) <span class="op">-</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-180" title="180"><span class="st">                </span><span class="dv">1</span>, <span class="dt">n =</span> r <span class="op">-</span><span class="st"> </span>y, <span class="dt">k =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb1-181" title="181">            k &lt;-<span class="st"> </span><span class="kw">Exn</span>(acttableAccPeriodTotal, y, x <span class="op">-</span><span class="st"> </span>y, <span class="dt">i =</span> i) <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>j)<span class="op">^</span>(x <span class="op">-</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-182" title="182"><span class="st">                </span>y)<span class="op">/</span><span class="kw">axn</span>(acttableAccPeriodTotal, y, <span class="dt">i =</span> (<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>i)<span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>j) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">n =</span> r <span class="op">-</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-183" title="183"><span class="st">                </span>y, <span class="dt">k =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb1-184" title="184">        }</a>
+<a class="sourceLine" id="cb1-185" title="185">        </a>
+<a class="sourceLine" id="cb1-186" title="186">        <span class="co">## Results</span></a>
+<a class="sourceLine" id="cb1-187" title="187">        </a>
+<a class="sourceLine" id="cb1-188" title="188">        outAL.x.r &lt;-<span class="st"> </span>PVFB.x <span class="op">*</span><span class="st"> </span>K</a>
+<a class="sourceLine" id="cb1-189" title="189">        outNC.x.r &lt;-<span class="st"> </span>PVFB.x <span class="op">*</span><span class="st"> </span>k</a>
+<a class="sourceLine" id="cb1-190" title="190">        outPVFB.x &lt;-<span class="st"> </span>PVFB.x</a>
+<a class="sourceLine" id="cb1-191" title="191">        out.x.r &lt;-<span class="st"> </span><span class="kw">c</span>(outAL.x.r, outNC.x.r, outPVFB.x)</a>
+<a class="sourceLine" id="cb1-192" title="192">        </a>
+<a class="sourceLine" id="cb1-193" title="193">        <span class="kw">return</span>(out.x.r)</a>
+<a class="sourceLine" id="cb1-194" title="194">    }</a>
+<a class="sourceLine" id="cb1-195" title="195">    </a>
+<a class="sourceLine" id="cb1-196" title="196">    <span class="co">######## AL y NC for the rest of ages</span></a>
+<a class="sourceLine" id="cb1-197" title="197">    </a>
+<a class="sourceLine" id="cb1-198" title="198">    ages_risk =<span class="st"> </span>x<span class="op">:</span>r</a>
+<a class="sourceLine" id="cb1-199" title="199">    outAL.x =<span class="st"> </span><span class="kw">sapply</span>(ages_risk, <span class="cf">function</span>(x) <span class="kw">ALyNC.x.r</span>(x, r)[<span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb1-200" title="200">    outNC.x =<span class="st"> </span><span class="kw">sapply</span>(ages_risk, <span class="cf">function</span>(x) <span class="kw">ALyNC.x.r</span>(x, r)[<span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb1-201" title="201">    outPVFB.x =<span class="st"> </span><span class="kw">sapply</span>(ages_risk, <span class="cf">function</span>(x) <span class="kw">ALyNC.x.r</span>(x, r)[<span class="dv">3</span>])</a>
+<a class="sourceLine" id="cb1-202" title="202">    outNC.x[<span class="kw">length</span>(ages_risk)] =<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb1-203" title="203">    out.x &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> ages_risk, <span class="dt">AL =</span> outAL.x, <span class="dt">NC =</span> outNC.x, <span class="dt">PVFB =</span> outPVFB.x)</a>
+<a class="sourceLine" id="cb1-204" title="204">    </a>
+<a class="sourceLine" id="cb1-205" title="205">    <span class="kw">return</span>(out.x)</a>
+<a class="sourceLine" id="cb1-206" title="206">}</a></code></pre></div>
+</div>
+<div id="first-main-example" class="section level3">
+<h3>First (main) example</h3>
+<p>A first example of application is of a person aged 30 (entered to job at age 20), with a benefit in case of disability, that is the average of the last 5 salaries before get disabled. For calculate that we’ll use the multi-decrement table ‘SoAISTdata’ for the accrued period and ‘soa08’ for the payment period, both available in “lifecontingencies” package.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">library</span>(<span class="st">&quot;lifecontingencies&quot;</span>)</a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="kw">data</span>(SoAISTdata)</a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="kw">data</span>(soa08)</a>
+<a class="sourceLine" id="cb2-4" title="4">MultiDecrTable &lt;-<span class="st"> </span><span class="kw">new</span>(<span class="st">&quot;mdt&quot;</span>, <span class="dt">name =</span> <span class="st">&quot;testMDT&quot;</span>, <span class="dt">table =</span> SoAISTdata)</a></code></pre></div>
+<pre><code>## Added fictional decrement below last x and completed x and lx until zero....</code></pre>
+<p>The specific name of this risk in the table is ‘inability’.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">getDecrements</span>(MultiDecrTable)</a></code></pre></div>
+<pre><code>## [1] &quot;death&quot;      &quot;withdrawal&quot; &quot;inability&quot;  &quot;retirement&quot;</code></pre>
+<p>Now we calculate the liability and normal cost with the four methods, and <span class="math inline">\(i = .04\)</span>, <span class="math inline">\(j = .06\)</span>, <span class="math inline">\(delta = .03\)</span>, <span class="math inline">\(avg = 5\)</span>. In this case for the age risk 53 (<span class="math inline">\(r = 53\)</span>).</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">x1=<span class="dv">30</span></a>
+<a class="sourceLine" id="cb6-2" title="2">y1=<span class="dv">20</span></a>
+<a class="sourceLine" id="cb6-3" title="3">r1=<span class="dv">53</span></a>
+<a class="sourceLine" id="cb6-4" title="4">decrement1 =<span class="st"> &quot;inability&quot;</span></a>
+<a class="sourceLine" id="cb6-5" title="5">BPM_CD =<span class="st"> </span><span class="kw">PensFund</span>(x1, y1, r1, <span class="dt">acttableAccPeriod =</span> MultiDecrTable, <span class="dt">decrement =</span> decrement1,  </a>
+<a class="sourceLine" id="cb6-6" title="6">                  <span class="dt">i =</span> <span class="fl">.04</span>, <span class="dt">j =</span> <span class="fl">.06</span>, <span class="dt">delta =</span> <span class="fl">.03</span>, <span class="dt">avg =</span> <span class="dv">5</span>, </a>
+<a class="sourceLine" id="cb6-7" title="7">                  <span class="dt">acttablePaymPeriod =</span> soa08, <span class="dt">CostMet =</span> <span class="st">&#39;BPM_CD&#39;</span>)</a>
+<a class="sourceLine" id="cb6-8" title="8">BPM_CP =<span class="st"> </span><span class="kw">PensFund</span>(x1, y1, r1, <span class="dt">acttableAccPeriod =</span> MultiDecrTable, <span class="dt">decrement =</span> decrement1,  </a>
+<a class="sourceLine" id="cb6-9" title="9">                  <span class="dt">i =</span> <span class="fl">.04</span>, <span class="dt">j =</span> <span class="fl">.06</span>, <span class="dt">delta =</span> <span class="fl">.03</span>, <span class="dt">avg =</span> <span class="dv">5</span>, </a>
+<a class="sourceLine" id="cb6-10" title="10">                  <span class="dt">acttablePaymPeriod =</span> soa08, <span class="dt">CostMet =</span> <span class="st">&#39;BPM_CP&#39;</span>)</a>
+<a class="sourceLine" id="cb6-11" title="11">CPM_CD =<span class="st"> </span><span class="kw">PensFund</span>(x1, y1, r1, <span class="dt">acttableAccPeriod =</span> MultiDecrTable, <span class="dt">decrement =</span> decrement1,  </a>
+<a class="sourceLine" id="cb6-12" title="12">                  <span class="dt">i =</span> <span class="fl">.04</span>, <span class="dt">j =</span> <span class="fl">.06</span>, <span class="dt">delta =</span> <span class="fl">.03</span>, <span class="dt">avg =</span> <span class="dv">5</span>, </a>
+<a class="sourceLine" id="cb6-13" title="13">                  <span class="dt">acttablePaymPeriod =</span> soa08, <span class="dt">CostMet =</span> <span class="st">&#39;CPM_CD&#39;</span>)</a>
+<a class="sourceLine" id="cb6-14" title="14">CPM_CP =<span class="st"> </span><span class="kw">PensFund</span>(x1, y1, r1, <span class="dt">acttableAccPeriod =</span> MultiDecrTable, <span class="dt">decrement =</span> decrement1,  </a>
+<a class="sourceLine" id="cb6-15" title="15">                  <span class="dt">i =</span> <span class="fl">.04</span>, <span class="dt">j =</span> <span class="fl">.06</span>, <span class="dt">delta =</span> <span class="fl">.03</span>, <span class="dt">avg =</span> <span class="dv">5</span>, </a>
+<a class="sourceLine" id="cb6-16" title="16">                  <span class="dt">acttablePaymPeriod =</span> soa08, <span class="dt">CostMet =</span> <span class="st">&#39;CPM_CB&#39;</span>)</a></code></pre></div>
+<p>The way that each method amortize the benefit cost in active years can be seen in the next graph, showing the liability accumulated relationship between at any age: “CPM_CD” <span class="math inline">\(\geqslant\)</span> “CPM_CB”<span class="math inline">\(\geqslant\)</span> “BPM_CD” <span class="math inline">\(\geqslant\)</span> “BPM_CP”.</p>
+<p><img src="data:image/png;base64,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" style="display: block; margin: auto;" /></p>
+<p>We can check the results with actuarial equivalences, specifically the formulas <span class="math inline">\(AL^{r}_x = PVFB^{r}_x-PVFNC^{r}_x\)</span> (6.3a) and <span class="math inline">\(AL^{r}_x = AVPNC^{r}_x\)</span> (6.4a) in <span class="citation">(Winklevoss 1993)</span>, which means that the actuarial liability at any time can be expressed as the difference between the present value of future benefit and the present value of future normal costs, and as the actuarial value of past normal costs (retrospective view).</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># AL = PVBF - PVFNC first get survivial for all causes</span></a>
+<a class="sourceLine" id="cb7-2" title="2">acttableAccPeriodTotal =<span class="st"> </span><span class="kw">pxt</span>(MultiDecrTable, <span class="dt">x =</span> <span class="dv">0</span><span class="op">:</span>(<span class="kw">getOmega</span>(MultiDecrTable)), </a>
+<a class="sourceLine" id="cb7-3" title="3">    <span class="dt">t =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb7-4" title="4">acttableAccPeriodTotal =<span class="st"> </span><span class="kw">probs2lifetable</span>(acttableAccPeriodTotal, <span class="dt">type =</span> <span class="st">&quot;px&quot;</span>)</a>
+<a class="sourceLine" id="cb7-5" title="5"><span class="co"># are equal?</span></a>
+<a class="sourceLine" id="cb7-6" title="6"><span class="kw">round</span>(BPM_CD<span class="op">$</span>AL[<span class="dv">1</span>], <span class="dv">10</span>) <span class="op">==</span><span class="st"> </span><span class="kw">round</span>(BPM_CD<span class="op">$</span>PVFB[<span class="dv">1</span>] <span class="op">-</span><span class="st"> </span><span class="kw">sum</span>(<span class="kw">sapply</span>(x1<span class="op">:</span>(r1 <span class="op">-</span><span class="st"> </span><span class="dv">1</span>), <span class="cf">function</span>(x) <span class="kw">Exn</span>(acttableAccPeriodTotal, </a>
+<a class="sourceLine" id="cb7-7" title="7">    x1, x <span class="op">-</span><span class="st"> </span>x1, <span class="dt">i =</span> <span class="fl">0.04</span>) <span class="op">*</span><span class="st"> </span>BPM_CD<span class="op">$</span>NC[x <span class="op">-</span><span class="st"> </span>x1 <span class="op">+</span><span class="st"> </span><span class="dv">1</span>])), <span class="dv">10</span>)</a></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="co"># Restrospective AL First get the liability at entry age y</span></a>
+<a class="sourceLine" id="cb9-2" title="2">BPM_CD_y =<span class="st"> </span><span class="kw">PensFund</span>(y1, y1, r1, <span class="dt">acttableAccPeriod =</span> MultiDecrTable, <span class="dt">decrement =</span> decrement1, </a>
+<a class="sourceLine" id="cb9-3" title="3">    <span class="dt">i =</span> <span class="fl">0.04</span>, <span class="dt">j =</span> <span class="fl">0.06</span>, <span class="dt">delta =</span> <span class="fl">0.03</span>, <span class="dt">avg =</span> <span class="dv">5</span>, <span class="dt">acttablePaymPeriod =</span> soa08, <span class="dt">CostMet =</span> <span class="st">&quot;BPM_CD&quot;</span>)</a>
+<a class="sourceLine" id="cb9-4" title="4"><span class="co"># are equal?</span></a>
+<a class="sourceLine" id="cb9-5" title="5"><span class="kw">round</span>(BPM_CD_y<span class="op">$</span>AL[BPM_CD_y<span class="op">$</span>x <span class="op">==</span><span class="st"> </span><span class="dv">45</span>], <span class="dv">10</span>) <span class="op">==</span><span class="st"> </span><span class="kw">round</span>(<span class="kw">sum</span>(<span class="kw">sapply</span>(y1<span class="op">:</span><span class="dv">44</span>, <span class="cf">function</span>(y) (<span class="fl">1.04</span>)<span class="op">^</span>(<span class="dv">45</span> <span class="op">-</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb9-6" title="6"><span class="st">    </span>y)<span class="op">/</span><span class="kw">pxt</span>(acttableAccPeriodTotal, y, <span class="dv">45</span> <span class="op">-</span><span class="st"> </span>y) <span class="op">*</span><span class="st"> </span>BPM_CD_y<span class="op">$</span>NC[BPM_CD_y<span class="op">$</span>x <span class="op">==</span><span class="st"> </span>y])), </a>
+<a class="sourceLine" id="cb9-7" title="7">    <span class="dv">10</span>)</a></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+<div id="second-example" class="section level3">
+<h3>Second example</h3>
+<p>Now we’ll evaluate a retirement pension, that receives a payment grade which is a lineal function between age 60 and the maximum possible age of retirement at 70, and goes from 50% to 100%. This is not a grading function in which benefit provided at early or late retirement has the same present value as the benefit payable at normal retirement (<span class="citation">(Winklevoss 1993)</span>, chapter 9). Instead, here the person is penalyzed for early retirement. The insured has an annual salary of 5000 at age <span class="math inline">\(x\)</span>. Also there is a seniority condition of 10 years. The other parameters are the same that the previous example.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">x2 =<span class="st"> </span><span class="dv">50</span></a>
+<a class="sourceLine" id="cb11-2" title="2">y2 =<span class="st"> </span><span class="dv">35</span></a>
+<a class="sourceLine" id="cb11-3" title="3">decrement2 =<span class="st"> &quot;retirement&quot;</span></a>
+<a class="sourceLine" id="cb11-4" title="4">pay_grade =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x2<span class="op">:</span><span class="dv">70</span>, <span class="dt">gr =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">10</span>), <span class="kw">seq</span>(<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="fl">0.05</span>)))</a>
+<a class="sourceLine" id="cb11-5" title="5">snty_req =<span class="st"> </span><span class="dv">20</span></a>
+<a class="sourceLine" id="cb11-6" title="6">s_x =<span class="st"> </span><span class="dv">5000</span></a>
+<a class="sourceLine" id="cb11-7" title="7">Cost_Method2 =<span class="st"> &quot;BPM_CD&quot;</span></a></code></pre></div>
+<p>The calculation now focus on estimate the actuarial values at age <span class="math inline">\(x2\)</span>, for all the retirement scheme (all ages between <span class="math inline">\(x2\)</span> and 70).</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">AL_xr =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">r =</span> <span class="dv">0</span>, <span class="dt">AL =</span> <span class="dv">0</span>, <span class="dt">NC =</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb12-2" title="2"><span class="cf">for</span> (r <span class="cf">in</span> x2<span class="op">:</span><span class="dv">70</span>) {</a>
+<a class="sourceLine" id="cb12-3" title="3">    <span class="cf">if</span> ((r <span class="op">-</span><span class="st"> </span>y2) <span class="op">&lt;</span><span class="st"> </span>snty_req) </a>
+<a class="sourceLine" id="cb12-4" title="4">        AL_xr[r <span class="op">-</span><span class="st"> </span>x2 <span class="op">+</span><span class="st"> </span><span class="dv">1</span>, <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>] =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>) <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb12-5" title="5">        AL_xr[r <span class="op">-</span><span class="st"> </span>x2 <span class="op">+</span><span class="st"> </span><span class="dv">1</span>, <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>] =<span class="st"> </span>s_x <span class="op">*</span><span class="st"> </span>pay_grade[pay_grade<span class="op">$</span>x <span class="op">==</span><span class="st"> </span>r, <span class="dv">2</span>] <span class="op">*</span><span class="st"> </span><span class="kw">PensFund</span>(x2, </a>
+<a class="sourceLine" id="cb12-6" title="6">            y2, r, <span class="dt">acttableAccPeriod =</span> MultiDecrTable, <span class="dt">decrement =</span> decrement2, </a>
+<a class="sourceLine" id="cb12-7" title="7">            <span class="dt">i =</span> <span class="fl">0.04</span>, <span class="dt">j =</span> <span class="fl">0.06</span>, <span class="dt">delta =</span> <span class="fl">0.03</span>, <span class="dt">avg =</span> <span class="dv">5</span>, <span class="dt">acttablePaymPeriod =</span> soa08, </a>
+<a class="sourceLine" id="cb12-8" title="8">            <span class="dt">CostMet =</span> Cost_Method2)[<span class="dv">1</span>, <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb12-9" title="9">    }</a>
+<a class="sourceLine" id="cb12-10" title="10">    AL_xr[r <span class="op">-</span><span class="st"> </span>x2 <span class="op">+</span><span class="st"> </span><span class="dv">1</span>, <span class="dv">1</span>] =<span class="st"> </span>r</a>
+<a class="sourceLine" id="cb12-11" title="11">}</a></code></pre></div>
+<p>The total liability at age x is 1.889168710^{4} and is distributed between this retirement options, influenced by the progressive function of the early retirement (<span class="math inline">\(pay_grade\)</span>) and the individual’s expected behavior (probability of retirement).</p>
+<p><img src="data:image/png;base64,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" style="display: block; margin: auto;" /></p>
+</div>
+<div id="third-example" class="section level3">
+<h3>Third example</h3>
+<p>Now let’s imagine that the same insured has the benefit of receive a 50% of his/her last salary at each age before retirement if he decide to leave the Company. The benefit is in concept of recognition of past contributions to the pension plan. This benefit can be estimated setting <span class="math inline">\(n=1\)</span> (no rent, a single payment) and <span class="math inline">\(avg=0\)</span> (only last salary). For example, for the risk of withdrawal at age 45:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">decrement3 =<span class="st"> &quot;withdrawal&quot;</span></a>
+<a class="sourceLine" id="cb13-2" title="2">x3 =<span class="st"> </span><span class="dv">30</span></a>
+<a class="sourceLine" id="cb13-3" title="3">y3 =<span class="st"> </span><span class="dv">20</span></a>
+<a class="sourceLine" id="cb13-4" title="4">r3 =<span class="st"> </span><span class="dv">45</span></a>
+<a class="sourceLine" id="cb13-5" title="5">BPM_CP3 =<span class="st"> </span>s_x <span class="op">*</span><span class="st"> </span><span class="fl">0.5</span> <span class="op">*</span><span class="st"> </span><span class="kw">PensFund</span>(x3, y3, r3, <span class="dt">acttableAccPeriod =</span> MultiDecrTable, </a>
+<a class="sourceLine" id="cb13-6" title="6">    <span class="dt">decrement =</span> decrement3, <span class="dt">i =</span> <span class="fl">0.04</span>, <span class="dt">j =</span> <span class="fl">0.06</span>, <span class="dt">delta =</span> <span class="fl">0.03</span>, <span class="dt">avg =</span> <span class="dv">0</span>, <span class="dt">n =</span> <span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb13-7" title="7">    <span class="dt">acttablePaymPeriod =</span> soa08, <span class="dt">CostMet =</span> <span class="st">&quot;BPM_CP&quot;</span>)</a></code></pre></div>
+<p><img src="data:image/png;base64,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" style="display: block; margin: auto;" /></p>
+</div>
+<div id="future-improvements" class="section level1">
+<h1>Future improvements:</h1>
+<p>The following improvements are planned:</p>
+<ol style="list-style-type: decimal">
+<li>Because a payment can’t be done before the contingency occurs, an assumption about occurrence and payment must be done. We will improve the function to consider payments at half of the year. This affects only the financial component, and little bit the final results.</li>
+<li>Make the benefit rent payable for a designed survivor too, and with a portion of the titular benefit. This also allows to include death as a main benefit risk.</li>
+</ol>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<div id="refs" class="references">
+<div id="ref-bowers1997actuarial">
+<p>Bowers, N. L., D. A. Jones, H. U. Gerber, C. J. Nesbitt, and J. C. Hickman. 1997. <em>Actuarial Mathematics, 2nd Edition</em>. Society of Actuaries.</p>
+</div>
+<div id="ref-winklevoss1993pension">
+<p>Winklevoss, Howard E. 1993. <em>Pension Mathematics with Numerical Illustrations</em>. University of Pennsylvania Press.</p>
+</div>
+</div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

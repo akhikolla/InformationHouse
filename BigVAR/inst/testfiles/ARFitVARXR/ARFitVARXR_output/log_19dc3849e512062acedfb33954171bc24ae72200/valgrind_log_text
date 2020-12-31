@@ -1,0 +1,21 @@
+WARNING: No test specified, defaulting to first test defined (BigVAR_deepstate_test_ARFitVARXR_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_output/19dc3849e512062acedfb33954171bc24ae72200.fail`
+TRACE: Running: BigVAR_deepstate_test_ARFitVARXR_test from /home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+K21 values: 3.60909e+224 9.37481e+280 1.27048e-62 4.71376e-48     nan 7.46115e-258 1.41003e-86
+1.11742e+83 3.07504e-136 2.13410e-145 1.75062e-260 2.90402e-286 5.01413e+184 1.93644e+180
+1.97870e+143 1.01645e-124 2.01769e+47 4.13273e+261 3.56215e-230     nan 1.99326e-62
+    nan 1.00679e-73     nan 7.50348e-71 1.43678e-133 29072.6 1.39816e-16
+
+k values: -1353570258
+p values: -1998882403
+m values: 662238740
+s values: 928105553
+input ends
+terminate called after throwing an instance of 'std::bad_alloc'
+  what():  std::bad_alloc
+ERROR: Failed: BigVAR_deepstate_test_ARFitVARXR_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/BigVAR/inst/testfiles/ARFitVARXR/ARFitVARXR_output/19dc3849e512062acedfb33954171bc24ae72200.fail failed

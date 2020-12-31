@@ -1,0 +1,70 @@
+INFO: Starting fuzzing
+WARNING: No test specified, defaulting to first test defined (dbscan_deepstate_test_mst_to_dendrogram_test)
+input starts
+EXTERNAL: qs v0.23.4.
+
+mst values: 1.05415e-68 1.86447e-211 4.49059e+17 2.72551e-214 6.53679e-70 2.42643e+241 1.65687e+24
+
+input ends
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+mst values: 1.02532e+261 1.12756e-57     nan
+1.46340e+288     inf 4.12846e-51
+5.67165e-306 4.85713e-272     inf
+    nan     inf 61.3403
+5.43908e-105 3.30698e+94 6.30847e-13
+
+input ends
+ERROR: Crashed: dbscan_deepstate_test_mst_to_dendrogram_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/dbscan/inst/testfiles/mst_to_dendrogram/mst_to_dendrogram_output/e78ce7438df9a1440309ef3e26dc1d3f4bb32f6a.crash`
+input starts
+EXTERNAL: qs v0.23.4.
+
+mst values: 3.07504e-136 1.01645e-124 1.00679e-73 1.72389e-189 2.13410e-145 2.01769e+47 5.91096e+64 4.71376e-48 1.75062e-260
+
+input ends
+input starts
+EXTERNAL: qs v0.23.4.
+
+mst values: 1.55275e+40 4.07917e+165 1.44694e-22 8.62422e-89 8.95062e-07 8.88077e+282 4.09428e+146 0.00892625 1.53510e-99
+1.26562e-12 11.4127 5.24924e+272 1.01363e+74 1.86531e+250 5.10578e-14 8.78821e+143 1.30327e+122 7.52989e+12
+7.78977e+159 5.71162e+62 4.59987e+18 2.14829e+78 1.02818e-81 9.71140e-241 1.60646e-158 4.33867e+27 3.77445e+64
+5.68507e+80 3.92548e+14 1.51667e-225 1.56356e-81 1.83374e-104 7.70719e-71 2.54096e-21 2.84159e-210 14780.2
+2.19993e-285 4.49653e+83 6.61249e-257 1.87145e+289 9.93170e-171 1.49741e+196 2.36295e+123 8.31362e+90 4.33815e+110
+1.71990e-51 8.29783e+300 2.62736e-264 4.33714e-104 1088.08 1.44529e+91 1.93465e-43 1.42291 8.53986e-281
+
+input ends
+ERROR: Crashed: dbscan_deepstate_test_mst_to_dendrogram_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/dbscan/inst/testfiles/mst_to_dendrogram/mst_to_dendrogram_output/c6443dbc808a79eb192b35d1cb3f366fca407fcf.crash`
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+mst values:     inf
+   -inf
+2.46562e-85
+    nan
+1.78433e+169
+
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Column index is out of bounds: [index=1; column extent=1].
+ERROR: Failed: dbscan_deepstate_test_mst_to_dendrogram_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/dbscan/inst/testfiles/mst_to_dendrogram/mst_to_dendrogram_output/ba1dc071acc9f74c28b3a76dd99f3bde6ec2f349.fail`
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+mst values: 3.62674e+276 5.17781e+105     nan     inf
+9.30831e-138 2.59099e-68    -inf 2.38724e-271
+4.09716e+47 8.40608e+118 -1.71931e-91     inf
+2.35355e-176 5.11394e+143 5.62204e+284 7.49286e+260
+4.02270e+176 5.15177e+08 4.19856e+214 2.65866e-149
+2.85289e-14 1.90988e-229 7.70806e+120 7.35556e-289
+
+input ends
+ERROR: Crashed: dbscan_deepstate_test_mst_to_dendrogram_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/dbscan/inst/testfiles/mst_to_dendrogram/mst_to_dendrogram_output/a52dc608a01947e096aec5a4c1d78d7229fff07a.crash`
+INFO: Done fuzzing! Ran 6 tests (3 tests/second) with 4 failed/2 passed/0 abandoned tests

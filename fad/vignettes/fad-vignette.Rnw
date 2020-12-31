@@ -1,0 +1,147 @@
+\documentclass{article}
+%\VignetteEngine{knitr::knitr}
+%\VignetteEncoding{UTF-8}
+%\VignetteIndexEntry{fad vignette}
+
+\usepackage[sc]{mathpazo}
+\usepackage{bm}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\geometry{verbose,tmargin=2.5cm,bmargin=2.5cm,lmargin=2.5cm,rmargin=2.5cm}
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{filecontents}
+\usepackage[authoryear]{natbib}
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=true,bookmarksopen=true,bookmarksopenlevel=2,
+ breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=false]
+ {hyperref}
+\hypersetup{
+ pdfstartview={XYZ null null 1}}
+ \usepackage{authblk}
+
+\begin{document}
+%\SweaveOpts{concordance=TRUE}
+
+<<setup, include=FALSE, cache=FALSE,echo=FALSE>>=
+library(knitr)
+# set global chunk options
+opts_chunk$set(fig.path='figure/fad-', fig.align='center', fig.show='hold')
+options(formatR.arrow=TRUE,width=90)
+Sys.setenv(RSTUDIO_PDFLATEX = "/Library/TeX/texbin/latexmk")
+@
+
+
+\title{An Introduction to \texttt{FAD} for Exploratory Factor Analysis with High-dimensional Gaussian Data}
+
+\author{Somak Dutta}
+\author{Fan Dai}
+\author{Ranjan Maitra}
+\affil{Department of Statistics, Iowa State University \\somakd@iastate.edu, fd43@iastate.edu, maitra@iastate.edu}
+
+\maketitle
+
+The \texttt{fad} package, which is developed via a matrix--free likelihood method for high-dimensional maximum-likelihood factor analysis on Gaussian data, provides a highly sufficient and accurate way to estimate factor model in R compared with the traditional EM algorithm. This vignette gives a brief introduction to the functions included in \texttt{fad} with simulated examples.
+
+\section{Factor Model}
+\label{sec:factor}
+Suppose $\mathbf{Y}_1,\ldots,\mathbf{Y}_n$ are $i.i.d.$ $p$-dimesional random vectors following the multivariate normal distribution $\mathcal{N}_p(\bm{\mu}, \bm{\Sigma})$, a factor model decomposes the covariance into $\bm{\Sigma} = \bm{\Lambda}\bm{\Lambda}^{\top} + \bm{\Psi}$, where $\bm{\Lambda}$ is a $p\times q$ matrix with rank $q$ that describes the amount of variance shared among the $p$ coordinates, and $\bm{\Psi}$ is a diagonal matrix with positive diagonal entries representing the unique variance specific to each coordinate.
+
+Maximum likelihood (ML) estimation for covariance are derived from the log-likelihood after profiling out $\bm\mu$,
+\begin{equation}\label{eqn:loglikelihood}
+\ell(\Lambda,\Psi) = -0.5\times n\{p\log(2\pi) + \log\det\Sigma +\mathrm{Tr}\{\Sigma^{-1}\mathbf{S}\}\}
+\end{equation}
+Where $\mathbf{Y}$ denotes the $n\times p$ data matrix and $\bar{\mathbf{Y}}$ is sample means. $\mathbf{S} = n^{-1}(\mathbf{Y} - \mathbf{1}\bar{\mathbf{Y}}^\top)^\top(\mathbf{Y} - \mathbf{1}\bar{\mathbf{Y}}^\top)$ represents the sample covariance matrix.
+
+\section{Main function in \texttt{FAD}}
+\label{sec:fad}
+Users can call the main \texttt{fad} function to estimate a factor model,
+<<load>>=
+library(fad)
+@
+All the available options in \texttt{fad} are shown below, followed with detailed descriptions,
+<<fad-arg>>==
+args(fad)
+@
+\begin{description}
+\item[\texttt{x}:] A formula or a numeric matrix or an object that can be coerced to a numeric matrix. 
+\item[\texttt{factor}:] The number of factors to be fitted.
+\item[\texttt{data}:] An optional data frame (or similar: see model.frame), used only if x is a formula. By default the variables are taken from environment(formula).
+\item[\texttt{covmat}:] A covariance matrix, or a covariance list as returned by cov.wt. Of course, correlation matrices are covariance matrices. 
+\item[\texttt{n.obs}:] The number of observations, used if covmat is a covariance matrix. 
+\item[\texttt{subset}:] A specification of the cases to be used, if x is used as a matrix or formula. 
+\item[\texttt{na.action}:] The na.action to be used if x is used as a formula. 
+\item[\texttt{start}:] NULL or a matrix of starting values, each column giving an initial set of uniquenesses.
+\item[\texttt{score}:] Type of scores to produce, if any. The default is none, "regression" gives Thompson's scores, "Bartlett" given Bartlett's weighted least-squares scores. Partial matching allows these names to be abbreviated. Also note that some of the scores-types are not applicable when p > n.
+\item[\texttt{rotation}:] character. "none" or the name of a function to be used to rotate the factors: it will be called with first argument the loadings matrix, and should return a list with component loadings giving the rotated loadings, or just the rotated loadings. The options included in the package are: varimax, promax, quartimax, equamax with default to varimax.
+\item[\texttt{control}:] A list of control values:\\
+nstart\\
+The number of starting values to be tried if start = NULL. Default 1.\\
+trace\\
+logical. Output tracing information? Default FALSE.\\
+opt\\
+A list of control values to be passed to optim's control argument.\\
+rotate\\
+a list of additional arguments for the rotation function.
+\item[\texttt{lower}:] The lower bound for uniquenesses during optimization. Should be > 0. Default 0.005. 
+\item[\texttt{$\cdots$}:] Components of control can also be supplied as named arguments to fad. 
+\end{description}
+
+In \texttt{fad}, only initialization of $\bm{\Psi}$ is required and is specified through the \texttt{start} term which defaults to one minus the diagonal entries of $\bm{\tilde\Lambda}\bm{\tilde\Lambda}^{\top}$ where $\tilde\Lambda$ is computed as the first $q$ principal components (PCs) for the scaled data matrix. 
+
+\texttt{fad} produces an object with the most critical components explained below,
+\begin{description}
+\item[\texttt{loadings}:] A matrix of loadings, one column for each factor. The factors are ordered in decreasing order of sums of squares of loadings, and given the sign that will make the sum of the loadings positive. This is of class "loadings"
+\item[\texttt{uniquenesses}:]	The uniquenesses computed.
+\item[\texttt{criteria}:]	The results of the optimization: the value of the criterion (a linear function of the negative log-likelihood) and information on the iterations used.
+\item[\texttt{factors}:] The argument factors.
+\item[\texttt{loglik}:] The maximum log-likelihood.
+\item[\texttt{BIC}:] The Bayesian Information Criteria.
+\end{description}
+Note that the ML estimates for mean and standard deviations can be easily computed from sample mean and sample standard deviations.
+
+Here are examples for fitting a simulated $n\times p$ data matrix and a covariance matrix with $(n,p) = (50,100)$ with $q=3$. The diagonal entries of $\bm{\Psi}$ were randomly simulated from $\mathcal{U}(0.2,0.8)$ and the elements of $\bm{\Lambda}$ and $\bm{\mu}$ were from $\mathcal{N}(0,1)$. We use BIC to select the optimal factors from the set of $\{1,2,3,\cdots,10\}$.
+<<set-seed, include=FALSE>>==
+set.seed(1)
+@
+<<est-sim-data,cache=TRUE>>==
+n <- 50 # number of observations
+p <- 100 # size of coordinates
+q <- 3 # true number of factors
+mu = rnorm(p) 
+L = matrix(rnorm(p*q),p,q)
+D = runif(p,0.2,0.8)
+X = matrix(rnorm(n*q),n,q)
+X = tcrossprod(X,L) + matrix(rnorm(n*p),n,p)%*%diag(sqrt(D)) + rep(mu, each = n)
+
+BICs = rep(0,11) # store BIC values
+for(i in 1:11){
+  out = fad(x = X,factors = i-1)
+  BICs[i] = out$BIC
+}
+BICs
+ind = which.min(BICs)-1# obtain the optimal factor favored by BIC
+ind
+@
+
+<<est-sim-cov1,cache=TRUE>>==
+BICs = rep(0,11) # store BIC values
+for(i in 1:11){
+  out = fad(covmat = cov(X), n.obs = n, factors = i-1)
+  BICs[i] = out$BIC
+}
+BICs
+ind = which.min(BICs)-1
+ind
+@
+
+BIC selected the correct factor of 3 and we can then fit with the optimal factor model as
+<<est-sim-cov2,cache=TRUE>>==
+out1 = fad(x = X,factors = 3)
+# or
+out2 = fad(covmat = cov(X), n.obs = n, factors = 3)
+@
+
+\end{document}

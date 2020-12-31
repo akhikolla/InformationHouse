@@ -1,0 +1,23 @@
+Package: factorcpt
+Type: Package
+Title: Simultaneous Change-Point and Factor Analysis
+Version: 0.1.2
+Authors@R: c(person("Haeran", "Cho", role = c("aut", "cre"), email = "haeran.cho@bristol.ac.uk"),
+              person("Matteo", "Barigozzi", role = "aut"),
+              person("Piotr", "Fryzlewicz", role = "aut"))
+Author: Haeran Cho [aut, cre],
+  Matteo Barigozzi [aut],
+  Piotr Fryzlewicz [aut]
+Maintainer: Haeran Cho <haeran.cho@bristol.ac.uk>
+Description: Identifies change-points in the common and the idiosyncratic components via factor modelling.
+License: GPL-2
+LazyData: TRUE
+Depends: R (>= 2.14.0)
+Suggests: RcppArmadillo
+Imports: Rcpp (>= 0.12.4), foreach, parallel, iterators, fields,
+        doParallel
+LinkingTo: Rcpp, RcppArmadillo
+NeedsCompilation: yes
+Packaged: 2016-12-26 10:02:09 UTC; mahrc
+Repository: CRAN
+Date/Publication: 2016-12-26 12:25:11

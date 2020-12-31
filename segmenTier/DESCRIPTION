@@ -1,0 +1,35 @@
+Package: segmenTier
+Type: Package
+Title: Similarity-Based Segmentation of Multidimensional Signals
+Version: 0.1.2
+Author: Rainer Machne, Douglas B. Murray, Peter F. Stadler
+URL: https://github.com/raim/segmenTier
+BugReports: https://github.com/raim/segmenTier/issues
+Maintainer: Rainer Machne <raim@tbi.univie.ac.at>
+Description: A dynamic programming solution to segmentation based on
+        maximization of arbitrary similarity measures within segments.
+	The general idea, theory and this implementation are described in
+	Machne, Murray & Stadler (2017) <doi:10.1038/s41598-017-12401-8>.
+	In addition to the core algorithm, the package provides time-series
+	processing and clustering functions as described in the publication.
+	These are generally applicable where a `k-means` clustering yields
+	meaningful results, and have been specifically developed for
+	clustering of the Discrete Fourier Transform of periodic gene
+	expression data (`circadian' or `yeast metabolic oscillations').
+	This clustering approach is outlined in the supplemental material of
+	Machne & Murray (2012) <doi:10.1371/journal.pone.0037906>), and here
+	is used as a basis of segment similarity measures. Notably, the
+	time-series processing and clustering functions can also be used as
+	stand-alone tools, independent of segmentation, e.g., for 
+        transcriptome data already mapped to genes.
+License: GPL (>= 2)
+Imports: Rcpp (>= 0.12.7)
+Suggests: flowMerge, flowClust, flowCore, knitr, rmarkdown
+LinkingTo: Rcpp
+Encoding: UTF-8
+RoxygenNote: 6.1.1
+VignetteBuilder: knitr
+NeedsCompilation: yes
+Packaged: 2019-02-09 13:04:24 UTC; raim
+Repository: CRAN
+Date/Publication: 2019-02-18 23:00:03 UTC

@@ -1,0 +1,57 @@
+INFO: Starting fuzzing
+WARNING: No test specified, defaulting to first test defined (FSSF_deepstate_test_fssf_b_test)
+input starts
+EXTERNAL: qs v0.23.4.
+
+d values: 467495432
+nMax values: 1827680409
+N values: -1053990400
+eps values: 3.76873e+222
+input ends
+ERROR: Variable precision printing not supported.
+ERROR: Abandoned: FSSF_deepstate_test_fssf_b_test
+input starts
+EXTERNAL: qs v0.23.4.
+
+d values: -498905818
+nMax values: 569042049
+N values: 1273656994
+eps values: 2.30186e+66
+input ends
+terminate called after throwing an instance of 'std::bad_array_new_length'
+  what():  std::bad_array_new_length
+ERROR: Failed: FSSF_deepstate_test_fssf_b_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b/fssf_b_output/9fd0220b592c3fe6a3d0f95a3bf363af27f5900e.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+d values: -293123844
+nMax values: -555281357
+N values: 1746767833
+eps values: 2.98766e-188
+input ends
+terminate called after throwing an instance of 'std::bad_array_new_length'
+  what():  std::bad_array_new_length
+ERROR: Failed: FSSF_deepstate_test_fssf_b_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/FSSF/inst/testfiles/fssf_b/fssf_b_output/3391437b0486e9da81afd591c2d1e2325c3a0a50.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+d values: -1105761949
+nMax values: 304498753
+N values: -1417810920
+eps values: -1.09367e-292
+input ends
+ERROR: Variable precision printing not supported.
+ERROR: Abandoned: FSSF_deepstate_test_fssf_b_test
+input starts
+EXTERNAL: qs v0.23.4.
+
+d values: 954479852
+nMax values: -194229631
+N values: -1020009618
+eps values: -2.0456e+54
+input ends
+ERROR: Variable precision printing not supported.
+ERROR: Abandoned: FSSF_deepstate_test_fssf_b_test
+INFO: Done fuzzing! Ran 5 tests (2 tests/second) with 2 failed/0 passed/3 abandoned tests

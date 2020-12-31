@@ -1,0 +1,53 @@
+Package: simPop
+Type: Package
+Title: Simulation of Complex Synthetic Data Information
+Version: 1.2.1
+Date: 2020-11-02
+Authors@R: c(
+  person("Matthias", "Templ", email = "matthias.templ@gmail.com", role = c("aut","cre")),
+  person("Alexander", "Kowarik", email = "alexander.kowarik@statistik.gv.at", role = c("aut"), comment=c(ORCID="0000-0001-8598-4130")),
+  person("Bernhard", "Meindl", email = "bernhard.meindl@statistik.gv.at", role = c("aut")),
+  person("Andreas", "Alfons", role = c("aut")),
+  person("Mathieu", "Ribatet", role = c("ctb")),
+  person("Johannes", "Gussenbauer", email = "johannes.gussenbauer@statistik.gv.at", role = c("ctb")))
+URL: https://github.com/statistikat/simPop
+Depends: R(>= 3.0.0), lattice, vcd
+Imports: laeken, plyr, MASS, Rcpp (>= 0.11.0),RcppArmadillo, e1071,
+        parallel, nnet, doParallel, foreach, colorspace, VIM,
+        methods,party,EnvStats,fitdistrplus,ranger,wrswoR, data.table
+Suggests: haven, microbenchmark, stringr, testthat, surveysd, sampling
+LinkingTo: Rcpp,RcppArmadillo
+Description: Tools and methods to simulate populations for surveys based
+    on auxiliary data. The tools include model-based methods, calibration and
+    combinatorial optimization algorithms, see Templ, Kowarik and Meindl (2017) <doi:10.18637/jss.v079.i10>) and
+    Templ (2017) <doi:10.1007/978-3-319-50272-4>. The package was developed with support of
+    the International Household Survey Network, DFID Trust Fund TF011722 and funds
+    from the World bank.
+License: GPL (>= 2)
+LazyLoad: yes
+ByteCompile: TRUE
+Collate: '0classes.R' 'addKnownMargins.R' 'addWeights.r' 'calibPop.R'
+        'calibSample.R' 'calibVars.R' 'contingencyWt.R' 'correctHeap.R'
+        'fitGPD.R' 'getBreaks.R' 'getCat.R' 'ipu.r' 'ipu2.r' 'meanWt.R'
+        'printFunctions.R' 'quantileWt.R' 'sampHH.R' 'RcppExports.R'
+        'silcTools.R' 'silcTools2.R' 'simAnnealingDT.R'
+        'simCategorical.R' 'simComponents.R' 'simContinuous.R'
+        'simEUSILC.R' 'simGPD.R' 'simInitSpatial.R' 'simple_dis.R'
+        'simPop-package.R' 'simRelation.R' 'simStructure.R'
+        'spBwplot.R' 'spBwplotStats.R' 'spCdf.R' 'spCdfplot.R'
+        'spMosaic.R' 'spPredict.R' 'spSample.R' 'spTable.R'
+        'specifyInput.R' 'sprague.R' 'tableWt.R' 'utility.R' 'utils.R'
+        'whipple.R' 'dataSets.R' 'zzz.R'
+RoxygenNote: 7.1.1
+Encoding: UTF-8
+NeedsCompilation: yes
+Packaged: 2020-11-09 11:55:35 UTC; matthias
+Author: Matthias Templ [aut, cre],
+  Alexander Kowarik [aut] (<https://orcid.org/0000-0001-8598-4130>),
+  Bernhard Meindl [aut],
+  Andreas Alfons [aut],
+  Mathieu Ribatet [ctb],
+  Johannes Gussenbauer [ctb]
+Maintainer: Matthias Templ <matthias.templ@gmail.com>
+Repository: CRAN
+Date/Publication: 2020-11-14 14:40:03 UTC

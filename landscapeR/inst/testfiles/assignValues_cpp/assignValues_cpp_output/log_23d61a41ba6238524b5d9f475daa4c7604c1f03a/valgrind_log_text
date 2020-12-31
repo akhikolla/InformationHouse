@@ -1,0 +1,24 @@
+WARNING: No test specified, defaulting to first test defined (landscapeR_deepstate_test_assignValues_cpp_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/landscapeR/inst/testfiles/assignValues_cpp/assignValues_cpp_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash`
+TRACE: Running: landscapeR_deepstate_test_assignValues_cpp_test from /home/akhila/fuzzer_packages/fuzzedpackages/landscapeR/inst/testfiles/assignValues_cpp/assignValues_cpp_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+val values: 467495432
+ad values: 484058222 -835858507 1668042617 338649647 214710137 -1134095747 -1787462247 328695087 1906416959 -831654863 -649876499 1913461887 -648742763 -1156967856 2140137874 644268439 123721430 -859175003 246583936 -1079050344 49753534 37686913 -822602508 1591053158 878787584 742630714 -164119883 -423997720 -1317296461 -1145752183 -1387692533 503935315 1806521239 -235286041 814455830 1173028855 1722133025 1524607495 673715015 847551133 854406179 -435877353 -1868157482 -1859334665 -763946964 1472345215 -347617763 -882853123 1324228660 -215331965 -780576414 -1524213385 -1636719371 869823518 523975658 -1678382871 -486007082 862542340 -491559288 -624951432 816016739 2078376602 482182584 -1284660842
+mtx values: 2.94365e-174 2.24644e-212 3.24121e-117 2.28479e-39 1.96571e-10 1.50783e+156
+2.67214e-07 7.64098e-62 5.30849e+199 6.88541e-24 1.01312e-25 3.86714e-132
+1.02194e-144 4.73804e-46 5.46061e+306 7.13669e-20 9.04432e-111 9.05954e+263
+7.71811e+97 1.53011e-264 3.24698e+214 5.49819e-129 1.64494e-31 315.198
+4.21050e-25 814198. 7.32531e-236 4.26919e+206 3.84221e+137 9.02784e+97
+2.92496e-49 4.50973e+130 3.17221e-22 4.46775e-52 156.239 2.00090e-202
+5.13051e-260 7.87120e+214 9.46237e+259 2.34419e+41 4.09313e-190 5.48911e+71
+
+input ends
+==920124==  If you believe this happened as a result of a stack
+==920124==  overflow in your program's main thread (unlikely but
+==920124==  possible), you can try to increase the size of the
+==920124==  main thread stack using the --main-stacksize= flag.
+==920124==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: landscapeR_deepstate_test_assignValues_cpp_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/landscapeR/inst/testfiles/assignValues_cpp/assignValues_cpp_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash crashed

@@ -1,0 +1,21 @@
+segmag v1.2.4 (Release date: 2016-08-11)
+==============
+
+Changes:
+
+* New fix for floating point issue because last fix did not work in some circumstances
+
+segmag v1.2.3 (Release date: 2016-08-10)
+==============
+
+Changes:
+
+* fixed a floating point issue that could occur when addressing specific time points within the segmentation magnitude data.frame within a segmag object, such as segmag1$data$segmentation_magnitude[segmag1$data$time==0.00]
+* compatibility with current CRAN namespace policy
+
+segmag v1.2.2 (Release date: 2014-10-06)
+==============
+
+Changes:
+
+* First public release

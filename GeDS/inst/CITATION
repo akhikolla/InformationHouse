@@ -1,0 +1,24 @@
+
+year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date)
+vers <- paste("R package version", meta$Version)
+
+citEntry(entry="Manual",
+         title = "GeDS: Geometrically Designed Spline Regression",
+         author = personList(as.person("Dimitrina S. Dimitrova"),
+                             as.person("Vladimir K. Kaishev"),
+                             as.person("Andrea Lattuada"),
+                             as.person("Richard J. Verrall")),
+         year = year,
+         note = paste("R package version", vers),
+         url = "https://CRAN.R-project.org/package=GeDS",
+         header = "To cite the package 'GeDS' use:",
+         textVersion = paste(
+             "Dimitrova S.D., Kaishev K.K., Lattuada A., and Verrall R.J. (",
+             year, "). {GeDS}: Geometrically Designed Spline Regression, ",
+             paste("R package version", vers),
+             ", https://CRAN.R-project.org/package=GeDS", ".", sep = ""
+             )
+         )
+
+
+citFooter('\nUse ', sQuote('toBibtex(citation("GeDS"))'), ' to extract BibTeX references.')

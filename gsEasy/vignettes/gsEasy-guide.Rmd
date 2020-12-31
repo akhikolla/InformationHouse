@@ -1,0 +1,72 @@
+---
+title: "gsEasy"
+author: "Daniel Greene"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{gsEasy}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\usepackage[utf8]{inputenc}
+---
+
+```{r echo=FALSE}
+suppressPackageStartupMessages(library(gsEasy))
+set.seed(1)
+```
+## Calculate *p*-values for enrichment of set
+
+`gsEasy` has a function `gset` for calculating *p*-values of enrichment for sets (of genes) in ranked/scored lists (of genes) by permutation (see 'Gene Set Enrichment Analysis' described by Subramanian et al, 2005). The arguments of `gset` are named as in the paper:
+
+* `N`: the total number of genes,
+* `S`: `integer` vector giving the ranks of the genes in the test set amongst the `N`, *or* giving the indices within the scores vector `r` (see below) *or* a `character` vector of the names of genes in the test set, 
+* `r`: (optional) vector of length `N` of correlation scores, e.g. gene expression correlation. If unspecified, it defaults to `1-(i-1)/N` for the `i`th gene. If `S` is given as the names of genes, `r` must either be a `character` vector of genes in rank order or named by `genes` (necessarily containing all the genes in `S`).
+* `p`: a numeric value used to exponentiate the enrichment scores given by `r`, with higher values having the effect of increasing the weight on the highest scores/ranks (for more details, see Subramanian et al, 2005). The default value is `1` [i.e. not transformed].
+
+Say we had a set of 5 genes which appeared at the top five ranks out of 1000 (i.e. highly enriched at the high ranks!). We could then calculate an enrichment *p*-value using the command:
+```{r}
+gset(S=1:5, N=1000)
+```
+
+So the *p*-value is close to zero. However for random sets, the *p*-values are distributed uniformly:
+```{r}
+replicate(n=10, expr=gset(S=sample.int(n=1000, size=5), N=1000))
+```
+
+Alternatively, you can pass the names of genes as `S` with a sorted list of gene names as `r` (in which case the scores default to the ranks in the list), or a numeric vector of scores named by genes as `r`.
+```{r}
+gset(S=c("gene 1", "gene 5", "gene 40"), r=paste("gene", 1:100))
+```
+
+Multiple gene sets can thus be tested for enrichment with a single call to a high level function such as `sapply` (or, if you have many sets to test and multiple cores available, `mclapply`), for instance:
+```{r}
+gene_sets <- c(list(1:5), replicate(n=10, simplify=FALSE, expr=sample.int(n=1000, size=5)))
+names(gene_sets) <- c("enriched set", paste("unenriched set", 1:10))
+gene_sets
+sapply(gene_sets, function(set) gset(S=set, N=1000))
+```
+
+## Ontological annotations
+
+`gsEasy` has a function `get_ontological_gene_sets` for creating lists of gene sets corresponding to annotation with ontological terms such that ontological *is-a* relations are propagated. `get_ontological_gene_sets` accepts an `ontological_index` (see the R package `ontologyIndex` for more details) argument and two character vectors, corresponding to genes and terms respectively, whereby the n-th element in each vector corresponds to one annotation pair. The result, a list of character vectors of gene names, can then be used as an argument of `gset`.
+
+```{r}
+library(ontologyIndex)
+data(hpo)
+df <- data.frame(
+	gene=c("gene 1", "gene 2"), 
+	term=c("HP:0000598", "HP:0000118"), 
+	name=hpo$name[c("HP:0000598", "HP:0000118")], 
+	stringsAsFactors=FALSE,
+	row.names=NULL)
+df
+get_ontological_gene_sets(hpo, gene=df$gene, term=df$term)
+```
+
+## Gene Ontology (GO) annotations
+`gsEasy` comes with a `list` of GO annotations, `GO_gene_sets` [based on annotations downloaded from geneontology.org on 07/08/2016], which can be loaded with `data`. This comprises a `list` of all gene sets (i.e. `character` vectors of gene names) associated with each GO term, for GO terms being annotated with at most 500 genes.
+```{r}
+data(GO_gene_sets)
+GO_gene_sets[1:6]
+```
+
+It also has a function `get_GO_gene_sets` which is a specialisation of `get_ontological_gene_sets` for the Gene Ontology (GO) which can be called passing just a file path to the annotation file (official up-to-date version available at http://geneontology.org/).

@@ -1,0 +1,45 @@
+Package: grainscape
+Type: Package
+Title: Landscape Connectivity, Habitat, and Protected Area Networks
+Description: Given a landscape resistance surface, creates minimum planar graph
+    (Fall et al. (2007) <doi:10.1007/s10021-007-9038-7>) and grains of connectivity
+    (Galpern et al. (2012) <doi:10.1111/j.1365-294X.2012.05677.x>) models that can be
+    used to calculate effective distances for landscape connectivity at multiple scales.
+    Documentation is provided by several vignettes, and a paper
+    (Chubaty, Galpern & Doctolero (2020) <doi:10.1111/2041-210X.13350>).
+URL: https://alexchubaty.com/grainscape,
+        https://github.com/achubaty/grainscape
+Version: 0.4.3
+Date: 2020-08-31
+Authors@R: c(
+    person("Paul", "Galpern", email = "pgalpern@gmail.com", role = c("aut", "cph"),
+           comment = c(ORCID = "0000-0003-0099-3981")),
+    person("Sam", "Doctolero", email = "sam.doctolero@gmail.com", role = "aut"),
+    person("Alex M", "Chubaty", email = "alex.chubaty@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-7146-8135"))
+    )
+License: GPL (>= 2)
+Imports: ggplot2, graphics, grDevices, igraph, methods, sp, raster,
+        Rcpp (>= 0.12.11.4), rgdal, utils
+LinkingTo: Rcpp
+Suggests: covr, cowplot, ggthemes, knitr, parallel, rgeos, rmarkdown,
+        spelling, testthat
+VignetteBuilder: knitr, rmarkdown
+BugReports: https://github.com/achubaty/grainscape/issues
+ByteCompile: yes
+Collate: 'grainscape-package.R' 'classes.R' 'GOC.R' 'MPG.R'
+        'RcppExports.R' 'grain.R' 'corridor.R' 'deprecated.R'
+        'distance.R' 'export.R' 'extract.R' 'ggGS.R' 'graphdf.R'
+        'habitatConnectivityEngine.R' 'patchFilter.R' 'plot.R'
+        'point.R' 'theme_grainscape.R' 'threshold.R' 'zzz.R'
+Encoding: UTF-8
+Language: en-CA
+RoxygenNote: 7.1.1
+NeedsCompilation: yes
+Packaged: 2020-08-31 23:29:34 UTC; achubaty
+Author: Paul Galpern [aut, cph] (<https://orcid.org/0000-0003-0099-3981>),
+  Sam Doctolero [aut],
+  Alex M Chubaty [aut, cre] (<https://orcid.org/0000-0001-7146-8135>)
+Maintainer: Alex M Chubaty <alex.chubaty@gmail.com>
+Repository: CRAN
+Date/Publication: 2020-09-01 08:10:04 UTC

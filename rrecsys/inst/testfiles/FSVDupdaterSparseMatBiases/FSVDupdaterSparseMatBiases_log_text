@@ -1,0 +1,95 @@
+INFO: Starting fuzzing
+WARNING: No seed provided; using 1608742443
+WARNING: No test specified, defaulting to first test defined (rrecsys_deepstate_test_FSVDupdaterSparseMatBiases_test)
+input starts
+EXTERNAL: qs v0.23.4.
+
+sparseRatingMat values: 5.20611e+37 2.06182e+109 7.21904e-176
+
+learningRate values: -7.37313e-290
+regCoef values: -3.58173e+144
+nrfeat values: -58669006
+steps values: -152882159
+nr_users values: 1987878544
+nr_items values: 17431912
+globalbaseline values: -3.44032e-182
+input ends
+EXTERNAL: Error: negative length vectors are not allowed
+
+EXTERNAL: Execution halted
+
+input starts
+EXTERNAL: qs v0.23.4.
+
+sparseRatingMat values: 0.0111649
+7.71470e-32
+6.10975e+60
+1.50142e+196
+
+learningRate values: -3.42648e-242
+regCoef values: 1.03736e+112
+nrfeat values: -811921740
+steps values: -1846470872
+nr_users values: 1214416010
+nr_items values: -1060402024
+globalbaseline values: -3.265e+248
+input ends
+EXTERNAL: Error: negative length vectors are not allowed
+
+EXTERNAL: Execution halted
+
+input starts
+EXTERNAL: qs v0.23.4.
+
+sparseRatingMat values: 9.81161e-10 1.05022e+275 3.33008e+116 1.03411e+205 1.75592e-136 7.51620e-95 6.64626e-280 1.17348e+88 2.13710e-16
+
+learningRate values: 9.4002e-105
+regCoef values: 2.51701e+119
+nrfeat values: 726721582
+steps values: 1307118729
+nr_users values: -1747448471
+nr_items values: -1001232619
+globalbaseline values: -2.44461e+289
+input ends
+EXTERNAL: Error: negative length vectors are not allowed
+
+EXTERNAL: Execution halted
+
+input starts
+EXTERNAL: qs v0.23.4.
+
+sparseRatingMat values: 1.20157e+263 6.97340e-301 1.98179e+98 1.19078e+92 1.59276e+306 1.80287e+177 4.52689e+266 7.99778e-195 7.60504e-109
+2.17012e-45 2.41357e-56 1.81533e-296 1.07883e+261 1.59407e+282 5.57758e-208 4.91818e-182 2.25914e+96 5.98384e-237
+1.77597e-71 2.61283e-94 4.89487e-292 2.69186e+296 9.26769e+194 2.72351e-72 1.14949e-38 3.46970e-283 4.71924e+238
+
+learningRate values: -2.65715e-76
+regCoef values: -8.91392e-228
+nrfeat values: -364504210
+steps values: -945077192
+nr_users values: 675443028
+nr_items values: -695436512
+globalbaseline values: 2.91283e+294
+input ends
+EXTERNAL: Error: negative length vectors are not allowed
+
+EXTERNAL: Execution halted
+
+input starts
+EXTERNAL: qs v0.23.4.
+
+sparseRatingMat values: 2.18798e-123 7.65946e+16 4.27660e+206 7.77131e-64 1.87138e-210 8.49081e-07 6.19663e+155 5.96982e+76 1.86469e+75
+3.42244e+254 4.02670e+147 1.43755e-89 9.46643e+236 1.29069e-295 6.43482e+153 3.85342e-13 1.31481e-123 1.60597e-152
+
+learningRate values: -1.2809e+147
+regCoef values: -4.37552e-241
+nrfeat values: -410775058
+steps values: -1060783969
+nr_users values: 1523398132
+nr_items values: -2067776165
+globalbaseline values: -9.27696e+176
+input ends
+EXTERNAL: Error: negative length vectors are not allowed
+
+EXTERNAL: Execution halted
+
+INFO: Done fuzzing! Ran 5 tests (2 tests/second) with 5 failed/0 passed/0 abandoned tests

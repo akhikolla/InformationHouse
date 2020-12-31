@@ -1,0 +1,31 @@
+Package: cna
+Type: Package
+Title: Causal Modeling with Coincidence Analysis
+Version: 3.0.1
+Date: 2020-11-06
+Authors@R: c(person("Mathias", "Ambuehl", role = c("aut", "cre", "cph"), 
+                    email = "mathias.ambuehl@consultag.ch"),
+             person("Michael", "Baumgartner", role = c("aut", "cph"),
+                     email = "michael.baumgartner@uib.no"),
+             person("Ruedi", "Epple", role = "ctb"),
+             person("Veli-Pekka", "Parkkinen", role = "ctb"),
+             person("Alrik", "Thiem", role = "ctb")
+             )
+Description: Provides comprehensive functionalities for causal modeling with Coincidence Analysis (CNA), which is a configurational comparative method of causal data analysis that was first introduced in Baumgartner (2009) <doi:10.1177/0049124109339369>, and generalized in Baumgartner & Ambuehl (2018) <doi:10.1017/psrm.2018.45>. CNA is designed to recover INUS-causation from data, which is particularly relevant for analyzing processes featuring conjunctural causation (component causation) and equifinality (alternative causation). CNA is currently the only method for INUS-discovery that allows for multiple effects (outcomes/endogenous factors), meaning it can analyze common-cause and causal chain structures.
+License: GPL (>= 2)
+URL: https://CRAN.R-project.org/package=cna
+Depends: R (>= 3.2.0)
+Imports: Rcpp, utils, stats, Matrix, matrixStats, car
+LinkingTo: Rcpp
+Suggests: dplyr
+NeedsCompilation: yes
+LazyData: yes
+Maintainer: Mathias Ambuehl <mathias.ambuehl@consultag.ch>
+Packaged: 2020-11-06 10:25:30 UTC; MAM
+Author: Mathias Ambuehl [aut, cre, cph],
+  Michael Baumgartner [aut, cph],
+  Ruedi Epple [ctb],
+  Veli-Pekka Parkkinen [ctb],
+  Alrik Thiem [ctb]
+Repository: CRAN
+Date/Publication: 2020-11-06 11:10:03 UTC

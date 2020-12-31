@@ -1,0 +1,65 @@
+## ----r1, fig.height = 6, fig.width = 8, fig.align = "center"------------------
+library("RcppDynProg")
+
+
+set.seed(2018)
+g <- 100
+d <- data.frame(
+  x = 0.05*(1:(3*g))) # ordered in x
+d$y_ideal <- sin((0.3*d$x)^2)
+d$y_observed <- d$y_ideal + 0.25*rnorm(length(d$y_ideal))
+
+
+# plot
+plot(d$x, d$y_observed,
+     xlab = "x", ylab = "y",
+     main = "raw data\ncircles: observed values, dashed line: unobserved true values")
+lines(d$x, d$y_ideal,
+     type = "l",
+     lty = "dashed")
+
+
+x_cuts <- solve_for_partition(d$x, d$y_observed, penalty = 1)
+print(x_cuts)
+
+d$estimate <- approx(x_cuts$x, x_cuts$pred, xout = d$x, method = "linear", rule = 2)$y
+d$group <- as.character(findInterval(d$x, x_cuts[x_cuts$what=="left", "x"]))
+
+## ----r2, fig.height = 6, fig.width = 8, fig.align = "center"------------------
+print(sum((d$y_observed - d$y_ideal)^2))
+
+## ----r3, fig.height = 6, fig.width = 8, fig.align = "center"------------------
+print(sum((d$estimate - d$y_ideal)^2))
+
+## ----r4, fig.height = 6, fig.width = 8, fig.align = "center"------------------
+print(sum((d$estimate - d$y_observed)^2))
+
+## ----r5, fig.height = 6, fig.width = 8, fig.align = "center"------------------
+
+# plot
+plot(d$x, d$y_observed,
+     xlab = "x", ylab = "y",
+     main = "RcppDynProg piecewise linear estimate\ndots: observed values, segments: estimated shape")
+points(d$x, d$y_ideal,
+     type = "l",
+     lty = "dashed")
+cmap <- c("#a6cee3",
+          "#1f78b4",
+          "#b2df8a",
+          "#33a02c",
+          "#fb9a99",
+          "#e31a1c",
+          "#fdbf6f",
+          "#ff7f00",
+          "#cab2d6",
+          "#6a3d9a",
+          "#ffff99",
+          "#b15928")
+names(cmap) <- as.character(seq_len(length(cmap)))
+points(d$x, d$y_observed, col = cmap[d$group], pch=19)
+groups <- sort(unique(d$group))
+for(gi in groups) {
+  di <- d[d$group==gi, , drop = FALSE]
+  lines(di$x, di$estimate, col = cmap[di$group[[1]]], lwd=2)
+}
+

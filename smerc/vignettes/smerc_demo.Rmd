@@ -1,0 +1,167 @@
+---
+title: "smerc-demo"
+author: "Joshua P. French"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Demonstration of **smerc** package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+The **smerc** package is focused on **S**tatistical **Me**thods for **R**egional **C**ounts. It particularly focuses on the spatial scan method (Kulldorff, 1997) and many of its extensions.
+
+In what follows, we demonstrate some of the basic functionality of the **smerc** package using 281 observations related to leukeumia cases in an 8 county area of the state of New York. The data were made available in Waller and Gotway (2005) and details are provided there.
+
+The leukemia data are available in the `nydf` dataframe. Each row of the dataframe contains information regarding a different region. Each row of the dataframe includes `longitude` and `latitude` information for the centroid of each region, transformed `x` and `y` coordinates available in the original dataset provided by Waller and Gotway (2005), as well as the `population` of each region and the number of leukemia `cases`.
+
+```{r}
+library(smerc) # load package
+data(nydf) # load data
+str(nydf) # look at structure
+```
+
+A `SpatialPolygonsDataFrame` associated with the regions is included in the `nypoly` data set, which we plot below.
+
+```{r}
+data(nypoly) # load nypoly data
+library(sp) # load sp package for plotting
+plot(nypoly) # plot SpatialPolygonsDataFrame
+```
+
+## Scan methods
+
+The spatial scan test can be perfomed using the `scan.test` function. The user must supply the coordinates of the region centroids, the number of cases in each region, and the population (i.e., the number persons at risk). There are many additional optional arguments described in the documentation. In the following example, we reduce the number of Monte Carlo simulations used to estimate the p-value.
+
+```{r}
+coords = nydf[,c("x", "y")] # extract coordinates
+cases = nydf$cases # extract cases
+pop = nydf$population # extract population
+scan_out = scan.test(coords, cases, pop, nsim = 99) # perform scan test
+```
+
+The `scan.test` function (and most of the other `*.test` functions in the **smerc** package) will return an object of class `smerc_cluster`.
+```{r}
+class(scan_out)
+```
+
+A `smerc_cluster` object has a default print option that summarizes relevant details about the object produced by the function.
+
+In this case, we receive the following:
+```{r}
+scan_out # print scan.test results
+```
+
+In this particular case, we see that the `scan_out` object summarizes the results of the `circular scan` method using a `poisson` statistic (the other choice is `binomial`). The Monte Carlo p-value was estimated using `99` realizations from a `multinomial` distribution (`poisson` and `binomial` are the other possibilities). The candidate zones were limited to having no more than `50%` of the total population and at least `2` cases had to be in a candidate zone to be considered a cluster. Other methods will provide some of the same information, but some of the information will be different based on the relevant parameters of the models.
+
+A `smerc_cluster` also has a `summary` function that summarizes the significant (or most likely) clusters returned by the method.
+
+```{r}
+summary(scan_out) # summarize scan.test results
+```
+
+The `summary` of `scan_out` reveals that there were two significant clusters. The first cluster was comprised of 24 regions with a maximum distance of 12.3 between centroids. The number of cases observed in the cluster is 95.33, while 55.8 cases were expected. The relative risk of the cluster is 1.8, with an associated test statistic of 13.1, and a Monte Carlo p-value of 0.01. A second cluster is also summarized with similar information.
+
+A very basic `plot` mechanism is provided for `smerc_cluster` objects. The plot will show the locations of every centroid, with significant clusters shown with different colors and symbols. An attempt is also made to show the connectivity of the regions. In the plot below, we see the two significant clusters shown in yellow (middle) and purple (bottom).
+```{r}
+plot(scan_out) # basic plot of scan.test results
+```
+
+If a polygon-like structure is associated with each region, then the `color.clusters` can be used to easily produce nicer plots. E.g., we can use the `nypoly` object to create a nicer map of our results.
+```{r}
+plot(nypoly, col = color.clusters(scan_out)) #nicer plot of scan.test results
+```
+
+Other scan methods available include:
+
+- The elliptic scan method (Kulldorff et al., 2006), which can be called via `elliptic.test`}.
+- The flexible scanning method the flexibly-shaped scan method (Tango and Takahashi, 2005), which can be called via `flex.test`}.
+- The restricted flexible-scanning method (Tango and Takahashi, 2005), which can be called via `rflex.test`}.
+- The Upper Level Set (ULS) method (Patil and Taillie, 2004), which can be called via `uls.test`}.
+- The dynamic minimum spanning tree (DMST) method (Assuncao et al., 2006), which can be called via `dmst.test`}.
+- The early-stopping DMST method (Costa et al., 2012), which can be called vai `edmst.test`}.
+- The double connection method (Costa et al., 2012), which can be called via `dc.test`}.
+- The maximum linkage scan test (Costa et al., 2012), which can be called via `mlink.test`}.
+- The fast scan method (Neill, 2012), which can be called via `fast.test`}.
+- The maxima likelihood first scan test (Yao et al., 2011), which can be called via `mlf.test`}.
+
+## Other methods
+
+Other non-scan method for the detection of clusters and/or clustering of cases for regional data are provided.
+
+`bn.test` performs the Besag-Newell test (Besag and Newell, 1991) and returns a `smerc_cluster`. The `print`, `summary`, and `plot` methods are available, as before.
+
+```{r}
+bn_out = bn.test(coords = coords, cases = cases, pop = pop, cstar = 20,
+                 alpha = 0.01) # perform besag-newell test
+bn_out # print results
+summary(bn_out) # summarize results
+plot(bn_out) # plot results
+```
+The Cluster Evaluation Permutation Procedure (CEPP) proposed by Turnbull et al. (1990) can be performed using `cepp.test`. The function returns a `smerc_cluster` object with `print`, `summary`, and `plot` functions.
+
+```{r}
+# perform CEPP test
+cepp_out = cepp.test(coords = coords, cases = cases, pop = pop,
+                     nstar = 5000, nsim = 99, alpha = 0.1)
+cepp_out # print results
+summary(cepp_out) # summarize results
+plot(cepp_out) # plot results
+```
+Tango's clustering detection test (Tango, 1995) can be performed via the `tango.test` function. The `dweights` function can be used to construct the weights for the test. The `tango.test` function produces
+and object of class `tango`, which has a native `print` function
+and a `plot` function that compares the goodness-of-fit and spatial autocorrelation components of Tango's statistic for the observed data and the simulated data sets.
+
+```{r}
+w = dweights(coords, kappa = 1) # construct weights matrix
+tango_out = tango.test(cases, pop, w, nsim = 49) # perform tango's test
+tango_out # print results
+plot(tango_out) # plot results
+```
+## Additional details about cluster detection methods
+
+Nearly all cluster detection methods have both a `*.zones` function that returns all the candidate zones for the method and a `*.sim` function that is used to produce results for data simulated under the null hypothesis. These are unlikely to interest most users, but may be useful for individuals wanting to better understand how these methods work or are interested in developing new methods based off existing ones. The `*.sim` functions are not meant for general use, as they are written to take very specific arguments that the user could easily misuse.
+
+As an example, the following code produces all elliptical-shaped zones considered by the elliptic scan method (Kulldorff et al., 2006) using a population upperbound of no more than 10%. The function returns a list with the 248,213 candidate zones, as well as the associated shape and angle.
+
+```{r}
+# obtain zones for elliptical scan method
+ezones = elliptic.zones(coords, pop, ubpop = 0.1)
+# view structure of ezones
+str(ezones)
+```
+
+## References
+
+Assuncao, R.M., Costa, M.A., Tavares, A. and Neto, S.J.F. (2006). Fast detection of arbitrarily shaped disease clusters, Statistics in Medicine, 25, 723-742. \doi{10.1002/sim.2411}
+
+Besag, J. and Newell, J. (1991). The detection of clusters in rare diseases, Journal of the Royal Statistical Society, Series A, 154, 327-333.
+
+Costa, M.A. and Assuncao, R.M. and Kulldorff, M. (2012) Constrained spanning tree algorithms for irregularly-shaped spatial clustering, Computational Statistics & Data Analysis, 56(6), 1771-1783. \doi{10.1016/j.csda.2011.11.001}
+
+Kulldorff, M. (1997) A spatial scan statistic. Communications in Statistics - Theory and Methods, 26(6): 1481-1496, \doi{10.1080/03610929708831995}
+
+Kulldorff, M., Huang, L., Pickle, L. and Duczmal, L. (2006) An elliptic spatial scan statistic. Statististics in Medicine, 25:3929-3943. \doi{10.1002/sim.2490}
+
+Neill, D. B. (2012), Fast subset scan for spatial pattern detection. Journal of the Royal Statistical Society: Series B (Statistical Methodology), 74: 337-360. \doi{10.1111/j.1467-9868.2011.01014.x}
+
+Patil, G.P. & Taillie, C. Upper level set scan statistic for detecting arbitrarily shaped hotspots. Environmental and Ecological Statistics (2004) 11(2):183-197. \doi{10.1023/B:EEST.0000027208.48919.7e}
+
+Tango, T. (1995) A class of tests for detecting "general" and "focused" clustering of rare diseases. Statistics in Medicine. 14, 2323-2334.
+
+Tango, T., & Takahashi, K. (2005). A flexibly shaped spatial scan statistic for detecting clusters. International journal of health geographics, 4(1), 11. Kulldorff, M. (1997) A spatial scan statistic. Communications in Statistics – Theory and Methods 26, 1481-1496.
+
+Tango, T. and Takahashi, K. (2012), A flexible spatial scan statistic with a restricted likelihood ratio for detecting disease clusters. Statist. Med., 31: 4207-4218. \doi{10.1002/sim.5478}
+
+Turnbull, Bruce W., Iwano, Eric J., Burnett, William S., Howe, Holly L., Clark, Larry C. (1990). Monitoring for Clusters of Disease: Application to Leukemia Incidence in Upstate New York, American Journal of Epidemiology, 132(supp1):136-143. \doi{10.1093/oxfordjournals.aje.a115775}
+
+Waller, L.A. and Gotway, C.A. (2005). Applied Spatial Statistics for Public Health Data. Hoboken, NJ: Wiley.
+
+Yao, Z., Tang, J., & Zhan, F. B. (2011). Detection of arbitrarily-shaped clusters using a neighbor-expanding approach: A case study on murine typhus in South Texas. International journal of health geographics, 10(1), 1.
+

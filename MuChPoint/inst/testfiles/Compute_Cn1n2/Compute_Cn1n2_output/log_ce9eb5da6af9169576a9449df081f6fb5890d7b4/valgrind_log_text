@@ -1,0 +1,18 @@
+WARNING: No test specified, defaulting to first test defined (MuChPoint_deepstate_test_Compute_Cn1n2_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/MuChPoint/inst/testfiles/Compute_Cn1n2/Compute_Cn1n2_output/ce9eb5da6af9169576a9449df081f6fb5890d7b4.fail`
+TRACE: Running: MuChPoint_deepstate_test_Compute_Cn1n2_test from /home/akhila/fuzzer_packages/fuzzedpackages/MuChPoint/inst/testfiles/Compute_Cn1n2/Compute_Cn1n2_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+x values: 1.02532e+261 1.12756e-57     nan
+1.46340e+288     inf 4.12846e-51
+5.67165e-306 4.85713e-272     inf
+    nan     inf 61.3403
+5.43908e-105 3.30698e+94 6.30847e-13
+
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Index out of bounds: [index=3; extent=3].
+ERROR: Failed: MuChPoint_deepstate_test_Compute_Cn1n2_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/MuChPoint/inst/testfiles/Compute_Cn1n2/Compute_Cn1n2_output/ce9eb5da6af9169576a9449df081f6fb5890d7b4.fail failed

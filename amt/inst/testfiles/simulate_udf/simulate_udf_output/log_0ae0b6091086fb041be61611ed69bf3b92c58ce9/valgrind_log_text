@@ -1,0 +1,30 @@
+WARNING: No test specified, defaulting to first test defined (amt_deepstate_test_simulate_udf_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/amt/inst/testfiles/simulate_udf/simulate_udf_output/0ae0b6091086fb041be61611ed69bf3b92c58ce9.fail`
+TRACE: Running: amt_deepstate_test_simulate_udf_test from /home/akhila/fuzzer_packages/fuzzedpackages/amt/inst/testfiles/simulate_udf/simulate_udf_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+n_steps values: -498905818
+start values: 569042049
+nc values: 1273656994
+nr values: 603497922
+Missing value
+mk values: 5.67165e-306 4.85713e-272 1.79343e-238 1.87086e-59 1.51199e-301 1.81807e+70 1.85953e-94 8.44754e+108 9.34284e+252
+8.89216e+223 6.82212e-94 61.3403 1.30150e+289 2.56205e+145 1.05961e+63 3.98203e+203 2.72496e+277     nan
+    nan 3.30698e+94 6.30847e-13 1.61022e-22 8.53357e+276 1.71348e+23 7.58914e+299 6.76492e-57 6.64093e+78
+1.12756e-57 1.02276e-185 2.50412e+268 9.58020e+157     inf 3.85251e+40 8.62812e+89 7.50586e-230 1.18744e-18
+    nan     nan 6.39540e+128 1.62648e-217 1.41446e+300 2.10194e-19 2.13445e+118 1.88351e+128 2.16738e+201
+
+Missing value
+hk values: 1.67815e-244 5.56262e+109 9.27460e-43 7.13126e-113 9.11477e-58 4.91543e-166 4.97226e+295 6.96419e-125
+1.31545e+119 1.19057e-138 1.39178e-50 2.15260e-192 1.80484e-156 1.24280e-267 2.50526e-188 2.89302e+22
+2.17841e-188 5.82654e+204 1.19456e-123 7.59210e-108 1.39327e-36 8.47469e+152 1.35406e+52 9.78959e+117
+3.28180e-228 8.58757e+51 5.61827e+110 1.22473e+289 3.48355e+255 1.97321e+115 1.65193e+49 9.62175e+283
+9.24463e-269 2.09166e+130 1.02829e+24 1.54444e+99 1.20701e+126     nan 2.22893e-33 2.50043e+303
+3.61641e-138 1.07434e+96     nan 1.15361e-33     nan 1.76215e-16 6.07867e-110 1.69240e+200
+
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Index out of bounds: [index=569042049; extent=6].
+ERROR: Failed: amt_deepstate_test_simulate_udf_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/amt/inst/testfiles/simulate_udf/simulate_udf_output/0ae0b6091086fb041be61611ed69bf3b92c58ce9.fail failed

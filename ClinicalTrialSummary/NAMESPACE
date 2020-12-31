@@ -1,0 +1,8 @@
+exportPattern("^[[:alpha:]]+")
+S3method(ypsummary, default)
+S3method(summary, ypsummary)
+S3method(print, ypsummary)
+importFrom("stats", "pnorm", "qnorm", "rnorm", "runif", "sd")
+
+useDynLib(ClinicalTrialSummary)
+importFrom(Rcpp, sourceCpp)

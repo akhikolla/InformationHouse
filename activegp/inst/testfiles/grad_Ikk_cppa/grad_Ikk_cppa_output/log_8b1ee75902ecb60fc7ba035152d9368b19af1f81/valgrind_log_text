@@ -1,0 +1,15 @@
+WARNING: No test specified, defaulting to first test defined (activegp_deepstate_test_grad_Ikk_cppa_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/grad_Ikk_cppa/grad_Ikk_cppa_output/8b1ee75902ecb60fc7ba035152d9368b19af1f81.fail`
+TRACE: Running: activegp_deepstate_test_grad_Ikk_cppa_test from /home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/grad_Ikk_cppa/grad_Ikk_cppa_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+a values: 3.16522e+06
+b values: 3.72126e-82
+t values: 5.29799e-243
+ct values: 1586657384
+input ends
+terminate called after throwing an instance of 'std::invalid_argument'
+  what():  Covariance Type not Supported
+ERROR: Failed: activegp_deepstate_test_grad_Ikk_cppa_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/activegp/inst/testfiles/grad_Ikk_cppa/grad_Ikk_cppa_output/8b1ee75902ecb60fc7ba035152d9368b19af1f81.fail failed

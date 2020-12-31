@@ -1,0 +1,20 @@
+WARNING: No test specified, defaulting to first test defined (jmotif_deepstate_test_manyseries_to_wordbag_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/jmotif/inst/testfiles/manyseries_to_wordbag/manyseries_to_wordbag_output/568782e75ed3ff787322cc742a51a7a0d27556ca.fail`
+TRACE: Running: jmotif_deepstate_test_manyseries_to_wordbag_test from /home/akhila/fuzzer_packages/fuzzedpackages/jmotif/inst/testfiles/manyseries_to_wordbag/manyseries_to_wordbag_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+data values: 1.14427e+25 3.00408e+142 7.94253e-109
+2.07465e-190 3.16529e-77 3.38809e-119
+1.54512e+193 1.32627e-207 5.78661e+63
+
+w_size values: 1343735465
+paa_size values: -111109936
+a_size values: -473996444
+nr_strategy values: "erktdtsjwrjlqzmzjecl" "NA" "clowecxswljnmwmxksmb" "NA" "NA" "NA" "xtlrpmyffzo" "gsjjqpghfgzuspcsxahj" "sdojkcucmatdqx" "mztzfufbbosoxlequyga" "qyrlwgaoazhgl" "jkjhqkqidglahboappvl" "qlmntmkjlkktjomxczkp" "NA" "NA" "oadwxg" "evqnurgafpraifebxjbm" "NA" "" "NA" "NA" "NA" "liwgdlsdpbuvamnsefsh" "NA" "uzmwwthnlzolhydlruv" "sjoeluqdhqnumzaepf" "NA" "avleeyjr" "NA" "NA" "uidkkobgqzrtbvaqclfx" "NA" "stmqsf" "wyghidccx" "fzgnvwasfegy" "qsnitwplhbwbcbilroho" "vukjpklaurkzhfawakzq" "hlblnkunlyh" "vniinhwksxbcobgezmsp" "c" "qqcpmrobugpsmwjpylia" "NA" "jmsyoixemxrexmsyiptq" "lesdhvtwkghjenxmqfpz" "NA" "NA" "pizznyyotqcyzdjlweb" "vnafrrrzwecuepstii" "grmjod" "rtdatrcajtrnmto" "wesmmctbnwtdidvttrbh" "tfjgt" "tilhloqptlwidhjvjkzn" "kpitxrhowuoacorbjytv" "bkhggjp" "fpaaobpkmgzssgmpgwde" "nvvxxrqbmkbrktzqgkfo" "NA"
+n_threshold values: -3.58938e+11
+input ends
+terminate called after throwing an instance of 'Rcpp::not_compatible'
+  what():  Expecting a single string value: [type=character; extent=58].
+ERROR: Failed: jmotif_deepstate_test_manyseries_to_wordbag_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/jmotif/inst/testfiles/manyseries_to_wordbag/manyseries_to_wordbag_output/568782e75ed3ff787322cc742a51a7a0d27556ca.fail failed

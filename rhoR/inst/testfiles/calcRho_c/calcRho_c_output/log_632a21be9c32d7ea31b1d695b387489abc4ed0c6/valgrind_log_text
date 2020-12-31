@@ -1,0 +1,26 @@
+WARNING: No test specified, defaulting to first test defined (rhoR_deepstate_test_calcRho_c_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_output/632a21be9c32d7ea31b1d695b387489abc4ed0c6.fail`
+TRACE: Running: rhoR_deepstate_test_calcRho_c_test from /home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness.cpp(10)
+input starts
+x values: -9.65408e-38
+OcSBaserate values: 5.0412e+183
+testSetLength values: -124313295
+testSetBaserateInflation values: 3.40137e+237
+OcSLength values: -1191059565
+replicates values: -1501793129
+ScSKappaThreshold values: 1.26998e-132
+ScSKappaMin values: -2.87883e+231
+ScSPrecisionMin values: 1.78857e+211
+ScSPrecisionMax values: 4.42706e-239
+EXTERNAL: qs v0.23.4.
+
+KPs values: 3.62352e-109 1.05253e-56 1.29999e-255 2.82252e-225 1.32696e+220
+9.11555e-62 8.09048e+36 3.58159e-245 5.65597e-187 1.87999e+204
+
+input ends
+
+error: Mat::init(): requested size is too large
+terminate called after throwing an instance of 'std::logic_error'
+  what():  Mat::init(): requested size is too large
+ERROR: Failed: rhoR_deepstate_test_calcRho_c_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_output/632a21be9c32d7ea31b1d695b387489abc4ed0c6.fail failed

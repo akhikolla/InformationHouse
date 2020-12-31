@@ -1,0 +1,134 @@
+fun_ahrypt <- function(oy, od, oz, best, tau, alpha, ...) {
+
+    n <- length(oy)
+
+    oyl <- c(0, oy[1:(n - 1)])
+    oyr <- c(oy[2:n], tau)
+
+    bt <- exp(-best)
+    bt1 <- bt[1]
+    bt2 <- bt[2]
+
+    jh <- 1e-08
+    K <- n:1
+
+    b <- as.numeric(best) + cbind(c(jh, 0), -c(jh, 0), c(0, jh), -c(0,
+        jh))
+    gamma1 <- exp(-matrix(b[1, ], nrow = 1) %x% oz)
+    gamma2 <- exp(-matrix(b[2, ], nrow = 1) %x% oz)
+    Lambda1 <- apply(od * gamma1/K, 2, cumsum)
+    Lambda2 <- apply(od * gamma2/K, 2, cumsum)
+    P <- exp(-Lambda2)
+    PL <- rbind(1, P[1:(n - 1), ])
+    R <- apply(PL * od * gamma1/K, 2, cumsum)/P
+
+    denom <- gamma1 + gamma2 * R
+    u1 <- -(oz * od) %*% (gamma1/denom) + oz %*% (R/denom)
+    u2 <- -(oz * od) %*% (gamma2 * R/denom) + oz %*% (log(denom/gamma1)/gamma2) -
+        oz %*% (R/denom)
+    qf <- rbind(u1, u2)
+    pq <- cbind(qf[, 1] - qf[, 2], qf[, 3] - qf[, 4])/2/jh
+    pr <- cbind(R[, 1] - R[, 2], R[, 3] - R[, 4])/2/jh
+    r <- R[, 1]
+    rl <- c(0, r[1:(n - 1)])
+    dr <- r - rl
+
+    po <- P[, 1]
+    plo <- PL[, 1]
+
+    g1 <- gamma1[, 1]
+    g2 <- gamma2[, 1]
+    den <- bt1 + bt2 * r
+    denl <- bt1 + bt2 * rl
+    hr <- (1 + r)/den
+    ntl <- sum(oy < tau)
+
+    avv <- as.numeric(t(c(1/bt1, hr[1:ntl])) %*% c(c(oy[1:ntl], tau) -
+        c(0, oy[1:ntl]))/tau)
+
+    tem <- (bt1 - bt2)/den^2
+    tem0 <- (bt1 - bt2)/bt1^2
+
+    a <- cbind(tem * pr[, 1] + bt1 * (1 + r)/den^2, tem * pr[, 2] + bt2 *
+        r * (1 + r)/den^2)
+    a0 <- c(1/bt1, 0)
+
+    cua <- oy[1] * a0 + t(c(oy[2:ntl], tau) - oy[1:ntl]) %*% a[1:ntl,
+        ]
+
+    br <- tem/po
+    br0 <- tem0
+    tem1 <- c(br0, br[1:(n - 1)]) * (oy - oyl)
+
+    cb <- oy[1] * br0 + sum((c(oy[2:ntl], tau) - oy[1:ntl]) * br[1:ntl]) -
+        cumsum(tem1) + tem1
+    cb <- cb * (oy <= tau)
+
+    inrs1 <- c()
+    inrs2 <- c()
+    inrw <- c()
+    inrsw1 <- c()
+    inrsw2 <- c()
+
+    for (ti in 1:n) {
+        yk <- (oy >= oy[ti])
+        dk <- g1 + r[ti] * g2
+        tek <- yk/dk
+        inrs1[ti] <- t(oz) %*% (g1 * tek/dk)
+        inrs2[ti] <- R[ti] * t(oz) %*% (g2 * tek/dk)
+        inrw[ti] <- t(g2) %*% tek
+        inrsw1[ti] <- t(oz) %*% (g1 * g2 * tek/dk^2)
+        inrsw2[ti] <- R[ti] * t(oz) %*% (g2^2 * tek/dk^2)
+    }
+
+    inr1 <- (inrsw1 - inrw * inrs1/K) * dr/po
+    inr2 <- (inrsw2 - inrw * inrs2/K) * dr/po
+
+    inr1 <- inr1 + sum(inr1) - cumsum(inr1)
+    inr2 <- inr2 + sum(inr2) - cumsum(inr2)
+
+    rmul <- plo/K
+    inr1 <- inr1 * rmul
+    inr2 <- inr2 * rmul
+
+    inq <- solve(-pq/n)
+    ff <- cbind(bt1/den, bt2 * r/den)
+
+    k1all <- cumsum(1 - oz[n:1])[n:1]
+    k2all <- cumsum(oz[n:1])[n:1]
+
+    x1 <- cbind(-k2all/K * ff[, 1] * hr + inr1 * (1 + r), -k2all/K * ff[,
+        2] * hr + inr2 * (1 + r))
+    xn <- cbind(k1all/K * ff[, 1] + inr1 * den, k1all/K * ff[, 2] + inr2 *
+        den)
+    nu1 <- rmul * (1 + r)
+    nun <- rmul * den
+
+    d11 <- k1all * dr/(1 + r)
+    dnn <- k2all * dr/den
+
+    sig1 <- cua %*% inq %*% (t(x1) %*% (d11 %x% matrix(c(1, 1), nrow = 1) *
+        x1) + t(xn) %*% (dnn %x% matrix(c(1, 1), nrow = 1) * xn)) %*%
+        t(inq)
+    sig1 <- sig1 %*% t(cua)/n
+    sig2 <- n * (t((nu1 * cb)^2) %*% d11 + t((nun * cb)^2) %*% dnn)
+    sig12 <- colSums((d11 * nu1 * cb) %x% matrix(c(1, 1), nrow = 1) *
+        x1 + ((dnn * nun * cb) %x% matrix(c(1, 1), nrow = 1)) * xn)
+    sig12 <- sig12 %*% t(cua %*% inq)
+    sig <- sig1 + sig2 + 2 * sig12
+
+    stmb <- sqrt(sig)
+    ca3 <- qnorm(1 - alpha/2)
+    uppc <- exp(ca3 * stmb/sqrt(n)/tau/avv) * avv
+    lowc <- exp(-ca3 * stmb/sqrt(n)/tau/avv) * avv
+    zv <- sqrt(n) * log(avv) * avv * tau/stmb
+
+    result <- list()
+    result$estimate <- avv
+    result$lower <- as.numeric(lowc)
+    result$upper <- as.numeric(uppc)
+    result$z <- as.numeric(zv)
+    result$pvalue <- 2 * (1 - pnorm(abs(zv)))
+
+    return(result)
+}

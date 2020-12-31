@@ -1,0 +1,93 @@
+---
+title: "C++ binding"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{C++ binding}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The package contains two [Rcpp](https://CRAN.R-project.org/package=Rcpp) functions,
+which bind directly to the C++ implementation of the flexible polyline encoding.
+These functions target a tight interface from C++ to R and reflect the arguments
+and return values of their counterparts (`hf::encode_polyline` and
+`hf::decode_polyline`) in the C++ implementation.
+
+## Encode
+Encoding a line is straight forward by passing a matrix (column order is
+longitude, latitude) with its coordinates to `encode()`. The default precision
+value is set to `5`. If a matrix with two columns is provided, the third
+dimension is automatically set to `"ABSENT"`:
+
+```{r encode2d}
+library(flexpolyline)
+
+line2d <- matrix(
+  c(8.69821, 50.10228,
+    8.69567, 50.10201,
+    8.69150, 50.10063,
+    8.68752, 50.09878),
+  ncol = 2, byrow = TRUE
+)
+
+(encodes2d <- encode(line2d, precision = 5))
+```
+
+If a matrix with three columns is passed, a line with a third dimension is encoded.
+The type of the third dimension can be passed to the encoding and supports the
+following selection, that are specified via an integer value via the `third_dim`
+argument:
+
+* 0: ABSENT
+* 1: LEVEL
+* 2: ALTITUDE
+* 3: ELEVATION (default)
+* 4: RESERVED1 (not available)
+* 5: RESERVED2 (not available)
+* 6: CUSTOM1
+* 7: CUSTOM2
+
+By default the precision of the third dimension `third_dim_precision` is set to
+the same value as the precision value for the longitude and latitude dimensions.
+```{r encode3d}
+line3d <- matrix(
+  c(8.69821, 50.10228, 10.11111,
+    8.69567, 50.10201, 20.22222,
+    8.69150, 50.10063, 30.33333,
+    8.68752, 50.09878, 40.44444),
+  ncol = 3, byrow = TRUE
+)
+
+(encodes3d <- encode(line3d, precision = 5, third_dim = 3, third_dim_precision = 5))
+```
+
+
+## Decode
+
+In order to decode the lines from above, the encoded line string is passed to
+the `decode()` function. The function detects from the encoded string if it is a
+two-dimensional or three-dimensional line:
+```{r decode2d}
+decode(encodes2d)
+```
+
+In the case of a three-dimensional line, the third column is named after the name
+of the third dimension that was chosen during the encoding (in this example
+`"ELEVATION"`):
+```{r decode3d}
+decode(encodes3d)
+```
+
+
+## References
+
+* [Flexible Polyline Encoding by HERE](https://github.com/heremaps/flexible-polyline)
+* [Encoded Polyline Algorithm Format](https://developers.google.com/maps/documentation/utilities/polylinealgorithm)
+* Inspired by the [googlePolylines](https://github.com/SymbolixAU/googlePolylines) package

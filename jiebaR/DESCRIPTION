@@ -1,0 +1,22 @@
+Package: jiebaR
+Type: Package
+Title: Chinese Text Segmentation
+Description: Chinese text segmentation, keyword extraction and speech tagging
+    For R.
+Version: 0.11
+Date: 2019-12-13
+Author: Qin Wenfeng, Wu Yanyi 
+Maintainer: Qin Wenfeng <mail@qinwenfeng.com>
+License: MIT + file LICENSE
+Depends: R (>= 3.3), jiebaRD
+Imports: Rcpp (>= 0.12.1)
+LinkingTo: Rcpp (>= 0.12.1)
+Suggests: knitr,testthat,devtools,rmarkdown,roxygen2
+URL: https://github.com/qinwf/jiebaR/
+BugReports: https://github.com/qinwf/jiebaR/issues
+VignetteBuilder: knitr
+NeedsCompilation: yes
+RoxygenNote: 6.1.1
+Packaged: 2019-12-13 17:12:13 UTC; qinwf
+Repository: CRAN
+Date/Publication: 2019-12-13 17:40:02 UTC

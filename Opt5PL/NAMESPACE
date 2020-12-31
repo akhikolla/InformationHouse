@@ -1,0 +1,6 @@
+exportPattern("^[[:alpha:]]+")
+importFrom(Rcpp, evalCpp)
+importFrom(graphics, plot)
+importFrom(stats, na.omit)
+importFrom(matrixcalc, is.singular.matrix)
+useDynLib(Opt5PL, .registration = TRUE)

@@ -1,0 +1,16 @@
+WARNING: No test specified, defaulting to first test defined (ggraph_deepstate_test_circlePackLayout_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/ggraph/inst/testfiles/circlePackLayout/circlePackLayout_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash`
+TRACE: Running: ggraph_deepstate_test_circlePackLayout_test from /home/akhila/fuzzer_packages/fuzzedpackages/ggraph/inst/testfiles/circlePackLayout/circlePackLayout_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+parent values: -709423862 1693996265 874270644 819746351 1283029671 308684195 -127551131 1528585009 -748078280 1636835733 -1401926948 1285557401 428228651 -328872220 -897103578 -1549445257 244494191 584058062 1078897549
+weight values: -2.10374e+36 -5.29515e-20 9.81127e+30 -3403.88 -364840 -8.45394e+179
+input ends
+==821812==  If you believe this happened as a result of a stack
+==821812==  overflow in your program's main thread (unlikely but
+==821812==  possible), you can try to increase the size of the
+==821812==  main thread stack using the --main-stacksize= flag.
+==821812==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: ggraph_deepstate_test_circlePackLayout_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/ggraph/inst/testfiles/circlePackLayout/circlePackLayout_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash crashed

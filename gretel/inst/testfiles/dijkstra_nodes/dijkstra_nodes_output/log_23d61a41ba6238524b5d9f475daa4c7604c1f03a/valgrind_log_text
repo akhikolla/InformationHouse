@@ -1,0 +1,18 @@
+WARNING: No test specified, defaulting to first test defined (gretel_deepstate_test_dijkstra_nodes_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_nodes/dijkstra_nodes_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash`
+TRACE: Running: gretel_deepstate_test_dijkstra_nodes_test from /home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_nodes/dijkstra_nodes_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+dist values: 1.05415e-68 1.86447e-211 4.49059e+17 2.72551e-214 6.53679e-70 2.42643e+241 1.65687e+24
+
+src values: 644268439
+node_costs values: -1.3783e-303 9.46139e+185 3.43512e-26 -2.80408e+194 -2.69316e-264 8.88375e+93 -1.2815e+192 -1.05379e+270 9.93485e-272 -4.49673e-166 1.0879e-197 -1.2041e+269 5.69436e+304 -4.3128e+297 -8.50762e-293 8.10981e+266 5.79155e-162 -1.52842e+202 1.08405e-287 6.87024e+274 -5.68765e-181 -1.13845e-199 1.96261e-252 5.33405e-300 2.59209e-42 -9.97307e-54 -2.72163e-171 -3.62547e+168 -1.05877e+151 2.42724e-180 2.71379e-129 -2.99574e+172 -3.92218e+180 3.87645e+40 2.8753e-21 2.16137e-216 -1.24268e+93 1.12959e-232 3.9216e-79 -15667.2 4.57085e-49 -1.25757e+73 -8.79374e+217 -9.77937e+240 -6.91902e+224 -1.16799e+232 -1.96546e+138 -2.97634e-92 -2.12535e-12 3.06887e+143 -3.91469e-243 -5.48275e+103 9.28986e-15 -3.80098e-13 4.66046e-69 1.5295e-61 2.3442e-253 -1.2448e-108 -1.64218e+131 -2.84707e-150 4.23067e+207 2.48183e+47 8.28182e-108 1.3868e-275 -7.75062e+242 5.782e-237
+input ends
+==834617==  If you believe this happened as a result of a stack
+==834617==  overflow in your program's main thread (unlikely but
+==834617==  possible), you can try to increase the size of the
+==834617==  main thread stack using the --main-stacksize= flag.
+==834617==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: gretel_deepstate_test_dijkstra_nodes_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_nodes/dijkstra_nodes_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash crashed

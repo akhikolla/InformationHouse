@@ -1,0 +1,81 @@
+INFO: Starting fuzzing
+WARNING: No test specified, defaulting to first test defined (EFAtools_deepstate_test_parallel_sim_test)
+input starts
+EXTERNAL: qs v0.23.4.
+
+n_datasets values: 467495432
+n_vars values: 1827680409
+N values: -1053990400
+eigen_type values: 77470436
+maxit values: 484058222
+input ends
+terminate called after throwing an instance of 'std::logic_error'
+  what():  Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+ERROR: Failed: EFAtools_deepstate_test_parallel_sim_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/EFAtools/inst/testfiles/parallel_sim/parallel_sim_output/ca670c3e2a223ee69f097c75c4896242ca9c6ca8.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+n_datasets values: -498905818
+n_vars values: 569042049
+N values: 1273656994
+eigen_type values: 603497922
+maxit values: -2065975987
+input ends
+terminate called after throwing an instance of 'std::logic_error'
+  what():  Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+ERROR: Failed: EFAtools_deepstate_test_parallel_sim_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/EFAtools/inst/testfiles/parallel_sim/parallel_sim_output/2e96554827fe54dbfe441614e659bafd883dd86f.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+n_datasets values: -293123844
+n_vars values: -555281357
+N values: 1746767833
+eigen_type values: -621726556
+maxit values: -1331494887
+input ends
+terminate called after throwing an instance of 'std::logic_error'
+  what():  Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+ERROR: Failed: EFAtools_deepstate_test_parallel_sim_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/EFAtools/inst/testfiles/parallel_sim/parallel_sim_output/0b323a510cb1d05227501bb68f93556509743d53.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+n_datasets values: -1105761949
+n_vars values: 304498753
+N values: -1417810920
+eigen_type values: 1452738095
+maxit values: 1618366851
+input ends
+terminate called after throwing an instance of 'std::logic_error'
+  what():  Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+ERROR: Failed: EFAtools_deepstate_test_parallel_sim_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/EFAtools/inst/testfiles/parallel_sim/parallel_sim_output/8ac1ad8cb2516ac979d0c1cc9de6db555260ffca.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+n_datasets values: 954479852
+n_vars values: -194229631
+N values: -1020009618
+eigen_type values: 1482512518
+maxit values: 1767585227
+input ends
+terminate called after throwing an instance of 'std::logic_error'
+  what():  Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+ERROR: Failed: EFAtools_deepstate_test_parallel_sim_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/EFAtools/inst/testfiles/parallel_sim/parallel_sim_output/0955e9db358bf8f287aaf481982aa4dad3fbcd6f.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+n_datasets values: 1344097580
+n_vars values: -1433424706
+N values: 1190349588
+eigen_type values: -1704920159
+maxit values: 1216778795
+input ends
+terminate called after throwing an instance of 'std::logic_error'
+  what():  Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+ERROR: Failed: EFAtools_deepstate_test_parallel_sim_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/EFAtools/inst/testfiles/parallel_sim/parallel_sim_output/735de88d11f0b757573feb0ec36ae0b530218af9.fail`
+INFO: Done fuzzing! Ran 6 tests (3 tests/second) with 6 failed/0 passed/0 abandoned tests

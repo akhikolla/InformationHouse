@@ -1,0 +1,137 @@
+useDynLib(immer)
+
+
+
+######################################################
+############### IMPORTS ##############################
+
+
+#***************************************************
+#*************** R Basics / Linking To *************
+
+importFrom(graphics, abline)
+importFrom(graphics, axis)
+importFrom(graphics, par)
+importFrom(graphics, plot)
+importFrom(graphics, points)
+importFrom(graphics, legend)
+importFrom(graphics, lines)
+importFrom(methods, is)
+importFrom(Rcpp, evalCpp)
+importFrom(stats, aggregate)
+importFrom(stats, anova)
+importFrom(stats, as.formula)
+importFrom(stats, coef)
+importFrom(stats, dlnorm)
+importFrom(stats, dnorm)
+importFrom(stats, logLik)
+importFrom(stats, model.matrix)
+importFrom(stats, nlminb)
+importFrom(stats, optim)
+importFrom(stats, pchisq)
+importFrom(stats, qlogis)
+importFrom(stats, qnorm)
+importFrom(stats, rgamma)
+importFrom(stats, rlnorm)
+importFrom(stats, rnorm)
+importFrom(stats, runif)
+importFrom(stats, sd)
+importFrom(stats, var)
+importFrom(stats, vcov)
+importFrom(utils, download.file)
+importFrom(utils, flush.console)
+importFrom(utils, packageDescription)
+importFrom(utils, read.csv)
+importFrom(utils, unzip)
+
+
+#***************************************************
+#************** Depends ****************************
+
+#---
+
+
+#***************************************************
+#************** Imports (own) **********************
+
+importFrom(CDM, csink)
+importFrom(CDM, IRT.anova)
+importFrom(CDM, IRT.likelihood)
+importFrom(CDM, IRT.posterior)
+importFrom(CDM, osink)
+importFrom(sirt, mcmc.list.descriptives)
+importFrom(sirt, md.pattern.sirt)
+importFrom(sirt, rm_proc_data)
+importFrom(sirt, rowCumsums.sirt)
+importFrom(sirt, rowIntervalIndex.sirt)
+importFrom(sirt, sirt_summary_print_package_rsession)
+importFrom(sirt, sirt_summary_print_objects)
+importFrom(TAM, tam_matrix2)
+importFrom(TAM, tam_NA_pattern)
+
+
+
+#***************************************************
+#************** Imports (foreign) ******************
+
+importFrom(coda, as.mcmc.list)
+importFrom(MASS, ginv)
+importFrom(psychotools, elementary_symmetric_functions)
+
+
+
+
+########################################################
+################  EXPORTS ##############################
+
+export(immer_agree2)
+export(immer_ccml)
+export(immer_cml)
+export(immer_create_design_matrix_formula)
+export(immer_FACETS)  
+export(immer_install)
+export(immer_hrm)
+export(immer_hrm_simulate)
+export(immer_jml)
+export(immer_latent_regression)
+export(immer_opcat)
+export(immer_proc_data)
+export(immer_reshape_wideformat)
+export(immer_unique_patterns)
+export(lc2_agreement)
+export(logits2probs)
+export(probs2logits)
+
+
+
+
+#########################################################
+############### S3 METHODS ##############################
+
+
+S3method(anova, immer_cml)
+S3method(anova, immer_hrm)
+S3method(anova, immer_latent_regression)
+S3method(anova, lc2_agreement)
+S3method(coef, immer_ccml)
+S3method(coef, immer_cml)
+S3method(coef, immer_latent_regression)
+S3method(IRT.likelihood, immer_hrm)
+S3method(IRT.likelihood, immer_jml)
+S3method(IRT.posterior, immer_hrm)
+S3method(logLik, immer_cml)
+S3method(logLik, immer_hrm)
+S3method(logLik, immer_jml)
+S3method(logLik, immer_latent_regression)
+S3method(logLik, lc2_agreement)
+S3method(plot, immer_hrm)
+S3method(summary, immer_agree2)
+S3method(summary, immer_ccml)
+S3method(summary, immer_cml)
+S3method(summary, immer_jml)
+S3method(summary, immer_hrm)
+S3method(summary, immer_latent_regression)
+S3method(summary, lc2_agreement)
+S3method(vcov, immer_ccml)
+S3method(vcov, immer_cml)
+S3method(vcov, immer_latent_regression)

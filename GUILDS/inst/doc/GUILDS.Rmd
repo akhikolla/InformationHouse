@@ -1,0 +1,155 @@
+---
+title: "GUILDS Vignette"
+author: "Thijs Janzen"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Guilds Vignette
+
+Welcome to the vignette of GUILDS. GUILDS is an R package aimed at providing the user with easy to use functions that help dealing with the Unified Neutral Theory of Biodiversity and Biogeography. More specifically, the package bundles together the sampling functions for the Neutral Model including multiple guilds that differ in dispersal ability (Janzen et al. 2015), and the Etienne sampling formula for the standard neutral model. Furthermore, the package contains functions to generate artificial datasets, and to calculate the expected abundances.
+
+## The standard neutral model
+To generate data with the standard neutral model, we can make use of the function ```generate.ESF```, where ESF stands for the Etienne Sampling Formula. generate.ESF makes use of the urn scheme described in Etienne (2005), where the avid reader can also find more details on the Etienne Sampling Formula. The ESF combines the universal biodiversity number theta, and the universal dispersal number I. Typically, the migration rate is a bit easier to interpret, so we will make use of that first, then convert it to I, and then generate the data:
+```{r}
+library(GUILDS)
+set.seed(42)
+theta = 100
+m <- 0.1
+J <- 10000
+I <- m * (J-1) / (1 - m)
+abund <- generate.ESF(theta, I, J)
+abund
+```
+The package has now generated a nice species abundance distribution. Using the function ```preston_plot`` we can visualize our abundance distribution
+```{r}
+preston_plot(abund)
+```
+
+We can even do better, using the function ```expected.SAD``` we can calculate the expected number of individuals per species. Furthermore, we can easily add this to our plot:
+```{r}
+abund.expect <- expected.SAD(theta, m, J)
+preston_plot(abund, abund.expect)
+```
+
+We can clearly see that the simulated abundance distribution closely matches the expected distribution (the black line), although the stochastic nature of the simulation has caused some small deviations. Using the Etienne Sampling Formula we can now estimate theta and m, using maximum likelihood. Because we already know the real values (those are the values that we used to simulate the data), we can nicely crosscheck whether the Etienne Sampling Formula yields good results. We start the maximum likelihood at three different starting points, to compare convergence.
+```{r}
+LL1 <- maxLikelihood.ESF(init_vals = c(theta, m),
+                         abund, verbose = FALSE)
+LL2 <- maxLikelihood.ESF(init_vals = c(1000, 0.001),
+                         abund, verbose = FALSE)
+LL3 <- maxLikelihood.ESF(init_vals = c(10, 0.9),
+                         abund, verbose = FALSE)
+LL1$par
+LL2$par
+LL3$par
+```
+
+Regardless of the starting point, we recover the same parameter estimates that are close to the real values theta = 100 and m = 0.1 .
+
+## Dispersal Guilds
+The guilds model, as described in Janzen et al. (2015), asks a slightly different question from the standard neutral model. How would species abundances look if there would be two guilds of species, where the guilds would only differ in dispersal ability? Imagine for instance a forest, where some tree species disperse using wind-aided seed dispersal, and other tree species disperse using animal-aided seed dispersal. 
+The model assumes that the two guilds share a local community, and the metacommunity, and share the same speciation dynamics (e.g. have the same theta). Dispersal is different however, and in contrast to the standard neutral model, where we would infer migration rates, here we asses the dispersal ability: the guilds model postulates that migration (m) is the product of the dispersal ability of the species (alpha) and the species' frequency in the metacommunity (p). 
+
+### Conditioning on Guild size
+In the paper, we show that in order for parameter estimation to work reliably, we have to condition our sampling formula's on guild size. The package also contains sampling formula's without guild size, in order for the user to reproduce our train of thought, but here we will focus solely on situations where we have conditioned our sampling formula's on guild size, and hence we assume that the user knows the number of individuals per guild. 
+
+So, without verder ado, let's simulate some data and then apply the relevant sampling formula's. We start by simulating data using the "D0" model, which assumes no differences in dispersal ability between the guilds (e.g. the guilds model then reduces to the standard neutral model)
+```{r}
+set.seed(666)
+theta <- 200
+alpha_x <- 0.1
+J <- 10000
+J_x <- 8000
+J_y <- J - J_x
+
+abund <- generate.Guilds.Cond(theta, alpha_x, alpha_x, J_x, J_y)
+```
+
+Again, we can calculate the expected distributions, and visualize our distributions. This time however, a small part of the calculation of the expected distribution can not be treated analytically, and has to be done via the means of simulation, so a larger number of replicates means a more accurate expected distribution. Here we will use a low number of replicates for computational reasons.
+```{r}
+abund.expected <- expected.SAD.Guilds.Conditional(theta, alpha_x, alpha_x,
+                                                  J_x, J_y, n_replicates = 5)
+
+par(mfrow = c(1, 2))
+preston_plot(abund$guildX, abund.expected$guildX, main = "Guild X")
+preston_plot(abund$guildY, abund.expected$guildY, main = "Guild Y")
+```
+
+Before, we set the size of Guild X to 8000 individuals, and the size of Guild Y to 2000 individuals. From the Preston plots we notice that indeed Guild X contains more species, but that apart from that, there are not many striking differences (we assumed equal dispersal of course!)
+Now that we have our data, we can apply the guilds' sampling formula, and see whether it can accruately infer parameter values.
+```{r}
+LL <- maxLikelihood.Guilds.Conditional(init_vals = c(theta, alpha_x), model = "D0",
+                                       method = "simplex", 
+                                       sadx = abund$guildX, sady = abund$guildY,
+                                       verbose = TRUE)
+LL$par
+```
+
+We see that the maximum likelihood algorithm accurately infers the value of alpha, and gets relatively close to inferring the right value of theta. If we would want to infer the rate of migration, we could, in this case, also apply the standard neutral model (after all, there were no differences in dispersal, rendering the guilds construction obsolete):
+```{r}
+LL1 <- maxLikelihood.ESF(init_vals = c(theta, alpha_x),
+                         abund = c(abund$guildX, abund$guildY), 
+                         verbose = FALSE)
+LL1$par
+```
+
+Using the ESF, we find a slightly higher estimate for theta (but notice that the mean of the two estimates becomes really close to the value we put in), and we find a higher value for m.
+
+### Guilds model with differences in dispersal
+
+So, what happens if we assume differences in dispersal? Let's, for fun, assume that there are two guilds (guild X and Y), where guild X is much bigger, but where species from guild X have a much lower dispersal ability:
+```{r}
+set.seed(666+42)
+theta <- 200
+alpha_x <- 0.001
+alpha_y <- 0.01
+J <- 10000
+J_x <- 8000
+J_y <- J - J_x
+
+abund <- generate.Guilds.Cond(theta, alpha_x, alpha_y, J_x, J_y)
+```
+
+This generates the following dataset:
+```{r}
+abund.expected <- expected.SAD.Guilds.Conditional(theta, alpha_x, alpha_y,
+                                                  J_x, J_y, n_replicates = 5)
+
+par(mfrow = c(1, 2))
+preston_plot(abund$guildX, abund.expected$guildX, main = "Guild X")
+preston_plot(abund$guildY, abund.expected$guildY, main = "Guild Y")
+```
+
+Clearly, there are now strong differences in the community distributions: the larger guild has a much broader distribution, with much less singletons than the smaller guild. Again, we can use maximum likelihood to infer the parameters from the data:
+```{r}
+LL1 <- maxLikelihood.Guilds.Conditional(init_vals = c(theta, alpha_x, alpha_y), 
+                                       model = "D1",
+                                       method = "simplex", 
+                                       sadx = abund$guildX, sady = abund$guildY,
+                                       verbose = TRUE)
+```
+Maximum likelihood estimation shows that we can accurately infer the underlying parameters.
+Furthermore, we can test whether the model assuming differences in dispersal between guilds better explains the data, than the model without. We do this by also fitting the model without differences to the data, and compare the estimated likelihoods:
+```{r}
+LL2 <- maxLikelihood.Guilds.Conditional(init_vals = c(theta, alpha_x), 
+                                       model = "D0",
+                                       method = "simplex", 
+                                       sadx = abund$guildX, sady = abund$guildY,
+                                       verbose = FALSE)
+```
+
+To do an honest comparison, we have to correct for the extra parameter (alpha_y) in the "D1" model, we do this by calculating the AIC value:
+```{r}
+AIC_D1 = 2 * 3 - 2 * LL1$fvalues
+AIC_D0 = 2 * 2 - 2 * LL2$fvalues
+AIC_D1
+AIC_D0
+```
+Clearly, the AIC of the D0 model is much lower, indicating a much better fit - as expected.
+
+This concludes the vignette. Go out there, find abundance data and check whether the data has guild structure! If not, use the ESF, but if you can come up with a potential guild structure, apply the conditional guilds sampling formula! Don't forget to apply both the model with, and without differences in dispersal ability, in order to verify that the guilds really differ in dispersal ability!

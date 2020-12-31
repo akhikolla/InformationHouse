@@ -1,0 +1,18 @@
+INFO: Starting fuzzing
+WARNING: No seed provided; using 1608757889
+WARNING: No test specified, defaulting to first test defined (propr_deepstate_test_labRcpp_test)
+input starts
+nfeats values: 161755924
+input ends
+EXTERNAL: Error: negative length vectors are not allowed
+
+EXTERNAL: Execution halted
+
+input starts
+nfeats values: 2144052138
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Index out of bounds: [index=305734813; extent=305734813].
+ERROR: Failed: propr_deepstate_test_labRcpp_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/propr/inst/testfiles/labRcpp/labRcpp_output/a4e79a299746f975237588422b4f100b4e3d8561.fail`
+INFO: Done fuzzing! Ran 2 tests (0 tests/second) with 2 failed/0 passed/0 abandoned tests

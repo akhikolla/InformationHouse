@@ -1,0 +1,133 @@
+NEWS/ChangeLog for PLMIX
+--------------------------
+
+2.1.1   2019-09-02
+
+NEW FEATURES
+    o   Added a new dataset called `d_gaming`.
+
+DOCUMENTATION
+    o   Removed some typos from the manual.
+
+2.1.0   2019-08-01
+
+MAJOR CHANGES
+    o   The pi_inv argument (formerly a numeric N*K matrix with the observed top-ordering) has been redefined as an object of class `top_ordering` or an object that can be coerced with the new function as.top_ordering.
+    o   gibbsPLMIX(...): 
+    o   [::] added the element `objective` in the output list representing the objective function values (that is the kernel of the log-posterior distribution) sampled in the saved MCMC iterations.  
+    o   mapPLMIX(...):
+    o   [::] recoded default value of the argument `plot_objective` from TRUE to FALSE.
+    o   make_complete(...), make_partial(...), paired_comparisons(...), rank_ord_switch(...) and rank_summaries(...): 
+    o   [::] renamed argument `format` as `format_input`.
+    o   [::] deleted default value ("ordering") for the former argument `format`.
+    o   rPLMIX(...): 
+    o   [::] renamed argument `format` as `format_output`.
+    o   selectPLMIX(...): 
+    o   [::] renamed argument `post_summary` as `post_est`.
+    o   `d_apa`, `d_carconf`, `d_dublinwest`, `d_german`, `d_nascar`, `d_occup` and `d_rice` 
+    o   [::] appended S3 class `top_ordering` to the supplied top-ordering datasets.      
+    o   [::] renamed columns of the supplied top-ordering datasets.      
+   
+MINOR CHANGES
+    o   fixed a CRAN error due to the cleanEX(...) procedure in the R CMD check. 
+    o   mapPLMIX(...): 
+    o   [::] reversed order between the `P_map` and `W_map` elements in the output list.
+    o   rank_ord_switch(...):
+    o   [::] added names to the columns of the output matrix.
+    o   unit_to_freq(...):
+    o   [::] added name `freq` to the last column of the output matrix.
+
+NEW FEATURES
+    o   Added the new membership function is.top_ordering(...) that verifies whether the supplied data satisfy the conditions to be a top-ordering dataset (various object classes are accepted for the input data).
+    o   Added the new coercion function as.top_ordering(...) that attempts to coerce the supplied data into an object of S3 class `top_ordering` (various object classes and forms are accepted for the input data).
+    o   Appended S3 class `mpPLMIX` to the list returned by mapPLMIX(...) and mapPLMIX_multistart(...).
+    o   Added generic S3 class methods for objects of class `mpPLMIX` named as print.mpPLMIX(...), summary.mpPLMIX(...) and plot.mpPLMIX(...).
+    o   Appended S3 class `gsPLMIX` to the list returned by gibbsPLMIX(...).
+    o   Added generic S3 class methods for objects of class `gsPLMIX` named as print.gsPLMIX(...), summary.gsPLMIX(...) and plot.gsPLMIX(...).
+    o   Added the new function gsPLMIX_to_mcmc(...) to coerce an object of class `gsPLMIX` into an object of class `mcmc` as defined by the function as.mcmc(...) of the `coda` package.
+    o   Added two further datasets called `d_occup` and `d_rice`.
+    o   Added packages `coda`, `ggmcmc`, `ggplot2`, `radarchart`, `prefmod`, `rankdist`, `StatRank`, `pmr`, `PlackettLuce`, `utils` and `reshape2` in Imports.
+
+DOCUMENTATION
+    o   The manual has been globally reviewed and improved accordingly with the new changes and the additional implementations described in NEW FEATURES.
+    o   label_switchPLMIX(...):
+    o   [::] added the citation Papastamoulis, P. (2016).
+
+
+2.0.1   2018-05-02
+
+MINOR CHANGES
+    o   fixed former warnings using if() with conditions of length greater than one. We have also checked the current version with _R_CHECK_LENGTH_1_CONDITION_ set to true. 
+    o   gibbsPLMIX(...):
+    o   [::] colnames added to output values labelled as `P` and `W`.
+    o   mapPLMIX(...):
+    o   [::] dimnames change for output value labelled as `P_map`.
+    o   [::] names added to output value labelled as `W_map`.
+    o   rank_summaries(...):
+    o   [::] format and label change for the former output value labelled as `missing_pos` now labelled as `na_or_not`.
+    o   [::] output values labelled as `mean_rank` and `marginals` now contain dimnames.
+
+2.0   2018-01-31
+
+BUG FIXES
+    o   mapPLMIX(...)
+    o   random_start(...)
+    o   rank_summaries(...)
+
+MAJOR CHANGES
+    o   bicPLMIX(...): 
+    o   [::] replaced former argument `weights` as `G`.
+    o   [::] added default values for the arguments `ref_known` and `ref_vary`.
+    o   [::] added the reference Schwarz (1978).
+    o   gibbsPLMIX(...): 
+    o   [::] added the `centered_start` argument for the random generation of the starting values, similarly to the mapPLMIX(...) and mapPLMIX_multistart(...) functions. 
+    o   label_switchPLMIX(...):
+    o   [::] added new function to perform label switching adjustment of the posterior MCMC samples, formerly implemented by both the ppcheckPLMIX(...) and the ppcheckPLMIX_cond(...) functions.
+    o   mapPLMIX(...): 
+    o   [::] modified the default value of the argument `eps` in accordance with that of the related mapPLMIX_multistart(...) function.
+    o   [::] modified the default value of the argument `plot_objective`.
+    o   [::] dropped object `Rho_map` from the output list.
+    o   [::] renamed object `z` of the output list as `z_hat`.
+    o   [::] renamed object `classification` of the output list as `class_map`.
+    o   [::] `bic` value is computed only for the default flat priors case, otherwise NULL is returned.
+    o   mapPLMIX_multistart(...):
+    o   [::] recoded default value of the argument `init`.
+    o   ppcheckPLMIX(...) and ppcheckPLMIX_cond(...): 
+    o   [::] removed former arguments `MAPestP`, `MAPestW`, `ls_adj` and `adj_post_sample` needed for the label switching adjustment, which is currently implemented by the novel label_switchPLMIX(...) function.
+    o   [::] removed `final_sampleP` and `final_sampleW` objects from the output.
+    o   rank_summaries(...): 
+    o   [::] renamed the argument and output object `pairedcomparisons` as `pc`. 
+    o   [::] renamed the output object `missing_positions` as `missing_pos`, 
+    o   rPLMIX(...):
+    o   [::] renamed former `rankingoutput` argument with `format`.
+    o   selectPLMIX:
+    o   [::] removed argument `log_lik`.
+
+MINOR CHANGES
+    o   ppcheckPLMIX(...) and ppcheckPLMIX_cond(...):
+    o   [::] added some messages.
+    o   "G=" replaced with "G_".
+    o   make_partial(...):
+    o   [::] renamed argument `probcensoring` as `probcens`.
+
+
+DOCUMENTATION
+    o   The manual has been globally reviewed and improved with additional implementation details and some new examples.
+    o   Added new examples for the three data objects `d_apa`, `d_carconf` and `d_dublinwest` showing how to extract the subset of complete orderings from the whole dataset.
+    o   Updated reference Mollica and Tardella (2016) as Mollica and Tardella (2017). 
+    o   d_german dataset: modified the citation Croon (1989).
+    o   mapPLMIX(...) and mapPLMIX_multistart(...):
+    o   [::] added the citation Gormley and Murphy (2006).
+    o   ppcheckPLMIX(...) and ppcheckPLMIX_cond(...):
+    o   [::] removed example of label switching adjustment.
+    o   selectPLMIX(...): 
+    o   [::] added Details section.
+    o   [::] renamed output objects `fitting_measures`, `effective_number_of_parameters` and `selection_criteria` as `fitting`, `penalties` and `select_criteria`.
+
+CITATION INFO
+    o   Added bibTex entries in the file CITATION.
+    o   Updated reference Mollica and Tardella (2016) as Mollica and Tardella (2017) in the CITATION info.
+
+NEW FEATURES
+    o   Removed package `combinat` from Imports. 
+    o   Changed order in the namespace list (former: foreach abind rcdd FSA).

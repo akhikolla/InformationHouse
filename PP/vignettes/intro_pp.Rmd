@@ -1,0 +1,187 @@
+---
+title: Getting started with PP
+author: Manuel Reif
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+<!--
+%\VignetteEngine{knitr::rmarkdown}
+%\VignetteIndexEntry{Getting started with PP}
+%\VignetteEncoding{UTF-8}
+-->
+# Getting started with PP
+
+Is the `PP` package the right package for you?
+
+
+1. You have a data set with item responses from several persons
+2. You have item parameter estimates (e.g. difficulty parameters) from these items (perhaps from a former application of these items)
+3. and these items follow the 1/2/3/4-PL model or the generalized partial credit model
+4. You are interested in estimating each persons **ability** with traditional approaches (mle, wle, map, eap) or
+5. drawing **plausible values** for each person e.g. to apply secondary analysis or
+6. getting **robust** ability estimates with Jackknife Methods or with weighted likelihood approaches
+
+
+If you agree to question 1-3 and at least to one of question 4-6, load the package an start estimating person parameters.
+
+
+Now a simple example.
+
+
+## 2-PL Model
+
+
+In this example, we want to gain ability estimates for each person in our sample. Each person answered questions in a test which has been scaled by the 2-PL model. Item parameters (difficulty and slope) are known and are supposed as fixed. What are the next steps?
+
+1. Get the item responses and the item parameters inside the R workspace
+2. Check your data and reshape them, so they can be processed by the PP functions
+3. Decide which type of estimation you prefer (`?PP_4pl`)
+4. Run the estimation
+
+
+### Get
+
+Getting the data inside the R workspace is quite easy in this case, because we merely load the data set which already comes with the PP package. It contains 60 response sets (60 persons answered to a test of 12 items) - and we have additional information, which we do not take into account for now. We first inspect the data, and in a second step informations about item difficulty and the slope parameters are extracted from the dataset attributes.
+
+```{r get}
+
+library(PP)
+
+data(fourpl_df)
+
+dim(fourpl_df)
+
+head(fourpl_df)
+
+# extracting the information
+diff_par <- attr(fourpl_df,"diffpar")
+slope_par <- attr(fourpl_df,"slopes")
+
+```
+
+
+
+### Check and Reshape
+
+
+Now we explore the item response data regarding full or zero score, missing values etc. . Considering this information, we are able to decide which estimation method we will apply.
+
+
+```{r check}
+
+# extract items and transform the data.frame to matrix
+itmat <- as.matrix(fourpl_df[,-(1:2)])
+
+
+# are there any full scores?
+fullsc <- apply(itmat,1,function(x) (sum(x,na.rm=TRUE)+sum(is.na(x))) == length(x))
+any(fullsc)
+
+# are there 0 scores?
+nullsc <- apply(itmat,1,function(x) sum(x,na.rm=TRUE) == 0)
+any(nullsc)
+
+# are there missing values? how many and where?
+nasc <- apply(itmat,1,function(x) sum(is.na(x)))
+any(nasc > 0)
+#which(nasc)
+
+# is our data dichotomous as expected?
+apply(itmat,2,function(x) table(x))
+
+# are there any duplicates?
+rdup <- duplicated(itmat)
+sum(rdup)
+
+
+```
+
+
+
+### Decide and Run
+
+
+We use the `PP_4pl()` function for our estimation. So perhaps you are thinking:"Why are we using a function to fit the 4-PL model, when we acutally have a dataset which stems from a 2-PL model scaled test?!" This is because with the `PP_4pl()` function you can fit the:
+
+1. **1-PL model** (Rasch model) by submitting: the data matrix, item difficulties and **nothing else**, since the 1-PL model is merely a 4-PL model with: any slope = 1, any lower asymptote = 0 and any upper asymptote = 1!
+2. **2-PL model** by submitting: the data matrix, item difficulties and slope parameters. Lower and upper asymptotes are automatically set to 0 und 1 respectively.
+3. **3-PL model** by submitting anything except the upper asymptote parameters
+4. **4-PL model** $\rightarrow$ submit all parameters ...
+
+In this case, difficulty parameters and slopes are available, so we will submit them, and a 2-PL model is fitted **automatically**.
+
+We decide to apply a common maximum likelihood estimation (`type = "mle"`), and do not remove duplicated response patterns (see argument: `ctrl=list()`) from estimation because there are only `r sum(rdup)` duplicated patterns. If the data set would have been much larger, duplicated patterns are more likely and therefore choosing to remove these patterns would speed up the estimation process significantly. (Choosing this option or not, does not change the numerical results!)
+
+
+```{r decide}
+library(PP)
+
+res1plmle <- PP_4pl(respm = itmat, thres = diff_par, slopes = slope_par, type = "mle")
+
+summary(res1plmle)
+
+```
+
+Some facts:
+
+1. The function returns the **point estimators** and **standard errors** for each person. Whatever the (valid) input was, the main result is always a matrix with two columns and a number of rows which equals the number of persons (`res1plmle$resPP$resPP`).
+2. The function deals with **missing values**. These are treated as if the person has never seen this item.
+3. The order of the output estimates = order of the input. So the first estimate belongs to the first response pattern of the input data matrix.
+
+
+
+### Edit
+
+In the last step, we add the estimates to the data.frame we extracted the item responses from in the first place.
+
+
+```{r edit}
+
+dafest <- data.frame(fourpl_df, res1plmle$resPP$resPP)
+
+head(dafest,10)
+```
+
+
+One shortcoming of the plain maximum likelihood estimate is the fact, that the **extreme scores** do not lead to valid parameter estimates (`-Inf` and `Inf` are hardly useful for practitioners). One possibility to overcome this issue, is to change the estimation method - for instance `type = wle` performs weighted likelihood estimation, which is on the one hand less biased than the mle estimate, and on the other hand provides reasonable estimates for the extreme scores.
+
+
+### Rerun
+
+
+```{r rerun}
+library(PP)
+
+res1plwle <- PP_4pl(respm = itmat,thres = diff_par, slopes = slope_par, type = "wle")
+
+summary(res1plwle)
+```
+
+
+So, this was what we were finally looking for.
+
+
+## Parameters and Person Fit 
+
+For estimating person parameters and examining person fit in one step, use `PPass()` (for ass stands for *assessment*). Using this function has several advantages over the using the other methods consecutively.
+
+1. you ony need 1 Function
+2. the data input format now is a `data.frame`
+3. the data output format is a new `data.frame` with person fit statistics added
+
+
+```{r ppass}
+
+pres <- PPass(fourpl_df, items = 3:14, mod="2PL", thres = diff_par, slopes = slope_par, type = "wle")
+
+
+```
+
+
+
+
+
+
+

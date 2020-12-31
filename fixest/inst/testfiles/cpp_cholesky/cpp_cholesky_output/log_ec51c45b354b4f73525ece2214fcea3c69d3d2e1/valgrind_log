@@ -1,0 +1,517 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./cpp_cholesky_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/fixest/inst/testfiles/cpp_cholesky/cpp_cholesky_output/ec51c45b354b4f73525ece2214fcea3c69d3d2e1.crash</line>
+</preamble>
+
+<pid>811105</pid>
+<ppid>811104</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/fixest/inst/testfiles/cpp_cholesky/cpp_cholesky_output/log_ec51c45b354b4f73525ece2214fcea3c69d3d2e1/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./cpp_cholesky_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/fixest/inst/testfiles/cpp_cholesky/cpp_cholesky_output/ec51c45b354b4f73525ece2214fcea3c69d3d2e1.crash</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.026 </time>
+</status>
+
+<fatal_signal>
+  <tid>1</tid>
+  <signo>11</signo>
+  <signame>SIGSEGV</signame>
+  <sicode>1</sicode>
+  <event>Access not within mapped region</event>
+  <siaddr>0x1FFE802588</siaddr>
+  <stack>
+    <frame>
+      <ip>0x5985C81</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0</obj>
+    </frame>
+  </stack>
+</fatal_signal>
+
+<fatal_signal>
+  <tid>1</tid>
+  <signo>11</signo>
+  <signame>SIGSEGV</signame>
+  <sicode>1</sicode>
+  <event>Access not within mapped region</event>
+  <siaddr>0x1FFE801588</siaddr>
+  <stack>
+    <frame>
+      <ip>0x4833134</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_core-amd64-linux.so</obj>
+      <fn>_vgnU_freeres</fn>
+    </frame>
+  </stack>
+</fatal_signal>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.421 </time>
+</status>
+
+<error>
+  <unique>0x2b</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>24 bytes in 1 blocks are possibly lost in loss record 44 of 1,547</text>
+    <leakedbytes>24</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x5201ED3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libc-2.31.so</obj>
+      <fn>tsearch</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/misc</dir>
+      <file>tsearch.c</file>
+      <line>338</line>
+    </frame>
+    <frame>
+      <ip>0x512E51A</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libc-2.31.so</obj>
+      <fn>__add_to_environ</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/stdlib</dir>
+      <file>setenv.c</file>
+      <line>231</line>
+    </frame>
+    <frame>
+      <ip>0x484459F</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>setenv</fn>
+    </frame>
+    <frame>
+      <ip>0x4D05F94</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::initialize(int, char const* const*, bool, bool, bool)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>137</line>
+    </frame>
+    <frame>
+      <ip>0x4D06483</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x409BC3</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fixest/inst/testfiles/cpp_cholesky/cpp_cholesky_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_fixest_deepstate_test_cpp_cholesky_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fixest/inst/testfiles/cpp_cholesky</dir>
+      <file>cpp_cholesky_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fixest/inst/testfiles/cpp_cholesky/cpp_cholesky_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_fixest_deepstate_test_cpp_cholesky_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fixest/inst/testfiles/cpp_cholesky</dir>
+      <file>cpp_cholesky_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DDA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fixest/inst/testfiles/cpp_cholesky/cpp_cholesky_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E049</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fixest/inst/testfiles/cpp_cholesky/cpp_cholesky_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E124</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fixest/inst/testfiles/cpp_cholesky/cpp_cholesky_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fixest/inst/testfiles/cpp_cholesky/cpp_cholesky_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x2c</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>24 bytes in 1 blocks are possibly lost in loss record 45 of 1,547</text>
+    <leakedbytes>24</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x5201ED3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libc-2.31.so</obj>
+      <fn>tsearch</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/misc</dir>
+      <file>tsearch.c</file>
+      <line>338</line>
+    </frame>
+    <frame>
+      <ip>0x512E51A</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libc-2.31.so</obj>
+      <fn>__add_to_environ</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/stdlib</dir>
+      <file>setenv.c</file>
+      <line>231</line>
+    </frame>
+    <frame>
+      <ip>0x484459F</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>setenv</fn>
+    </frame>
+    <frame>
+      <ip>0x4D04E90</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::init_tempdir()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>225</line>
+    </frame>
+    <frame>
+      <ip>0x4D05FC9</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::initialize(int, char const* const*, bool, bool, bool)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>149</line>
+    </frame>
+    <frame>
+      <ip>0x4D06483</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x409BC3</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fixest/inst/testfiles/cpp_cholesky/cpp_cholesky_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_fixest_deepstate_test_cpp_cholesky_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fixest/inst/testfiles/cpp_cholesky</dir>
+      <file>cpp_cholesky_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fixest/inst/testfiles/cpp_cholesky/cpp_cholesky_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_fixest_deepstate_test_cpp_cholesky_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fixest/inst/testfiles/cpp_cholesky</dir>
+      <file>cpp_cholesky_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DDA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fixest/inst/testfiles/cpp_cholesky/cpp_cholesky_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E049</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fixest/inst/testfiles/cpp_cholesky/cpp_cholesky_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E124</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fixest/inst/testfiles/cpp_cholesky/cpp_cholesky_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xdc</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>143 bytes in 7 blocks are possibly lost in loss record 221 of 1,547</text>
+    <leakedbytes>143</leakedbytes>
+    <leakedblocks>7</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x512E4E8</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libc-2.31.so</obj>
+      <fn>__add_to_environ</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/stdlib</dir>
+      <file>setenv.c</file>
+      <line>215</line>
+    </frame>
+    <frame>
+      <ip>0x484459F</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>setenv</fn>
+    </frame>
+    <frame>
+      <ip>0x4A62E8D</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x497A1D0</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4994DD7</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_eval</fn>
+    </frame>
+    <frame>
+      <ip>0x4996C9E</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4997B91</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_applyClosure</fn>
+    </frame>
+    <frame>
+      <ip>0x498450D</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4994DD7</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_eval</fn>
+    </frame>
+    <frame>
+      <ip>0x4996C9E</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4997B91</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_applyClosure</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xef</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>168 bytes in 7 blocks are possibly lost in loss record 240 of 1,547</text>
+    <leakedbytes>168</leakedbytes>
+    <leakedblocks>7</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x5201ED3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libc-2.31.so</obj>
+      <fn>tsearch</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/misc</dir>
+      <file>tsearch.c</file>
+      <line>338</line>
+    </frame>
+    <frame>
+      <ip>0x512E51A</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libc-2.31.so</obj>
+      <fn>__add_to_environ</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/stdlib</dir>
+      <file>setenv.c</file>
+      <line>231</line>
+    </frame>
+    <frame>
+      <ip>0x484459F</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>setenv</fn>
+    </frame>
+    <frame>
+      <ip>0x4A62E8D</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x497A1D0</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4994DD7</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_eval</fn>
+    </frame>
+    <frame>
+      <ip>0x4996C9E</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4997B91</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_applyClosure</fn>
+    </frame>
+    <frame>
+      <ip>0x498450D</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4994DD7</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_eval</fn>
+    </frame>
+    <frame>
+      <ip>0x4996C9E</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x114</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>264 bytes in 11 blocks are possibly lost in loss record 277 of 1,547</text>
+    <leakedbytes>264</leakedbytes>
+    <leakedblocks>11</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x5201ED3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libc-2.31.so</obj>
+      <fn>tsearch</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/misc</dir>
+      <file>tsearch.c</file>
+      <line>338</line>
+    </frame>
+    <frame>
+      <ip>0x512E51A</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libc-2.31.so</obj>
+      <fn>__add_to_environ</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/stdlib</dir>
+      <file>setenv.c</file>
+      <line>231</line>
+    </frame>
+    <frame>
+      <ip>0x484459F</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>setenv</fn>
+    </frame>
+    <frame>
+      <ip>0x48B6436</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x48B65C9</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>process_system_Renviron</fn>
+    </frame>
+    <frame>
+      <ip>0x4AC4CF4</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_initialize_R</fn>
+    </frame>
+    <frame>
+      <ip>0x4ABFE3C</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_initEmbeddedR</fn>
+    </frame>
+    <frame>
+      <ip>0x4D0604F</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::initialize(int, char const* const*, bool, bool, bool)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>155</line>
+    </frame>
+    <frame>
+      <ip>0x4D06483</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x409BC3</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fixest/inst/testfiles/cpp_cholesky/cpp_cholesky_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_fixest_deepstate_test_cpp_cholesky_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fixest/inst/testfiles/cpp_cholesky</dir>
+      <file>cpp_cholesky_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fixest/inst/testfiles/cpp_cholesky/cpp_cholesky_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_fixest_deepstate_test_cpp_cholesky_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fixest/inst/testfiles/cpp_cholesky</dir>
+      <file>cpp_cholesky_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+  </stack>
+</error>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:15.268 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

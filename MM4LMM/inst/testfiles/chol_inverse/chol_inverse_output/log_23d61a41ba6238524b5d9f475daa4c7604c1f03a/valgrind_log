@@ -1,0 +1,1183 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./chol_inverse_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash</line>
+</preamble>
+
+<pid>452221</pid>
+<ppid>452220</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_output/log_23d61a41ba6238524b5d9f475daa4c7604c1f03a/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./chol_inverse_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.042 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D5CE80</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>Eigen::internal::triangular_solve_matrix&lt;double, long, 1, 6, false, 1, 0&gt;::run(long, long, double const*, long, double*, long, Eigen::internal::level3_blocking&lt;double, double&gt;&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/products</dir>
+      <file>TriangularSolverMatrix.h</file>
+      <line>133</line>
+    </frame>
+    <frame>
+      <ip>0x4D5D70A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>run</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>SolveTriangular.h</file>
+      <line>102</line>
+    </frame>
+    <frame>
+      <ip>0x4D5D70A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>solveInPlace&lt;1, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>SolveTriangular.h</file>
+      <line>182</line>
+    </frame>
+    <frame>
+      <ip>0x4D5D70A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>solveInPlace&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>TriangularMatrix.h</file>
+      <line>511</line>
+    </frame>
+    <frame>
+      <ip>0x4D5D70A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>void Eigen::LDLT&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt;, 1&gt;::_solve_impl&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt;, 0, Eigen::Stride&lt;0, 0&gt; &gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt;, 0, Eigen::Stride&lt;0, 0&gt; &gt; &gt;(Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt;, 0, Eigen::Stride&lt;0, 0&gt; &gt; const&amp;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt;, 0, Eigen::Stride&lt;0, 0&gt; &gt;&amp;) const</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Cholesky</dir>
+      <file>LDLT.h</file>
+      <line>592</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>run</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Solve.h</file>
+      <line>147</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>call_assignment_no_alias&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt;, Eigen::Solve&lt;Eigen::LDLT&lt;Eigen::Matrix&lt;double, -1, -1&gt;, 1&gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;, Eigen::internal::assign_op&lt;double, double&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>AssignEvaluator.h</file>
+      <line>836</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>call_assignment&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt;, Eigen::Solve&lt;Eigen::LDLT&lt;Eigen::Matrix&lt;double, -1, -1&gt;, 1&gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;, Eigen::internal::assign_op&lt;double, double&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>AssignEvaluator.h</file>
+      <line>804</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>call_assignment&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt;, Eigen::Solve&lt;Eigen::LDLT&lt;Eigen::Matrix&lt;double, -1, -1&gt;, 1&gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>AssignEvaluator.h</file>
+      <line>782</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>operator=&lt;Eigen::Solve&lt;Eigen::LDLT&lt;Eigen::Matrix&lt;double, -1, -1&gt;, 1&gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Assign.h</file>
+      <line>66</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>solveInPlace&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Cholesky</dir>
+      <file>LDLT.h</file>
+      <line>619</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>chol_inverse&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src</dir>
+      <file>All.cpp</file>
+      <line>82</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>chol_inverse(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src</dir>
+      <file>All.cpp</file>
+      <line>91</line>
+    </frame>
+    <frame>
+      <ip>0x409DD1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_MM4LMM_deepstate_test_chol_inverse_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse</dir>
+      <file>chol_inverse_DeepState_TestHarness.cpp</file>
+      <line>22</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_MM4LMM_deepstate_test_chol_inverse_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse</dir>
+      <file>chol_inverse_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D588</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D829</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D904</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x930e0e8 is 24 bytes after a block of size 64 in arena "client"</auxwhat>
+</error>
+
+<error>
+  <unique>0x17</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D5CE95</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>Eigen::internal::triangular_solve_matrix&lt;double, long, 1, 6, false, 1, 0&gt;::run(long, long, double const*, long, double*, long, Eigen::internal::level3_blocking&lt;double, double&gt;&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/products</dir>
+      <file>TriangularSolverMatrix.h</file>
+      <line>132</line>
+    </frame>
+    <frame>
+      <ip>0x4D5D70A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>run</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>SolveTriangular.h</file>
+      <line>102</line>
+    </frame>
+    <frame>
+      <ip>0x4D5D70A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>solveInPlace&lt;1, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>SolveTriangular.h</file>
+      <line>182</line>
+    </frame>
+    <frame>
+      <ip>0x4D5D70A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>solveInPlace&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>TriangularMatrix.h</file>
+      <line>511</line>
+    </frame>
+    <frame>
+      <ip>0x4D5D70A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>void Eigen::LDLT&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt;, 1&gt;::_solve_impl&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt;, 0, Eigen::Stride&lt;0, 0&gt; &gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt;, 0, Eigen::Stride&lt;0, 0&gt; &gt; &gt;(Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt;, 0, Eigen::Stride&lt;0, 0&gt; &gt; const&amp;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt;, 0, Eigen::Stride&lt;0, 0&gt; &gt;&amp;) const</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Cholesky</dir>
+      <file>LDLT.h</file>
+      <line>592</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>run</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Solve.h</file>
+      <line>147</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>call_assignment_no_alias&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt;, Eigen::Solve&lt;Eigen::LDLT&lt;Eigen::Matrix&lt;double, -1, -1&gt;, 1&gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;, Eigen::internal::assign_op&lt;double, double&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>AssignEvaluator.h</file>
+      <line>836</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>call_assignment&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt;, Eigen::Solve&lt;Eigen::LDLT&lt;Eigen::Matrix&lt;double, -1, -1&gt;, 1&gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;, Eigen::internal::assign_op&lt;double, double&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>AssignEvaluator.h</file>
+      <line>804</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>call_assignment&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt;, Eigen::Solve&lt;Eigen::LDLT&lt;Eigen::Matrix&lt;double, -1, -1&gt;, 1&gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>AssignEvaluator.h</file>
+      <line>782</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>operator=&lt;Eigen::Solve&lt;Eigen::LDLT&lt;Eigen::Matrix&lt;double, -1, -1&gt;, 1&gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Assign.h</file>
+      <line>66</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>solveInPlace&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Cholesky</dir>
+      <file>LDLT.h</file>
+      <line>619</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>chol_inverse&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src</dir>
+      <file>All.cpp</file>
+      <line>82</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>chol_inverse(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src</dir>
+      <file>All.cpp</file>
+      <line>91</line>
+    </frame>
+    <frame>
+      <ip>0x409DD1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_MM4LMM_deepstate_test_chol_inverse_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse</dir>
+      <file>chol_inverse_DeepState_TestHarness.cpp</file>
+      <line>22</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_MM4LMM_deepstate_test_chol_inverse_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse</dir>
+      <file>chol_inverse_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D588</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D829</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D904</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x930e0d8 is 16 bytes after a block of size 56 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4D463FB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>aligned_malloc</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>159</line>
+    </frame>
+    <frame>
+      <ip>0x4D463FB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>conditional_aligned_malloc&lt;true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>214</line>
+    </frame>
+    <frame>
+      <ip>0x4D463FB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>conditional_aligned_new_auto&lt;double, true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>374</line>
+    </frame>
+    <frame>
+      <ip>0x4D463FB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>DenseStorage.h</file>
+      <line>408</line>
+    </frame>
+    <frame>
+      <ip>0x4D463FB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>Eigen::PlainObjectBase&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt; &gt;::resize(long, long)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>293</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E596</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>resize_if_allowed&lt;Eigen::Matrix&lt;double, -1, -1&gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt;, double, double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>AssignEvaluator.h</file>
+      <line>720</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E596</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>call_dense_assignment_loop&lt;Eigen::Matrix&lt;double, -1, -1&gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt;, Eigen::internal::assign_op&lt;double, double&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>AssignEvaluator.h</file>
+      <line>734</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E596</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>run</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>AssignEvaluator.h</file>
+      <line>879</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E596</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>call_assignment_no_alias&lt;Eigen::Matrix&lt;double, -1, -1&gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt;, Eigen::internal::assign_op&lt;double, double&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>AssignEvaluator.h</file>
+      <line>836</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E596</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>_set_noalias&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>732</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E596</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>_init1&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>816</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E596</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>Matrix&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Matrix.h</file>
+      <line>294</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E596</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>LDLT&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Cholesky</dir>
+      <file>LDLT.h</file>
+      <line>127</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E596</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>chol_inverse&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src</dir>
+      <file>All.cpp</file>
+      <line>78</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E596</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>chol_inverse(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src</dir>
+      <file>All.cpp</file>
+      <line>91</line>
+    </frame>
+    <frame>
+      <ip>0x409DD1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_MM4LMM_deepstate_test_chol_inverse_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse</dir>
+      <file>chol_inverse_DeepState_TestHarness.cpp</file>
+      <line>22</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_MM4LMM_deepstate_test_chol_inverse_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse</dir>
+      <file>chol_inverse_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D588</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D829</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D904</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x2a</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D4E5DB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>Eigen::internal::gemm_pack_lhs&lt;double, long, Eigen::internal::const_blas_data_mapper&lt;double, long, 1&gt;, 4, 2, 1, false, false&gt;::operator()(double*, Eigen::internal::const_blas_data_mapper&lt;double, long, 1&gt; const&amp;, long, long, long, long)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/products</dir>
+      <file>GeneralBlockPanelKernel.h</file>
+      <line>1884</line>
+    </frame>
+    <frame>
+      <ip>0x4D5CFA3</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>Eigen::internal::triangular_solve_matrix&lt;double, long, 1, 6, false, 1, 0&gt;::run(long, long, double const*, long, double*, long, Eigen::internal::level3_blocking&lt;double, double&gt;&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/products</dir>
+      <file>TriangularSolverMatrix.h</file>
+      <line>160</line>
+    </frame>
+    <frame>
+      <ip>0x4D5D70A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>run</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>SolveTriangular.h</file>
+      <line>102</line>
+    </frame>
+    <frame>
+      <ip>0x4D5D70A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>solveInPlace&lt;1, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>SolveTriangular.h</file>
+      <line>182</line>
+    </frame>
+    <frame>
+      <ip>0x4D5D70A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>solveInPlace&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>TriangularMatrix.h</file>
+      <line>511</line>
+    </frame>
+    <frame>
+      <ip>0x4D5D70A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>void Eigen::LDLT&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt;, 1&gt;::_solve_impl&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt;, 0, Eigen::Stride&lt;0, 0&gt; &gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt;, 0, Eigen::Stride&lt;0, 0&gt; &gt; &gt;(Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt;, 0, Eigen::Stride&lt;0, 0&gt; &gt; const&amp;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt;, 0, Eigen::Stride&lt;0, 0&gt; &gt;&amp;) const</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Cholesky</dir>
+      <file>LDLT.h</file>
+      <line>592</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>run</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Solve.h</file>
+      <line>147</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>call_assignment_no_alias&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt;, Eigen::Solve&lt;Eigen::LDLT&lt;Eigen::Matrix&lt;double, -1, -1&gt;, 1&gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;, Eigen::internal::assign_op&lt;double, double&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>AssignEvaluator.h</file>
+      <line>836</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>call_assignment&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt;, Eigen::Solve&lt;Eigen::LDLT&lt;Eigen::Matrix&lt;double, -1, -1&gt;, 1&gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;, Eigen::internal::assign_op&lt;double, double&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>AssignEvaluator.h</file>
+      <line>804</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>call_assignment&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt;, Eigen::Solve&lt;Eigen::LDLT&lt;Eigen::Matrix&lt;double, -1, -1&gt;, 1&gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>AssignEvaluator.h</file>
+      <line>782</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>operator=&lt;Eigen::Solve&lt;Eigen::LDLT&lt;Eigen::Matrix&lt;double, -1, -1&gt;, 1&gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Assign.h</file>
+      <line>66</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>solveInPlace&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Cholesky</dir>
+      <file>LDLT.h</file>
+      <line>619</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>chol_inverse&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src</dir>
+      <file>All.cpp</file>
+      <line>82</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>chol_inverse(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src</dir>
+      <file>All.cpp</file>
+      <line>91</line>
+    </frame>
+    <frame>
+      <ip>0x409DD1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_MM4LMM_deepstate_test_chol_inverse_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse</dir>
+      <file>chol_inverse_DeepState_TestHarness.cpp</file>
+      <line>22</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_MM4LMM_deepstate_test_chol_inverse_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse</dir>
+      <file>chol_inverse_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D588</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D829</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D904</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x930e0c8 is 0 bytes after a block of size 56 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4D463FB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>aligned_malloc</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>159</line>
+    </frame>
+    <frame>
+      <ip>0x4D463FB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>conditional_aligned_malloc&lt;true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>214</line>
+    </frame>
+    <frame>
+      <ip>0x4D463FB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>conditional_aligned_new_auto&lt;double, true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>374</line>
+    </frame>
+    <frame>
+      <ip>0x4D463FB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>DenseStorage.h</file>
+      <line>408</line>
+    </frame>
+    <frame>
+      <ip>0x4D463FB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>Eigen::PlainObjectBase&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt; &gt;::resize(long, long)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>293</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E596</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>resize_if_allowed&lt;Eigen::Matrix&lt;double, -1, -1&gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt;, double, double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>AssignEvaluator.h</file>
+      <line>720</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E596</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>call_dense_assignment_loop&lt;Eigen::Matrix&lt;double, -1, -1&gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt;, Eigen::internal::assign_op&lt;double, double&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>AssignEvaluator.h</file>
+      <line>734</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E596</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>run</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>AssignEvaluator.h</file>
+      <line>879</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E596</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>call_assignment_no_alias&lt;Eigen::Matrix&lt;double, -1, -1&gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt;, Eigen::internal::assign_op&lt;double, double&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>AssignEvaluator.h</file>
+      <line>836</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E596</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>_set_noalias&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>732</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E596</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>_init1&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>816</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E596</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>Matrix&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Matrix.h</file>
+      <line>294</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E596</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>LDLT&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Cholesky</dir>
+      <file>LDLT.h</file>
+      <line>127</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E596</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>chol_inverse&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src</dir>
+      <file>All.cpp</file>
+      <line>78</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E596</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>chol_inverse(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src</dir>
+      <file>All.cpp</file>
+      <line>91</line>
+    </frame>
+    <frame>
+      <ip>0x409DD1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_MM4LMM_deepstate_test_chol_inverse_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse</dir>
+      <file>chol_inverse_DeepState_TestHarness.cpp</file>
+      <line>22</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_MM4LMM_deepstate_test_chol_inverse_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse</dir>
+      <file>chol_inverse_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D588</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D829</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D904</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x33</unique>
+  <tid>1</tid>
+  <kind>InvalidWrite</kind>
+  <what>Invalid write of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D4A212</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>Eigen::internal::gemm_pack_rhs&lt;double, long, Eigen::internal::blas_data_mapper&lt;double, long, 0, 0&gt;, 4, 0, false, true&gt;::operator()(double*, Eigen::internal::blas_data_mapper&lt;double, long, 0, 0&gt; const&amp;, long, long, long, long)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/products</dir>
+      <file>GeneralBlockPanelKernel.h</file>
+      <line>1995</line>
+    </frame>
+    <frame>
+      <ip>0x4D5CF37</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>Eigen::internal::triangular_solve_matrix&lt;double, long, 1, 6, false, 1, 0&gt;::run(long, long, double const*, long, double*, long, Eigen::internal::level3_blocking&lt;double, double&gt;&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/products</dir>
+      <file>TriangularSolverMatrix.h</file>
+      <line>153</line>
+    </frame>
+    <frame>
+      <ip>0x4D5D70A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>run</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>SolveTriangular.h</file>
+      <line>102</line>
+    </frame>
+    <frame>
+      <ip>0x4D5D70A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>solveInPlace&lt;1, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>SolveTriangular.h</file>
+      <line>182</line>
+    </frame>
+    <frame>
+      <ip>0x4D5D70A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>solveInPlace&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>TriangularMatrix.h</file>
+      <line>511</line>
+    </frame>
+    <frame>
+      <ip>0x4D5D70A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>void Eigen::LDLT&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt;, 1&gt;::_solve_impl&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt;, 0, Eigen::Stride&lt;0, 0&gt; &gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt;, 0, Eigen::Stride&lt;0, 0&gt; &gt; &gt;(Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt;, 0, Eigen::Stride&lt;0, 0&gt; &gt; const&amp;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt;, 0, Eigen::Stride&lt;0, 0&gt; &gt;&amp;) const</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Cholesky</dir>
+      <file>LDLT.h</file>
+      <line>592</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>run</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Solve.h</file>
+      <line>147</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>call_assignment_no_alias&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt;, Eigen::Solve&lt;Eigen::LDLT&lt;Eigen::Matrix&lt;double, -1, -1&gt;, 1&gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;, Eigen::internal::assign_op&lt;double, double&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>AssignEvaluator.h</file>
+      <line>836</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>call_assignment&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt;, Eigen::Solve&lt;Eigen::LDLT&lt;Eigen::Matrix&lt;double, -1, -1&gt;, 1&gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;, Eigen::internal::assign_op&lt;double, double&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>AssignEvaluator.h</file>
+      <line>804</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>call_assignment&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt;, Eigen::Solve&lt;Eigen::LDLT&lt;Eigen::Matrix&lt;double, -1, -1&gt;, 1&gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>AssignEvaluator.h</file>
+      <line>782</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>operator=&lt;Eigen::Solve&lt;Eigen::LDLT&lt;Eigen::Matrix&lt;double, -1, -1&gt;, 1&gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Assign.h</file>
+      <line>66</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>solveInPlace&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Cholesky</dir>
+      <file>LDLT.h</file>
+      <line>619</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>chol_inverse&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src</dir>
+      <file>All.cpp</file>
+      <line>82</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>chol_inverse(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src</dir>
+      <file>All.cpp</file>
+      <line>91</line>
+    </frame>
+    <frame>
+      <ip>0x409DD1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_MM4LMM_deepstate_test_chol_inverse_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse</dir>
+      <file>chol_inverse_DeepState_TestHarness.cpp</file>
+      <line>22</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_MM4LMM_deepstate_test_chol_inverse_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse</dir>
+      <file>chol_inverse_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D588</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D829</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D904</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x8bffefff400 is not stack'd, malloc'd or (recently) free'd</auxwhat>
+</error>
+
+<fatal_signal>
+  <tid>1</tid>
+  <signo>11</signo>
+  <signame>SIGSEGV</signame>
+  <sicode>1</sicode>
+  <event>Access not within mapped region</event>
+  <siaddr>0x8BFFEFFF400</siaddr>
+  <stack>
+    <frame>
+      <ip>0x4D4A212</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>Eigen::internal::gemm_pack_rhs&lt;double, long, Eigen::internal::blas_data_mapper&lt;double, long, 0, 0&gt;, 4, 0, false, true&gt;::operator()(double*, Eigen::internal::blas_data_mapper&lt;double, long, 0, 0&gt; const&amp;, long, long, long, long)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/products</dir>
+      <file>GeneralBlockPanelKernel.h</file>
+      <line>1995</line>
+    </frame>
+    <frame>
+      <ip>0x4D5CF37</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>Eigen::internal::triangular_solve_matrix&lt;double, long, 1, 6, false, 1, 0&gt;::run(long, long, double const*, long, double*, long, Eigen::internal::level3_blocking&lt;double, double&gt;&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/products</dir>
+      <file>TriangularSolverMatrix.h</file>
+      <line>153</line>
+    </frame>
+    <frame>
+      <ip>0x4D5D70A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>run</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>SolveTriangular.h</file>
+      <line>102</line>
+    </frame>
+    <frame>
+      <ip>0x4D5D70A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>solveInPlace&lt;1, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>SolveTriangular.h</file>
+      <line>182</line>
+    </frame>
+    <frame>
+      <ip>0x4D5D70A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>solveInPlace&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>TriangularMatrix.h</file>
+      <line>511</line>
+    </frame>
+    <frame>
+      <ip>0x4D5D70A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>void Eigen::LDLT&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt;, 1&gt;::_solve_impl&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt;, 0, Eigen::Stride&lt;0, 0&gt; &gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt;, 0, Eigen::Stride&lt;0, 0&gt; &gt; &gt;(Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt;, 0, Eigen::Stride&lt;0, 0&gt; &gt; const&amp;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt;, 0, Eigen::Stride&lt;0, 0&gt; &gt;&amp;) const</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Cholesky</dir>
+      <file>LDLT.h</file>
+      <line>592</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>run</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Solve.h</file>
+      <line>147</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>call_assignment_no_alias&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt;, Eigen::Solve&lt;Eigen::LDLT&lt;Eigen::Matrix&lt;double, -1, -1&gt;, 1&gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;, Eigen::internal::assign_op&lt;double, double&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>AssignEvaluator.h</file>
+      <line>836</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>call_assignment&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt;, Eigen::Solve&lt;Eigen::LDLT&lt;Eigen::Matrix&lt;double, -1, -1&gt;, 1&gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;, Eigen::internal::assign_op&lt;double, double&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>AssignEvaluator.h</file>
+      <line>804</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>call_assignment&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt;, Eigen::Solve&lt;Eigen::LDLT&lt;Eigen::Matrix&lt;double, -1, -1&gt;, 1&gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>AssignEvaluator.h</file>
+      <line>782</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>operator=&lt;Eigen::Solve&lt;Eigen::LDLT&lt;Eigen::Matrix&lt;double, -1, -1&gt;, 1&gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Assign.h</file>
+      <line>66</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>solveInPlace&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Cholesky</dir>
+      <file>LDLT.h</file>
+      <line>619</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>chol_inverse&lt;Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt;, Eigen::Map&lt;Eigen::Matrix&lt;double, -1, -1&gt; &gt; &gt;</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src</dir>
+      <file>All.cpp</file>
+      <line>82</line>
+    </frame>
+    <frame>
+      <ip>0x4D2E84B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src/MM4LMM.so</obj>
+      <fn>chol_inverse(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/src</dir>
+      <file>All.cpp</file>
+      <line>91</line>
+    </frame>
+    <frame>
+      <ip>0x409DD1</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_MM4LMM_deepstate_test_chol_inverse_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse</dir>
+      <file>chol_inverse_DeepState_TestHarness.cpp</file>
+      <line>22</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_MM4LMM_deepstate_test_chol_inverse_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse</dir>
+      <file>chol_inverse_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D588</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D829</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D904</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</fatal_signal>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:09.416 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>1</count>
+    <unique>0x33</unique>
+  </pair>
+  <pair>
+    <count>42</count>
+    <unique>0x0</unique>
+  </pair>
+  <pair>
+    <count>2</count>
+    <unique>0x2a</unique>
+  </pair>
+  <pair>
+    <count>7</count>
+    <unique>0x17</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:10.131 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

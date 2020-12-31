@@ -1,0 +1,15 @@
+Package: IHSEP
+Type: Package
+Title: Inhomogeneous Self-Exciting Process
+Version: 0.1
+Date: 2016-12-2
+Author: Feng Chen <feng.chen@unsw.edu.au>
+Maintainer: Feng Chen <feng.chen@unsw.edu.au>
+Description: Simulate an inhomogeneous self-exciting process (IHSEP), or Hawkes process, with a given (possibly time-varying) baseline intensity and an excitation function. Calculate the likelihood of an IHSEP with given baseline intensity and excitation functions for an (increasing) sequence of event times. Calculate the point process residuals (integral transforms of the original event times). Calculate the mean intensity process.
+License: GPL (>= 2)
+LinkingTo: Rcpp
+Imports: lpint,Rcpp
+NeedsCompilation: yes
+Packaged: 2016-12-03 06:16:20 UTC; z3243864
+Repository: CRAN
+Date/Publication: 2016-12-05 14:49:21

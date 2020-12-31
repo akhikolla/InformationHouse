@@ -1,0 +1,34 @@
+WARNING: No test specified, defaulting to first test defined (rhoR_deepstate_test_calcRho_c_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_output/23625e36d56ccf9964eefa4b89c44be6e4833ba0.fail`
+TRACE: Running: rhoR_deepstate_test_calcRho_c_test from /home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_DeepState_TestHarness.cpp(10)
+input starts
+x values: -4.88792e-275
+OcSBaserate values: 7.66417e+307
+testSetLength values: -1268468221
+testSetBaserateInflation values: -3.95251e-35
+OcSLength values: 594503983
+replicates values: 50164661
+ScSKappaThreshold values: -4.40029e-17
+ScSKappaMin values: -2.96286e+175
+ScSPrecisionMin values: -3.91423e-42
+ScSPrecisionMax values: -9.94548e+57
+EXTERNAL: qs v0.23.4.
+
+KPs values: 0.00385381
+85053.3
+2.41213e-113
+9.31666e+282
+6.01348e+87
+1.19004e+63
+7.16938e-120
+1.46076e+259
+9.28683e+49
+8.52102e+189
+
+input ends
+
+error: randi(): incorrect distribution parameters: a must be less than b
+terminate called after throwing an instance of 'std::logic_error'
+  what():  randi(): incorrect distribution parameters: a must be less than b
+ERROR: Failed: rhoR_deepstate_test_calcRho_c_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/calcRho_c/calcRho_c_output/23625e36d56ccf9964eefa4b89c44be6e4833ba0.fail failed

@@ -1,0 +1,19 @@
+WARNING: No test specified, defaulting to first test defined (xyz_deepstate_test_scale_intr_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/xyz/inst/testfiles/scale_intr/scale_intr_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash`
+TRACE: Running: xyz_deepstate_test_scale_intr_test from /home/akhila/fuzzer_packages/fuzzedpackages/xyz/inst/testfiles/scale_intr/scale_intr_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+X values: 2.58036e-206    -inf     nan
+
+pair_x values: 1078897549
+pair_y values: -289987065
+input ends
+==377995==  If you believe this happened as a result of a stack
+==377995==  overflow in your program's main thread (unlikely but
+==377995==  possible), you can try to increase the size of the
+==377995==  main thread stack using the --main-stacksize= flag.
+==377995==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: xyz_deepstate_test_scale_intr_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/xyz/inst/testfiles/scale_intr/scale_intr_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash crashed

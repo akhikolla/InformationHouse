@@ -1,0 +1,13 @@
+WARNING: No test specified, defaulting to first test defined (relSim_deepstate_test_IBS_Caller_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/relSim/inst/testfiles/IBS_Caller/IBS_Caller_output/a9d11401a14f76c684ec79f0d4c729cc3ad4ee58.crash`
+TRACE: Running: relSim_deepstate_test_IBS_Caller_test from /home/akhila/fuzzer_packages/fuzzedpackages/relSim/inst/testfiles/IBS_Caller/IBS_Caller_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+Prof1 values: 2051319948 183851356 600611799 -2015925719 640758675 -2045256755
+Missing value
+Prof2 values: -1294723540 -2147483648
+nLoci values: 889924430
+input ends
+ERROR: Crashed: relSim_deepstate_test_IBS_Caller_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/relSim/inst/testfiles/IBS_Caller/IBS_Caller_output/a9d11401a14f76c684ec79f0d4c729cc3ad4ee58.crash crashed

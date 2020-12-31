@@ -1,0 +1,140 @@
+---
+title: "Quick Start Guide - jiebaR"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Quick Start Guide - jiebaR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+[Chinese Version]
+
+This is a package for Chinese text segmentation, keyword extraction
+and speech tagging.
+
+## Example
+
+### Text Segmentation
+
+You can use `worker()` to initialize a worker, and then use `[]` or `segment()` to do the segmentation.
+
+```{r}
+library(jiebaR)
+
+##  Using default settings to initialize a worker.
+cutter = worker()
+
+###  Note: Can not display Chinese characters here.
+
+segment( "This is a good day!" , cutter )
+
+## OR cutter["This is a good day!"]
+
+```
+
+You can use file path as input.
+
+```{r}
+segment( "./temp.dat" , cutter ) ### Auto encoding detection.
+```
+
+You can initialize multiple engines simultaneously.
+
+```r
+cutter2 = worker(type  = "mix",
+                 dict = "some_path/jieba.dict.utf8",
+                 hmm   = "some_path/hmm_model.utf8",
+                 user  = "some_path/test.dict.utf8",
+                 detect=T,      symbol = F,
+                 lines = 1e+05, output = NULL
+                 )
+cutter2   ### Print information of worker
+```
+
+```r
+Worker Type:  Mix Segment
+
+Detect Encoding :  TRUE
+Default Encoding:  UTF-8
+Keep Symbols    :  FALSE
+Output Path     :
+Write File      :  TRUE
+Max Read Lines  :  1e+05
+
+Fixed Model Components:
+
+$dict
+[1] "dict/jieba.dict.utf8"
+
+$hmm
+[1] "dict/hmm_model.utf8"
+
+$user
+[1] "dict/test.dict.utf8"
+
+$detect $encoding $symbol $output $write $lines can be reset.
+```
+
+The public settings of the model can be modified by `$` `cutter$symbol = T`. Private settings are fixed when the engine is initialized, and you can get them by `cutter$PrivateVarible`.
+
+```{r}
+cutter$encoding
+cutter$detect
+cutter$detect = F
+cutter$detect
+```
+
+You can use custom dictionar. jiebaR is able to identify new words, but adding your own new words can ensure a higher accuracy. [imewlconverter] is a good tools for dictionary construction.
+
+```{r}
+show_dictpath() ### Show path
+?edit_dict()   ### For more information
+```
+
+### Speech Tagging
+
+Speech Tagging function `[.tagger` and `tagging` tag each word in a sentence after segmentation, using labels compatible with ictclas.
+
+```{r}
+words = "hello world"
+tagger = worker("tag")
+tagger[words]
+```
+
+### Keyword Extraction
+
+Keyword Extraction worker use MixSegment model to cut word and use
+ TF-IDF algorithm to find the keywords.
+
+```{r}
+keys = worker("keywords", topn = 1)
+keys <= "words of fun"
+```
+
+### Simhash Distance
+
+Simhash worker can do keyword extraction and find
+the keywords from two inputs, and then computes Hamming distance between them.
+
+```{r}
+ words = "hello world"
+ simhasher = worker("simhash",topn=1)
+ simhasher[words]
+```
+
+```{r}
+distance("hello world" , "hello world!" , simhasher)
+```
+
+## More Docs
+
+See https://jiebaR.qinwf.com/
+
+## More Information and Issues
+
+[https://github.com/qinwf/jiebaR](https://github.com/qinwf/jiebaR)
+
+[https://github.com/yanyiwu/cppjieba](https://github.com/yanyiwu/cppjieba)
+
+[Chinese Version]:https://github.com/qinwf/jiebaR
+[imewlconverter]:https://github.com/studyzy/imewlconverter

@@ -1,0 +1,15 @@
+WARNING: No test specified, defaulting to first test defined (wk_deepstate_test_cpp_wkt_translate_wksxp_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_output/97f00c6a30a869b0a97eac48a0d8424e93e90443.fail`
+TRACE: Running: wk_deepstate_test_cpp_wkt_translate_wksxp_test from /home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+wkt values: "mozzwixsehisnavbbddi" "qlticntqpfnnscjohrgy" "nhtu" "i" "NA" "qnlycdwvtkfvzzoccnok" "uwipaisslycgbssjilab" "glgvvpthbifdhynnnhde" "NA" "NA" "NA" "cvcpdqbsreswfdvdrnug" "brmenikbxdebyxnxpq" "NA" "nmxn" "NA" "NA" "llkvpktmolaaewly" "NA" "NA" "m" "NA" "hgwkqhcahwyy" "NA" "fgrtsaew" "iggputknaunv" "bansvuushyvlzobrvkxf" "dpteytnatxnznsqgchow" "smuwpxzavzaaiazroiqx" "NA" "pxhxvsphrwgosziwpohu" "hrvjerojzkytyodcbzya" "czfnkwkfqtjlzihedjet" "io" "ywphvwvawjlikwq" "NA" "tfklrynvjaplktclgz" "NA" "NA" "NA" "NA" "yfhakygjujzifwonnxlc" "eqkaybzxrhiuxyerozlj" "bqwcenwloascalhacoo" "lgvypdqtctpyvijwuwvl" "" "esifsdnqpeasirdw" "fiysxeatzsidgjnqoswq" "NA" "wxweopnavjspwjaghzkj" "NA" "NA" "NA" "bdkjeejrftbjcykunrse" "NA" "NA" "amrobelckuahkbafbsbx"
+includeZ values: 2113400008
+includeM values: -1354212959
+includeSRID values: 1639523616
+input ends
+terminate called after throwing an instance of 'WKParseException'
+  what():  Expected geometry type or 'SRID=' but found 'mozzwixsehisnavbbddi' (:0)
+ERROR: Failed: wk_deepstate_test_cpp_wkt_translate_wksxp_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wksxp/cpp_wkt_translate_wksxp_output/97f00c6a30a869b0a97eac48a0d8424e93e90443.fail failed

@@ -1,0 +1,217 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./equalpairs_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/xyz/inst/testfiles/equalpairs/equalpairs_output/19ad4199dc1182ee189cca56a1ae3334dd11faac.pass</line>
+</preamble>
+
+<pid>376636</pid>
+<ppid>376635</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/xyz/inst/testfiles/equalpairs/equalpairs_output/log_19ad4199dc1182ee189cca56a1ae3334dd11faac/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./equalpairs_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/xyz/inst/testfiles/equalpairs/equalpairs_output/19ad4199dc1182ee189cca56a1ae3334dd11faac.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.026 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 4</what>
+  <stack>
+    <frame>
+      <ip>0x4D39B63</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/xyz/src/xyz.so</obj>
+      <fn>construct&lt;int, int const&amp;&gt;</fn>
+      <dir>/usr/include/c++/9</dir>
+      <file>new</file>
+      <line>174</line>
+    </frame>
+    <frame>
+      <ip>0x4D39B63</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/xyz/src/xyz.so</obj>
+      <fn>construct&lt;int, int const&amp;&gt;</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>alloc_traits.h</file>
+      <line>484</line>
+    </frame>
+    <frame>
+      <ip>0x4D39B63</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/xyz/src/xyz.so</obj>
+      <fn>_M_create_node&lt;int const&amp;&gt;</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>stl_list.h</file>
+      <line>633</line>
+    </frame>
+    <frame>
+      <ip>0x4D39B63</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/xyz/src/xyz.so</obj>
+      <fn>_M_insert&lt;int const&amp;&gt;</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>stl_list.h</file>
+      <line>1907</line>
+    </frame>
+    <frame>
+      <ip>0x4D39B63</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/xyz/src/xyz.so</obj>
+      <fn>push_front</fn>
+      <dir>/usr/include/c++/9/bits</dir>
+      <file>stl_list.h</file>
+      <line>1158</line>
+    </frame>
+    <frame>
+      <ip>0x4D39B63</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/xyz/src/xyz.so</obj>
+      <fn>equalpairs(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/xyz/src</dir>
+      <file>core.cpp</file>
+      <line>469</line>
+    </frame>
+    <frame>
+      <ip>0x40A4C0</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/xyz/inst/testfiles/equalpairs/equalpairs_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_xyz_deepstate_test_equalpairs_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/xyz/inst/testfiles/equalpairs</dir>
+      <file>equalpairs_DeepState_TestHarness.cpp</file>
+      <line>39</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/xyz/inst/testfiles/equalpairs/equalpairs_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_xyz_deepstate_test_equalpairs_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/xyz/inst/testfiles/equalpairs</dir>
+      <file>equalpairs_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D6F8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/xyz/inst/testfiles/equalpairs/equalpairs_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D999</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/xyz/inst/testfiles/equalpairs/equalpairs_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA74</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/xyz/inst/testfiles/equalpairs/equalpairs_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/xyz/inst/testfiles/equalpairs/equalpairs_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xa174ae8 is 24 bytes before a block of size 584 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x499EC11</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>R_bcEncode</fn>
+    </frame>
+    <frame>
+      <ip>0x4A378C2</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A364BA</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A35EE4</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A35EC7</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A35EE4</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A35EE4</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A35EE4</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A35EE4</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A35EE4</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+  </stack>
+</error>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:07.678 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>11</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.179 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

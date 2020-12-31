@@ -1,0 +1,25 @@
+WARNING: No test specified, defaulting to first test defined (BiDAG_deepstate_test_extractT_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/BiDAG/inst/testfiles/extractT/extractT_output/213c782907ee3299b362a396a6f846877b3f4584.crash`
+TRACE: Running: BiDAG_deepstate_test_extractT_test from /home/akhila/fuzzer_packages/fuzzedpackages/BiDAG/inst/testfiles/extractT/extractT_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+xs values: 1123438673 2069757405 -1364041863 1062769791 2120796143
+Missing value
+ys values: 2022640883 -334901093 -1137699589 -996531609 289535729 257629907 -180340114 -1032246982 -2147483648 1056805114 765851062 1315945823 -1330425665 242193156 -1345490319 1201384272 -791132914 -690616061 2080291273
+ts values: 1.83374e-104 1.49741e+196 1.93465e-43 1.53510e-99
+9.93170e-171 1.44529e+91 0.00892625 7.52989e+12
+1088.08 4.09428e+146 1.30327e+122 3.77445e+64
+8.88077e+282 8.78821e+143 4.33867e+27 14780.2
+5.10578e-14 1.60646e-158 2.84159e-210 4.33815e+110
+9.71140e-241 2.54096e-21 8.31362e+90 8.53986e-281
+7.70719e-71 2.36295e+123 1.42291 6.99690e-125
+
+input ends
+==283451==  If you believe this happened as a result of a stack
+==283451==  overflow in your program's main thread (unlikely but
+==283451==  possible), you can try to increase the size of the
+==283451==  main thread stack using the --main-stacksize= flag.
+==283451==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: BiDAG_deepstate_test_extractT_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/BiDAG/inst/testfiles/extractT/extractT_output/213c782907ee3299b362a396a6f846877b3f4584.crash crashed

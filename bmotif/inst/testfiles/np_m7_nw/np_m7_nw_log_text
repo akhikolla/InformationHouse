@@ -1,0 +1,16 @@
+INFO: Starting fuzzing
+WARNING: No test specified, defaulting to first test defined (bmotif_deepstate_test_np_m7_nw_test)
+input starts
+EXTERNAL: qs v0.23.4.
+
+NZ values: 467495432
+NP values: 1827680409
+Missing value
+W values: -1.64581e+174 6.53679e-70 1.07575e-123 7.41992e-298 6.23171e-187 4.15792e-241 2.44558e-65 5.60404e+114
+4.49059e+17 2.42643e+241 5.34064e-62 6.88708e+148 9.88409e+20 6.68484e+28 1.58625e-183 3.18818e-55
+    nan 1.65687e+24 68.0063     inf 5.52275e-164 5.48714e+129 7.10517e+225 7.76075e-247
+
+input ends
+ERROR: Crashed: bmotif_deepstate_test_np_m7_nw_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m7_nw/np_m7_nw_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash`
+INFO: Done fuzzing! Ran 1 tests (0 tests/second) with 1 failed/0 passed/0 abandoned tests

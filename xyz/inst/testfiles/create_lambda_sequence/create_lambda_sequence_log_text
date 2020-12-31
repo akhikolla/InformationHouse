@@ -1,0 +1,21 @@
+INFO: Starting fuzzing
+WARNING: No test specified, defaulting to first test defined (xyz_deepstate_test_create_lambda_sequence_test)
+input starts
+EXTERNAL: qs v0.23.4.
+
+lambda_max values: -2.43318e-187
+n_lambda values: -1053990400
+factor_eps_inv values: 3.76873e+222
+input ends
+EXTERNAL: Error: negative length vectors are not allowed
+
+EXTERNAL: Execution halted
+
+input starts
+EXTERNAL: qs v0.23.4.
+
+lambda_max values: -1.5615e-299
+n_lambda values: 1273656994
+factor_eps_inv values: 2.30186e+66
+input ends
+INFO: Done fuzzing! Ran 2 tests (0 tests/second) with 1 failed/1 passed/0 abandoned tests

@@ -1,0 +1,19 @@
+Package: DStree
+Type: Package
+Title: Recursive Partitioning for Discrete-Time Survival Trees
+Version: 1.0
+Date: 2014-08-19
+Author: Peter Mayer, Denis Larocque, Matthias Schmid
+Maintainer: Peter Mayer <mayerptr@gmail.com>
+Description: Building discrete-time survival trees and bagged trees based on
+    the functionalities of the rpart package. Splitting criterion maximizes the
+    likelihood of a covariate-free logistic discrete time hazard model.
+License: GPL-2
+NeedsCompilation: yes
+Depends: rpart,pec,Ecdat
+Imports: rpart.plot,survival, Rcpp
+LazyData: no
+LinkingTo: Rcpp
+Packaged: 2016-12-27 14:13:30 UTC; hornik
+Repository: CRAN
+Date/Publication: 2016-12-27 15:28:19

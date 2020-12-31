@@ -1,0 +1,40 @@
+WARNING: No test specified, defaulting to first test defined (graphicalVAR_deepstate_test_Beta_C_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_output/285cdef99226eab288cfd457c382e7e0f3cc2b5b.pass`
+TRACE: Running: graphicalVAR_deepstate_test_Beta_C_test from /home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+kappa values: 1.05415e-68 1.86447e-211 4.49059e+17 2.72551e-214 6.53679e-70 2.42643e+241 1.65687e+24
+
+beta values: 2.26826e-294 1.75553e+70 2.94576e+186 2.44528e-89 8.53546e+161 2.14755e-74 1.73775e-47
+1.69215e-72 2.86555e+90 3.05509e-115 7.36897e-209 3.09938e-158 3.05572e-170 1.66721e+131
+2.19648e-56 4.82067e+210 2.21844e-63 1.66337e+72 3.95465e-169 1.51007e+259 1.26729e+79
+1.54154e-261 7.63015e-75 2.44675e+228 1.45746e-84 1.51562e-167 1.05370e+280 3.84739e-178
+
+Missing value
+X values: 5.13051e-260 4.73804e-46 -1.05877e+151 5.30849e+199 7.32531e-236 2.28479e-39 5.49819e-129 2.34419e+41 9.04432e-111
+2.24644e-212     inf 7.87120e+214     nan 3.17221e-22 6.88541e-24 -1.05877e+151 1.96571e-10 1.64494e-31
+7.64098e-62 814198. 3.24121e-117 3.24698e+214 9.46237e+259 7.13669e-20 4.46775e-52    -inf 3.84221e+137
+
+Y values: 3.70193e-142 1.02742e-121 2.22557e+94
+1.53146e+261 2.46126e+38 5.38740e+65
+1.00387e+151 1.97377e+203 1.61129e-214
+3.96348e-225 7.30519e+81 6.45983e+301
+5.50408e+193 1.37044e+58 1.66885e+130
+3.78885e-103 4.05732e-47 1.20548e+60
+3.54754e+12 2.70721e-48 53800.5
+
+lambda_beta values: 1.00153e+155
+Missing value
+lambda_beta_mat values: 1.07087e+72 2.98276e-199
+3.33572e+279 5.48809e-286
+6.58512e-144 1.31808e+303
+3.40235e+246 1.05429e+296
+2.84215e-109     inf
+2.46097e+195 1.93866e+145
+5.48809e-286 8.10853e-265
+
+convergence values: 7.38424e+102
+maxit values: 1756082245
+input ends
+TRACE: Passed: graphicalVAR_deepstate_test_Beta_C_test

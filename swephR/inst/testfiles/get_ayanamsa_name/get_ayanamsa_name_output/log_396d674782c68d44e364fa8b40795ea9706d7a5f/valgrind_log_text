@@ -1,0 +1,12 @@
+WARNING: No test specified, defaulting to first test defined (swephR_deepstate_test_get_ayanamsa_name_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/swephR/inst/testfiles/get_ayanamsa_name/get_ayanamsa_name_output/396d674782c68d44e364fa8b40795ea9706d7a5f.fail`
+TRACE: Running: swephR_deepstate_test_get_ayanamsa_name_test from /home/akhila/fuzzer_packages/fuzzedpackages/swephR/inst/testfiles/get_ayanamsa_name/get_ayanamsa_name_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+sid_mode values: 1834345543
+input ends
+terminate called after throwing an instance of 'std::logic_error'
+  what():  basic_string::_M_construct null not valid
+ERROR: Failed: swephR_deepstate_test_get_ayanamsa_name_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/swephR/inst/testfiles/get_ayanamsa_name/get_ayanamsa_name_output/396d674782c68d44e364fa8b40795ea9706d7a5f.fail failed

@@ -1,0 +1,193 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./hills3d2p23_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/metadynminer3d/inst/testfiles/hills3d2p23/hills3d2p23_output/20db720f758554d9e509f098bfe246e67c1ee1d6.fail</line>
+</preamble>
+
+<pid>3943879</pid>
+<ppid>3943878</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/metadynminer3d/inst/testfiles/hills3d2p23/hills3d2p23_output/log_20db720f758554d9e509f098bfe246e67c1ee1d6/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./hills3d2p23_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/metadynminer3d/inst/testfiles/hills3d2p23/hills3d2p23_output/20db720f758554d9e509f098bfe246e67c1ee1d6.fail</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.053 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>FishyValue</kind>
+  <what>Argument 'size' of function __builtin_vec_new has a fishy (possibly negative) value: -1
+</what>  <stack>
+    <frame>
+      <ip>0x483C583</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new[](unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x435831</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/metadynminer3d/inst/testfiles/hills3d2p23/hills3d2p23_DeepState_TestHarness</obj>
+      <fn>hills3d2p23(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/metadynminer3d</dir>
+      <file>src/mm.cpp</file>
+      <line>980</line>
+    </frame>
+    <frame>
+      <ip>0x409D95</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/metadynminer3d/inst/testfiles/hills3d2p23/hills3d2p23_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_metadynminer3d_deepstate_test_hills3d2p23_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/metadynminer3d/inst/testfiles/hills3d2p23</dir>
+      <file>hills3d2p23_DeepState_TestHarness.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x408EA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/metadynminer3d/inst/testfiles/hills3d2p23/hills3d2p23_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_metadynminer3d_deepstate_test_hills3d2p23_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/metadynminer3d/inst/testfiles/hills3d2p23</dir>
+      <file>hills3d2p23_DeepState_TestHarness.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x419BB8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/metadynminer3d/inst/testfiles/hills3d2p23/hills3d2p23_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x419E59</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/metadynminer3d/inst/testfiles/hills3d2p23/hills3d2p23_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x419F34</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/metadynminer3d/inst/testfiles/hills3d2p23/hills3d2p23_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407735</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/metadynminer3d/inst/testfiles/hills3d2p23/hills3d2p23_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<clientmsg>
+  <tid>1</tid>
+  <text>new/new[] failed and should throw an exception, but Valgrind
+  </text>
+</clientmsg>
+<clientmsg>
+  <tid>1</tid>
+  <text>   cannot throw exceptions and so is aborting instead.  Sorry.
+  </text>
+  <stack>
+    <frame>
+      <ip>0x483B3CC</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+    </frame>
+    <frame>
+      <ip>0x483C5F5</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new[](unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x435831</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/metadynminer3d/inst/testfiles/hills3d2p23/hills3d2p23_DeepState_TestHarness</obj>
+      <fn>hills3d2p23(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/metadynminer3d</dir>
+      <file>src/mm.cpp</file>
+      <line>980</line>
+    </frame>
+    <frame>
+      <ip>0x409D95</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/metadynminer3d/inst/testfiles/hills3d2p23/hills3d2p23_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_metadynminer3d_deepstate_test_hills3d2p23_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/metadynminer3d/inst/testfiles/hills3d2p23</dir>
+      <file>hills3d2p23_DeepState_TestHarness.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x408EA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/metadynminer3d/inst/testfiles/hills3d2p23/hills3d2p23_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_metadynminer3d_deepstate_test_hills3d2p23_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/metadynminer3d/inst/testfiles/hills3d2p23</dir>
+      <file>hills3d2p23_DeepState_TestHarness.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x419BB8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/metadynminer3d/inst/testfiles/hills3d2p23/hills3d2p23_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x419E59</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/metadynminer3d/inst/testfiles/hills3d2p23/hills3d2p23_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x419F34</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/metadynminer3d/inst/testfiles/hills3d2p23/hills3d2p23_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407735</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/metadynminer3d/inst/testfiles/hills3d2p23/hills3d2p23_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</clientmsg>
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:14.094 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>1</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:15.051 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

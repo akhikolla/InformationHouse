@@ -1,0 +1,27 @@
+year <- sub("-.*", "", meta$Date)
+
+note <- sprintf("R package version %s", meta$Version)
+
+
+citHeader("The following is a reference to the package. You should also reference the original paper in which the method was developed, which is given below.")
+
+bibentry(bibtype="article",
+         title        = "Fast Kernel Smoothing in {R} with Applications to Projection Pursuit",
+         author       = person(c("David", "P."), "Hofmeyr"),
+         journal      = "{ArXiv preprint}",
+         year         = "2020",
+         url          = "https://arxiv.org/abs/2001.02225"
+)
+
+
+bibentry(bibtype="article",
+         title        = "Fast Exact Evaluation of Univariate Kernel Sums",
+         author       = person(c("David", "P."), "Hofmeyr"),
+         journal      = "{IEEE Transactions on Pattern Analysis and Machine Intelligence}",
+         year         = "2019",
+         doi          = "10.1109/TPAMI.2019.2930501"
+)
+
+
+
+citFooter('To get Bibtex entries use: x<-citation("FKSUM"); toBibtex(x)')

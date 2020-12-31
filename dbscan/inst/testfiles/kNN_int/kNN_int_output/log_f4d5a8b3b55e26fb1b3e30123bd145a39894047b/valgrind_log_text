@@ -1,0 +1,18 @@
+WARNING: No test specified, defaulting to first test defined (dbscan_deepstate_test_kNN_int_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/dbscan/inst/testfiles/kNN_int/kNN_int_output/f4d5a8b3b55e26fb1b3e30123bd145a39894047b.pass`
+TRACE: Running: dbscan_deepstate_test_kNN_int_test from /home/akhila/fuzzer_packages/fuzzedpackages/dbscan/inst/testfiles/kNN_int/kNN_int_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+data values: 1.05415e-68 1.86447e-211 4.49059e+17 2.72551e-214 6.53679e-70 2.42643e+241 1.65687e+24
+
+k values: 644268439
+type values: 123721430
+bucketSize values: -859175003
+splitRule values: 246583936
+approx values: -3.48837e-09
+input ends
+EXTERNAL: ANN Fatal ERROR:
+EXTERNAL: Requesting more near neighbors than data points
+ERROR: Crashed: dbscan_deepstate_test_kNN_int_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/dbscan/inst/testfiles/kNN_int/kNN_int_output/f4d5a8b3b55e26fb1b3e30123bd145a39894047b.pass crashed

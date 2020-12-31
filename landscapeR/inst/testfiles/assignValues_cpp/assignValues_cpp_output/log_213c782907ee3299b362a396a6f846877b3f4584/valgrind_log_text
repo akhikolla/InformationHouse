@@ -1,0 +1,20 @@
+WARNING: No test specified, defaulting to first test defined (landscapeR_deepstate_test_assignValues_cpp_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/landscapeR/inst/testfiles/assignValues_cpp/assignValues_cpp_output/213c782907ee3299b362a396a6f846877b3f4584.crash`
+TRACE: Running: landscapeR_deepstate_test_assignValues_cpp_test from /home/akhila/fuzzer_packages/fuzzedpackages/landscapeR/inst/testfiles/assignValues_cpp/assignValues_cpp_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+val values: 1903691637
+Missing value
+ad values: 2069757405 -1364041863 1062769791 2120796143 -523344851 -996531609 2021736379 2022640883 -334901093 -1137699589 -2002159097 -1562484776 257629907 -180340114 -1032246982 154480117 1056805114 765851062 1315945823 -1330425665 242193156 -1345490319 1201384272 -791132914 -690616061 2080291273 1853237278 712564280 -412009321 1051592837 1236587801 -1944377246 -248420756 790574493 -1772241728 -711264067 188044361 -2147483648 279201437 -1083244624
+Missing value
+mtx values: 1.54710e-298     inf     nan 8.78821e+143
+
+input ends
+==919978==  If you believe this happened as a result of a stack
+==919978==  overflow in your program's main thread (unlikely but
+==919978==  possible), you can try to increase the size of the
+==919978==  main thread stack using the --main-stacksize= flag.
+==919978==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: landscapeR_deepstate_test_assignValues_cpp_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/landscapeR/inst/testfiles/assignValues_cpp/assignValues_cpp_output/213c782907ee3299b362a396a6f846877b3f4584.crash crashed

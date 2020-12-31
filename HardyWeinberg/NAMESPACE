@@ -1,0 +1,17 @@
+export (af,alleles,AFtest,agcounts,dgraffelmanweir.bi,dlevene,dlevene.bi,EAFExact,fisherz,fold,genlabels,HWABO,HWAIC,HWAlltests,
+        HWAlr,HWAlrPlot,
+        HWChisq,HWChisqStats,
+        HWChisqMat,HWClo,HWClr,HWClrPlot,HWCondProbAB,HWD,HWData,HWExact,HWExactPrevious,HWExactMat,HWExactStats,HWf,HWGenotypePlot,HWIlr,
+        HWIlrPlot,HWLindley,HWLRtest,HWLRAllTests,HWLratio,HWMissing,
+        HWPerm,HWPerm.mult,HWPower,HWPosterior,HWQqplot,HWTernaryPlot,HWTriExact,ifisherz,GenerateSamples,mac,maf,MakeCounts,MakeFactor,
+        n.alleles,recode,
+        strsort,ThetatoF,toTriangular,UniqueGenotypeCounts,vaf)
+import (mice)
+import (Rcpp)
+import (Rsolnp)
+importFrom("graphics", "abline", "lines", "par", "plot", "points", "polygon", "text")
+importFrom("stats", "aggregate", "dmultinom", "fisher.test", "integrate", "pbeta", "pchisq", "pt", "qchisq", "qnorm", "qt", "quantile",
+           "rbeta", "rmultinom", "runif", "var")
+useDynLib("HardyWeinberg")
+importFrom("Rcpp", "sourceCpp")
+

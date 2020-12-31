@@ -1,0 +1,32 @@
+Package: diveRsity
+Version: 1.9.90
+Date: 2017-03-17
+Title: A Comprehensive, General Purpose Population Genetics Analysis
+        Package
+Author: Kevin Keenan <kkeenan02@qub.ac.uk>
+Maintainer: Kevin Keenan <kkeenan02@qub.ac.uk>
+Description: Allows the calculation of both genetic diversity partition 
+  statistics, genetic differentiation statistics, and locus informativeness 
+  for ancestry assignment. 
+  It also provides users with various option to calculate 
+  bootstrapped 95\% confidence intervals both across loci, 
+  for pairwise population comparisons, and to plot these results interactively. 
+  Parallel computing capabilities and pairwise results without 
+  bootstrapping are provided. 
+  Also calculates F-statistics from Weir and Cockerham (1984). 
+  Various plotting features are provided, as well as Chi-square tests of 
+  genetic heterogeneity. 
+  Functionality for the calculation of various diversity parameters is 
+  possible for RAD-seq derived SNP data sets containing thousands of marker loci.
+  A shiny application for the development of microsatellite multiplexes is 
+  also available.
+Suggests: xlsx, sendplot, plotrix, parallel, HWxtest
+Depends: R (>= 3.0.0)
+Imports: ggplot2, shiny, qgraph, Rcpp, methods, stats, grid
+LinkingTo: Rcpp
+Repository: CRAN
+License: GPL (>= 2)
+URL: http://diversityinlife.weebly.com/
+NeedsCompilation: yes
+Packaged: 2017-04-04 10:05:34 UTC; kkeenan
+Date/Publication: 2017-04-04 10:59:38 UTC

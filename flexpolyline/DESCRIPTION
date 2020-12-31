@@ -1,0 +1,41 @@
+Package: flexpolyline
+Type: Package
+Title: Flexible Polyline Encoding
+Version: 0.2.0
+Authors@R: 
+    c(person(given = "Merlin",
+             family = "Unterfinger",
+             role = c("aut", "cre"),
+             email = "info@munterfinger.ch",
+             comment = c(ORCID = "0000-0003-2020-2366")),
+      person(family = "HERE Europe B.V.",
+             role = c("aut", "cph"),
+             comment = "Flexible polyline encoding C++ implementation"))
+Description: Binding to the C++ implementation of the flexible polyline
+    encoding by HERE <https://github.com/heremaps/flexible-polyline>. The
+    flexible polyline encoding is a lossy compressed representation of a list of
+    coordinate pairs or coordinate triples. The encoding is achieved by:
+    (1) Reducing the decimal digits of each value;
+    (2) encoding only the offset from the previous point;
+    (3) using variable length for each coordinate delta; and
+    (4) using 64 URL-safe characters to display the result.
+License: GPL-3
+URL: https://munterfinger.github.io/flexpolyline/,
+        https://github.com/munterfinger/flexpolyline/
+BugReports: https://github.com/munterfinger/flexpolyline/issues/
+LinkingTo: Rcpp
+Imports: Rcpp, sf (>= 0.9-3)
+Suggests: testthat (>= 2.3.2), stringr (>= 1.4.0), knitr (>= 1.28),
+        rmarkdown (>= 2.1), covr (>= 3.5.0)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+VignetteBuilder: knitr
+NeedsCompilation: yes
+Packaged: 2020-12-17 20:59:05 UTC; munterfi
+Author: Merlin Unterfinger [aut, cre] (<https://orcid.org/0000-0003-2020-2366>),
+  HERE Europe B.V. [aut, cph] (Flexible polyline encoding C++
+    implementation)
+Maintainer: Merlin Unterfinger <info@munterfinger.ch>
+Repository: CRAN
+Date/Publication: 2020-12-17 21:40:02 UTC

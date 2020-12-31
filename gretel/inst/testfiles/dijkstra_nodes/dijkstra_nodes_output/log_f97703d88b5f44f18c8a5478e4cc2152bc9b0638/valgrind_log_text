@@ -1,0 +1,27 @@
+WARNING: No test specified, defaulting to first test defined (gretel_deepstate_test_dijkstra_nodes_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_nodes/dijkstra_nodes_output/f97703d88b5f44f18c8a5478e4cc2152bc9b0638.crash`
+TRACE: Running: gretel_deepstate_test_dijkstra_nodes_test from /home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_nodes/dijkstra_nodes_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+dist values: 2.01769e+47 1.43678e-133 3.24864e+70 1.20447e-16
+5.91096e+64 7.46115e-258 6.40668e-255 1.62054e+203
+4.71376e-48 5.01413e+184 4.51599e-206 1.34759e+170
+1.75062e-260 1.58739e-68 1.92056e-182 1.67897e-132
+4.13273e+261 29072.6 1.10966e+192 2.30932e+295
+7.50348e-71 1.41003e-86 4.42315e+80 1.54458e+60
+1.28334e+144 1.93644e+180 1.54664e-118 3.41101e+171
+2.90402e-286 1.99326e-62 5.07882e+283 3.58420e+261
+3.56215e-230 1.39816e-16 1.74133e+63 1.53532e+63
+
+src values: -767861348
+Missing value
+node_costs values: 1.83257e+116 -4.42594e+160 3.21759e+40 3.48325e-264 1.12041e-122 -inf -5.57064e-183 6.77668e+126 2.64895e-139 1.31811e+39 1.8798e-221 -6.70939e-151 5.4869e+38 1.31455e-288 7.17786e-77 3.11404e+159 2.25842e+27 -4.16599e+69 8.52222e-255 -3.63794e+124 1.26699e+289 -2.21209e+287 -2.94686e+143 -3.85942e+192 -3.19723e+172 -1.00345e+304 nan 1.07531e+242 -9.29177e+274 -1.70271e-87 -1.01235e-219 inf 510923 3.51942e+166 8.06438e-68 -1.23725e+278 -4.01622e+183 1.66633e-279 -1.66037e+30 -4.7689e-91 -1.86037e+269 1.6357e+203 8.06438e-68 -2.98405e-201 1.31121e-197 -5.57969e+116 2.34827e+206 0
+input ends
+==834848==  If you believe this happened as a result of a stack
+==834848==  overflow in your program's main thread (unlikely but
+==834848==  possible), you can try to increase the size of the
+==834848==  main thread stack using the --main-stacksize= flag.
+==834848==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: gretel_deepstate_test_dijkstra_nodes_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_nodes/dijkstra_nodes_output/f97703d88b5f44f18c8a5478e4cc2152bc9b0638.crash crashed

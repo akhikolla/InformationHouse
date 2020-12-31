@@ -1,0 +1,52 @@
+Package: PanelMatch
+Type: Package
+Title: Matching Methods for Causal Inference with Time-Series
+        Cross-Sectional Data
+Version: 1.0.0
+Date: 2020-02-10
+Authors@R: c(
+  person("In Song", "Kim", email = "insong@mit.edu", role = c("aut", "cre")),
+  person("Adam", "Rauh", email = "adamrauh@mit.edu", role = c("aut")),
+  person("Erik", "Wang", email = "haixiaow@Princeton.edu", role = c("aut")),
+  person("Kosuke", "Imai", email = "imai@harvard.edu", role = c("aut"))
+  )
+Description: Implements a set of methodological tools
+	     that enable researchers to apply matching methods to
+	     time-series cross-sectional data. Imai, Kim, and Wang
+	     (2018) <http://web.mit.edu/insong/www/pdf/tscs.pdf> 
+	     proposes a nonparametric generalization of the
+	     difference-in-differences estimator, which does not rely
+	     on the linearity assumption as often done in
+	     practice. Researchers first select a method of matching
+	     each treated observation for a given unit in a
+	     particular time period with control observations from
+	     other units in the same time period that have a similar
+	     treatment and covariate history. These methods include
+	     standard matching methods based on propensity score and
+	     Mahalanobis distance, as well as weighting methods. Once 
+	     matching is done, both short-term and long-term average 
+	     treatment effects for the treated can be estimated with 
+	     standard errors. The package also offers a visualization 
+	     technique that allows researchers to assess the quality 
+	     of matches by examining the resulting covariate balance.
+License: GPL (>= 3)
+Imports: Rcpp (>= 0.12.5), data.table, ggplot2, CBPS, stats, graphics,
+        grDevices, MASS, Matrix, methods
+Depends: R (>= 2.14.0)
+SystemRequirements: C++11
+LinkingTo: RcppArmadillo, Rcpp, RcppEigen
+Encoding: UTF-8
+LazyData: true
+BugReports: https://github.com/insongkim/PanelMatch/issues
+RoxygenNote: 7.0.2
+Suggests: knitr, rmarkdown, testthat (>= 2.1.0)
+VignetteBuilder: knitr
+NeedsCompilation: yes
+Packaged: 2020-02-20 18:49:55 UTC; insong
+Author: In Song Kim [aut, cre],
+  Adam Rauh [aut],
+  Erik Wang [aut],
+  Kosuke Imai [aut]
+Maintainer: In Song Kim <insong@mit.edu>
+Repository: CRAN
+Date/Publication: 2020-02-28 11:20:13 UTC

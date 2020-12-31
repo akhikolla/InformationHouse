@@ -1,0 +1,35 @@
+Package: signalHsmm
+Type: Package
+Title: Predict Presence of Signal Peptides
+Version: 1.5
+LazyData: true
+Date: 2018-11-11
+Authors@R: c(person("Michal", "Burdukiewicz", 
+    email = "michalburdukiewicz@gmail.com", 
+    role = c("cre", "aut"),
+    comment = c(ORCID = "0000-0001-8926-582X")),
+    person("Piotr", "Sobczyk", email = "sobbombo@gmail.com", role = "aut"),
+    person("Jaroslaw", "Chilimoniuk", 
+           email = "jaroslaw.chilimoniuk@gmail.com", 
+           comment = c(ORCID = "0000-0001-5467-018X"),
+           role = c("ctb")))
+Description: Predicts the presence of signal peptides in eukaryotic protein
+    using hidden semi-Markov models. The implemented algorithm can be accessed from
+    both the command line and GUI.
+License: GPL-3
+URL: https://github.com/michbur/signalhsmm
+Depends: R (>= 3.0.0)
+Imports: graphics, seqinr, shiny, stats, utils
+LinkingTo: Rcpp
+Suggests: DT, rmarkdown, shinythemes
+NeedsCompilation: yes
+Repository: CRAN
+Encoding: UTF-8
+RoxygenNote: 6.1.0
+Packaged: 2018-11-15 08:53:01 UTC; michal
+Author: Michal Burdukiewicz [cre, aut]
+    (<https://orcid.org/0000-0001-8926-582X>),
+  Piotr Sobczyk [aut],
+  Jaroslaw Chilimoniuk [ctb] (<https://orcid.org/0000-0001-5467-018X>)
+Maintainer: Michal Burdukiewicz <michalburdukiewicz@gmail.com>
+Date/Publication: 2018-11-15 09:10:03 UTC

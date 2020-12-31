@@ -1,0 +1,63 @@
+INFO: Starting fuzzing
+WARNING: No test specified, defaulting to first test defined (imager_deepstate_test_getCc_test)
+input starts
+EXTERNAL: qs v0.23.4.
+
+x values: 467495432
+y values: 1827680409
+z values: -1053990400
+c values: 77470436
+input ends
+terminate called after throwing an instance of 'cimg_library::CImgIOException'
+  what():  cimg::stderr(): Reference to 'stderr' stream not allowed in R mode ('cimg_use_r' is defined).
+ERROR: Failed: imager_deepstate_test_getCc_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getCc/getCc_output/2abd8672f192efa0e8ba9a283ddfe590f5d7b49a.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+x values: -498905818
+y values: 569042049
+z values: 1273656994
+c values: 603497922
+input ends
+terminate called after throwing an instance of 'cimg_library::CImgIOException'
+  what():  cimg::stderr(): Reference to 'stderr' stream not allowed in R mode ('cimg_use_r' is defined).
+ERROR: Failed: imager_deepstate_test_getCc_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getCc/getCc_output/937e04caa64558fd56884b0170682b3beaafe698.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+x values: -293123844
+y values: -555281357
+z values: 1746767833
+c values: -621726556
+input ends
+terminate called after throwing an instance of 'cimg_library::CImgIOException'
+  what():  cimg::stderr(): Reference to 'stderr' stream not allowed in R mode ('cimg_use_r' is defined).
+ERROR: Failed: imager_deepstate_test_getCc_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getCc/getCc_output/7c56f50473aaaa2951b3d8542cb77bcf715666ae.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+x values: -1105761949
+y values: 304498753
+z values: -1417810920
+c values: 1452738095
+input ends
+terminate called after throwing an instance of 'cimg_library::CImgIOException'
+  what():  cimg::stderr(): Reference to 'stderr' stream not allowed in R mode ('cimg_use_r' is defined).
+ERROR: Failed: imager_deepstate_test_getCc_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getCc/getCc_output/cd52ce05a9e713bcb86d3106a0740a7c7de3bf85.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+x values: 954479852
+y values: -194229631
+z values: -1020009618
+c values: 1482512518
+input ends
+terminate called after throwing an instance of 'cimg_library::CImgIOException'
+  what():  cimg::stderr(): Reference to 'stderr' stream not allowed in R mode ('cimg_use_r' is defined).
+ERROR: Failed: imager_deepstate_test_getCc_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getCc/getCc_output/077584e301a0dddfa3368480124169e605c89aca.fail`
+INFO: Done fuzzing! Ran 5 tests (2 tests/second) with 5 failed/0 passed/0 abandoned tests

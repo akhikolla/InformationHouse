@@ -1,0 +1,19 @@
+citHeader("To cite rlfsm in publications use:")
+
+citEntry(
+  entry    = "Article",
+  title    = "Linear Fractional Stable Motion with the rlfsm R Package",
+  author   = c(as.person("Stepan Mazur"), as.person("Dmitry Otryakhin")),
+  journal  = "The R Journal",
+  year     = "2020",
+  volume   = "12",
+  number   = "1",
+  pages    = "386--405",
+  url      = "https://doi.org/10.32614/RJ-2020-008",
+  textVersion = paste(
+      "Stepan Mazur and Dmitry Otryakhin (2020).",
+      "Linear Fractional Stable Motion with the rlfsm R Package.",
+      "The R Journal, 12(1), 386--405.",
+      "URL https://doi.org/10.32614/RJ-2020-008."
+  )
+)

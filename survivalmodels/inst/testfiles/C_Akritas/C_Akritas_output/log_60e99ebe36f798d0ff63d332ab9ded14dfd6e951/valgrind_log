@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./C_Akritas_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/survivalmodels/inst/testfiles/C_Akritas/C_Akritas_output/60e99ebe36f798d0ff63d332ab9ded14dfd6e951.pass</line>
+</preamble>
+
+<pid>401479</pid>
+<ppid>401478</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/survivalmodels/inst/testfiles/C_Akritas/C_Akritas_output/log_60e99ebe36f798d0ff63d332ab9ded14dfd6e951/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./C_Akritas_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/survivalmodels/inst/testfiles/C_Akritas/C_Akritas_output/60e99ebe36f798d0ff63d332ab9ded14dfd6e951.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.044 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D20A99</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/survivalmodels/src/survivalmodels.so</obj>
+      <fn>C_Akritas(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/survivalmodels/src</dir>
+      <file>C_akritas.cpp</file>
+      <line>29</line>
+    </frame>
+    <frame>
+      <ip>0x40A6D2</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/survivalmodels/inst/testfiles/C_Akritas/C_Akritas_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_survivalmodels_deepstate_test_C_Akritas_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/survivalmodels/inst/testfiles/C_Akritas</dir>
+      <file>C_Akritas_DeepState_TestHarness.cpp</file>
+      <line>43</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/survivalmodels/inst/testfiles/C_Akritas/C_Akritas_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_survivalmodels_deepstate_test_C_Akritas_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/survivalmodels/inst/testfiles/C_Akritas</dir>
+      <file>C_Akritas_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E378</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/survivalmodels/inst/testfiles/C_Akritas/C_Akritas_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E619</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/survivalmodels/inst/testfiles/C_Akritas/C_Akritas_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E6F4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/survivalmodels/inst/testfiles/C_Akritas/C_Akritas_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/survivalmodels/inst/testfiles/C_Akritas/C_Akritas_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:11.349 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>92274</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:11.972 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

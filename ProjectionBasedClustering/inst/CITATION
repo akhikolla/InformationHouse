@@ -1,0 +1,21 @@
+citHeader("To cite the 'ProjectionBasedClustering' R package in publications, please use:")
+
+citEntry(entry = "Article",
+  title = "Using Projection based Clustering to Find Distance and Density based Clusters in High-Dimensional Data",
+  author = personList(person(given="Michael Christoph", family="Thrun"),person(given="Alfred", family="Ultsch")),
+  publisher = "Springer",
+  year = "2020",
+  doi = "10.1007/s00357-020-09373-2",
+   url = "https://doi.org/10.1007/s00357-020-09373-2",
+   journal = "Journal of Classification",
+   volume ="in press",
+  textVersion =
+  paste(
+"Thrun, M. C., & Ultsch, A.:",
+"Using Projection based Clustering to Find Distance and Density based Clusters in High-Dimensional Data,",
+"Journal of Classification,",
+"Vol. in press,",
+"Springer,",
+"DOI: 10.1007/s00357-020-09373-2,",
+ "2020."
+))

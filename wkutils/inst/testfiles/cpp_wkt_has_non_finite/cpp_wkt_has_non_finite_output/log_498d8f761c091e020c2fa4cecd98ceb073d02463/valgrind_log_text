@@ -1,0 +1,12 @@
+WARNING: No test specified, defaulting to first test defined (wkutils_deepstate_test_cpp_wkt_has_non_finite_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_wkt_has_non_finite/cpp_wkt_has_non_finite_output/498d8f761c091e020c2fa4cecd98ceb073d02463.fail`
+TRACE: Running: wkutils_deepstate_test_cpp_wkt_has_non_finite_test from /home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_wkt_has_non_finite/cpp_wkt_has_non_finite_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+wkt values: "sgfefsqksogrldtbchaq" "olwjythkvqfyacxxedna" "drefqnkeibsrdgwkjrlc" "NA" "lwjofrkbeecxopxugonv" "NA" "NA" "zsllmqzdodqkrtbgfzzl" "hsvzwqbkpwbzhexhdtbc" "bobtiirrekyjbmnwwsem" "cotfw" "xgtsomu" "NA" "wdggznlicbfqezvcwczr" "xfrjmyzr" "gs" "ot" "NA" "xacupvudujke" "NA" "ttrfm" "grepkytllzrditpiyffv" "fui" "NA" "vebsketagamupskbh" "NA" "yzthal" "NA" "vfojfhwnraiydwkqtcvi" "NA" "fbsxxwjkggrgrxbdogeo" "kuvbdpnfrhiqgemfoaql" "gfxjwruegpkayewgdwau" "NA" "ozccpgcszh" "NA" "gejsjstpgcjuhfecazum" "" "ludvowuwooajpnnahzzy" "NA" "NA" "hbsazyeqwzxfio" "NA" "nhpqeaizxmcueiavfllf" "NA" "wfykvaodgqrnodebwtma" "NA" "yczosbhqb" "wbsfoofllevjmfrflqdt" "cmjeoxaj" "iirmtzayuztsrqhvpvts" "odbntc" "ufnnewbrgzovbqqoxzma" "gmqeub" "os" "hvakikmabwgaudslwetm" "NA"
+input ends
+terminate called after throwing an instance of 'WKParseException'
+  what():  Expected geometry type or 'SRID=' but found 'sgfefsqksogrldtbchaq' (:0)
+ERROR: Failed: wkutils_deepstate_test_cpp_wkt_has_non_finite_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/wkutils/inst/testfiles/cpp_wkt_has_non_finite/cpp_wkt_has_non_finite_output/498d8f761c091e020c2fa4cecd98ceb073d02463.fail failed

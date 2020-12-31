@@ -1,0 +1,19 @@
+Package: vsgoftest
+Type: Package
+Title: Goodness-of-Fit Tests Based on Kullback-Leibler Divergence
+Version: 1.0-1
+Date: 2020-12-17
+Author: Justine Lequesne [aut], Philippe Regnault [aut, cre]
+Maintainer: Philippe Regnault <philipperegnault@hotmail.com>
+Description: An implementation of Vasicek and Song goodness-of-fit tests. Several functions are provided to estimate differential Shannon entropy, i.e., estimate Shannon entropy of real random variables with density, and test the goodness-of-fit of some family of distributions, including uniform, Gaussian, log-normal, exponential, gamma, Weibull, Pareto, Fisher, Laplace and beta distributions; see Lequesne and Regnault (2020) <doi:10.18637/jss.v096.c01>.
+Depends: stats, fitdistrplus
+Imports: Rcpp (>= 0.12.1)
+Suggests: knitr
+VignetteBuilder: knitr
+LinkingTo: Rcpp
+Encoding: UTF-8
+License: GPL (>= 2)
+Packaged: 2020-12-17 13:30:49 UTC; philippe
+NeedsCompilation: yes
+Repository: CRAN
+Date/Publication: 2020-12-17 16:30:02 UTC

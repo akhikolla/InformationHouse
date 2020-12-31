@@ -1,0 +1,19 @@
+#!/bin/bash
+
+CXX_STD = CXX11
+
+# If necessary comment out and adapt paths for header files and libs
+# PKG_CPPFLAGS = -I/usr/local/include -I.
+# PKG_LIBS = -L/usr/local/lib -lmpfr -lgmp -lCGAL -lboost_thread-mt -lboost_system-mt -lpthread
+
+PKG_LIBS = -lCGAL
+
+# On some systems there is no -mt ending, but our code only needs CGAL directly
+# PKG_LIBS = -lmpfr -lgmp -lCGAL -lboost_thread-mt -lboost_system-mt -lpthread
+
+
+all: $(SHLIB)
+
+clean: @rm -f $(OBJECTS)
+# This cleans the subfolders in src (files directly in source auto-clean)
+# all is needed *if* you have clean (or any such instruction).

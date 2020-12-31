@@ -1,0 +1,38 @@
+WARNING: No test specified, defaulting to first test defined (RStoolbox_deepstate_test_spectralIndicesCpp_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/RStoolbox/inst/testfiles/spectralIndicesCpp/spectralIndicesCpp_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash`
+TRACE: Running: RStoolbox_deepstate_test_spectralIndicesCpp_test from /home/akhila/fuzzer_packages/fuzzedpackages/RStoolbox/inst/testfiles/spectralIndicesCpp/spectralIndicesCpp_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+x values: 1.05415e-68 1.86447e-211 4.49059e+17 2.72551e-214 6.53679e-70 2.42643e+241 1.65687e+24
+
+indices values: "NA" "NA" "mrwgmurgjf" "NA" "tglpvzndhadidxnofcd" "NA" "NA" "NA" "kkifqamgnkrmdnypk" "alwsl" "NA" "NA" "deyblbjnrxlmflq" "drufrhgu" "NA" "" "NA" "rpufgzsjlfrfxj" "k" "debdigxot" "hnqccwqunjtqwtlmwuvl" "cvtybxyehosv" "tyxywzcahlzvygwwlxio" "NA" "bxdyoyljwaovxnit" "NA" "qkbbzzvfqrkkcakktvou" "ylirspbmtsiebt" "NA" "oyvfplfjkdgyblkuclje" "iqfhzwsn" "hlbjrcphtbflmknkgkso" "cyvft" "fvbbuvwkfdolmvvsfoy" "gnhcdo" "dkvsodovrmropxuetwq" "mmaezhmlzmduyceoiuvp" "zsktexlho" "vrfjgsjlle" "bonem" "smedmqbn" "djpwkhrnbomtudmlvtxl" "NA" "ehiatrkevxwpouxmotnz"
+redBand values: -579629136
+blueBand values: 439943151
+greenBand values: 1627057841
+nirBand values: 1410532149
+redEdge1Band values: 932214857
+redEdge2Band values: 1661496542
+redEdge3Band values: -324707793
+swir1Band values: 358824435
+swir2Band values: -691493904
+swir3Band values: 27451489
+maskLayer values: -1664216336
+maskValue values: -501930471
+L values: -1.34884e-217
+s values: 1.05206e+282
+G values: 3.32403e+145
+C1 values: -5.20384e+236
+C2 values: -1.63841e-37
+Levi values: -4.89264e+49
+swir2ccc values: 1.19576e-231
+swir2cdiff values: -2.46963e+97
+sf values: 3.86323e-142
+input ends
+==593251==  If you believe this happened as a result of a stack
+==593251==  overflow in your program's main thread (unlikely but
+==593251==  possible), you can try to increase the size of the
+==593251==  main thread stack using the --main-stacksize= flag.
+==593251==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: RStoolbox_deepstate_test_spectralIndicesCpp_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/RStoolbox/inst/testfiles/spectralIndicesCpp/spectralIndicesCpp_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash crashed

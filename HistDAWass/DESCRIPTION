@@ -1,0 +1,37 @@
+Package: HistDAWass
+Type: Package
+Title: Histogram-Valued Data Analysis
+Version: 1.0.4
+Date: 2020-02-14
+Authors@R: c(person(given="Antonio",
+                family= "Irpino", 
+                role = c("aut", "cre"),
+  	            email = "antonio.irpino@unicampania.it", 
+  	            comment = c(ORCID = "0000-0001-9293-7180")))
+Maintainer: Antonio Irpino <antonio.irpino@unicampania.it>
+Description: In the framework of Symbolic Data Analysis, a relatively new
+    approach to the statistical analysis of multi-valued data, we consider
+    histogram-valued data, i.e., data described by univariate histograms. The
+    methods and the basic statistics for histogram-valued data are mainly based
+    on the L2 Wasserstein metric between distributions, i.e., the Euclidean metric
+    between quantile functions. The package contains unsupervised classification
+    techniques, least square regression and tools for histogram-valued data and for
+    histogram time series. An introducing paper is Irpino A. Verde R. (2015) <doi:10.1007/s11634-014-0176-4>.
+License: GPL (>= 2)
+Imports: graphics, class, FactoMineR, ggplot2, ggridges, grid,
+        histogram, grDevices, stats, utils, Rcpp
+Depends: R(>= 3.1), methods
+LazyData: true
+Collate: 'For_Rccp_int.R' 'All_classes.R' 'RcppExports.R' 'Utility.R'
+        'Met_HTS.R' 'Met_MatH.R' 'Met_distributionH.R' 'Fuzzy_cmeans.R'
+        'H_time_series.R' 'HistDAWass-package.R' 'Kohonen_maps.R'
+        'principal_components.R' 'regression.R'
+        'unsuperv_classification.R' 'Plotting_with_ggplot.R'
+Encoding: UTF-8
+RoxygenNote: 7.0.2
+NeedsCompilation: yes
+LinkingTo: Rcpp,RcppArmadillo
+Packaged: 2020-02-17 17:59:05 UTC; AntonioYOGA
+Author: Antonio Irpino [aut, cre] (<https://orcid.org/0000-0001-9293-7180>)
+Repository: CRAN
+Date/Publication: 2020-02-19 09:00:03 UTC

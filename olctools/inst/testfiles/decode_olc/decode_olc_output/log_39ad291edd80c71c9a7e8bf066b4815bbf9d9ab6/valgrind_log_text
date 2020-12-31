@@ -1,0 +1,12 @@
+WARNING: No test specified, defaulting to first test defined (olctools_deepstate_test_decode_olc_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/olctools/inst/testfiles/decode_olc/decode_olc_output/39ad291edd80c71c9a7e8bf066b4815bbf9d9ab6.fail`
+TRACE: Running: olctools_deepstate_test_decode_olc_test from /home/akhila/fuzzer_packages/fuzzedpackages/olctools/inst/testfiles/decode_olc/decode_olc_DeepState_TestHarness.cpp(10)
+input starts
+EXTERNAL: qs v0.23.4.
+
+olcs values: "ojeroqbjjtdlws"
+input ends
+terminate called after throwing an instance of 'std::range_error'
+  what():  The Open Location Codes provided must be complete. Incomplete code: ojeroqbjjtdlws
+ERROR: Failed: olctools_deepstate_test_decode_olc_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/olctools/inst/testfiles/decode_olc/decode_olc_output/39ad291edd80c71c9a7e8bf066b4815bbf9d9ab6.fail failed

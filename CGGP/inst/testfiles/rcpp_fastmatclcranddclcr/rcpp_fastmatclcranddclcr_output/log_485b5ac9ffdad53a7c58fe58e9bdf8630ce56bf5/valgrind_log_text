@@ -1,0 +1,30 @@
+WARNING: No test specified, defaulting to first test defined (CGGP_deepstate_test_rcpp_fastmatclcranddclcr_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/CGGP/inst/testfiles/rcpp_fastmatclcranddclcr/rcpp_fastmatclcranddclcr_output/485b5ac9ffdad53a7c58fe58e9bdf8630ce56bf5.fail`
+TRACE: Running: CGGP_deepstate_test_rcpp_fastmatclcranddclcr_test from /home/akhila/fuzzer_packages/fuzzedpackages/CGGP/inst/testfiles/rcpp_fastmatclcranddclcr/rcpp_fastmatclcranddclcr_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+I values:     nan    -inf    -inf     nan    -inf 1.55275e+40
+
+Missing value
+w values: -5.02292e+117 -5.72942e+144 3.57164e+306 5.10745e-90 -2.60609e-23 -1.01324e-174 1.23214e-272 -2.47343e+92 1.60774e-28 -2.46712e+282 1.54163e+153 1.27627e-286 nan 5.05724e-294 2.124e-163 -9.51323e-197 3.19247e-184 nan nan 1.80254e+45 -1.19985e-167 nan -2.85375e-285 -4.96182e+212 2.93453e+51 -3.48461e-264 -2.09115e-209 2.70315e+165 -4.35123e-245 -4.7888e-91 -6.15607e-134 1.58392e+299 1.75992e-188 2.92513e-276 2.05444e-194 -8.74339e-139 3.22331e-237 6.20752 8.27412e+256 6.6726e+42 1.74061e+94 -1.04615e+10 8.21606e-152 2.27705e+266 1.32765e-258 -6.58791e-221 -4.94509e-161 8.46075e+220 0
+Missing value
+MSEmat values:     nan 2.07286e-39     inf     inf 3.30186e-51 1.78535e+224 -1.85162e+290
+
+dMSEmat values: 7.95256e-169 1.91080e-108 7.69349e-259 1.06813e-135 8.42508e+170 4.00855e-155 3.97008e-143 4.91081e+200 1.68902e-29 1.64555e+148
+1.16029e+154 3.74099e+283 16434.5 1.74794e-205 1.21809e+210 4.24273e-237 1.01240e-262 8.93580e-170 1.22813e-111 1.22360e+141
+
+Missing value
+S values: -inf -5.6241e-74 -1.81481e+239 1.91904e+115 11596.7 -5.6241e-74 -2.01498e+245 -1.10097e+43 -1.64586e-294 -2.3902e-229 -2.7598e-36 6.88627e-81 8.14517e-29 -1.38686e-28 -5.55964e+86 3.9963e+126 2.79426e-119 5.60965e-130 2.09906e+276 1.3265e-76 -8.82048e+18 5.0246e-302 nan 6.40738e+283 1.3285e-98 -3.96912e-144 -2.45962e+150 -2.83475e+92 2.11904e-258 2.57947e-127 nan -8.75105e+35 1.60369e+187 4.83099e+106 3.52563e-126 4.91556e+38 0
+Missing value
+dS values:     inf 1.06120e+245 3.26920e+213 2.65835e-206 2.20338e+238 4.37228e-57     nan 1.40865e-72
+    nan 6.68475e+300     nan 2.35320e-89 4.39858e+06 7.86260e+268 1.23339e+81 1.52537e+209
+
+maxlevel values: 1400034706
+numpara values: -1757019200
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Column index is out of bounds: [index=-2147483648; column extent=7].
+ERROR: Failed: CGGP_deepstate_test_rcpp_fastmatclcranddclcr_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/CGGP/inst/testfiles/rcpp_fastmatclcranddclcr/rcpp_fastmatclcranddclcr_output/485b5ac9ffdad53a7c58fe58e9bdf8630ce56bf5.fail failed

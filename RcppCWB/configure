@@ -1,0 +1,185 @@
+
+#!/bin/sh
+
+# Step 1: Configure CWB
+# 
+# The CWB includes specialized configurations (for macOS, Linux, Solaris).
+# We check whether RcppCWB is installed on a system for which a specialized
+# configuration is available. If not, the standard unix configuration is
+# used. 
+
+# Get compiler used by R
+CC_R=`$R_HOME/bin/R CMD config CC` 
+
+INTL=""
+CARBON=""
+SOCKETLIB=""
+
+OS=`uname -s`
+echo "* operating system detected for CWB configuration: $OS"
+
+case $OS in
+  
+  Darwin)
+    CWB_PLATFORM_CONFIG_FILE="darwin-64"
+    CWB_PLATFORM_CONFIG_FILE_CC="unix";;
+  Linux)
+    # the 'uname -s' command returns 'Linux' on Fedora, Debian and Ubuntu
+    DISTRO=`awk -F= '$1=="ID" { print $2 ;}' /etc/os-release`
+    case "$DISTRO" in
+      ubuntu)
+        SUPPORT="supported";;
+      fedora)
+        SUPPORT="supported";;
+      debian)
+        SUPPORT="supported";;
+      centos)
+        SUPPORT="supported";;
+      *)
+        SUPPORT="unsupported, adapting the configuration may be necessary";;
+    esac
+    echo "* Linux distribution ID: $DISTRO ($SUPPORT)";
+
+    # For Debian, Fedora and Ubuntu, the generic Linux configuration works, 
+    # there are no known required adaptions so far. If another distribution is used,
+    # the previous message informs users that adaptions may be necessary.
+    ARCH=`lscpu | head -n 1 | grep -oP '\w+$'`
+    case "$ARCH" in 
+      x86_64)
+        CWB_PLATFORM_CONFIG_FILE="linux-64";;
+      i386) 
+        CWB_PLATFORM_CONFIG_FILE="linux";;
+      *)
+        echo "* unknown architecture (`$ARCH`), using Linux config as default"
+        CWB_PLATFORM_CONFIG_FILE="linux"
+        ;;
+    esac
+    
+    # The compiler is set in the unix config file for all architectures
+    CWB_PLATFORM_CONFIG_FILE_CC="unix";;
+  SunOS)
+    CPU_INFO=`psrinfo -pv | sed -n '2p'`
+    case $CPU_INFO in
+      SPARK)
+        CWB_PLATFORM_CONFIG_FILE="solaris_spark"
+        CWB_PLATFORM_CONFIG_FILE_CC="solaris_spark"
+        ;;
+      *)
+        CWB_PLATFORM_CONFIG_FILE="solaris_x86"
+        CWB_PLATFORM_CONFIG_FILE_CC="solaris_x86"
+        ;;
+    esac
+    SOCKETLIB='-lsocket -Wl,--allow-multiple-definition';;
+    
+  *)
+    CWB_PLATFORM_CONFIG_FILE="unix"
+    CWB_PLATFORM_CONFIG_FILE_CC="unix"
+    echo "* OS unknown, resorting to Unix as CWB default configuration (modifications may be necessary)"
+    ;;
+esac
+
+# Inform user about CWB configuration used. To safeguard portability, no inplace 
+# sed modification (sed option -i is not available on Solaris)
+echo "* using CWB platform configuration file: $CWB_PLATFORM_CONFIG_FILE"
+sed -e "s/PLATFORM=.*/PLATFORM=$CWB_PLATFORM_CONFIG_FILE/" ./src/cwb/config.mk > ./src/cwb/config.mk.mod
+rm ./src/cwb/config.mk
+mv ./src/cwb/config.mk.mod ./src/cwb/config.mk
+
+
+# Adapt CWB configuration file that defines compiler to use compiler chosen
+# by user (Makeconf, Makevars file)
+echo "* adapt CWB configuration file to use compiler: $CC_R"
+sed -e "s#CC\s*=\s*gcc#CC=$CC_R#" ./src/cwb/config/platform/${CWB_PLATFORM_CONFIG_FILE_CC} > ./tmpfile
+rm ./src/cwb/config/platform/${CWB_PLATFORM_CONFIG_FILE_CC}
+mv ./tmpfile ./src/cwb/config/platform/${CWB_PLATFORM_CONFIG_FILE_CC}
+
+# Check availability of glib2.0 (download on macOS)
+if [ -x "`command -v pkg-config`" ]; then
+  printf "* using pkg-config to check whether glib-2.0 is available ... ";
+  pkg-config --exists glib-2.0
+  PKG_CONFIG_GLIB_INFO=$?
+  if [ $PKG_CONFIG_GLIB_INFO = 0 ]; then
+    printf "yes\n";
+  else
+    printf "no\n";
+    if [ $OS = "Darwin" ]; then
+      echo "* glib2.0 missing, downloading static library from GitHub (https://github.com/PolMine/libglib)";
+      ${R_HOME}/bin/Rscript ./tools/maclibs.R `pwd`
+      export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:`pwd`/macos/libglib-master/pkgconfig
+      # Setting further args required to compile agains glib2.0 in this scenario
+      INTL="-lintl"
+      CARBON="-framework Carbon"
+    else 
+      echo "----------------------- CONFIGURATION ERROR --------------------------"
+      echo "Configuration failed because 'glib-2.0' was not found. Try installing:"
+      echo " * deb: libglib2.0-dev (Debian, Ubuntu, etc)"
+      echo " * yum: glib* (Fedora, CentOS, etc)"
+      echo " * csw: glib2 (Solaris)"
+      echo "----------------------------------------------------------------------"
+      /opt/csw/bin/pkgutil -y -i -W glib2
+    fi
+  fi
+else
+  echo "WARNING: Aborting as the 'pkg-config' tool required to find include paths is missing."
+  echo "Check whether 'pkg-config' is installed and make sure that 'pkg-config' is on your PATH."
+  exit 1
+fi 
+echo "* using pkg-config to get -L flags for glib-2.0"
+GLIB_LIBDIRS="`pkg-config --libs-only-L glib-2.0`"
+
+
+# Check availability of ncurses
+printf "* using pkg-config to check whether ncurses is available ... ";
+pkg-config --exists ncurses
+PKG_CONFIG_NCURSES_INFO=$?
+if [ $PKG_CONFIG_NCURSES_INFO = 0 ]; then
+  printf "yes\n";
+else
+  printf "no\n";
+  echo "----------------------- CONFIGURATION CRITICAL --------------------------"
+  echo "Configuration may fail because 'ncurses' was not found. Try installing:"
+  echo " * deb: libncurses5-dev libncursesw5-dev (Debian, Ubuntu, etc)"
+  echo " * yum: ncurses-devel (Fedora, CentOS, etc)"
+  echo " * csw: libncurses_dev (Solaris)"
+  echo "----------------------------------------------------------------------"
+  # no abort because pkg-config will not find ncurses on Solaris
+fi
+
+# Check availability of pcre
+printf "* check whether pcre is available ... ";
+if [ -x "`command -v pcre-config`" ]; then
+  PCRE_VERSION=`pcre-config --version`
+  printf "yes (version: $PCRE_VERSION)\n"
+else
+  printf "no\n"
+  echo "----------------------- CONFIGURATION ERROR --------------------------"
+  echo "Configuration failed because 'pcre' is not available. Try installing:"
+  echo " * deb: libpcre3 libpcre3-dev (Debian, Ubuntu, etc)"
+  echo " * yum: pcre pcre-devel (Fedora, CentOS, etc)"
+  echo " * csw: libpcre_dev (Solaris)"
+  echo "----------------------------------------------------------------------"
+fi
+PCRE_LIBDIRS="`pcre-config --libs`"
+
+# Step 2: Generate Makevars file
+#
+# The Makevars file is generated here, to pass the directory where RcppCWB
+# is build (variable PKG_DIR) into the Makevars file.
+
+BUILD_DIR="`pwd`"
+CWB_DIR="`pwd`/src/cwb"
+
+if [ -f ./src/Makevars ]; then rm ./src/Makevars; fi
+printf "PKG_CPPFLAGS=-I%s/src/cwb/cqp -I%s/src/cwb/cl -I%s/src/cwb/CQi\n" $BUILD_DIR $BUILD_DIR $BUILD_DIR > ./src/Makevars
+printf "PKG_LIBS=-L%s/cl -L%s/cqp -L%s/utils %s %s -lcwb -lcqp -lcl -lglib-2.0 %s %s %s\n" $CWB_DIR $CWB_DIR $CWB_DIR "$GLIB_LIBDIRS" $INTL "$PCRE_LIBDIRS" $SOCKETLIB "$CARBON" >> ./src/Makevars
+printf "\${SHLIB}: libcl.a libcqp.a libcwb.a\n" >>./src/Makevars
+printf "libcl.a: depend\n" >> ./src/Makevars
+printf "\tcd cwb; R_PACKAGE_SOURCE=%s PKG_CONFIG_PATH=%s \${MAKE} cl\n" ${CWB_DIR} ${PKG_CONFIG_PATH} >> ./src/Makevars
+printf "libcqp.a: depend\n" >> ./src/Makevars
+printf "\tcd cwb; R_PACKAGE_SOURCE=%s PKG_CONFIG_PATH=%s \${MAKE} cqp\n" ${CWB_DIR} ${PKG_CONFIG_PATH} >> ./src/Makevars
+printf "libcwb.a: depend\n" >> ./src/Makevars
+printf "\tcd cwb; R_PACKAGE_SOURCE=%s PKG_CONFIG_PATH=%s \${MAKE} utils\n" ${CWB_DIR} ${PKG_CONFIG_PATH} >> ./src/Makevars
+printf "depend: clean\n" >> ./src/Makevars
+printf "\tcd cwb; R_PACKAGE_SOURCE=%s PKG_CONFIG_PATH=%s \${MAKE} depend\n" ${CWB_DIR} ${PKG_CONFIG_PATH} >> ./src/Makevars
+printf "clean:\n" >> ./src/Makevars
+printf "\tcd cwb; R_PACKAGE_SOURCE=%s PKG_CONFIG_PATH=%s \${MAKE} clean\n" ${CWB_DIR} ${PKG_CONFIG_PATH} >> ./src/Makevars

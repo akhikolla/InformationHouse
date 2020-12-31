@@ -1,0 +1,18 @@
+WARNING: No test specified, defaulting to first test defined (psrwe_deepstate_test_c_match_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/psrwe/inst/testfiles/c_match/c_match_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash`
+TRACE: Running: psrwe_deepstate_test_c_match_test from /home/akhila/fuzzer_packages/fuzzedpackages/psrwe/inst/testfiles/c_match/c_match_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+target values: -9.91228e-57 -1.64036e-118 1.05391e+182 8.05607e-38 -3.84354e+136 2.36082e-100 3.01724e-124 9.57301e+229 -7.99809e-243 3.0603e-110 3.27696e-93 -2.10374e+36 -5.29515e-20 9.81127e+30 -3403.88 -364840 -8.45394e+179 -4.53552e+269 3.95635e-268
+Missing value
+candidate values: 7.10346e+183 nan -6.90559e+64 -inf 1.69525e-11 -3.22009e+207 1.87679e-179 7.60266e-52 -inf -4.07828e-125 1.24681e+68 -2.7582e-295 5.67557e+224 -3.54965e-194 1.60096e-198 4.16403e-243 inf -inf 4.45587e-209 3.27437e+270 1.99018e+90 7.37432e-288 3.21585e+236 -4.62773e+76 5.0002e+07 -6.90296e+295 0
+ratio values: -418923464
+input ends
+==550405==  If you believe this happened as a result of a stack
+==550405==  overflow in your program's main thread (unlikely but
+==550405==  possible), you can try to increase the size of the
+==550405==  main thread stack using the --main-stacksize= flag.
+==550405==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: psrwe_deepstate_test_c_match_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/psrwe/inst/testfiles/c_match/c_match_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash crashed

@@ -1,0 +1,34 @@
+Package: PPRL
+Type: Package
+Title: Privacy Preserving Record Linkage
+Version: 0.3.5.2
+Date: 2019-01-08
+Authors@R: c(person("Rainer", "Schnell", role = c("aut","cph")),
+    person("Dorothea", "Rukasz", role = c("aut", "cre"), email = "mitarbeiter.schnell@uni-due.de"),
+    person("Christian", "Borgs", role = "ctb"),
+    person("Stefan", "Brumme", role = "ctb", comment="HMAC, SHA256"),
+    person("William B.", "Brogden", role = "ctb", comment="Metaphone"),
+    person("Tim", " O'Brien", role = "ctb", comment="Metaphone"),
+    person("Stephen", "Lacy", role = "ctb", comment="Double Metaphone"),
+    person("Apache Software Foundation", role = "cph"))
+Author: Rainer Schnell [aut, cph],
+  Dorothea Rukasz [aut, cre],
+  Christian Borgs [ctb],
+  Stefan Brumme [ctb] (HMAC, SHA256),
+  William B. Brogden [ctb] (Metaphone),
+  Tim O'Brien [ctb] (Metaphone),
+  Stephen Lacy [ctb] (Double Metaphone),
+  Apache Software Foundation [cph]
+Maintainer: Dorothea Rukasz <mitarbeiter.schnell@uni-due.de>
+Description: A toolbox for deterministic, probabilistic and privacy-preserving record linkage techniques. Combines the functionality of the 'Merge ToolBox' (<http://record-linkage.de>) with current privacy-preserving techniques.
+License: GPL-3
+LazyData: TRUE
+Depends: R (>= 3.1.0)
+Imports: Rcpp (>= 0.12.7), settings
+LinkingTo: Rcpp
+RoxygenNote: 6.1.0
+NeedsCompilation: yes
+Encoding: UTF-8
+Packaged: 2019-01-08 15:07:14 UTC; schnell-user
+Repository: CRAN
+Date/Publication: 2019-01-08 16:30:14 UTC

@@ -1,0 +1,5 @@
+useDynLib(Bestie)
+importFrom(Rcpp, evalCpp)
+
+export(DAGintervention)
+export(DAGinterventionMC)

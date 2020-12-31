@@ -1,0 +1,20 @@
+
+citHeader("To cite the 'BWStest' package in publications use:")
+
+year = sub('.*(2[[:digit:]]{3})-.*', '\\1', meta$Date, perl = TRUE)
+vers = paste('R package version', meta$Version)
+
+citEntry(
+  entry = "manual",
+	key = paste0(meta$Package,"-Manual"),
+  title = paste0("{", meta$Package, "}: ", 
+					 sub("Schindler","{S}chindler",sub("Weiss",'{W}ei{\\ss}',fixed=TRUE,sub("Baumgartner","{B}aumgartner",sub("BWS","{BWS}",meta$Title))))),
+  author = as.person(meta$Author),
+  year = year,
+  note = vers,
+  url = meta$URL,
+  textVersion = paste0("Steven E. Pav (", year, "). ", meta$Package, ": ", meta$Title, ". ", vers, ".")
+)
+
+#for vim modeline: (do not edit)
+# vim:fdm=marker:fmr=FOLDUP,UNFOLD:cms=#%s:syn=r:ft=r

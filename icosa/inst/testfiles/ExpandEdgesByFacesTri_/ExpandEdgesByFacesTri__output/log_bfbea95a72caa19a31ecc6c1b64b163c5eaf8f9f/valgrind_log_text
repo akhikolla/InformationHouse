@@ -1,0 +1,19 @@
+WARNING: No test specified, defaulting to first test defined (icosa_deepstate_test_ExpandEdgesByFacesTri__test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/icosa/inst/testfiles/ExpandEdgesByFacesTri_/ExpandEdgesByFacesTri__output/bfbea95a72caa19a31ecc6c1b64b163c5eaf8f9f.fail`
+TRACE: Running: icosa_deepstate_test_ExpandEdgesByFacesTri__test from /home/akhila/fuzzer_packages/fuzzedpackages/icosa/inst/testfiles/ExpandEdgesByFacesTri_/ExpandEdgesByFacesTri__DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+origV values:     nan    -inf    -inf     nan    -inf 1.55275e+40
+
+Missing value
+origSubF values: 4.19790e+140    -inf     inf 2.00396e-158 2.91601e+272     inf     nan     nan
+
+center values: -2.07468e-284 6.94131e+164 -5.59672e-168 -3.58047e-10 4.92682e-88 -1.11189e-72 1.39766e-176 -1.46674e+64 1.5471e-298 6.0141e+221 8.84504e-195 1.58469e+132 -4.87411e+199 -6.57814e-121 -3.95541e-64 -6.06987e-92 1.99298e+185 2.76504e-247 1.7345e-218 -7.99673e+32 -2.65452e-24 2.90992e-226 1.59363e-85 -9.60586e-14 1.94017e+245 -7.08033e+11 2.70557e-169 1.94564e-174 2.16962e-222 2.86187e+259 -1.701e-276 5.99249e+109 -6.87851e+103 -4.04479e+229 1.15534e+107 5.71274e-194 2.01701e+253 -3.11231e-229 -1.34478e-162 -2.19771e-185 9.33597e-293 7.34305e-165 -1.04191e-193 2.15177e+165 -6.94314e-208 -3.019e-156 -4.27378e+148 1.23323e+130 1.48547e-143 -1.0431e-116 8.16764e-111 -2.09545e-22 -5.70401e-238 -2.07082e-80 8.54554e+192 3.13881e-45 -1.3183e-67 -3.88007e+111 -2.7335e-273 3.74347e+144 -1.11691e+197 8.24572e-140 -3.14331e+09 -2.71545e+175 -8.99303e+140 1.38165e+132 1.04275e-173 1.33397e-166 -3.22048e-233 -8.99109e+11 -5.80326e+65 -3.02867e+104 -0.00296575 -9.06851e+282 4.63877e+62 -5.6241e-74 -1.44589e-68 0.00715435 -1.7006e-43
+breaks values: -1327588367
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Row index is out of bounds: [index=-2147483648; row extent=1].
+ERROR: Failed: icosa_deepstate_test_ExpandEdgesByFacesTri__test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/icosa/inst/testfiles/ExpandEdgesByFacesTri_/ExpandEdgesByFacesTri__output/bfbea95a72caa19a31ecc6c1b64b163c5eaf8f9f.fail failed

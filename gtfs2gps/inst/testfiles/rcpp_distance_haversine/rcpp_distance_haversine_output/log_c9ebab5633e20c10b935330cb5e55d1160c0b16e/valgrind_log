@@ -1,0 +1,188 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./rcpp_distance_haversine_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/gtfs2gps/inst/testfiles/rcpp_distance_haversine/rcpp_distance_haversine_output/c9ebab5633e20c10b935330cb5e55d1160c0b16e.pass</line>
+</preamble>
+
+<pid>834492</pid>
+<ppid>834491</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/gtfs2gps/inst/testfiles/rcpp_distance_haversine/rcpp_distance_haversine_output/log_c9ebab5633e20c10b935330cb5e55d1160c0b16e/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./rcpp_distance_haversine_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/gtfs2gps/inst/testfiles/rcpp_distance_haversine/rcpp_distance_haversine_output/c9ebab5633e20c10b935330cb5e55d1160c0b16e.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.040 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D27E08</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gtfs2gps/src/gtfs2gps.so</obj>
+      <fn>rcpp_distance_haversine(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/gtfs2gps/src</dir>
+      <file>distance_calcs.cpp</file>
+      <line>45</line>
+    </frame>
+    <frame>
+      <ip>0x40A4C7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gtfs2gps/inst/testfiles/rcpp_distance_haversine/rcpp_distance_haversine_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_gtfs2gps_deepstate_test_rcpp_distance_haversine_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/gtfs2gps/inst/testfiles/rcpp_distance_haversine</dir>
+      <file>rcpp_distance_haversine_DeepState_TestHarness.cpp</file>
+      <line>39</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gtfs2gps/inst/testfiles/rcpp_distance_haversine/rcpp_distance_haversine_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_gtfs2gps_deepstate_test_rcpp_distance_haversine_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/gtfs2gps/inst/testfiles/rcpp_distance_haversine</dir>
+      <file>rcpp_distance_haversine_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D498</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gtfs2gps/inst/testfiles/rcpp_distance_haversine/rcpp_distance_haversine_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D739</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gtfs2gps/inst/testfiles/rcpp_distance_haversine/rcpp_distance_haversine_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D814</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gtfs2gps/inst/testfiles/rcpp_distance_haversine/rcpp_distance_haversine_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gtfs2gps/inst/testfiles/rcpp_distance_haversine/rcpp_distance_haversine_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xa14f200 is 0 bytes after a block of size 256 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x40F8FD</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gtfs2gps/inst/testfiles/rcpp_distance_haversine/rcpp_distance_haversine_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector(int const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>130</line>
+    </frame>
+    <frame>
+      <ip>0x407D75</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gtfs2gps/inst/testfiles/rcpp_distance_haversine/rcpp_distance_haversine_DeepState_TestHarness</obj>
+      <fn>RcppDeepState_NumericVector()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppDeepState/include/RcppDeepState.h</file>
+      <line>43</line>
+    </frame>
+    <frame>
+      <ip>0x409D34</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gtfs2gps/inst/testfiles/rcpp_distance_haversine/rcpp_distance_haversine_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_gtfs2gps_deepstate_test_rcpp_distance_haversine_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/gtfs2gps/inst/testfiles/rcpp_distance_haversine</dir>
+      <file>rcpp_distance_haversine_DeepState_TestHarness.cpp</file>
+      <line>20</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gtfs2gps/inst/testfiles/rcpp_distance_haversine/rcpp_distance_haversine_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_gtfs2gps_deepstate_test_rcpp_distance_haversine_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/gtfs2gps/inst/testfiles/rcpp_distance_haversine</dir>
+      <file>rcpp_distance_haversine_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D498</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gtfs2gps/inst/testfiles/rcpp_distance_haversine/rcpp_distance_haversine_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D739</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gtfs2gps/inst/testfiles/rcpp_distance_haversine/rcpp_distance_haversine_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D814</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gtfs2gps/inst/testfiles/rcpp_distance_haversine/rcpp_distance_haversine_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/gtfs2gps/inst/testfiles/rcpp_distance_haversine/rcpp_distance_haversine_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.917 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>16</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:09.491 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

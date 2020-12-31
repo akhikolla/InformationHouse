@@ -1,0 +1,16 @@
+citHeader("To cite the 'PP' package in publications use:")
+
+year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date, perl = TRUE)
+vers <- paste("R package version", meta$Version)
+
+citEntry(entry="Manual",
+         title = "PP: Estimation of person parameters for the 1,2,3,4-PL model and the GPCM.",
+         author = personList(as.person("Manuel Reif and Jan Steinfeld")),
+         year = year,
+         note = vers,
+    url  = "https://github.com/manuelreif/PP",        
+         textVersion =
+         paste0("Reif, M. and Steinfeld, J. (",
+               year,
+               "). PP: Estimation of person parameters for the 1,2,3,4-PL model and the GPCM. ",
+               vers, "."," https://github.com/manuelreif/PP"))

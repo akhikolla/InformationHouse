@@ -1,0 +1,29 @@
+WARNING: No test specified, defaulting to first test defined (Rrelperm_deepstate_test_kr3p_StoneII_SwSg_cpp_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/Rrelperm/inst/testfiles/kr3p_StoneII_SwSg_cpp/kr3p_StoneII_SwSg_cpp_output/35d8be9e58a84a90feecc6b279cadd40218ef1c5.fail`
+TRACE: Running: Rrelperm_deepstate_test_kr3p_StoneII_SwSg_cpp_test from /home/akhila/fuzzer_packages/fuzzedpackages/Rrelperm/inst/testfiles/kr3p_StoneII_SwSg_cpp/kr3p_StoneII_SwSg_cpp_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+SWCON values: 1.27048e-62
+SWCRIT values: -2.88162e-134
+SOIRW values: 8.18711e+299
+SORW values: 0.00468189
+SOIRG values: 9.28697e-257
+SORG values: -4.47314e+269
+SGCON values: -1.08462e-247
+SGCRIT values: -1.0696e+114
+KRWIRO values: -3.47955e-216
+KROCW values: -8.95181e+215
+KRGCL values: 1.38348e-136
+NW values: 6.24605e+181
+NOW values: -4.11368e+80
+NG values: -nan
+NOG values: 2.79008e+291
+NP values: -152022060
+input ends
+
+error: Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+terminate called after throwing an instance of 'std::logic_error'
+  what():  Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+ERROR: Failed: Rrelperm_deepstate_test_kr3p_StoneII_SwSg_cpp_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/Rrelperm/inst/testfiles/kr3p_StoneII_SwSg_cpp/kr3p_StoneII_SwSg_cpp_output/35d8be9e58a84a90feecc6b279cadd40218ef1c5.fail failed

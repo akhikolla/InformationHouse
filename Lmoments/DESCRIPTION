@@ -1,0 +1,23 @@
+Package: Lmoments
+Version: 1.3-1
+Date: 2019-03-13
+Title: L-Moments and Quantile Mixtures
+Authors@R: c(person("Juha", "Karvanen", email = "juha.karvanen@iki.fi", role = c("cre", "aut")),
+           person("Santeri", "Karppinen", email = "santeri.j.karppinen@jyu.fi", role = "aut"))
+Maintainer: Juha Karvanen <juha.karvanen@iki.fi>
+Description: Contains functions to estimate
+        L-moments and trimmed L-moments from the data. Also
+        contains functions to estimate the parameters of the normal
+        polynomial quantile mixture and the Cauchy polynomial quantile
+        mixture from L-moments and trimmed L-moments.
+Imports: stats, Rcpp
+LinkingTo: Rcpp, RcppArmadillo
+License: GPL-2
+URL: http://users.jyu.fi/~jutakarv/
+NeedsCompilation: yes
+Packaged: 2019-03-15 15:52:46 UTC; santeri
+Repository: CRAN
+Date/Publication: 2019-03-15 17:03:54 UTC
+RoxygenNote: 6.1.1
+Author: Juha Karvanen [cre, aut],
+  Santeri Karppinen [aut]

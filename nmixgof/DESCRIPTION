@@ -1,0 +1,21 @@
+Package: nmixgof
+Title: Goodness of Fit Checks for Binomial N-Mixture Models
+Version: 0.1.0
+Authors@R: person("Jonas", "Knape", email = "jonas.knape@slu.se", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-8012-5131"))
+Description: Provides residuals and overdispersion metrics to assess the fit of N-mixture models obtained using the package 'unmarked'. 
+    Details on the methods are given in Knape et al. (2017) <doi:10.1101/194340>.
+Depends: R (>= 3.3.0)
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+LinkingTo: Rcpp
+Imports: Rcpp, unmarked
+RoxygenNote: 6.0.1
+URL: https://github.com/jknape/nmixgof
+BugReports: https://github.com/jknape/nmixgof/issues
+NeedsCompilation: yes
+Packaged: 2018-07-05 14:12:21 UTC; jonas
+Author: Jonas Knape [aut, cre] (<https://orcid.org/0000-0002-8012-5131>)
+Maintainer: Jonas Knape <jonas.knape@slu.se>
+Repository: CRAN
+Date/Publication: 2018-07-05 15:20:11 UTC

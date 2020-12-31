@@ -1,0 +1,17 @@
+WARNING: No test specified, defaulting to first test defined (BiDAG_deepstate_test_takelast_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/BiDAG/inst/testfiles/takelast/takelast_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash`
+TRACE: Running: BiDAG_deepstate_test_takelast_test from /home/akhila/fuzzer_packages/fuzzedpackages/BiDAG/inst/testfiles/takelast/takelast_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+xs values: -9.91228e-57 -1.64036e-118 1.05391e+182 8.05607e-38 -3.84354e+136 2.36082e-100 3.01724e-124 9.57301e+229 -7.99809e-243 3.0603e-110 3.27696e-93 -2.10374e+36 -5.29515e-20 9.81127e+30 -3403.88 -364840 -8.45394e+179 -4.53552e+269 3.95635e-268
+pos values: 1848989453
+n values: 2037305148
+input ends
+==283702==  If you believe this happened as a result of a stack
+==283702==  overflow in your program's main thread (unlikely but
+==283702==  possible), you can try to increase the size of the
+==283702==  main thread stack using the --main-stacksize= flag.
+==283702==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: BiDAG_deepstate_test_takelast_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/BiDAG/inst/testfiles/takelast/takelast_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash crashed

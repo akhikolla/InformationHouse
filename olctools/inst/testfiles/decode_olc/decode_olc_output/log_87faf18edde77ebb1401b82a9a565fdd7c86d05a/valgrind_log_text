@@ -1,0 +1,12 @@
+WARNING: No test specified, defaulting to first test defined (olctools_deepstate_test_decode_olc_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/olctools/inst/testfiles/decode_olc/decode_olc_output/87faf18edde77ebb1401b82a9a565fdd7c86d05a.fail`
+TRACE: Running: olctools_deepstate_test_decode_olc_test from /home/akhila/fuzzer_packages/fuzzedpackages/olctools/inst/testfiles/decode_olc/decode_olc_DeepState_TestHarness.cpp(10)
+input starts
+EXTERNAL: qs v0.23.4.
+
+olcs values: "onrhnmtxykkmmyxkryin" "NA" "wifu" "NA" "kkgtiehqyeiucwrjsnrr" "" "zvmayjbqscfsdpjzemin" "NA" "NA" "" "naouvusxnpbeofzeklp" "xn" "eyahxhchjgdrmbaobsva" "myudjirtzuxydxliifpa" "iyxdrxwzbg" "NA" "ireuzueiqgfdxvdrckll" "gcvcsyhpqrfxi" "iivdedxjzkaghnwtpsjp" "zdzmevqqelnlhdeyxzfn" "" "nsqkvworiodjvdpfzlrz" "rlbhltdhrecmytwalsrl" "vh" "waswoluipkaoklywbs" "vtxnjvrs" "NA" "NA" "NA" "plyyuriln" "" "ngiteudgbczd" "NA" "xlyoznsxrmfkiyxhisqm" "jccdqxhvgonoktapsj" "kklpqsbflfba" "vbrifbputnfrodjmoenu" "ajlywnekjkirsziqrpjb" "xbymcgjghcuccnbvxsex" "aby" "NA" "fwtllzwnznlsxwjg" "uyifbzqvfqgxdfvv" "vnrfsxxqwoapvbcnt" "jlvchzpsxheho"
+input ends
+terminate called after throwing an instance of 'std::range_error'
+  what():  The Open Location Codes provided must be complete. Incomplete code: onrhnmtxykkmmyxkryin
+ERROR: Failed: olctools_deepstate_test_decode_olc_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/olctools/inst/testfiles/decode_olc/decode_olc_output/87faf18edde77ebb1401b82a9a565fdd7c86d05a.fail failed

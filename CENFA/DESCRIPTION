@@ -1,0 +1,31 @@
+Package: CENFA
+Type: Package
+Title: Climate and Ecological Niche Factor Analysis
+Version: 1.1.0
+Date: 2020-02-15
+Author: D. Scott Rinnan
+Maintainer: D. Scott Rinnan <scott.rinnan@yale.edu>
+Description: Tools for climate- and ecological-niche factor analysis of spatial data, including methods for visualization of spatial variability of species sensitivity, exposure, and vulnerability to climate change. Processing of large files and parallel methods are supported. Ecological-niche factor analysis is described in Hirzel et al. (2002) <doi:10.2307/3071784> and Basille et al. (2008) <doi:10.1016/j.ecolmodel.2007.09.006>.
+Depends: R (>= 3.5.0), raster (>= 2.6.7)
+Imports: doSNOW (>= 1.0.16), foreach (>= 1.4.4), graphics, grDevices,
+        magrittr, methods, parallel (>= 3.3.3), pbapply (>= 1.3.3),
+        Rcpp (>= 0.12.14), snow (>= 0.4.2), sp (>= 1.2.7)
+LinkingTo: Rcpp
+License: GPL (>= 3)
+LazyData: TRUE
+RoxygenNote: 7.0.2
+Suggests: knitr, maps, rmarkdown
+VignetteBuilder: knitr
+Collate: 'CENFA.R' 'GLcenfa-class.R' 'GLcenfa.R' 'GLdeparture-class.R'
+        'GLdeparture.R' 'RcppExports.R' 'brStick.R' 'calc.R'
+        'climdat.fut.R' 'climdat.hist.R' 'cnfa-class.R' 'cnfa.R'
+        'covij.R' 'departure-class.R' 'departure.R' 'enfa-class.R'
+        'enfa.R' 'exposure_map.R' 'names.R' 'overlay.R' 'parCov.R'
+        'parScale.R' 'vulnerability-class.R' 'predict.R' 'scatter.R'
+        'sensitivity_map.R' 'slots.R' 'stretchPlot.R' 'tree-data.R'
+        'vulnerability.R' 'vulnerability_map.R'
+Encoding: UTF-8
+NeedsCompilation: yes
+Packaged: 2020-02-15 19:03:30 UTC; darwin
+Repository: CRAN
+Date/Publication: 2020-02-15 22:40:11 UTC

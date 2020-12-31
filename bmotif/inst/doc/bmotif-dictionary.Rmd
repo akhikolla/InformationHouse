@@ -1,0 +1,37 @@
+---
+title: "bmotif motif dictionary"
+author: "Benno I. Simmons"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{bmotif motif dictionary}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Dictionary
+
+`bmotif` considers all 44 unique bipartite motifs up to six nodes. Within these motifs there are 148 unique node positions and 106 unique link positions. All motifs, node positions and link positions considered by `bmotif` are shown in the Figure below. This is the 'dictionary' used by bmotif: the canonical reference for all motif, node position and link position IDs used by the package and returned by the functions.
+
+```{r, echo = FALSE, out.width = "100%"}
+knitr::include_graphics("../man/figures/dictionary.png")
+```
+
+Large numbers above and to the left of each motif represent the ID of a motif. Small numbers at the end of links represent node position IDs within motifs. Small numbers to the left of each motif represent link position IDs within motifs: the colour of the link position number corresponds to the colour of the links in the motif. Colours are colourblind safe following the palette proposed by Wong et al (2011). Motif IDs and node position IDS can also be found in **Simmons, B. I., Sweering, M. J. M., Dicks, L. V., Sutherland, W. J. and Di Clemente, R. bmotif: a package for counting motifs in bipartite networks. bioRxiv. doi: 10.1101/302356**. Link position IDs are only in the Figure above. Node positions were defined following Baker et al (2015) Appendix 1 Figure A27.
+
+
+Consider the example of motif 5:
+
+```{r, echo = FALSE, out.width = "50%"}
+knitr::include_graphics("../man/figures/motif5.png")
+```
+
+
+We know this is motif 5 because the large number above and to the left of the motif gives the motif ID as 5. This motif contains four unique node positions, given by the numbers at the ends of each link: 9, 10, 11 and 12. This motif also contains three unique link positions given by the three coloured numbers to the left of the motif. The leftmost link between positions 9 and 12 is in link position 5, the rightmost link between positions 10 and 11 is in link position 6, and the middle diagonal link between positions 10 and 12 is in link position 7.

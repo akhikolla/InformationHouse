@@ -1,0 +1,35 @@
+INFO: Starting fuzzing
+WARNING: No test specified, defaulting to first test defined (Rrelperm_deepstate_test_kr2p_ow_cpp_test)
+input starts
+EXTERNAL: qs v0.23.4.
+
+SWCON values: -2.43318e-187
+SWCRIT values: -1.64581e+174
+SOIRW values: -1.66668e-49
+SORW values: 1.91698e-80
+KRWIRO values: 2.93871e+294
+KROCW values: 6.2389e-80
+NW values: 4.73594e-68
+NOW values: 1.92375e+304
+NP values: -648742763
+input ends
+
+error: Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+terminate called after throwing an instance of 'std::logic_error'
+  what():  Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+ERROR: Failed: Rrelperm_deepstate_test_kr2p_ow_cpp_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/Rrelperm/inst/testfiles/kr2p_ow_cpp/kr2p_ow_cpp_output/7e3ef9bbc85102a38fe9e2875b00943036e209ec.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+SWCON values: -1.5615e-299
+SWCRIT values: -1.20777e+13
+SOIRW values: 2.79236e-196
+SORW values: 1.26379e+187
+KRWIRO values: 1.42068e+49
+KROCW values: 2.58036e-206
+NW values: 3.02006e-260
+NOW values: -9.91228e-57
+NP values: 819746351
+input ends
+INFO: Done fuzzing! Ran 2 tests (0 tests/second) with 1 failed/1 passed/0 abandoned tests

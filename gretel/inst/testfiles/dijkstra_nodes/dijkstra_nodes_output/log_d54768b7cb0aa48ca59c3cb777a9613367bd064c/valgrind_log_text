@@ -1,0 +1,19 @@
+WARNING: No test specified, defaulting to first test defined (gretel_deepstate_test_dijkstra_nodes_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_nodes/dijkstra_nodes_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash`
+TRACE: Running: gretel_deepstate_test_dijkstra_nodes_test from /home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_nodes/dijkstra_nodes_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+dist values: 2.58036e-206    -inf     nan
+
+src values: 1078897549
+node_costs values: -2.10374e+36 -5.29515e-20 9.81127e+30 -3403.88 -364840 -8.45394e+179
+input ends
+==834718==  If you believe this happened as a result of a stack
+==834718==  overflow in your program's main thread (unlikely but
+==834718==  possible), you can try to increase the size of the
+==834718==  main thread stack using the --main-stacksize= flag.
+==834718==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: gretel_deepstate_test_dijkstra_nodes_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/gretel/inst/testfiles/dijkstra_nodes/dijkstra_nodes_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash crashed

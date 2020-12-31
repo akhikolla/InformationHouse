@@ -1,0 +1,7 @@
+import("fitdistrplus")
+importFrom("stats", "density", "dexp", "df", "dgamma", "dnorm",
+             "dweibull", "pnorm", "rexp", "rf", "rgamma", "rnorm",
+             "runif", "rweibull", "var","dbeta","dunif","rbeta","dlnorm","rlnorm")
+export(dpareto, ppareto, qpareto, rpareto, dlaplace, plaplace, qlaplace, rlaplace, entropy.estimate, vs.test)
+importFrom(Rcpp,sourceCpp)
+useDynLib(vsgoftest)

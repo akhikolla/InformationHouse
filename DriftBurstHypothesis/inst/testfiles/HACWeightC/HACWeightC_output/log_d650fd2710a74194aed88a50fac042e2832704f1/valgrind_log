@@ -1,0 +1,460 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./HACWeightC_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_output/d650fd2710a74194aed88a50fac042e2832704f1.pass</line>
+</preamble>
+
+<pid>318585</pid>
+<ppid>318584</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_output/log_d650fd2710a74194aed88a50fac042e2832704f1/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./HACWeightC_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_output/d650fd2710a74194aed88a50fac042e2832704f1.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.026 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x40F259</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>arma::Mat&lt;double&gt;::~Mat()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/Mat_meat.hpp</file>
+      <line>27</line>
+    </frame>
+    <frame>
+      <ip>0x40FE97</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>arma::Col&lt;double&gt;::~Col()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/arma_forward.hpp</file>
+      <line>27</line>
+    </frame>
+    <frame>
+      <ip>0x409DCB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_DriftBurstHypothesis_deepstate_test_HACWeightC_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC</dir>
+      <file>HACWeightC_DeepState_TestHarness.cpp</file>
+      <line>23</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_DriftBurstHypothesis_deepstate_test_HACWeightC_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC</dir>
+      <file>HACWeightC_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41C9E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41CC89</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41CD64</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x1</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x40F288</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>release&lt;const double&gt;</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/memory.hpp</file>
+      <line>108</line>
+    </frame>
+    <frame>
+      <ip>0x40F288</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>arma::Mat&lt;double&gt;::~Mat()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/Mat_meat.hpp</file>
+      <line>30</line>
+    </frame>
+    <frame>
+      <ip>0x40FE97</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>arma::Col&lt;double&gt;::~Col()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/arma_forward.hpp</file>
+      <line>27</line>
+    </frame>
+    <frame>
+      <ip>0x409DCB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_DriftBurstHypothesis_deepstate_test_HACWeightC_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC</dir>
+      <file>HACWeightC_DeepState_TestHarness.cpp</file>
+      <line>23</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_DriftBurstHypothesis_deepstate_test_HACWeightC_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC</dir>
+      <file>HACWeightC_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41C9E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41CC89</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41CD64</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x2</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x483C9F5</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>free</fn>
+    </frame>
+    <frame>
+      <ip>0x40F29E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>release&lt;const double&gt;</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/memory.hpp</file>
+      <line>120</line>
+    </frame>
+    <frame>
+      <ip>0x40F29E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>arma::Mat&lt;double&gt;::~Mat()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/Mat_meat.hpp</file>
+      <line>30</line>
+    </frame>
+    <frame>
+      <ip>0x40FE97</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>arma::Col&lt;double&gt;::~Col()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/arma_forward.hpp</file>
+      <line>27</line>
+    </frame>
+    <frame>
+      <ip>0x409DCB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_DriftBurstHypothesis_deepstate_test_HACWeightC_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC</dir>
+      <file>HACWeightC_DeepState_TestHarness.cpp</file>
+      <line>23</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_DriftBurstHypothesis_deepstate_test_HACWeightC_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC</dir>
+      <file>HACWeightC_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41C9E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41CC89</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41CD64</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x3</unique>
+  <tid>1</tid>
+  <kind>InvalidFree</kind>
+  <what>Invalid free() / delete / delete[] / realloc()</what>
+  <stack>
+    <frame>
+      <ip>0x483CA3F</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>free</fn>
+    </frame>
+    <frame>
+      <ip>0x40F29E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>release&lt;const double&gt;</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/memory.hpp</file>
+      <line>120</line>
+    </frame>
+    <frame>
+      <ip>0x40F29E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>arma::Mat&lt;double&gt;::~Mat()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/Mat_meat.hpp</file>
+      <line>30</line>
+    </frame>
+    <frame>
+      <ip>0x40FE97</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>arma::Col&lt;double&gt;::~Col()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/arma_forward.hpp</file>
+      <line>27</line>
+    </frame>
+    <frame>
+      <ip>0x409DCB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_DriftBurstHypothesis_deepstate_test_HACWeightC_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC</dir>
+      <file>HACWeightC_DeepState_TestHarness.cpp</file>
+      <line>23</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_DriftBurstHypothesis_deepstate_test_HACWeightC_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC</dir>
+      <file>HACWeightC_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41C9E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41CC89</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41CD64</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x52875c0 is 0 bytes inside data symbol "_IO_2_1_stderr_"</auxwhat>
+</error>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:10:06.086 </time>
+</status>
+
+<error>
+  <unique>0x528</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>3,739,963,456 bytes in 1 blocks are possibly lost in loss record 1,317 of 1,317</text>
+    <leakedbytes>3739963456</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483E0F0</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>memalign</fn>
+    </frame>
+    <frame>
+      <ip>0x483E212</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>posix_memalign</fn>
+    </frame>
+    <frame>
+      <ip>0x4D284EA</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/src/DriftBurstHypothesis.so</obj>
+      <fn>acquire&lt;double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>memory.hpp</file>
+      <line>73</line>
+    </frame>
+    <frame>
+      <ip>0x4D284EA</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/src/DriftBurstHypothesis.so</obj>
+      <fn>init_warm</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>Mat_meat.hpp</file>
+      <line>322</line>
+    </frame>
+    <frame>
+      <ip>0x4D284EA</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/src/DriftBurstHypothesis.so</obj>
+      <fn>operator=&lt;arma::Col&lt;double&gt;, arma::eop_scalar_div_post&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>Mat_meat.hpp</file>
+      <line>4951</line>
+    </frame>
+    <frame>
+      <ip>0x4D284EA</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/src/DriftBurstHypothesis.so</obj>
+      <fn>Col&lt;arma::eOp&lt;arma::Col&lt;double&gt;, arma::eop_scalar_div_post&gt; &gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits</dir>
+      <file>Col_meat.hpp</file>
+      <line>357</line>
+    </frame>
+    <frame>
+      <ip>0x4D284EA</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/src/DriftBurstHypothesis.so</obj>
+      <fn>HACWeightC(int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/src</dir>
+      <file>DBH.cpp</file>
+      <line>18</line>
+    </frame>
+    <frame>
+      <ip>0x409DBA</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_DriftBurstHypothesis_deepstate_test_HACWeightC_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC</dir>
+      <file>HACWeightC_DeepState_TestHarness.cpp</file>
+      <line>23</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_DriftBurstHypothesis_deepstate_test_HACWeightC_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC</dir>
+      <file>HACWeightC_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41C9E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41CC89</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41CD64</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/DriftBurstHypothesis/inst/testfiles/HACWeightC/HACWeightC_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<errorcounts>
+  <pair>
+    <count>1</count>
+    <unique>0x3</unique>
+  </pair>
+  <pair>
+    <count>1</count>
+    <unique>0x2</unique>
+  </pair>
+  <pair>
+    <count>1</count>
+    <unique>0x1</unique>
+  </pair>
+  <pair>
+    <count>1</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:10:17.403 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

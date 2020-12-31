@@ -1,0 +1,13 @@
+WARNING: No test specified, defaulting to first test defined (bnclassify_deepstate_test_ordersetdiff_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/bnclassify/inst/testfiles/ordersetdiff/ordersetdiff_output/8b047e6b116fbec31fd9ab1a5747623ed3251903.fail`
+TRACE: Running: bnclassify_deepstate_test_ordersetdiff_test from /home/akhila/fuzzer_packages/fuzzedpackages/bnclassify/inst/testfiles/ordersetdiff/ordersetdiff_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+vector values: "sgfefsqksogrldtbchaq" "olwjythkvqfyacxxedna" "drefqnkeibsrdgwkjrlc" "NA" "lwjofrkbeecxopxugonv" "NA" "NA" "zsllmqzdodqkrtbgfzzl" "hsvzwqbkpwbzhexhdtbc" "bobtiirrekyjbmnwwsem" "cotfw" "xgtsomu" "NA" "wdggznlicbfqezvcwczr" "xfrjmyzr" "gs" "ot" "NA" "xacupvudujke" "NA" "ttrfm" "grepkytllzrditpiyffv" "fui" "NA" "vebsketagamupskbh" "NA" "yzthal" "NA" "vfojfhwnraiydwkqtcvi" "NA" "fbsxxwjkggrgrxbdogeo" "kuvbdpnfrhiqgemfoaql" "gfxjwruegpkayewgdwau" "NA" "ozccpgcszh" "NA" "gejsjstpgcjuhfecazum" "" "ludvowuwooajpnnahzzy" "NA" "NA" "hbsazyeqwzxfio" "NA" "nhpqeaizxmcueiavfllf" "NA" "wfykvaodgqrnodebwtma" "NA" "yczosbhqb" "wbsfoofllevjmfrflqdt" "cmjeoxaj" "iirmtzayuztsrqhvpvts" "odbntc" "ufnnewbrgzovbqqoxzma" "gmqeub" "os" "hvakikmabwgaudslwetm" "NA"
+remove values: "icohllleepfqpfxtmufe" "NA" "clhiglyvyjmwlykuugta" "" "uiuofbzorpjaatblmze" "knhlxspecgnvuhcypnkx" "uazolxozwllxdrealves" "svbtppypzhgvjuajxrbh" "xh" "pdvxodbhtuindxjbszxo" "amtrswy" "ygawfloygtezxvgndkfs" "NA" "xyofkcki" "atslahdkfjuijh" "zvmpapktfyuhbfrnq" "NA" "NA" "ijwsdgfkrfmccirhhylr" "NA" "NA" "frsreulxcnkg" "czdtoehaaite" "qxlgsglgroyjjbemuuge" "" "fegjgax" "cvaqsnahtiekfbesktaa" "NA" "NA" "hcqjstcgaavtmfsvlo" "NA" "qxsj" "vqhcheqzbzxxthmiermu" "eyxdhw" "cyxyheidgvwjfcpzmrpa" "wplksrcdngmzcmmv" "qknigymohptezplvumyt" "ipbkxmlesxymqeiuuvlo" "NA" "ujvddsfqfvsdaamuazty" "zlxopxcolmtkqaply" "NA" "NA" "buxonbnzrkb" "ujaktivygmnxwgcnvubo" "NA" "NA" "NA" "NA" "NA" "NA" "maokznnnmlditkygcdod" "NA" "jrevbgdcmbgaxt" "xvrbmszqibheudxahjhw" "lgsmaqiltfecewenhigc" "" "uolruydltgviz" "NA" "eowmiumswmaarogja" "gfvtnbee" "lhudsbvvxlqwnwmal" "NA" "tvhwhijmlophpbftyhoa"
+input ends
+terminate called after throwing an instance of 'Rcpp::not_compatible'
+  what():  Expecting a single string value: [type=character; extent=64].
+ERROR: Failed: bnclassify_deepstate_test_ordersetdiff_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/bnclassify/inst/testfiles/ordersetdiff/ordersetdiff_output/8b047e6b116fbec31fd9ab1a5747623ed3251903.fail failed

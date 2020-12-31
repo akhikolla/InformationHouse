@@ -1,0 +1,4 @@
+useDynLib(MPBoost, .registration=TRUE)
+exportPattern("^[[:alpha:]]+")
+importFrom(Rcpp, evalCpp)
+

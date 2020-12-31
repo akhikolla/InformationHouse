@@ -1,0 +1,567 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./getXc_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_output/794237df5eb3b47ba7750e60ae18582c16e5db43.fail</line>
+</preamble>
+
+<pid>865362</pid>
+<ppid>865361</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_output/log_794237df5eb3b47ba7750e60ae18582c16e5db43/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./getXc_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_output/794237df5eb3b47ba7750e60ae18582c16e5db43.fail</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.026 </time>
+</status>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.402 </time>
+</status>
+
+<error>
+  <unique>0x9</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>8 bytes in 1 blocks are definitely lost in loss record 10 of 1,324</text>
+    <leakedbytes>8</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D060F7</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::initialize(int, char const* const*, bool, bool, bool)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>198</line>
+    </frame>
+    <frame>
+      <ip>0x4D06483</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x409B63</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_imager_deepstate_test_getXc_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc</dir>
+      <file>getXc_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_imager_deepstate_test_getXc_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc</dir>
+      <file>getXc_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D489</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D564</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x2a</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>94 bytes in 1 blocks are possibly lost in loss record 43 of 1,324</text>
+    <leakedbytes>94</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483C583</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new[](unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D9D112</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/src/imager.so</obj>
+      <fn>cimg_library::CImgIOException::CImgIOException(char const*, ...)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/imager/src/../inst/include</dir>
+      <file>CImg.h</file>
+      <line>2621</line>
+    </frame>
+    <frame>
+      <ip>0x4D9D4B2</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/src/imager.so</obj>
+      <fn>_stderr</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/imager/src/../inst/include</dir>
+      <file>CImg.h</file>
+      <line>62103</line>
+    </frame>
+    <frame>
+      <ip>0x4D9D4B2</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/src/imager.so</obj>
+      <fn>cimg_library::cimg::output(_IO_FILE*)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/imager/src/../inst/include</dir>
+      <file>CImg.h</file>
+      <line>5611</line>
+    </frame>
+    <frame>
+      <ip>0x4D9D709</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/src/imager.so</obj>
+      <fn>cimg_library::CImgInstanceException::CImgInstanceException(char const*, ...)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/imager/src/../inst/include</dir>
+      <file>CImg.h</file>
+      <line>2615</line>
+    </frame>
+    <frame>
+      <ip>0x4D577A5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/src/imager.so</obj>
+      <fn>CImg</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/imager/src/../inst/include</dir>
+      <file>CImg.h</file>
+      <line>11759</line>
+    </frame>
+    <frame>
+      <ip>0x4D577A5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/src/imager.so</obj>
+      <fn>getXc(int, int, int, int) [clone .cold]</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/imager/src</dir>
+      <file>coordinates.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x40A409</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_imager_deepstate_test_getXc_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc</dir>
+      <file>getXc_DeepState_TestHarness.cpp</file>
+      <line>38</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_imager_deepstate_test_getXc_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc</dir>
+      <file>getXc_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D489</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D564</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x34</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>136 bytes in 1 blocks are possibly lost in loss record 53 of 1,324</text>
+    <leakedbytes>136</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x512C2E3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>__cxa_allocate_exception</fn>
+    </frame>
+    <frame>
+      <ip>0x5121401</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>__cxa_throw_bad_array_new_length</fn>
+    </frame>
+    <frame>
+      <ip>0x4D5771D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/src/imager.so</obj>
+      <fn>CImg</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/imager/src/../inst/include</dir>
+      <file>CImg.h</file>
+      <line>11753</line>
+    </frame>
+    <frame>
+      <ip>0x4D5771D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/src/imager.so</obj>
+      <fn>getXc(int, int, int, int) [clone .cold]</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/imager/src</dir>
+      <file>coordinates.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x40A409</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_imager_deepstate_test_getXc_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc</dir>
+      <file>getXc_DeepState_TestHarness.cpp</file>
+      <line>38</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_imager_deepstate_test_getXc_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc</dir>
+      <file>getXc_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D489</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D564</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x37</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>144 bytes in 1 blocks are possibly lost in loss record 56 of 1,324</text>
+    <leakedbytes>144</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x512C2E3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>__cxa_allocate_exception</fn>
+    </frame>
+    <frame>
+      <ip>0x4D9D49E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/src/imager.so</obj>
+      <fn>_stderr</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/imager/src/../inst/include</dir>
+      <file>CImg.h</file>
+      <line>62103</line>
+    </frame>
+    <frame>
+      <ip>0x4D9D49E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/src/imager.so</obj>
+      <fn>cimg_library::cimg::output(_IO_FILE*)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/imager/src/../inst/include</dir>
+      <file>CImg.h</file>
+      <line>5611</line>
+    </frame>
+    <frame>
+      <ip>0x4D9D709</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/src/imager.so</obj>
+      <fn>cimg_library::CImgInstanceException::CImgInstanceException(char const*, ...)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/imager/src/../inst/include</dir>
+      <file>CImg.h</file>
+      <line>2615</line>
+    </frame>
+    <frame>
+      <ip>0x4D577A5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/src/imager.so</obj>
+      <fn>CImg</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/imager/src/../inst/include</dir>
+      <file>CImg.h</file>
+      <line>11759</line>
+    </frame>
+    <frame>
+      <ip>0x4D577A5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/src/imager.so</obj>
+      <fn>getXc(int, int, int, int) [clone .cold]</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/imager/src</dir>
+      <file>coordinates.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x40A409</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_imager_deepstate_test_getXc_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc</dir>
+      <file>getXc_DeepState_TestHarness.cpp</file>
+      <line>38</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_imager_deepstate_test_getXc_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc</dir>
+      <file>getXc_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D489</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D564</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x6b</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>306 (144 direct, 162 indirect) bytes in 1 blocks are definitely lost in loss record 108 of 1,324</text>
+    <leakedbytes>306</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x512C2E3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>__cxa_allocate_exception</fn>
+    </frame>
+    <frame>
+      <ip>0x4D5774B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/src/imager.so</obj>
+      <fn>CImg</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/imager/src/../inst/include</dir>
+      <file>CImg.h</file>
+      <line>11759</line>
+    </frame>
+    <frame>
+      <ip>0x4D5774B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/src/imager.so</obj>
+      <fn>getXc(int, int, int, int) [clone .cold]</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/imager/src</dir>
+      <file>coordinates.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x40A409</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_imager_deepstate_test_getXc_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc</dir>
+      <file>getXc_DeepState_TestHarness.cpp</file>
+      <line>38</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_imager_deepstate_test_getXc_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc</dir>
+      <file>getXc_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D489</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D564</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xb4</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>1,025 bytes in 1 blocks are definitely lost in loss record 181 of 1,324</text>
+    <leakedbytes>1025</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x51C63AF</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::reserve(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D04C55</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>MemBuf::MemBuf(int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>MemBuf.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x4D06467</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>56</line>
+    </frame>
+    <frame>
+      <ip>0x409B63</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_imager_deepstate_test_getXc_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc</dir>
+      <file>getXc_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409B48</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_imager_deepstate_test_getXc_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc</dir>
+      <file>getXc_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1E8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D489</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D564</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407655</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/imager/inst/testfiles/getXc/getXc_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.928 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

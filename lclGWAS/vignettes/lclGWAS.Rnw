@@ -1,0 +1,172 @@
+\documentclass[10pt,xcolor=x11names,compress]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{booktabs}
+
+
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{lclGWAS}
+
+
+\newcommand{\R}{\texttt{R}}
+\newcommand{\pkgname}{\texttt{lclGWAS}}
+\newcommand{\Rcpp}{\texttt{Rcpp}}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+
+\setbeamertemplate{enumerate item}{\insertenumlabel}
+\setbeamertemplate{enumerate subitem}{\alph{enumii}.}
+
+
+\begin{document}
+<<setup1, include=FALSE, echo=FALSE>>=
+require(knitr)
+@
+
+<<setup2, include=FALSE,echo=FALSE>>=
+options(width=80)  # make the printing fit on the page
+set.seed(1121)     # make the results repeatable
+stdt<-date()
+@
+
+\begin{frame}
+	\title{\pkgname}
+	\subtitle{Efficient Estimation of Discrete-Time Multivariate Frailty Model Using Exact Likelihood Function for Grouped Survival Data}
+	\date{2017-02-20}
+	\titlepage
+\end{frame}
+
+\section{Introduction}
+\begin{frame}{Introduction}
+  \begin{itemize}
+    \item This document provides an example for using the \pkgname{} package to estimate the baseline hazard, frailty variance, and fixed effect parameter for a discrete-time frailty model with random effects using the exact likelihood. The functions are designed to analyze grouped time-to-event data accounting for family structure of related individuals (i.e., trios).
+    \item The major algorithms in this package are written in \texttt{C++}, which is ported to \R{} by \Rcpp{}, to facilitate fast computation. 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Model Assumptions}
+  \begin{itemize}
+    \item The input data is assumed to be organized such that records for each family occur consecutively, and that records for offspring precede those for parents. The variance matrix for the random effects is assumed to be of the form \texttt{var}$*$\textbf{K}, where \textbf{K} is a matrix of kinship coefficients between family members. 
+    \item The following family groupings are permitted: (Individual), (Offspring, Offspring), (Offspring, Parent), (Offspring, Parent, Parent), and (Offspring, Offspring, Parent, Parent). Other family structures have not been implemented. 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{betaEst}
+<<beta, eval=FALSE>>=
+beta <- betaEst(fam_group, alpha, dtime, delta, 
+                g, var, lower = 0, upper = 2)
+@
+Function aguments:
+\begin{description}
+	\item[\texttt{fam\_group}:] Vector of family indicators for each sample.
+ 	\item[\texttt{alpha}:] Vector of baseline survival rates for each time interval.
+ 	\item[\texttt{dtime}:] Vector of observed discrete survival times for each sample.
+	\item[\texttt{delta}:] Event indicator vector: 1 indicates observed event, 0 indicates censored.
+	\item[\texttt{g}:] Vector of numeric genotypes for each sample.
+	\item[\texttt{var}:] Scalar for frailty variance.
+	\item[\texttt{lower}:] Scalar for the lower bound of the fixed effect parameter estimation search region.
+	\item[\texttt{upper}:] Scalar for the upper bound of the fixed effect parameter estimation search region.
+\end{description}
+\end{frame}
+
+\begin{frame}[fragile]{Returned Value of \texttt{betaEst} }
+Function returns:
+\begin{description}
+ 	\item[\texttt{betaEst}:] Scalar estimate of the fixed effect parameter.
+\end{description}
+\end{frame}
+
+
+\begin{frame}[fragile]{varEst}
+<<var, eval=FALSE>>=
+var <- varEst(fam_group, alpha, dtime, delta, 
+              g, beta, lower = 0, upper = 2)
+@
+Function aguments:
+\begin{description}
+	\item[\texttt{fam\_size}:] Vector of family indicators for each sample.
+ 	\item[\texttt{alpha}:] Vector of baseline survival rates for each time interval.
+ 	\item[\texttt{dtime}:] Vector of observed discrete survival times for each sample.
+	\item[\texttt{delta}:] Event indicator vector: 1 indicates observed event, 0 indicates censored.
+	\item[\texttt{g}:] Vector of numeric genotypes for each sample.
+	\item[\texttt{beta}:] Scalar for the fixed effect size.
+	\item[\texttt{lower}:] Scalar for the lower bound of the variance estimation search region.
+	\item[\texttt{upper}:] Scalar for the upper bound of the variance estimation search region.
+\end{description}
+\end{frame}
+
+\begin{frame}[fragile]{Returned Value of \texttt{varEst}}
+Function returns:
+\begin{description}
+ 	\item[\texttt{varEst}:] Scalar estimate of the frailty variance.
+\end{description}
+\end{frame}
+
+\begin{frame}[fragile]{alphaEst}
+<<alpha, eval=FALSE>>=
+alpha <- alphaEst(dtime, delta)
+@
+Function aguments:
+\begin{description}
+	\item[\texttt{dtime}:] Vector of observed discrete survival times for each sample.
+	\item[\texttt{delta}:] Event indicator vector: 1 indicates observed event, 0 indicates censored.
+\end{description}
+Function returns:
+\begin{description}
+    \item[\texttt{alphaEst}:] Vector of estimates of the baseline survival rates.
+\end{description}
+\end{frame}
+
+
+\section{Example}
+\begin{frame}[fragile]{Example}
+Generate discrete survival data:
+<<inputPara>>=
+alphas <- c(0.75, 0.6666667, 0.5, 0.0)
+fgrp   <- c(1, 1, 1, 2, 2, 2, 3, 3, 3)
+dtimes <- c(1, 3, 3, 4, 1, 1, 2, 3, 1)
+deltas <- c(1, 0, 1, 1, 1, 0, 1, 0, 1)
+gs     <- c(0, 1, 1, 1, 2, 2, 0, 0, 0)
+var    <- 0.2
+@ 
+
+Load \pkgname{} (after installing its dependent packages):
+<<loadpkg>>=
+library(lclGWAS)
+@ 
+\end{frame}
+
+
+\begin{frame}[fragile]{Example Execution}
+An example estimation of $\beta$ where the nuisance parameters are estimated under the null hypothesis:\\
+\vspace{2mm}
+Estimate alphas (always under the null hypothesis)
+<<expa,size='tiny'>>=
+alphaest <- alphaEst(dtimes, deltas)$alphaEst
+alphaest
+@
+Estimate variance under the null by setting \texttt{beta = 0}.
+<<expv,size='tiny'>>=
+var <- varEst(fgrp, alphaest, dtimes, deltas, gs, beta = 0, lower = 0, upper = 2)
+var$varEst
+@
+Estimate $\beta$
+<<expb,size='tiny'>>=
+betaEst(fgrp, alphaest, dtimes, deltas, gs, var$varEst, lower = 0, upper = 2)
+@
+\end{frame}
+
+\section{Session Information}
+\begin{frame}[fragile]{Session Information}
+<<sessinfo, echo=FALSE, include=TRUE, results='asis'>>=
+toLatex(sessionInfo(), locale=FALSE)
+@ 
+<<times, echo=FALSE, include=TRUE>>=
+print(paste("Start Time",stdt))
+print(paste("End Time  ",date()))
+@ 
+\end{frame}
+
+\end{document}

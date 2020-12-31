@@ -1,0 +1,365 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./np_m17_nw_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash</line>
+</preamble>
+
+<pid>705005</pid>
+<ppid>705004</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_output/log_23d61a41ba6238524b5d9f475daa4c7604c1f03a/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./np_m17_nw_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.025 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D6FEBE</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/src/bmotif.so</obj>
+      <fn>np_m17_nw(int, int, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/src</dir>
+      <file>node_pos_nodeweights.cpp</file>
+      <line>459</line>
+    </frame>
+    <frame>
+      <ip>0x40A1FD</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_bmotif_deepstate_test_np_m17_nw_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw</dir>
+      <file>np_m17_nw_DeepState_TestHarness.cpp</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_bmotif_deepstate_test_np_m17_nw_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw</dir>
+      <file>np_m17_nw_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DC68</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DF09</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DFE4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xa1ce780 is 0 bytes after a block of size 240 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x41837F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;::Vector(Rcpp::Dimension const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Vector.h</file>
+      <line>135</line>
+    </frame>
+    <frame>
+      <ip>0x40F616</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;::Matrix(int const&amp;, int const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/vector/Matrix.h</file>
+      <line>59</line>
+    </frame>
+    <frame>
+      <ip>0x408BAF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>RcppDeepState_NumericMatrix()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppDeepState/include/RcppDeepState.h</file>
+      <line>137</line>
+    </frame>
+    <frame>
+      <ip>0x409FAF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_bmotif_deepstate_test_np_m17_nw_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw</dir>
+      <file>np_m17_nw_DeepState_TestHarness.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_bmotif_deepstate_test_np_m17_nw_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw</dir>
+      <file>np_m17_nw_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DC68</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DF09</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DFE4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x20</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D6FED6</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/src/bmotif.so</obj>
+      <fn>np_m17_nw(int, int, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/src</dir>
+      <file>node_pos_nodeweights.cpp</file>
+      <line>459</line>
+    </frame>
+    <frame>
+      <ip>0x40A1FD</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_bmotif_deepstate_test_np_m17_nw_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw</dir>
+      <file>np_m17_nw_DeepState_TestHarness.cpp</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_bmotif_deepstate_test_np_m17_nw_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw</dir>
+      <file>np_m17_nw_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DC68</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DF09</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DFE4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x21</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D6FED8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/src/bmotif.so</obj>
+      <fn>np_m17_nw(int, int, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/src</dir>
+      <file>node_pos_nodeweights.cpp</file>
+      <line>459</line>
+    </frame>
+    <frame>
+      <ip>0x40A1FD</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_bmotif_deepstate_test_np_m17_nw_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw</dir>
+      <file>np_m17_nw_DeepState_TestHarness.cpp</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_bmotif_deepstate_test_np_m17_nw_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw</dir>
+      <file>np_m17_nw_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DC68</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DF09</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DFE4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<fatal_signal>
+  <tid>1</tid>
+  <signo>11</signo>
+  <signame>SIGSEGV</signame>
+  <sicode>2</sicode>
+  <event>Bad permissions for mapped region</event>
+  <siaddr>0xA689010</siaddr>
+  <stack>
+    <frame>
+      <ip>0x4D6FEBE</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/src/bmotif.so</obj>
+      <fn>np_m17_nw(int, int, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/src</dir>
+      <file>node_pos_nodeweights.cpp</file>
+      <line>459</line>
+    </frame>
+    <frame>
+      <ip>0x40A1FD</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_bmotif_deepstate_test_np_m17_nw_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw</dir>
+      <file>np_m17_nw_DeepState_TestHarness.cpp</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_bmotif_deepstate_test_np_m17_nw_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw</dir>
+      <file>np_m17_nw_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DC68</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DF09</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DFE4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/bmotif/inst/testfiles/np_m17_nw/np_m17_nw_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</fatal_signal>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:22.291 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>104957</count>
+    <unique>0x0</unique>
+  </pair>
+  <pair>
+    <count>1283</count>
+    <unique>0x21</unique>
+  </pair>
+  <pair>
+    <count>1283</count>
+    <unique>0x20</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:46.574 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

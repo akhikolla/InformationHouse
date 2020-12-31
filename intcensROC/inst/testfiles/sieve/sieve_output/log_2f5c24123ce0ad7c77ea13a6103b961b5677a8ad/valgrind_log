@@ -1,0 +1,1380 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./sieve_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_output/2f5c24123ce0ad7c77ea13a6103b961b5677a8ad.fail</line>
+</preamble>
+
+<pid>618155</pid>
+<ppid>618154</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_output/log_2f5c24123ce0ad7c77ea13a6103b961b5677a8ad/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./sieve_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_output/2f5c24123ce0ad7c77ea13a6103b961b5677a8ad.fail</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.026 </time>
+</status>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:16.691 </time>
+</status>
+
+<error>
+  <unique>0x9</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>8 bytes in 1 blocks are definitely lost in loss record 10 of 1,334</text>
+    <leakedbytes>8</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D060F7</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::initialize(int, char const* const*, bool, bool, bool)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>198</line>
+    </frame>
+    <frame>
+      <ip>0x4D06483</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x409B73</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_intcensROC_deepstate_test_sieve_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve</dir>
+      <file>sieve_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_intcensROC_deepstate_test_sieve_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve</dir>
+      <file>sieve_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DB08</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DDA9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DE84</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x12</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>24 bytes in 1 blocks are definitely lost in loss record 19 of 1,334</text>
+    <leakedbytes>24</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4D33DF7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>aligned_malloc</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>159</line>
+    </frame>
+    <frame>
+      <ip>0x4D33DF7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>conditional_aligned_malloc&lt;true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>214</line>
+    </frame>
+    <frame>
+      <ip>0x4D33DF7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>conditional_aligned_new_auto&lt;double, true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>374</line>
+    </frame>
+    <frame>
+      <ip>0x4D33DF7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>DenseStorage.h</file>
+      <line>557</line>
+    </frame>
+    <frame>
+      <ip>0x4D33DF7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>319</line>
+    </frame>
+    <frame>
+      <ip>0x4D33DF7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>_init1&lt;long int&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>782</line>
+    </frame>
+    <frame>
+      <ip>0x4D33DF7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>Matrix&lt;long int&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Matrix.h</file>
+      <line>294</line>
+    </frame>
+    <frame>
+      <ip>0x4D33DF7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>sieve(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src</dir>
+      <file>sieve.cpp</file>
+      <line>57</line>
+    </frame>
+    <frame>
+      <ip>0x40A83E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_intcensROC_deepstate_test_sieve_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve</dir>
+      <file>sieve_DeepState_TestHarness.cpp</file>
+      <line>47</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_intcensROC_deepstate_test_sieve_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve</dir>
+      <file>sieve_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DB08</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DDA9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DE84</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x32</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>136 bytes in 1 blocks are possibly lost in loss record 51 of 1,334</text>
+    <leakedbytes>136</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4DF62E3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>__cxa_allocate_exception</fn>
+    </frame>
+    <frame>
+      <ip>0x4D234C6</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>Eigen::internal::throw_std_bad_alloc()</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>70</line>
+    </frame>
+    <frame>
+      <ip>0x4D3491A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>run&lt;long int&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>48</line>
+    </frame>
+    <frame>
+      <ip>0x4D3491A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>Eigen::PlainObjectBase&lt;Eigen::Matrix&lt;double, -1, -1, 0, -1, -1&gt; &gt;::resize(long, long)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>286</line>
+    </frame>
+    <frame>
+      <ip>0x4D32FA5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>_init2&lt;int, int&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>745</line>
+    </frame>
+    <frame>
+      <ip>0x4D32FA5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>Matrix&lt;int, int&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Matrix.h</file>
+      <line>302</line>
+    </frame>
+    <frame>
+      <ip>0x4D32FA5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>sieve(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src</dir>
+      <file>sieve.cpp</file>
+      <line>96</line>
+    </frame>
+    <frame>
+      <ip>0x40A83E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_intcensROC_deepstate_test_sieve_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve</dir>
+      <file>sieve_DeepState_TestHarness.cpp</file>
+      <line>47</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_intcensROC_deepstate_test_sieve_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve</dir>
+      <file>sieve_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DB08</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DDA9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DE84</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x35</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>144 bytes in 1 blocks are definitely lost in loss record 54 of 1,334</text>
+    <leakedbytes>144</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4D339EF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>aligned_malloc</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>159</line>
+    </frame>
+    <frame>
+      <ip>0x4D339EF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>conditional_aligned_malloc&lt;true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>214</line>
+    </frame>
+    <frame>
+      <ip>0x4D339EF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>conditional_aligned_new_auto&lt;double, true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>374</line>
+    </frame>
+    <frame>
+      <ip>0x4D339EF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>DenseStorage.h</file>
+      <line>557</line>
+    </frame>
+    <frame>
+      <ip>0x4D339EF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>319</line>
+    </frame>
+    <frame>
+      <ip>0x4D339EF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>_init1&lt;long int&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>782</line>
+    </frame>
+    <frame>
+      <ip>0x4D339EF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>Matrix&lt;long int&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Matrix.h</file>
+      <line>294</line>
+    </frame>
+    <frame>
+      <ip>0x4D339EF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>sieve(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src</dir>
+      <file>sieve.cpp</file>
+      <line>63</line>
+    </frame>
+    <frame>
+      <ip>0x40A83E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_intcensROC_deepstate_test_sieve_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve</dir>
+      <file>sieve_DeepState_TestHarness.cpp</file>
+      <line>47</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_intcensROC_deepstate_test_sieve_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve</dir>
+      <file>sieve_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DB08</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DDA9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DE84</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x4c</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>208 bytes in 1 blocks are definitely lost in loss record 77 of 1,334</text>
+    <leakedbytes>208</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4D33CEF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>aligned_malloc</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>159</line>
+    </frame>
+    <frame>
+      <ip>0x4D33CEF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>conditional_aligned_malloc&lt;true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>214</line>
+    </frame>
+    <frame>
+      <ip>0x4D33CEF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>conditional_aligned_new_auto&lt;double, true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>374</line>
+    </frame>
+    <frame>
+      <ip>0x4D33CEF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>DenseStorage.h</file>
+      <line>557</line>
+    </frame>
+    <frame>
+      <ip>0x4D33CEF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>319</line>
+    </frame>
+    <frame>
+      <ip>0x4D33CEF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>_init1&lt;long int&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>782</line>
+    </frame>
+    <frame>
+      <ip>0x4D33CEF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>Matrix&lt;long int&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Matrix.h</file>
+      <line>294</line>
+    </frame>
+    <frame>
+      <ip>0x4D33CEF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>sieve(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src</dir>
+      <file>sieve.cpp</file>
+      <line>51</line>
+    </frame>
+    <frame>
+      <ip>0x40A83E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_intcensROC_deepstate_test_sieve_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve</dir>
+      <file>sieve_DeepState_TestHarness.cpp</file>
+      <line>47</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_intcensROC_deepstate_test_sieve_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve</dir>
+      <file>sieve_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DB08</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DDA9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DE84</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x8a</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>520 bytes in 1 blocks are definitely lost in loss record 139 of 1,334</text>
+    <leakedbytes>520</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4D33D27</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>aligned_malloc</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>159</line>
+    </frame>
+    <frame>
+      <ip>0x4D33D27</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>conditional_aligned_malloc&lt;true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>214</line>
+    </frame>
+    <frame>
+      <ip>0x4D33D27</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>conditional_aligned_new_auto&lt;double, true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>374</line>
+    </frame>
+    <frame>
+      <ip>0x4D33D27</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>DenseStorage.h</file>
+      <line>557</line>
+    </frame>
+    <frame>
+      <ip>0x4D33D27</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>319</line>
+    </frame>
+    <frame>
+      <ip>0x4D33D27</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>_init1&lt;long int&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>782</line>
+    </frame>
+    <frame>
+      <ip>0x4D33D27</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>Matrix&lt;long int&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Matrix.h</file>
+      <line>294</line>
+    </frame>
+    <frame>
+      <ip>0x4D33D27</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>sieve(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src</dir>
+      <file>sieve.cpp</file>
+      <line>48</line>
+    </frame>
+    <frame>
+      <ip>0x40A83E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_intcensROC_deepstate_test_sieve_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve</dir>
+      <file>sieve_DeepState_TestHarness.cpp</file>
+      <line>47</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_intcensROC_deepstate_test_sieve_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve</dir>
+      <file>sieve_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DB08</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DDA9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DE84</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x8d</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>528 bytes in 1 blocks are definitely lost in loss record 142 of 1,334</text>
+    <leakedbytes>528</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4D33DBF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>aligned_malloc</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>159</line>
+    </frame>
+    <frame>
+      <ip>0x4D33DBF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>conditional_aligned_malloc&lt;true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>214</line>
+    </frame>
+    <frame>
+      <ip>0x4D33DBF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>conditional_aligned_new_auto&lt;double, true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>374</line>
+    </frame>
+    <frame>
+      <ip>0x4D33DBF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>DenseStorage.h</file>
+      <line>557</line>
+    </frame>
+    <frame>
+      <ip>0x4D33DBF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>319</line>
+    </frame>
+    <frame>
+      <ip>0x4D33DBF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>_init1&lt;long int&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>782</line>
+    </frame>
+    <frame>
+      <ip>0x4D33DBF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>Matrix&lt;long int&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Matrix.h</file>
+      <line>294</line>
+    </frame>
+    <frame>
+      <ip>0x4D33DBF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>sieve(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src</dir>
+      <file>sieve.cpp</file>
+      <line>60</line>
+    </frame>
+    <frame>
+      <ip>0x40A83E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_intcensROC_deepstate_test_sieve_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve</dir>
+      <file>sieve_DeepState_TestHarness.cpp</file>
+      <line>47</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_intcensROC_deepstate_test_sieve_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve</dir>
+      <file>sieve_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DB08</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DDA9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DE84</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x8e</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>536 bytes in 1 blocks are possibly lost in loss record 143 of 1,334</text>
+    <leakedbytes>536</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4D339B7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>aligned_malloc</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>159</line>
+    </frame>
+    <frame>
+      <ip>0x4D339B7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>conditional_aligned_malloc&lt;true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>214</line>
+    </frame>
+    <frame>
+      <ip>0x4D339B7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>conditional_aligned_new_auto&lt;double, true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>374</line>
+    </frame>
+    <frame>
+      <ip>0x4D339B7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>DenseStorage.h</file>
+      <line>557</line>
+    </frame>
+    <frame>
+      <ip>0x4D339B7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>319</line>
+    </frame>
+    <frame>
+      <ip>0x4D339B7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>_init1&lt;long int&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>782</line>
+    </frame>
+    <frame>
+      <ip>0x4D339B7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>Matrix&lt;long int&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Matrix.h</file>
+      <line>294</line>
+    </frame>
+    <frame>
+      <ip>0x4D339B7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>sieve(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src</dir>
+      <file>sieve.cpp</file>
+      <line>54</line>
+    </frame>
+    <frame>
+      <ip>0x40A83E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_intcensROC_deepstate_test_sieve_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve</dir>
+      <file>sieve_DeepState_TestHarness.cpp</file>
+      <line>47</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_intcensROC_deepstate_test_sieve_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve</dir>
+      <file>sieve_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DB08</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DDA9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DE84</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xbb</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>1,025 bytes in 1 blocks are definitely lost in loss record 188 of 1,334</text>
+    <leakedbytes>1025</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E903AF</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::reserve(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D04C55</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>MemBuf::MemBuf(int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>MemBuf.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x4D06467</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>56</line>
+    </frame>
+    <frame>
+      <ip>0x409B73</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_intcensROC_deepstate_test_sieve_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve</dir>
+      <file>sieve_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_intcensROC_deepstate_test_sieve_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve</dir>
+      <file>sieve_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DB08</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DDA9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DE84</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x533</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>8,357,262,848 bytes in 1 blocks are possibly lost in loss record 1,332 of 1,334</text>
+    <leakedbytes>8357262848</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4D33C1F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>aligned_malloc</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>159</line>
+    </frame>
+    <frame>
+      <ip>0x4D33C1F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>conditional_aligned_malloc&lt;true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>214</line>
+    </frame>
+    <frame>
+      <ip>0x4D33C1F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>conditional_aligned_new_auto&lt;double, true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>374</line>
+    </frame>
+    <frame>
+      <ip>0x4D33C1F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>DenseStorage.h</file>
+      <line>557</line>
+    </frame>
+    <frame>
+      <ip>0x4D33C1F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>319</line>
+    </frame>
+    <frame>
+      <ip>0x4D33C1F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>_init1&lt;int&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>782</line>
+    </frame>
+    <frame>
+      <ip>0x4D33C1F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>Matrix&lt;int&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Matrix.h</file>
+      <line>294</line>
+    </frame>
+    <frame>
+      <ip>0x4D33C1F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>sieve(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src</dir>
+      <file>sieve.cpp</file>
+      <line>82</line>
+    </frame>
+    <frame>
+      <ip>0x40A83E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_intcensROC_deepstate_test_sieve_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve</dir>
+      <file>sieve_DeepState_TestHarness.cpp</file>
+      <line>47</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_intcensROC_deepstate_test_sieve_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve</dir>
+      <file>sieve_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DB08</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DDA9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DE84</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x534</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>8,357,262,848 bytes in 1 blocks are possibly lost in loss record 1,333 of 1,334</text>
+    <leakedbytes>8357262848</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4D33C5B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>aligned_malloc</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>159</line>
+    </frame>
+    <frame>
+      <ip>0x4D33C5B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>conditional_aligned_malloc&lt;true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>214</line>
+    </frame>
+    <frame>
+      <ip>0x4D33C5B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>conditional_aligned_new_auto&lt;double, true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>374</line>
+    </frame>
+    <frame>
+      <ip>0x4D33C5B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>DenseStorage.h</file>
+      <line>557</line>
+    </frame>
+    <frame>
+      <ip>0x4D33C5B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>319</line>
+    </frame>
+    <frame>
+      <ip>0x4D33C5B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>_init1&lt;int&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>782</line>
+    </frame>
+    <frame>
+      <ip>0x4D33C5B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>Matrix&lt;int&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Matrix.h</file>
+      <line>294</line>
+    </frame>
+    <frame>
+      <ip>0x4D33C5B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>sieve(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src</dir>
+      <file>sieve.cpp</file>
+      <line>83</line>
+    </frame>
+    <frame>
+      <ip>0x40A83E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_intcensROC_deepstate_test_sieve_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve</dir>
+      <file>sieve_DeepState_TestHarness.cpp</file>
+      <line>47</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_intcensROC_deepstate_test_sieve_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve</dir>
+      <file>sieve_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DB08</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DDA9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DE84</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x535</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>8,357,262,848 bytes in 1 blocks are possibly lost in loss record 1,334 of 1,334</text>
+    <leakedbytes>8357262848</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4D33D83</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>aligned_malloc</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>159</line>
+    </frame>
+    <frame>
+      <ip>0x4D33D83</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>conditional_aligned_malloc&lt;true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>214</line>
+    </frame>
+    <frame>
+      <ip>0x4D33D83</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>conditional_aligned_new_auto&lt;double, true&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core/util</dir>
+      <file>Memory.h</file>
+      <line>374</line>
+    </frame>
+    <frame>
+      <ip>0x4D33D83</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>DenseStorage.h</file>
+      <line>557</line>
+    </frame>
+    <frame>
+      <ip>0x4D33D83</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>resize</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>319</line>
+    </frame>
+    <frame>
+      <ip>0x4D33D83</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>_init1&lt;int&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>PlainObjectBase.h</file>
+      <line>782</line>
+    </frame>
+    <frame>
+      <ip>0x4D33D83</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>Matrix&lt;int&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppEigen/include/Eigen/src/Core</dir>
+      <file>Matrix.h</file>
+      <line>294</line>
+    </frame>
+    <frame>
+      <ip>0x4D33D83</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src/intcensROC.so</obj>
+      <fn>sieve(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/src</dir>
+      <file>sieve.cpp</file>
+      <line>93</line>
+    </frame>
+    <frame>
+      <ip>0x40A83E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_intcensROC_deepstate_test_sieve_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve</dir>
+      <file>sieve_DeepState_TestHarness.cpp</file>
+      <line>47</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_intcensROC_deepstate_test_sieve_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve</dir>
+      <file>sieve_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DB08</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41DDA9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DE84</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/intcensROC/inst/testfiles/sieve/sieve_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:35.026 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

@@ -1,0 +1,19 @@
+Package: activegp
+Type: Package
+Title: Gaussian Process Based Design and Analysis for the Active
+        Subspace Method
+Version: 1.0.5
+Date: 2020-10-22
+Author: Nathan Wycoff, Mickael Binois
+Maintainer: Nathan Wycoff <nathw95@vt.edu>
+Description: The active subspace method is a sensitivity analysis technique that finds important linear combinations of input variables for a simulator. This package provides functions allowing estimation of the active subspace without gradient information using Gaussian processes as well as sequential experimental design tools to minimize the amount of data required to do so. Implements Wycoff et al. (2019) <arXiv:1907.11572>.
+License: BSD_3_clause + file LICENSE
+Depends: R (>= 3.4.0)
+Imports: Rcpp (>= 0.12.18), hetGP (>= 1.1.1), lhs, numDeriv, methods
+LinkingTo: Rcpp, RcppArmadillo
+RoxygenNote: 7.1.1
+Suggests: testthat
+NeedsCompilation: yes
+Packaged: 2020-10-27 21:41:46 UTC; nate
+Repository: CRAN
+Date/Publication: 2020-10-27 22:10:07 UTC

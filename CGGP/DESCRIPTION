@@ -1,0 +1,32 @@
+Package: CGGP
+Type: Package
+Title: Composite Grid Gaussian Processes
+Version: 1.0.2
+Authors@R: 
+    c(
+    person("Collin", "Erickson", email = "collinberickson@gmail.com", role = c("aut", "cre")), # Creator is who gets bothered with issues
+    person("Matthew", "Plumlee", role = c("aut"))
+    ) # Maintainer: Who to complain to <yourfault@somewhere.net>
+Description: Run computer experiments using the adaptive composite grid
+    algorithm with a Gaussian process model.
+    The algorithm works best when running an experiment that can evaluate thousands
+    of points from a deterministic computer simulation.
+    This package is an implementation of a forthcoming paper by Plumlee,
+    Erickson, Ankenman, et al. For a preprint of the paper,
+    contact the maintainer of this package.
+License: GPL-3
+Imports: Rcpp (>= 0.12.18)
+LinkingTo: Rcpp, RcppArmadillo
+Suggests: testthat, covr, ggplot2, reshape2, plyr, MASS, knitr
+URL: https://github.com/CollinErickson/CGGP
+BugReports: https://github.com/CollinErickson/CGGP/issues
+Encoding: UTF-8
+RoxygenNote: 7.1.0
+VignetteBuilder: knitr
+NeedsCompilation: yes
+Packaged: 2020-03-26 18:00:42 UTC; collin
+Author: Collin Erickson [aut, cre],
+  Matthew Plumlee [aut]
+Maintainer: Collin Erickson <collinberickson@gmail.com>
+Repository: CRAN
+Date/Publication: 2020-03-29 10:50:06 UTC

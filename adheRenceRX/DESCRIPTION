@@ -1,0 +1,30 @@
+Package: adheRenceRX
+Type: Package
+Title: Assess Medication Adherence from Pharmaceutical Claims Data
+Version: 1.0.0
+Date: 2020-10-27
+Authors@R: person("Brennan", "Beal", email = "brennanbeal@gmail.com",
+  role = c("aut", "cre"))
+Description: A (mildly) opinionated set of functions to help assess medication adherence for researchers working with medication claims data.
+    Medication adherence analyses have several complex steps that are often convoluted and can be time-intensive. The focus is to create a 
+    set of functions using "tidy principles" geared towards transparency, speed, and flexibility while working with adherence metrics. All functions perform exactly one task 
+    with an intuitive name so that a researcher can handle details (often achieved with vectorized solutions) while we handle non-vectorized tasks common to most 
+    adherence calculations such as adjusting fill dates and determining episodes of care. The methodologies in referenced in this package come from
+    Canfield SL, et al (2019) "Navigating the Wild West of Medication Adherence Reporting in Specialty Pharmacy" <doi:10.18553/jmcp.2019.25.10.1073>.
+License: GPL (>= 2)
+Imports: Rcpp (>= 1.0.5), anytime, tidyr, dplyr, purrr, lubridate,
+        rlang
+LinkingTo: Rcpp
+RoxygenNote: 7.1.0
+Depends: R (>= 2.10)
+LazyData: true
+Suggests: testthat, spelling
+URL: https://github.com/btbeal/adheRenceRX
+BugReports: https://github.com/btbeal/adheRenceRX/issues
+Language: en-US
+NeedsCompilation: yes
+Packaged: 2020-11-19 18:09:29 UTC; btbeal
+Author: Brennan Beal [aut, cre]
+Maintainer: Brennan Beal <brennanbeal@gmail.com>
+Repository: CRAN
+Date/Publication: 2020-11-20 10:40:10 UTC

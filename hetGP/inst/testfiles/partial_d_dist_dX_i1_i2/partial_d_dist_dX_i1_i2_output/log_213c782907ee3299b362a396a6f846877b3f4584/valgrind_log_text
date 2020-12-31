@@ -1,0 +1,25 @@
+WARNING: No test specified, defaulting to first test defined (hetGP_deepstate_test_partial_d_dist_dX_i1_i2_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/partial_d_dist_dX_i1_i2/partial_d_dist_dX_i1_i2_output/213c782907ee3299b362a396a6f846877b3f4584.crash`
+TRACE: Running: hetGP_deepstate_test_partial_d_dist_dX_i1_i2_test from /home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/partial_d_dist_dX_i1_i2/partial_d_dist_dX_i1_i2_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+X1 values: 4.49653e+83 2.62736e-264 8.95062e-07 5.10578e-14
+8.29783e+300 -4.30971e+256 1.86531e+250 9.71140e-241
+1.44694e-22 1.01363e+74     inf 7.70719e-71
+5.24924e+272 2.14829e+78 1.83374e-104 1.49741e+196
+4.59987e+18 1.56356e-81    -inf 1.44529e+91
+    inf 1.87145e+289 1088.08     nan
+6.61249e-257 4.33714e-104 8.88077e+282 8.78821e+143
+
+i1 values: -1497971770
+i2 values: -36551517
+input ends
+==862618==  If you believe this happened as a result of a stack
+==862618==  overflow in your program's main thread (unlikely but
+==862618==  possible), you can try to increase the size of the
+==862618==  main thread stack using the --main-stacksize= flag.
+==862618==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: hetGP_deepstate_test_partial_d_dist_dX_i1_i2_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/partial_d_dist_dX_i1_i2/partial_d_dist_dX_i1_i2_output/213c782907ee3299b362a396a6f846877b3f4584.crash crashed

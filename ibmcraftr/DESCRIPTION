@@ -1,0 +1,27 @@
+Package: ibmcraftr
+Type: Package
+Title: Toolkits to Develop Individual-Based Models in Infectious
+        Disease
+Version: 1.0.0
+Date: 2016-11-16
+Authors@R: person("Sai Thein Than", "Tun", email = "theinthantun.sai@gmail.com", role = c("aut", "cre"))
+Description: It provides a generic set of tools for initializing a synthetic
+         population with each individual in specific disease states, and
+         making transitions between those disease states according to the rates
+         calculated on each timestep. The new version 1.0.0 has C++ code 
+         integration to make the functions run faster. It has also a higher level
+         function to actually run the transitions for the number of timesteps
+         that users specify. Additional functions will follow for changing
+         attributes on demographic, health belief and movement.
+License: MIT + file LICENSE
+LazyData: TRUE
+RoxygenNote: 5.0.1
+Suggests: testthat
+LinkingTo: Rcpp
+Imports: Rcpp
+NeedsCompilation: yes
+Packaged: 2016-11-16 09:19:06 UTC; Sai
+Author: Sai Thein Than Tun [aut, cre]
+Maintainer: Sai Thein Than Tun <theinthantun.sai@gmail.com>
+Repository: CRAN
+Date/Publication: 2016-11-16 10:51:54

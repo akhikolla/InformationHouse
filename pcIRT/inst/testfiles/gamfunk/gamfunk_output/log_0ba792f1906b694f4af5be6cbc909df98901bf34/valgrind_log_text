@@ -1,0 +1,14 @@
+WARNING: No test specified, defaulting to first test defined (pcIRT_deepstate_test_gamfunk_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/pcIRT/inst/testfiles/gamfunk/gamfunk_output/0ba792f1906b694f4af5be6cbc909df98901bf34.fail`
+TRACE: Running: pcIRT_deepstate_test_gamfunk_test from /home/akhila/fuzzer_packages/fuzzedpackages/pcIRT/inst/testfiles/gamfunk/gamfunk_DeepState_TestHarness.cpp(10)
+input starts
+EXTERNAL: qs v0.23.4.
+
+epsmat values: -4.45369e-248 nan -4.18847e+46 2.26618e-73 -3.58779e-130 -3.58779e-130 7.72184e-244 inf 9.42065e+254 0
+gammat values: 1.47362e+93 2.72483e-171
+
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Column index is out of bounds: [index=9; column extent=2].
+ERROR: Failed: pcIRT_deepstate_test_gamfunk_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/pcIRT/inst/testfiles/gamfunk/gamfunk_output/0ba792f1906b694f4af5be6cbc909df98901bf34.fail failed

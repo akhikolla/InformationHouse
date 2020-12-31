@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Extending rrecsys (prototyping)</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{Extendind rrecsys}
+-->
+
+<h2>Extending rrecsys (prototyping)</h2>
+
+<p>Download binaries from GitHub and load the <em>“rrecsys.RProject”</em> file in RStudio. Install <em>devtools</em> package in R (install.packages(&ldquo;devtools&rdquo;))
+Rename <em>“yourAlgorithm.R”</em> file in &ldquo;rrecsys-master\R\&rdquo; folder (if it isn&#39;t renamed it won&#39;t be build).</p>
+
+<p>Extending rrecsys is a 5 step procedure. On, your renamed, “yourAlgorithm.R”  file:</p>
+
+<ol>
+<li><p>Edit “yourAlgorithm” function by setting the arguments that the algorithm requires (line 20).</p></li>
+<li><p>Start writing your algorithm (line 34).</p></li>
+<li><p>You need to define an class that will be fed to the <em>predict()</em> method, since every algorithm has its specific prediction methodology.
+Define the output class (line 8) by: setting the name of the class, complete the representation by adding any necessary slot names and their classes (you can use the command <em>class()</em> on an object to get the class name). Don’t change the slots <em>alg</em>, data and parameters. 
+Once you have setup the class create the new object correspondingly (line 51).</p></li>
+<li><p>Add the new entry to the registry by completing the field on line 56 to 60.</p></li>
+<li><p>Complete the prediction algorithm by adding predicted values on <em>model@data</em>.
+When you want to try out your implementation use devtools::load<em>all(&ldquo;.&rdquo;) or on RStudio’s toolbar menu Build&gt;Load All, so that you can start using rrecsys’s methods.
+If you need to use another library that is not on base R, you may use the library(&ldquo;requiredpackage&rdquo;) on your code but it is better if you include properly the used method in the _NAMESPACE</em> file.</p></li>
+</ol>
+
+<p>Tip: Use as much as you can the browser() function to single step through the execution of your function. It will allow you to view the changed objects during the execution.</p>
+
+<p>After step 5 your algorithm may be used with all the other methods available in rrecsys.</p>
+
+</body>
+
+</html>

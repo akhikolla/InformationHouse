@@ -1,0 +1,360 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./encode_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode/encode_output/10f68cb3144b27aacbc6c6a468ebe00f0f58b0cc.fail</line>
+</preamble>
+
+<pid>809229</pid>
+<ppid>809228</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode/encode_output/log_10f68cb3144b27aacbc6c6a468ebe00f0f58b0cc/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./encode_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode/encode_output/10f68cb3144b27aacbc6c6a468ebe00f0f58b0cc.fail</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.026 </time>
+</status>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.341 </time>
+</status>
+
+<error>
+  <unique>0x9</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>8 bytes in 1 blocks are definitely lost in loss record 10 of 1,322</text>
+    <leakedbytes>8</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D060F7</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::initialize(int, char const* const*, bool, bool, bool)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>198</line>
+    </frame>
+    <frame>
+      <ip>0x4D06483</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x409BC3</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode/encode_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_flexpolyline_deepstate_test_encode_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode</dir>
+      <file>encode_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode/encode_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_flexpolyline_deepstate_test_encode_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode</dir>
+      <file>encode_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DEE8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode/encode_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E189</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode/encode_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E264</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode/encode_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode/encode_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x18</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>49 bytes in 1 blocks are possibly lost in loss record 25 of 1,322</text>
+    <leakedbytes>49</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E21308</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator&lt;char&gt; const&amp;)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E22FB8</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>char* std::string::_S_construct&lt;char const*&gt;(char const*, char const*, std::allocator&lt;char&gt; const&amp;, std::forward_iterator_tag)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E23484</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::basic_string(char const*, std::allocator&lt;char&gt; const&amp;)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E04188</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::logic_error::logic_error(char const*)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E041EC</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::invalid_argument::invalid_argument(char const*)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D21859</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/src/flexpolyline.so</obj>
+      <fn>encode(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, int, int, int) [clone .cold]</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/src</dir>
+      <file>flexpolyline.cpp</file>
+      <line>149</line>
+    </frame>
+    <frame>
+      <ip>0x40A411</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode/encode_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_flexpolyline_deepstate_test_encode_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode</dir>
+      <file>encode_DeepState_TestHarness.cpp</file>
+      <line>37</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode/encode_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_flexpolyline_deepstate_test_encode_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode</dir>
+      <file>encode_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DEE8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode/encode_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E189</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode/encode_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E264</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode/encode_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x34</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>144 bytes in 1 blocks are possibly lost in loss record 53 of 1,322</text>
+    <leakedbytes>144</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4DDC2E3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>__cxa_allocate_exception</fn>
+    </frame>
+    <frame>
+      <ip>0x4D21847</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/src/flexpolyline.so</obj>
+      <fn>encode(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, int, int, int) [clone .cold]</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/src</dir>
+      <file>flexpolyline.cpp</file>
+      <line>149</line>
+    </frame>
+    <frame>
+      <ip>0x40A411</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode/encode_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_flexpolyline_deepstate_test_encode_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode</dir>
+      <file>encode_DeepState_TestHarness.cpp</file>
+      <line>37</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode/encode_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_flexpolyline_deepstate_test_encode_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode</dir>
+      <file>encode_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DEE8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode/encode_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E189</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode/encode_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E264</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode/encode_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode/encode_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xb2</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>1,025 bytes in 1 blocks are definitely lost in loss record 179 of 1,322</text>
+    <leakedbytes>1025</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x483BE63</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4E763AF</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28</obj>
+      <fn>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::reserve(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x4D04C55</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>MemBuf::MemBuf(int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>MemBuf.cpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x4D06467</ip>
+      <obj>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RInside/lib/libRInside.so</obj>
+      <fn>RInside::RInside()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/RInside/src</dir>
+      <file>RInside.cpp</file>
+      <line>56</line>
+    </frame>
+    <frame>
+      <ip>0x409BC3</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode/encode_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_flexpolyline_deepstate_test_encode_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode</dir>
+      <file>encode_DeepState_TestHarness.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode/encode_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_flexpolyline_deepstate_test_encode_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode</dir>
+      <file>encode_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41DEE8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode/encode_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41E189</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode/encode_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41E264</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode/encode_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode/encode_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.866 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

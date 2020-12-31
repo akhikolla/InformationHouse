@@ -1,0 +1,656 @@
+---
+title: "Introducing biClassify"
+author: Alexander F. Lapanowski and Irina Gaynanova
+output: pdf_document
+toc: true
+number_sections: true
+vignette: >
+  %\VignetteIndexEntry{biClassify}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\usepackage[UTF-8]{inputenc}
+---
+
+```{r, include = FALSE}
+LOCAL <- identical(Sys.getenv("LOCAL"), "true")
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+#knitr::opts_chunk$set(purl = CRAN)
+```
+
+\section{Introduction}
+\texttt{biClassify} is a package for adapting Linear Discriminant Analysis (LDA), Quadratic Discriminant Analysis (QDA), and Kernel Discriminant Analysis to a variety of situations where the conventional methods may not work. In particular, this package has methodology for the following problems:
+
+\begin{enumerate}
+\item Linear and Quadratic classification in the large-sample case with small-to-medium sized number of features. The available compressed LDA and QDA methods provide alternatives to random sub-sampling which are shown to produce lower mean misclassification error rates and lower standard error in the misclassification error rates (see e.g. \cite{CompLDA}).
+\item Kernel classification where the data has a medium-to-large number of features. In this case, one would like to learn a non-linear decision boundary and have simultaneous sparse feature selection. The sparse kernel discriminant analysis method provided, Sparse Kernel Optimal Scoring, is presented in \cite{SparseKOS}.
+\end{enumerate}
+
+
+\section{Quick Start}
+The purpose of this section is to give the user a 
+quick overview of the package and the types of 
+problems it can be used to solve. Accordingly, we implement only the basic versions of the available methods, and more detailed presentations are given in later sections.
+
+We first load the package
+```{r}
+library(biClassify)
+```
+\subsection{Quick LDA Example}
+Our first example illustrates the compressed LDA function on data well-suited for LDA. The first two features of the training data in \texttt{LDA\_Data} are plotted below:
+```{r}
+data(LDA_Data)
+```
+```{r, echo = FALSE, fig.height=4, fig.width=5, fig.align = "center"}
+plot(LDA_Data$TrainData[,2]~LDA_Data$TrainData[,1],
+     col = c("orange","blue")[LDA_Data$TrainCat],
+     pch = c("1","2")[LDA_Data$TrainCat],
+     xlab = "Feature 1", 
+     ylab = "Feature 2",
+     main = "Scatter Plot of LDA Training Data")
+```
+
+This data set has $n= 10,000$ training samples with $p=10$ features. It is normally distributed, and the two classes have equal covariance matrices. The test data was independently generated from the same distribution, but it has only $n=1,000$ samples. 
+
+Let us use compressed LDA to predict the test data labels.
+```{r, eval = FALSE}
+> test_pred <- LDA(TrainData = LDA_Data$TrainData,
+                   TrainCat = LDA_Data$TrainCat,
+                   TestData = LDA_Data$TestData,
+                   Method = "Compressed")$Predictions
+
+> mean(test_pred != LDA_Data$TestCat)
+[1] 0
+```
+The automatic impementation of compressed LDA predicted the Test labels perfectly! However, this is due, in part, to the classes being well-separated and having the same covariance structure. Let us now consider an example of where LDA will not perform well.
+
+\subsection{Quick QDA Example}
+Our next example illustrates the compressed QDA function on data well-suited for QDA. The first two features of the training data in \texttt{QDA\_Data} are plotted below:
+
+```{r}
+data(QDA_Data)
+```
+```{r, echo = FALSE, fig.height=4, fig.width=5, fig.align = "center"}
+plot(QDA_Data$TrainData[,2]~QDA_Data$TrainData[,1],
+     col = c("orange","blue")[QDA_Data$TrainCat],
+     pch = c("1","2")[QDA_Data$TrainCat],
+     xlab = "Feature 1", 
+     ylab = "Feature 2",
+     main = "Scatter Plot of QDA Training Data")
+```
+
+A modification of Quadratic Discriminant Analysis is well-suited to such data. The package comes with a function \texttt{QDA} for such purposes.
+```{r, eval = FALSE}
+> test_pred <- QDA(TrainData = QDA_Data$TrainData,
+                   TrainCat = QDA_Data$TrainCat,
+                   TestData = QDA_Data$TestData,
+                   Method = "Compressed")
+
+> mean(test_pred != QDA_Data$TestCat)
+[1] 0
+```
+
+Compressed QDA gives perfect class prediction
+
+\subsection{Quick Sparse Kernel Optimal Scoring Example}
+What happens if the data is not well-suited to either Linear or Quadratic Discriminant Analysis? Moreover, what happens if, in addtion to a non-linear decision boundary between classes, there also appear to be variables which do not contribute to group separation?
+
+For example, consider the \texttt{KOS\_Data} shown below.
+```{r}
+data(KOS_Data)
+```
+
+```{r,echo = FALSE, fig.height=4, fig.width=8, fig.align = "center"}
+par(mfrow = c(1,2))
+plot(KOS_Data$TrainData[,2]~KOS_Data$TrainData[,1], col = c("orange","blue")[KOS_Data$TrainCat],
+     pch = c("1","2")[KOS_Data$TrainCat],
+     xlab = "Feature 1",
+     ylab = "Feature 2",
+     main = "True Features")
+plot(KOS_Data$TrainData[,4]~KOS_Data$TrainData[,3], col = c("orange","blue")[KOS_Data$TrainCat],
+     pch = c("1","2")[KOS_Data$TrainCat],
+     xlab = "Feature 3",
+     ylab = "Feature 4",
+     main = "Noise Features")
+par(mfrow = c(1,1))
+```
+For this data set, neither LDA or QDA would suffice. The function \texttt{KOS} is the sparse kernel optimal scoring algorithm presented in \cite{SparseKOS}. It is particularly well-suited to such problems, as can be seen from the following.
+
+```{r, eval = FALSE}
+> output <- KOS(TrainData = KOS_Data$TrainData, 
+                TrainCat = KOS_Data$TrainCat,
+                TestData = KOS_Data$TestData)
+> output$Weight
+[1] 1 1 0 0
+
+> mean(output$Predictions != KOS_Data$TestCat)
+[1] 0
+
+> summary(output$Dvec)
+       V1          
+ Min.   :-0.03002  
+ 1st Qu.:-0.01953  
+ Median :-0.01445  
+ Mean   : 0.00000  
+ 3rd Qu.: 0.03788  
+ Max.   : 0.05799  
+```
+\texttt{Weight} in the output is how much weight 
+the kernel classifier gives to each feature. The weight values lie in $[-1,1]$, and zero weight means that the feature does not contribute to computing the discriminant function. The KOS function correctly identifies that the first two features are important for class separation, and gives them full weight. It also correctly identifies Features 3 and 4 as being ``noise'', and it gives them zero weight.
+
+\texttt{Predictions} are the predicted class labels for the test data. As we can see, \texttt{KOS} has perfect classification. 
+
+\texttt{Dvec} are the coefficients of the kernel classifier. 
+
+
+
+\section{Compressed Linear Discriminant Analysis}
+This section provides a more in-depth treatment to the Linear Discriminant methods available in \texttt{biClassify}.
+
+
+
+
+
+
+
+
+There are five seperate linear discriminant methods avilable through the \texttt{LDA} wrapper function:
+\begin{enumerate}
+\item \texttt{Full} Linear Discriminant Analsysis, which is LDA trained on the full data as presented in \cite{MV}.
+\item \texttt{Compressed} Linear Discriminant Analysis in \cite{CompLDA}.
+\item \texttt{Projected} LDA in \cite{CompLDA}.
+\item \texttt{Subsampled} LDA, where LDA is trained on data which is sub-sampled uniformly from both classes.
+\item \texttt{FashRandomFisher} Discriminant Analysis as presented in \cite{FRF}.
+\end{enumerate}
+
+The individual methods are invoked by setting the \texttt{Method} argument. Let us first load the data for notational convenience.
+
+```{r}
+TrainData <- LDA_Data$TrainData
+TrainCat <- LDA_Data$TrainCat
+TestData <- LDA_Data$TestData
+TestCat <- LDA_Data$TestCat
+```
+
+\subsection{Full LDA}
+This method is the result of setting \texttt{Method} equal to \texttt{"Full"}.
+This method is traditional Linear Discriminant Analysis, as presented in \cite{MV}. No additional parameters need to be supplied, and the code will run as stated.
+
+```{r}
+test_pred <- LDA(TrainData, TrainCat, TestData)$Predictions
+table(test_pred)
+mean(test_pred != TestCat)
+```
+which produces a list containing a vector of predicted class labels for \texttt{TestData} and the discriminant vector used in LDA.
+
+\subsection{Compressed LDA}
+Compressed LDA seeks to solve the LDA problem on reduced-size data. It first compressed the groups of centered data $(X^{g} - \overline{X}_g)$ via a compression matrix $Q^{g}$. The entries $Q_{i,j}^{g}$ are i.i.d. sparse radamacher random variables with distribution 
+$$
+\mathbb{P}(Q^{g}_{i,j}=1) = \mathbb{P}(Q^{g}_{i,j}=-1)= \frac{p}{2}\text{ and } \mathbb{P}(Q^{g}_{i,j}=0) = 1-p.
+$$
+
+
+
+
+This method is the result of setting \texttt{Method} equal to \verb+"Compressed"+. It is compressed LDA, as presented in \cite{CompLDA}. Compressed LDA reduces the group sample amounts from $n_1$ and $n_2$ to $m_1$ and $m_2$ respectively.
+
+Compressed LDA requires the parameters \texttt{m1}, \texttt{m2}, \texttt{s}.
+
+
+The easiest way to run Compressed LDA is to set \texttt{Mode} to \texttt{Automatic} and not worry about supplying additional parameters.
+```{r}
+test_pred <- LDA(TrainData, TrainCat, TestData, 
+                 Method = "Compressed", Mode = "Automatic")$Predictions
+table(test_pred)
+mean(test_pred != TestCat)
+```
+
+\texttt{Automatic} is the default value for \texttt{Mode}, and so one could simply run
+
+```{r}
+test_pred <- LDA(TrainData, TrainCat, TestData, Method = "Compressed")$Predictions
+table(test_pred)
+mean(test_pred != TestCat)
+```
+and obtain the same output.
+
+
+When \texttt{Mode} is set to \texttt{Interactive}, prompts will appear asking for the compression amounts $m_1$, $m_2$, and sparsity level $s$ to be used in compression. The user will type in the amounts:
+```{r, eval=FALSE}
+output <- LDA(TrainData, TrainCat, TestData, 
+              Method = "Compressed", Mode = "Interactive")$Predictions
+"Please enter the number m1 of group 1 compression samples: "700
+"Please enter the number m2 of group 2 compression samples: "300
+"Please enter sparsity level s used in compression: "0.01
+```
+and the output is produced. 
+
+
+If the user is interested in running simulation studies or has mastery over the functionality, they may wish to give the \texttt{LDA} function all parameters. 
+
+```{r}
+test_pred <- LDA(TrainData, TrainCat, TestData, 
+                 Method = "Compressed", Mode = "Research", 
+                 m1 = 700, m2 = 300, s = 0.01)$Predictions
+
+table(test_pred)
+mean(test_pred != TestCat)
+```
+
+
+WARNING: The argument \texttt{Mode} will override any supplied parameters if its value is \texttt{Automatic} or \texttt{Research}.
+
+\subsection{Sub-Sampled LDA}
+Sub-sampled LDA is just LDA trained on data sub-sampled uniformly from both classes. 
+
+To run sub-sampled LDA, set \texttt{Method} equal to \texttt{Subsampled}. It requires the additional parameters \texttt{m1} and \texttt{m2}.
+
+
+The easiest way to run Compressed LDA is to set \texttt{Mode} to \texttt{Automatic} and not worry about supplying additional parameters.
+```{r}
+test_pred <- LDA(TrainData, TrainCat, TestData, 
+                 Method = "Subsampled", Mode = "Automatic")$Predictions
+table(test_pred)
+```
+
+\texttt{Automatic} is the default value for \texttt{Mode}, and so one could simply run
+
+```{r}
+test_pred <- LDA(TrainData, TrainCat, TestData, 
+                 Method = "Subsampled")$Predictions
+table(test_pred)
+```
+and obtain the same output.
+
+ 
+When \texttt{Mode} is set to \texttt{Interactive}, prompts will appear asking for the sub-sample amounts $m_1$, $m_2$ for each group to be used. The user will type in the amounts:
+```{r, eval=FALSE}
+test_pred <- LDA(TrainData, TrainCat, TestData, 
+                 Method = "Subsampled", Mode = "Interactive")$Predictions
+"Please enter the number m1 of group 1 sub-samples: "700
+"Please enter the number m2 of group 2 sub-samples: "300
+```
+and the output is produced. 
+
+
+
+If the user is interested in running simulation studies or has mastery over the functionality, they may wish to give the \texttt{LDA} function all parameters. 
+
+```{r}
+output <- LDA(TrainData, TrainCat, TestData, 
+              Method = "Subsampled", Mode = "Research", 
+              m1 = 700, m2 = 300)$Predictions
+
+table(output)
+mean(output != TestCat)
+```
+
+
+WARNING: The argument \texttt{Mode} will override any supplied parameters if its value is \texttt{Automatic} or \texttt{Research}.
+
+
+\subsection{Projected LDA}
+This method is the result of setting \texttt{Method} equal to \verb+"PRojected"+. It is Projected LDA, as presented in \cite{CompLDA}. Projected LDA creates the discriminant vector on compressed data and then projects the full training data onto the discriminant vector.
+
+Projected LDA requires the parameters \texttt{m1}, \texttt{m2}, \texttt{s}.
+
+
+
+The easiest way to run Projected LDA is to set \texttt{Mode} to \texttt{Automatic} and not worry about supplying additional parameters.
+```{r}
+output <- LDA(TrainData, TrainCat, TestData, 
+              Method = "Projected", Mode = "Automatic")$Predictions
+table(output)
+mean(output != TestCat)
+```
+
+\texttt{Automatic} is the default value for \texttt{Mode}, and so one could simply run
+
+```{r}
+output <- LDA(TrainData, TrainCat, TestData, 
+              Method = "Projected")$Predictions
+table(output)
+mean(output != TestCat)
+```
+and obtain the same output.
+
+
+When \texttt{Mode} is set to \texttt{Interactive}, prompts will appear asking for the compression amounts $m_1$, $m_2$, and sparsity level $s$ to be used in compression. The user will type in the amounts:
+```{r, eval=FALSE}
+output <- LDA(TrainData, TrainCat, TestData, 
+              Method = "Projected", Mode = "Interactive")$Predictions
+"Please enter the number m1 of group 1 compression samples: "700
+"Please enter the number m2 of group 2 compression samples: "300
+"Please enter sparsity level s used in compression: "0.01
+
+```
+and the output is produced. 
+
+
+If the user is interested in running simulation studies or has mastery over the functionality, they may wish to give the \texttt{LDA} function all parameters. 
+
+```{r}
+test_pred <- LDA(TrainData, TrainCat, TestData, 
+                 Method = "Projected", Mode = "Research", 
+                 m1 = 700, m2 = 300, s = 0.01)$Predictions
+
+table(test_pred)
+mean(output != TestCat)
+```
+
+
+WARNING: The argument \texttt{Mode} will override any supplied parameters if its value is \texttt{Automatic} or \texttt{Research}.
+
+
+
+
+\subsection{Fast Random Fisher Discriminant Analysis}
+
+This method is the result of setting \texttt{Method} equal to \verb+"fastRandomFisher"+. It is the Fast Random Fisher Discriminant Analysis algorithm, as presented in \cite{FRF}. Fast Random fisher creates the discriminant vector on reduced sample amounts $m$, and then projects the full training data onto the learned discriminant vector. The difference between Fast Random Fisher Discriminant Analysis and Projected LDA is that Fast Random Fisher mixes the groups together when forming the discriminant vector, but Projected LDA does not.
+
+Fast Random Fisher requires the parameters \texttt{m}, and \texttt{s}.
+
+
+
+The easiest way to run Fast Random Fisher is to set \texttt{Mode} to \texttt{Automatic} and not worry about supplying additional parameters.
+```{r}
+test_pred <- LDA(TrainData, TrainCat, TestData, 
+                 Method = "fastRandomFisher", Mode = "Automatic")$Predictions
+table(test_pred)
+mean(test_pred != TestCat)
+```
+
+\texttt{Automatic} is the default value for \texttt{Mode}, and so one could simply run
+
+```{r}
+test_pred <- LDA(TrainData, TrainCat, TestData, 
+                 Method = "fastRandomFisher")$Predictions
+table(test_pred)
+mean(test_pred != TestCat)
+```
+and obtain the same output.
+
+
+
+When \texttt{Mode} is set to \texttt{Interactive}, prompts will appear asking for the total amount of compressed samples $m$ and sparsity level $s$ to be used in compression. The user will type in the amounts:
+```{r, eval=FALSE}
+output <- LDA(TrainData, TrainCat, TestData, 
+              Method = "fastRandomFisher", Mode = "Interactive")$Predictions
+"Please enter the number m of total compressed samples: "1000
+"Please enter sparsity level s used in compression: "0.01
+```
+and the output is produced. 
+
+
+If the user is interested in running simulation studies or has mastery over the functionality, they may wish to give the \texttt{LDA} function all parameters. 
+
+```{r}
+test_pred <- LDA(TrainData, TrainCat, TestData, 
+                 Method = "fastRandomFisher", Mode = "Research", 
+                 m = 1000, s = 0.01)$Predictions
+
+table(test_pred)
+mean(test_pred != TestCat)
+```
+
+
+WARNING: The argument \texttt{Mode} will override any supplied parameters if its value is \texttt{Automatic} or \texttt{Research}.
+
+
+
+\section{Quadratic Discriminant Analysis}
+This section provides a more in-depth treatment to the Linear Discriminant methods available in \texttt{biClassify}.
+
+There are three seperate quadratic discriminant methods avilable through the \texttt{QDA} wrapper function:
+\begin{enumerate}
+\item \texttt{Full} Quadratic Discriminant Analsysis, which is QDA trained on the full data as presented in \cite{MV}.
+\item \texttt{Compressed} Qinear Discriminant Analysis as presented in \cite{CompLDA}.
+\item \texttt{Subsampled} QDA, where QDA is trained on data which is sub-sampled uniformly from both classes.
+\end{enumerate}
+
+The individual methods are invoked by setting the \texttt{Method} argument. Let us first load the data for notational convenience.
+
+```{r}
+TrainData <- QDA_Data$TrainData
+TrainCat <- QDA_Data$TrainCat
+TestData <- QDA_Data$TestData
+TestCat <- QDA_Data$TestCat
+```
+
+
+\subsection{Full QDA}
+This method is the result of setting \texttt{Method} equal to \texttt{"Full"}.
+This method is traditional Quadratic Discriminant Analysis, as presented in \cite{MV}. No additional parameters need to be supplied, and the code will run as stated. Unlike the \texttt{LDA} function, only the class predictions are produced:
+
+```{r}
+Predictions <- QDA(TrainData, TrainCat, TestData, Method = "Full")
+table(Predictions)
+```
+
+\subsection{Compressed QDA}
+This method is the result of setting \texttt{Method} equal to \verb+"Compressed"+. It is compressed QDA, as presented in \cite{CompLDA}. Compressed QDA reduces the group sample amounts from $n_1$ and $n_2$ to $m_1$ and $m_2$ respectively via compression and trains QDA on the reduced samples.
+
+Compressed QDA requires the parameters \texttt{m1}, \texttt{m2}, \texttt{s}.
+
+
+The easiest way to run Compressed QDA is to set \texttt{Mode} to \texttt{Automatic} and not worry about supplying additional parameters.
+```{r}
+output <- QDA(TrainData, TrainCat, TestData, Method = "Compressed", Mode = "Automatic")
+table(output)
+```
+
+\texttt{Automatic} is the default value for \texttt{Mode}, and so one could simply run
+
+```{r}
+output <- QDA(TrainData, TrainCat, TestData, Method = "Compressed")
+table(output)
+```
+and obtain the same output.
+
+
+
+When \texttt{Mode} is set to \texttt{Interactive}, prompts will appear asking for the compression amounts $m_1$, $m_2$, and sparsity level $s$ to be used in compression. The user will type in the amounts:
+```{r, eval=FALSE}
+output <- QDA(TrainData, TrainCat, TestData, Method = "Compressed", Mode = "Interactive")
+"Please enter the number m1 of group 1 compression samples: "700
+"Please enter the number m2 of group 2 compression samples: "300
+"Please enter sparsity level s used in compression: "0.01
+
+table(output)
+```
+and the output is produced. 
+
+
+If the user is interested in running simulation studies or has mastery over the functionality, they may wish to give the \texttt{QDA} function all parameters. 
+
+```{r}
+output <- QDA(TrainData, TrainCat, TestData, Method = "Compressed", 
+              Mode = "Research", m1 = 700, m2 = 300, s = 0.01)
+
+summary(output)
+```
+
+\subsection{Sub-Sampled QDA}
+Sub-sampled QDA is just QDA trained on data sub-sampled uniformly from both classes. To run sub-sampled QDA, set \texttt{Method} equal to \texttt{Subsampled}.
+
+It requires the additional parameters \texttt{m1} and \texttt{m2}.
+
+
+The easiest way to run sub-sampled QDA is to set \texttt{Mode} to \texttt{Automatic} and not worry about supplying additional parameters.
+```{r}
+output <- QDA(TrainData, TrainCat, TestData, Method = "Subsampled", Mode = "Automatic")
+table(output)
+```
+
+\texttt{Automatic} is the default value for \texttt{Mode}, and so one could simply run
+
+```{r}
+output <- QDA(TrainData, TrainCat, TestData, Method = "Subsampled")
+summary(output)
+```
+and obtain the same output.
+
+
+When \texttt{Mode} is set to \texttt{Interactive}, prompts will appear asking for the sub-sample amounts $m_1$, $m_2$ for each group to be used. The user will type in the amounts:
+```{r, eval=FALSE}
+output <- QDA(TrainData, TrainCat, TestData, Method = "Subsampled", Mode = "Interactive")
+"Please enter the number m1 of group 1 sub-samples: "700
+"Please enter the number m2 of group 2 sub-samples: "300
+
+summary(output)
+```
+and the output is produced. 
+
+
+
+If the user is interested in running simulation studies or has mastery over the functionality, they may wish to give the \texttt{QDA} function all parameters. 
+
+```{r}
+output <- QDA(TrainData, TrainCat, TestData, Method = "Subsampled", 
+              Mode = "Research", m1 = 700, m2 = 300)
+
+summary(output)
+```
+
+
+WARNING: The argument \texttt{Mode} will override any supplied parameters if its value is \texttt{Automatic} or \texttt{Research}.
+
+
+\section{Sparse Kernel Discriminant Analysis}
+
+This section presents the kernel optimal scoring method available in the \texttt{biClassify} package. Kernel optimal scoring is presented in \cite{SparseKOS}. 
+
+Kernel optimal scoring finds the kernel discriminant coefficients $\alpha\in \mathbb{R}^{n}$ by solving a kernelized form of the optimal scoring problem
+\begin{align*}
+\min_{f\in \mathcal{H}} \bigg\{ \frac{1}{n}\sum_{i=1}^{n}|y_{i}\widehat{\theta}- \left<\Phi(x_i) - \overline{\Phi}\,,\, f\right>_{\mathcal{H}}|^{2}+\gamma \|f\|_{\mathcal{H}}^{2}\bigg\}
+=
+\min_{\alpha \in \mathbb{R}^{n}} \bigg\{\frac{1}{n}\|Y \widehat{\theta} - C\mathbf{K}C\alpha\|_{2}^{2}+\gamma \alpha^\top \mathbf{K}\alpha\bigg\} 
+\end{align*}
+
+It is equivalent to kernel discriminant analysis.
+
+We include simultaneous sparse feature selection by weighting the features using $w\in [-1,1]^{n}$, so that the weighted samples are
+$$
+wx = (w_1 x_1, \dots, w_p x_p)^{\top}.
+$$
+The weighted kernel matrix $\mathbf{K}_{w}$ is defined by $(\mathbf{K}_{w})_{i,j}:= k(wx_i, wx_j)$. To perform sparse feature selection, we add a sparsity penalty on the weight vector $\lambda\|w\|_{1}$ and minimize
+$$
+\min_{\alpha \in \mathbb{R}^{n}\,,\, w\in [-1,1]^{p}} \bigg\{\frac{1}{n}\|Y \widehat{\theta} - C\mathbf{K}_{w}C\alpha\|_{2}^{2}+\lambda \|w\|_{1}+\gamma \alpha^\top \mathbf{K}_{w}\alpha\bigg\}. 
+$$
+
+
+Let us load the data set used in kernel optimal scoring
+```{r}
+TrainData <- KOS_Data$TrainData
+TrainCat <- KOS_Data$TrainCat
+TestData <- KOS_Data$TestData
+TestCat <- KOS_Data$TestCat
+```
+
+
+\subsection{Parameter Selection}
+This subsection details how \texttt{KOS} selects the parameters $\sigma^2$, $\gamma$, and $\lambda$. 
+
+To select the gaussian kernel parameter $\sigma^2$,is selected based on the $\{.05, .1, .2, .3,.5\}$ quantiles of the set of squared distances between the classes
+$$
+\{\|x_{i_1}-x_{i_2}\|_2^2\,:x_{i_1} \in C_1,\,x_{i_2}\in C_2\}.
+$$
+The ridge parameter $\gamma$ is selected by adapting a kernel matrix shrinkage technique Lancewicki (2018) to the setting of ridge regression. For more details, see \cite{SparseKOS}.
+
+The sparsity parameter $\lambda$ is selected using 5-fold cross-validation to minimize the error rate over a grid of 20 equally-spaced values. 
+
+The function \texttt{SelectParams} implements these methods automatically. For more details, see \cite{SparseKOS}.
+
+```{r, eval = FALSE}
+> SelectParams(TrainData, TrainCat)
+
+$Sigma
+[1] 0.7390306
+
+$Gamma
+[1] 0.137591
+
+$Lambda
+[1] 0.0401767
+```
+If parameters are not supplied to \texttt{KOS}, the 
+function first invokes \texttt{SelectParams} to 
+generate any missing parameters.
+
+
+\subsection{Hierarchical Parameters}
+
+Sparse kernel optimal scoring has three parameters: a Gaussian kernel parameter `Sigma`, a ridge parameter `Gamma`, and a sparsity parameter `Lambda`. They have a hierarchical dependency, in that `Sigma` influences `Gamma`, and both influence `Lambda`. The ordering is 
+
+Top     `Sigma`
+
+Middle  `Gamma`
+
+Bottom  `Lambda`
+
+When using either of the functions, the user is only allowed to specify parameter combinations which adhere to the hierarchical ordering above. That is, they can only input parameters which go from Top to Bottom. For example, they could specify both `Sigma` and `Gamma`, but leave `Lambda` as the default `NULL` value. On the other hand, the user would not be allowed to specify only `Lambda` while leaving `Sigma` and `Gamma` as their default `NULL` values.
+
+```{r, eval = FALSE}
+> SelectParams(TrainData, TrainCat, Sigma = 1, Gamma = 0.1)
+
+$Sigma
+[1] 1
+
+$Gamma
+[1] 0.1
+
+$Lambda
+[1] 0.06186337
+```
+
+If the user supplies parameter values which violate the hierarchical ordering, the error message ``Hierarchical order of parameters violated.`` will be returned.
+```{r, eval = FALSE}
+SelectParams(TrainData, TrainCat, Gamma = 0.1)
+
+Error in SelectParams(TrainData, TrainCat, Gamma = 0.1) : 
+Hierarchical order of parameters violated. 
+Please specify Sigma before Gamma, and both Sigma and Gamma before Lambda.
+```
+
+
+\subsection{KOS}
+
+This package comes with an all-purpose function for running kernel optimal scoring.
+
+
+```{r, eval = FALSE}
+Sigma <- 1.325386  
+Gamma <- 0.07531579 
+Lambda <- 0.002855275
+
+> output <- KOS(TestData, TrainData, TrainCat, Sigma = Sigma, 
+                Gamma = Gamma, Lambda = Lambda)
+
+> output$Weight
+[1] 1 1 0 0
+
+> table(output$Predictions)
+ 1  2 
+26 68
+
+> summary(output$Dvec)
+       V1          
+ Min.   :-0.05860  
+ 1st Qu.:-0.03711  
+ Median :-0.02539  
+ Mean   : 0.00000  
+ 3rd Qu.: 0.06983  
+ Max.   : 0.10192 
+```
+
+\begin{thebibliography}{widest entry}
+\bibitem{Shrinkage} Lancewicki, Tomer. "Kernel matrix regularization via shrinkage estimation", Science and Information Conference. Springer, Cham, 2018.
+ \bibitem{SparseKOS} Lapanowski, Alexander F., and Irina Gaynanova. "Sparse feature selection in kernel discriminant analysis via optimal scoring." Artificial Intelligence and Statistics, published in Proceedings of Machine Learning Research 89 (2019)
+ \bibitem{CompLDA} Lapanowski, Alexander F., and Irina Gaynanova. "Compressing large sample data for discriminant analysis" arXiv preprint arXiv:2005.03858 (2020)
+\bibitem{MV} Mardia, K. V., Kent, J. T., and Bibby, J. M. (1979). Multivariate analysis. Academic Press, Orlando, FL.
+ \bibitem{FRF} Ye, Haishan, et al. "Fast Fisher discriminant analysis with randomized algorithms." Pattern Recognition 72 (2017): 82-92.
+\end{thebibliography}
+
+
+

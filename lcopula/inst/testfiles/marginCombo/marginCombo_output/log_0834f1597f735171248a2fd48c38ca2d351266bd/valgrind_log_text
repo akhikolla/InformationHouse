@@ -1,0 +1,16 @@
+WARNING: No test specified, defaulting to first test defined (lcopula_deepstate_test_marginCombo_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/lcopula/inst/testfiles/marginCombo/marginCombo_output/0834f1597f735171248a2fd48c38ca2d351266bd.crash`
+TRACE: Running: lcopula_deepstate_test_marginCombo_test from /home/akhila/fuzzer_packages/fuzzedpackages/lcopula/inst/testfiles/marginCombo/marginCombo_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+alphavec values: 2.59435e+241 -7.22583e-217 1.19332e+132 -7.27981e+99 4.54276e-241 2.40253e-278 -3.60971e+55 5.50504e+287 9.25656e+260 1.04605e+288 -4.46946e+285 -3.80853e+121 4.03823e+81 2.24933e-239 -5.2946e-202 -2.95649e+65 -7.30543e+59 -1.54533e+76 6.63715e+22 2.38121e-167 -3.30715e+68 1.49613e-304 5.92763e-300 7.38636e-168 -1.50356e+120 7.7919e-90 -7.86497e+286 4.51759e+123 1.34692e-60 -1.87211e-60 3.63993e-237 5.72006e-299 2.88948e+251 1.63928e+214 8.41437e-249 3.08669e+146 -3.42836e+16 8.02333e-162 -9.81122e+249 1.65859e+214 6.44986e+171 2.53752e+224 -5.20507e+113 8.43502e-163 1.50713e-55 -5.2821e-140 -3.03976e+168 2.90514e-216 5.47527e+116 1.48609e-263 -3.46514e+276 -2.6788e+19 -6.38776e+45 5.07008e+306 -2.65911e-237 4.75701e+290 -1.30988e-205 6.12845e+15 -5.00992e+172 141.551 1.60464e+160 -6.43816e-168 1.23487e-251 -1.86166e-136 1.39484e-252 3.64566e+301
+Missing value
+mc values: 1.45059e-59 3.12331e+53 1.83250e-172     nan 1.73233e-65 5.79957e+144 4.27384e-137 3.83564e+285
+1.88132e-193 4.84994e+58    -inf 5.10126e-284 1.46458e-44 2.26356e-262 1.38105e-149 1.82064e+105
+   -inf 4.90352e+260 1.28831e-233 4.05444e+45 4.53889e-78 4.52136e+262 6.24925e-136 2.49536e+134
+3.22386e-233     nan 1.27774e+207 -6.40193e+177 2.83658e+94 1.06755e-24 3.41533e-47 0.000661693
+
+input ends
+ERROR: Crashed: lcopula_deepstate_test_marginCombo_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/lcopula/inst/testfiles/marginCombo/marginCombo_output/0834f1597f735171248a2fd48c38ca2d351266bd.crash crashed

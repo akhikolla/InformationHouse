@@ -1,0 +1,12 @@
+WARNING: No test specified, defaulting to first test defined (phylobase_deepstate_test_hasPolytomy_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/phylobase/inst/testfiles/hasPolytomy/hasPolytomy_output/5301110bf66cf7df193acfd3e5f33b68f7a08ab8.fail`
+TRACE: Running: phylobase_deepstate_test_hasPolytomy_test from /home/akhila/fuzzer_packages/fuzzedpackages/phylobase/inst/testfiles/hasPolytomy/hasPolytomy_DeepState_TestHarness.cpp(10)
+input starts
+EXTERNAL: qs v0.23.4.
+
+ances values: -381340665 1143603435 861771174 -540818535 -68323469 1389041422 1834045125 1843075670 542072420 2036224172 -1142599014 -1475005277 61544277 1982751715 -2135840275 -1933360212 312545675 -10405702 1183471087 -1601596765 883554474 -2147483648 221660569 -91732468 710383657 -1194269442 1513745914 -1031758346 1478200661 -248686082 1688115038 668822097 872577772 -765531347 -1747441831 1489325954 1525646155 501041537 2078400418 -1102449677 1282334494 -859157660 -1552695813 940408210 -66986471 -567829927 142212295 -1007699441 1570319658 1685687815 -330628572 1484830293 -2120978849 -1140213564 -2102097083 -1538960383 -545117373 -71742745 88869725
+input ends
+terminate called after throwing an instance of 'std::length_error'
+  what():  cannot create std::vector larger than max_size()
+ERROR: Failed: phylobase_deepstate_test_hasPolytomy_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/phylobase/inst/testfiles/hasPolytomy/hasPolytomy_output/5301110bf66cf7df193acfd3e5f33b68f7a08ab8.fail failed

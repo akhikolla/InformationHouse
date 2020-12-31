@@ -1,0 +1,19 @@
+Package: BCT
+Type: Package
+Title: Bayesian Context Trees for Discrete Time Series
+Version: 1.1
+Date: 2020-12-04
+Author: Ioannis Papageorgiou, Valentinian Mihai Lungu, Ioannis Kontoyiannis
+Maintainer: Valentinian Mihai Lungu <valentinian.mihai@gmail.com>
+Description: An implementation of a collection of tools for exact Bayesian inference with discrete times series. This package contains functions that can be used for prediction, model selection, estimation, and other statistical tasks. Specifically, the functions provided can be used for the exact computation of the prior predictive likelihood of the data, for the identification of the a posteriori most likely (MAP) variable-memory Markov models, for calculating the exact posterior probabilities and the AIC and BIC scores of these models, and for prediction with respect to log-loss and 0-1 loss. All the functions here (except generate_data) are implementations of deterministic algorithms that have linear complexity in the length of the input data. Example data sets from finance, genetics and animal communication are also provided. Detailed descriptions of the underlying theory and algorithms can be found in [Kontoyiannis et al. 'Bayesian Context Trees: Modelling and exact inference for discrete time series.' <arXiv:2007.14900> [stat.ME], July 2020]. 
+License: GPL (>= 2)
+LazyData: true
+Encoding: UTF-8
+Imports: Rcpp (>= 1.0.5), stringr, igraph, grDevices, graphics
+LinkingTo: Rcpp
+Depends: R (>= 4.0)
+RoxygenNote: 7.1.1
+NeedsCompilation: yes
+Packaged: 2020-12-05 20:03:40 UTC; valentinianmihailungu
+Repository: CRAN
+Date/Publication: 2020-12-07 22:30:16 UTC

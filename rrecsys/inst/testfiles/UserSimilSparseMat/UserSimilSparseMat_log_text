@@ -1,0 +1,73 @@
+INFO: Starting fuzzing
+WARNING: No seed provided; using 1608742629
+WARNING: No test specified, defaulting to first test defined (rrecsys_deepstate_test_UserSimilSparseMat_test)
+input starts
+EXTERNAL: qs v0.23.4.
+
+x values: 1.73495e-214 1.14470e+158 5.32361e+301 2.44865e-215 1.80520e-63
+4.35742e-281 7.59867e+40 2.87354e-269 3.38418e-205 2.30430e+243
+2.16614e+98 1.57546e-94 1.06621e+163 1.69224e-62 1.40466e-11
+
+dim values: -1113165342
+damp values: -1609849646
+input ends
+EXTERNAL: Error: vector is too large
+
+EXTERNAL: Execution halted
+
+input starts
+EXTERNAL: qs v0.23.4.
+
+x values: 3.55531e+252 1.64900e-167
+2.40596e+229 3.13767e-189
+8.36558e-300 4.01584e+227
+4.86400e+180 1.06552e-304
+9.17015e+180 8.49301e+197
+
+dim values: -1175403520
+damp values: -298603171
+input ends
+EXTERNAL: Error: vector is too large
+
+EXTERNAL: Execution halted
+
+input starts
+EXTERNAL: qs v0.23.4.
+
+x values: 6.35582e+210 4.64908e-229 1.23458e-107 1.20464e-258
+1.76700e-127 8.31768e+21 7.50703e+53 7.38789e+100
+7.42886e+253 2.25243e+185 6.21897e-231 2.92591e-239
+1.99977e+293 5.65203e-219 9.53313e+238 1.87866e-227
+4.89026e-152 1.77965e+74 1.27383e+64 1.20099e+105
+5.73182e+214 3.20094e-71 2.34672e-261 4.10766e+242
+1.30961e+91 1.86107e+200 4.08323e-293 2.31209e-182
+2.73667e+215 5.41864e+104 4.57211e+257 3.26041e-276
+8.65765e-260 3.77850e+305 3.55974e-260 2.55738e-207
+1.24244e-264 5.01750e-62 2.42734e-36 3.01672e+241
+
+dim values: 631663555
+damp values: -1968942960
+input ends
+EXTERNAL: Error: vector is too large
+
+EXTERNAL: Execution halted
+
+input starts
+EXTERNAL: qs v0.23.4.
+
+x values: 6.63482e+236 4.45349e-10 4.89016e+20 1.44236e+45 6.82610e-14 2.48530e-305 1.71451e-177
+1.80406e-263 1.53893e+232 2.60306e+48 4.98683e+301 1.55984e-175 4.04027e+49 2.75637e+129
+1.82135e-44 1.02789e+89 4.41373e+112 5.04323e+162 7.33170e+136 7.61561e+276 3.80145e+306
+110.402 70.2016 1.67223e+232 1.50927e+249 2.00024e-225 5.59175e-193 1.79282e-163
+2.03121e+115 2.38962e-238 2.40124e+250 1.86246e-178 1.21276e-206 2.08435e+289 3.16906e+64
+6.53060e+136 6.10034e-169 0.122566 2.71294e+266 5.04386e+33 6.39976e+30 5.19048e-05
+6.86041e-146 9.83220e-243 2.50741e+182 2.12200e-31 2.95333e+233 3.64092e-250 2.88750e-15
+
+dim values: 1890711467
+damp values: 685310427
+input ends
+EXTERNAL: Error: vector is too large
+
+EXTERNAL: Execution halted
+
+INFO: Done fuzzing! Ran 4 tests (2 tests/second) with 4 failed/0 passed/0 abandoned tests

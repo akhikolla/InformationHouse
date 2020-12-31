@@ -1,0 +1,38 @@
+Package: psrwe
+Title: PS-Integrated Methods for Incorporating RWE in Clinical Studies
+Version: 1.2
+Author: Chenguang Wang [aut, cre]
+        Trustees of Columbia University [cph] (tools/make_cpp.R, R/stanmodels.R)
+Maintainer: Chenguang Wang <cwang68@jhmi.edu>
+Description: High-quality real-world data can be transformed into scientific
+    real-world evidence (RWE) for regulatory and healthcare decision-making
+    using proven analytical methods and techniques. For example, propensity
+    score (PS) methodology can be applied to pre-select a subset of real-world
+    data containing patients that are similar to those in the current clinical
+    study in terms of covariates, and to stratify the selected patients together
+    with those in the current study into more homogeneous strata. Then, methods
+    such as power prior approach or composite likelihood approach can be applied
+    in each stratum to draw inference for the parameters of interest. This
+    package provides functions that implement the PS-integrated RWE analysis
+    methods proposed in Wang et al. (2019) <doi:10.1080/10543406.2019.1657133>,
+    Wang et al. (2020) <doi:10.1080/10543406.2019.1684309> and Chen et al.
+    (2020) <doi:10.1080/10543406.2020.1730877>.
+Depends: methods, R (>= 4.0), rstan (>= 2.19.3), Rcpp (>= 1.0.5)
+License: GPL (>= 3)
+LinkingTo: BH (>= 1.72.0-3), rstan (>= 2.19.3), Rcpp (>= 1.0.5),
+        RcppEigen (>= 0.3.3.7.0), StanHeaders (>= 2.21.0-5)
+RcppModules: stan_fit4powerp_mod, stan_fit4powerps_mod,
+        stan_fit4powerpsbinary_mod, stan_fit4prior_mod
+Imports: parallel (>= 3.2), cowplot (>= 1.0.0), dplyr (>= 0.8.5),
+        ggplot2 (>= 3.3.2), randomForest (>= 4.6-14)
+Suggests: knitr, markdown
+Encoding: UTF-8
+LazyData: true
+ByteCompile: true
+SystemRequirements: GNU make
+NeedsCompilation: yes
+RoxygenNote: 7.1.0
+VignetteBuilder: knitr
+Packaged: 2020-09-01 12:44:22 UTC; cwang68
+Repository: CRAN
+Date/Publication: 2020-09-08 08:20:08 UTC

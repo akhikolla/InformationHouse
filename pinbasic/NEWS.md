@@ -1,0 +1,86 @@
+## pinbasic v1.2.2 (Release Date: 2018-11-18)
+
+### Fixes
+
+* Removed detritus from vignette directory
+
+
+## pinbasic v1.2.1 (Release Date: 2018-08-19)
+
+### Changes 
+
+* added argument `nlminb_control` to function `qpin`, `pin_est` and `pin_est_core` (see control argument for `stats::nlminb`)
+* Dataset `BSfrequent` is now simulated with the parameter set (0.2, 0.5, 2200, 2000, 800) instead of (0.2, 0.5, 1800, 1700, 600)
+
+
+## pinbasic v1.2.0 (Release Date: 2017-12-21)
+
+### Changes 
+
+* `simulateBS` now completely in C++
+* Method for generating sets of initial values in `pin_confint` function 
+  is no longer tied to `HAC`. Other available methods can be chosen via 
+  the `method` argument of the function. (Defaults to `"HAC"`)
+* additional boolean flag `posterior` to enable computing posterior probabilities of 
+  conditions of trading days for `pin_est`, `pin_est_core` and `qpin` functions
+* `qpin` function returns now list of list by default with slots `res` and `posterior`:
+  `res` is relevant for `ggplot.qpin`
+
+
+## pinbasic v1.1.0 (Release Date: 2017-03-01)
+
+### Fixes
+
+* `pin_confint` for `ncores = 1`; `seed` is set once at the beginning, hence results differ slightly from them of earlier version
+
+### Changes
+
+* Code clean-up for `pin_confint` and thus less dependencies; `ncores = 1` by default now
+* Confidence interval computations invoked by `pin_est_core`, `pin_est` or `qpin` use only 1 CPU core by default now
+* Likelihood factorizations are re-implemented with `Rcpp`
+* `simulateBS` function is re-implemented with `Rcpp`
+
+
+## pinbasic v1.0.1 (Release Date: 2017-01-11)
+
+### Fixes
+
+* fixed NOTES reported by CRAN checks
+
+## pinbasic v1.0.0 (Release Date: 2017-01-09)
+
+### New Functions
+
+* `posterior`: calculates posterior probabilities for trading days' conditions
+* `ggplot.posterior`: Method for `ggplot` function for handling objects with class 'posterior' (Results from `posterior` function)
+
+### Changes
+
+* `pin_confint`: using `iter` function from `iterators` package to iterate over list of simulated datasets if executed in parallel 
+                 which gains little speed-up in execution time
+* `qpin_plot` changed to `ggplot.qpin`: Method for `ggplot` function for handling objects with class 'qpin' (Results from `qpin` function)
+
+### Fixes
+
+* fixed missing convergence code in optimization routines if `num_best_res = 1` 
+
+## pinbasic v0.2.0 (Release Date: 2016-12-02)
+
+### New Functions
+
+* `simulateBS` for simulating daily buys and sells data
+* `pin_confint`: computes confidence intervals for the probability of informed trading 
+
+### Changes
+
+* `pin_est_core`, `pin_est` and `qpin` gained two new arguments: `confint` and `ci_control` 
+* updated plotting structure for `qpin_plot`, facets are now grouped by probability parameters, 
+  intensity parameters and the probability of informed trading
+* `initial_vals` together with `method = "HAC_Ref"` now returns a number of sets of initial values depending 
+  on `num_clust` argument, not only one set
+* Vignette was added
+    
+
+## pinbasic v0.1.0 (Release Date: 2016-10-25)
+
+* initial release

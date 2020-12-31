@@ -1,0 +1,12 @@
+WARNING: No test specified, defaulting to first test defined (jmotif_deepstate_test_str_to_repair_grammar_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/jmotif/inst/testfiles/str_to_repair_grammar/str_to_repair_grammar_output/2674e28a80bfd215ee63464760d62cc4338150cd.fail`
+TRACE: Running: jmotif_deepstate_test_str_to_repair_grammar_test from /home/akhila/fuzzer_packages/fuzzedpackages/jmotif/inst/testfiles/str_to_repair_grammar/str_to_repair_grammar_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+str values: "vwqsmdzzqwjrhymjmncf" "NA" "ufahkyfhjgskpohfyxzm" "sjlngnwvrzhgepktmzot" "vgyvqbrusvjgdnxgeqas" "nobzcmwoshbhfhraomz" "mdwvawhtyvnyozkpr" "mmwwwbqsmtbsxrbyuvwb" "bmllvzynloxwun" "yevuvcziik" "otxevodhvnvcbnzclolk" "oagnygbnrjbbnil" "rmliiqolkn" "ptrukg" "iltpuydecwmfxe" "NA" "NA" "NA" "cfgbinwlowvbdhmavrfb" "ihozmlwcgtykvmufnq" "lesglplolsylxcudbnxj" "udezecjhfardymjrxamb" "NA" "NA" "NA" "NA" "kprzsquis" "NA" "NA" "gqvqnqpzbbfqtuyqmogm" "fivhtxolyrlkkxnvdtis" "rghfzpuighihynftlgwz" "NA" "cfcsweneyqpxhchczuwi" "NA" "huwpzogyfnlmowx" "NA" "tquum" "zmjyrbwftkly" "pzulgvvacker" "yjlfzcrskcxqwyxubmkb" "kzkxokqgqwcmdszxezic" "mtdngwpsqmuggpk" "NA" "fnztqkqsvqztvloqhryy" "NA" "NA" "NA" "klmhewqnjpqidw" "bkrffxuwgxosoxiqkidf" "zkx" "tggmlfvpyqhwhibzdcdj"
+input ends
+terminate called after throwing an instance of 'Rcpp::not_compatible'
+  what():  Expecting a single string value: [type=character; extent=52].
+ERROR: Failed: jmotif_deepstate_test_str_to_repair_grammar_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/jmotif/inst/testfiles/str_to_repair_grammar/str_to_repair_grammar_output/2674e28a80bfd215ee63464760d62cc4338150cd.fail failed

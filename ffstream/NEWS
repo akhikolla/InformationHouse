@@ -1,0 +1,27 @@
+# ffstream 1.6.0 
+
+NEWS:
+
+ - Changed maintainer URL to `deanbodenhampkgs@gmail.com`.
+   This is simply to create a centralised email for my packages.  
+ - Fixed compilation issue with Rcpp, which seemed to occur due 
+   to a new version changing the NAMESPACE file.  
+ - Fixed a bug that seemed to occur when the burn-in length
+   was set to zero for the AFF change detector, i.e. `BL=0` case.   
+ - Changed name of vignette to `intro` and created 
+   `ffstream_vignette()` function; it seemed that many users did 
+   not know this vignette existed, so hopefully the creation of the
+   new function will change that.   
+ - In the DESCRIPTION added URL for 'full' vignette hosted on GitHub. 
+   Still cannot figure
+   out why I need to make the figures so small in size, but other 
+   vignettes seem to be able to have larger figures. 
+   At least this allows users to see the full vignette.  
+ - Modified the `ffstream()` function, which was previously kind of 
+   a placeholder to inform the user about the `ffstream_vignette`
+   function, as well as the URL for the full vignette.  
+ - Added ability to obtain `Lderiv` from an `affcd` object.
+ - Finally, changed the required R version to 3.5.0; probably not
+   necessary, but this is what it was built on, so apologies to any
+   users that need to then upgrade. Also upgraded requirements for
+   `Rcpp` and `testtthat`.  

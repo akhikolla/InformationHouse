@@ -1,0 +1,31 @@
+WARNING: No test specified, defaulting to first test defined (amt_deepstate_test_simulate_udf_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/amt/inst/testfiles/simulate_udf/simulate_udf_output/46481e72709f7ad10e08e73c158a2f776bf79690.fail`
+TRACE: Running: amt_deepstate_test_simulate_udf_test from /home/akhila/fuzzer_packages/fuzzedpackages/amt/inst/testfiles/simulate_udf/simulate_udf_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+n_steps values: -823343871
+start values: -1944840741
+nc values: -1282051013
+nr values: 1960826707
+Missing value
+mk values: 1.37085e+166 -4.40542e-65 2.85353e-137 1.62943e+287 1.92872e-182
+6.49239e+224 1.18796e-216 1.24664e-33 3.25350e-58 2.29111e-102
+   -inf 2.24371e+115 5.07853e+212 5.23732e-77 1.10377e+42
+1.05926e+69 1.55723e+234 4.27062e+251 1.40525e+109 1.10241e+303
+2.42002e+54 2.40647e-78 3.33957e-305 0.00274153 1.85220e-70
+2.26741e+104 2.96154e-179     inf 7.47790e-305 1.65258e+117
+6.27440e-62     nan 6.32727e+43 0.000847739 3.70619e+170
+
+hk values: 1.21870e+82 8.65196e-147 3.14409e+292 1.28482e+261 1.00660e-231 4.88403e+68
+2.05363e+269 6.00243e-122 1.91804e-73 2.18134e-73 4.21180e+107 2.38346e+154
+2.75380e+296 1.65861e-165 6.14733e-33 5.57047e-74 4.13647e-131 2.96436e+236
+3.17240e-224 9.39137e-85 1.00613e-187 2.25260e-56 6.39762e-240 8.34547e+217
+3.90170e-214 1.87095e-209 4.28527e-132 2.91996e+68 5.71141e+204 1.71769e-29
+6.19765e+268 9.26438e+235 4.22917e+275 1.18631e+102 9.22380e-200 8.90413e+205
+
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Index out of bounds: [index=-1944840741; extent=6].
+ERROR: Failed: amt_deepstate_test_simulate_udf_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/amt/inst/testfiles/simulate_udf/simulate_udf_output/46481e72709f7ad10e08e73c158a2f776bf79690.fail failed

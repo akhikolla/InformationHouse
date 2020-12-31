@@ -1,0 +1,30 @@
+WARNING: No test specified, defaulting to first test defined (LassoNet_deepstate_test_betanew_lasso_cpp_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/LassoNet/inst/testfiles/betanew_lasso_cpp/betanew_lasso_cpp_output/23dbb89d0d5238320d87762ead2bdd7f05abd38d.fail`
+TRACE: Running: LassoNet_deepstate_test_betanew_lasso_cpp_test from /home/akhila/fuzzer_packages/fuzzedpackages/LassoNet/inst/testfiles/betanew_lasso_cpp/betanew_lasso_cpp_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+xx values:     nan    -inf    -inf     nan    -inf 1.55275e+40
+
+Missing value
+xy values: -5.02292e+117 -5.72942e+144 3.57164e+306 5.10745e-90 -2.60609e-23 -1.01324e-174 1.23214e-272 -2.47343e+92 1.60774e-28 -2.46712e+282 1.54163e+153 1.27627e-286 nan 5.05724e-294 2.124e-163 -9.51323e-197 3.19247e-184 nan nan 1.80254e+45 -1.19985e-167 nan -2.85375e-285 -4.96182e+212 2.93453e+51 -3.48461e-264 -2.09115e-209 2.70315e+165 -4.35123e-245 -4.7888e-91 -6.15607e-134 1.58392e+299 1.75992e-188 2.92513e-276 2.05444e-194 -8.74339e-139 3.22331e-237 6.20752 8.27412e+256 6.6726e+42 1.74061e+94 -1.04615e+10 8.21606e-152 2.27705e+266 1.32765e-258 -6.58791e-221 -4.94509e-161 8.46075e+220 0
+beta values: -1.34852e+122 1.76776e+51 6.26373 -9.96287e-111 -8.23755e+198 -9.01896e-271 7.90107e-59 -7.51099e-234 -9.32149e-62 2.66297e-21 2.85695e-49 4.90458e-204 -1.3085e-253 -1.07333e-20 -8.85386e+100 -5.65013e+262 3.67043e+302
+Missing value
+M values: 6.55160e+148 3.98660e-123     nan 2.72594e-127 5.16968e+132
+    nan 6.98635e-152 6.99912e+226 1.70213e-294 2.58980e+103
+    nan 2.69480e-277 1.61071e-259 1.53635e+73 4.67768e+204
+1.35824e+206     nan 1.71451e+148 3.64158e+76 2.44511e+102
+0.00262451 1.36892e-160 7.63235e+17 5.96397e+152 5.21157e-161
+8.92101e-120 1.04260e+173 5.81875e+271 6.76004e-54 2.42182e-150
+
+y values: -3.30076e-47 7.69574e-24 -2.5991e+272 -1.25426e-99 -2.73128e+126 7.04771e-119 -8.70419e-200 -3.29073e-118 4.53742e+27 1.83022e-288 7.0988e+239 -1.80471e-217 -9.8769e+14 -3.35262e+233 -7.52335e-175 5.26801e-74 -1.73243e-255 1.89046e-83 4.62993e+141 -2.96832e+248 2.26229e-308 -1.28463e+49 4.45232e+103 -2.17954e-274 -2.80374e-33 2.75943e-307 -6.2609e+56 0.00033692 -5.29721e-305 -4.18413e-91 3.657e+41 2.41732e-265 -3.0444e-172 -6.07483e-96 1.02116e-61 -1.60521e+131 9.32367e+86 -1.55862e+210 -4.79269e-244 -2.02123e-93 -2.02552e-94 4.25899e+233
+Lambda1 values: -1.98454e+254
+Lambda2 values: 3.30325e+180
+iter values: 5.61681e+76
+tol values: -2.40947
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Column index is out of bounds: [index=6; column extent=6].
+ERROR: Failed: LassoNet_deepstate_test_betanew_lasso_cpp_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/LassoNet/inst/testfiles/betanew_lasso_cpp/betanew_lasso_cpp_output/23dbb89d0d5238320d87762ead2bdd7f05abd38d.fail failed

@@ -1,0 +1,29 @@
+useDynLib(GUILDS)
+importFrom("stats", "integrate", "optimize", "rbeta", "runif", "lm",
+             "uniroot")
+importFrom("utils", "flush.console")
+importFrom("graphics", "barplot", "lines")
+importFrom(Rcpp, evalCpp)
+
+export(generate.ESF)
+export(generate.Guilds)
+export(generate.Guilds.Cond)
+
+
+export(expected.SAD.Guilds.Conditional)
+export(expected.SAD.Guilds)
+export(expected.SAD)
+
+
+export(logLikelihood.ESF)
+export(logLikelihood.Guilds)
+export(logLikelihood.Guilds.Conditional)
+
+export(maxLikelihood.ESF)
+export(maxLikelihood.Guilds)
+export(maxLikelihood.Guilds.Conditional)
+
+export(preston_plot)
+export(calcKDA)
+export(simplex)
+

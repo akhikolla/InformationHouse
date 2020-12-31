@@ -1,0 +1,31 @@
+Package: GeneralizedUmatrix
+Type: Package
+Title: Credible Visualization for Two-Dimensional Projections of Data
+Version: 1.2.1
+Date: 2020-10-25
+Authors@R: c(person("Michael", "Thrun", email= "m.thrun@gmx.net",role=c("aut","cre","cph"), comment = c(ORCID = "0000-0001-9542-5543")),person("Felix", "Pape",role=c("ctb","ctr")),person("Tim", "Schreier",role=c("ctb","ctr")),person("Luis", "Winckelman",role=c("ctb","ctr")),person("Alfred", "Ultsch",role="ths"))
+Maintainer: Michael Thrun <m.thrun@gmx.net>
+Description: Projections are common dimensionality reduction methods, which represent high-dimensional data in a two-dimensional space. However, when restricting the output space to two dimensions, which results in a two dimensional scatter plot (projection) of the data, low dimensional similarities do not represent high dimensional distances coercively [Thrun, 2018] <DOI: 10.1007/978-3-658-20540-9>. This could lead to a misleading interpretation of the underlying structures [Thrun, 2018]. By means of the 3D topographic map the generalized Umatrix is able to depict errors of these two-dimensional scatter plots. The package is derived from the book of Thrun, M.C.: "Projection Based Clustering through Self-Organization and Swarm Intelligence" (2018) <DOI:10.1007/978-3-658-20540-9> and the main algorithm called simplified self-organizing map for dimensionality reduction methods is published in <DOI: 10.1016/j.mex.2020.101093>.
+License: GPL-3
+Imports: Rcpp, ggplot2
+Suggests: DataVisualizations, rgl, grid, mgcv, png, reshape2, fields,
+        ABCanalysis, plotly, deldir, methods, knitr (>= 1.12),
+        rmarkdown (>= 0.9)
+LinkingTo: Rcpp, RcppArmadillo
+Depends: R (>= 3.0)
+NeedsCompilation: yes
+SystemRequirements: C++11
+LazyLoad: yes
+LazyData: TRUE
+URL: http://www.deepbionics.org
+Encoding: UTF-8
+VignetteBuilder: knitr
+BugReports: https://github.com/Mthrun/GeneralizedUmatrix/issues
+Packaged: 2020-10-25 10:13:53 UTC; MT
+Author: Michael Thrun [aut, cre, cph] (<https://orcid.org/0000-0001-9542-5543>),
+  Felix Pape [ctb, ctr],
+  Tim Schreier [ctb, ctr],
+  Luis Winckelman [ctb, ctr],
+  Alfred Ultsch [ths]
+Repository: CRAN
+Date/Publication: 2020-10-25 10:40:03 UTC

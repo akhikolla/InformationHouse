@@ -1,0 +1,19 @@
+Package: krige
+Type: Package
+Title: Geospatial Kriging with Metropolis Sampling
+Version: 0.6.1
+Date: 2020-11-16
+Author: Jason S. Byers [aut, cre], Le Bao [aut], Jamie Carson [aut], Jeff Gill [aut]
+Maintainer: Jason S. Byers <jaybyers55@gmail.com>
+Description: Estimates kriging models for geographical point-referenced data. Method is described in Gill (2020) <doi:10.1177/1532440020930197>.
+License: GPL (>= 2)
+Depends: R (>= 3.5.0)
+Imports: Rcpp, stats, graphics, coda
+LinkingTo: Rcpp
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+NeedsCompilation: yes
+Packaged: 2020-12-14 22:28:14 UTC; jasonbyers
+Repository: CRAN
+Date/Publication: 2020-12-14 22:50:02 UTC

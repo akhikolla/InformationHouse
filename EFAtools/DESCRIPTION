@@ -1,0 +1,63 @@
+Package: EFAtools
+Title: Fast and Flexible Implementations of Exploratory Factor Analysis
+        Tools
+Version: 0.3.0
+Authors@R: 
+    c(person(given = "Markus",
+             family = "Steiner",
+             role = c("aut", "cre"),
+             email = "markus.d.steiner@gmail.com"),
+      person(given = "Silvia",
+             family = "Grieder",
+             role = "aut",
+             email = "silvia.grieder@gmail.com"),
+      person(given = "William",
+             family = "Revelle",
+             role = "ctb"),
+      person(given = "Max",
+             family = "Auerswald",
+             role = "ctb"),
+      person(given = "Morten",
+             family = "Moshagen",
+             role = "ctb"),
+      person(given = "John",
+             family = "Ruscio",
+             role = "ctb"),
+      person(given = "Brendan",
+             family = "Roche",
+             role = "ctb"),
+      person(given = "Urbano",
+             family = "Lorenzo-Seva",
+             role = "ctb"),
+      person(given = "David",
+             family = "Navarro-Gonzalez",
+             role = "ctb"))
+Description: Provides functions to perform exploratory factor analysis (EFA) procedures and compare their solutions. The goal is to provide state-of-the-art factor retention methods and a high degree of flexibility in the EFA procedures. This way, for example, implementations from R 'psych' and 'SPSS' can be compared. Moreover, functions for Schmid-Leiman transformation and the computation of omegas are provided. To speed up the analyses, some of the iterative procedures, like principal axis factoring (PAF), are implemented in C++.
+Depends: R (>= 3.6.0)
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+URL: https://github.com/mdsteiner/EFAtools
+BugReports: https://github.com/mdsteiner/EFAtools/issues
+RoxygenNote: 7.1.1
+Imports: lavaan, psych, crayon, stringr, stats, ggplot2, tibble,
+        magrittr, dplyr, cli, Rcpp, viridisLite, graphics,
+        future.apply, future, GPArotation, checkmate, tidyr, progressr,
+        progress, rlang
+LinkingTo: Rcpp, RcppArmadillo
+Suggests: testthat, knitr, rmarkdown, microbenchmark
+VignetteBuilder: knitr
+NeedsCompilation: yes
+Packaged: 2020-11-04 17:24:36 UTC; msteiner
+Author: Markus Steiner [aut, cre],
+  Silvia Grieder [aut],
+  William Revelle [ctb],
+  Max Auerswald [ctb],
+  Morten Moshagen [ctb],
+  John Ruscio [ctb],
+  Brendan Roche [ctb],
+  Urbano Lorenzo-Seva [ctb],
+  David Navarro-Gonzalez [ctb]
+Maintainer: Markus Steiner <markus.d.steiner@gmail.com>
+Repository: CRAN
+Date/Publication: 2020-11-04 18:00:02 UTC

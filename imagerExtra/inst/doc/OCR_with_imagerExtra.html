@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Shota Ochi" />
+
+<meta name="date" content="2019-01-25" />
+
+<title>Optical Character Recognition with imagerExtara</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#header {
+text-align: center;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Optical Character Recognition with imagerExtara</h1>
+<h4 class="author"><em>Shota Ochi</em></h4>
+<h4 class="date"><em>2019-01-25</em></h4>
+
+
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+code.r{
+  font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+<p>You need the R package tesseract, which is bindings to a powerful optical character recognition (OCR) engine, to do OCR with imagerExtra.</p>
+<p>See the <a href="https://github.com/ropensci/tesseract#installation">installation guide of tesseract</a> if you haven’t installed tesseract.</p>
+<p>ocr function of tesseract works best for images with high contrast, little noise, and horizontal text.</p>
+<p>ocr function doesn’t show a good performance for degraded images as shown below.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(imagerExtra)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">plot</span>(papers, <span class="dt">main =</span> <span class="st">&quot;Original&quot;</span>)</a></code></pre></div>
+<p><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAEgAeADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD0CiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKA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wC99qc68wwm080gDA2yFmz9FIJqmtWvMlbXN6z1BbmZoJLea2nVQ/lzBclT3BUkdeOuRV2shyJPFUBjIIis33kc43Mu389p/Ktel0GFFFFABRRRQAUUUUAFUtQ1S0057eO4kxJcSLHFGOWYk4zj0GeTV2sfxBDEIYZxEgla6t1Mm0biPNXjPpQt0HRlu81EWtzFbJaz3M0qs4WLYMKuASdzD+8KSbURBFDvtZzcTkhLZdhfjrzu2gAd8/rUNzZ2d5rA824uVuEg4jjleIbS3XK4J57Z9OKzbCeWXVNNmuW3KVuYI5G/jw42n6lVP1xmhAzesruO9hMkYZSrFHRxhkYdQasVk6H81xqsq8xyXh2EdDhFUn8wR+Fa1ABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAVXSytI7prpLWFbhxhpVjAdvqetWKKACiiigAooooAKKKKACiiigAooooArz2NncypLcWsE0kf3HkjDFfoT0pbqztb1VW7tobhVOQJYwwB/Gp6KAEAAGAMAUtFFABRRRQAUUUUAFFFFABSEAggjIPalooAiNtA1t9mMMZg27PKKDbt9MdMUkNtb28HkQQRRQ8/u0QKvPXgVNRQBBa2dtZoUtLaGBCclYkCgn14qeiigAooooAKKKKACiiigApkkUcqhZUVwCGAYZwQcg/UGn0UAV7qytL1VW7tYbhVOVEsYcD6Zp09rb3MHkXEEUsXH7t0DLx04NTUUAMijjhjWOJFjjQYVVGAB6AU+iigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/9k=" /><!-- --></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">OCR</span>(papers) <span class="op">%&gt;%</span><span class="st"> </span>print</a></code></pre></div>
+<pre><code>[1] &quot;&quot;</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">OCR_data</span>(papers) <span class="op">%&gt;%</span><span class="st"> </span>print</a></code></pre></div>
+<pre><code>[1] word       confidence bbox      
+&lt;0 rows&gt; (or 0-length row.names)</code></pre>
+<p>OCR function and OCR_data function are wrappers for ocr function and ocr_data function of tesseract.</p>
+<p>We can see OCR function and OCR_data function failed to recognize the text “Hello”.</p>
+<p>We need to clean the image before using OCR function.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">hello &lt;-<span class="st"> </span><span class="kw">DenoiseDCT</span>(papers, <span class="fl">0.01</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ThresholdAdaptive</span>(., <span class="fl">0.1</span>, <span class="dt">range =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">plot</span>(hello, <span class="dt">main =</span> <span class="st">&quot;Hello&quot;</span>)</a></code></pre></div>
+<p><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAEgAeADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD0CiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAK5vx3dz2ehpLbzyQN9oQFo2KnHORxXSVzfjq1nu9Ejit4JJ2+0ISsaFjjnJwO1Lt8hmZ4j8W2F3YQRaTqMguDOmfLV4yV784Fbeo6/NDqTadpunPqFzGgklAlEaoD05Pf2rO8WaHbrpcB03SohOLhCTb243bec/dGcVS1zRo4/E1xe3+kXWp2dyilPs24tG4AGCARxxT/AK/BCX6fqWPEOvNe+For2wlntZPtSxSKGKujDOVOKuWt5MPHOoQy3En2aO0VwjOdin5cnHQVk6lpMg8Ixx2Wiy2byXayG2SRpmAxjcfT6VojTp7jxhqu+KVILixESzbDtyQBwfWjbbz/ACD+vxHHxhKYGv49HuH0pW2m6EgBIzjITrj3zXSwyx3EKTRMHjkUMrDoQehriI21SDw0/hz+xrp7rDRLMqjySpP3t3412GlWhsNLtbQtuMMSoW9SBTEW6KKKQwooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAoqG6u7azjEl3cRQITtDSuFBPpk/Sq8etaVLIscep2bu5CqqzqSxPQAZoAvUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFICD0OaWgAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKzdTuZlvLOzinFuLksDNtBYYAIVc8ZPPUHoeKANKisTUvtelWMl6uqTzGLGIp0i2yE8bflVTk9uevrW0OlAC1n63/AMeMf/X3bf8A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qsq8xyXh2EdDhFUn8wR+Fa1ABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAVXSytI7prpLWFbhxhpVjAdvqetWKKACiiigAooooAKKKKACiiigAooooArz2NncypLcWsE0kf3HkjDFfoT0pbqztb1VW7tobhVOQJYwwB/Gp6KAEAAGAMAUtFFABRRRQAUUUUAFFFFABSEAggjIPalooAiNtA1t9mMMZg27PKKDbt9MdMUkNtb28HkQQRRQ8/u0QKvPXgVNRQBBa2dtZoUtLaGBCclYkCgn14qeiigAooooAKKKKACiiigApkkUcqhZUVwCGAYZwQcg/UGn0UAV7qytL1VW7tYbhVOVEsYcD6Zp09rb3MHkXEEUsXH7t0DLx04NTUUAMijjhjWOJFjjQYVVGAB6AU+iigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/2Q==" /><!-- --></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">OCR</span>(hello) <span class="op">%&gt;%</span><span class="st"> </span>print</a></code></pre></div>
+<pre><code>[1] &quot;Hello\n&quot;</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">OCR_data</span>(hello) <span class="op">%&gt;%</span><span class="st"> </span>print</a></code></pre></div>
+<pre><code>   word confidence       bbox
+1 Hello   93.99038 8,9,118,54</code></pre>
+<p>We can see the text “Hello” was recognized.</p>
+<p>Using tesseract in combination with imagerExtra enables us to extract text from degraded images.</p>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

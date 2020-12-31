@@ -1,0 +1,16 @@
+WARNING: No test specified, defaulting to first test defined (MM4LMM_deepstate_test_chol_inverse_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash`
+TRACE: Running: MM4LMM_deepstate_test_chol_inverse_test from /home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+X values: 1.05415e-68 1.86447e-211 4.49059e+17 2.72551e-214 6.53679e-70 2.42643e+241 1.65687e+24
+
+input ends
+==452247==  If you believe this happened as a result of a stack
+==452247==  overflow in your program's main thread (unlikely but
+==452247==  possible), you can try to increase the size of the
+==452247==  main thread stack using the --main-stacksize= flag.
+==452247==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: MM4LMM_deepstate_test_chol_inverse_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/MM4LMM/inst/testfiles/chol_inverse/chol_inverse_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash crashed

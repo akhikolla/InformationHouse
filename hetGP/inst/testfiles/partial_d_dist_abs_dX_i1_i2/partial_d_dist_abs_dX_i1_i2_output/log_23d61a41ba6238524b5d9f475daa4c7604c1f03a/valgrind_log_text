@@ -1,0 +1,18 @@
+WARNING: No test specified, defaulting to first test defined (hetGP_deepstate_test_partial_d_dist_abs_dX_i1_i2_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/partial_d_dist_abs_dX_i1_i2/partial_d_dist_abs_dX_i1_i2_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash`
+TRACE: Running: hetGP_deepstate_test_partial_d_dist_abs_dX_i1_i2_test from /home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/partial_d_dist_abs_dX_i1_i2/partial_d_dist_abs_dX_i1_i2_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+X1 values: 1.05415e-68 1.86447e-211 4.49059e+17 2.72551e-214 6.53679e-70 2.42643e+241 1.65687e+24
+
+i1 values: 644268439
+i2 values: 123721430
+input ends
+==862098==  If you believe this happened as a result of a stack
+==862098==  overflow in your program's main thread (unlikely but
+==862098==  possible), you can try to increase the size of the
+==862098==  main thread stack using the --main-stacksize= flag.
+==862098==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: hetGP_deepstate_test_partial_d_dist_abs_dX_i1_i2_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/partial_d_dist_abs_dX_i1_i2/partial_d_dist_abs_dX_i1_i2_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash crashed

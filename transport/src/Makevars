@@ -1,0 +1,88 @@
+#!/bin/bash
+
+CXX_STD = CXX11
+
+OBJECTS.general = RcppExports.o	auctionbf.o shielding.o aha.o primaldual.o \
+		  shortsimplex.o auction.o revsimplex.o transport_init.o \
+                  Common/GridTools.o \
+                  Common/TCouplingHandler.o \
+                  Common/THierarchicalPartition.o \
+                  Common/THierarchyBuilder.o \
+                  Common/TMultiVarListHandler.o \
+                  Common/tools.o \
+                  Common/TVarListHandler.o \
+                  Common/Verbose.o \
+                  ShortCutSolver/Interfaces.o \
+                  ShortCutSolver/MultiScaleSolver.o \
+                  ShortCutSolver/TShieldGenerator.o \
+                  ShortCutSolver/TShortCutSolver.o \
+		  semidiscrete_p1.o create_diagram.o \
+		  networksimplex.o \
+		  gen_cost.o \
+		  remember_linkage.o
+
+
+# CGAL (the Computational Geometry Algorithms Library) is used to solve semidiscrete optimal transport problems
+# for (unsquared) Euclidean cost. If you require this functionality, install CGAL from
+# https://www.cgal.org/download.html following the instructions given there. Then comment in the next three lines.
+# PKG_CPPFLAGS_CGAL = -DWITH_CGAL
+# PKG_LIBS_CGAL = -lCGAL
+# OBJECTS.additional = semidiscrete_p1/Source.o semidiscrete_p1/Target.o semidiscrete_p1/lbfgs.o	
+
+
+# =============================================================================
+
+# Comment in/out the following blocks according to whether you have CPLEX installed or not
+# If you have CPLEX installed adapt the path for PKG_CPPFLAGS and PKG_LIBS in the examples below if necessary
+
+# ======================
+# CPLEX
+# ======================
+# Comment in the following four lines and set PKG_CPPFLAGS and PKG_LIBS according to the examples below
+# OBJECTS.cplex = OT_CPLEX/TCPLEXNetSolver.o \
+#                 ShortCutSolver_CPLEX/Interfaces-CPLEX.o
+# OBJECTS = $(OBJECTS.general) $(OBJECTS.cplex) $(OBJECTS.additional)
+# PKG_CXXFLAGS = $(SHLIB_OPENMP_CXXFLAGS)
+#
+# The following depends on your CPLEX include and library paths 
+#
+# --- Linux ---
+# PKG_CPPFLAGS = $(PKG_CPPFLAGS_CGAL) -DIL_STD -DILOSTRICTPOD -DWITH_CPLEX -I/media/daten/lib/cplex12.6.1/cplex/include -I.
+# PKG_LIBS = -L/media/daten/lib/cplex12.6.1/cplex/lib/x86-64_linux/static_pic/ -lcplex -lm -lstdc++ $(PKG_LIBS_CGAL) $(SHLIB_OPENMP_CXXFLAGS)
+#
+# --- Mac OS X 10.14. ---
+# PKG_CPPFLAGS = $(PKG_CPPFLAGS_CGAL) -DIL_STD -DILOSTRICTPOD -DWITH_CPLEX -I$(HOME)/Applications/IBM/ILOG/CPLEX_Studio1271/cplex/include -I.
+# PKG_LIBS = -L$(HOME)/Applications/IBM/ILOG/CPLEX_Studio1271/cplex/lib/x86-64_osx/static_pic/ -lcplex -lm -lstdc++ $(PKG_LIBS_CGAL) $(SHLIB_OPENMP_CXXFLAGS)
+#
+# --- Windows (64 bit) ---
+# PKG_CPPFLAGS= $(PKG_CPPFLAGS_CGAL) -D_LP64 -DWITH_CPLEX -I"C:/PROGRA~1/IBM/ILOG/CPLEX_Studio1271/cplex/include" -I.
+# PKG_LIBS = -L"C:/PROGRA~1/IBM/ILOG/CPLEX_Studio1271/cplex/bin/x64_win64" -lcplex1271 -lm $(PKG_LIBS_CGAL) $(SHLIB_OPENMP_CXXFLAGS)
+# ======================
+# end of CPLEX
+# ======================
+
+# ------------------------------------------------------------------------------
+
+# ======================
+# No CPLEX
+# ======================
+# Comment in the following seven lines 
+OBJECTS.standard = OT_SparseSimplex/sparsebasicfeasible.o \
+		   OT_SparseSimplex/sparsesimplex.o \
+		   OT_SparseSimplex/TSparseSimplexSolver.o \
+		   ShortCutSolver_SparseSimplex/Interfaces-SparseSimplex.o
+OBJECTS = $(OBJECTS.general) $(OBJECTS.standard) $(OBJECTS.additional)
+PKG_CPPFLAGS = $(PKG_CPPFLAGS_CGAL) -I.
+PKG_CXXFLAGS = $(SHLIB_OPENMP_CXXFLAGS)
+PKG_LIBS =  -lm $(PKG_LIBS_CGAL)  $(SHLIB_OPENMP_CXXFLAGS)
+# ======================
+# end of No CPLEX
+# ======================
+
+
+all: $(SHLIB)
+
+clean: @rm -f $(OBJECTS)
+# This cleans the subfolders in src (files directly in source auto-clean)
+# all is needed *if* you have clean (or any such instruction).
+

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Juniper L. Simonis" />
+
+<meta name="date" content="2020-11-21" />
+
+<title>GenEst - Graphic User Interface</title>
+
+
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#header {
+text-align: center;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">GenEst - Graphic User Interface</h1>
+<h4 class="author">Juniper L. Simonis</h4>
+<h4 class="date">2020-11-21</h4>
+
+
+
+<div id="overview" class="section level1">
+<h1>Overview</h1>
+<p>This document describes the codebase used to create the GenEst Graphic User Interface (GUI). The Genest GUI is coded in HTML via external R packages (<a href="https://cran.r-project.org/package=DT">DT</a>, <a href="https://cran.r-project.org/package=htmltools">htmltools</a>, <a href="https://cran.r-project.org/package=shiny">shiny</a>, <a href="https://cran.r-project.org/package=shinyjs">shinyjs</a>, as well as a number of internal functions to facilitate a simple, human-readable codebase underlying the app. The goal being to allow GenEst to evolve as fluidly as possible at the user interface.</p>
+</div>
+<div id="execution" class="section level1">
+<h1>Execution</h1>
+<p>The GUI is executed locally or as a deployed app following the basic approach of shiny applications. For ease of implementation, we have created an overall function to intialize the app, <code>runGenEst()</code>, which calls both the server and UI codebases. Like most vintage Shiny apps, we employee the two-file system, including a <code>ui.R</code> and <code>server.R</code> script, although each script is Spartan. The <code>ui.R</code> script includes a single call to the <code>GenEstUI(appType)</code> function, which starts the cascade of HTML-generating functions outlined in <strong>UI Function Hierarchy</strong>. The <code>server.R</code> script includes a single reference (not a call) to the function <code>GenEstServer</code>, which is detailed in <strong>Server Function Hierarchy</strong>.</p>
+</div>
+<div id="user-interface" class="section level1">
+<h1>User Interface</h1>
+<div id="ui-function-hierarchy" class="section level3">
+<h3>UI Function Hierarchy</h3>
+<p>The GenEst User Interface is constructed in HTML using pages, panels, tabs, and widgets. The code is parsed into a series of hierarchical functions to facilitate readability and mobility of specific UI components.</p>
+<ul>
+<li><code>GenEstUI(appType)</code>
+<ul>
+<li><code>dataInputPanel()</code>
+<ul>
+<li><code>dataInputSidebar()</code>
+<ul>
+<li><code>dataInputWidget(&quot;SE&quot;)</code></li>
+<li><code>dataInputWidget(&quot;CP&quot;)</code></li>
+<li><code>dataInputWidget(&quot;SS&quot;)</code></li>
+<li><code>dataInputWidget(&quot;DWP&quot;)</code></li>
+<li><code>dataInputWidget(&quot;CO&quot;)</code></li>
+</ul></li>
+<li><code>loadedDataPanel()</code>
+<ul>
+<li><code>dataTabPanel(&quot;SE&quot;)</code></li>
+<li><code>dataTabPanel(&quot;CP&quot;)</code></li>
+<li><code>dataTabPanel(&quot;SS&quot;)</code></li>
+<li><code>dataTabPanel(&quot;DWP&quot;)</code></li>
+<li><code>dataTabPanel(&quot;CO&quot;)</code></li>
+</ul></li>
+<li><code>analysisPanel()</code></li>
+<li><code>GeneralInputsPanel()</code>
+<ul>
+<li><code>GeneralInputsSidebar()</code>
+<ul>
+<li><code>modelInputWidget(&quot;nsim&quot;)</code></li>
+<li><code>modelInputWidget(&quot;CL&quot;)</code></li>
+<li><code>modelInputWidget(&quot;sizeclassCol&quot;)</code><br />
+</li>
+</ul></li>
+</ul></li>
+<li><code>SEPanel()</code>
+<ul>
+<li><code>SESidebar()</code>
+<ul>
+<li><code>modelInputWidget(&quot;obsSE&quot;)</code></li>
+<li><code>modelInputWidget(&quot;predsSE&quot;)</code></li>
+<li><code>modelInputWidget(&quot;kFixed&quot;)</code></li>
+<li><code>modelRunWidget(&quot;SE&quot;)</code></li>
+<li><code>modelOutputWidget(&quot;SE&quot;)</code><br />
+</li>
+</ul></li>
+<li><code>SEMainPanel()</code>
+<ul>
+<li><code>selectedDataPanel(&quot;SE&quot;)</code></li>
+<li><code>modelOutputPanel(&quot;SEFigures&quot;)</code></li>
+<li><code>modelOutputPanel(&quot;SEEstimates&quot;)</code></li>
+<li><code>modelOutputPanel(&quot;SEModComparison&quot;)</code></li>
+<li><code>modelOutputPanel(&quot;SEModSelection&quot;)</code><br />
+</li>
+</ul></li>
+</ul></li>
+<li><code>CPPanel()</code>
+<ul>
+<li><code>CPSidebar()</code>
+<ul>
+<li><code>modelInputWidget(&quot;ltp&quot;)</code></li>
+<li><code>modelInputWidget(&quot;fta&quot;)</code></li>
+<li><code>modelInputWidget(&quot;predsCP&quot;)</code></li>
+<li><code>modelInputWidget(&quot;dists&quot;)</code></li>
+<li><code>modelRunWidget(&quot;CP&quot;)</code></li>
+<li><code>modelOutputWidget(&quot;CP&quot;)</code></li>
+</ul></li>
+<li><code>CPMainPanel()</code>
+<ul>
+<li><code>selectedDataPanel(&quot;CP&quot;)</code></li>
+<li><code>modelOutputPanel(&quot;CPFigures&quot;)</code></li>
+<li><code>modelOutputPanel(&quot;CPEstimates&quot;)</code></li>
+<li><code>modelOutputPanel(&quot;CPModComparison&quot;)</code></li>
+<li><code>modelOutputPanel(&quot;CPModSelection&quot;)</code><br />
+</li>
+</ul></li>
+</ul></li>
+<li><code>MPanel()</code>
+<ul>
+<li><code>MSidebar()</code>
+<ul>
+<li><code>modelInputWidget(&quot;frac&quot;)</code></li>
+<li><code>modelInputWidget(&quot;DWPCol&quot;)</code></li>
+<li><code>modelInputWidget(&quot;dateFoundCol&quot;)</code></li>
+<li><code>modelRunWidget(&quot;M&quot;)</code></li>
+<li><code>modelOutputWidget(&quot;M&quot;)</code></li>
+</ul></li>
+<li><code>MMainPanel()</code><br />
+</li>
+</ul></li>
+<li><code>gPanel()</code>
+<ul>
+<li><code>gSidebar()</code>
+<ul>
+<li><code>modelInputWidget(&quot;gSearchInterval&quot;)</code></li>
+<li><code>modelInputWidget(&quot;gSearchMax&quot;)</code></li>
+<li><code>modelInputWidget(&quot;useSSinputs&quot;)</code></li>
+<li><code>modelInputWidget(&quot;useSSdata&quot;)</code></li>
+<li><code>modelRunWidget(&quot;g&quot;)</code></li>
+<li><code>modelOutputWidget(&quot;g&quot;)</code></li>
+</ul></li>
+<li><code>gMainPanel()</code>
+<ul>
+<li><code>selectedDataPanel(&quot;g&quot;)</code></li>
+<li><code>modelOutputPanel(&quot;gFigures&quot;)</code></li>
+<li><code>modelOutputPanel(&quot;gSummary&quot;)</code><br />
+</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><code>helpPanel(type)</code>
+<ul>
+<li><code>gettingStartedPanel()</code>
+<ul>
+<li><code>gettingStartedContent()</code></li>
+</ul></li>
+<li><code>downloadsPanel()</code>
+<ul>
+<li><code>dataDownloadsWidget(&quot;RP&quot;)</code></li>
+<li><code>dataDownloadsWidget(&quot;RPbat&quot;)</code></li>
+<li><code>dataDownloadsWidget(&quot;cleared&quot;)</code></li>
+<li><code>dataDownloadsWidget(&quot;powerTower&quot;)</code></li>
+<li><code>dataDownloadsWidget(&quot;PV&quot;)</code></li>
+<li><code>dataDownloadsWidget(&quot;trough&quot;)</code></li>
+<li><code>dataDownloadsWidget(&quot;mock&quot;)</code></li>
+</ul></li>
+<li><code>aboutPanel()</code>
+<ul>
+<li><code>aboutContent()</code>
+<ul>
+<li><code>GenEstAuthors()</code></li>
+<li><code>GenEstGUIauthors()</code></li>
+<li><code>GenEstLicense()</code></li>
+<li><code>GenEstAcknowledgements()</code></li>
+<li><code>GenEstLogos()</code></li>
+</ul></li>
+</ul></li>
+<li><code>disclaimersPanel(appType)</code>
+<ul>
+<li><code>disclaimerContent(appType)</code>
+<ul>
+<li><code>disclaimerUSGS()</code></li>
+<li><code>disclaimerWEST(appType)</code></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="ui-widgets" class="section level3">
+<h3>UI Widgets</h3>
+<p>We have coded up a number of widget functions, some of which are simple wrappers on shiny functions that help reduce code clutter, and others of which are custom HTML (e.g., for model selection), but which are still nonetheless wrapped over shiny widgets:</p>
+<ul>
+<li><code>dataInputWidget(dataType)</code></li>
+<li><code>modelInputWidget(inType)</code><br />
+</li>
+<li><code>modelRunWidget(modType)</code></li>
+<li><code>modelOutputWidget(modType)</code><br />
+</li>
+<li><code>dataDownloadsWidget(set)</code></li>
+<li><code>modelSelectionWidget(modType)</code><br />
+</li>
+<li><code>kFixedWidget()</code></li>
+</ul>
+<p>A major need for widgets is having a simple condition wrapped on it, such that the widget is within a conditional panel, defined by some other input or output variable. To facilitate coding of these widgets, we have made a function <code>widgetMaker</code>, which is a generalized constructor function.</p>
+</div>
+<div id="ui-panels" class="section level3">
+<h3>UI Panels</h3>
+<p>Similarly to the input widgets, we have coded up a number of output panel functions that help direct traffic in the building on the HTML document. These functions are generalized to the suite of possible options for panels currently needed by leveraging the basic template approach with limited variation.</p>
+<ul>
+<li><code>dataTabPanel(dataType)</code></li>
+<li><code>selectedDataPanel(modType)</code></li>
+<li><code>modelOutputPanel(outType)</code></li>
+</ul>
+</div>
+<div id="ui-content" class="section level3">
+<h3>UI Content</h3>
+<p>There is a fair amount of (mostly) static content, which we have contained wihtin functions to reduce overall code clutter. These functions primarily dictate content within the “Help” tab’s subtabs.</p>
+<ul>
+<li><code>gettingStartedContent()</code></li>
+<li><code>aboutContent()</code></li>
+<li><code>GenEstAuthors()</code></li>
+<li><code>GenEstGUIAuthors()</code></li>
+<li><code>GenEstLicense()</code></li>
+<li><code>GenEstAcknowledgements()</code></li>
+<li><code>GenEstLogos()</code></li>
+<li><code>disclaimersContent(appType)</code></li>
+<li><code>disclaimerUSGS()</code></li>
+<li><code>disclaimerWEST(appType)</code></li>
+</ul>
+</div>
+</div>
+<div id="server-functionality" class="section level1">
+<h1>Server Functionality</h1>
+<div id="reactivity" class="section level3">
+<h3>Reactivity</h3>
+<p>The server-side functionality operates using <a href="https://shiny.rstudio.com/articles/reactivity-overview.html">Shiny’s reactive programming</a> framework. In particular, we include a main <code>reactiveValues</code> list called <code>rv</code>, that, in addition to the standard <code>input</code> and <code>output</code> lists is passed among functions throughout the app. The <code>rv</code> list holds all of the reactive values currently being used by the application.</p>
+</div>
+<div id="server-function-hierarchy" class="section level3">
+<h3>Server Function Hierarchy</h3>
+<p>The GenEst server code is a relatively flat hierarchy, especially in comparison to the UI code. In particular, after a brief set of preamble functions for preparing objects and options, <code>GenEstServer</code> makes many calls to <code>observeEvent</code>, the reactive observation function, one call for each of the possible events in the application (data load, model run or clear, column selection, clear of contents). Each call also includes an evaluation of the held-back “handler” code for the event returned by the function <code>reaction</code>, with the handler being the code that is to be evaluated when the event is observed. The expression is held-back in <code>reaction</code> to minimize scoping issues associated with message-related functions.</p>
+<ul>
+<li><code>GenEstServer(input, output, session)</code>
+<ul>
+<li><code>rv &lt;- initialReactiveValues()</code></li>
+<li><code>output &lt;- initialOutput(rv, output)</code></li>
+<li><code>msgs &lt;- msgList()</code><br />
+</li>
+<li><code>options(htmlwidgets.TOJSON_ARGS = list(na = 'string'))</code></li>
+<li><code>observeEvent(DT.options = list(pageLength = 25))</code><br />
+</li>
+<li><code>observeEvent(input$clear_all,  eval(reaction(&quot;clear_all&quot;)))</code></li>
+<li><code>observeEvent(input$file_SE, eval(reaction(&quot;file_SE&quot;)))</code></li>
+<li><code>observeEvent(input$file_SE_clear, eval(reaction(&quot;file_SE_clear&quot;)))</code></li>
+<li><code>observeEvent(input$file_CP, eval(reaction(&quot;file_CP&quot;)))</code></li>
+<li><code>observeEvent(input$file_CP_clear, eval(reaction(&quot;file_CP_clear&quot;)))</code></li>
+<li><code>observeEvent(input$file_SS, eval(reaction(&quot;file_SS&quot;)))</code></li>
+<li><code>observeEvent(input$file_SS_clear, eval(reaction(&quot;file_SS_clear&quot;)))</code></li>
+<li><code>observeEvent(input$file_DWP, eval(reaction(&quot;file_DWP&quot;)))</code></li>
+<li><code>observeEvent(input$file_DWP_clear, eval(reaction(&quot;file_DWP_clear&quot;)))</code></li>
+<li><code>observeEvent(input$file_CO, eval(reaction(&quot;file_CO&quot;)))</code></li>
+<li><p><code>observeEvent(input$file_CO_clear, eval(reaction(&quot;file_CO_clear&quot;)))</code></p></li>
+<li><p><code>observeEvent(input$class, eval(reaction(&quot;class&quot;)), ignoreNULL = FALSE)</code></p></li>
+<li><code>observeEvent(input$obsSE, eval(reaction(&quot;obsSE&quot;)), ignoreNULL = FALSE)</code></li>
+<li><code>observeEvent(input$predsSE, eval(reaction(&quot;predsSE&quot;)), ignoreNULL = FALSE)</code></li>
+<li><code>observeEvent(input$run_SE, eval(reaction(&quot;run_SE&quot;)))</code></li>
+<li><code>observeEvent(input$run_SE_clear, eval(reaction(&quot;run_SE_clear&quot;)))</code></li>
+<li><code>observeEvent(input$outSEclass, eval(reaction(&quot;outSEclass&quot;)))</code></li>
+<li><code>observeEvent(input$outSEp, eval(reaction(&quot;outSEp&quot;)))</code></li>
+<li><p><code>observeEvent(input$outSEk, eval(reaction(&quot;outSEk&quot;)))</code></p></li>
+<li><code>observeEvent(input$ltp, eval(reaction(&quot;ltp&quot;)), ignoreNULL = FALSE)</code></li>
+<li><code>observeEvent(input$fta, eval(reaction(&quot;fta&quot;)), ignoreNULL = FALSE)</code></li>
+<li><code>observeEvent(input$predsCP, eval(reaction(&quot;predsCP&quot;)), ignoreNULL = FALSE)</code></li>
+<li><code>observeEvent(input$run_CP, eval(reaction(&quot;run_CP&quot;)))</code></li>
+<li><code>observeEvent(input$run_CP_clear, eval(reaction(&quot;run_CP_clear&quot;)))</code></li>
+<li><code>observeEvent(input$outCPclass, eval(reaction(&quot;outCPclass&quot;)))</code></li>
+<li><code>observeEvent(input$outCPdist, eval(reaction(&quot;outCPdist&quot;)))</code></li>
+<li><code>observeEvent(input$outCPl, eval(reaction(&quot;outCPl&quot;)))</code></li>
+<li><p><code>observeEvent(input$outCPs, eval(reaction(&quot;outCPs&quot;)))</code></p></li>
+<li><code>observeEvent(input$run_M, eval(reaction(&quot;run_M&quot;)))</code></li>
+<li><code>observeEvent(input$run_M_clear, eval(reaction(&quot;run_M_clear&quot;)))</code></li>
+<li><code>observeEvent(input$split_M, eval(reaction(&quot;split_M&quot;)))</code></li>
+<li><code>observeEvent(input$split_M_clear, eval(reaction(&quot;split_M_clear&quot;)))</code></li>
+<li><p><code>observeEvent(input$transpose_split, eval(reaction(&quot;transpose_split&quot;)))</code></p></li>
+<li><code>observeEvent(input$useSSdata, eval(reaction(&quot;useSSdata&quot;)))</code></li>
+<li><code>observeEvent(input$useSSinputs, eval(reaction(&quot;useSSinputs&quot;)))</code></li>
+<li><code>observeEvent(input$run_g, eval(reaction(&quot;run_g&quot;)))</code></li>
+<li><code>observeEvent(input$run_g_clear, eval(reaction(&quot;run_g_clear&quot;)))</code></li>
+<li><p><code>observeEvent(input$outgclass, eval(reaction(&quot;outgclass&quot;)))</code></p></li>
+</ul></li>
+</ul>
+<p>The <code>reaction</code> function is, essentially, a parsed-text-generating function. Depending upon the specific event (<code>eventName</code>, the only input), the necessary set of function calls (messages for running, running the code, messages for when done) is prepared for evaluation. The main function used to do things within the handler code (when the event occurs) is <code>eventReaction</code>, which calls three functions: <code>update_rv</code>, <code>update_output</code>, and <code>update_input</code>, in that order (updating the output depends on the rv being updated already and updating the input requires both the rv and output to be up-to-date):</p>
+<ul>
+<li><code>eventReaction(eventName, rv, input, output, session)</code>
+<ul>
+<li><code>update_rv(eventName, rv, input)</code></li>
+<li><code>update_output(eventName, rv, output)</code></li>
+<li><code>update_input(eventName, rv, input, session)</code></li>
+</ul></li>
+</ul>
+<p>Because of the scoping set-up for Shiny apps, there is no need to assign the returned elements for <code>update_rv</code> and <code>update_output</code> to anything, and <code>update_input</code> works through <code>session</code> to direct its updates to the application.</p>
+<p>Each of the three functions takes <code>eventName</code> as the first argument, which is used to toggle amongst the possible actions to be taken with respect to each of the lists. That is, each of the three <code>update_</code> functions contains a large internal set of routines, and only the relevant ones are called for a given function. This occurs via simple conditional code blocks (“if the eventType is this, do this”) for each of the possible events, thereby reducing the number of specific functions, but increasing the size of the key functions. Within each of the three functions, some of the events trigger a substantial amount of code while others only trigger a few (or no) lines. Similarly, some of the handler expressions take virutally no time to run, while others take a few minutes.</p>
+</div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+Package: uwot
+Title: The Uniform Manifold Approximation and Projection (UMAP) Method
+        for Dimensionality Reduction
+Version: 0.1.10
+Authors@R: 
+    c(person("James", "Melville", email = "jlmelville@gmail.com", role = c("aut", "cre")),
+    person("Aaron", "Lun", role="ctb"),person("Mohamed Nadhir", "Djekidel", role="ctb"),
+    person("Yuhan", "Hao", role="ctb"))
+Description: An implementation of the Uniform Manifold Approximation and 
+    Projection dimensionality reduction by McInnes et al. (2018) 
+    <arXiv:1802.03426>. It also provides means to transform new data and to 
+    carry out supervised dimensionality reduction. An implementation of the 
+    related LargeVis method of Tang et al. (2016) <arXiv:1602.00370> is also 
+    provided. This is a complete re-implementation in R (and C++, via the 'Rcpp'
+    package): no Python installation is required. See the uwot website 
+    (<https://github.com/jlmelville/uwot>) for more documentation and examples.
+License: GPL (>= 3)
+URL: https://github.com/jlmelville/uwot
+BugReports: https://github.com/jlmelville/uwot/issues
+Encoding: UTF-8
+LazyData: true
+Suggests: testthat, covr
+RoxygenNote: 7.1.1
+Depends: Matrix
+LinkingTo: Rcpp, RcppProgress, RcppAnnoy, dqrng
+Imports: Rcpp, methods, FNN, RSpectra, RcppAnnoy (>= 0.0.17), irlba
+NeedsCompilation: yes
+Packaged: 2020-12-14 02:17:07 UTC; jlmel
+Author: James Melville [aut, cre],
+  Aaron Lun [ctb],
+  Mohamed Nadhir Djekidel [ctb],
+  Yuhan Hao [ctb]
+Maintainer: James Melville <jlmelville@gmail.com>
+Repository: CRAN
+Date/Publication: 2020-12-15 13:40:02 UTC

@@ -1,0 +1,25 @@
+WARNING: No test specified, defaulting to first test defined (flexpolyline_deepstate_test_encode_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode/encode_output/4bb57d4b4237323545420af51ecdcf20bd52a9de.fail`
+TRACE: Running: flexpolyline_deepstate_test_encode_test from /home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode/encode_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+line values: 954.619 1.59936e-219 8.40608e+118     inf 1.08068e-237 1.65509e-37 6.63215e+17 4.86840e+44 2.79721e-52     nan
+4.03122e-103 3.62674e+276 5.11394e+143 6.23761e+256 1.27446e-225 9.11589e+29 5.74928e-103 5.32134e-188 9.07186e+288 1.08725e-182
+8.58560e-07 9.30831e-138 5.15177e+08 2.38724e-271 1.49057e-39 0.294650 1.43850e-250 8.33174e+144 4.45118e+136 -8.51190e-07
+1.09617e-135 4.09716e+47 1.90988e-229 4.23654e+262 5.08475e-225 7.66405e-113 4.86864e-227 5.03035e-163 1.19461e-290 1.88132e-193
+1.49508e+282 2.35355e-176 1.88112e-140 7.49286e+260 1.38425e+117 2.11837e+68 4.07599e+266 3.55393e-308 4.20966e-153 448818.
+    nan 4.02270e+176 1.18386e-216 2.65866e-149 5.95893e+31 1.99643e-141 5.26815e+89 2.73704e+86 1.58009e+08 3.22386e-233
+4.85848e-155 2.85289e-14 1.61223e+229 7.35556e-289 4.01407e-209 1.75410e-70 2.10944e-227 2.61569e+08 2.49349e-228 3.12331e+53
+9.73252e-257 5.17781e+105 5.62204e+284 1.11643e+200 5.89190e+51 1.78770e+280     nan 1.82876e-181 1.03278e-156 4.84994e+58
+9.77106e-95 2.59099e-68 4.19856e+214 9.84998e+122 9.20244e-140 1.93711e-173 5.02837e-217 5.35176e-198 7.08933e-274 4.90352e+260
+
+precision values: -2052101155
+third_dim values: 1571612909
+third_dim_precision values: 85874616
+input ends
+terminate called after throwing an instance of 'std::invalid_argument'
+  what():  Invalid input dimensions
+ERROR: Failed: flexpolyline_deepstate_test_encode_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/flexpolyline/inst/testfiles/encode/encode_output/4bb57d4b4237323545420af51ecdcf20bd52a9de.fail failed

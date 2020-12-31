@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="Joshua P. French" />
+
+<meta name="date" content="2020-11-13" />
+
+<title>smerc-demo</title>
+
+<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
+// v0.0.1
+// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
+
+document.addEventListener('DOMContentLoaded', function() {
+  const codeList = document.getElementsByClassName("sourceCode");
+  for (var i = 0; i < codeList.length; i++) {
+    var linkList = codeList[i].getElementsByTagName('a');
+    for (var j = 0; j < linkList.length; j++) {
+      if (linkList[j].innerHTML === "") {
+        linkList[j].setAttribute('aria-hidden', 'true');
+      }
+    }
+  }
+});
+</script>
+<style type="text/css">
+a.anchor-section {margin-left: 10px; visibility: hidden; color: inherit;}
+a.anchor-section::before {content: '#';}
+.hasAnchor:hover a.anchor-section {visibility: visible;}
+</style>
+<script>// Anchor sections v1.0 written by Atsushi Yasumoto on Oct 3rd, 2020.
+document.addEventListener('DOMContentLoaded', function() {
+  // Do nothing if AnchorJS is used
+  if (typeof window.anchors === 'object' && anchors.hasOwnProperty('hasAnchorJSLink')) {
+    return;
+  }
+
+  const h = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+
+  // Do nothing if sections are already anchored
+  if (Array.from(h).some(x => x.classList.contains('hasAnchor'))) {
+    return null;
+  }
+
+  // Use section id when pandoc runs with --section-divs
+  const section_id = function(x) {
+    return ((x.classList.contains('section') || (x.tagName === 'SECTION'))
+            ? x.id : '');
+  };
+
+  // Add anchors
+  h.forEach(function(x) {
+    const id = x.id || section_id(x.parentElement);
+    if (id === '') {
+      return null;
+    }
+    let anchor = document.createElement('a');
+    anchor.href = '#' + id;
+    anchor.classList = ['anchor-section'];
+    x.classList.add('hasAnchor');
+    x.appendChild(anchor);
+  });
+});
+</script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">smerc-demo</h1>
+<h4 class="author">Joshua P. French</h4>
+<h4 class="date">2020-11-13</h4>
+
+
+
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>The <strong>smerc</strong> package is focused on <strong>S</strong>tatistical <strong>Me</strong>thods for <strong>R</strong>egional <strong>C</strong>ounts. It particularly focuses on the spatial scan method (Kulldorff, 1997) and many of its extensions.</p>
+<p>In what follows, we demonstrate some of the basic functionality of the <strong>smerc</strong> package using 281 observations related to leukeumia cases in an 8 county area of the state of New York. The data were made available in Waller and Gotway (2005) and details are provided there.</p>
+<p>The leukemia data are available in the <code>nydf</code> dataframe. Each row of the dataframe contains information regarding a different region. Each row of the dataframe includes <code>longitude</code> and <code>latitude</code> information for the centroid of each region, transformed <code>x</code> and <code>y</code> coordinates available in the original dataset provided by Waller and Gotway (2005), as well as the <code>population</code> of each region and the number of leukemia <code>cases</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(smerc) <span class="co"># load package</span></span></code></pre></div>
+<pre><code>## # This research was partially supported under NSF grant 1463642</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">data</span>(nydf) <span class="co"># load data</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">str</span>(nydf) <span class="co"># look at structure</span></span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    281 obs. of  6 variables:
+##  $ longitude : num  -75.9 -75.9 -75.9 -75.9 -75.9 ...
+##  $ latitude  : num  42.1 42.1 42.1 42.1 42.1 ...
+##  $ population: num  3540 3560 3739 2784 2571 ...
+##  $ cases     : num  3.08 4.08 1.09 1.07 3.06 ...
+##  $ x         : num  4.07 4.64 5.71 7.61 7.32 ...
+##  $ y         : num  -67.4 -66.9 -67 -66 -67.3 ...</code></pre>
+<p>A <code>SpatialPolygonsDataFrame</code> associated with the regions is included in the <code>nypoly</code> data set, which we plot below.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">data</span>(nypoly) <span class="co"># load nypoly data</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="kw">library</span>(sp) <span class="co"># load sp package for plotting</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="kw">plot</span>(nypoly) <span class="co"># plot SpatialPolygonsDataFrame</span></span></code></pre></div>
+<pre><code>## Warning in wkt(obj): CRS object has no comment</code></pre>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+<div id="scan-methods" class="section level2">
+<h2>Scan methods</h2>
+<p>The spatial scan test can be perfomed using the <code>scan.test</code> function. The user must supply the coordinates of the region centroids, the number of cases in each region, and the population (i.e., the number persons at risk). There are many additional optional arguments described in the documentation. In the following example, we reduce the number of Monte Carlo simulations used to estimate the p-value.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>coords =<span class="st"> </span>nydf[,<span class="kw">c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>)] <span class="co"># extract coordinates</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>cases =<span class="st"> </span>nydf<span class="op">$</span>cases <span class="co"># extract cases</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>pop =<span class="st"> </span>nydf<span class="op">$</span>population <span class="co"># extract population</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>scan_out =<span class="st"> </span><span class="kw">scan.test</span>(coords, cases, pop, <span class="dt">nsim =</span> <span class="dv">99</span>) <span class="co"># perform scan test</span></span></code></pre></div>
+<pre><code>## computing statistics for simulated data:</code></pre>
+<p>The <code>scan.test</code> function (and most of the other <code>*.test</code> functions in the <strong>smerc</strong> package) will return an object of class <code>smerc_cluster</code>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">class</span>(scan_out)</span></code></pre></div>
+<pre><code>## [1] &quot;smerc_cluster&quot;</code></pre>
+<p>A <code>smerc_cluster</code> object has a default print option that summarizes relevant details about the object produced by the function.</p>
+<p>In this case, we receive the following:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>scan_out <span class="co"># print scan.test results</span></span></code></pre></div>
+<pre><code>## method: circular scan</code></pre>
+<pre><code>## statistic: poisson</code></pre>
+<pre><code>## simulation: multinomial</code></pre>
+<pre><code>## realizations: 99</code></pre>
+<pre><code>## population upperbound: 50%</code></pre>
+<pre><code>## minimum cases: 2</code></pre>
+<p>In this particular case, we see that the <code>scan_out</code> object summarizes the results of the <code>circular scan</code> method using a <code>poisson</code> statistic (the other choice is <code>binomial</code>). The Monte Carlo p-value was estimated using <code>99</code> realizations from a <code>multinomial</code> distribution (<code>poisson</code> and <code>binomial</code> are the other possibilities). The candidate zones were limited to having no more than <code>50%</code> of the total population and at least <code>2</code> cases had to be in a candidate zone to be considered a cluster. Other methods will provide some of the same information, but some of the information will be different based on the relevant parameters of the models.</p>
+<p>A <code>smerc_cluster</code> also has a <code>summary</code> function that summarizes the significant (or most likely) clusters returned by the method.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">summary</span>(scan_out) <span class="co"># summarize scan.test results</span></span></code></pre></div>
+<pre><code>##   regions max_dist    cases   ex  rr stat    p
+## 1      24     12.3 95.33108 55.8 1.8 13.1 0.01
+## 2      11     26.5 49.71990 27.1 1.9  8.0 0.05</code></pre>
+<p>The <code>summary</code> of <code>scan_out</code> reveals that there were two significant clusters. The first cluster was comprised of 24 regions with a maximum distance of 12.3 between centroids. The number of cases observed in the cluster is 95.33, while 55.8 cases were expected. The relative risk of the cluster is 1.8, with an associated test statistic of 13.1, and a Monte Carlo p-value of 0.01. A second cluster is also summarized with similar information.</p>
+<p>A very basic <code>plot</code> mechanism is provided for <code>smerc_cluster</code> objects. The plot will show the locations of every centroid, with significant clusters shown with different colors and symbols. An attempt is also made to show the connectivity of the regions. In the plot below, we see the two significant clusters shown in yellow (middle) and purple (bottom).</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">plot</span>(scan_out) <span class="co"># basic plot of scan.test results</span></span></code></pre></div>
+<p><img src="data:image/png;base64,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o50idfag5raeApCNQaVbpdvaeg5AeBZrbutJAG3X1jMBahtfoC0CAm0REGiLgEBbBPSoepiTp6NEQEAEBERAQAQEREBABAREQEAEBERAQAQEREBA+wF6m9b5b0rh74z1lKsxLf1+K5Xoot0A3aY7HsZrIreqo8nV+Hi9b7yMVxDqbdZoL0DvLyOgeaXkreLL87M1fn0dLxxcPv2st1mlvQBdPv99B2SOSlwP1Lh7Tr3NKu0E6Ne/fowx6P5rqLssC2q8ffpZb7NK+wAah8EIaA4VNQGjXGO8063eZpX2ATRdku0P6KZj9KMDmkZB/yE23yn54ENs+p86LsstJ9+7BunltvbnCNLD7EEdp3nna1OfYppfMul+ieKvr99AiT7a+1TjUn1akKmxDNtxV73NCvFkFYiAgAgIiICACAiIgIAICIiAgAgIiICACAiIgIAICIiAgAgIiICACAiIgIAICIiAgAgIiICACAiIgIAICIiAgAgIiICACAiIgIDODmi8cyz8vqtddXZA4/1jTV9W1EtnBzTcPv3335vdHSXQ6QHN3+h0nM4P6Nb2bU69dHpAH6//2eoOX5FOD+jy+X+HfpnK2QGNX0242V30Ep0d0Hz7+YFh+uyADhcBAREQEAEBERAQAQEREBABAREQEAEBERAQAQEREBABAREQEAEBERAQAQEREBABAREQEAEBERAQAQH9H40p6o1tZz5WAAAAAElFTkSuQmCC" /><!-- --></p>
+<p>If a polygon-like structure is associated with each region, then the <code>color.clusters</code> can be used to easily produce nicer plots. E.g., we can use the <code>nypoly</code> object to create a nicer map of our results.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">plot</span>(nypoly, <span class="dt">col =</span> <span class="kw">color.clusters</span>(scan_out)) <span class="co">#nicer plot of scan.test results</span></span></code></pre></div>
+<pre><code>## Warning in wkt(obj): CRS object has no comment</code></pre>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>Other scan methods available include:</p>
+<ul>
+<li>The elliptic scan method (Kulldorff et al., 2006), which can be called via <code>elliptic.test</code>}.</li>
+<li>The flexible scanning method the flexibly-shaped scan method (Tango and Takahashi, 2005), which can be called via <code>flex.test</code>}.</li>
+<li>The restricted flexible-scanning method (Tango and Takahashi, 2005), which can be called via <code>rflex.test</code>}.</li>
+<li>The Upper Level Set (ULS) method (Patil and Taillie, 2004), which can be called via <code>uls.test</code>}.</li>
+<li>The dynamic minimum spanning tree (DMST) method (Assuncao et al., 2006), which can be called via <code>dmst.test</code>}.</li>
+<li>The early-stopping DMST method (Costa et al., 2012), which can be called vai <code>edmst.test</code>}.</li>
+<li>The double connection method (Costa et al., 2012), which can be called via <code>dc.test</code>}.</li>
+<li>The maximum linkage scan test (Costa et al., 2012), which can be called via <code>mlink.test</code>}.</li>
+<li>The fast scan method (Neill, 2012), which can be called via <code>fast.test</code>}.</li>
+<li>The maxima likelihood first scan test (Yao et al., 2011), which can be called via <code>mlf.test</code>}.</li>
+</ul>
+</div>
+<div id="other-methods" class="section level2">
+<h2>Other methods</h2>
+<p>Other non-scan method for the detection of clusters and/or clustering of cases for regional data are provided.</p>
+<p><code>bn.test</code> performs the Besag-Newell test (Besag and Newell, 1991) and returns a <code>smerc_cluster</code>. The <code>print</code>, <code>summary</code>, and <code>plot</code> methods are available, as before.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>bn_out =<span class="st"> </span><span class="kw">bn.test</span>(<span class="dt">coords =</span> coords, <span class="dt">cases =</span> cases, <span class="dt">pop =</span> pop, <span class="dt">cstar =</span> <span class="dv">20</span>,</span>
+<span id="cb23-2"><a href="#cb23-2"></a>                 <span class="dt">alpha =</span> <span class="fl">0.01</span>) <span class="co"># perform besag-newell test</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a>bn_out <span class="co"># print results</span></span></code></pre></div>
+<pre><code>## method: Besag-Newell</code></pre>
+<pre><code>## case radius: 20</code></pre>
+<pre><code>## modified p-value: FALSE</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="kw">summary</span>(bn_out) <span class="co"># summarize results</span></span></code></pre></div>
+<pre><code>##   regions max_dist    cases   ex  rr stat           p
+## 1       5      3.0 20.42516 10.2 2.0    5 0.004132413
+## 2       5     13.4 20.15705 10.5 1.9    5 0.006017272
+## 3       3      2.0 20.39443 10.8 1.9    3 0.008039295
+## 4       5      2.7 25.45904 11.0 2.4    5 0.009113555
+## 5       5      2.4 20.29863 11.1 1.9    5 0.009962904</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="kw">plot</span>(bn_out) <span class="co"># plot results</span></span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --> The Cluster Evaluation Permutation Procedure (CEPP) proposed by Turnbull et al. (1990) can be performed using <code>cepp.test</code>. The function returns a <code>smerc_cluster</code> object with <code>print</code>, <code>summary</code>, and <code>plot</code> functions.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># perform CEPP test</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a>cepp_out =<span class="st"> </span><span class="kw">cepp.test</span>(<span class="dt">coords =</span> coords, <span class="dt">cases =</span> cases, <span class="dt">pop =</span> pop,</span>
+<span id="cb30-3"><a href="#cb30-3"></a>                     <span class="dt">nstar =</span> <span class="dv">5000</span>, <span class="dt">nsim =</span> <span class="dv">99</span>, <span class="dt">alpha =</span> <span class="fl">0.1</span>)</span>
+<span id="cb30-4"><a href="#cb30-4"></a>cepp_out <span class="co"># print results</span></span></code></pre></div>
+<pre><code>## method: CEPP</code></pre>
+<pre><code>## simulation: multinomial</code></pre>
+<pre><code>## realizations: 99</code></pre>
+<pre><code>## population radius: 5000</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="kw">summary</span>(cepp_out) <span class="co"># summarize results</span></span></code></pre></div>
+<pre><code>##   regions max_dist    cases  ex rr stat    p
+## 1       2      3.6 10.37872 3.4  3  9.6 0.04</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="kw">plot</span>(cepp_out) <span class="co"># plot results</span></span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --> Tango’s clustering detection test (Tango, 1995) can be performed via the <code>tango.test</code> function. The <code>dweights</code> function can be used to construct the weights for the test. The <code>tango.test</code> function produces and object of class <code>tango</code>, which has a native <code>print</code> function and a <code>plot</code> function that compares the goodness-of-fit and spatial autocorrelation components of Tango’s statistic for the observed data and the simulated data sets.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>w =<span class="st"> </span><span class="kw">dweights</span>(coords, <span class="dt">kappa =</span> <span class="dv">1</span>) <span class="co"># construct weights matrix</span></span>
+<span id="cb38-2"><a href="#cb38-2"></a>tango_out =<span class="st"> </span><span class="kw">tango.test</span>(cases, pop, w, <span class="dt">nsim =</span> <span class="dv">49</span>) <span class="co"># perform tango&#39;s test</span></span>
+<span id="cb38-3"><a href="#cb38-3"></a>tango_out <span class="co"># print results</span></span></code></pre></div>
+<pre><code>## method: Tango&#39;s index</code></pre>
+<pre><code>## index: 0.0029</code></pre>
+<pre><code>## goodness-of-fit component: 0.0026</code></pre>
+<pre><code>## spatial autocorrelation component: 0.00033</code></pre>
+<pre><code>## chi-square statistic: 210</code></pre>
+<pre><code>## chi-square df: 110</code></pre>
+<pre><code>## chi-square p-value: 1.4e-08</code></pre>
+<pre><code>## Monte Carlo p-value: 0.02</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="kw">plot</span>(tango_out) <span class="co"># plot results</span></span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --> ## Additional details about cluster detection methods</p>
+<p>Nearly all cluster detection methods have both a <code>*.zones</code> function that returns all the candidate zones for the method and a <code>*.sim</code> function that is used to produce results for data simulated under the null hypothesis. These are unlikely to interest most users, but may be useful for individuals wanting to better understand how these methods work or are interested in developing new methods based off existing ones. The <code>*.sim</code> functions are not meant for general use, as they are written to take very specific arguments that the user could easily misuse.</p>
+<p>As an example, the following code produces all elliptical-shaped zones considered by the elliptic scan method (Kulldorff et al., 2006) using a population upperbound of no more than 10%. The function returns a list with the 248,213 candidate zones, as well as the associated shape and angle.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="co"># obtain zones for elliptical scan method</span></span>
+<span id="cb48-2"><a href="#cb48-2"></a>ezones =<span class="st"> </span><span class="kw">elliptic.zones</span>(coords, pop, <span class="dt">ubpop =</span> <span class="fl">0.1</span>)</span>
+<span id="cb48-3"><a href="#cb48-3"></a><span class="co"># view structure of ezones</span></span>
+<span id="cb48-4"><a href="#cb48-4"></a><span class="kw">str</span>(ezones)</span></code></pre></div>
+<pre><code>## List of 3
+##  $ zones:List of 239228
+##   ..$ : int 1
+##   ..$ : int [1:2] 1 2
+##   ..$ : int [1:3] 1 2 15
+##   ..$ : int [1:4] 1 2 15 49
+##   ..$ : int [1:5] 1 2 15 49 50
+##   ..$ : int [1:6] 1 2 15 49 50 13
+##   ..$ : int [1:7] 1 2 15 49 50 13 3
+##   ..$ : int [1:8] 1 2 15 49 50 13 3 14
+##   ..$ : int [1:9] 1 2 15 49 50 13 3 14 48
+##   ..$ : int [1:10] 1 2 15 49 50 13 3 14 48 47
+##   ..$ : int [1:11] 1 2 15 49 50 13 3 14 48 47 ...
+##   ..$ : int [1:12] 1 2 15 49 50 13 3 14 48 47 ...
+##   ..$ : int [1:13] 1 2 15 49 50 13 3 14 48 47 ...
+##   ..$ : int [1:14] 1 2 15 49 50 13 3 14 48 47 ...
+##   ..$ : int [1:15] 1 2 15 49 50 13 3 14 48 47 ...
+##   ..$ : int [1:16] 1 2 15 49 50 13 3 14 48 47 ...
+##   ..$ : int [1:17] 1 2 15 49 50 13 3 14 48 47 ...
+##   ..$ : int [1:18] 1 2 15 49 50 13 3 14 48 47 ...
+##   ..$ : int [1:19] 1 2 15 49 50 13 3 14 48 47 ...
+##   ..$ : int [1:20] 1 2 15 49 50 13 3 14 48 47 ...
+##   ..$ : int [1:21] 1 2 15 49 50 13 3 14 48 47 ...
+##   ..$ : int [1:22] 1 2 15 49 50 13 3 14 48 47 ...
+##   ..$ : int [1:23] 1 2 15 49 50 13 3 14 48 47 ...
+##   ..$ : int [1:24] 1 2 15 49 50 13 3 14 48 47 ...
+##   ..$ : int [1:25] 1 2 15 49 50 13 3 14 48 47 ...
+##   ..$ : int [1:26] 1 2 15 49 50 13 3 14 48 47 ...
+##   ..$ : int [1:27] 1 2 15 49 50 13 3 14 48 47 ...
+##   ..$ : int [1:28] 1 2 15 49 50 13 3 14 48 47 ...
+##   ..$ : int [1:29] 1 2 15 49 50 13 3 14 48 47 ...
+##   ..$ : int 2
+##   ..$ : int [1:3] 2 1 3
+##   ..$ : int [1:4] 2 1 3 13
+##   ..$ : int [1:5] 2 1 3 13 15
+##   ..$ : int [1:6] 2 1 3 13 15 14
+##   ..$ : int [1:7] 2 1 3 13 15 14 49
+##   ..$ : int [1:8] 2 1 3 13 15 14 49 47
+##   ..$ : int [1:9] 2 1 3 13 15 14 49 47 12
+##   ..$ : int [1:10] 2 1 3 13 15 14 49 47 12 50
+##   ..$ : int [1:11] 2 1 3 13 15 14 49 47 12 50 ...
+##   ..$ : int [1:12] 2 1 3 13 15 14 49 47 12 50 ...
+##   ..$ : int [1:13] 2 1 3 13 15 14 49 47 12 50 ...
+##   ..$ : int [1:14] 2 1 3 13 15 14 49 47 12 50 ...
+##   ..$ : int [1:15] 2 1 3 13 15 14 49 47 12 50 ...
+##   ..$ : int [1:16] 2 1 3 13 15 14 49 47 12 50 ...
+##   ..$ : int [1:17] 2 1 3 13 15 14 49 47 12 50 ...
+##   ..$ : int [1:18] 2 1 3 13 15 14 49 47 12 50 ...
+##   ..$ : int [1:20] 2 1 3 13 15 14 49 47 12 50 ...
+##   ..$ : int [1:21] 2 1 3 13 15 14 49 47 12 50 ...
+##   ..$ : int [1:22] 2 1 3 13 15 14 49 47 12 50 ...
+##   ..$ : int [1:23] 2 1 3 13 15 14 49 47 12 50 ...
+##   ..$ : int [1:24] 2 1 3 13 15 14 49 47 12 50 ...
+##   ..$ : int [1:25] 2 1 3 13 15 14 49 47 12 50 ...
+##   ..$ : int [1:27] 2 1 3 13 15 14 49 47 12 50 ...
+##   ..$ : int [1:28] 2 1 3 13 15 14 49 47 12 50 ...
+##   ..$ : int 3
+##   ..$ : int [1:2] 3 13
+##   ..$ : int [1:3] 3 13 2
+##   ..$ : int [1:4] 3 13 2 12
+##   ..$ : int [1:5] 3 13 2 12 14
+##   ..$ : int [1:6] 3 13 2 12 14 5
+##   ..$ : int [1:7] 3 13 2 12 14 5 1
+##   ..$ : int [1:8] 3 13 2 12 14 5 1 10
+##   ..$ : int [1:9] 3 13 2 12 14 5 1 10 11
+##   ..$ : int [1:10] 3 13 2 12 14 5 1 10 11 4
+##   ..$ : int [1:11] 3 13 2 12 14 5 1 10 11 4 ...
+##   ..$ : int [1:12] 3 13 2 12 14 5 1 10 11 4 ...
+##   ..$ : int [1:13] 3 13 2 12 14 5 1 10 11 4 ...
+##   ..$ : int [1:14] 3 13 2 12 14 5 1 10 11 4 ...
+##   ..$ : int [1:15] 3 13 2 12 14 5 1 10 11 4 ...
+##   ..$ : int [1:16] 3 13 2 12 14 5 1 10 11 4 ...
+##   ..$ : int [1:17] 3 13 2 12 14 5 1 10 11 4 ...
+##   ..$ : int [1:18] 3 13 2 12 14 5 1 10 11 4 ...
+##   ..$ : int [1:19] 3 13 2 12 14 5 1 10 11 4 ...
+##   ..$ : int [1:20] 3 13 2 12 14 5 1 10 11 4 ...
+##   ..$ : int [1:21] 3 13 2 12 14 5 1 10 11 4 ...
+##   ..$ : int [1:22] 3 13 2 12 14 5 1 10 11 4 ...
+##   ..$ : int [1:23] 3 13 2 12 14 5 1 10 11 4 ...
+##   ..$ : int [1:24] 3 13 2 12 14 5 1 10 11 4 ...
+##   ..$ : int [1:25] 3 13 2 12 14 5 1 10 11 4 ...
+##   ..$ : int [1:26] 3 13 2 12 14 5 1 10 11 4 ...
+##   ..$ : int [1:27] 3 13 2 12 14 5 1 10 11 4 ...
+##   ..$ : int [1:29] 3 13 2 12 14 5 1 10 11 4 ...
+##   ..$ : int 4
+##   ..$ : int [1:2] 4 6
+##   ..$ : int [1:3] 4 6 5
+##   ..$ : int [1:4] 4 6 5 12
+##   ..$ : int [1:5] 4 6 5 12 35
+##   ..$ : int [1:6] 4 6 5 12 35 7
+##   ..$ : int [1:7] 4 6 5 12 35 7 10
+##   ..$ : int [1:8] 4 6 5 12 35 7 10 3
+##   ..$ : int [1:9] 4 6 5 12 35 7 10 3 11
+##   ..$ : int [1:10] 4 6 5 12 35 7 10 3 11 9
+##   ..$ : int [1:11] 4 6 5 12 35 7 10 3 11 9 ...
+##   ..$ : int [1:12] 4 6 5 12 35 7 10 3 11 9 ...
+##   ..$ : int [1:13] 4 6 5 12 35 7 10 3 11 9 ...
+##   ..$ : int [1:14] 4 6 5 12 35 7 10 3 11 9 ...
+##   ..$ : int [1:15] 4 6 5 12 35 7 10 3 11 9 ...
+##   ..$ : int [1:16] 4 6 5 12 35 7 10 3 11 9 ...
+##   ..$ : int [1:17] 4 6 5 12 35 7 10 3 11 9 ...
+##   .. [list output truncated]
+##  $ shape: num [1:239228] 1 1 1 1 1 1 1 1 1 1 ...
+##  $ angle: num [1:239228] 90 90 90 90 90 90 90 90 90 90 ...</code></pre>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<p>Assuncao, R.M., Costa, M.A., Tavares, A. and Neto, S.J.F. (2006). Fast detection of arbitrarily shaped disease clusters, Statistics in Medicine, 25, 723-742. </p>
+<p>Besag, J. and Newell, J. (1991). The detection of clusters in rare diseases, Journal of the Royal Statistical Society, Series A, 154, 327-333.</p>
+<p>Costa, M.A. and Assuncao, R.M. and Kulldorff, M. (2012) Constrained spanning tree algorithms for irregularly-shaped spatial clustering, Computational Statistics &amp; Data Analysis, 56(6), 1771-1783. </p>
+<p>Kulldorff, M. (1997) A spatial scan statistic. Communications in Statistics - Theory and Methods, 26(6): 1481-1496, </p>
+<p>Kulldorff, M., Huang, L., Pickle, L. and Duczmal, L. (2006) An elliptic spatial scan statistic. Statististics in Medicine, 25:3929-3943. </p>
+<p>Neill, D. B. (2012), Fast subset scan for spatial pattern detection. Journal of the Royal Statistical Society: Series B (Statistical Methodology), 74: 337-360. </p>
+<p>Patil, G.P. &amp; Taillie, C. Upper level set scan statistic for detecting arbitrarily shaped hotspots. Environmental and Ecological Statistics (2004) 11(2):183-197. </p>
+<p>Tango, T. (1995) A class of tests for detecting “general” and “focused” clustering of rare diseases. Statistics in Medicine. 14, 2323-2334.</p>
+<p>Tango, T., &amp; Takahashi, K. (2005). A flexibly shaped spatial scan statistic for detecting clusters. International journal of health geographics, 4(1), 11. Kulldorff, M. (1997) A spatial scan statistic. Communications in Statistics – Theory and Methods 26, 1481-1496.</p>
+<p>Tango, T. and Takahashi, K. (2012), A flexible spatial scan statistic with a restricted likelihood ratio for detecting disease clusters. Statist. Med., 31: 4207-4218. </p>
+<p>Turnbull, Bruce W., Iwano, Eric J., Burnett, William S., Howe, Holly L., Clark, Larry C. (1990). Monitoring for Clusters of Disease: Application to Leukemia Incidence in Upstate New York, American Journal of Epidemiology, 132(supp1):136-143. </p>
+<p>Waller, L.A. and Gotway, C.A. (2005). Applied Spatial Statistics for Public Health Data. Hoboken, NJ: Wiley.</p>
+<p>Yao, Z., Tang, J., &amp; Zhan, F. B. (2011). Detection of arbitrarily-shaped clusters using a neighbor-expanding approach: A case study on murine typhus in South Texas. International journal of health geographics, 10(1), 1.</p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="Duncan Garmonsway" />
+
+<meta name="date" content="2020-11-09" />
+
+<title>Detecting Spreadsheet Smells with xlex()</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+<style type="text/css">
+a.anchor-section {margin-left: 10px; visibility: hidden; color: inherit;}
+a.anchor-section::before {content: '#';}
+.hasAnchor:hover a.anchor-section {visibility: visible;}
+</style>
+<script>// Anchor sections v1.0 written by Atsushi Yasumoto on Oct 3rd, 2020.
+document.addEventListener('DOMContentLoaded', function() {
+  // Do nothing if AnchorJS is used
+  if (typeof window.anchors === 'object' && anchors.hasOwnProperty('hasAnchorJSLink')) {
+    return;
+  }
+
+  const h = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+
+  // Do nothing if sections are already anchored
+  if (Array.from(h).some(x => x.classList.contains('hasAnchor'))) {
+    return null;
+  }
+
+  // Use section id when pandoc runs with --section-divs
+  const section_id = function(x) {
+    return ((x.classList.contains('section') || (x.tagName === 'SECTION'))
+            ? x.id : '');
+  };
+
+  // Add anchors
+  h.forEach(function(x) {
+    const id = x.id || section_id(x.parentElement);
+    if (id === '') {
+      return null;
+    }
+    let anchor = document.createElement('a');
+    anchor.href = '#' + id;
+    anchor.classList = ['anchor-section'];
+    x.classList.add('hasAnchor');
+    x.appendChild(anchor);
+  });
+});
+</script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Detecting Spreadsheet Smells with xlex()</h1>
+<h4 class="author">Duncan Garmonsway</h4>
+<h4 class="date">2020-11-09</h4>
+
+
+
+<p>The function <code>xlex()</code> separates formulas into tokens of different types, and gives their depth within a nested formula. Its name is a bad pun on ‘Excel’ and ‘lexer’. Try the <a href="https://duncan-garmonsway.shinyapps.io/xlex/">online demo</a> or install the more experimental <a href="https://nacnudus.github.io/lexl/">lexl</a> package to run <code>demo_lexl()</code> locally.</p>
+<p>It is useful for detecting spreadsheet smells, which are poor practices in spreadsheet design, such as deep nests of functions, or embedding constants in formulas.</p>
+<div id="inspecting-the-parse-tree" class="section level2">
+<h2>Inspecting the parse tree</h2>
+<p>Here’s an example with a simple formula <code>MIN(3,MAX(2,A1))</code> (the <code>=</code> symbol at the beginning of the formula is implied, because Excel doesn’t write it to the file).</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyxl)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">xlex</span>(<span class="st">&quot;MIN(3,MAX(2,A1))&quot;</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
+<pre><code>## root            
+## ¦-- MIN         function
+## °-- (           fun_open
+##     ¦-- 3       number
+##     ¦-- ,       separator
+##     ¦-- MAX     function
+##     °-- (       fun_open
+##         ¦-- 2   number
+##         ¦-- ,   separator
+##         °-- A1  ref
+##     °-- )       fun_close
+## °-- )           fun_close</code></pre>
+</div>
+<div id="detecting-constants-inside-formulas" class="section level2">
+<h2>Detecting constants inside formulas</h2>
+<p>A smelly spreadsheet is distributed with the <code>tidyxl</code> package. It comes from the famous Enron subpoena, made available by <a href="https://www.felienne.com/archives/3634">Felienne Hermans</a>.</p>
+<p>How does it look at a glance? Here’s a screenshot of part of one sheet, showing the formulas rather than the cell values. It’s a financial plan, using formulas to forecast the rest of the year, and the plan for the following year.</p>
+<p>What we want to see is whether the formulas have any embedded constants; ones that are hidden from our attention, but that are driving the forecasts. While we could read each formula, one by one, it would be a lot easier to visualise the ones containing constants. We can do this with <code>xlex()</code> and a graph plotting library like <code>ggplot2</code>.</p>
+<p>The first step, after importing the spreadsheet, is to tokenize the formulas, using <code>xlsx()</code>. Let’s tokenize one formula to see what it looks like.</p>
+<div id="one-formula" class="section level3">
+<h3>One formula</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># The original filename was &quot;barry_tycholiz__848__2002 Plan Worksheet CC107322.xlsx&quot;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>sheet <span class="ot">&lt;-</span> <span class="fu">tidy_xlsx</span>(<span class="fu">system.file</span>(<span class="st">&quot;extdata/enron-constants.xlsx&quot;</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                               <span class="at">package =</span> <span class="st">&quot;tidyxl&quot;</span>),</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;Detail Breakdown&quot;</span>)<span class="sc">$</span>data[[<span class="dv">1</span>]]</span></code></pre></div>
+<pre><code>## Warning: &#39;tidy_xlsx()&#39; is deprecated.
+## Use &#39;xlsx_cells()&#39; or &#39;xlsx_formats()&#39; instead.</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sheet<span class="sc">$</span>formula[<span class="dv">22</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;(C8/7)*12-48000&quot;</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xlex</span>(sheet<span class="sc">$</span>formula[<span class="dv">22</span>])</span></code></pre></div>
+<pre><code>## root        
+## °-- (       paren_open
+##     ¦-- C8  ref
+##     ¦-- /   operator
+##     °-- 7   number
+## ¦-- )       paren_close
+## ¦-- *       operator
+## ¦-- 12      number
+## ¦-- -       operator
+## °-- 48000   number</code></pre>
+<p>The formula is <code>(C8/7)*12-48000</code>, and <code>xlex()</code> separates it into its components. There are the parentheses, the operators (division, multiplication, subtraction), a reference to another cell (<code>C8</code>), and a few numeric constants: 7, 12, and 48000. What could they be?</p>
+<p>The 7 is probably the 7th month, July, because of the column header “July YTD”. A year-to-date figure is being divided by 7, then multiplied by 12 to forecast the year-end figure. The 48000 is more mysterious – perhaps a future payment is expected.</p>
+<p>Embedding these constants inside a formula is bad practice. Better practice would be to put the constants into their own cells, where they could be annotated with their meaning, and perhaps even named. Then formulas could refer to them, by name, e.g.</p>
+<pre><code>(Compensation/MonthsToDate)*12Months-FuturePayments</code></pre>
+</div>
+<div id="many-formulas" class="section level3">
+<h3>Many formulas</h3>
+<p>The <code>xlex()</code> function isn’t vectorized (because it returns a data frame), so we map it over each of the formulas to create a ‘nest’ column of individual data frames.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>tokens <span class="ot">&lt;-</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  sheet <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(formula)) <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(row, col, formula) <span class="sc">%&gt;%</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">tokens =</span> <span class="fu">map</span>(formula, xlex)) <span class="sc">%&gt;%</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>formula)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>tokens</span></code></pre></div>
+<pre><code>## # A tibble: 154 x 3
+##      row   col tokens          
+##    &lt;int&gt; &lt;int&gt; &lt;list&gt;          
+##  1     8     4 &lt;tibble [9 × 3]&gt;
+##  2     9     4 &lt;tibble [7 × 3]&gt;
+##  3    10     4 &lt;tibble [7 × 3]&gt;
+##  4    12     4 &lt;tibble [7 × 3]&gt;
+##  5    13     4 &lt;tibble [7 × 3]&gt;
+##  6    14     3 &lt;tibble [4 × 3]&gt;
+##  7    14     4 &lt;tibble [4 × 3]&gt;
+##  8    14     5 &lt;tibble [4 × 3]&gt;
+##  9    14     6 &lt;tibble [4 × 3]&gt;
+## 10    17     4 &lt;tibble [7 × 3]&gt;
+## # … with 144 more rows</code></pre>
+<p>Then we can unnest the data frames and filter for tokens that are constants, to find out which cells have constants in their formulas.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>constants <span class="ot">&lt;-</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  tokens <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(tokens) <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(type <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;error&quot;</span>, <span class="st">&quot;bool&quot;</span>, <span class="st">&quot;number&quot;</span>, <span class="st">&quot;text&quot;</span>))</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>constants</span></code></pre></div>
+<pre><code>## # A tibble: 201 x 5
+##      row   col level type   token
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;
+##  1     8     4     1 number 7    
+##  2     8     4     0 number 12   
+##  3     8     4     0 number 48000
+##  4     9     4     1 number 7    
+##  5     9     4     0 number 12   
+##  6    10     4     1 number 7    
+##  7    10     4     0 number 12   
+##  8    12     4     1 number 7    
+##  9    12     4     0 number 12   
+## 10    13     4     1 number 7    
+## # … with 191 more rows</code></pre>
+<p>Which constants are most common? Unsurprisingly, 12 and 7 are almost equally abundant, but there are also lots of 6s and 9s – two- and three-quarterly figures? Then there are some 150000s and the familiar 48000s, followed by some fractions that look like percentages, and then several one-offs.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>constants <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(token, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="cn">Inf</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 24 x 2
+##    token      n
+##    &lt;chr&gt;  &lt;int&gt;
+##  1 12        59
+##  2 7         58
+##  3 6         30
+##  4 9         30
+##  5 150000     4
+##  6 48000      2
+##  7 0.05       1
+##  8 0.1        1
+##  9 0.35       1
+## 10 0.5        1
+## 11 1.05       1
+## 12 10         1
+## 13 10000      1
+## 14 12000      1
+## 15 13000      1
+## 16 15000      1
+## 17 2000       1
+## 18 25000      1
+## 19 5000       1
+## 20 5320       1
+## 21 7314       1
+## 22 7800       1
+## 23 866        1
+## 24 95000      1</code></pre>
+</div>
+<div id="visualising-constants" class="section level3">
+<h3>Visualising constants</h3>
+<p>A final step is to visualize the spreadsheet, highlighting cells that hide constants in their formulas. We already have a data frame of cells with constants, so we join it back to the full dataset, and pass the result into <code>ggplot</code>.</p>
+<p>This time there doesn’t seem to be any particular pattern, which is perhaps suspicious in itself.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>has_constants <span class="ot">&lt;-</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  constants <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(row, col) <span class="sc">%&gt;%</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">has_constant =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(sheet, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;row&quot;</span>, <span class="st">&quot;col&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>is_blank) <span class="sc">%&gt;%</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(row, col, has_constant) <span class="sc">%&gt;%</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replace_na</span>(<span class="fu">list</span>(<span class="at">has_constant =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>has_constants</span></code></pre></div>
+<pre><code>## # A tibble: 412 x 3
+##      row   col has_constant
+##    &lt;int&gt; &lt;int&gt; &lt;lgl&gt;       
+##  1     8     4 TRUE        
+##  2     9     4 TRUE        
+##  3    10     4 TRUE        
+##  4    12     4 TRUE        
+##  5    13     4 TRUE        
+##  6    17     4 TRUE        
+##  7    17     6 TRUE        
+##  8    18     4 TRUE        
+##  9    19     4 TRUE        
+## 10    20     4 TRUE        
+## # … with 402 more rows</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>has_constants <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filter(row &lt;= 28) %&gt;%</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(col, row, <span class="at">fill =</span> has_constant)) <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>() <span class="sc">+</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_reverse</span>() <span class="sc">+</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASAAAAEgCAMAAAAjXV6yAAAC5VBMVEUAAAAAv8QBAQECAgIEBAQFBQUGBgYHBwcICAgJCQkKCgoLCwsMDAwNDQ0ODg4PDw8QEBARERESEhITExMUFBQVFRUWFhYXFxcYGBgZGRkaGhobGxscHBwdHR0eHh4fHx8gICAhISEiIiIjIyMkJCQlJSUmJiYnJycoKCgpKSkqKiorKystLS0vLy8wMDAxMTEyMjIzMzM0NDQ1NTU5OTk6Ojo7Ozs8PDw9PT0+Pj4/Pz9AQEBBQUFDQ0NERERFRUVGRkZHR0dISEhJSUlKSkpLS0tMTExNTU1OTk5PT09QUFBRUVFSUlJTU1NUVFRVVVVWVlZXV1dYWFhZWVlaWlpbW1tcXFxdXV1eXl5fX19gYGBhYWFiYmJjY2NkZGRlZWVmZmZnZ2doaGhpaWlqampra2tsbGxtbW1ubm5vb29wcHBxcXFycnJzc3N1dXV2dnZ3d3d4eHh5eXl6enp7e3t8fHx9fX1+fn5/f3+AgICBgYGDg4OEhISFhYWGhoaHh4eIiIiJiYmKioqLi4uMjIyNjY2Ojo6Pj4+QkJCRkZGSkpKTk5OUlJSVlZWWlpaYmJiZmZmampqbm5ucnJydnZ2enp6goKChoaGioqKjo6OkpKSlpaWmpqanp6eoqKipqamqqqqrq6usrKytra2urq6vr6+wsLCxsbGysrKzs7O0tLS1tbW2tra3t7e4uLi5ubm6urq7u7u8vLy9vb2+vr6/v7/AwMDBwcHCwsLDw8PExMTFxcXGxsbHx8fIyMjJycnKysrLy8vMzMzNzc3Ozs7Pz8/Q0NDR0dHS0tLT09PU1NTV1dXW1tbX19fY2NjZ2dna2trb29vc3Nzd3d3e3t7f39/g4ODh4eHi4uLj4+Pk5OTl5eXm5ubn5+fo6Ojp6enq6urr6+vs7Ozt7e3u7u7v7+/w8PDx8fHy8vLz8/P09PT19fX29vb39/f4dm34+Pj5+fn6+vr7+/v8/Pz9/f3+/v7///8OwDsUAAAACXBIWXMAAA7DAAAOwwHHb6hkAAANEklEQVR4nO2de1xUVR7AZ/EVqVFp7labu+1u22a7Fa1mG2LbtJmmtJsZSaisgLqg+QzyuaFiGLEh+Kqwh+GDzLJSMJHEhjJUCPNBLCoCAsPw2GEEfn/vmWHuDDN3uL9zZ66XYeb3/Xy8d+45v/u7537nnHOdB3M1QEii6e0GeDskCIEEIZAgBBKEQIIQSBACCUIgQQgkCIEEIZAgBBKEQIIQvEzQ/1zjRqafuUZ2HhKEQIIQSBACCUIgQQjuCOqf78ZOAgdKpMrUEnQhz4LhNFsU6gG+q2GFdTo4aSlu7JZHdUFjk6XKMEG3axk6eFWTzjbiE8xFDY/+4i83JQIkW+o+ECKlBW3Xakfcr9WeefY+rXZM0Ccw9iNW+NkDMOF+c5LSbm1zT1Dbdz+ZH5hKigzmdW1heff6jtMVltUPZR1sdbjlcmGFLarojzHFth2tVV1lXILCu1b3zgq1CVoW3gmG+3dBcrhDI9Eh9sxmtng2jS0WjrEL2ux8sm4JWjPi55oFAHtvGzhwSBbAkv6DNZOu2arz7wgMGH0JCkYOHDTyKIteFThC87IQNTvot4tsO1qrLGVyBH13d11gtSBo9jy2yCvyQNA7o5UWdO9lSA/Qw7A5La3Rv4cTmv1wvN9eodYwYtm1ij/9o+WOKKNx1p0tLPpS52uaOiHKPJysOwpVMobY42yGKIYliTAhXRB09JbH0srYOtlcl3dVpqCFOt3OP79rF7TQnKTDU0GZABc15Z26JoB1wyFfs6Md9G1CbdYIE8Cx/+wNZIOo8YYca/RZIYrJEHYUqmTOQa/Ab/b8sCpUEARX0yYPnnDROgcVyhR0T0jI70ZVOc1BrZ4KygOo0pTDmZhHbrudnefiwcOm2CZHWPGoZZUyyrz8w0bof5BNP8yCNcosQ9hRqOIXFG5eHL81JCTkhmqroHx2OnV/m+/BEHtpDozdydafKjbE8i2CLg6NPt64j50nGL+cf+O/hdrkYLZoObv1TvPGL7dadJotWKOYDNuOQpVMQS8vY4vx6VZB95mfm02TPBC0bTI8v56t35ykrKCdA9lzt2E4ZGlZ2eQwofbwgPPswnBfccAxgK8DigULQhSTIezopqDOuwrYcmMoxM/Q6XRlW3+1LT9rZA4kP8m2dGfdELT7Mci9deWh9OEHYEKCOckVZQSdGRDx9rx7B3xSMigsLbb/e7bqSXevjw7MhIjhq1cNj7RZEKKe0B4WdrQJYmWcgtawf2e15kn0fGhLGhtpIfFwKFY7IxfgA/NWSAK3oIRP2GL5bkuqavgmSjuLzV9LLUk+8lBQ6Ek26kOqIHfqlLS2mDlQOOOJiAP26vY3pjy/hz3RGc9Nzexk0ScA9CEXhaj8sBW2HYUqcxmfIH5QQZzQazEExQTV5Fn5yZMsPiyodLWVI55k8WFBykCCEEgQQqNrejGTlwnyPkgQAglCIEEIJAiBBCGQIAQShECCEEgQAglCIEEIJAiBBCGQIAQShECCEEgQAglCIEEIJAiBBCHIFVTTM00NEpVd6OEqGtOMp2mEWjxNPRpikDobPQlSTlBDeScJkiAnYuH8JhLUI4bwWkjJJkE9kr8CoEj4ojcJEvPxWwAVUexBY2pq6tGWnjEZJSq7aINWNEa9NCaQquUWtDMDoOpF9qB64sSJ29t7prNDorKLDkBDvCWN8MV4XNCBFIBzc8VDrIev8jgg7rc+OMTKmJzP15OgnonPOWf7cyUS5IL69KRjtg2JlO5dxXg8q4dbghwgQSRIKUHyjueHghTqQSL63iRNgtwTJK/HCkclQXIF8aTp4Vvz3SFBJMgzQTxpZDWYBCENJkFIg71GkAi6ijnCk8avexBPGhKEQIK8BhKE4LkgU8+0X5OotIYARwxPGjTE1OFhGqO39CARdJnHzowEOcCTRqGrGEca/xYkq8EkCGkwCUIa7I+CONKQIBLkGf4tiHqQ55Ag7gb7oyCONF4oSMT1ey1GghzS+IognjQcZ8aTRlaD/VGQ4j1ob+QL61oBTs2dnmn7jW4SZOd8ZI1h2XvQHvl966LcXhWkHrIEFWwH2LMRihYCHFkuFiTCD79A1XBi/nH4NBWgPJZttVdWVurreqa5UaKyCwM0oDEteJomqMfTSDW1i2aQqGzkEVQYG3MZPswEuBLOti4HBwen2it5eqxUci9HuA0GchXbvRz2v8l6UDR73FZYWFjRYINHUIMTzdDoXMSTRqFJ2vnQLeBc0g3hTwglBO36EqA0CoqWsOnIxRzE0yTxwO7Nq5jSc9BX8ZeaNqRAe8S5jlcP+oIgjjTyJun3Z4avZXNV6b9mb7H9VS8JQiBBJIgEkSASRIJIEAlSUpB6KClIhB++3UGCvGCIic+MBDnAk0ahSVpWg0kQ0mCvESSChpgjPGn8ugfxpCFBCAoJ4kjjuaBWGzxNanXCBEbnIu8S1K1hbgqyf3DE0yTnD5tcfC7mXYJkfi7mAhpiJIgEkSAS1DuCYhbnmkiQhKDXH+o39JlN5SSoJ0EA+v1LxgwcddrrBKkHIqgld2VoYFARnyARPv+OYtojA29+OlnXzjnERPi8oBDNuF21knauxxATn5nXCqr6KP7hAaP++Y7kDaPtGfxPkJnaxCBNHgmqcSnIeHjluBuCpmToXZq5XoJ40njJZX5cv4cTjlxzqYUEmfmqBpHj74Lg1N9/HfTgG91ebpzaXcKWnUf3XfEJQbIa7ELQj0Mez/jw1WGxtoIdi7JmnADYkLB9+iVfEORpD4qbYF4WBTRYt2tfaoOSfXB5ugl2ZJAggKdet6xu0Vm3DyWX51UC5CYBlCwgQUIP+lZTb93eFbU4c3o+7E4HuBTJtq/GxMTstv9EE0+TxL/5JPpdKBUFyWqwi1+g+nHoXzPZHBQtbGdPa4fcaMg2C4pg2/WLFy/eb7TBczyjEyZocy7iSaOeIHu7XH3sczJs5E0PpNiuYl+uBrgyGQ6uAyiN94UhJqvBLobY906vVCtf6IC8uVAV2W65fU0vClIPSUHPbnAUBGtX7pxRAJCStGdm717m1UNS0DejKx0FtR/dc4GtOlz/R1GEz78ftGbsoAdDx48f/z1IYM8g7wkRjtqXBW1b0UU5Carxz8/FZDXYHwVxpCFBJIgEkSASJA1d5h1R6KlXKA0JIkEkiAT1JiQIQUlBInz+/SAu6m3wPCH1TjSB3rmIJ416c5C9XQY3Bdnvx87TJI4bxXuXIHfuN++IvQ/yNEncb/1oDpJ3PBKEHI8EIccjQcjxSBByPBKEHI8EIccjQcjxSBByPD8UJIJerJIgWYLk9VjhqPSO4vUQpB4kCEFJQSL8cA6qqbD8jnRDeae9yIa8J0Q4qk/NQWmzl8Q1AORELJwv/MI7CeqGboYJ0t4FQ3gtpGT3qiD1kCUo6y2AE3GQvwKgaJFYkAi/m4N2LQf4bDp8zDxVRLHt5uzs7JOGnjG2SFR20QpNaEybQmma0RAjSFQ244Kqn885Evuc5Vv2VS8C3XhETHl6RkE0HEgBODeXbXbo9XpjrQ0eQbVONEKdcxFPGvUm6e5NRQVdLQb4Yh2UMTmfrxcK7YOUp0nige1LV7HWyNyiqDKA+JxzMcUkyAUlSRtL2ao+PemYrYwEIZAgEuS/gmQ1uE8JUg8ShKCkIBF+91rMe3oQTdIkyDNB6qGkIBE0B5EgWYLk9VjhqDQHXQ9B6kGCEJQUJILmoOvSg8RnRoKQM+vbgvz6F6h6pQfxpKHLPAnyTJB6KClIBF3mSRAJskNzkEtIEIKSgkTQECNBJMiOPwqiOcghDfUgJA0JQtKQICQNCULSkCAkDQlC0pAgJE0vCfKMc6lNeBBOWaoRD8I5ldqBB6kr6FDwFTwIZ3+w5D3QeMkOxu8rS4IwSBCCuoJaKqVvUspJcyXH5IHTVNmJB6krqA9CghBUFfT13GmJ1UokqihUIElR3LR0PEpNQVeeK2tNW6lAorY5b3qe5PLMS4YFJ9AwNQXlrgH47zQFEmXEKSDo7Sw22xvQMDUFtbLm5CV6nufblfsUELR269KYHfhlTOVJ+quIUo9zNM6rU0JQYmRF7dzP0DBVBTWuiiv3PEtSASghKOlt9l/F1WiYmoJM8Vs4/meGEjV1atjkBXgcwhYmaM9raJiagg4vVSqTEj2obGZ987wv0DA1BW15mvGCEpmUEAQ5syLf8bpJuu9BghBIEAIJQiBBCCQIoQ8JulCMxyhPHxKUoO2No5IgBO8WdPVbyx/d1OvqgQSJaYsKuHHQJjDFam7SxJhIkIh1d5Vdeyvg9MZhx+H4rakkSMQ9bwB0rj/5YCJ7/MpDJMiZ9v4HLeugD9ni/ZtJkIihH7NFZd3ITLbaPJIEiRg3E6Dmxg/CnmSPtWEkSERB4EvrH7qn+eSQZ1InDjlFgsQUxz61qBrgTNxT8WcBtizC91AerxbkDZAgBBKEQIIQSBACCUIgQQgkCIEEIZAgBBKE8H/ewIvTY0nhJgAAAABJRU5ErkJggg==" /><!-- --></p>
+</div>
+</div>
+<div id="detecting-deeply-nested-formulas" class="section level2">
+<h2>Detecting deeply nested formulas</h2>
+<p>Using the same techniques as for detecting constants, we map <code>xlex()</code> over the formulas in a spreadsheet, unnest the result, and filter for tokens with particular properties. In this case, we are interested in the <code>level</code> of each token, which tells how deeply a token is nested in other functions and expressions.</p>
+<p>This time, we use another spreadsheet from the Enron corpus. First, an illustration. Notice that inside the first function, the level increases to 1. Inside the second function, the level increases to 2.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xlex</span>(<span class="st">&quot;MAX(3,MIN(2,4))&quot;</span>)</span></code></pre></div>
+<pre><code>## root           
+## ¦-- MAX        function
+## °-- (          fun_open
+##     ¦-- 3      number
+##     ¦-- ,      separator
+##     ¦-- MIN    function
+##     °-- (      fun_open
+##         ¦-- 2  number
+##         ¦-- ,  separator
+##         °-- 4  number
+##     °-- )      fun_close
+## °-- )          fun_close</code></pre>
+<p>Now let’s apply the same test to all the formulas in a sheet. The deepest level of nesting turns out to be 7, and is seen in all the cells in row 171.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The original filename was &quot;albert_meyers__1__1-25act.xlsx&quot;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>sheet <span class="ot">&lt;-</span> <span class="fu">tidy_xlsx</span>(<span class="fu">system.file</span>(<span class="st">&quot;extdata/enron-nested.xlsx&quot;</span>,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">package =</span> <span class="st">&quot;tidyxl&quot;</span>),</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;Preschedule&quot;</span>)<span class="sc">$</span>data[[<span class="dv">1</span>]]</span></code></pre></div>
+<pre><code>## Warning: &#39;tidy_xlsx()&#39; is deprecated.
+## Use &#39;xlsx_cells()&#39; or &#39;xlsx_formats()&#39; instead.</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>deepest <span class="ot">&lt;-</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  sheet <span class="sc">%&gt;%</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(formula)) <span class="sc">%&gt;%</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">tokens =</span> <span class="fu">map</span>(formula, xlex)) <span class="sc">%&gt;%</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(row, col, tokens) <span class="sc">%&gt;%</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unnest</span>(tokens) <span class="sc">%&gt;%</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(level <span class="sc">==</span> <span class="fu">max</span>(level)) <span class="sc">%&gt;%</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">distinct</span>(row, col, level)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>deepest</span></code></pre></div>
+<pre><code>## # A tibble: 48 x 3
+##      row   col level
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;
+##  1   171     2     7
+##  2   171     3     7
+##  3   171     4     7
+##  4   171     5     7
+##  5   171     6     7
+##  6   171     7     7
+##  7   171     8     7
+##  8   171     9     7
+##  9   171    10     7
+## 10   171    11     7
+## # … with 38 more rows</code></pre>
+<p>Do you wonder what those formulas look like?</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>sheet <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(row <span class="sc">==</span> <span class="dv">171</span>, col <span class="sc">==</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(formula) <span class="co"># Aaaaaaaaaaarghhhhhhhh!</span></span></code></pre></div>
+<pre><code>## [1] &quot;((IF((103-B$89)=103,0,(103-B$89)))+(IF((200-B$95)=200,0,(200-B$95)))+(IF((196-B$98)=196,0,(196-B$98)))+(IF((200-B$101)=200,0,(200-B$101)))+(IF((70-B$104)=70,0,(MIN(40,(70-B$104))))+(IF((78-B$109)=78,0,(MIN(50,(78-B$109)))))+(IF((103-B$114)=103,0,(MIN(66,(103-B$114)))))+(IF((195-B$119-B$124-B$129-B$134-B$139)=195,0,(MIN(70,(195-B$119-B$124-B$129-B$134-B$139)))))+(IF((64-B$144)=64,0,(MIN(50,(64-B$144)))))+(IF((48-B$149)=48,0,(MIN(20,(48-B$149)))))+(IF((44-B$154)=44,0,(MIN(20,(44-B$154)))))+(IF((130-B$159)=130,0,(MIN(20,(130-B$159)))))))&quot;</code></pre>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

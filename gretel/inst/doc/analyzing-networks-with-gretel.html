@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>Analyzing Networks with gretel</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Analyzing Networks with gretel</h1>
+
+
+
+<p>In analyzing social networks, it is often important to quantify the value of a path in terms of its constituent ties. We may be interested in identifying an optimal path (geodesic) for its own sake, or we may need to identify optimal paths to understand other structural properties such as betweenness centrality, which counts the number of optimal paths that rely on a certain node, or diameter of a network, which reports a ‘distance’ for the ‘longest’ (weakest) path in the network. Quotes are used around ‘distance’ because, except for the binary setting, there is no consensus as to how distance in a network ought to be calculated. <em>Yang and Knoke</em> (2001) offer three examples. <em>Opsahl,</em> et. al. (2010) offer a general framework containing many more.</p>
+<p>Path value - intuitively, some inverted version of distance - shares this pathology, as do other structural properties. In fact, for any structural property of a network, there seem to be numerous proposals in the literature for their calculation. Sometimes, the competing approaches yield substantively different analytic conclusions, and may be published without guidance as to when one or the other calculation ought to be preferred.</p>
+<p>Why do we need multiple measures? Is one patently right at the expense of the other?</p>
+<p><strong>gretel</strong> was developed under the philosophy that a great deal of the discord in measures for certain structural properties can be reduced to a divergence in their approach to evaluating paths. Some measures implicitly describe paths by their weakest links, others by their number of edges, but all structural measures make a decision about how we should understand paths.</p>
+<p>Therefore, the dimension of the problem can be greatly reduced. Instead of considering the pantheon of ways any structural property could be measured, we need only consider how we assign value to a path given tie strengths. We choose value over distance for the basis of our discussion because we see it as more fundamental - path values are reported in the same units as elemental tie strength data.</p>
+<p>So now we are only left to decide whether there ought to be more than one way to appraise a path’s value in terms of its ties. We believe that there should be. Different modeling assumptions about the ties suggest different methods for appraising paths. We believe that the importance of different modelling assumptions is underappreciated. Tie strength data have long been treated as one-dimensional. Granovetter (1973) acknowledged this is an oversimplification, but believed that the various dimensions (frequency, capacity, resource sharing, emotional depth, etc.) are sufficiently correlated that data about tie strength could be collected agnostically. While the facets of tie strength may be highly correlated, they should not necessarily be summarized the same way. For example, the maximum capacity of a path may be very well described by the capacity of the weakest tie, almost independent of its length. However, the resource sharing along a path will almost certainly be influenced by both the number of ties and the tie strengths. Further, the emotional depth of a path could be restricted significantly by the binary distance (number of intervening nodes). The upshot: both the dimension and situation must be considered in deciding how path value ought to be appraised.</p>
+<p><strong>gretel</strong> implements functions that quantify path values and identify optimal paths under a range of appraisal strategies. We extend ideas from <em>Opsahl</em>, et al (2010) and L-p spaces of mathematical analysis to develop path value measures parameterized by a real number p between 0 and Infinity. The values assigned to paths are comparable with tie strengths, and - for certain values of p - can be made to recapitulate the path appraisal strategies that underly all of the various structural measures we are aware of.</p>
+<p>To illustrate the effect of the parameter p, we give three representative cases:</p>
+<ul>
+<li><p>p = 0 returns a path value based entirely on the number of edges in a path (relative strength of ties will not matter)</p></li>
+<li><p>p = 1 returns a path value that supposes strength is inversely proportional to cost and cost adds linearly. This is equivalent to the interpretation of a network as an electrical circuit and tie strengths as conductivity measures. Further analogies can be drawn to random walk probabilities (<em>Doyle, Snell</em> 2000)</p></li>
+<li><p>p = Infinity determines path value solely based on the weakest tie in the path. This is equivalent to Peay’s 1980 path value measure. A physical analogy is fluid flow, in which bottlenecks place an upper limit on flow, dominating any effect of transport distance/resistance, etc.</p></li>
+</ul>
+<p>Values of p between these represent compromises in the assumptions articulated above.</p>
+<p>Here is an example of how different values of p, borne from different assumptions, can affect optimal path identification:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(gretel)
+BuchDarrah19
+<span class="co">#&gt;      [,1] [,2] [,3] [,4] [,5]</span>
+<span class="co">#&gt; [1,]  Inf  3.5 1.75  0.0  1.0</span>
+<span class="co">#&gt; [2,] 3.50  Inf 0.00  3.5  0.0</span>
+<span class="co">#&gt; [3,] 1.75  0.0  Inf  0.0  7.0</span>
+<span class="co">#&gt; [4,] 0.00  3.5 0.00  Inf  3.5</span>
+<span class="co">#&gt; [5,] 1.00  0.0 7.00  3.5  Inf</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">opt_gpv</span>(BuchDarrah19, <span class="dt">source =</span> <span class="dv">1</span>, <span class="dt">target =</span> <span class="dv">5</span>, <span class="dt">p =</span> <span class="dv">0</span>)
+<span class="co">#&gt; [1] 1 5</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">opt_gpv</span>(BuchDarrah19, <span class="dt">source =</span> <span class="dv">1</span>, <span class="dt">target =</span> <span class="dv">5</span>, <span class="dt">p =</span> <span class="dv">1</span>)
+<span class="co">#&gt; [1] 1 3 5</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">opt_gpv</span>(BuchDarrah19, <span class="dt">source =</span> <span class="dv">1</span>, <span class="dt">target =</span> <span class="dv">5</span>, <span class="dt">p =</span> <span class="ot">Inf</span>)
+<span class="co">#&gt; [1] 1 2 4 5</span></code></pre></div>
+<p>We also introduce a new form of path value calculation, probabilistic path value, that extends the desirable probabilistic random walk interpretation of p = 1. This method requires the slightly stricter assumption that, up to a scale factor, tie strengths represent transmission odds (of some information, trend, or contagion) from one node to another, and the transmission events are independent. Using the same sociomatrix as above, suppose that a tie strength of 4 represents even transmission odds. Then we can find the path of optimal transmission</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">optimal_path &lt;-<span class="st"> </span><span class="kw">opt_ppv</span>(BuchDarrah19, <span class="dt">source =</span> <span class="dv">1</span>, <span class="dt">target =</span> <span class="dv">5</span>, <span class="dt">odds_scale =</span> <span class="dv">4</span>)
+<span class="kw">print</span>(optimal_path)
+<span class="co">#&gt; [1] 1 5</span></code></pre></div>
+<p>and calculate the transmission odds along the path.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prob_path_value &lt;-<span class="st"> </span><span class="kw">ppv</span>(BuchDarrah19, <span class="dt">path =</span> optimal_path, <span class="dt">odds_scale =</span> <span class="dv">4</span>)
+transmission_odds &lt;-<span class="st"> </span>prob_path_value<span class="op">/</span><span class="dv">4</span>
+<span class="kw">print</span>(prob_path_value)
+<span class="co">#&gt; [1] 1</span>
+<span class="kw">print</span>(transmission_odds)
+<span class="co">#&gt; [1] 0.25</span></code></pre></div>
+<p>So if node 1 gets sick, the odds of node 5 getting sick via the optimal path are 1-4. The probability that node 5 will get sick along that path is 0.2.</p>
+<p>Finally, the function <strong>generate_proximities</strong> returns a proximity matrix in one of three modes - generalized path value, probabilistic path value, and social conductivity. In the first two modes, the entries represent the values of the optimal paths between any pair of nodes. The third extends the conductivity model associated with p = 1 by evaluating the global conductivity between any two nodes. In all three cases, especially the third, the result is a psuedo-sociomatrix that captures richer, higher order interactions than would tie strengths alone.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">generate_proximities</span>(BuchDarrah19, <span class="dt">mode =</span> <span class="st">&quot;ogpv&quot;</span>, <span class="dt">p =</span> <span class="dv">1</span>)
+<span class="co">#&gt;      [,1] [,2]     [,3]     [,4] [,5]</span>
+<span class="co">#&gt; [1,]  Inf 3.50 1.750000 1.750000 1.40</span>
+<span class="co">#&gt; [2,] 3.50  Inf 1.400000 3.500000 1.75</span>
+<span class="co">#&gt; [3,] 1.75 1.40      Inf 2.333333 7.00</span>
+<span class="co">#&gt; [4,] 1.75 3.50 2.333333      Inf 3.50</span>
+<span class="co">#&gt; [5,] 1.40 1.75 7.000000 3.500000  Inf</span>
+
+<span class="kw">generate_proximities</span>(BuchDarrah19, <span class="dt">mode =</span> <span class="st">&quot;oppv&quot;</span>, <span class="dt">odds_scale =</span> <span class="dv">4</span>)
+<span class="co">#&gt;          [,1]      [,2]      [,3]     [,4]     [,5]</span>
+<span class="co">#&gt; [1,]      Inf 3.5000000 1.7500000 1.113636 1.000000</span>
+<span class="co">#&gt; [2,] 3.500000       Inf 0.6621622 3.500000 1.113636</span>
+<span class="co">#&gt; [3,] 1.750000 0.6621622       Inf 1.689655 7.000000</span>
+<span class="co">#&gt; [4,] 1.113636 3.5000000 1.6896552      Inf 3.500000</span>
+<span class="co">#&gt; [5,] 1.000000 1.1136364 7.0000000 3.500000      Inf</span>
+
+<span class="kw">generate_proximities</span>(BuchDarrah19, <span class="dt">mode =</span> <span class="st">&quot;sconductivity&quot;</span>)
+<span class="co">#&gt;          [,1]     [,2]     [,3]     [,4]     [,5]</span>
+<span class="co">#&gt; [1,]      Inf 4.512048 3.404545 3.173729 3.566667</span>
+<span class="co">#&gt; [2,] 4.512048      Inf 2.733577 4.512048 3.173729</span>
+<span class="co">#&gt; [3,] 3.404545 2.733577      Inf 3.228448 7.968085</span>
+<span class="co">#&gt; [4,] 3.173729 4.512048 3.228448      Inf 4.512048</span>
+<span class="co">#&gt; [5,] 3.566667 3.173729 7.968085 4.512048      Inf</span></code></pre></div>
+<p>Below is an example of how <strong>gretel</strong> might be used in a betweenness centrality calculation:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Suppose we wish to calculate the betweenness centrality of node 3 in </span>
+<span class="co"># the example sociomatrix 'BuchDarrah19'</span>
+
+<span class="co"># There are n-1 choose 2 pairs of nodes for which neither the source nor the target is 3</span>
+<span class="co"># Since n = 5 in this case, there are 6 pairs of nodes to consider.</span>
+<span class="co"># Therefore, node 3 mediates at most 6 shortest paths.</span>
+<span class="co"># (If this were a directed graph, this number would be 12)</span>
+
+all_paths &lt;-<span class="st"> </span><span class="kw">all_opt_gpv</span>(BuchDarrah19, <span class="dt">p =</span> <span class="dv">1</span>)
+paths_mediated &lt;-<span class="st"> </span><span class="dv">0</span>
+<span class="co"># We can get away with just looking at half the sociomatrix (below) because this</span>
+<span class="co"># one is undirected.</span>
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>){
+  <span class="cf">for</span>(j <span class="cf">in</span> (i<span class="op">+</span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)){
+    shortest_ij &lt;-<span class="st"> </span><span class="kw">unpack</span>(all_paths[[i]], i, j)
+    <span class="cf">if</span>(<span class="dv">3</span> <span class="op">%in%</span><span class="st"> </span>shortest_ij) paths_mediated &lt;-<span class="st"> </span>paths_mediated <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
+  }
+}
+
+<span class="co"># Print Betweenness Centrality</span>
+<span class="kw">print</span>(paths_mediated<span class="op">/</span><span class="dv">6</span>)
+<span class="co">#&gt; [1] 0.8333333</span>
+
+
+## What about if p = 0?
+all_paths &lt;-<span class="st"> </span><span class="kw">all_opt_gpv</span>(BuchDarrah19, <span class="dt">p =</span> <span class="dv">0</span>)
+paths_mediated &lt;-<span class="st"> </span><span class="dv">0</span>
+<span class="co"># We can get away with just looking at half the sociomatrix (below) because this</span>
+<span class="co"># one is undirected.</span>
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>){
+  <span class="cf">for</span>(j <span class="cf">in</span> (i<span class="op">+</span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)){
+    shortest_ij &lt;-<span class="st"> </span><span class="kw">unpack</span>(all_paths[[i]], i, j)
+    <span class="cf">if</span>(<span class="dv">3</span> <span class="op">%in%</span><span class="st"> </span>shortest_ij) paths_mediated &lt;-<span class="st"> </span>paths_mediated <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
+  }
+}
+
+<span class="co"># Print Betweenness Centrality</span>
+<span class="kw">print</span>(paths_mediated<span class="op">/</span><span class="dv">6</span>)
+<span class="co">#&gt; [1] 0.6666667</span></code></pre></div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

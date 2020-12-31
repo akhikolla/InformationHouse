@@ -1,0 +1,38 @@
+WARNING: No test specified, defaulting to first test defined (spsann_deepstate_test_updateMSSDCpp_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/spsann/inst/testfiles/updateMSSDCpp/updateMSSDCpp_output/f97703d88b5f44f18c8a5478e4cc2152bc9b0638.crash`
+TRACE: Running: spsann_deepstate_test_updateMSSDCpp_test from /home/akhila/fuzzer_packages/fuzzedpackages/spsann/inst/testfiles/updateMSSDCpp/updateMSSDCpp_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+x1 values: 2.01769e+47 1.43678e-133 3.24864e+70 1.20447e-16
+5.91096e+64 7.46115e-258 6.40668e-255 1.62054e+203
+4.71376e-48 5.01413e+184 4.51599e-206 1.34759e+170
+1.75062e-260 1.58739e-68 1.92056e-182 1.67897e-132
+4.13273e+261 29072.6 1.10966e+192 2.30932e+295
+7.50348e-71 1.41003e-86 4.42315e+80 1.54458e+60
+1.28334e+144 1.93644e+180 1.54664e-118 3.41101e+171
+2.90402e-286 1.99326e-62 5.07882e+283 3.58420e+261
+3.56215e-230 1.39816e-16 1.74133e+63 1.53532e+63
+
+Missing value
+x2 values: 4.05909e-90    -inf 5.29534e-219 1.14814e+292 5.52605e-63 4.19933e+122 1.18575e-151
+5.75714e-126 8.81499e-78 1.61221e-09 5.31901e+30 4.23359e-285 4.96121e+38 2.63871e-98
+2.81754e-125 1.23373e-286 5.02389e+170 3.36183e+44 1.98386e-123 9.42685e+205     inf
+2.94390e-273 4.99855e+39     inf 1.37001e+227 2.43609e-237 7.81345e-69     nan
+3.69649e+59 5.30629e+96 1.20419e-302 1.54296e+211 1.20525e-216 7.91189e-214 7.34702e+70
+
+dm values: 4.56776e-41 5.98786e-230 1.34274e-145
+2.15411e+100 2.87600e-141 6.63567e-308
+5.78068e+88 1.94630e-236 9.36807e-57
+2.74370e+170 1.84612e+96 2.98858e+235
+3.93418e-113 1.57839e-259 1.50598e-259
+
+idx values: 2045325885
+input ends
+==910071==  If you believe this happened as a result of a stack
+==910071==  overflow in your program's main thread (unlikely but
+==910071==  possible), you can try to increase the size of the
+==910071==  main thread stack using the --main-stacksize= flag.
+==910071==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: spsann_deepstate_test_updateMSSDCpp_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/spsann/inst/testfiles/updateMSSDCpp/updateMSSDCpp_output/f97703d88b5f44f18c8a5478e4cc2152bc9b0638.crash crashed

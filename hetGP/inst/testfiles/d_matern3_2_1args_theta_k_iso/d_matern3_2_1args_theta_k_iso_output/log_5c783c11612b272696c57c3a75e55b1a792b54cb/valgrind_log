@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./d_matern3_2_1args_theta_k_iso_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/d_matern3_2_1args_theta_k_iso/d_matern3_2_1args_theta_k_iso_output/5c783c11612b272696c57c3a75e55b1a792b54cb.pass</line>
+</preamble>
+
+<pid>852737</pid>
+<ppid>852736</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/d_matern3_2_1args_theta_k_iso/d_matern3_2_1args_theta_k_iso_output/log_5c783c11612b272696c57c3a75e55b1a792b54cb/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./d_matern3_2_1args_theta_k_iso_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/hetGP/inst/testfiles/d_matern3_2_1args_theta_k_iso/d_matern3_2_1args_theta_k_iso_output/5c783c11612b272696c57c3a75e55b1a792b54cb.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.033 </time>
+</status>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:09.223 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:09.792 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

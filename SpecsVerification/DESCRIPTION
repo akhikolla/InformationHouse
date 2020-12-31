@@ -1,0 +1,28 @@
+Package: SpecsVerification
+Version: 0.5-3
+Date: 2020-02-26
+Title: Forecast Verification Routines for Ensemble Forecasts of Weather
+        and Climate
+Authors@R: c(person(given="Stefan", family="Siegert",   role = c("aut", "cre"), 
+                                                        email="s.siegert@exeter.ac.uk"),
+             person(given="Jonas",  family="Bhend",     role="ctb"),
+             person(given="Igor",   family="Kroener",   role="ctb"),
+             person(given="Matteo", family="De Felice", role="ctb")
+            )
+Maintainer: Stefan Siegert <s.siegert@exeter.ac.uk>
+Description: A collection of forecast verification routines developed for the SPECS
+    FP7 project. The emphasis is on comparative verification of ensemble forecasts of weather and climate.
+License: GPL (>= 2)
+Imports: Rcpp, methods
+LinkingTo: Rcpp, RcppArmadillo
+Suggests: testthat
+LazyData: true
+RoxygenNote: 7.0.2
+NeedsCompilation: yes
+Packaged: 2020-02-26 13:27:31 UTC; stefan
+Author: Stefan Siegert [aut, cre],
+  Jonas Bhend [ctb],
+  Igor Kroener [ctb],
+  Matteo De Felice [ctb]
+Repository: CRAN
+Date/Publication: 2020-02-26 15:40:06 UTC

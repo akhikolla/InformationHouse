@@ -1,0 +1,12 @@
+WARNING: No test specified, defaulting to first test defined (Lmoments_deepstate_test_shiftedlegendre_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/Lmoments/inst/testfiles/shiftedlegendre/shiftedlegendre_output/0646c3c42d23c1c1fff52b72515b80b860f23b66.fail`
+TRACE: Running: Lmoments_deepstate_test_shiftedlegendre_test from /home/akhila/fuzzer_packages/fuzzedpackages/Lmoments/inst/testfiles/shiftedlegendre/shiftedlegendre_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+rmax values: -498905818
+input ends
+terminate called after throwing an instance of 'std::range_error'
+  what():  'rmax' must be > 0
+ERROR: Failed: Lmoments_deepstate_test_shiftedlegendre_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/Lmoments/inst/testfiles/shiftedlegendre/shiftedlegendre_output/0646c3c42d23c1c1fff52b72515b80b860f23b66.fail failed

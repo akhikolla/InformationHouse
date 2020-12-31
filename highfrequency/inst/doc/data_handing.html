@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Data cleaning</title>
+
+<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
+// v0.0.1
+// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
+
+document.addEventListener('DOMContentLoaded', function() {
+  const codeList = document.getElementsByClassName("sourceCode");
+  for (var i = 0; i < codeList.length; i++) {
+    var linkList = codeList[i].getElementsByTagName('a');
+    for (var j = 0; j < linkList.length; j++) {
+      if (linkList[j].innerHTML === "") {
+        linkList[j].setAttribute('aria-hidden', 'true');
+      }
+    }
+  }
+});
+</script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Data cleaning</h1>
+
+
+
+<p>Data cleaning of high-frequency data is a necessary step in all finance and financial econometrics applications. The reason is that most data providers like tick data offer raw instead of preprocessed data. The upside is that you can follow the cleaning process yourself instead of relying on another party. In this vignette, we will address a common workflow that makes use of both trades and quotes data on a microsecond resolution.</p>
+<div id="cleaning-tick-data-on-trades" class="section level2">
+<h2>Cleaning tick data on trades</h2>
+<p>We start by loading the highfrequency package and printing the head of one example data set that contains trade data for one stock on two days.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(highfrequency)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="co">#&gt; Registered S3 method overwritten by &#39;quantmod&#39;:</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co">#&gt;   method            from</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co">#&gt;   as.zoo.data.frame zoo</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="kw">head</span>(sampleTDataRawMicroseconds)</span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="co">#&gt;                     DT EX SYMBOL SYM_SUFFIX TR_SCOND SIZE  PRICE TR_CORR</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co">#&gt; 1: 2018-01-02 05:01:21  P    XXX         NA      FTI    2 157.80       0</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="co">#&gt; 2: 2018-01-02 05:23:50  P    XXX         NA      FTI    3 157.80       0</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="co">#&gt; 3: 2018-01-02 05:23:50  P    XXX         NA      FTI    1 157.80       0</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="co">#&gt; 4: 2018-01-02 07:11:54  P    XXX         NA        T  130 158.00       0</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co">#&gt; 5: 2018-01-02 07:23:12  P    XXX         NA       TI   30 158.10       0</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="co">#&gt; 6: 2018-01-02 07:28:44  P    XXX         NA       TI   30 158.28       0</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="co">#&gt;    TR_SEQNUM TR_SOURCE TR_RF</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="co">#&gt; 1:     48101         C      </span></span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="co">#&gt; 2:     48701         C      </span></span>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="co">#&gt; 3:     48801         C      </span></span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="co">#&gt; 4:     67901         C      </span></span>
+<span id="cb1-18"><a href="#cb1-18"></a><span class="co">#&gt; 5:     72101         C      </span></span>
+<span id="cb1-19"><a href="#cb1-19"></a><span class="co">#&gt; 6:     73301         C</span></span></code></pre></div>
+<p>A quick look via summary into the data let’s us see that there are trades listed in the data set out of the bounds of the regular trading hours that are 9:30 to 16:00 on regular work days.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">summary</span>(sampleTDataRawMicroseconds[, <span class="kw">c</span>(<span class="st">&quot;DT&quot;</span>, <span class="st">&quot;SIZE&quot;</span>, <span class="st">&quot;PRICE&quot;</span>)])</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co">#&gt;        DT                           SIZE              PRICE      </span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co">#&gt;  Min.   :2018-01-02 05:01:21   Min.   :     1.0   Min.   :155.4  </span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#&gt;  1st Qu.:2018-01-02 12:50:07   1st Qu.:    29.0   1st Qu.:156.4  </span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="co">#&gt;  Median :2018-01-02 15:59:06   Median :   100.0   Median :156.7  </span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co">#&gt;  Mean   :2018-01-03 00:33:21   Mean   :   132.7   Mean   :156.8  </span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="co">#&gt;  3rd Qu.:2018-01-03 12:21:06   3rd Qu.:   100.0   3rd Qu.:157.1  </span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="co">#&gt;  Max.   :2018-01-03 19:55:37   Max.   :443901.0   Max.   :159.4</span></span></code></pre></div>
+<p>Next, we will use one of three main cleaning functions called tradesCleanup. It implements the steps laid out in the seminal paper of Barndorff-Nielsen et al. (2009). It processes the given data by</p>
+<ul>
+<li>deleting entries with a price reported as zero,</li>
+<li>selecting trades from a single exchange (“N” stands for New York Stock Exchange (NYSE))</li>
+<li>filtering for the sales condition to be either “E” or “F”, corresponding to cases of regular trade records and</li>
+<li>summarizing trades that have the same time stamp. The default is to take the median price and summed-up volume of the different trades.</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>tDataCleaned &lt;-<span class="st"> </span><span class="kw">tradesCleanup</span>(<span class="dt">tDataRaw =</span> sampleTDataRawMicroseconds, <span class="dt">exchange =</span> <span class="st">&quot;N&quot;</span>)</span></code></pre></div>
+<p>When using tradesCleanup, the return value is a list of two. It contains a report about the number of observations after each cleaning step and the cleaned data itself.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>tDataCleaned<span class="op">$</span>report</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="co">#&gt;         initial_number         no_zero_trades        select_exchange </span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="co">#&gt;                  77263                  77263                  11191 </span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co">#&gt; remove_sales_condition   merge_same_timestamp </span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="co">#&gt;                   8155                   6140</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="kw">summary</span>(tDataCleaned<span class="op">$</span>tData[, <span class="kw">c</span>(<span class="st">&quot;DT&quot;</span>, <span class="st">&quot;SIZE&quot;</span>, <span class="st">&quot;PRICE&quot;</span>)])</span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="co">#&gt;        DT                           SIZE            PRICE      </span></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="co">#&gt;  Min.   :2018-01-02 09:30:00   Min.   :   1.0   Min.   :155.4  </span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="co">#&gt;  1st Qu.:2018-01-02 12:22:48   1st Qu.: 100.0   1st Qu.:156.4  </span></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="co">#&gt;  Median :2018-01-02 15:59:10   Median : 100.0   Median :156.7  </span></span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="co">#&gt;  Mean   :2018-01-03 00:18:24   Mean   : 173.1   Mean   :156.9  </span></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="co">#&gt;  3rd Qu.:2018-01-03 12:12:08   3rd Qu.: 200.0   3rd Qu.:157.1  </span></span>
+<span id="cb4-14"><a href="#cb4-14"></a><span class="co">#&gt;  Max.   :2018-01-03 15:59:59   Max.   :6608.0   Max.   :159.4</span></span></code></pre></div>
+<p>As just one example, one can see that all trades that had time stamps outside the opening hours of the NYSE. The report of the cleaning procedure shows us that most of the observations are removed either due to originating from another exchange or having irregular sales conditions.</p>
+<p>As a last step for cleaning tick data on trades it is advised to check whether compatible quotes have been made before the recorded transaction. For doing so, we first need to implement a similar cleaning procedure for quotes data.</p>
+</div>
+<div id="cleaning-tick-data-on-quotes" class="section level2">
+<h2>Cleaning tick data on quotes</h2>
+<p>The highfrequency function also brings a similarly-named function for cleaning quotes data, quotesCleanup. Here, the cleaning steps are</p>
+<ul>
+<li>removing quotes with zero price,</li>
+<li>selecting a single exchange,</li>
+<li>removing entries that have extraordinarly large spreads</li>
+<li>merging quotes that happen on the same time and</li>
+<li>removing quotes that may be seen to be outliers.</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>qDataCleaned &lt;-<span class="st"> </span><span class="kw">quotesCleanup</span>(<span class="dt">qDataRaw =</span> sampleQDataRawMicroseconds, <span class="dt">exchange =</span> <span class="st">&quot;N&quot;</span>)</span></code></pre></div>
+<p>quotesCleanup also provides a list with two elements, a report and the cleaned data.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>qDataCleaned<span class="op">$</span>report</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="co">#&gt;         initial_number         no_zero_quotes        select_exchange </span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="co">#&gt;                 131401                 131305                  94422 </span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co">#&gt; remove_negative_spread    remove_large_spread   merge_same_timestamp </span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="co">#&gt;                  94422                  94422                  46566 </span></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="co">#&gt;        remove_outliers </span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="co">#&gt;                  46566</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="kw">summary</span>(qDataCleaned<span class="op">$</span>qData[, <span class="kw">c</span>(<span class="st">&quot;DT&quot;</span>, <span class="st">&quot;OFR&quot;</span>, <span class="st">&quot;OFRSIZ&quot;</span>, <span class="st">&quot;BID&quot;</span>, <span class="st">&quot;BIDSIZ&quot;</span>, <span class="st">&quot;MIDQUOTE&quot;</span>)])</span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="co">#&gt;        DT                           OFR            OFRSIZ       </span></span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="co">#&gt;  Min.   :2018-01-02 09:30:00   Min.   :155.4   Min.   :  1.000  </span></span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="co">#&gt;  1st Qu.:2018-01-02 12:21:55   1st Qu.:156.5   1st Qu.:  1.000  </span></span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="co">#&gt;  Median :2018-01-02 15:54:41   Median :156.7   Median :  2.000  </span></span>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="co">#&gt;  Mean   :2018-01-03 00:03:51   Mean   :156.9   Mean   :  4.211  </span></span>
+<span id="cb6-15"><a href="#cb6-15"></a><span class="co">#&gt;  3rd Qu.:2018-01-03 12:12:14   3rd Qu.:157.2   3rd Qu.:  4.000  </span></span>
+<span id="cb6-16"><a href="#cb6-16"></a><span class="co">#&gt;  Max.   :2018-01-03 16:05:18   Max.   :159.4   Max.   :417.000  </span></span>
+<span id="cb6-17"><a href="#cb6-17"></a><span class="co">#&gt;       BID            BIDSIZ           MIDQUOTE    </span></span>
+<span id="cb6-18"><a href="#cb6-18"></a><span class="co">#&gt;  Min.   :155.4   Min.   :  1.000   Min.   :155.4  </span></span>
+<span id="cb6-19"><a href="#cb6-19"></a><span class="co">#&gt;  1st Qu.:156.4   1st Qu.:  1.000   1st Qu.:156.4  </span></span>
+<span id="cb6-20"><a href="#cb6-20"></a><span class="co">#&gt;  Median :156.7   Median :  2.000   Median :156.7  </span></span>
+<span id="cb6-21"><a href="#cb6-21"></a><span class="co">#&gt;  Mean   :156.9   Mean   :  4.304   Mean   :156.9  </span></span>
+<span id="cb6-22"><a href="#cb6-22"></a><span class="co">#&gt;  3rd Qu.:157.1   3rd Qu.:  4.000   3rd Qu.:157.1  </span></span>
+<span id="cb6-23"><a href="#cb6-23"></a><span class="co">#&gt;  Max.   :159.4   Max.   :426.000   Max.   :159.4</span></span></code></pre></div>
+</div>
+<div id="cleaning-transaction-data-using-cleaned-quotes" class="section level2">
+<h2>Cleaning transaction data using cleaned quotes</h2>
+<p>Given our freshly cleaned trades and quotes data, we now want to filter for trades that are proceeded by a compatible set of quotes. Currently, the tradesCleanupUsingQuotes function only supports submitting trades and quotes data for one day only, Hence, we filter our data set to one of the days.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>tqDataCleaned &lt;-<span class="st"> </span><span class="kw">tradesCleanupUsingQuotes</span>(<span class="dt">tData =</span> tDataCleaned<span class="op">$</span>tData[<span class="kw">as.Date</span>(DT) <span class="op">==</span><span class="st"> &quot;2018-01-02&quot;</span>], </span>
+<span id="cb7-2"><a href="#cb7-2"></a>                                           <span class="dt">qData =</span> qDataCleaned<span class="op">$</span>qData[<span class="kw">as.Date</span>(DT) <span class="op">==</span><span class="st"> &quot;2018-01-02&quot;</span>])</span>
+<span id="cb7-3"><a href="#cb7-3"></a>tqDataCleaned</span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="co">#&gt;                        DT SYMBOL    BID    OFR QUOTEEX QU_COND     QU_SEQNUM</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="co">#&gt;    1: 2018-01-02 09:30:00    XXX 158.32 158.75    &lt;NA&gt;    &lt;NA&gt;  0.000000e+00</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&gt;    2: 2018-01-02 09:30:00    XXX 158.32 158.75    &lt;NA&gt;    &lt;NA&gt;  0.000000e+00</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="co">#&gt;    3: 2018-01-02 09:30:00    XXX 158.32 158.75    &lt;NA&gt;    &lt;NA&gt;  0.000000e+00</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="co">#&gt;    4: 2018-01-02 09:30:00    XXX 158.32 158.75    &lt;NA&gt;    &lt;NA&gt;  0.000000e+00</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="co">#&gt;    5: 2018-01-02 09:30:00    XXX 158.32 158.75    &lt;NA&gt;    &lt;NA&gt;  0.000000e+00</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="co">#&gt;   ---                                                                       </span></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="co">#&gt; 2975: 2018-01-02 15:59:57    XXX 157.04 157.06       N       R 8.467620e-315</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="co">#&gt; 2976: 2018-01-02 15:59:58    XXX 157.04 157.06       N       R 8.473449e-315</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a><span class="co">#&gt; 2977: 2018-01-02 15:59:59    XXX 157.04 157.06       N       R 8.475839e-315</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a><span class="co">#&gt; 2978: 2018-01-02 15:59:59    XXX 157.04 157.06       N       R 8.475940e-315</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a><span class="co">#&gt; 2979: 2018-01-02 15:59:59    XXX 157.04 157.06       N       R 8.477561e-315</span></span>
+<span id="cb7-16"><a href="#cb7-16"></a><span class="co">#&gt;       NATBBO_IND QU_CANCEL QU_SOURCE SYM_SUFFIX BIDSIZ OFRSIZ MIDQUOTE   PRICE</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a><span class="co">#&gt;    1:       &lt;NA&gt;        NA      &lt;NA&gt;         NA     NA     NA       NA 158.500</span></span>
+<span id="cb7-18"><a href="#cb7-18"></a><span class="co">#&gt;    2:       &lt;NA&gt;        NA      &lt;NA&gt;         NA     NA     NA       NA 158.500</span></span>
+<span id="cb7-19"><a href="#cb7-19"></a><span class="co">#&gt;    3:       &lt;NA&gt;        NA      &lt;NA&gt;         NA     NA     NA       NA 158.485</span></span>
+<span id="cb7-20"><a href="#cb7-20"></a><span class="co">#&gt;    4:       &lt;NA&gt;        NA      &lt;NA&gt;         NA     NA     NA       NA 158.485</span></span>
+<span id="cb7-21"><a href="#cb7-21"></a><span class="co">#&gt;    5:       &lt;NA&gt;        NA      &lt;NA&gt;         NA     NA     NA       NA 158.485</span></span>
+<span id="cb7-22"><a href="#cb7-22"></a><span class="co">#&gt;   ---                                                                         </span></span>
+<span id="cb7-23"><a href="#cb7-23"></a><span class="co">#&gt; 2975:          A        NA         C         NA      5     10   157.05 157.050</span></span>
+<span id="cb7-24"><a href="#cb7-24"></a><span class="co">#&gt; 2976:          A        NA         C         NA      1      3   157.05 157.040</span></span>
+<span id="cb7-25"><a href="#cb7-25"></a><span class="co">#&gt; 2977:          A        NA         C         NA      8     25   157.05 157.020</span></span>
+<span id="cb7-26"><a href="#cb7-26"></a><span class="co">#&gt; 2978:          A        NA         C         NA      1      3   157.05 157.020</span></span>
+<span id="cb7-27"><a href="#cb7-27"></a><span class="co">#&gt; 2979:          U        NA         C         NA      1      5   157.05 157.020</span></span>
+<span id="cb7-28"><a href="#cb7-28"></a><span class="co">#&gt;       SIZE NUMTRADES EX i.SYM_SUFFIX COND TR_CORR TR_SEQNUM TR_SOURCE TR_RF</span></span>
+<span id="cb7-29"><a href="#cb7-29"></a><span class="co">#&gt;    1:   50         1  N           NA    I       0    272301         C      </span></span>
+<span id="cb7-30"><a href="#cb7-30"></a><span class="co">#&gt;    2: 1805         1  N           NA            0    273801         C      </span></span>
+<span id="cb7-31"><a href="#cb7-31"></a><span class="co">#&gt;    3:    4         1  N           NA    I       0    301001         C      </span></span>
+<span id="cb7-32"><a href="#cb7-32"></a><span class="co">#&gt;    4:    1         1  N           NA    I       0    301401         C      </span></span>
+<span id="cb7-33"><a href="#cb7-33"></a><span class="co">#&gt;    5:   72         1  N           NA    I       0    301501         C      </span></span>
+<span id="cb7-34"><a href="#cb7-34"></a><span class="co">#&gt;   ---                                                                      </span></span>
+<span id="cb7-35"><a href="#cb7-35"></a><span class="co">#&gt; 2975:  300         1  N           NA    F       0 143882001         C      </span></span>
+<span id="cb7-36"><a href="#cb7-36"></a><span class="co">#&gt; 2976: 1200         1  N           NA            0 143960301         C      </span></span>
+<span id="cb7-37"><a href="#cb7-37"></a><span class="co">#&gt; 2977:  500         2  N           NA    F       0 144041001         C      </span></span>
+<span id="cb7-38"><a href="#cb7-38"></a><span class="co">#&gt; 2978:  400         1  N           NA    F       0 144043101         C      </span></span>
+<span id="cb7-39"><a href="#cb7-39"></a><span class="co">#&gt; 2979:   62         1  N           NA    I       0 144070401         C</span></span></code></pre></div>
+<p>Here, we see that once more half of the trades are filtered out due to non-plausability.</p>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<p>Barndorff-Nielsen, O. E., P. R. Hansen, A. Lunde, and N. Shephard (2009). Realized kernels in practice: Trades and quotes. Econometrics Journal 12, C1-C32.</p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

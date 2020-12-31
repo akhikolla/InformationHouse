@@ -1,0 +1,13 @@
+citHeader("To cite package 'AGread' in publications use:")
+
+citEntry(entry = "Misc",
+  title        = "AGread: Read Data Files from ActiGraph Monitors",
+  author       = personList(as.person("Paul R. Hibbing")),
+  year         = "2018",
+  url          = "https://cran.r-project.org/package=AGread",
+
+  textVersion  =
+  paste("Paul R. Hibbing (2018).",
+        "AGread: Read Data Files from ActiGraph Monitors.",
+        "URL https://cran.r-project.org/package=AGread")
+)

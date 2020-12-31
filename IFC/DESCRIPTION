@@ -1,0 +1,29 @@
+Package: IFC
+Encoding: UTF-8
+Type: Package
+Title: Tools for Imaging Flow Cytometry
+Version: 0.1.1
+Date: 2020-12-18
+Maintainer: Yohann Demont <git.demont@gmail.com>
+Authors@R: c(person(given = 'Yohann', family = 'Demont', email = 'git.demont@gmail.com', role = c('aut', 'cre')), person(given = 'Gautier', family = 'Stoll', role = 'ctb'), person(given = 'Guido', family = 'Kroemer', role = 'ldr'), person(given = 'Jean-Pierre', family = 'Marolleau', role = 'ldr'), person(given = 'Loïc', family = 'Garçon', role = 'ldr'))
+BugReports: https://github.com/gitdemont/IFC/issues
+Description: Contains several tools to treat imaging flow cytometry data from 'ImageStream®' and 'FlowSight®' cytometers ('Amnis®', part of 'Luminex®'). Provides an easy and simple way to read, write and subset .rif, .cif and .daf files. Information such as masks, features, regions and populations set within these files can be retrieved. In addition, raw data such as images stored can also be accessed. Users, may hopefully increase their productivity thanks to dedicated functions to extract, visualize and export 'IFC' data. Toy data example can be installed through the 'IFCdata' package of approximately 32 MB, which is available in a 'drat' repository <https://gitdemont.github.io/IFCdata/>. See file 'COPYRIGHTS' and file 'AUTHORS' for a list of copyright holders and authors.
+Copyright: file inst/COPYRIGHTS
+License: GPL-3
+Depends: R (>= 3.4.0)
+Imports: Rcpp (>= 0.10.0), RcppProgress, xml2, png, tiff, jpeg, utils,
+        grid, gridExtra, lattice, latticeExtra, KernSmooth, DT,
+        visNetwork
+Suggests: IFCdata, shiny, reticulate
+LinkingTo: Rcpp, RcppProgress
+Additional_repositories: https://gitdemont.github.io/IFCdata/
+RoxygenNote: 7.1.1
+NeedsCompilation: yes
+Packaged: 2020-12-18 08:41:02 UTC; Amnis
+Author: Yohann Demont [aut, cre],
+  Gautier Stoll [ctb],
+  Guido Kroemer [ldr],
+  Jean-Pierre Marolleau [ldr],
+  Loïc Garçon [ldr]
+Repository: CRAN
+Date/Publication: 2020-12-18 12:00:03 UTC

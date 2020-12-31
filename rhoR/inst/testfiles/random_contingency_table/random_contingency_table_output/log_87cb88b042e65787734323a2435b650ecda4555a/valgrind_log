@@ -1,0 +1,504 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./random_contingency_table_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_output/87cb88b042e65787734323a2435b650ecda4555a.crash</line>
+</preamble>
+
+<pid>3958909</pid>
+<ppid>3958908</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_output/log_87cb88b042e65787734323a2435b650ecda4555a/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./random_contingency_table_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_output/87cb88b042e65787734323a2435b650ecda4555a.crash</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.053 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x40E237</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>arma::Mat&lt;double&gt;::init_cold()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/Mat_meat.hpp</file>
+      <line>214</line>
+    </frame>
+    <frame>
+      <ip>0x42349A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>arma::Mat&lt;double&gt;::Mat(arma::arma_vec_indicator const&amp;, unsigned int, unsigned int, unsigned short)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/Mat_meat.hpp</file>
+      <line>168</line>
+    </frame>
+    <frame>
+      <ip>0x42A4A6</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>arma::Col&lt;double&gt;::Col(arma::Col&lt;double&gt; const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/Col_meat.hpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x426E01</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>generate_kp_list(int, double, double, double, double, double, int, long)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR</dir>
+      <file>src/rhor.cpp</file>
+      <line>235</line>
+    </frame>
+    <frame>
+      <ip>0x4277C7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>random_contingency_table(int, double, double, double, double, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR</dir>
+      <file>src/rhor.cpp</file>
+      <line>288</line>
+    </frame>
+    <frame>
+      <ip>0x409E6B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_rhoR_deepstate_test_random_contingency_table_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table</dir>
+      <file>random_contingency_table_DeepState_TestHarness.cpp</file>
+      <line>51</line>
+    </frame>
+    <frame>
+      <ip>0x409908</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_rhoR_deepstate_test_random_contingency_table_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table</dir>
+      <file>random_contingency_table_DeepState_TestHarness.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x412638</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x4128D9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x4129B4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407785</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x1</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x40E246</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>arma::Mat&lt;double&gt;::init_cold()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/Mat_meat.hpp</file>
+      <line>216</line>
+    </frame>
+    <frame>
+      <ip>0x42349A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>arma::Mat&lt;double&gt;::Mat(arma::arma_vec_indicator const&amp;, unsigned int, unsigned int, unsigned short)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/Mat_meat.hpp</file>
+      <line>168</line>
+    </frame>
+    <frame>
+      <ip>0x42A4A6</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>arma::Col&lt;double&gt;::Col(arma::Col&lt;double&gt; const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/Col_meat.hpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x426E01</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>generate_kp_list(int, double, double, double, double, double, int, long)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR</dir>
+      <file>src/rhor.cpp</file>
+      <line>235</line>
+    </frame>
+    <frame>
+      <ip>0x4277C7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>random_contingency_table(int, double, double, double, double, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR</dir>
+      <file>src/rhor.cpp</file>
+      <line>288</line>
+    </frame>
+    <frame>
+      <ip>0x409E6B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_rhoR_deepstate_test_random_contingency_table_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table</dir>
+      <file>random_contingency_table_DeepState_TestHarness.cpp</file>
+      <line>51</line>
+    </frame>
+    <frame>
+      <ip>0x409908</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_rhoR_deepstate_test_random_contingency_table_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table</dir>
+      <file>random_contingency_table_DeepState_TestHarness.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x412638</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x4128D9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x4129B4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407785</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x2</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x40E25A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>arma::Mat&lt;double&gt;::init_cold()</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/Mat_meat.hpp</file>
+      <line>218</line>
+    </frame>
+    <frame>
+      <ip>0x42349A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>arma::Mat&lt;double&gt;::Mat(arma::arma_vec_indicator const&amp;, unsigned int, unsigned int, unsigned short)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/Mat_meat.hpp</file>
+      <line>168</line>
+    </frame>
+    <frame>
+      <ip>0x42A4A6</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>arma::Col&lt;double&gt;::Col(arma::Col&lt;double&gt; const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/Col_meat.hpp</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x426E01</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>generate_kp_list(int, double, double, double, double, double, int, long)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR</dir>
+      <file>src/rhor.cpp</file>
+      <line>235</line>
+    </frame>
+    <frame>
+      <ip>0x4277C7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>random_contingency_table(int, double, double, double, double, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR</dir>
+      <file>src/rhor.cpp</file>
+      <line>288</line>
+    </frame>
+    <frame>
+      <ip>0x409E6B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_rhoR_deepstate_test_random_contingency_table_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table</dir>
+      <file>random_contingency_table_DeepState_TestHarness.cpp</file>
+      <line>51</line>
+    </frame>
+    <frame>
+      <ip>0x409908</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_rhoR_deepstate_test_random_contingency_table_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table</dir>
+      <file>random_contingency_table_DeepState_TestHarness.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x412638</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x4128D9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x4129B4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407785</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x3</unique>
+  <tid>1</tid>
+  <kind>InvalidWrite</kind>
+  <what>Invalid write of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4842A83</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>memmove</fn>
+    </frame>
+    <frame>
+      <ip>0x42A52B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>copy&lt;double&gt;</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/arrayops_meat.hpp</file>
+      <line>36</line>
+    </frame>
+    <frame>
+      <ip>0x42A52B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>arma::Col&lt;double&gt;::Col(arma::Col&lt;double&gt; const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/Col_meat.hpp</file>
+      <line>39</line>
+    </frame>
+    <frame>
+      <ip>0x426E01</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>generate_kp_list(int, double, double, double, double, double, int, long)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR</dir>
+      <file>src/rhor.cpp</file>
+      <line>235</line>
+    </frame>
+    <frame>
+      <ip>0x4277C7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>random_contingency_table(int, double, double, double, double, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR</dir>
+      <file>src/rhor.cpp</file>
+      <line>288</line>
+    </frame>
+    <frame>
+      <ip>0x409E6B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_rhoR_deepstate_test_random_contingency_table_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table</dir>
+      <file>random_contingency_table_DeepState_TestHarness.cpp</file>
+      <line>51</line>
+    </frame>
+    <frame>
+      <ip>0x409908</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_rhoR_deepstate_test_random_contingency_table_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table</dir>
+      <file>random_contingency_table_DeepState_TestHarness.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x412638</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x4128D9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x4129B4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407785</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x0 is not stack'd, malloc'd or (recently) free'd</auxwhat>
+</error>
+
+<fatal_signal>
+  <tid>1</tid>
+  <signo>11</signo>
+  <signame>SIGSEGV</signame>
+  <sicode>1</sicode>
+  <event>Access not within mapped region</event>
+  <siaddr>0x0</siaddr>
+  <stack>
+    <frame>
+      <ip>0x4842A83</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>memmove</fn>
+    </frame>
+    <frame>
+      <ip>0x42A52B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>copy&lt;double&gt;</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/arrayops_meat.hpp</file>
+      <line>36</line>
+    </frame>
+    <frame>
+      <ip>0x42A52B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>arma::Col&lt;double&gt;::Col(arma::Col&lt;double&gt; const&amp;)</fn>
+      <dir>/home/akhila</dir>
+      <file>R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include/armadillo_bits/Col_meat.hpp</file>
+      <line>39</line>
+    </frame>
+    <frame>
+      <ip>0x426E01</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>generate_kp_list(int, double, double, double, double, double, int, long)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR</dir>
+      <file>src/rhor.cpp</file>
+      <line>235</line>
+    </frame>
+    <frame>
+      <ip>0x4277C7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>random_contingency_table(int, double, double, double, double, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR</dir>
+      <file>src/rhor.cpp</file>
+      <line>288</line>
+    </frame>
+    <frame>
+      <ip>0x409E6B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_rhoR_deepstate_test_random_contingency_table_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table</dir>
+      <file>random_contingency_table_DeepState_TestHarness.cpp</file>
+      <line>51</line>
+    </frame>
+    <frame>
+      <ip>0x409908</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_rhoR_deepstate_test_random_contingency_table_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table</dir>
+      <file>random_contingency_table_DeepState_TestHarness.cpp</file>
+      <line>10</line>
+    </frame>
+    <frame>
+      <ip>0x412638</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x4128D9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x4129B4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407785</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</fatal_signal>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:13.272 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>1</count>
+    <unique>0x3</unique>
+  </pair>
+  <pair>
+    <count>1</count>
+    <unique>0x2</unique>
+  </pair>
+  <pair>
+    <count>1</count>
+    <unique>0x1</unique>
+  </pair>
+  <pair>
+    <count>1</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:14.421 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

@@ -1,0 +1,22 @@
+WARNING: No test specified, defaulting to first test defined (robustSingleCell_deepstate_test_jaccard_coeff_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/robustSingleCell/inst/testfiles/jaccard_coeff/jaccard_coeff_output/cd6f65cfaf0878aac09d11b98dfbb6f7356aa294.fail`
+TRACE: Running: robustSingleCell_deepstate_test_jaccard_coeff_test from /home/akhila/fuzzer_packages/fuzzedpackages/robustSingleCell/inst/testfiles/jaccard_coeff/jaccard_coeff_DeepState_TestHarness.cpp(10)
+input starts
+EXTERNAL: qs v0.23.4.
+
+idx values: 2.67785e-160 2.57739e-39 5.58837e+20 8.87767e+140 8.51634e+133
+3.41914e+208 2.12647e-105 1.74452e+251 2.09241e-305 4.56224e+198
+4.68492e+81 9.46367e+164 8.61204e-100 2.07009e+195 2.12017e+114
+2.13718e+102 4.18104e+220 1.59764e+177 4.02410e+79 1.71950e+28
+3.09282e+269 5.80846e-86 2.15823e+83 6.72392e-190 2.18303e-274
+7.97241e+125 2.70765e-45 2.32120e+120 2.40468e-53 6.09934e+126
+5.27942e+302 6.84658e-09 7.76376e+190 3.91510e+07 7.36847e+116
+1.69686e-249 6.69398e-294 9.02588e+279 2.33284e-33 4.81007e-289
+1.98734e-238 2.19687e+138 7.42211e+133 3.73053e+236 1.90152e-302
+5.87844e-27 3.42882e+273 1.92009e+127 2.22206e+52 1.10017e-210
+
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Row index is out of bounds: [index=-1; row extent=10].
+ERROR: Failed: robustSingleCell_deepstate_test_jaccard_coeff_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/robustSingleCell/inst/testfiles/jaccard_coeff/jaccard_coeff_output/cd6f65cfaf0878aac09d11b98dfbb6f7356aa294.fail failed

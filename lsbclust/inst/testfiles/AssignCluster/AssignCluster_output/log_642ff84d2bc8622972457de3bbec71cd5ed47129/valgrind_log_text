@@ -1,0 +1,29 @@
+WARNING: No test specified, defaulting to first test defined (lsbclust_deepstate_test_AssignCluster_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/lsbclust/inst/testfiles/AssignCluster/AssignCluster_output/642ff84d2bc8622972457de3bbec71cd5ed47129.crash`
+TRACE: Running: lsbclust_deepstate_test_AssignCluster_test from /home/akhila/fuzzer_packages/fuzzedpackages/lsbclust/inst/testfiles/AssignCluster/AssignCluster_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+data values:     inf
+1.13052e+284
+   -inf
+
+Missing value
+weight values: -1.35496e+59 2.20546e+167 -2.07596e+84 inf inf -7.82738e+146 -1.44021e-228 nan -1.09185e-103 2.06603e+108 -1.46624e+214 8.95803e-147 -329074 -7.82353e+169 -1.80042e+212 -2.70315e-246 -1.00666e+130 1.22703e-141 nan -7.51351e+173 -1.2736e+160 2.32011e-196 -8.6169e+61 4.9094e-35 2.08021e-206 -2.05883e+277 6.90716e-31 -2.79331e-208 -1.02392e-73 -9.1361e-09 -1.94719e-98 -7.46182e-212 0
+Missing value
+M values: 1.01476e-257
+    nan
+    nan
+6.79483e+85
+6.59036e+247
+    inf
+5.01829e+160
+1.70215e+166
+2.44353e-56
+    nan
+
+nclust values: 1858639288
+input ends
+ERROR: Crashed: lsbclust_deepstate_test_AssignCluster_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/lsbclust/inst/testfiles/AssignCluster/AssignCluster_output/642ff84d2bc8622972457de3bbec71cd5ed47129.crash crashed

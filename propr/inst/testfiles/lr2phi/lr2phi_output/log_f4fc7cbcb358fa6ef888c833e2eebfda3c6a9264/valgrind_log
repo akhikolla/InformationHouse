@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./lr2phi_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/propr/inst/testfiles/lr2phi/lr2phi_output/f4fc7cbcb358fa6ef888c833e2eebfda3c6a9264.pass</line>
+</preamble>
+
+<pid>3934415</pid>
+<ppid>3934414</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/propr/inst/testfiles/lr2phi/lr2phi_output/log_f4fc7cbcb358fa6ef888c833e2eebfda3c6a9264/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./lr2phi_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/propr/inst/testfiles/lr2phi/lr2phi_output/f4fc7cbcb358fa6ef888c833e2eebfda3c6a9264.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.061 </time>
+</status>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:14.029 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:14.995 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

@@ -1,0 +1,240 @@
+# Default Configuration, Each yaml file can have multiple configurations
+default:
+  # Cosmetic only options:
+  base_size: 14 # Base size for Text
+  expand: 0.05 # Factor to Expand horizontaly the plots with blank content
+  idleness_factor: 5.5 # Resouces Idleness Text Size division Factor of base_size
+  idleness_all: TRUE # Show all Resouces idleness values
+  # time: deprecated option
+  guided:
+    active: TRUE # Phase2 flag to guided plot (compute ideal height)
+    agg_type_height: 20
+  title: # Overall Visualization Title
+    active: FALSE # Active with directory name as Title
+    height: 0.6 # Title Size
+  vanilla: # Options about X and Y axis title and values
+    vertical: FALSE # If True, Remove Y axis' title and values
+    horizontal: FALSE  # If True, Remove X axis' title and values
+  limits: # Set the time limits used
+    start: 0 # Initial Time
+    #end: 10000 # Final Time
+  #selected_nodes: ["1"] #Select only some nodes in some plots
+
+  # Visualizations in order of appearance
+  atree: # plot space/time tree structure computation
+    active: FALSE # Disable
+    step: 10 # Time step used for aggregation
+    height: 2 # Vertical Size in the final visualization
+    legend: TRUE # Show the plot's Legends
+    computation: # Show computation tasks in the tree nodes
+      active: FALSE # Enable
+      pruned: # Show computation tasks of the pruned nodes
+        active: FALSE # Enable
+    initialization: # Show initialization tasks in the tree nodes
+      active: FALSE # Enable
+    communication: # Show communication tasks in the tree nodes
+      active: FALSE # Enable
+    anomalies: # Show where in the tree the anomalies happened
+      active: FALSE # Enable
+
+  utiltreenode: # Plot of resource utilization by tree depth
+    active: FALSE # Disable
+    step: 10 # Time step used for aggregation
+    height: 2 # Vertical size for the plot
+
+  utiltreedepth: # Plot of resource utilization by tree node
+    active: FALSE # Disable
+    step: 10 # Time step used for aggregation
+    height: 2 # Vertical size for the plot
+    legend: TRUE # Show the plot's Legends
+
+  kiteration: # Visualization about application itarations
+    active: FALSE # Enable
+    legend: TRUE # Enable Legends
+    height: 2 # Vertical Size in the final visualization
+
+  st: # Application State Plot over resources
+    active: TRUE # Enable
+    cpb: TRUE # Show Critical Path Bound makespan metric
+    #height: 4 # Vertical Size in the final visualization
+    idleness: FALSE # Show resource idleness %
+    expand: 0.01 # Expand for y ggplot
+    labels: "ALL" # Labels of the Resources names (for st and starpu), "ALL" "1CPU_per_NODE" "1GPU_per_NODE"
+    legend: TRUE # Show the plot's Legends
+    makespan: TRUE # Show the application makespan
+    alpha: 0.25 # Alpha value to control transparency of tasks that are not outliers
+    outliers: TRUE # Differentiate outliers tasks
+    abe: # Show Abe makespan metric
+      active: FALSE # Enable
+      label: TRUE # Enable "ABE:" Label
+      text: TRUE # Enable the visual marking, with the value and label
+      size: 5 # the size of the ABE transparent marking
+    aggregation: # If enable, aggregates the visualization tasks inside a time step.
+      active: FALSE # Enable
+      method: "static" # Method Used for aggregation "static" / "dynamic" (For Worker aggregation) or "nodes" for node Aggregation
+      states: ["dgemm"] # Option for dynamic aggregation, Tasks for aggregation
+      step: 1000 # Time step used for aggregation
+    cpb_mpi: # Show Critical Path bound makespan considering MPI
+      active: FALSE # Enable
+      bandwidth:  # TODO
+      theoretical: # TODO
+      tile_size: # TODO
+    tasks: # Shows Tasks Dependencies
+      active: FALSE # Enable
+      levels: 10 # Max Number of Dependencies
+      list: ["600"] # List of Tasks Ids
+  summary_nodes: # Present ABE and Makespan per node(Usefull for large execs)
+    active: FALSE
+    legend: FALSE # Enable Legends
+    #height: 2 # Vertical Size in the final visualization
+  pmtool: # Create plots based on pmtool generated data
+    bounds: # Shows pmtool theoretical bounds
+      active: FALSE # Enable
+      label: TRUE # Bound name
+      alg: ["area", "cp"] # List of bounds to plot
+    state: # PMtool State Chart theoretical computed by shedule
+      active: FALSE # Enable
+      height: 4 # Vertical Size in the final visualization
+      sched: "dmdas:" # Scheduler Used
+    kiteration: # Iteration Chart
+      active: FALSE
+      height: 2
+      middlelines: [0.5, 0.7] # Use middle lines in the plot to show advancement
+      pernode: FALSE # very experimental, per-node limits, do a facet_wrap(~Node, ncol=1)
+      legend: TRUE
+
+  memory:
+    combined: FALSE
+    state:
+      active: FALSE
+      border: FALSE
+      height:
+      total: TRUE
+      select: "Allocating"
+      #depth: deprecated
+      #  active: deprecated
+      #  height: deprecated
+    transfers:
+      active: FALSE
+      total: TRUE
+      height: 2 # Vertical Size in the final visualization
+      arrow: TRUE
+      border: TRUE
+
+  starpu:
+    active: TRUE
+    legend: TRUE
+    height:
+
+  ready:
+    active: TRUE
+    height: 2
+    legend: TRUE
+    limit:
+    step:
+
+  lackready:
+    active: FALSE
+    aggregation: 10
+    height: 0.3
+    threshold:
+
+  usedmemory:
+    active: FALSE
+    height:
+    legends:
+
+  imbalance:
+    active: FALSE
+    legend: FALSE
+    height: 1.1
+    limit:
+    step: 100
+
+  power_imbalance:
+    active: FALSE
+    legend: FALSE
+    height: 1.1
+    task: "dgemm"
+    limit:
+    step: 100
+
+  hete_imbalance:
+    active: FALSE
+    legend: FALSE
+    height: 1.1
+    limit:
+    step: 100
+
+  utilheatmap:
+    active: FALSE
+    legend: FALSE
+    height: 4
+    limit:
+    step: 100
+
+  submitted:
+    active: TRUE
+    legend: TRUE
+    height: 1.1
+    limit:
+    step:
+
+  mpibandwidth:
+    active: FALSE
+    step: 100
+    legend: FALSE
+    height: 1.1
+    limit:
+
+  mpiconcurrent:
+    active: FALSE
+    legend: FALSE
+    height: 1.5
+    step:
+    limit:
+
+  mpiconcurrentout:
+    active: FALSE
+    legend: FALSE
+    height: 1.5
+    step:
+    limit:
+
+  mpistate:
+    active: FALSE
+    legend: TRUE
+    height: 1.5
+    labels: "ALL"
+
+  gpubandwidth:
+    active: FALSE
+    bound:
+    height:
+    legend: TRUE
+    step: 85
+    total: TRUE
+
+  activenodes: # Plot the active node count over time
+    active: FALSE # Enable
+    height: 2 # Vertical size for the plot
+    legend: TRUE # Enable/Disable legend
+    aggregation: # If enable, aggregates the visualization tasks inside a time step.
+      active: TRUE # Enable
+      step: 10 # Time step used for aggregation
+    nodememuse: # Plot the memory usage for qr_mumps
+      active: FALSE # Enable
+      height: 2 # Vertical size for the plot
+      legend: TRUE # Enable/Disable legend
+
+  gflops:
+    active: FALSE
+    facet: TRUE
+    height:
+    legend:
+    limit:
+    step:
+  vertical_lines:
+    active: FALSE
+    x_list: [1, 2]
+    color_list: ["green", "gray"]

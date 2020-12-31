@@ -1,0 +1,57 @@
+Type: Package
+Package: autothresholdr
+Title: An R Port of the 'ImageJ' Plugin 'Auto Threshold'
+Version: 1.3.9
+Authors@R: 
+    c(person(given = "Rory",
+             family = "Nolan",
+             role = c("aut", "cre", "trl"),
+             email = "rorynoolan@gmail.com",
+             comment = c(ORCID = "0000-0002-5239-4043")),
+      person(given = "Luis",
+             family = "Alvarez",
+             role = "ctb",
+             email = "lalvarez@well.ox.ac.uk",
+             comment = c(ORCID = "0000-0003-1316-1906")),
+      person(given = "Sergi",
+             family = "Padilla-Parra",
+             role = c("ctb", "ths"),
+             email = "spadilla@well.ox.ac.uk",
+             comment = c(ORCID = "0000-0002-8010-9481")),
+      person(given = "Gabriel",
+             family = "Landini",
+             role = c("ctb", "cph"),
+             email = "G.Landini@bham.ac.uk",
+             comment = c(ORCID = "0000-0002-9689-0989")))
+Maintainer: Rory Nolan <rorynoolan@gmail.com>
+Description: Algorithms for automatically finding appropriate
+    thresholds for numerical data, with special functions for thresholding
+    images. Provides the 'ImageJ' 'Auto Threshold' plugin functionality to
+    R users. See <https://imagej.net/Auto_Threshold> and Landini et al.
+    (2017) <DOI:10.1111/jmi.12474>.
+License: GPL-3
+URL: https://rorynolan.github.io/autothresholdr/,
+        https://github.com/rorynolan/autothresholdr#readme
+BugReports: https://github.com/rorynolan/autothresholdr/issues
+Depends: R (>= 3.5)
+Imports: checkmate (>= 1.9.3), ijtiff (>= 2.2), magrittr (>= 1.5),
+        purrr, Rcpp (>= 1.0.1), rlang (>= 0.3.3), stats, strex (>=
+        1.4), stringr (>= 1.4)
+Suggests: covr, dplyr, ggplot2, knitr, rmarkdown, spelling, styler (>=
+        1.3.2), testthat (>= 2.1), utils
+LinkingTo: Rcpp (>= 1.0.1)
+VignetteBuilder: knitr
+Encoding: UTF-8
+Language: en-US
+LazyData: TRUE
+RoxygenNote: 7.1.1
+SystemRequirements: C++11
+NeedsCompilation: yes
+Packaged: 2020-10-17 23:15:49 UTC; rnolan
+Author: Rory Nolan [aut, cre, trl] (<https://orcid.org/0000-0002-5239-4043>),
+  Luis Alvarez [ctb] (<https://orcid.org/0000-0003-1316-1906>),
+  Sergi Padilla-Parra [ctb, ths]
+    (<https://orcid.org/0000-0002-8010-9481>),
+  Gabriel Landini [ctb, cph] (<https://orcid.org/0000-0002-9689-0989>)
+Repository: CRAN
+Date/Publication: 2020-10-18 04:30:17 UTC

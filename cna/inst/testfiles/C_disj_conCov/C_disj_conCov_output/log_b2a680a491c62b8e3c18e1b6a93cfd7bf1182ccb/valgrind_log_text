@@ -1,0 +1,22 @@
+WARNING: No test specified, defaulting to first test defined (cna_deepstate_test_C_disj_conCov_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/cna/inst/testfiles/C_disj_conCov/C_disj_conCov_output/b2a680a491c62b8e3c18e1b6a93cfd7bf1182ccb.crash`
+TRACE: Running: cna_deepstate_test_C_disj_conCov_test from /home/akhila/fuzzer_packages/fuzzedpackages/cna/inst/testfiles/C_disj_conCov/C_disj_conCov_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+cols values: 1926209628 1434416441 88940557 1485040860 -1728786011 977540242 -1593973169 -66270866 -613823696 -398431762 -1920271387 233292454 -611103979 -681597065 1552795224 -1718565004 -107830046
+x values: 1.75933e-114 6.79398e+55 3.80927e-156 2.62539e+129 1.98743e+154
+8.24222e-287 7.20263e+40 1.33550e+204 6.85769e-16 1.51886e-282
+
+Missing value
+y values: 5.97401e-150 6.51123e-110 5.73085e-141 2.3049e-186 1.056e-283 -1.77034e-192 -2.23943e+46 -1.68379e-260 -5.9493e+278 -9.52836e+75 -1.54422e-204 1.9085e+18 -2.06534e+23 -1.9394e+06 1.20595e-167 1.78112e-81 -4.28297e-110 -4.89273e+250 1.5545e+210 1.86447e+15 5.60014e+50 -2.9734e+61 -6.53022e+211 5.07781e+235 -3.79746e-197 -3.0708e+43 -4.86036e+07 2.35669e+99 inf -3.02572e-63 -1.96976e+72 1.26817e+168 3.62183e+128 -1.67842e-149 1.68204e+173 -9.06568e-121 -1.1733e-301 inf 1.08816e+274 1.60338e-58 1.04614e-10 -1.88832e+146 -2.76293e-194 nan 2.75677e+53 -3.06268e-211 -5.51075e-282 1.12721e+271 2.97293e-135 -5.64072e-246 -8.97413e+223 -0.000149059 4.00007e+209 -1.54857e+206 0
+Missing value
+f values: 609529541 849023214 1178953518 1293442456 -297572035 -2147483648 734663248 1080246885 -1208997142 -1959077679 2134966220 1482450246 -1613855957 689013844 -610884581 -102334287 -2147483648 -462212509 -1288556533 -1902816978 1674860940 -438443840 1954929773 1801199170 129606635 769019872 142601366 339592311 303891703 -68896657
+input ends
+==610280==  If you believe this happened as a result of a stack
+==610280==  overflow in your program's main thread (unlikely but
+==610280==  possible), you can try to increase the size of the
+==610280==  main thread stack using the --main-stacksize= flag.
+==610280==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: cna_deepstate_test_C_disj_conCov_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/cna/inst/testfiles/C_disj_conCov/C_disj_conCov_output/b2a680a491c62b8e3c18e1b6a93cfd7bf1182ccb.crash crashed

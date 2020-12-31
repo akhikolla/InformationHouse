@@ -1,0 +1,29 @@
+Package: MuChPoint
+Type: Package
+Title: Multiple Change Point
+Version: 0.6.1
+Authors@R: c(person("Brault", "Vincent", email = "vincent.brault@univ-grenoble-alpes.fr",
+  role = c("cre","aut")),person("Cougoulat", "Glenn", email = "glenn.cougoulat@univ-grenoble-alpes.fr",
+  role = c("ctb")),person("Ouadah", "Sarah", email = "sarah.ouadah@agroparistech.fr",
+  role = c("ctb")),person("Sansonnet", "Laure", email = "laure.sansonnet@agroparistech.fr",
+  role = c("ctb")))
+Maintainer: Brault Vincent <vincent.brault@univ-grenoble-alpes.fr>
+Description: Nonparametric approach to estimate the location of block boundaries (change-points) of 
+    non-overlapping blocks in a random symmetric matrix which consists of random variables whose 
+    distribution changes from block to block.
+    BRAULT Vincent, OUADAH Sarah, SANSONNET Laure and LEVY-LEDUC Celine (2017) <doi:10.1016/j.jmva.2017.12.005>.
+Imports: Matrix, capushe, shiny, utils, methods, Rcpp
+Collate: MuChPoint_Class.R RcppExports.R MuChPoint.R
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
+LinkingTo: Rcpp
+NeedsCompilation: yes
+Packaged: 2018-06-21 09:11:49 UTC; Vincent
+Author: Brault Vincent [cre, aut],
+  Cougoulat Glenn [ctb],
+  Ouadah Sarah [ctb],
+  Sansonnet Laure [ctb]
+Repository: CRAN
+Date/Publication: 2018-06-24 13:09:46 UTC

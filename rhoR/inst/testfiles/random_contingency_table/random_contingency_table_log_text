@@ -1,0 +1,44 @@
+INFO: Starting fuzzing
+WARNING: No seed provided; using 1608765891
+WARNING: No test specified, defaulting to first test defined (rhoR_deepstate_test_random_contingency_table_test)
+input starts
+setLength values: 669137807
+baserate values: -6.16894e+300
+kappaMin values: -6.35767e+249
+kappaMax values: 5.33566e-124
+minPrecision values: 3.90887e-203
+maxPrecision values: 3.6037e-110
+input ends
+ERROR: Crashed: rhoR_deepstate_test_random_contingency_table_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_output/87cb88b042e65787734323a2435b650ecda4555a.crash`
+input starts
+setLength values: 1207116028
+baserate values: 2.50136e+146
+kappaMin values: -3.61085e+270
+kappaMax values: 2.72429e-05
+minPrecision values: 0.000388642
+maxPrecision values: -897723
+input ends
+ERROR: Crashed: rhoR_deepstate_test_random_contingency_table_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_output/e4314756a939057dc7dd652f60899c5719850eca.crash`
+input starts
+setLength values: 926938167
+baserate values: -3.83558e+124
+kappaMin values: -2.2271e-263
+kappaMax values: -1.14518e-127
+minPrecision values: -1.58104e+167
+maxPrecision values: -1.6266e+171
+input ends
+ERROR: Crashed: rhoR_deepstate_test_random_contingency_table_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_output/4f6c9b808710b0d6d1457d34f19d2056fb286a8f.crash`
+input starts
+setLength values: -1834365155
+baserate values: -6.67146e+25
+kappaMin values: 1.26387e-69
+kappaMax values: -6.02826e-270
+minPrecision values: -2.12562e-136
+maxPrecision values: -4.94713e+246
+input ends
+ERROR: Crashed: rhoR_deepstate_test_random_contingency_table_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/rhoR/inst/testfiles/random_contingency_table/random_contingency_table_output/59ffde50db055e7592c804a8e045afaf89f57455.crash`
+INFO: Done fuzzing! Ran 4 tests (2 tests/second) with 4 failed/0 passed/0 abandoned tests

@@ -1,0 +1,26 @@
+WARNING: No test specified, defaulting to first test defined (IFC_deepstate_test_cpp_mask_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/IFC/inst/testfiles/cpp_mask/cpp_mask_output/2095a2e5c5f6d9563791c0604eb8983b8c12ef7b.pass`
+TRACE: Running: IFC_deepstate_test_cpp_mask_test from /home/akhila/fuzzer_packages/fuzzedpackages/IFC/inst/testfiles/cpp_mask/cpp_mask_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+A values:     nan    -inf    -inf     nan    -inf 1.55275e+40
+
+Missing value
+B values: 4.19790e+140    -inf     inf 2.00396e-158 2.91601e+272     inf     nan     nan
+
+Missing value
+mask values: 8.95062e-07
+-1.48400e+47
+   -inf
+-1.48400e+47
+    inf
+   -inf
+8.88077e+282
+5.10578e-14
+9.71140e-241
+
+input ends
+Exception Handled
+TRACE: Passed: IFC_deepstate_test_cpp_mask_test

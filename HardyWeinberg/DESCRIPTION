@@ -1,0 +1,28 @@
+Package: HardyWeinberg
+Type: Package
+Title: Statistical Tests and Graphics for Hardy-Weinberg Equilibrium
+Version: 1.7.0
+Date: 2020-12-13
+Authors@R: c(person("Jan", "Graffelman", role = c("aut", "cre"), email = "jan.graffelman@upc.edu"),
+             person("Christopher", "Chang", role = "ctb", email = "chrchang523@gmail.com"),
+	     person("Xavi", "Puig", role = "ctb", email = "xavier.puig@upc.edu"),
+             person("Jan", "Wigginton", role = "ctb"),
+	     person("Leonardo", "Ortoleva", role = "ctb", email= "leonardo.ortoleva@estudiantat.upc.edu"),
+	     person("William R.","Engels", role =  "ctb", email= "wrengels@wisc.edu"))
+Author: Jan Graffelman [aut, cre],
+  Christopher Chang [ctb],
+  Xavi Puig [ctb],
+  Jan Wigginton [ctb],
+  Leonardo Ortoleva [ctb],
+  William R. Engels [ctb]
+Maintainer: Jan Graffelman <jan.graffelman@upc.edu>
+Depends: R (>= 1.8.0), mice, Rsolnp
+Description: Contains tools for exploring Hardy-Weinberg equilibrium (Hardy, 1908;  Weinberg, 1908) <doi:10.1126/science.28.706.49> for bi and multi-allelic genetic marker data. All classical tests (chi-square, exact, likelihood-ratio and permutation tests) with bi-allelic variants are included in the package, as well as functions for power computation and for the simulation of marker data under equilibrium and disequilibrium. Routines for dealing with markers on the X-chromosome are included (Graffelman & Weir, 2016) <doi: 10.1038/hdy.2016.20>, including Bayesian procedures. Some exact and permutation procedures also work with multi-allelic variants. Special test procedures that jointly address Hardy-Weinberg equilibrium and equality of allele frequencies in both sexes are supplied, for the bi and multi-allelic case. Functions for testing equilibrium in the presence of missing data by using multiple imputation are also provided. Implements several graphics for exploring the equilibrium status of a large set of bi-allelic markers: ternary plots with acceptance regions, log-ratio plots and Q-Q plots. 
+License: GPL (>= 2)
+URL: https://www.r-project.org, http://www-eio.upc.edu/~jan/
+LinkingTo: Rcpp
+Imports: Rcpp
+NeedsCompilation: yes
+Packaged: 2020-12-14 09:55:04 UTC; jangr
+Repository: CRAN
+Date/Publication: 2020-12-14 11:00:07 UTC

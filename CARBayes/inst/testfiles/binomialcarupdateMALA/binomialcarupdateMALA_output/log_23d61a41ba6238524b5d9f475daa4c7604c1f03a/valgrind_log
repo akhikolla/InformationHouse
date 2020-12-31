@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./binomialcarupdateMALA_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/binomialcarupdateMALA/binomialcarupdateMALA_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash</line>
+</preamble>
+
+<pid>298500</pid>
+<ppid>298499</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/binomialcarupdateMALA/binomialcarupdateMALA_output/log_23d61a41ba6238524b5d9f475daa4c7604c1f03a/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./binomialcarupdateMALA_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/binomialcarupdateMALA/binomialcarupdateMALA_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.026 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D2D640</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/src/CARBayes.so</obj>
+      <fn>binomialcarupdateMALA(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double, double, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/src</dir>
+      <file>CARBayes.cpp</file>
+      <line>136</line>
+    </frame>
+    <frame>
+      <ip>0x40B28B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/binomialcarupdateMALA/binomialcarupdateMALA_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_CARBayes_deepstate_test_binomialcarupdateMALA_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/binomialcarupdateMALA</dir>
+      <file>binomialcarupdateMALA_DeepState_TestHarness.cpp</file>
+      <line>70</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/binomialcarupdateMALA/binomialcarupdateMALA_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_CARBayes_deepstate_test_binomialcarupdateMALA_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/binomialcarupdateMALA</dir>
+      <file>binomialcarupdateMALA_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41F568</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/binomialcarupdateMALA/binomialcarupdateMALA_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41F809</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/binomialcarupdateMALA/binomialcarupdateMALA_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41F8E4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/binomialcarupdateMALA/binomialcarupdateMALA_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/binomialcarupdateMALA/binomialcarupdateMALA_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xfffffffc0890b050 is not stack'd, malloc'd or (recently) free'd</auxwhat>
+</error>
+
+<fatal_signal>
+  <tid>1</tid>
+  <signo>11</signo>
+  <signame>SIGSEGV</signame>
+  <sicode>1</sicode>
+  <event>Access not within mapped region</event>
+  <siaddr>0xFFFFFFFC0890B050</siaddr>
+  <stack>
+    <frame>
+      <ip>0x4D2D640</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/src/CARBayes.so</obj>
+      <fn>binomialcarupdateMALA(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, double, double, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/src</dir>
+      <file>CARBayes.cpp</file>
+      <line>136</line>
+    </frame>
+    <frame>
+      <ip>0x40B28B</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/binomialcarupdateMALA/binomialcarupdateMALA_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_CARBayes_deepstate_test_binomialcarupdateMALA_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/binomialcarupdateMALA</dir>
+      <file>binomialcarupdateMALA_DeepState_TestHarness.cpp</file>
+      <line>70</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/binomialcarupdateMALA/binomialcarupdateMALA_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_CARBayes_deepstate_test_binomialcarupdateMALA_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/binomialcarupdateMALA</dir>
+      <file>binomialcarupdateMALA_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41F568</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/binomialcarupdateMALA/binomialcarupdateMALA_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41F809</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/binomialcarupdateMALA/binomialcarupdateMALA_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41F8E4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/binomialcarupdateMALA/binomialcarupdateMALA_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/CARBayes/inst/testfiles/binomialcarupdateMALA/binomialcarupdateMALA_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</fatal_signal>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:22.296 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>1</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:44.527 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

@@ -1,0 +1,46 @@
+---
+title: "ggiraph in dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+library(ggiraph)
+library(ggplot2)
+library(magrittr)
+
+dataset = iris
+dataset$tooltip = dataset$Species
+dataset$clickjs = paste0("alert(\"",dataset$Species, "\")" )
+
+# plots
+gg_point = ggplot(dataset, aes(x = Sepal.Length, y = Petal.Width,
+                               color = Species, data_id = Species, 
+                               tooltip = tooltip, onclick = clickjs) ) +
+  geom_point_interactive() + theme_light()
+
+x <- ggiraph(code = {print(gg_point)}, zoom_max = 4, hover_css = "stroke:black;fill:orange;") 
+x
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Table
+
+```{r}
+DT::datatable(dataset)
+```
+

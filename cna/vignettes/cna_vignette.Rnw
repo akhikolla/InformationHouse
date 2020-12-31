@@ -1,0 +1,1297 @@
+% !Rnw weave = Sweave
+
+\documentclass[nojss,shortnames,article]{jss}
+
+%% -- LaTeX packages and custom commands ---------------------------------------
+
+%% recommended packages
+\usepackage{thumbpdf,lmodern}
+
+%% other packages
+\usepackage{nicefrac,array}
+\usepackage{float}
+\usepackage{amsmath,amsfonts,stfloats}
+\usepackage{tikz}
+\usepackage[all]{xy}
+\usepackage[position=bottom]{subfig}
+\captionsetup[subfloat]{%
+font=footnotesize,
+labelformat=parens,labelsep=space,
+listofformat=subparens,
+captionskip=.3cm}
+\usepackage{xspace}
+%% new custom commands
+\newcommand{\class}[1]{`\code{#1}'}
+\newcommand{\fct}[1]{\code{#1()}}
+\def\att{\text{\raisebox{2pt}{$\scriptstyle \ast$}}}
+\newcommand{\id}{\text{\raisebox{1pt}{$\scriptstyle =$}}}
+\newcommand{\idn}{\text{\raisebox{1pt}{$\scriptstyle \neq$}}}
+
+\fnbelowfloat
+%% For Sweave-based articles about R packages:
+%% need no 
+\usepackage{Sweave}
+\SweaveOpts{engine=R, eps=FALSE, keep.source = TRUE}
+<<preliminaries, echo=FALSE, results=hide>>=
+options(prompt = "R> ", continue = "+  ", width = 70, useFancyQuotes = FALSE)
+@
+
+%\VignetteIndexEntry{Introduction to the CNA method and package}
+
+%% -- Article metainformation (author, title, ...) -----------------------------
+
+
+\author{Michael Baumgartner\\University of Bergen, Norway 
+   \And Mathias Ambuehl\\
+  Consult AG, Switzerland}
+\Plainauthor{Michael Baumgartner, Mathias Ambuehl}
+
+
+\title{\pkg{cna}: An \proglang{R} Package for Configurational Causal Inference and Modeling}
+\Plaintitle{cna: An R Package for Configurational Causal Inference and Modeling}
+\Shorttitle{\pkg{cna}: Configurational Causal Inference and Modeling}
+
+%% - \Abstract{} almost as usual
+\Abstract{
+ The \proglang{R} package \pkg{cna} provides comprehensive functionalities for causal inference and modeling with \emph{Coincidence Analysis} (CNA), which is a configurational comparative meth\-od of causal data analysis. 
+In this vignette, we first review the theoretical and methodological background of CNA. Second, we introduce the data types processable by CNA, the package's core analytical functions with their arguments, and some auxiliary functions for data simulations. Third, CNA's output along with relevant fit parameters and output attributes are discussed. Fourth, we provide guidance on how to interpret that output and, in particular, on how to proceed in case of model ambiguities. Finally, some considerations are offered on benchmarking the reliability of CNA.}
+
+
+\Keywords{configurational comparative methods, set-theoretic methods, Coincidence Analysis, Qualitative Comparative Analysis, INUS causation, Boolean causation}
+\Plainkeywords{configurational comparative methods, set-theoretic methods, Coincidence Analysis, Qualitative Comparative Analysis, INUS causation, Boolean causation}
+
+
+\Address{
+  Michael Baumgartner\\
+  University of Bergen\\
+Department of Philosophy\\
+Postboks 7805\\
+5020 Bergen\\
+Norway\\
+  E-mail: \email{michael.baumgartner@uib.no}\\
+  URL: \url{http://people.uib.no/mba110/}
+\bigskip
+
+  Mathias Ambuehl\\
+  Consult AG Statistical Services\\
+Tramstrasse 10\\
+8050 Z\"urich\\
+  E-mail: \email{mathias.ambuehl@consultag.ch}
+}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+
+
+
+\section[Introduction]{Introduction} \label{intro}
+
+
+\emph{Coincidence Analysis} (CNA) is a configurational comparative method of causal data analysis that was introduced for crisp-set (i.e.\ binary) data in (Baumgartner \citeyear{Baumgartner:2007a,Baumgartner:2008,Baumgartner:pars}) and substantively extended, reworked, and generalized for multi-value and fuzzy-set data in \citep{BaumgartnerfsCNA}. The \pkg{cna} package reflects and implements the method's latest stage of development. 
+
+CNA infers causal structures, as defined by the so-called \emph{INUS theory}, from empirical data. The INUS theory was first developed by \citet{Mackie:1974} and later refined to the \emph{MINUS theory} (\citealp{grasshoff2001}; \citealp{Beirlaen2018}; \citealp{BaumFalk}). (M)INUS structures have two characteristic features that are frequently encountered in many disciplines: \emph{conjunctivity}---complex causes only become operative when all of their components are co-instantiated, each of which, in isolation, is ineffective---and \emph{disjunctivity}---effects can be brought about along alternative causal routes such that, when suppressing one route, the effect may still be produced via another one.\footnote{Various other labels are used for these features in different disciplines: ``component causation'', ``conjunctural causation'', ``alternative causation'', ``equifinality'', etc. } A viral disease is only contracted if exposure to the virus occurs while it is active and the host's immune system has not yet acquired immunity (e.g.\ \citealp{Rothman1976}). A variation in a phenotype only occurs if multiple single-nucleotide polymorphisms (SNPs) interact, and various such SNP interactions can independently of one another induce the same phenotype (e.g.\ \citealp{Culverhouse2002}). Or, a country only becomes a liberal democracy if it has a history of medieval constitutionalism combined with the absence of military revolution (in the early modern period), which, in turn, results from either a geography that deters invading armies, commercial wealth, foreign resource mobilization, or foreign alliances (\citealp{Downing:1992}).
+
+
+Causal structures featuring conjunctivity or disjunctivity often do not exhibit additive or, more generally, linear dependencies between pairs of exogenous and endogenous factors, which gives rise to various problems when it comes to discovering them in data. Most importantly, there may not be any dependencies between an individual component $X$ of a conjunctive cause and the corresponding effect $Y$ as long as not all components are properly co-instantiated and alternative causal pathways to $Y$ suppressed. It follows that $X$ cannot be identified as a (M)INUS cause of $Y$ by searching for suitable pairwise dependencies between $X$ and $Y$ but only by embedding $X$ in a complex Boolean structure over many factors and fitting that structure as a whole to the data. But the space of Boolean functions over even a handful of factors is vast. So, a method for (M)INUS discovery must find ways to purposefully and efficiently navigate in that vast space of possibilities.
+
+
+
+Methods of data analysis capable of handling (M)INUS structures have been developed in various disciplines---independently of one another. Apart from CNA, the methods with the most advanced software implementations are \emph{Logic Regression} (LR; \citealp{Ruczinski2003}; \citealp{Kooperberg2005}) from biostatistics and \emph{Qualitative Comparative Analysis} (QCA; \citealp{Ragin:1987,Rihoux:2009,cronqvist2009}) from the social sciences.\footnote{In epidemiology, Rothman's (\citeyear{Rothman1976})
+ \emph{sufficient-component cause model} with its various extensions (%\citeNP{Vanderweele2008};
+\citealp{vanderweele2009}; %VanderWeele \citeyearNP{Vanderweele2010}; %\citeyearNP{VanderWeele:2015}; 
+\citealp{Wensink:2014}) is also designed for INUS discovery, but a proper software implementation is still lacking.} LR, which is implemented in the \proglang{R} package \href{https://cran.r-project.org/package=LogicReg}{\pkg{LogicReg}} \citep{LogicReg}\footnote{Another package implementing a variation of LR is \href{https://cran.r-project.org/package=logicFS}{\pkg{logicFS}}  \citep{logicFS}.} is mainly used to model higher-order interactions of SNPs in genetic association studies,\footnote{There is no methodological reason why the application of LR should be restricted to SNP studies. In fact, applying LR for (M)INUS discovery more generally would harness the potential for considerable synergies with CNA or QCA.} to which end it fits Boolean functions to data by embedding them in a generalized regression framework and using the residual sum of squares to measure the model fit.
+It is optimized for data with high noise levels, large numbers of exogenous factors, and data-generating structures with no more than one endogenous factor (outcome). LR does not aim to build all data-fitting models---not even for data of low dimensionality---but uses search heuristics (standardly a simulated annealing algorithm) that zoom in on one or a small number of best fitting models. QCA, whose most powerful implementations are provided by the \proglang{R} packages \href{https://cran.r-project.org/package=QCApro}{\pkg{QCApro}} \citep{Thiem2018} and \href{https://cran.r-project.org/package=QCA}{\pkg{QCA}} \citep{Dusa:2007},\footnote{Other useful QCA software include \href{https://cran.r-project.org/package=QCAfalsePositive}{\pkg{QCAfalsePositive}} \citep{QCAfalsePositive} and \href{https://cran.r-project.org/package=SetMethods}{\pkg{SetMethods}} \citep{SetMethods}.}
+has been widely applied in diverse areas in the social sciences and beyond 
+(for an overview over corresponding publications see the bibliography section on the \href{http://compasss.org}{COMPASSS} website). It is optimized for data with low noise levels, a maximum of around 15 exogenous factors, and, like LR, tracks data-generating structures with single outcomes only. Unlike LR, however, QCA does not rely on techniques from regression analysis but from Boolean algebra. In particular, it uses consistency and coverage \citep{Ragin:2006} as model fit parameters and builds its models using Quine-McCluskey optimization (QMC; \citealp{mccluskey1965}; the QCA \proglang{R} packages use modern versions this optimization approach, see \citealp{DusaCCubes}), which is an algorithm from switching circuit theory that can be used to build all data-fitting models for data of low dimensionality. 
+
+
+
+
+
+
+CNA has commonalities and differences with both QCA and LR. Like QCA, CNA is embedded in Boolean algebra and it also uses consistency and coverage as measures for data fit. But CNA does not build  models by means of QMC, rather it comes with a search algorithm custom-built for causal data analysis. While QMC generates models from the top down by first building maximal Boolean dependency structures and then gradually eliminating redundant elements, CNA---on a par with LR---assembles causal models from the bottom up by gradually combining single factor values to complex dependency structures until the requested thresholds of model fit are met. One important upshot of this bottom-up approach is that redundant elements are not incorporated in models to begin with, meaning that models complying with fit thresholds are automatically redundancy-free. As a direct consequence, contrary to QCA and in line with LR, CNA straightforwardly handles data fragmentation (limited diversity) without resorting to counterfactual reasoning, it does not produce analogues to QCA's so-called intermediate and conservative solutions, which are expressly allowed to comprise redundancies, and it is more successful at inferring redundancy-free sufficient and necessary conditions from noisy data than QCA's so-called parsimonious search strategy (cf. \citealp{BaumgartnerfsCNA}), meaning---since redundancy-freeness is crucial for (M)INUS causation---that CNA is more successful at discovering (M)INUS causation in noisy data than any of QCA's search approaches. Contrary to LR, CNA does not rely on a search heuristic but produces all data-fitting models within user-defined bounds for model complexity. Consequently, like QCA, CNA can currently only fully process data with a  maximum of about 15 exogenous factors (in reasonable time). CNA and LR perform comparably when it comes to inferring (M)INUS structures with single outcomes from noisy data, with complementary strengths and weaknesses (for a detailed performance comparison see \citealp{CNA_LR}).
+Finally, unlike both QCA and LR, CNA allows for multiple effects (outcomes/endogenous factors), meaning it can analyze common-cause and causal chain structures; that is, it not only groups causes conjunctively and disjunctively but also sequentially. 
+
+
+
+
+
+
+Hence, CNA is the only currently available method for (M)INUS discovery and, correspondingly, \pkg{cna} the only currently available (M)INUS software that builds multi-outcome models.
+This vignette provides a detailed introduction to \pkg{cna}. We first exhibit \pkg{cna}'s theoretical and methodological background. Second, we discuss the main inputs of the package's core function \code{cna()} along with numerous auxiliary functions for data review and simulation. Third, the working of the algorithm implemented in \code{cna()} is presented.
+Fourth, we explain \code{cna()}'s output along with relevant fit parameters and output attributes. Fifth, we provide some guidance on how to interpret that output and, in particular, on how to proceed in case of model ambiguities. Finally, some considerations are offered on benchmarking the reliability of \code{cna()}.
+
+
+
+
+\section[Background]{Background}
+
+The (M)INUS theory of causation belongs to the family of so-called \emph{regularity theories}, which have roots as far back as \citep{Hume:1999}). It is a type-level theory of causation  (cf.\ \citealp{BaumCaus}) that analyzes the dependence relation of causal relevance between factors/variables taking on specific values, as in ``$X\id\chi$ is causally relevant to  $Y\id\gamma$''. 
+It assumes that causation is ultimately a deterministic form of dependence, such that whenever the same complete cause occurs the same effect follows. This entails that indeterministic behavior patterns in data result from insufficient control over background influences generating noise and not from the indeterministic nature of the underlying causal processes. For $X\id\chi$ to be an (M)INUS cause of $Y\id\gamma$, $X\id\chi$ must be a difference-maker of $Y\id\gamma$, meaning---roughly---that there exists a context in which other causes take constant values and a change from $X\idn\chi$ to $X\id\chi$ is associated with a change from $Y\idn\gamma$ to $Y\id\gamma$.
+
+
+
+
+To further clarify that theory as well as the characteristics and requirements of inferring (M)INUS structures from empirical data a number of preliminaries are needed. 
+
+\subsection{Factors and their values}
+
+Factors are the basic modeling devices of CNA. They are analogous to (random) variables in statistics, that is, they are functions from (measured) properties into a range of values (typically integers). They can be used to represent categorical properties that partition sets of units of observation (cases) either into two sets, in case of binary properties, or into more than two (but finitely many) sets, in case of multi-value properties, such that the resulting sets are exhaustive and pairwise disjoint. Factors representing binary properties can be \emph{crisp-set} ($cs$) or \emph{fuzzy-set} ($fs$); the former can take on $0$ and $1$ as possible values, whereas the latter can take on any (continuous) values from the unit interval $[0,1]$. Factors representing multi-value properties are called \emph{multi-value ($mv$) factors}; they can take on any of an open (but finite) number of non-negative integers.  
+
+Values of a $cs$ or $fs$ factor $X$ can be interpreted as membership scores in the set of cases exhibiting the property represented by $X$.
+A case of type $X\id 1$ is a full member of that set, a case of type $X\id 0$ is a (full) non-member, and a case of type $X\id \chi_i$, $0<\chi_i<1$, is a member to degree $\chi_i$. An alternative interpretation, which lends itself particularly well for causal modeling, is that ``$X\id 1$'' stands for the full presence of the property represented by $X$, ``$X\id 0$'' for its full absence, and ``$X\id \chi_i$'' for its partial presence (to degree $\chi_i$). By contrast, the values of an $mv$ factor $X$ designate the particular way in which the property represented by $X$ is exemplified. For instance, if $X$ represents the education of subjects, $X\id 2$ may stand for ``high school'', with $X\id 1$ (``no completed primary schooling'') and $X\id 3$ (``university'') designating other possible property exemplifications. $Mv$ factors taking on one of their possible values also define sets, but the values themselves must not be interpreted as membership scores; rather they denote the relevant property exemplification.
+
+
+As the explicit ``Factor$=$value'' notation yields convoluted syntactic expressions with increasing model complexity, the \pkg{cna} package uses the following shorthand notation, which is conventional in Boolean algebra: membership in a set is expressed by italicized upper case and non-membership by lower case Roman letters. Hence, in case of $cs$ and $fs$ factors, we write ``$X$'' for $X\id 1$ and ``$x$'' for $X\id 0$. It must be emphasized that, while this notation significantly simplifies the syntax of causal models, it introduces a risk of misinterpretation, for it yields that the factor $X$ and its taking on the value $1$ are both expressed by ``$X$''. Disambiguation must hence be facilitated by the concrete context in which ``$X$'' appears. Therefore, whenever we do not explicitly characterize italicized Roman letters as ``factors'' in this vignette, we use them in terms of the shorthand notation. In case of $mv$ factors, value assignments to variables are not abbreviated but always written out, using the ``Factor$=$value'' notation.
+
+
+\subsection[Boolean operations]{Boolean operations}
+
+The (M)INUS theory defines causation using the Boolean operations of negation ($\neg X$, or $x$), conjunction ($X\att Y$), disjunction ($X + Y$), implication ($X\rightarrow Y$), and equivalence ($X\leftrightarrow Y$). Negation is a unary truth function, the other operations are binary truth functions. That is, they take one resp.\ two truth values as inputs and output a truth value. When applied to $cs$ factors, both their input and output set is $\{0,1\}$. 
+Negation is typically translated by ``not'', conjunction by ``and'', disjunction by ``or'', implication by ``if \ldots then'', and equivalence by ``if and only if (iff)''. Their classical definitions are given in Table \ref{tab1}.
+\begin{table}[tb]\centering
+\begin{tabular}{|cc|| >{\centering}m{.7cm}|c|c|c|c|} %|c|c|}
+\hline
+\multicolumn{2}{|c||}{{\small Inputs}}&\multicolumn{5}{|c|}{{\small Outputs}}\\[.1cm]\hline %&\multicolumn{2}{|c|}{{\footnotesize equivalent to ``$\rightarrow$''}}\\[.1cm]\hline
+$X$& $Y$ & $\neg X$ & $X\att Y$ & $X + Y$ & $X\rightarrow Y$ & $X\leftrightarrow Y$\\\hline %&$x + Y$& $\neg(X\att y)$\\\hline
+$1$& $1$ & $0$& $1$ &$1$&$1$& $1$  \\   
+$1$& $0$& $0$&  $0$ &$1$& $0$ & $0$ \\  
+$0$& $1$& $1$&  $0$ &$1$&$1$ &  $0$\\   
+$0$& $0$& $1$&  $0$ & $0$&$1$ &$1$\\    
+  \hline
+\end{tabular}\caption{Classical Boolean operations applied to $cs$ factors.
+}\label{tab1}
+\end{table}
+
+These operations can be straightforwardly applied to $mv$ factors as well, in which case they amount to functions from the $mv$ factors' domain of values into the set $\{0,1\}$. To illustrate, assume that both $X$ and $Y$ are ternary factors with values from the domain $\{0,1,2\}$. The negation of $X\id 2$, \emph{viz.}\ $\neg (X\id 2)$, then returns $1$ iff $X$ is not $2$, meaning iff $X$ is $0$ or $1$. $X\id 2 \att Y\id 0$ yields $1$ iff $X$ is $2$ and $Y$ is $0$. $X\id 2 + Y\id 0$ returns $1$ iff $X$ is $2$ or $Y$ is $0$. $X\id 2 \rightarrow Y\id 0$ yields $1$ iff either $X$ is not $2$ or $Y$ is $0$. $X\id 2 \leftrightarrow Y\id 0$ issues $1$ iff either $X$ is $2$ and $Y$ is $0$ or $X$ is not $2$ and $Y$ is not $0$.
+
+For $fs$ factors whose values are interpreted as membership scores in fuzzy sets, the classical Boolean operations must be translated into fuzzy logic. There exist numerous systems of fuzzy logic (for an overview cf.\ \citealp{Hajek1998}), each of which comes with its own rendering of Boolean operations. In the context of CNA (and QCA), the following fuzzy-logic renderings are standard: negation $\neg X$ is translated in terms of $1-X$, conjunction $X\att Y$ in terms of the minimum membership score in $X$ and $Y$, i.e., $\min(X,Y)$, disjunction $X+Y$ in terms of the maximum membership score in $X$ and $Y$, i.e., $\max(X,Y)$, an implication $X\rightarrow Y$ is taken to express that the membership score in $X$ is smaller or equal to $Y$ ($X\leq Y$), and an equivalence $X\leftrightarrow Y$ that the membership scores in $X$ and $Y$ are equal ($X=Y$).
+
+
+Based on the implication operator, the notions of \emph{sufficiency} and \emph{necessity} are defined, which are the two Boolean dependencies exploited by the (M)INUS theory:
+%
+\begin{description}\itemsep0pt
+\item[Sufficiency] $X$ is sufficient for $Y$ iff $X\,\rightarrow\, Y$ (or equivalently: $x + Y$; and colloquially:  ``if $X$ is present, then $Y$ is present''); 
+\item[Necessity] $X$ is necessary for $Y$ iff $Y\,\rightarrow\, X$ (or equivalently: $\neg X\rightarrow \neg Y$ or $y + X$; and colloquially:  ``if $Y$ is present, then $X$ is present''). 
+\end{description}
+%
+\vspace{-.1cm}
+Analogously for more complex expressions: 
+%
+\vspace{-.1cm}
+\begin{itemize}\itemsep0pt
+\item $X\id 3\, \att Z\id 2$ is sufficient for $Y\id 4$ \hspace{.15cm} iff \hspace{.15cm}  $X\id 3 \att Z\id 2 \;\,\rightarrow\;\, Y\id 4$;
+\item $X\id 3\; +\; Z\id 2$ is necessary for $Y\id 4$ \hspace{.15cm} iff \hspace{.15cm}  $Y\id 4\;\,\rightarrow\;\, X\id 3\;+ \; Z\id 2$; 
+\item $X\id 3\;+\; Z\id 2$ is sufficient and necessary for $Y\id 4$ \hspace{.15cm} iff  \hspace{.15cm} $X\id 3\;+\;  Z\id 2 \;\,\leftrightarrow\;\, Y\id 4$.
+\end{itemize}
+
+\subsection[(M)INUS causation]{(M)INUS causation}\label{models}
+\nopagebreak
+Boolean dependencies of sufficiency and necessity amount to mere patterns of co-occurrence of factor values; as such, they
+carry no causal connotations whatsoever. In fact, most Boolean dependencies do not reflect causal dependencies. 
+To mention just two well-rehearsed examples: the sinking of a properly functioning barometer in combination with high temperatures and blue skies is sufficient for weather changes, but it does not cause the weather; or whenever it rains, the street gets wet, hence, wetness of the street is necessary for rainfall but certainly not causally relevant for it. At the same time, some dependencies of sufficiency and necessity are in fact due to underlying causal dependencies: rainfall is sufficient for wet streets and also a cause thereof, or the presence of oxygen is necessary for fires and also a cause thereof. 
+
+That means the crucial problem to be solved by the (M)INUS theory is to filter out those Boolean dependencies that are due to underlying causal dependencies and are, hence, amenable to a causal interpretation. The main reason why most sufficiency and necessity relations %structures of Boolean dependencies
+ do not reflect causation is that they either contain redundancies or are themselves redundant to account for the behavior of the outcome, whereas causal conditions do not feature redundant elements and are themselves indispensable to account for the outcome in at least one context.
+Accordingly, to filter out the causally interpretable Boolean dependencies, they need to be freed of redundancies. 
+In Mackie's (\citeyear[62]{Mackie:1974}) words, causes are \emph{I}nsufficient but \emph{N}on-redundant parts of \emph{U}nnecessary but \emph{S}ufficient conditions (thus the acronym INUS).
+
+
+While Mackie's INUS theory only requires that sufficient conditions be freed of redundancies, he himself formulates a problem for that theory, \emph{viz.}\ the \emph{Manchester Factory Hooters} problem \citep[81-87]{Mackie:1974}, which \cite{grasshoff2001} solve by eliminating redundancies also from necessary conditions. Accordingly, modern versions of the INUS theory stipulate that whatever can be removed from  sufficient or necessary conditions without affecting their sufficiency and necessity is not a difference-maker and, hence, not a cause. The causally interesting sufficient and necessary conditions are \emph{minimal} in the following sense: % that they do not contain sufficient and necessary proper parts. More explicitly: 
+\begin{description}
+\item[Minimal sufficiency]A conjunction $\Phi$ of coincidently instantiated factor values (e.g., $X_{1} \att \ldots\\ \att X_{n}$) is a minimally sufficient condition of $Y$ iff $\Phi\,\rightarrow \,Y$ and there does not exist a proper part $\Phi^{\prime}$ of $\Phi$ such that $\Phi^{\prime} \,\rightarrow\, Y$, where a proper part $\Phi^{\prime}$ of $\Phi$ is the result of eliminating one or more conjuncts from $\Phi$.
+\item[Minimal necessity] A disjunction $\Psi$ of minimally sufficient conditions (e.g., $\Phi_{1}  + \ldots + \Phi_{n}$) is a minimally necessary condition of $Y$ iff %$\Psi$ is necessary for $Y$ 
+$Y \,\rightarrow\, \Psi$ and there does not exist a proper part $\Psi^{\prime}$ of $\Psi$ such that $Y \,\rightarrow\, \Psi^{\prime}$, where a proper part $\Psi^{\prime}$ of $\Psi$ is the result of eliminating one or more disjuncts from $\Psi$.
+\end{description}
+Minimally sufficient and minimally necessary conditions can be combined to so-called \emph{atomic MINUS-formulas} (\citealp{Beirlaen2018}; or, equivalently, \emph{minimal theories}, \citealp{grasshoff2001}), which, in turn, can be combined to \emph{complex MINUS-formulas}:\footnote{We provide suitably simplified definitions that suffice for our purposes here. For complete definitions see \citep{BaumFalk}.}
+\begin{description}
+\item[Atomic MINUS-formula] An atomic MINUS-formula of an outcome $Y$ is an expression $\Psi \leftrightarrow Y$, where $\Psi$ is a minimally necessary disjunction of minimally sufficient conditions of $Y$, in disjunctive normal form.\footnote{An expression is in disjunctive normal form iff it is a disjunction of one or more conjunctions of one or more literals (i.e.\ factor values; \citealp[190]{Lemmon:1965}).}
+
+\item[Complex MINUS-formula] A complex MINUS-formula of outcomes $Y_1,\ldots, Y_n$ is a conjunction $(\Psi_1 \leftrightarrow Y_1)\att\ldots\att(\Psi_n \leftrightarrow Y_n)$ of atomic MINUS-formulas that is itself redundancy-free, meaning it does not contain a logically equivalent proper part.\footnote{The purpose of the redundancy-freeness constraint imposed on complex MINUS-formulas is to avoid structural and partial structural redundancies; see section \ref{redundant} below.}
+\end{description}
+
+MINUS-formulas connect Boolean dependencies to causal dependencies: only those Boolean dependencies are causally interpretable that appear in MINUS-formulas. To make this concrete, consider the following atomic MINUS-formula:
+\begin{equation}\label{ex1}
+A\att e \,+ \,C\att d \;\leftrightarrow\; B 
+\end{equation}
+\eqref{ex1} being a MINUS-formula of $B$ entails that $A\att e$ and $C\att d$, but neither $A$, $e$, $C$, nor $d$ alone, are sufficient for $B$ and that $A\att e \,+ \,C\att d$, but neither $A\att e$ nor $C\att d$ alone, are necessary for $B$. If this holds, it follows that for each factor value in \eqref{ex1} there exists a \emph{difference-making pair}, meaning a pair of cases such that a change in that factor value alone accounts for a change in the outcome \cite[9]{BaumFalk}. For example, $A$ being part of the MINUS-formula \eqref{ex1} entails that there are two cases $\sigma_i$ and $\sigma_j$ such that $e$ is given and $C\att d$ is not given in both $\sigma_i$ and $\sigma_j$ while $A$ and $B$ are present in $\sigma_i$ and absent in $\sigma_j$.  Only if such a difference-making pair $\langle \sigma_i,\sigma_j\rangle$ exists is $A$ indispensable to account for $B$. Analogously, \eqref{ex1} being a MINUS-formula entails that there exist difference-making pairs for all other factor values in \eqref{ex1}.
+
+
+
+To define causation in terms of Boolean difference-making,  
+an additional constraint is needed because not all MINUS-formulas faithfully represent causation. Complete redundancy elimination is relative to the set of analyzed factors $\mathbf{F}$, meaning that factor values contained in MINUS-formulas relative to some $\mathbf{F}$ may fail to be part of a MINUS-formulas relative to supersets of $\mathbf{F}$ \citep{Baumgartner:actual}. In other words, by adding further factors %(suitable for causal modeling) 
+to the analysis, factor values that originally appeared to be non-redundant to account for an outcome can turn out to be redundant after all. 
+Hence, a \emph{permanence} constraint needs to be imposed: only factor values that are permanently non-redundant, meaning that cannot be rendered redundant by expanding factor sets, are causally relevant. 
+
+
+
+These considerations yield the following definition of causation:
+
+\begin{description}\item[Causal Relevance (MINUS)]
+ $X$ is causally relevant to $Y$ if, and only if, (I) $X$ is part of a MINUS-formula of $Y$ relative to some factor set $\mathbf{F}$ and (II) $X$ remains part of a MINUS-formula of $Y$ across all expansions of $\mathbf{F}$.
+\end{description}
+
+
+MINUS-formulas whose elements satisfy the permanence constraint not only identify causally relevant factor values but also place a Boolean ordering over these causes, such that conjunctivity, disjunctivity, and outcome-interlinking (e.g.\ sequentiality) can be directly read off their syntax. Take the following example:\begin{equation}\label{mt2}
+(A\att b\; +\;a\att B \;\leftrightarrow\; C)\;\att\;(C\att f\; +\; D \;\leftrightarrow\; E)\end{equation} 
+If \eqref{mt2} complies with (MINUS.I) and (MINUS.II), it entails these causal claims:%
+\begin{enumerate}\itemsep0pt
+\item the factor values listed on the left-hand sides of ``$\leftrightarrow$'' are causally relevant for the factor values on the right-hand sides; 
+%
+\item $A$ and $b$ are jointly relevant to $C$ and located on a causal path that differs from the path on which the jointly relevant $a$ and $B$ are located; $C$ and $f$ are jointly relevant to $E$ and located on a path that differs from $D$'s path; 
+%
+\item there is a causal chain from $A\att b$ and $a\att B$ via $C$ to $E$. 
+\end{enumerate}
+
+
+
+
+\subsection[Inferring MINUS causation from data]{Inferring MINUS causation from data}\label{inference}
+
+Inferring MINUS causation from data faces various challenges. First, as anticipated in section \ref{intro}, causal structures for which conjunctivity and disjunctivity hold cannot be uncovered by scanning data for dependencies between pairs of factor values and suitably combining  dependent pairs. Instead, discovering MINUS causation requires searching for dependencies between complex Boolean functions of exogenous factors and outcomes. %But the space of Boolean functions over even a handful of binary factors is vast. For three factors there are 256 possible Boolean functions, for four 65'536, and 
+But for $n$ $cs$ factors there exist $2^{2^n}$ possible Boolean functions; and in case of $mv$ factors that space of possibilities explodes even more. So, a method for MINUS discovery must find ways to efficiently navigate in that vast search space.
+
+Second, condition (MINUS.II) is not exhaustively testable. Once a MIN\-US-formula of an outcome $Y$ comprising a factor value $X$ has been inferred from data  $\delta$, the question arises whether the non-redundancy of $X$ in accounting for $Y$ is an artefact of $\delta$, due, for example, to the uncontrolled variation of confounders, or whether it is genuine and persists when further factors are taken into consideration. But expanding the set of factors is only feasible within narrow confines in scientific practice. To make up for the impossibility to  test  (MINUS.II), the analyzed data $\delta$ should be collected in such a way that Boolean dependencies in $\delta$ are not induced by an uncontrolled variation of latent causes but by actual causal dependencies among the measured factors. 
+If the dependencies in $\delta$ are not artefacts of latent causes, they cannot be neutralized by factor set expansions, meaning they are permanent and, hence, causal. It follows that in order for it to be certain that causal inferences drawn from $\delta$ are fallacy-free, $\delta$ must meet very high quality standards. In particular,  the uncontrolled causal background of $\delta$ must be \emph{homogeneous} \citep[286]{Baumgartner:simul}:
+ \begin{description}\item[Homogeneity] The unmeasured causal background of data $\delta$ is homogeneous if, and only if, latent causes not connected to the outcome(s) in $\delta$ on causal paths via the measured exogenous factors (so-called \emph{off-path} causes) take constant values (i.e.\ do not vary) in the cases recorded in $\delta$.\end{description}
+  
+However, third, real-life data often do not meet very high quality standards. Rather, they tend to be \emph{fragmented} to the effect that not all empirically possible configurations of analyzed factors are actually observed. Moreover, real-life data typically feature \emph{noise}, that is, configurations incompatible with data-generating causal structures. Noise is induced, for instance, by measurement error or limited control over latent causes, i.e.\ confounding. In the presence of noise there may be no strict Boolean sufficiency or necessity relations in the data, meaning that methods of MINUS discovery can only approximate strict MINUS structures by fitting their models more or less closely to the data using suitable parameters and thresholds of model fit. Moreover, noise stemming from the uncontrolled variation of latent causes gives rise to homogeneity violations, which yield that inferences to MINUS causation are not guaranteed to be fallacy-free. In order to nonetheless distill causal information from noisy data, strategies for avoiding over- and underfitting and estimating the fallacy-risk are needed.
+
+Fourth, according to the MINUS theory, the inference to \emph{causal irrelevance} is much more demanding than the inference to causal relevance. Establishing that $X$ is a MINUS cause of $Y$ requires demonstrating the existence of at least one context with a constant background in which a difference in $X$ is associated with a difference in $Y$, whereas establishing that $X$ is \emph{not} a MINUS cause of $Y$ requires demonstrating the \emph{non-existence} of such a context, which is impossible on the basis of the non-exhaustive data samples that are typically analyzed in real-life studies. Correspondingly, the fact that, say, $G$ does not appear in \eqref{mt2} does not imply that $G$ is causally irrelevant to $C$ or $E$. The non-inclusion of $G$ simply means that the data from which \eqref{mt2} has been derived do not contain evidence for the causal relevance of $G$. However, future research having access to additional data might reveal the existence of a difference-making context for $G$ and, hence, entail the causal relevance of $G$ to $C$ or $E$ after all.
+
+Finally, on a related note, as a result of the common fragmentation of real-life data $\delta$ MINUS-formulas inferred from $\delta$ cannot be expected to completely reflect the causal structure generating $\delta$. That is, MINUS-formulas inferred from $\delta$ are inevitably going to be \emph{incomplete}. They only detail those causally relevant factor values along with those conjunctive, disjunctive, and sequential groupings for which $\delta$ contain difference-making evidence. What difference-making evidence is contained in $\delta$ does not only depend on the cases recorded in $\delta$ but, when $\delta$ is noisy, also on the tuning thresholds imposed to approximate strict Boolean dependency structures; relative to some such tuning settings an association between $X$ and $Y$ may pass as a sufficiency or necessity relation whereas relative to another setting it will not.
+Hence, the inference to MINUS causation is sensitive to the chosen tuning settings, to the effect that choosing different settings is often going to be associated with changes in inferred MINUS-formulas. 
+
+Variance in inferred MINUS-formulas may be entirely unproblematic. Two different MINUS-formulas $\mathbf{m}_{i}$ and $\mathbf{m}_{j}$ derived from $\delta$ using different tuning settings are in no disagreement if the causal claims entailed by $\mathbf{m}_{i}$ and $\mathbf{m}_{j}$ stand in a subset relation; that is, if one formula is a submodel of the other:
+\begin{description}\item[Submodel relation]A MINUS-formula $\mathbf{m}_i$ is a \emph{submodel} of another MINUS-formula $\mathbf{m}_j$ if, and only if, \begin{enumerate}\itemsep0pt\item[(i)] all factor values causally relevant according to $\mathbf{m}_i$ are also causally relevant according to $\mathbf{m}_j$, \item[(ii)] all factor values contained in two different disjuncts in $\mathbf{m}_i$ are also contained in two different disjuncts in $\mathbf{m}_j$, \item[(iii)] all factor values contained in the same conjunct in $\mathbf{m}_i$ are also contained in the same conjunct in $\mathbf{m}_j$, and \item[(iv)] if $\mathbf{m}_i$ and  $\mathbf{m}_j$ are complex MINUS-formulas, all atomic components $\mathbf{m}_i^k$ of $\mathbf{m}_i$ have a counterpart $\mathbf{m}_j^k$ in $\mathbf{m}_j$ such (i) to (iii) are satisfied for $\mathbf{m}_i^k$ and $\mathbf{m}_j^k$.\end{enumerate}\end{description} 
+\noindent If $\mathbf{m}_i$ is a submodel of $\mathbf{m}_j$, $\mathbf{m}_j$ is a \emph{supermodel} of $\mathbf{m}_i$. All of $\textbf{m}_i$'s causal ascriptions are contained in its supermodels' ascriptions, and $\textbf{m}_i$ contains the causal ascriptions of its own submodels. The submodel relation is reflexive: every model is a submodel (and supermodel) of itself; or differently, if $\mathbf{m}_i$ and $\mathbf{m}_j$ are submodels of one another, then $\mathbf{m}_i$ and $\mathbf{m}_j$ are identical. Most importantly, if two MINUS-formulas related by the submodel relation are not identical, they can be interpreted as describing the same causal structure with varying granularity. 
+
+
+
+\medskip
+Before we turn to the details of MINUS discovery using the \pkg{cna} package, a terminological note is required. In the literature on configurational comparative methods it has become customary to refer to the models produced by the methods as \emph{solution formulas}. To mirror that convention, the \pkg{cna} package refers to atomic MINUS-formulas inferred from data by CNA as \emph{atomic solution formulas}, \emph{\textbf{asf}}, for short, and to complex MINUS-formulas inferred from data as \emph{complex solution formulas}, \emph{\textbf{csf}}. For brevity, we will henceforth mainly use the shorthands \emph{asf} and \emph{csf}.  
+
+
+
+
+
+\section[The input of CNA]{The input of CNA}
+
+The goal of CNA is to output all \emph{asf} and \emph{csf} within provided bounds of model complexity that fit an input data set relative to provided tuning settings, in particular, fit thresholds.
+ The algorithm performing this task in the \pkg{cna} package is implemented in the function \code{cna()}. Its most important arguments are:
+\begin{Code}
+cna(x, type, ordering = NULL, strict = FALSE, con = 1, cov = 1, con.msc = con,
+   notcols = NULL, maxstep = c(3, 4, 10), inus.only = TRUE, suff.only = FALSE,
+   what = if (suff.only) "m" else "ac", details = FALSE, acyclic.only = FALSE)
+\end{Code}
+%
+This section explains most of these inputs and introduces some auxiliary functions. The arguments \code{inus.only}, \code{what}, \code{details}, and \code{acyclic.only} will be discussed in section \ref{output}.
+
+
+\subsection[Data]{Data}
+
+
+
+Data $\delta$ processed by CNA have the form of $m\times k$ matrices, where $m$ is the number of units of observation (cases) and $k$ is the number of measured factors. $\delta$ can either be of type ``crisp-set'' ($cs$), ``multi-value'' ($mv$) or ``fuzzy-set'' ($fs$). Data that feature $cs$ factors only are $cs$. If the data contain at least one $mv$ factor, they count as $mv$. Data featuring at least one $fs$ factor are treated as $fs$.\footnote{Note, first, that factors calibrated at crisp-set thresholds may appear with unsuitably extreme values if the data as a whole are treated as $fs$ due to some $fs$ factor, and second, that mixing $mv$ and $fs$ factors in one analysis is (currently) not supported.} Examples of each data type are given in Table \ref{tab2}. Raw data collected in a study typically need to be suitably calibrated before they can be fed to \code{cna()}. We do not address the calibration problem here because it is the same for CNA as for QCA, in which context it has been extensively discussed, for example, by \cite{Thiem:2013} or \cite{Schneider:2012}. The \proglang{R} packages \href{https://cran.r-project.org/package=QCApro}{\pkg{QCApro}}, \href{https://cran.r-project.org/package=QCA}{\pkg{QCA}}, and \href{https://cran.r-project.org/package=SetMethods}{\pkg{SetMethods}} provide all tools necessary for automating data calibration.
+\begin{table}[tb]\centering
+\subfloat[$cs$ data]{\begin{tabular}{r|cccc}
+& $A$ & $B$ & $C$ & $D$  \\\hline
+$c_1$ &0 &0 &0& 0  \\
+$c_2$ &0 &1 &0& 0  \\
+$c_3$ &1 &1 &0& 0  \\
+$c_4$ &0 &0 &1& 0  \\
+$c_5$ &1 &0 &0& 1  \\
+$c_6$ &1 &0 &1& 1  \\
+$c_7$ &0 &1 &1& 1  \\
+$c_8$ &1 &1 &1& 1 \\  \hline
+  
+\end{tabular}
+}\hspace{.5cm}
+\subfloat[$mv$ data]{
+\begin{tabular}{r|cccc}
+& $A$ & $B$ & $C$ & $D$  \\\hline
+$c_1$ &1 &3 &3& 1  \\
+$c_2$ &2 &2 &1& 2  \\
+$c_3$ &2 &1 &2& 2  \\
+$c_4$ &2 &2 &2& 2  \\
+$c_5$ &3 &3 &3& 2  \\
+$c_6$ &2 &4 &3& 2  \\
+$c_7$ &1 &3 &3& 3  \\
+$c_8$ &1 &4 &3& 3 \\  \hline
+\end{tabular}
+}\hspace{.5cm}
+\subfloat[$fs$ data]{
+\begin{tabular}{r|ccccc}
+      & $A$ & $B$ & $C$ & $D$ & $E$      \\\hline 
+$c_1$ & 0.37 &0.30 &0.16 &0.06 &0.25 \\
+$c_2$ & 0.89 &0.39 &0.64 &0.09 &0.03 \\
+$c_3$ & 0.06 &0.61 &0.92 &0.37 &0.15 \\
+$c_4$ & 0.65 &0.93 &0.92 &0.18 &0.93 \\
+$c_5$ & 0.08 &0.08 &0.12 &0.86 &0.91 \\
+$c_6$ & 0.70 &0.02 &0.85 &0.91 &0.97 \\
+$c_7$ & 0.04 &0.72 &0.76 &0.90 &0.68 \\
+$c_8$ & 0.81 &0.96 &0.89 &0.72 &0.82 \\
+  \hline
+\end{tabular}%\caption{}
+}
+
+\caption{Data types processable by CNA.}\label{tab2}
+\end{table}
+
+Data is given to the \code{cna()} function via the argument \code{x}, which is a data frame or an object of class ``configTable'' as output by the \code{configTable()} function (see section \ref{configTable} below). The \pkg{cna} package contains a number of exemplary data sets from published studies: \code{d.autonomy}, \code{d.educate}, \code{d.irrigate}, \code{d.jobsecurity}, \code{d.minaret}, \code{d.pacts}, \code{d.pban}, \code{d.performance}, \code{d.volatile}, \code{d.women}. For details on their contents and sources, see the \pkg{cna} \href{https://cran.r-project.org/web/packages/cna/cna.pdf}{reference manual}. After having loaded the \pkg{cna} package, 
+all of them are directly (i.e.\ without separate loading) available for processing:
+<<data examples, results=hide , message = FALSE, warning=FALSE>>=
+library(cna)
+cna(d.educate)
+cna(d.women)
+@
+%
+If the data are not of type $cs$, \code{cna()} must be told explicitly what type of data \code{x} contains using the \code{type} argument, which takes the values \code{"mv"} for $mv$ data and \code{"fs"} for $fs$ data. The functions \code{mvcna(x, ...)} and \code{fscna(x, ...)} are available as shorthands for \code{cna(x, type = "mv", ...)} and \code{cna(x, type = "fs", ...)}, respectively.
+<<data type, eval=F>>=
+cna(d.jobsecurity, type = "fs")
+fscna(d.jobsecurity)
+cna(d.pban, type = "mv") 
+mvcna(d.pban)
+@
+
+
+\subsubsection[Configuration tables]{Configuration tables}\label{configTable}
+
+To facilitate the reviewing of data, the \code{configTable()} function assembles cases with identical configurations in a table called a \emph{configuration table}. In previous versions of the \pkg{cna} package, these tables were called ``truth tables'', which however led to confusion with the QCA terminology, where a very different type of object is also referred to by that label. While a QCA truth table indicates for every configuration of all exogenous factors (i.e.\ for every minterm) whether it is sufficient for the outcome, a CNA configuration table does not express relations of sufficiency but simply amounts to a compact representation of the data that lists all configurations exactly once and adds a column indicating how many instances (cases) of each configuration are contained in the data. 
+\begin{Code}
+configTable(x, type = c("cs", "mv", "fs"), case.cutoff = 0)
+\end{Code}
+The first input \code{x} is a data frame or matrix. The function then merges multiple rows of \code{x} featuring the same configuration into one row, such that each row of the resulting table corresponds to one determinate configuration of the factors in \code{x}. The number of occurrences of a configuration and an enumeration of the cases instantiating it are saved as attributes ``n'' and ``cases'', respectively. When not applied to $cs$ data, the data type must be specified with the \code{type} argument. Alternatively, the shorthand functions \code{csct(x)}, \code{mvct(x)} and \code{fsct(x)} are available.
+<<configTable1, eval=F>>=
+configTable(d.women)
+mvct(d.pban) 
+@
+%
+\code{configTable()} provides a numeric argument called \code{case.cutoff}, which allows for setting a minimum frequency cutoff determining that configurations with less instances in the data are not included in the configuration table and the ensuing analysis. For instance, \code{configTable(x, case.cutoff = 3)} entails that configurations that are instantiated in less than 3 cases are excluded.
+
+Configuration tables produced by \code{configTable()} can be directly passed to \code{cna()}. Moreover, as configuration tables generated by \code{configTable()} are objects that are very particular to the \pkg{cna} package, the function \code{ct2df()} is available to transform configuration tables back into ordinary \proglang{R} data frames.
+<<configTable2, eval = F>>=
+pact.ct <- configTable(d.pacts, type = "fs", case.cutoff = 2)
+ct2df(pact.ct)
+@
+
+
+\subsubsection[Data simulations]{Data simulations}\label{simul}
+
+The \pkg{cna} package provides extensive functionalities for data simulations---which, in turn, are essential for inverse search trials that benchmark CNA's output (see section \ref{bench}). In a nutshell, the functions \code{allCombs()} and \code{full.ct()} generate the space of all logically possible configurations over a given set of factors, \code{selectCases()} selects, from this space, the configurations that are compatible with a data-generating causal structure, which, in turn, can be randomly drawn by \code{randomAsf()} and \code{randomCsf()}, \code{makeFuzzy()} fuzzifies that data, and \code{some()} randomly selects cases, for instance, to produce data fragmentation. 
+
+More specifically, \code{allCombs(x)} takes an integer vector \code{x} as input and generates a data frame of all possible value configurations of \code{length(x)} factors, the first factor having \code{x[1]} values, the second \code{x[2]} values etc. The factors are labeled using capital letters in alphabetical order. Analogously, but more flexibly, \code{full.ct(x)} generates a configuration table with all logically possible value configurations of the factors defined in the input \code{x}, which can be a configuration table, a data frame, an integer, a list specifying the factors' value ranges, or a character vector featuring all admissible factor values.
+<<simul1, eval = F>>=
+allCombs(c(2, 2, 2)) - 1 
+allCombs(c(3, 4, 5))
+full.ct("A + B*c")
+full.ct(6)
+full.ct(list(A = 1:2, B = 0:1, C = 1:4)) 
+@
+%
+The input of \code{selectCases(cond, x)} is a character string \code{cond} specifying a Boolean function, which typically (but not necessarily) expresses a data-generating MINUS structure, as well as, optionally, a data frame or configuration table \code{x}. If \code{x} is specified, the function selects the cases that are compatible with \code{cond} from \code{x}; if \code{x} is not specified, it selects from \code{full.ct(cond)}. It is possible to randomly draw \code{cond} using \code{randomAsf(x)} or \code{randomCsf(x)}, which generate random atomic and complex solution (i.e.\ MINUS-) formulas, respectively, from a data frame or configuration table \code{x}.
+<<simul1, eval = F>>=
+dat1 <- allCombs(c(2, 2, 2)) - 1 
+selectCases("A + B <-> C", dat1)
+selectCases("(h*F + B*C*k + T*r <-> G)*(A*b + H*I*K <-> E)")
+target <- randomCsf(full.ct(6))
+selectCases(target)
+@
+%
+The closely related function \code{selectCases1(cond, x, con = 1, cov = 1)} additionally allows for providing consistency (\code{con}) and coverage (\code{cov}) thresholds (see section \ref{cons}), such that some cases that are incompatible with \code{cond} are also selected, as long as \code{cond} still meets \code{con} and \code{cov} in the resulting data. Thereby, measurement error or noise can be simulated in a manner that allows for controlling the degree of case incompatibilities.
+<<simul2, eval= F>>=
+dat2 <- full.ct(list(EN = 0:2, TE = 0:4, RU = 1:4)) 
+selectCases1("EN=1*TE=3 + EN=2*TE=0 <-> RU=2", dat2, con = .75, cov = .75)
+@
+%
+\code{makeFuzzy(x, fuzzvalues = c(0, 0.05, 0.1))} simulates fuzzy-set data by transforming a data frame or configuration table \code{x} consisting of $cs$ factors into an $fs$ configuration table. To this end, the function adds values selected at random from the argument \code{fuzzvalues} to the 0's and subtracts them from the 1's in \code{x}. \code{fuzzvalues} is a numeric vector of values from the interval [0,1].
+<<simul3, eval= F>>=
+makeFuzzy(selectCases("Hunger + Heat <-> Run"), 
+          fuzzvalues = seq(0, 0.4, 0.05))
+@
+%
+Finally, \code{some(x, n = 10, replace = TRUE)} randomly selects \code{n} cases from a data frame or configuration table \code{x}, with or without replacement. If \code{x} features all configurations that are compatible with a data-generating structure and \code{n < nrow(x)}, the data frame or configuration table issued by \code{some()} is \emph{fragmented}, meaning it does not contain all empirically possible configurations. If \code{n > nrow(x)}, data of large sample sizes can be generated featuring multiple instances of the empirically possible configurations. 
+<<simul4, eval= F>>=
+dat3 <- allCombs(c(3, 4, 5))
+dat4 <- selectCases("A=1*B=3 + A=3 <-> C=2", mvct(dat3))
+some(dat4, n = 10, replace = FALSE)
+some(dat4, n = 1000, replace = TRUE)
+@
+
+
+\subsection{Consistency and coverage} \label{cons}
+
+As real-life data tend to feature measurement error or noise induced by variations in latent causes, 
+strictly sufficient or necessary conditions for an outcome often do not exist. In order to nonetheless distill some
+causal information from such data, methods for MINUS discovery have to suitably fit their models to the data. To this end, \citet{ragin2006} imported the so-called \emph{consistency} and \emph{coverage} measures (with values from the interval $[0,1]$) into the QCA protocol. Both of these measures are also serviceable for the purposes of CNA. Informally put, consistency reflects the degree to which the behavior of an outcome obeys a corresponding sufficiency or necessity relationship or a whole model, whereas coverage reflects the degree to which a sufficiency or necessity relationship or a whole model accounts for the behavior of the corresponding outcome. As the implication operator underlying the notions of sufficiency and necessity is defined differently in classical and in fuzzy logic, the two measures are defined differently for crisp-set and multi-value data (which both have a classical footing), on the one hand, and fuzzy-set data, on the other. \emph{Cs-consistency} ($con^{cs}$) and \emph{cs-coverage} ($cov^{cs}$) are defined as follows:
+\begin{equation*}
+con^{cs}(X\rightarrow Y)= \frac{\left\vert{X \att Y}\right\vert_\delta}{\left\vert{X}\right\vert_\delta}\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;
+cov^{cs}(X\rightarrow Y)= \frac{\left\vert{X \att Y}\right\vert_\delta}{\left\vert{Y}\right\vert_\delta}
+\end{equation*}
+where $X$ and $Y$ are individual factors or Boolean functions of factors in the analyzed data $\delta$ and $|\ldots|_\delta$ stands for the cardinality of the set of cases in $\delta$ instantiating the enclosed expression.
+\emph{Fs-consistency} ($con^{fs}$) and \emph{fs-coverage} ($cov^{fs}$) of $X \rightarrow  Y$ are defined as follows, where $n$ is the number of cases in the data:
+\begin{equation*}
+con^{fs}(X\rightarrow Y)= \frac{\sum\nolimits_{i=1}^n \min(X_i,Y_i)}{\sum\nolimits_{i=1}^n X_i}\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;
+cov^{fs}(X\rightarrow Y)= \frac{\sum\nolimits_{i=1}^n \min(X_i,Y_i)}{\sum\nolimits_{i=1}^n Y_i}
+\end{equation*}
+Whenever the values of $X$ and $Y$ are restricted to $1$ and $0$ in the crisp-set measures, $con^{cs}$ and $cov^{cs}$ are equivalent to $con^{fs}$ and $cov^{fs}$, but for binary factors with values other than $1$ and $0$ and for multi-value factors that equivalence does not hold. Nonetheless, we will in the following not explicitly distinguish between the $cs$ and $fs$ measures because %the particular contexts of 
+ our discussion will make it sufficiently clear which of them is at issue.
+
+
+
+Consistency and coverage thresholds can be given to the \code{cna()} function using the arguments \code{con.msc}, \code{con}, and \code{cov} that take values from the interval $[0,1]$. \code{con.msc} sets the consistency threshold for minimally sufficient conditions (\emph{msc}), \code{con} does the same for \emph{asf} and \emph{csf}, while \code{cov} sets the coverage threshold for \emph{asf} and \emph{csf} (no coverage threshold is imposed on \emph{msc}). As illustrated on p.\ 17 of the \pkg{cna} \href{https://cran.r-project.org/web/packages/cna/cna.pdf}{reference manual}, setting different consistency thresholds for \emph{msc} and \emph{asf/csf} can enhance the informativeness of \code{cna()}'s output in certain cases but is non-standard. The standard setting is \code{con = con.msc}. 
+
+The default numeric value for all thresholds is 1, %\code{con = con.msc = cov = 1}, 
+i.e.\ perfect consistency and coverage. Contrary to QCA, which often returns solutions that do not comply with the chosen consistency threshold and which does not impose a coverage threshold at all, CNA uses consistency and coverage as authoritative model building criteria such that, if they are not met, CNA abstains from issuing solutions. That means, if the default thresholds are used, \code{cna()} will only output perfectly consistent \emph{msc}, \emph{asf}, and \emph{csf} and only perfectly covering \emph{asf} and \emph{csf}. 
+
+If the data are noisy, the default thresholds will typically not yield any solution formulas. In such cases, \code{con} and \code{cov} may be suitably lowered. By lowering \code{con} to, say, $0.75$ in a $cs$ analysis, \code{cna()} is given permission to treat $X$ as sufficient for $Y$, even though in 25$\%$ of the cases $X$ is not associated with $Y$. Or by lowering \code{cov} to 0.75 in an $fs$ analysis, \code{cna()} is allowed to treat $X$ as necessary for $Y$, even though the sum of the membership scores in $Y$ over all cases in the data exceeds the sum of the membership scores in $\min(X,Y)$ by 25$\%$. 
+
+Determining to which value \code{con} and \code{cov} are best lowered in a concrete discovery context is a delicate task. On the one hand, CNA faces a severe overfitting risk when the data contain configurations incompatible with the data-generating structure, meaning that \code{con} and \code{cov} must not be set too high (i.e.\ too close to 1). On the other hand, the lower \code{con} and \code{cov} are set, the less complex and informative CNA's output will be, that is, the more CNA's purpose of uncovering causal complexity will be undermined. To find a suitable balance between over- and underfitting, \cite{robustness} systematically re-analyze the data at all \code{con} and \code{cov} settings in the interval $[0.7,1]$, collect all solutions resulting from such a re-analysis series in a set $\mathbf{M}$, and select the solution formula(s) with the most sub- and supermodels in $\mathbf{M}$. These are the solutions with the highest \emph{overlap in causal ascriptions} with the other solutions in $\mathbf{M}$. They are the most \emph{robust} solutions inferrable from the data. This approach to robustness scoring has been automatized in the \code{frscore()} function obtainable from the \href{https://people.uib.no/mba110/docs/frscore.R}{replication material} of \citep{robustness}.
+
+
+If the analyst does not want to conduct a whole robustness analysis, reasonable non-perfect consistency and coverage settings are \code{con} $=$ \code{cov} $=0.8$ or $0.75$. 
+To illustrate, \code{cna()} does not build solutions for the \code{d.jobsecurity} data at the following \code{con} and \code{cov} thresholds (the arguments \code{ordering} and \code{strict} are explained in section \ref{order} below): 
+<<cons1, eval=F>>=
+fscna(d.jobsecurity, ordering = list("JSR"), strict = TRUE,
+      con = 1, cov = 1)
+fscna(d.jobsecurity, ordering = list("JSR"), strict = TRUE,
+      con = .9, cov = .9)
+@
+But if \code{con} and \code{cov} are set to $0.75$, 20 solutions are returned: 
+<<cons2, eval=F>>=
+fscna(d.jobsecurity, ordering = list("JSR"), strict = TRUE,
+      con = .75, cov = .75)
+@
+In the presence of noise, it is generally advisable to vary the \code{con} and \code{cov} settings to some degree in order to get a sense for how sensitive the model space reacts to changes in tuning settings and for the overlap in causal ascriptions between different solutions. Less complex solutions with more overlap with the rest of the returned solutions are generally preferable over more complex solutions with less overlap. If the consistency and coverage scores of resulting solutions can be increased by raising the \code{con} and \code{cov} settings without, at the same time, disproportionately increasing the solutions' complexity, solutions with higher fit are preferable over solutions with lower fit. But if an increase in fit comes with a substantive increase in model complexity, less complex models with lower fit are to be preferred (to avoid overfitting).
+
+
+
+
+\subsection[Ordering]{Ordering}\label{order}
+\nopagebreak
+In principle, the \code{cna()} function does not need to be told which factors in the data \code{x} are endogenous (i.e.\ outcomes) and which ones are exogenous (i.e.\ causes). It attempts to infer that from \code{x}. But if prior causal knowledge is available as to which factors can figure as effects and which ones cannot, this information can be given to \code{cna()} via a \emph{causal ordering}. A causal ordering is a relation $X_i\prec X_j$ defined on the factors in \code{x} entailing that $X_j$ cannot be a cause of $X_i$ (e.g.\ because $X_i$ is instantiated temporally before $X_j$). That is, an ordering excludes certain causal dependencies but does not stipulate any. If an ordering is provided, \code{cna()} only searches for MINUS-formulas in accordance with the ordering; if no ordering is provided, \code{cna()} treats all values of the factors in \code{x} as potential outcomes and explores whether a MINUS-formula for them can be inferred.
+
+An ordering is given to \code{cna()} via the argument \code{ordering}, which takes as value a list of character vectors specifying the causal ordering of the factors in \code{x}. For example, \code{ordering = list(c("A","B"),"C")} determines that $C$ is causally located after $A$ and $B$ (i.e.\ $A,B\prec C$), meaning that $C$ is not a potential cause of $A$ and $B$. The latter are located on the same level of the ordering, for $A$ and $B$ are unrelated by $\prec$, whereas $C$ is located on a level that is downstream of the $A,B$-level. \code{cna()} then only checks whether values of $A$ and $B$ can be modeled as causes of values of $C$; the test for a causal dependency in the upstream direction is skipped. If the argument ordering is not specified, \code{cna()} searches for dependencies between all factors in \code{x}. An ordering does not need to explicitly mention all factors in \code{x}. If only a subset of the factors are included in the ordering, the non-included factors are entailed to be causally before the included ones. Hence, \code{ordering = list("C")} means that $C$ is causally located after all other factors in \code{x}. 
+
+
+Additionally, the logical argument \code{strict} is available. It determines whether the elements of one level in an ordering can be causally related or not. For example, if \code{ordering = list(c("A","B"),"C")} and \code{strict = TRUE}, then $A$ and $B$ are excluded to be causally related and \code{cna()} skips corresponding tests. By contrast, if \code{ordering = list(c("A","B"),"C")} and \code{strict = FALSE}, then \code{cna()} also searches for dependencies among $A$ and $B$. 
+
+Let us illustrate with the data set \code{d.autonomy}. Relative to the following function call, which stipulates that $AU$ cannot be a cause of $EM, SP$, and $CO$ and that the latter factors are not mutually causally related, \code{cna()} infers that $SP$ is causally relevant to $AU$ (i.e.\ $SP\leftrightarrow AU$; the function \code{csf()} builds the \emph{csf} from a \code{cna()} solution object; see section \ref{what}):
+<<odering1, message = FALSE, warning=FALSE>>=
+dat.aut.1 <- d.autonomy[15:30, c("AU","EM","SP","CO")]
+ana.aut.1 <- fscna(dat.aut.1, ordering = list(c("EM","SP","CO"), "AU"), 
+  strict = TRUE, con = .9, cov = .9)
+printCols <- c("condition", "consistency", "coverage")
+csf(ana.aut.1)[printCols]
+@
+If we set \code{strict} to \code{FALSE} and, thereby, allow for causal dependencies among $EM, SP$, and $CO$, it turns out that $SP$ not only causes $AU$, but, on another causal path, also makes a difference to $EM$:
+<<odering2, message = FALSE, warning=FALSE>>=
+ana.aut.2 <- fscna(dat.aut.1, ordering = list(c("EM","SP","CO"), "AU"), 
+  strict = FALSE, con = .9, cov = .9)
+csf(ana.aut.2)[printCols]
+@
+
+
+\subsection[Maxstep]{Maxstep}\label{maxstep}
+As anticipated in section \ref{intro} and as will be exhibited in more detail in section \ref{algo}, \code{cna()} builds minimally necessary disjunctions of minimally sufficient conditions (i.e.\ \emph{asf}) from the bottom up by gradually permutating and testing conjunctions and disjunctions of increasing complexity for sufficiency and necessity. The combinatorial search space that this algorithm has to scan depends on a variety of different aspects, for instance, on the number of factors in \code{x}, on the number of values these factors can take, on the number and length of the \emph{msc} recovered in the first computational phase, etc. As the search space may be too large to be exhaustively scanned in reasonable time, the argument \code{maxstep} allows for setting an upper bound for the complexity of the generated \emph{asf}. \code{maxstep} takes a vector of three integers $c(i,j,k)$ as input, entailing that the generated \emph{asf} have maximally $j$ disjuncts with maximally $i$ conjuncts each and a total of maximally $k$ factors. The default is \code{maxstep = c(3,4,10)}. The user can set it to any complexity level if computational time is not an issue.
+
+The \code{maxstep} argument is particularly relevant for the analysis of data featuring severe model ambiguities. A telling case in point is the data set \code{d.volatile}. At the default \code{maxstep}, \code{cna()} recovers 416 \emph{csf}. By increasing \code{maxstep}, this number increases rapidly. (In the standard print method of \code{cna()}, the \code{n.init} parameter in \code{csf()} is set to 1000; to get all \emph{csf} from the second call below, this parameter needs to be increased. See section \ref{what} for details.)
+<<maxstep1, eval=F>>=
+cna(d.volatile, ordering = list("VO2"), maxstep = c(3,4,10))
+vol1 <- cna(d.volatile, ordering = list("VO2"), maxstep = c(4,4,10))
+csf(vol1, n.init = 3000)
+@
+If the values of \code{maxstep} are further increased, the analysis will quickly fail to terminate in reasonable time. When a complete analysis cannot be completed, \code{cna()} can be told to only search for minimally sufficient conditions (\emph{msc}) by setting the argument \code{suff.only} to its non-default value \code{TRUE}. As the search for \emph{msc} is the part of a CNA analysis that is least computationally demanding, it will typically terminate quickly and, thus, shed some light on the dependencies among the factors in \code{x} even when complete model construction is infeasible. 
+<<maxstep2, eval=F>>=
+cna(d.volatile, ordering = list("VO2"), maxstep = c(8,10,40), 
+  suff.only = TRUE)
+@
+If \code{suff.only} is set to \code{TRUE}, CNA can process data of much higher dimensionality than at the argument's default value. \citet{Yakovchenko:2020}, for example, run \code{cna()} on data comprising 73 exogenous factors with \code{suff.only = TRUE}. Based on the resulting \emph{msc}, they then select a proper subset of those factors for further processing.
+
+
+While the \code{maxstep} argument is valuable for controlling the search space in case of large and ambiguous data sets, it also comes with a pitfall: it may happen that \code{cna()} fails to find a model because of a \code{maxstep} that is too low. An example is \code{d.jobsecurity}. At the default \code{maxstep}, \code{cna()} does not build a solution, but if \code{maxstep} is increased, two solutions are found.
+<<maxstep3>>=
+ana.jsc.1 <- fscna(d.jobsecurity, ordering = list("JSR"), con=.9, cov=.85)
+csf(ana.jsc.1)[printCols]
+ana.jsc.2 <- fscna(d.jobsecurity, ordering = list("JSR"), con=.9, cov=.85,
+  maxstep = c(3,5,12))
+csf(ana.jsc.2)[printCols]
+@
+In sum, there are two possible reasons for why \code{cna()} fails to build a solution: (i) the chosen \code{maxstep} is too low; (ii) the chosen \code{con} and/or \code{cov} values are too high, meaning the processed data \code{x} are too noisy.
+Accordingly, in case of a null result, two paths should be explored (in that order): (i) gradually increase \code{maxstep};
+(ii) lower \code{con} and \code{cov}, as described in section \ref{cons} above.\footnote{For crisp-set and multi-value data the \proglang{R} package \href{https://cran.r-project.org/package=cnaOpt}{\textbf{cnaOpt}} \citep{cnaOptRef} provides functions that automatically find the optimal consistency and coverage scores obtainable from a given data set (see also \citealp{optimize}).}
+
+\subsection[Notcols]{Notcols}
+
+In classical Boolean logic, the law of Contraposition ensures that an expression of type $\Psi \leftrightarrow Y$ is equivalent to the expression that results from negating both sides of the double arrow: $\neg \Psi \leftrightarrow \neg Y$. Applied to the context of configurational causal modeling that entails that an \emph{asf} for $Y$ can be transformed into an \emph{asf} for the negation of $Y$, \emph{viz.}\ $y$, based on logical principles alone, i.e.\ without a separate data analysis. However, that transformability only holds for \emph{asf} with perfect consistency and coverage (\code{con = cov = 1}) that are inferred from exhaustive (non-fragmented) data (see section \ref{exhaustive} for details on exhaustiveness). 
+If an \emph{asf} of an outcome $Y$ does not reach perfect consistency or coverage or is inferred from fragmented data, identifying the causes of $y$ requires a separate application of \code{cna()} explicitly targeting the causes of the negated outcome. 
+
+To this end, the argument \code{notcols} allows for negating the values of factors in $cs$ and $fs$ data (in case of $mv$ data, \code{cna()} automatically searches for models of all possible values of endogenous factors, thereby rendering \code{notcols} redundant). If \code{notcols = "all"}, all factors are negated, i.e.\ their values $i$ are replaced by $1-i$. If \code{notcols} is given a character vector of factors in the data, only the factors in that vector are negated. For example, \code{notcols = c("A", "B")} determines that only factors $A$ and $B$ are negated. 
+
+When processing $cs$ or $fs$ data, CNA should first be applied to recover solutions for the positive outcomes. If resulting \emph{asf} and \emph{csf} do not reach perfect consistency, coverage, and exhaustiveness scores (and the causes of the negated outcomes are of scientific interest), a second CNA should be run negating the values of all factors that have been modeled as outcomes in the first CNA. To illustrate, we revisit our analysis of \code{d.autonomy} from section \ref{order}, which identified $AU$ and $EM$ as outcomes.
+<<notcols, message = FALSE, warning=FALSE>>=
+ana.aut.3 <- fscna(dat.aut.1, ordering = list(c("EM","SP","CO"), "AU"),
+  strict = FALSE, con = .88, cov = .82, notcols = c("AU", "EM")) 
+csf(ana.aut.3)[printCols]
+@
+\pagebreak
+
+\section[The CNA algorithm]{The CNA algorithm}\label{algo}
+
+This section explains the working of the algorithm implemented in the \code{cna()} function. We first provide an informal summary and then a detailed outline in four stages. The aim of \code{cna()} is to find all \emph{msc}, \emph{asf}, and \emph{csf} that meet \code{con.msc}, \code{con} and \code{cov} in the input data \code{x} in accordance with  \code{ordering} and \code{maxstep}. The algorithm starts with single factor values and tests whether they meet \code{con.msc}; if that is not the case, it proceeds to test conjunctions of two factor values, then to conjunctions of three, and so on. Whenever a conjunction meets \code{con.msc} (and no proper part of it has previously been identified to meet \code{con.msc}), it is automatically a minimally sufficient condition \emph{msc}, and supersets of it do not need to be tested any more. Then, it tests whether single \emph{msc} meet \code{con} and \code{cov}; if not, it proceeds to disjunctions of two, then to disjunctions of three, and so on. Whenever a disjunction meets \code{con} and \code{cov} (and no proper part of it has previously been identified to meet \code{con} and \code{cov}), it is automatically a minimally necessary disjunction of \emph{msc}, and supersets of it do not need to be tested any more. All and only those disjunctions of \emph{msc} that meet both \code{con} and \code{cov} are then issued as \emph{asf}. Finally, recovered \emph{asf} are conjunctively concatenated to \emph{csf}  while eliminating structural redundancies and deleting tautologous and contradictory solutions as well as solutions with partial structural redundancies and constant factors.
+
+
+
+The \code{cna()} algorithm can be more specifically broken down into four stages.
+
+
+\vspace{-.2cm}
+\begin{description}\item[Stage 1] On the basis of \code{ordering}, \code{cna()} first builds a set of potential outcomes \linebreak $\textbf{O}= \{O_h\id \omega_f,\ldots ,O_m\id \omega_g\}$ from the set of factors $\mathbf{F}=\{O_1,\ldots,O_n\}$ in \code{x},\footnote{Note that if \code{x} is a data frame, \code{cna()} first transforms \code{x} into a configuration table by means of \code{configTable(x)}, thereby passing the argument \code{type} (and the two additional arguments \code{rm.dup.factors} and \code{rm.const.factors}) to the \code{configTable()} function.} 
+where $1\leq h \leq m\leq n$, and second assigns a set of potential cause factors $\textbf{C}_{O_i}$ from $\mathbf{F}\setminus \{O_i\}$ to every element $O_i\id \omega_k$ of $\mathbf{O}$. If no \code{ordering} is provided, all value assignments to all elements of $\mathbf{F}$ are treated as possible outcomes in case of $mv$ data, whereas in case of $cs$ and $fs$ data $\mathbf{O}$ is set to $\{O_1\id 1, \ldots, O_n\id 1\}$. %, where $O_1$ to $O_n$ are all the factors in $\mathbf{F}$.
+
+\item[Stage 2] \code{cna()} attempts to build a set \textbf{\textsc{msc}$_{O_i\id \omega_k}$} of minimally sufficient conditions that meet \code{con.msc} for each $O_i\id \omega_k\in \mathbf{O}$. To this end, it first checks for each value assignment $X_h\id \chi_j$ of each element of $\textbf{C}_{O_i}$, such that $X_h\id \chi_j$ has a membership score above 0.5 in at least one case in \code{x}, whether the consistency of $X_h\id \chi_j \,\rightarrow\, O_i\id \omega_k$ 
+meets \code{con.msc}, i.e.\ whether 
+$con(X_h\id \chi_j\,\rightarrow\, O_i\id \omega_k) \geq$ \code{con.msc}. 
+If, and only if, that is the case, $X_h\id \chi_j$ is put into the set  \textbf{\textsc{msc}$_{O_i\id \omega_k}$}. Next, \code{cna()} checks for each conjunction of two factor values $X_m\id \chi_j\,\att \,X_n\id \chi_l$ from $\textbf{C}_{O_i}$, such that $X_m\id \chi_j\,\att\, X_n\id \chi_l$ has a membership score above 0.5 in at least one case in \code{x} and no part of $X_m\id \chi_j\,\att\, X_n\id \chi_l$ is already contained in \textbf{\textsc{msc}$_{O_i\id \omega_k}$}, whether $con(X_m\id \chi_j\,\att\, X_n\id \chi_l\;\rightarrow\; O_i\id \omega_k)\geq$ \code{con.msc}. If, and only if, that is the case, $X_m\id \chi_j\,\att\, X_n\id \chi_l$ is put into the set \textbf{\textsc{msc}$_{O_i\id \omega_k}$}. Next, conjunctions of three factor values with no parts already contained in \textbf{\textsc{msc}$_{O_i\id \omega_k}$} are tested, then conjunctions of four factor values, etc., until either all logically possible conjunctions of the elements of $\textbf{C}_{O_i}$ have been tested or \code{maxstep} is reached. Every non-empty \textbf{\textsc{msc}$_{O_i\id \omega_k}$} is passed on to the third stage.  
+
+\item[Stage 3] \code{cna()} attempts to build a set \textbf{\textsc{asf}$_{O_i\id \omega_k}$} of atomic solution formulas for every $O_i\id \omega_k\in \mathbf{O}$, which has a non-empty \textbf{\textsc{msc}$_{O_i\id \omega_k}$}, by disjunctively concatenating the elements of \textbf{\textsc{msc}$_{O_i\id \omega_k}$} to minimally necessary conditions of $O_i\id \omega_k$ that meet \code{con} and \code{cov}. To this end, it first checks for each single condition $\Phi_h \in \text{\textbf{\textsc{msc}}}_{O_i\id \omega_k}$ 
+whether $con(\Phi_h\rightarrow O_i\id \omega_k) \geq$ \code{con} and $cov(\Phi_h\rightarrow O_i\id \omega_k) \geq$ \code{cov}. If, and only if, that is the case, $\Phi_h$ is put into the set \textbf{\textsc{asf}$_{O_i\id \omega_k}$}. Next, \code{cna()} checks for each disjunction of two conditions $\Phi_m + \Phi_n$ from \textbf{\textsc{msc}}$_{O_i\id \omega_k}$, such that no part of $\Phi_m + \Phi_n$ is already contained in \textbf{\textsc{asf}$_{O_i\id \omega_k}$}, whether $con(\Phi_m + \Phi_n\rightarrow O_i\id \omega_k)\geq$ \code{con} and $cov(\Phi_m + \Phi_n\rightarrow O_i\id \omega_k)\geq$ \code{cov}. If, and only if, that is the case, $\Phi_m + \Phi_n$ is put into the set \textbf{\textsc{asf}$_{O_i\id \omega_k}$}. Next, disjunctions of three conditions from \textbf{\textsc{msc}}$_{O_i\id \omega_k}$ with no parts already contained in \textbf{\textsc{asf}$_{O_i\id \omega_k}$} are tested, then disjunctions of four conditions, etc., until either all logically possible disjunctions of the elements of \textbf{\textsc{msc}}$_{O_i\id \omega_k}$ have been tested or \code{maxstep} is reached. Every non-empty \textbf{\textsc{asf}$_{O_i\id \omega_k}$} is passed on to the fourth stage. 
+
+
+\item[Stage 4] \code{cna()} calls the function \code{csf()}, which builds a set \textbf{\textsc{csf}$_{\mathbf{O}}$} of complex solution formulas. This is done in a stepwise manner as follows. First, all logically possible conjunctions of exactly one element from every non-empty \textbf{\textsc{asf}}$_{O_i\id \omega_k}$ are constructed.
+ Second, if \code{inus.only = TRUE} (see section \ref{inus} below), the conjunctions resulting from step 1 are freed of structural redundancies (cf.\ \citealp{BaumFalk}), and  tautologous and contradictory solutions as well as solutions with partial structural redundancies and constant factors are eliminated. Third, if \code{acyclic.only = TRUE}, solutions with cyclic substructures are eliminated. Fourth, for those solutions that were modified in the previous steps, consistency and coverage are re-calculated and solutions that no longer reach \code{con} or \code{cov} are eliminated. The remaining solutions are returned as \textbf{\textsc{csf}$_{\mathbf{O}}$}. If there is only one non-empty set \textbf{\textsc{asf}}$_{O_i\id \omega_k}$, \textbf{\textsc{csf}$_{\mathbf{O}}$} is identical to \textbf{\textsc{asf}}$_{O_i\id \omega_k}$.\end{description}
+
+To illustrate, the following code chunk, first, simulates the data in Table \ref{tab2}c, p.\ \pageref{tab2}, and second, runs \code{cna()} (and \code{csf()}) on that data with \code{con = .8} and \code{cov = .8}, with default \code{maxstep}, and without \code{ordering}.
+<<tab2c, eval=F>>=
+dat5 <- allCombs(c(2, 2, 2, 2, 2)) -1
+dat6 <- selectCases("(A + B <-> C)*(A*B + D <-> E)", dat5)
+set.seed(3) 
+tab2c <- makeFuzzy(dat6, fuzzvalues = seq(0, 0.4, 0.01))
+fscna(tab2c, con = .8, cov = .8, what = "mac")
+@
+
+Table \ref{tab2}c contains data of type $fs$, meaning that the values in the data matrix are interpreted as membership scores in fuzzy sets. As is customary for this data type, we use uppercase letters for membership in a set and lowercase letters for non-membership. In the absence of an ordering, the set of potential outcomes is determined to be $\mathbf{O}=\{A,B,C,D,E\}$ in stage 1, that is, the presence of each factor in Table \ref{tab2}c is treated as a potential outcome. Moreover, all other factors are potential cause factors of every element of $\mathbf{O}$, hence, $\textbf{C}_{A}=\{B,C,D,E\}$, $\textbf{C}_{B}=\{A,C,D,E\}$, $\textbf{C}_{C}=\{A,B,D,E\}$, $\textbf{C}_{D}=\{A,B,C,E\}$, and $\textbf{C}_{E}=\{A,B,C,D\}$.
+
+In stage 2, \code{cna()} succeeds in building non-empty sets of minimally sufficient conditions in compliance with \code{con} for all elements of $\mathbf{O}$: \textbf{\textsc{msc}}$_A =\{B\att d\att E\}$, \textbf{\textsc{msc}}$_B =\{C\att d,\, d\att E,\, a\att C\att D,\,$ $ a\att C\att E,\, a\att C\att e \}$, \textbf{\textsc{msc}}$_C =\{A,\, B,\, d\att E\}$, 
+\textbf{\textsc{msc}}$_D =\{b\att E,\, a\att E,\, c\att E\}$, 
+\textbf{\textsc{msc}}$_E =\{D,\, A\att B,\, A\att C\}$. 
+But only the elements of \textbf{\textsc{msc}}$_C$ and \textbf{\textsc{msc}}$_E$ can be disjunctively combined to atomic solution formulas that meet \code{cov} in stage 3: \textbf{\textsc{asf}}$_C = \{A + B \leftrightarrow C\}$ and \textbf{\textsc{asf}}$_E = \{D + A\att B \leftrightarrow E, \; D + A\att C \leftrightarrow E \}$. For the other three factors in $\mathbf{O}$, the coverage threshold of $0.8$ cannot be satisfied. \code{cna()} therefore abstains from issuing \emph{asf} for $A$, $B$ and $D$.  
+
+
+Finally, in stage 4  one redundancy-free \emph{csf} is built from the inventory of \emph{asf} in \textbf{\textsc{asf}}$_C$ and \textbf{\textsc{asf}}$_E$, which constitutes \code{cna()}'s final output for Table \ref{tab2}c:
+\begin{equation}\label{m8}
+ (A \; +\; B \leftrightarrow C)\;\att\;(D \; +\; A\att B \leftrightarrow E)\;\;\;\,\,\; con=0.836 ;\; cov=0.897
+ \end{equation}
+
+
+\section[The output of CNA]{The output of CNA}\label{output}
+
+\subsection[Customizing the output]{Customizing the output} \label{what}
+\nopagebreak
+
+The default output of \code{cna()} first lists the provided ordering, second, the \emph{asf} that were recovered in accordance with the ordering, and third, the \emph{csf}. \emph{Asf} and \emph{csf} are ordered by complexity and the product of consistency and coverage.
+For \emph{asf} and \emph{csf}, four attributes are standardly computed: \code{consistency}, \code{coverage}, \code{complexity}, and \code{inus}. \code{consistency} and \code{coverage} correspond to a solution's consistency and coverage scores, which measures have been explained in section \ref{cons} above. The \code{complexity} score amounts to the number of factor values on the left-hand sides of "$\rightarrow$" or "$\leftrightarrow$" in \emph{asf} and \emph{csf}; and the \code{inus} attribute indicates whether a solution has the form of a well-formed MINUS structure (for more on the \code{inus} attribute cf.\ section \ref{inus} below).
+
+\code{cna()} can compute additional solution attributes, all of which will be  explained below: \code{exhaustiveness}, and \code{faithfulness} for both \emph{asf} and \emph{csf}, as well as \code{coherence}, \code{redundant}, and \code{cyclic} for \emph{csf}. These attributes are accessible via the \code{details} argument, which can be given the values \code{TRUE}/\code{FALSE}, for computing all/none of the additional attributes, or a character vector specifying the attributes to be computed: for example, \code{details = c("faithfulness", "exhaustiveness")}---the strings can also be abbreviated, e.g. \code{"f"} for \code{"faithfulness"}, \code{"e"} for \code{"exhaustiveness"}, etc. 
+<<details, eval=F>>=
+cna(d.educate, details = TRUE)
+cna(d.educate, details = c( "co", "cy"))
+@
+
+The output of \code{cna()} can be further customized through the argument \code{what} that controls which solution items to print. It can be given a character string specifying the requested solution items: \code{"t"} stands for the configuration table, \code{"m"} for minimally sufficient conditions (\emph{msc}), \code{"a"} for \emph{asf}, \code{"c"} for \emph{csf}, and \code{"all"} for all solution items. 
+<<what, eval=F>>=
+cna(d.educate, what = "tm")
+cna(d.educate, what = "mac")
+cna(d.educate, what = "all")
+@
+
+As shown in section \ref{maxstep}, it can happen that many \emph{asf} and \emph{csf} fit the data equally well. The standard output of \code{cna()} only features 5 solution items of each type. To recover all \emph{msc} and \emph{asf} the functions \code{msc(x)} and \code{asf(x)} are available, where \code{x} is a solution object of \code{cna()}.
+<<vol1, eval=F>>=
+vol2 <- cna(d.volatile, ordering = list("VO2"))
+msc(vol2)
+asf(vol2)
+print(asf(vol2), Inf)
+@
+While \code{msc()} and \code{asf()} simply access the complete sets of \emph{msc} and \emph{asf} stored in \code{x}, the \emph{csf} are not stored in \code{x}. The construction of \emph{csf} in the fourth stage of the CNA algorithm is not conducted by the \code{cna()} function itself, rather, it is outsourced to the function \code{csf()} with the these main arguments:
+\begin{Code}
+csf(x, n.init = 1000, inus.only = x$inus.only, 
+   minimalizeCsf = inus.only, cyclic.only = x$acyclic.only, 
+   cycle.type = x$cycle.type, verbose = FALSE)
+\end{Code}
+The arguments \code{inus.only}, \code{minimalizeCsf}, \code{cyclic.only}, and \code{cycle.type}  will be further discussed in the following sections, \code{n.init} and \code{verbose} are explained in the remainder of this one. It can happen that the set \textbf{\textsc{asf}$_{O_i\id \omega_k}$} contains too many \emph{asf} to construct all \emph{csf} in reasonable time. The argument \code{n.init} therefore allows for controlling how many conjunctions of \emph{asf} are initially built in the first step of \emph{csf} construction (see stage 4 of the CNA algorithm); it defaults to 1000. Increasing or lowering that default results in more or less \emph{csf} being built and in longer or shorter computing times, respectively.
+<<vol1, eval=F>>=
+csf(vol2, n.init = 2000)
+csf(vol2, n.init = 100)
+@
+Setting the argument \code{verbose} to its non-default value \code{TRUE} prints some information about the \emph{csf} construction process to the console, e.g.\ how many structural redundancies or cyclic substructures have been eliminated along the way.
+<<vol1, eval=F>>=
+csf(vol2, verbose = TRUE)
+@
+
+\subsection[INUS vs. non-INUS solutions]{INUS vs. non-INUS solutions} \label{inus}
+
+The (M)INUS-theory of causation (cf.\ section \ref{models}) has been developed for strictly Boolean discovery contexts, meaning for deterministic (i.e.\ noise-free) data that feature perfectly sufficient and necessary conditions. In such contexts, some Boolean expressions can be identified as non-minimal (i.e.\ as featuring redundant elements) on mere \emph{logical grounds}, that is, independently of data. For instance, in an expression as \begin{equation}A \; +\; a\att B \;\leftrightarrow\; C\label{redun} \end{equation} $a$ in the second disjunct is redundant, for \eqref{redun} is logically equivalent to $A \, + \, B \;\leftrightarrow \;C$. These two formulas state exactly the same. Under no conceivable circumstances could $a$ as contained in \eqref{redun} ever make a difference to $C$. To see this, note that a necessary condition for $a\att B$ to be a complex cause of $C$ is that there exists a context $\mathcal{F}$ such that $C$ is only instantiated when \emph{both} $a$ and $B$ are given. That means that, in $\mathcal{F}$, $C$ is not instantiated if $B$ is given but $a$ is not, which, in turn, means that $C$ is not instantiated if $B$ is given and $A$ (\emph{viz.}\ not-$a$) is given. But such an $\mathcal{F}$ cannot possibly exist, for $A$ itself is sufficient for $C$ according to \eqref{redun}. It follows that in every context where $B$ is instantiated, a change from $A$ to $a$ is not associated with a change in $C$ (which takes the value 1 throughout the change in the factor $A$), meaning that $a$ cannot possibly make a difference to $C$ and, hence, cannot be a cause of $C$. 
+That is, \eqref{redun} can be identified as non-minimal independently of all data. \eqref{redun} is not a well-formed causal model. It is not a MINUS-formula, or not an \emph{INUS solution}. 
+
+Correspondingly, a solution as \eqref{redun} or any other non-INUS expression cannot ever be inferred from strictly deterministic data. By contrast, it is possible that a necessary disjunction of sufficient conditions that does \emph{not} have INUS form is redundancy-free (or minimal) relative to indeterministic data. Hence, the solution attribute \code{inus} makes explicit whether an \emph{asf} or \emph{csf} is an INUS solution. Moreover, the \code{cna()} and the \code{csf()} functions both have an argument \code{inus.only} controlling whether only INUS solutions (MINUS-formulas) shall be built or whether non-INUS solutions shall be issued as well (if they are inferrable from data). As \code{inus.only} defaults to \code{TRUE}, standard calls of \code{cna()} and \code{csf()} will never yield non-INUS solutions, even if such solutions might be inferrable from data. But if the analyst is interested in non-(M)INUS structures as well, she can request corresponding solutions by \code{inus.only = FALSE}.
+
+
+
+To illustrate this, we first show that CNA  never infers non-(M)INUS solutions from deterministic data---even if \code{inus.only = FALSE}. For this purpose, we simulate ideal data from the non-INUS solution in \eqref{redun}; \code{cna(..., inus.only = FALSE)} will always, i.e.\ upon an open number of re-runs of the following code chunk, return $A \; + \; B \leftrightarrow C$, regardless of the fact that we select cases based on \eqref{redun} with \code{selectCases1("A + a*B <-> C", ...)}.
+<<inus1,  message = FALSE, warning=FALSE>>=
+dat.inu.1 <- allCombs(c(2, 2, 2)) -1
+dat.inu.2 <- some(dat.inu.1, 40, replace = TRUE)
+dat.inu.3 <- selectCases1("A + a*B <-> C",  con = 1, cov = 1, dat.inu.2)
+asf(cna(dat.inu.3, con = 1, cov = 1, inus.only = FALSE))
+@
+But in real-life discovery contexts, especially in observational studies, deterministic dependencies are the exception rather than the norm. Ordinary (observational) data are indeterministic, meaning that causes tend to be combined both with the presence and the absence of outcomes. In such discovery contexts, which can be simulated by lowering \code{con} and \code{cov} in \code{selectCases1()}, non-INUS expressions may count as minimally necessary disjunctions of minimally sufficient conditions. Correspondingly, if \code{inus.only} is set to \code{FALSE}, \code{cna()} may infer non-INUS solutions:
+<<inus2,  message = FALSE, warning=FALSE>>=
+set.seed(26)
+dat.inu.4 <- some(dat.inu.1, 40, replace = TRUE)
+dat.inu.5 <- selectCases1("A + a*B <-> C", con = .8, cov = .8, dat.inu.4)
+asf(cna(dat.inu.5, con = .8, cov = .8, inus.only = FALSE))
+@
+In indeterministic data, it can happen that $a$ is needed to lift the consistency of $B$ above the chosen \code{con} threshold. In such a case, $a$ can be argued to make a difference to $C$: only in conjunction with $a$ does $B$ reach \code{con}; and this holds notwithstanding the fact that $A$ itself also meets \code{con}. Or put differently, when the consistency of $A\rightarrow C$ is below 1, there exist cases where $A$ is instantiated and $C$ is not, which, in turn, yields that it becomes possible for a change from $A$ to $a$, while $B$ is constantly instantiated, to be associated with a change in $C$, meaning that $a$ can turn out to be a difference-maker for $C$.
+
+
+If a necessary disjunction of sufficient conditions turns out to be redundancy-free relative to indeterministic data even though it does not have (M)INUS form, the crucial follow-up question is whether the indeterminism in the data is due to insufficient control of background influences (i.e.\ to noise, measurement error, etc.) or to the inherent indeterministic nature of the physical processes themselves (as can e.g.\ be found in the domain of quantum mechanics, cf.\ \citealp{Albert:1992}). If the latter is the case, the difference-making relations stipulated by non-INUS solutions should be taken seriously and, hence, the argument \code{inus.only} should be set to its non-default value \code{FALSE}. By contrast, if the former is the case (i.e.\ the indeterminism is due to noise), the difference-making relations entailed by non-INUS solutions are mere artifacts of the noise in the data, meaning that they would disappear if the corresponding causal structure were investigated under more ideal discovery circumstances. In that case, which  obtains in the macro domains to which CNA is typically applied, the argument \code{inus.only} should be left at its default value \code{TRUE} both in \code{cna()} and \code{csf()}. %, such that non-INUS solutions are not built to being with. 
+If \code{inus.only} is switched to \code{TRUE} in the \code{cna()}-call from the previous code chunk, no solution is returned any more, that is, there does not exist a MINUS-formula satisfying \code{con} and \code{cov} for \code{dat.inu.5}:
+<<inus4,  message = FALSE, warning=FALSE>>=
+asf(cna(dat.inu.5, con = .8, cov = .8, inus.only = TRUE))
+@
+The function behind the solution attribute \code{inus} and the argument \code{inus.only} is also available as stand-alone function \code{is.inus()}. Logical redundancies as contained in non-INUS solutions can be eliminated by means of the function \code{minimalize()} (see the \pkg{cna} \href{https://cran.r-project.org/web/packages/cna/cna.pdf}{reference manual} for details). 
+
+
+\subsection[Exhaustiveness]{Exhaustiveness and faithfulness}\label{exhaustive}
+
+
+Exhaustiveness and faithfulness are two measures of model fit that quantify the degree of correspondence between the configurations that are, in principle, compatible with a solution and the configurations actually contained in the data from which that solution is derived. Exhaustiveness is high when \emph{all} or most configurations \emph{compatible} with a solution are in the data. More specifically, it amounts to the ratio of the number of configurations in the data that are compatible with a solution to the number of configurations in total that are compatible with a solution. To illustrate, consider \code{d.educate}, which contains all configurations that are compatible with the two \emph{csf} issued by \code{cna()} and \code{csf()}:
+<<d.edu1>>=
+printCols <- c("condition", "consistency", "coverage", "exhaustiveness")
+csf(cna(d.educate, details = "exhaust"))[printCols]
+@
+If, say, the first configuration in \code{d.educate} (\emph{viz.} $U\att D\att L\att G\att E$) is not observed or removed---as in \code{d.educate[-1,]}---, CNA still builds the same solutions (with perfect consistency and coverage). In that case, however, the resulting \emph{csf} are not exhaustively represented in the data, for one configuration that is compatible with both \emph{csf} is not contained therein.
+<<d.edu2>>=
+csf(cna(d.educate[-1,], details = "exhaust"))[printCols]
+@
+In a sense, faithfulness is the complement of exhaustiveness. It is high when \emph{no} or only few configurations that are \emph{incompatible} with a solution are in the data.
+More specifically, faithfulness amounts to the ratio of the number of configurations in the data that are compatible with a solution to the total number of configurations in the data. The two \emph{csf} resulting from \code{d.educate} also reach perfect faithfulness:
+<<d.edu3>>=
+printCols <- c("condition", "consistency", "coverage", "faithfulness")
+csf(cna(d.educate, details = "faithful"))[printCols]
+@
+If we add a configuration that is not compatible with these \emph{csf}, say, $U\att D\att l\att G\att e$ and lower the consistency threshold, the same solutions along with two others result---this time, however, with non-perfect faithfulness scores.
+<<d.edu4>>=
+csf(cna(rbind(d.educate,c(1,1,0,1,0)), con = .8, details = "f"))[printCols]
+@
+If both exhaustiveness and faithfulness are high, the configurations in the data are all and only the configurations that are compatible with the solution. Low exhaustiveness and/or faithfulness, by contrast, means that the data do not contain many configurations compatible with the solution and/or the data contain many configurations not compatible with the solution. In general, solutions with higher exhaustiveness and faithfulness scores are preferable over solutions with lower scores.
+
+
+
+
+\subsection[Coherence]{Coherence}
+
+
+Coherence is a measure for model fit that is custom-built for \emph{csf}. It measures the degree to which the \emph{asf} combined in a \emph{csf} cohere, that is, are instantiated together in the data rather than independently of one another. Coherence is intended to capture the following intuition. Suppose a \emph{csf} entails that $A$ is a sufficient cause of $B$, which, in turn, is entailed to be a sufficient cause of $C$. Corresponding data $\delta$ should be such that the $A-B$ link of that causal chain and the $B-C$ link are either both instantiated or both not instantiated in the cases recorded in $\delta$. By contrast, a case in $\delta$ such that, say, only the $A-B$ link is instantiated but the $B-C$ link is not, pulls down the coherence of that \emph{csf}. The more such non-cohering cases are contained in $\delta$, the lower the overall coherence score of the \emph{csf}.  
+
+
+Coherence is more specifically defined as the ratio of the number of cases satisfying all \emph{asf} contained in a \emph{csf} to the number of cases satisfying at least one \emph{asf} in the \emph{csf}. More formally, let a \emph{csf} contain $asf_1, asf_2, \ldots, asf_n$, coherence then amounts to (where $|\ldots|_\delta$ represents the cardinality of the set of cases in $\delta$ instantiating the corresponding expression): $$\frac{\left\vert{\,asf_1\att asf_2 \att \ldots\att asf_n\,}\right\vert_\delta}{\left\vert{\,asf_1 + asf_2 +\ldots+ asf_n\,}\right\vert_\delta}$$  
+
+To illustrate, we add a case of type $U\att d\att L\att g\att e$ to \code{d.educate}. 
+When applied to the resulting data (\code{d.edu.exp1}), \code{cna()} and \code{csf()} issue three \emph{csf}. 
+<<rownames, results=hide, echo=F>>=
+rownames(d.educate) <- 1:8
+@
+<<coherence>>=
+d.edu.exp1 <- rbind(d.educate, c(1,0,1,0,0))
+printCols <- c("condition", "consistency", "coverage", "coherence")
+csf(cna(d.edu.exp1, con = .8, details = "cohere"))[printCols]
+@
+In the added case, none of these three \emph{csf} cohere, as only one of their component \emph{asf} is instantiated. Moreover, for the second \emph{csf} there is yet another non-cohering case in \code{d.edu.exp1} (case \#7). 
+
+Coherence is an additional parameter of model fit that allows for selecting among multiple solutions: the higher the coherence score of a \emph{csf}, the better the overall model fit. In \code{d.edu.exp1}, thus, the first and the third \emph{csf} are preferable over the second solution subject to their superior coherence.
+
+
+\subsection[Structural redundancies and partial structural redundancies]{Structural redundancies and partial structural redundancies} \label{redundant}
+
+
+
+It is not only possible that 
+Boolean expressions describing the behavior of single outcomes contain redundant proper parts, but such expressions can themselves---as a whole---be redundant in superordinate structures. For instance, when three \emph{asf} are conjunctively concatenated to \emph{asf}$_1\,\att\,$\emph{asf}$_2\,\att\,$\emph{asf}$_3$ in the first step of stage 4 of the CNA algorithm (see section \ref{algo}), it can happen that \emph{asf}$_1\,\att\,$\emph{asf}$_2\,\att\,$\emph{asf}$_3$ is logically equivalent to \emph{asf}$_1\,\att\,$\emph{asf}$_2$, meaning that \emph{asf}$_3$ makes no difference to accounting for the behavior of the outcomes in that structure and is, thus, redundant. We speak of a \emph{structural redundancy} in that context (for a detailed discussion see \citealp{BaumFalk}).
+
+
+
+This type of redundancy is best introduced with a concrete example. Consider the following complex MINUS-formula:
+\begin{equation}(A\att B + C \; \leftrightarrow \; D)\;\att\;(a + c \;\leftrightarrow \; E)
+\label{red1} \end{equation}
+\eqref{red1} represents a causal structure such that $A\att B$ and $C$ are two alternative causes of $D$ and $a$ and $c$ are two alternative causes of $E$. That is, factors $A$ and $C$ are positively relevant to $D$ and negatively relevant to $E$. 
+A possible interpretation of these factors might be the following. Suppose a city has two power stations: a wind farm and a nuclear plant. Let $A$ express that the wind farm is operational and $C$ that the nuclear plant is operational and let operationality be sufficient for a nuclear plant to produce electricity, while a wind farm produces electricity provided it is operational and there is wind ($B$). Hence, the wind farm being operational while it is windy or the nuclear plant being operational ($A\att B + C$) are two alternative causes of the city being power supplied ($D$). Whereas the wind farm or the nuclear plant not being operational ($a + c$) are two alternative causes of an alarm being triggered ($E$).
+
+
+The following data (\code{dat.redun}) comprise all and only the configurations that are compatible with \eqref{red1}:
+<<redundant1>>=
+(dat.redun <- ct2df(selectCases("(A*B + C <-> D)*(a + c <-> E)")))
+@
+The problem now is that \code{dat.redun} does not only entail the two \emph{asf} contained in \eqref{red1}, \emph{viz.}\ \eqref{rdnD} and \eqref{rdnE}, but also a third one, \emph{viz.}\ \eqref{rdnC}:
+\begin{align}
+A\att B+ C \; \leftrightarrow \; D\label{rdnD}\\
+a + c \;\leftrightarrow \; E \label{rdnE}\\
+a\att D + e\; \leftrightarrow \; C  \label{rdnC}
+\end{align}
+That means the behavior of factor $C$, which is exogenous in the data-generating structure \eqref{red1}, can be expressed as a redundancy-free Boolean function of its two effects $D$ and $E$. \eqref{rdnC}, hence, amounts to an upstream (or backtracking) \emph{asf}, which, obviously, must not be causally interpreted. Indeed, when \eqref{rdnC} is embedded in the superordinate dependency structure \eqref{ex15} that results from a conjunctive concatenation of all \emph{asf} that follow from \code{dat.redun}, it turns out that \eqref{rdnC} is redundant. The reason is that \eqref{ex15} has a proper part which is logically equivalent to \eqref{ex15}, namely \eqref{red1}. 
+\begin{equation}
+(A\att B + C \; \leftrightarrow \; D)\;\att\;(a + c \;\leftrightarrow \; E)\;\att\;(a\att D + e\; \leftrightarrow \; C) \label{ex15}
+\end{equation}
+\eqref{ex15} and \eqref{red1} state exactly the same about the behavior of the factors in \code{dat.redun}, meaning that \eqref{rdnC} makes no difference to that behavior over and above \eqref{rdnD} and \eqref{rdnE}. By contrast, neither \eqref{rdnD} nor \eqref{rdnE} can be eliminated from \eqref{ex15} such that the remaining expression is logically equivalent to \eqref{ex15}. Both of these downstream \emph{asf} make their own distinctive difference to the behavior of the factors in \code{dat.redun}. The upstream \emph{asf} \eqref{rdnC}, however, is a \emph{structural redundancy} in \eqref{ex15}. \eqref{ex15} must not be causally interpreted because it is not a complex MINUS-formula (see pp. 6-7 above).
+
+
+Accordingly, in its default setting, the \code{csf()} function, which performs stage 4 of the CNA algorithm, removes all structurally redundant \emph{asf} from conjunctions of \emph{asf}; that is, when applied to \code{dat.redun} it returns \eqref{red1}, not \eqref{ex15}:
+<<redundant2>>=
+printCols <- c("condition", "consistency", "coverage", "inus", "redundant")
+csf(cna(dat.redun, details = "r"))[printCols]
+@
+In previous versions (< 3.0) of the \pkg{cna} package, structurally redundant \emph{asf} were not automatically removed but only marked by means of the solution attribute \code{redundant}. The solutions with \code{redundant = TRUE} then had to be further processed by the function \code{minimalizeCsf()}. To reproduce that old behavior, \code{csf()} now has an additional argument \code{minimalizeCsf}, which defaults to \code{TRUE}. If set to \code{FALSE}, structural redundancies are not automatically eliminated. Accordingly, the following call returns \eqref{ex15} and marks it as containing a structural redundancy---and thus as not having (M)INUS form:
+<<redundant3>>=
+csf(cna(dat.redun, details = "r"), inus.only = FALSE, 
+    minimalizeCsf = FALSE)[printCols]
+@
+As \emph{csf} with \code{redundant = TRUE} must never be causally interpreted, the setting \code{minimalizeCsf = FALSE} is deprecated. It is mainly kept in the package for backwards compatibility and developing purposes. Correspondingly, the solution attribute \code{redundant} is no longer relevant, as \code{cna()} and \code{csf()} no longer output \emph{csf} with structural redundancies in the first place. 
+
+
+
+\medskip
+While structural redundancies of whole \emph{asf} can occur in both deterministic and indeterministic data, the latter type of data may induce yet another, but related, type of redundancy. When data do not feature strict Boolean dependencies, building \emph{csf} from the inventory of \emph{asf} recovered in stage 3 of the CNA algorithm may lead to the redundancy of proper parts of \emph{asf}---parts which are not redundant when those \emph{asf} are considered in isolation. That is, a complex structure can entail that one of its \emph{asf} has a redundant proper part, which redundancy, however, is not visible in the data. We call this a \emph{partial structural redundancy}. 
+
+Again, a concrete example helps to clarify the problem. Consider solution \#6 resulting from the following analysis of data \code{d.autonomy}:
+<<redundant4a, results=hide, echo=F>>=
+options(width=80)
+@
+<<redundant4>>=
+printCols <- c("condition", "consistency", "coverage", "inus")
+csf(fscna(d.autonomy, ordering = list("AU"), con = .9, cov = .94, 
+   maxstep = c(2, 2, 8), inus.only = FALSE))[printCols]
+@
+Solution \#6 is logically equivalent to \eqref{equiv}:
+\begin{equation}\label{equiv} 
+(SP\att RE \,+\, ci\att cn\; \leftrightarrow\; EM)\,\att\,(ci\, +\, EM \;\leftrightarrow \;SP)
+\end{equation}
+That is, if the behavior of $EM$ is regulated by the first \emph{asf} in \eqref{equiv}, $RE$ in solution \#6---for pure logical reasons---cannot make a difference to $SP$ and, hence, is redundant. That partial structural redundancy, however, is not visible in the data \code{d.autonomy} where $EM$ alone (i.e.\ without $RE$) is not sufficient for $SP$ with consistency $0.9$, which is the threshold chosen for the above analysis:
+<<redundant5>>=
+condTbl("EM -> SP", fsct(d.autonomy))
+@
+Hence, the data suggest that $RE$ makes a difference to $SP$, to the effect that meeting \code{con} $ = 0.9$ for all \emph{msc} requires $EM\att RE$ (and not $EM$ alone) to be treated as cause of $SP$. At the same time, the  equivalence of solution \#6 and \eqref{equiv} entails it to be logically excluded that $RE$ is a difference-maker of $SP$ in the context of solution \#6. The result is a contradiction: the data call for including $RE$ as cause of $SP$, whereas the  structure inferred from that data entails not to include $RE$.
+That cannot be resolved by modifying solution \#6; rather, that solution is not a well-formed MINUS-formula and cannot be turned into one that would meet \code{con}. It must be eliminated from the output. This is exactly what happens if \code{cna()} and \code{csf()} are run with the default \code{inus.only = TRUE}:
+<<redundant6>>=
+csf(fscna(d.autonomy, ordering = list("AU"), con = .9, cov = .94, 
+   maxstep = c(2, 2, 8), inus.only = TRUE))[printCols]
+@
+In sum, as of version 3.0 of the \pkg{cna} package, both structural and partial structural redundancies are automatically resolved and eliminated. The functions \code{cna()} and \code{csf()} now exclusively output MINUS-formulas (i.e.\ INUS solutions).
+
+\subsection[Cycles]{Cycles} \label{cycles}
+
+Detecting causal cycles is one of the most challenging tasks in causal data analysis---in all methodological traditions. One reason is that factors in a cyclic structure are so highly interdependent that, even under optimal discovery conditions, the diversity of (observational) data tends to be too limited to draw informative conclusions about the data-generating structure. Various methods in fact assume that analyzed data-generating structures are acyclic (most notably, Bayes nets methods, cf.\ \citealp{Spirtes2000}).
+
+\code{cna()} and \code{csf()} output cyclic \emph{csf} if they fit the data, and the optional solution attribute \code{cyclic} identifies those \emph{csf} that contain a cyclic substructure. A causal structure has a cyclic substructure if, and only if, it contains a directed causal path from at least one cause back to itself. The MINUS theory spells this criterion out more explicitly as follows: 
+\begin{description}\item[Cycle]
+A complex MINUS-formula $\mathbf{m}$ has a cyclic substructure if, and only if, $\mathbf{m}$ contains a sequence $\langle Z_1, Z_2,\ldots, Z_n\rangle$ such that every $Z_i$ is contained in an atomic MINUS-formula  of $Z_{i+1}$ and $Z_1=Z_n$ in $\mathbf{m}$.
+\end{description}
+To illustrate with a simple example, \eqref{cycl} contains the cyclic sequence $\langle A, B, A\rangle$ and, thus, represents a causal cycle:
+\begin{equation}\label{cycl}
+(A\att c \, + \, D\att E\; \leftrightarrow\; B)\, \att \, (B\att F\, +\, G\att h \;\leftrightarrow\; A)\end{equation}
+Typically, when cyclic models fit the data, the output of \code{cna()} and \code{csf()}  is massively ambiguous. Therefore, if there are independent reasons to assume that the data are not generated by a cyclic structure, both \code{cna()} and \code{csf()} have the argument \code{acyclic.only}, which, if set to its non-default value \code{TRUE}, prevents solutions with cycles from being returned and, thereby, reduces model ambiguities. For example, by switching \code{acyclic.only} from \code{FALSE} to \code{TRUE} in the following analysis, the solution space is reduced from 4 to 1:
+<<cycle1>>=
+printCols <- c("condition", "cyclic")
+csf(fscna(d.pacts, con = .8, cov = .8, acyclic.only = FALSE, 
+   details = "cy"))[printCols]
+csf(fscna(d.pacts, con = .8, cov = .8, acyclic.only = TRUE, 
+   details = "cy"))[printCols]
+@
+
+The \code{cycle.type} argument---also available in both \code{cna()} and \code{csf()}---controls whether a cyclic sequence $\langle Z_1, Z_2,\ldots, Z_n\rangle$ is composed of factors (\code{cycle.type = "factor"}), which is the default, or factor values (\code{cycle.type = "value"}). To illustrate, if \code{cycle.type = "factor"}, \eqref{cycl2} counts as cyclic: 
+\begin{equation}\label{cycl2} (A\, +\, B\; \leftrightarrow \;C)\,*\,(c\, +\, D\; \leftrightarrow\; A)\end{equation} The factor $A$ (with value 1) appears in an \emph{asf} of $C$ (with value 1), and the factor $C$ (with value 0) appears in an \emph{asf} of $A$ (with value 1). But if \code{cycle.type = "value"}, \eqref{cycl2} does not pass as cyclic. Although the factor value 1 of $A$ appears in an \emph{asf} of the factor value 1 of $C$, that same value of $C$ does not appear in an \emph{asf} of $A$; rather, the value 0 of $C$ appears in the \emph{asf} of $A$. 
+
+The function behind the solution attribute \code{cyclic} and the corresponding arguments is also available as stand-alone function \code{cyclic()} (see the \pkg{cna} \href{https://cran.r-project.org/web/packages/cna/cna.pdf}{reference manual} for details).
+
+
+\section[Interpreting the output]{Interpreting the output}
+
+The ultimate output of \code{cna()} and \code{csf()} is a set \textbf{\textsc{csf}$_{\mathbf{O}}$} of \emph{csf}---which may be identical to \emph{asf}, if the data comprise only one endogenous factor. The causal inferences that are warranted based on the data input \code{x} relative to the chosen \code{con} and \code{cov} thresholds and the provided \code{ordering} and \code{maxstep} have to be read off that set \textbf{\textsc{csf}$_{\mathbf{O}}$}. This section explains this final interpretative step of a CNA analysis.
+
+
+%
+There are three possible types of outputs:
+\begin{enumerate}\itemsep0pt
+\item \textbf{\textsc{csf}$_{\mathbf{O}}$} contains no \emph{csf} (and, correspondingly, no \emph{asf});
+\item \textbf{\textsc{csf}$_{\mathbf{O}}$} contains exactly one \emph{csf} (and, correspondingly, exactly one \emph{asf} for each endogenous factor);
+\item \textbf{\textsc{csf}$_{\mathbf{O}}$} contains more than one \emph{csf}  (and, correspondingly, more than one \emph{asf} for at least one endogenous factor).
+\end{enumerate}
+
+\subsection[No solution]{No solution}
+As indicated in section \ref{maxstep}, a null result can have two sources: either the data are too noisy to render the chosen \code{con} and \code{cov} thresholds satisfiable or the selected \code{maxstep} is too low. If increasing \code{maxstep} does not yield solutions at the chosen \code{con} and \code{cov} thresholds, the latter may be lowered, preferably with a concomitant robustness analysis as described in section \ref{cons}. If no solutions are recovered at \code{con = cov = .7}, the data are too noisy to warrant reliable causal inferences. Users are then advised to go back to the data and follow standard guidelines (known from other methodological frameworks) to improve data quality, e.g.\ by integrating further relevant factors into the analysis, enhancing the control of unmeasured causes, expanding the population of cases or disregarding inhomogeneous cases, correcting for measurement error, supplying missing values, etc. 
+
+It must be emphasized again (see section \ref{inference}) that, under normal circumstances, an empty \textbf{\textsc{csf}$_{\mathbf{O}}$} does not warrant the conclusion that the factors contained in the data input \code{x} are causally irrelevant to one another. The inference to causal irrelevance is much more demanding than the inference to causal relevance. 
+A null result only furnishes evidence for causal irrelevance if there are independent reasons to assume that all potentially relevant factors are measured in \code{x} and that \code{x} exhausts the space of empirically possible configurations.
+ 
+
+
+\subsection[A unique solution]{A unique solution}
+That \textbf{\textsc{csf}$_{\mathbf{O}}$} contains  exactly one \emph{csf} is the optimal completion of a CNA analysis. It means that the data input \code{x} contains sufficient evidence for a determinate causal inference. The factor values on the left-hand sides of ``$\leftrightarrow$'' in the \emph{asf} constituting that \emph{csf} can be interpreted as causes of the factor values on the right-hand sides. % of ``$\leftrightarrow$''
+Moreover, their conjunctive, disjunctive, and sequential groupings reflect the actual properties of the data-generating causal structure. 
+
+Plainly, as with any other method of causal inference, the reliability of CNA's causal conclusions essentially hinges on the quality of the processed data. If the data satisfy homogeneity (see section \ref{inference}), a unique solution is guaranteed to correctly reflect the data-generating structure. With increasing data deficiencies (noise, measurement error, etc.), the (inductive) risk of committing causal fallacies inevitably increases as well. For details on the degree to which the reliability of CNA's causal conclusions decreases with increasing data deficiencies see \citet{BaumgartnerfsCNA} and \citet{robustness}. 
+
+
+
+
+
+\subsection[Multiple solutions]{Multiple solutions}\label{ambigu}
+
+If \textbf{\textsc{csf}$_{\mathbf{O}}$} has more than one element, the processed data underdetermine their own causal modeling. That means the evidence contained in the data is insufficient to determine which of the solutions contained in \textbf{\textsc{csf}$_{\mathbf{O}}$} corresponds to the data-generating causal structure. An output set of multiple solutions $\{csf_1, csf_2, ..., csf_n\}$ is to be interpreted \emph{disjunctively}: the data-generating causal structure is %correctly reflected by 
+$$csf_1\; \text{ OR }\; csf_2 \;\text{ OR }\; ... \;\text{ OR }\; csf_n$$ but, based on the evidence contained in the data, it is ambiguous which disjunct is actually operative. 
+
+That empirical data underdetermine their own causal modeling is a very common phenomenon in all methodological traditions (\citealp{simon1954}; \citealp[59-72]{Spirtes2000};  \citealp{Kalisch2012}; \citealp{eberhardt2013}; \citealp{BaumgartnerAmbigu}). But while some methods are designed to automatically generate all fitting models, e.g.\ Bayes nets methods and configurational comparative methods, other methods rely on search heuristics that zoom in on one best fitting model only, e.g.\ logic regression or regression analytic methods, more generally. Whereas model ambiguities are a thoroughly investigated topic in certain traditions, e.g.\ Bayes nets methods, they are only beginning to be studied in the literature on configurational comparative methods, in particular on QCA. There is still an unfortunate practice of model-underreporting in QCA studies. In fact, most QCA software regularly fails to find all data-fitting models. The only currently available QCA program that recovers the whole model space by default is \pkg{QCApro} \citep{Thiem2018}.
+
+CNA---on a par with any other method---cannot disambiguate what is empirically underdetermined. Rather, it draws those and only those causal conclusions for which the data \emph{de facto} contain evidence. In cases of empirical underdetermination it therefore renders transparent all data-fitting models and leaves the disambiguation up to the analyst.
+
+That \code{cna()} and \code{csf()} issue multiple solutions for some data input \code{x} does not necessarily mean that \code{x} is deficient. In fact, even data that is \emph{ideal} by all quality standards of configurational causal modeling can give rise to model ambiguities. The following simulates a case in point:
+<<ambigu1>>=
+dat7 <- selectCases("a*B + A*b + B*C <-> D")
+printCols <- c("condition", "consistency", "coverage", "inus",
+  "exhaustiveness")
+csf(cna(dat7, details = c("exhaust", "inus")))[printCols]
+@
+\code{dat7} induces perfect consistency and coverage scores and is free of fragmentation; it contains all and only the configurations that are compatible with the target structure, which accordingly is exhaustively and faithfully reflected in \code{dat7}. Nonetheless, two \emph{csf} can be inferred. The causal structures expressed by these two \emph{csf} generate the exact same data, meaning they are \emph{empirically indistinguishable}. %There simply is no fact of the matter whether 
+
+Although, a unique solution is more determinate and, thus, preferable to multiple solutions, the fact that \code{cna()} and \code{csf()} generate multiple equally data-fitting models is not generally an uninformative result. In the above example, both resulting \emph{csf} feature $a\att B \, + \, A\att b$. That is, the data contain enough evidence to establish the joint relevance of $a\att B$ and of $A\att b$ for $D$ (on alternative paths). What is more, it can be conclusively inferred that $D$ has a further complex cause, \emph{viz.}\ either $A\att C$ or $B\att C$. It is merely an open question which of these candidate causes is actually operative.
+
+That different model candidates have some \emph{msc} in common is a frequent phenomenon. Here's a real-life example, where two alternative causes, \emph{viz.} $C\id 1\; + \; F\id 2$, are present in all solutions:
+<<ambigu2>>=
+csf(mvcna(d.pban, cov = .95, maxstep = c(3, 5, 10)))["condition"]
+@
+Such commonalities can be reported as conclusive results.
+
+Moreover, even though multiple solutions do not permit pinpointing the causal structure behind an outcome, they nonetheless allow for constraining the range of possibilities. In a context where the causes of some outcome are unknown it amounts to a significant gain of scientific insight when a study can show that the structure behind that outcome has one of a small number of possible forms, even if it cannot determine which one exactly.
+
+However, the larger the amount of data-fitting solutions and the lower the amount of commonalities among them, the lower the overall informativeness of a CNA output. Indeed, the ambiguity ratio in configurational causal modeling can reach dimensions where nothing at all can be concluded about the data-generating structure any more. Hence, a highly ambiguous result is on a par with a null result. A telling example of this sort is \code{d.volatile} which was discussed in section \ref{maxstep} above (cf.\ also \citealp{BaumgartnerAmbigu}).
+
+As the problem of model ambiguities is still underinvestigated in the CNA literature, there do not yet exit explicit guidelines for how to proceed in cases of ambiguities. The model fit scores and solution attributes reported in the output objects of \code{cna()} and \code{csf()} often provide some leverage to narrow down the space of model candidates. For instance, if, in a particular discovery context, there is reason to assume that data have been collected as exhaustively as possible, to the effect that most configurations compatible with an investigated causal structure should be contained in the data, the model space may be restricted to \emph{csf} with a high score on exhaustiveness. By way of example, for \code{d.pacts} a total of 10 \emph{csf} are built at \code{con = cov = .8}:
+<<ambigu3>>=
+ana.pact.1 <- fscna(d.pacts, ordering = list("PACT"), con = .8, cov = .8,
+  maxstep = c(4, 5, 15), details = TRUE)
+csf.pact.1 <- csf(ana.pact.1, Inf)
+length(csf.pact.1$condition)
+@
+If only \emph{csf} with \code{exhaustiveness >= .85} are considered, the amount of candidate \emph{csf} is reduced to 6:
+<<ambigu4>>=
+csf.pact.1.ex <- subset(csf.pact.1, exhaustiveness >= .85)
+length(csf.pact.1.ex$condition)
+@
+To also resolve this final ambiguity, coherence may be brought to bear. The higher the coherence of a \emph{csf}, the higher its overall model fit. In the above example, if coherence is required to be as high as possible, only one \emph{csf} remains:
+<<ambigu5>>=
+csf.pact.1.ex.co <- subset(csf.pact.1.ex, 
+  coherence == max(csf.pact.1.ex$coherence))
+length(csf.pact.1.ex.co$condition)
+@
+
+
+
+Clearly though, the fit parameters and solution attributes provided by \code{cna()} and \code{csf()} will not always provide a basis for ambiguity reduction. The evidence contained in data may simply be insufficient to draw determinate causal conclusions. Maybe background theories or case knowledge can be brought to bear to select among the model candidates (see section \ref{back}). Nevertheless, the most important course of action in the face of ambiguities is to \emph{render them transparent}. By default, readers of CNA publications should be presented with all data-fitting models and if space constraints do not permit so, readers must at least be informed about the degree of ambiguity. Full transparency with respect to model ambiguities, first, allows readers to determine for themselves how much confidence to have in the conclusions drawn in a study, and second, paves the way for follow-up studies that are purposefully designed to resolve previously encountered ambiguities.
+
+
+
+\subsection["Back to the cases"]{``Back to the cases''}\label{back}
+
+
+When CNA is applied to small- or intermediate-$N$ data, researchers may be familiar with some or all of the cases in their data. For instance, they may know that in a particular case certain causes of an outcome are operative while others are not. Or they may know why certain cases are outliers or why others feature an outcome but none of the potential causes. A proper interpretation of a CNA result may therefore require that the performance of the obtained models be assessed on the case level and against the background of the available case knowledge.  
+
+The function that facilitates the evaluation of recovered \emph{msc}, \emph{asf}, and \emph{csf} on the case level is \code{condition(x, ct, type)}. Its first input is a character vector \code{x} specifying Boolean expres\-sions---typically \emph{asf} or \emph{csf}---and its second input a configuration table \code{ct}. In case of $cs$ or $mv$ data, the output of \code{condition()} then highlights in which cases \code{x} is instantiated, whereas for $fs$ data, the output lists relevant membership scores in exogenous and endogenous factors. Moreover, if \code{x} is an \emph{asf} or \emph{csf}, \code{condition()} issues their consistency and coverage scores. 
+
+Instead of a configuration table, it is also possible to give \code{condition()} a data frame as second input. In this case, the data type must be specified using the \code{type} argument. To abbreviate the specification of the data type, the functions \code{cscond(x, ct)}, \code{mvcond(x, ct)}, and \code{fscond(x, ct)} are available as shorthands.
+
+To illustrate, we re-analyze \code{d.autonomy}:
+<<back1, results=hide>>=
+dat.aut.2 <- d.autonomy[15:30, c("AU","EM","SP","CO","RE","DE")]
+ana.aut.3 <- fscna(dat.aut.2, con = .91, cov = .91,
+  ordering = list(c("RE", "DE","SP","CO"),"EM","AU"),
+  strict = TRUE)
+fscond(csf(ana.aut.3)$condition, dat.aut.2)
+@
+That function call returns a list of three tables, each corresponding to one of the three \emph{csf} contained in \code{ana.aut.3} and breaking down the relevant \emph{csf} to the case level by contrasting the membership scores in the left-hand and right-hand sides of the component \emph{asf}. A case with a higher left-hand score is one that pulls down consistency, whereas a case with a higher right-hand score pulls down coverage. For each \emph{csf}, \code{condition()} moreover returns overall consistency and coverage scores as well as consistency and coverage scores for the component \emph{asf}.
+
+The three \emph{csf} in \code{ana.aut.3} differ only in regard to their component \emph{asf} for outcome $AU$. The function \code{group.by.outcome(condlst)}, which takes an output object \code{condlst} of \code{condition()} as input, lets us more specifically compare these different \emph{asf} with respect to how they fare on the case level. 
+<<back2>>=
+group.by.outcome(fscond(asf(ana.aut.3)$condition, dat.aut.2))$AU
+@
+The first three columns of that table list the membership scores of each case in the left-hand sides of the \emph{asf}, and the fourth column reports the membership scores in $AU$. The table shows that the first \emph{asf} ($SP \leftrightarrow AU$) outperforms the other \emph{asf} in cases ENacg3/6/7, ENacto1, ENacosa1, and ENacat3, while it is outperformed by another \emph{asf} in cases ENacg2 and ENacg4. In all other cases, the three solution candidates fare equally. If prior knowledge is available about some of these cases, this information can help to choose among the candidates. For instance, if it is known that in case ENacg7, no other relevant factors are operative than the ones contained in \code{dat.aut.2}, it follows that ENacg7's full membership in $AU$ must be brought about by $SP$---which, in turn, disqualifies the other solutions. By contrast, if the absence of other relevant factors can be assumed for case ENacg4, the \emph{asf} featuring $SP$ as cause of $AU$ is disqualified.
+
+\section[Benchmarking]{Benchmarking}\label{bench}
+
+
+Benchmarking the reliability of a method of causal inference is an essential element of method development and validation. In a nutshell, it amounts to testing to what degree the benchmarked method recovers the true data-generating structure $\Delta$ or proper substructures of $\Delta$ from data of varying quality. As $\Delta$ is not normally known in real-life discovery contexts, the reliability of a method cannot be assessed by applying it to real-life data. Instead, reliability benchmarking is done in so-called \emph{inverse searches}, which reverse the order of causal discovery as it is commonly conducted in scientific practice. An inverse search comprises three steps:
+\begin{enumerate}\itemsep0pt\item[(1)] a data-generating causal structure $\Delta$ is presupposed/drawn (as ground truth),
+\item[(2)] artificial data $\delta$ is simulated from $\Delta$, possibly featuring various deficiencies (e.g. noise, fragmentation, measurement error etc.),  
+\item[(3)] $\delta$ is processed by the tested method in order to check whether its output meets the tested reliability benchmark. \end{enumerate} 
+
+A benchmark test can measure various properties of a method's output, for instance, whether it is fallacy-free, correct or complete, etc. 
+As real-life data are often fragmented, methods for MINUS discovery typically do not infer the complete $\Delta$ from a real-life $\delta$ but only proper substructures thereof (see section \ref{inference}). Thus, since completeness is not CNA's primary aim, it should likewise not be the primary reliability benchmark for CNA; it is more important that its output scores high on \emph{fallacy-freeness} and \emph{correctness}. 
+
+CNA's output, \emph{viz.}\ the issued set \textbf{\textsc{csf}$_{\mathbf{O}}$} of \emph{csf}, is fallacy-free iff it does not entail a causal claim that is false of the ground truth $\Delta$ (i.e.\ no false positive). 
+That can be satisfied in two ways: either (i) \textbf{\textsc{csf}$_{\mathbf{O}}$} is empty, meaning no causal inferences are drawn, or (ii) \textbf{\textsc{csf}$_{\mathbf{O}}$} contains at least one\footnote{Recall from section \ref{ambigu} that an output containing multiple solutions is to be interpreted disjunctively; and a disjunction of solutions is true iff at least one solution is true.} solution $\mathbf{m}_i$ that is correct of $\Delta$, which is the case iff $\mathbf{m}_i$ is a submodel of $\Delta$ (for details on the submodel relation see section \ref{inference}). So, \textbf{\textsc{csf}$_{\mathbf{O}}$} satisfies the fallacy-freeness benchmark iff it satisfies conditions (i) or (ii). With increasing stringency, \textbf{\textsc{csf}$_{\mathbf{O}}$} can then be said to be correct of $\Delta$ iff condition (ii) is satisfied, meaning \textbf{\textsc{csf}$_{\mathbf{O}}$} actually contains at least one solution $\mathbf{m}_i$ that is a submodel of $\Delta$, and thus correct. Finally, completeness measures the informativeness of \textbf{\textsc{csf}$_{\mathbf{O}}$}, that is, the ratio of causal properties of $\Delta$ captured and revealed by the solutions in \textbf{\textsc{csf}$_{\mathbf{O}}$}.
+
+
+
+The \pkg{cna} package provides all the functionalities necessary to conduct inverse searches that are tailor-made to benchmark the output of \code{cna()} and \code{csf()}. The functions \code{randomAsf()} and \code{randomCsf()} can be used to draw a data-generating structure $\Delta$ in step (1). \code{randomAsf(x)} generates a structure with a single outcome (i.e.\ a random \emph{asf}) and \code{randomCsf(x)} an acyclic multi-outcome structure (i.e.\ a random \emph{csf}), where \code{x} is a data frame or \code{configTable} defining the factors and their possible values from which the structures are drawn. The function \code{selectCases()}, which has already been discussed in section \ref{simul}, can be employed to simulate data $\delta$ in the course of step (2). Finally, \code{is.submodel(x, y)} determines whether models are related by the submodel relation, which, in turn, helps in assessing whether \textbf{\textsc{csf}$_{\mathbf{O}}$} is true of $\Delta$. 
+\code{is.submodel()} takes a character vector \code{x} of \emph{asf} or \emph{csf} as first input and tests whether the elements of that vector are submodels of \code{y}, which, in turn, is a character string of length 1 representing the target \emph{asf} or \emph{csf} (i.e.\ $\Delta$). Moreover, the function \code{identical.model(x, y)} is available to check whether \code{x} (which must have length 1) and \code{y} are identical.
+
+
+
+
+Against that background, the following might be a core of a fallacy-freeness benchmark test that simulates multi-value data with 20\% missing observations and 10\% random noise (i.e.\ cases incompatible with the ground truth), and that runs \code{cna()} and \code{csf()} at \code{con} $=$ \code{cov} $=$ $0.7$ without giving the algorithm any prior causal information in an ordering.
+<<details, eval=F>>=
+# Draw a ground truth.
+fullData <- mvct(allCombs(c(4,4,4,4,4)))
+groundTruth <- randomCsf(fullData, n.asf = 2, compl = 2)
+# Generate ideal data for groundTruth.
+idealData <- ct2df(selectCases(groundTruth, fullData))
+# Introduce 20% fragmentation.
+fragData <- idealData[-sample(1:nrow(idealData), nrow(idealData)*0.2), ] 
+# Introduce 10% random noise (cases incompatible with ground truth).
+incompCases <- dplyr::setdiff(ct2df(fullData), idealData)
+x <- rbind(ct2df(fullData[sample(1:nrow(fullData), 
+   nrow(incompCases) * 0.1), ]), fragData)  
+# Run CNA without an ordering.
+csfs <- csf(mvcna(x, con = .7, cov = .7, maxstep = c(3, 3, 12)))
+# Check whether no causal fallacy (no false positive) is returned.
+if(length(csfs$condition)==0) {
+  TRUE } else {any(is.submodel(csfs$condition, groundTruth))}
+@
+Every re-run of this code chunk generates a different ground truth and different data; in some runs CNA passes the test, in others it does not. To determine CNA's fallacy-freeness ratio under these test conditions, the above core must be embedded in a suitable test loop. To estimate CNA's overall fallacy-freeness ratio, the test conditions should be systematically varied by, for instance, varying the complexity of the ground truth, the degree of fragmentation and noise, the consistency and coverage thresholds, or by drawing the noise with a  bias or supplying CNA with more or less prior causal information via an ordering. Correctness and completeness tests can be designed analogously, by suitably modifying the last line that evaluates the solution object \code{csfs}. For single-outcome structures (\emph{asf}), benchmark tests with some of the above variations have been conducted in \citep{BaumgartnerfsCNA} and \citep{CNA_LR}; corresponding tests for multi-outcome structures (\emph{csf}) have been carried out in \citep{robustness}.
+
+
+
+
+
+
+\section{Summary}
+
+This vignette introduced the theoretical foundations as well as the main functions of the \pkg{cna} \proglang{R} package for configurational causal inference and modeling with Coincidence Analysis (CNA). Moreover, we explained how to interpret the output of CNA, provided some guidance for how to use various model fit parameters for the purpose of ambiguity reduction, and supplied a benchmarking template. 
+
+CNA is currently the only method searching for (M)INUS causation in data that builds multi-outcome models and, hence, not only orders causes conjunctively and disjunctively but also sequentially. %conjunctivity and disjunctivity, but also sequentiality.
+Moreover, it builds causal models on the basis of a bottom-up algorithm that is unique among configurational comparative methods and gives CNA an edge over QCA not only with respect to multi- but also single-outcome structures. Overall, CNA constitutes a powerful methodological alternative for researchers interested in (M)INUS structures and the Boolean dimensions of causality, more generally. The \pkg{cna} package makes that inferential power available to end-users.
+
+\section*{Acknowledgments}
+We are grateful to Alrik Thiem, Martyna Swiatczak, and Jonathan Freitas for helpful comments on earlier drafts of this vignette, and we thank the Toppforsk-program of the Bergen Research Foundation and the University of Bergen (grant nr.\ 811886) and the Swiss National Science Foundation (grant nr.\ PP00P1\_144736/1) for generous support of this research.
+
+
+ % \bibliography{integra,bibliography,baumgartner-thiem}
+\begin{thebibliography}{47}
+\newcommand{\enquote}[1]{``#1''}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem[{Albert(1992)}]{Albert:1992}
+Albert DZ (1992).
+\newblock \emph{Quantum Mechanics and Experience}.
+\newblock Harvard University Press, Cambridge.
+
+\bibitem[{Ambuehl and Baumgartner(2019)}]{cnaOptRef}
+Ambuehl M, Baumgartner M (2019).
+\newblock \emph{\pkg{cnaOpt}: Optimizing Consistency and Coverage in
+  Configurational Causal Modeling.}
+\newblock \textsf{R} Package Version 0.1.1.
+\newblock \urlprefix\url{https://cran.r-project.org/package=cnaOpt}.
+
+\bibitem[{Baumgartner(2009{\natexlab{a}})}]{Baumgartner:2007a}
+Baumgartner M (2009{\natexlab{a}}).
+\newblock \enquote{Inferring Causal Complexity.}
+\newblock \emph{Sociological Methods \& Research}, \textbf{38}, 71--101.
+
+\bibitem[{Baumgartner(2009{\natexlab{b}})}]{Baumgartner:2008}
+Baumgartner M (2009{\natexlab{b}}).
+\newblock \enquote{Uncovering Deterministic Causal Structures: A {B}oolean
+  Approach.}
+\newblock \emph{Synthese}, \textbf{170}, 71--96.
+
+\bibitem[{Baumgartner(2013)}]{Baumgartner:actual}
+Baumgartner M (2013).
+\newblock \enquote{A Regularity Theoretic Approach to Actual Causation.}
+\newblock \emph{Erkenntnis}, \textbf{78}, 85--109.
+
+\bibitem[{Baumgartner(2015)}]{Baumgartner:pars}
+Baumgartner M (2015).
+\newblock \enquote{Parsimony and Causality.}
+\newblock \emph{Quality \& Quantity}, \textbf{49}, 839--856.
+
+\bibitem[{Baumgartner(2020)}]{BaumCaus}
+Baumgartner M (2020).
+\newblock \enquote{Causation.}
+\newblock In D~Berg-Schlosser, B~Badie, L~Morlino (eds.), \emph{The {SAGE}
+  Handbook of Political Science}, pp. 305--321. SAGE, London.
+
+\bibitem[{Baumgartner(manuscript)}]{CNA_LR}
+Baumgartner M (manuscript).
+\newblock \enquote{Configurational Causal Modeling and Logic Regression.}
+\newblock \urlprefix\url{https://people.uib.no/mba110/docs/CNA\_LR.pdf}.
+
+\bibitem[{Baumgartner and Ambuehl(manuscript)}]{optimize}
+Baumgartner M, Ambuehl M (manuscript).
+\newblock \enquote{Optimizing Consistency and Coverage in Configurational
+  Causal Modeling.}
+\newblock \urlprefix\url{https://people.uib.no/mba110/docs/ConCovOpt.pdf}.
+
+\bibitem[{Baumgartner and Ambuehl(2020)}]{BaumgartnerfsCNA}
+Baumgartner M, Ambuehl M (2020).
+\newblock \enquote{Causal Modeling with Multi-Value and Fuzzy-Set Coincidence
+  Analysis.}
+\newblock \emph{Political Science Research and Methods}, \textbf{8}, 526--542.
+\newblock \doi{10.1017/psrm.2018.45}.
+
+\bibitem[{{Baumgartner} and {Falk}(2019)}]{BaumFalk}
+{Baumgartner} M, {Falk} C (2019).
+\newblock \enquote{Boolean Difference-Making: {A} Modern Regularity Theory of
+  Causation.}
+\newblock \emph{The British Journal for the Philosophy of Science}.
+\newblock \doi{10.1093/bjps/axz047}.
+
+\bibitem[{Baumgartner and Thiem(2017)}]{BaumgartnerAmbigu}
+Baumgartner M, Thiem A (2017).
+\newblock \enquote{Model Ambiguities in Configurational Comparative Research.}
+\newblock \emph{Sociological Methods \& Research}, \textbf{46}(4), 954--987.
+
+\bibitem[{Baumgartner and Thiem(2020)}]{Baumgartner:simul}
+Baumgartner M, Thiem A (2020).
+\newblock \enquote{Often Trusted but Never (Properly) Tested: Evaluating
+  {Q}ualitative {C}omparative {A}nalysis.}
+\newblock \emph{Sociological Methods \& Research}, \textbf{49}, 279--311.
+\newblock \doi{10.1177/0049124117701487}.
+
+\bibitem[{Beirlaen \emph{et~al.}(2018)Beirlaen, Leuridan, and Van
+  De~Putte}]{Beirlaen2018}
+Beirlaen M, Leuridan B, Van De~Putte F (2018).
+\newblock \enquote{A Logic for the Discovery of Deterministic Causal
+  Regularities.}
+\newblock \emph{Synthese}, \textbf{195}(1), 367--399.
+\newblock \doi{10.1007/s11229-016-1222-x}.
+
+\bibitem[{Braumoeller(2015)}]{QCAfalsePositive}
+Braumoeller B (2015).
+\newblock \emph{QCAfalsePositive: Tests for Type I Error in Qualitative
+  Comparative Analysis (QCA)}.
+\newblock R package version 1.1.1,
+  \urlprefix\url{https://CRAN.R-project.org/package=QCAfalsePositive}.
+
+\bibitem[{Cronqvist and Berg-Schlosser(2009)}]{cronqvist2009}
+Cronqvist L, Berg-Schlosser D (2009).
+\newblock \enquote{Multi-Value {QCA} ({mvQCA}).}
+\newblock In B~Rihoux, CC~Ragin (eds.), \emph{Configurational Comparative
+  Methods: Qualitative Comparative Analysis ({QCA}) and Related Techniques},
+  pp. 69--86. Sage Publications, London.
+
+\bibitem[{Culverhouse \emph{et~al.}(2002)Culverhouse, Suarez, Lin, and
+  Reich}]{Culverhouse2002}
+Culverhouse R, Suarez BK, Lin J, Reich T (2002).
+\newblock \enquote{A Perspective on Epistasis: Limits of Models Displaying No
+  Main Effect.}
+\newblock \emph{The American Journal of Human Genetics}, \textbf{70}(2), 461 --
+  471.
+\newblock \doi{https://doi.org/10.1086/338759}.
+
+\bibitem[{Downing(1992)}]{Downing:1992}
+Downing BM (1992).
+\newblock \emph{The Military Revolution and Political Change: {O}rigins of
+  Democracy and Autocracy in Early Modern {E}urope}.
+\newblock Princeton University Press, N.J.
+
+\bibitem[{Du\c{s}a(2007)}]{Dusa:2007}
+Du\c{s}a A (2007).
+\newblock \enquote{User Manual for the \pkg{QCA}{(GUI)} Package in \textsf{R}.}
+\newblock \emph{Journal of Business Research}, \textbf{60}(5), 576--586.
+
+\bibitem[{Du\c{s}a(2018)}]{DusaCCubes}
+Du\c{s}a A (2018).
+\newblock \enquote{{Consistency Cubes: A Fast, Efficient Method for Exact
+  {B}oolean Minimization.}}
+\newblock \emph{{The R Journal}}, \textbf{10}(2), 357--370.
+\newblock \doi{10.32614/RJ-2018-080}.
+
+\bibitem[{Eberhardt(2013)}]{eberhardt2013}
+Eberhardt F (2013).
+\newblock \enquote{Experimental Indistinguishability of Causal Structures.}
+\newblock \emph{Philosophy of Science}, \textbf{80}(5), 684--696.
+
+\bibitem[{{Gra{\ss}hoff} and May(2001)}]{grasshoff2001}
+{Gra{\ss}hoff} G, May M (2001).
+\newblock \enquote{Causal Regularities.}
+\newblock In W~Spohn, M~Ledwig, M~Esfeld (eds.), \emph{Current Issues in
+  Causation}, pp. 85--114. Mentis, Paderborn.
+
+\bibitem[{H\'ajek(1998)}]{Hajek1998}
+H\'ajek P (1998).
+\newblock \emph{Metamatematics of Fuzzy Logic}.
+\newblock Kluwer, Dordrecht.
+
+\bibitem[{Hume(1999 (1748))}]{Hume:1999}
+Hume D (1999 (1748)).
+\newblock \emph{An Enquiry Concerning Human Understanding}.
+\newblock Oxford University Press, Oxford.
+
+\bibitem[{Kalisch \emph{et~al.}(2012)Kalisch, Maechler, Colombo, Maathuis, and
+  Buehlmann}]{Kalisch2012}
+Kalisch M, Maechler M, Colombo D, Maathuis MH, Buehlmann P (2012).
+\newblock \enquote{Causal Inference Using Graphical Models with the \textsf{R}
+  Package \pkg{pcalg}.}
+\newblock \emph{Journal of Statistical Software}, \textbf{47}(11), 1--26.
+
+\bibitem[{Kooperberg and Ruczinski(2005)}]{Kooperberg2005}
+Kooperberg C, Ruczinski I (2005).
+\newblock \enquote{Identifying Interacting {SNP}s Using {M}onte {C}arlo Logic
+  Regression.}
+\newblock \emph{Genetic Epidemiology}, \textbf{28}(2), 157--170.
+\newblock \doi{10.1002/gepi.20042}.
+
+\bibitem[{Kooperberg and Ruczinski(2019)}]{LogicReg}
+Kooperberg C, Ruczinski I (2019).
+\newblock \emph{\pkg{LogicReg}: Logic Regression}.
+\newblock \proglang{R} package version 1.6.2.
+\newblock \urlprefix\url{https://CRAN.R-project.org/package=LogicReg}.
+
+\bibitem[{Lemmon(1965)}]{Lemmon:1965}
+Lemmon EJ (1965).
+\newblock \emph{Beginning Logic}.
+\newblock Chapman \& Hall, London.
+
+\bibitem[{Mackie(1974)}]{Mackie:1974}
+Mackie JL (1974).
+\newblock \emph{The Cement of the Universe. A Study of Causation}.
+\newblock Clarendon Press, Oxford.
+
+\bibitem[{McCluskey(1965)}]{mccluskey1965}
+McCluskey EJ (1965).
+\newblock \emph{Introduction to the Theory of Switching Circuits}.
+\newblock Princeton University Press, Princeton.
+
+\bibitem[{Oana \emph{et~al.}(2020)Oana, Medzihorsky, Quaranta, and
+  Schneider}]{SetMethods}
+Oana IE, Medzihorsky J, Quaranta M, Schneider CQ (2020).
+\newblock \emph{SetMethods: Functions for Set-Theoretic Multi-Method Research
+  and Advanced QCA}.
+\newblock R package version 2.5,
+  \urlprefix\url{https://CRAN.R-project.org/package=SetMethods}.
+
+\bibitem[{Parkkinen and Baumgartner(forthcoming)}]{robustness}
+Parkkinen VP, Baumgartner M (forthcoming).
+\newblock \enquote{Robustness and Model Selection in Configurational Causal
+  Modeling.}
+  \newblock \emph{Sociological Methods \& Research.}
+\newblock \urlprefix\url{https://people.uib.no/mba110/docs/robustness.pdf}.
+
+\bibitem[{Ragin(1987)}]{Ragin:1987}
+Ragin CC (1987).
+\newblock \emph{The Comparative Method}.
+\newblock University of California Press, Berkeley.
+
+\bibitem[{Ragin(2006{\natexlab{a}})}]{Ragin:2006}
+Ragin CC (2006{\natexlab{a}}).
+\newblock \enquote{Set Relations in Social Research: Evaluating Their
+  Consistency and Coverage.}
+\newblock \emph{Political Analysis}, \textbf{14}, 291--310.
+
+\bibitem[{Ragin(2006{\natexlab{b}})}]{ragin2006}
+Ragin CC (2006{\natexlab{b}}).
+\newblock \enquote{Set Relations in Social Research: Evaluating Their
+  Consistency and Coverage.}
+\newblock \emph{Political Analysis}, \textbf{14}(3), 291--310.
+
+\bibitem[{Rihoux and Ragin(2009)}]{Rihoux:2009}
+Rihoux B, Ragin CC (eds.) (2009).
+\newblock \emph{Configurational Comparative Methods. Qualitative Comparative
+  Analysis (QCA) and Related Techniques}.
+\newblock Sage, Thousand Oaks.
+
+\bibitem[{Rothman(1976)}]{Rothman1976}
+Rothman KJ (1976).
+\newblock \enquote{{Causes}.}
+\newblock \emph{American Journal of Epidemiology}, \textbf{104}(6), 587--592.
+\newblock \doi{10.1093/oxfordjournals.aje.a112335}.
+
+
+\bibitem[{Ruczinski \emph{et~al.}(2003)Ruczinski, Kooperberg, and
+  LeBlanc}]{Ruczinski2003}
+Ruczinski I, Kooperberg C, LeBlanc M (2003).
+\newblock \enquote{Logic Regression.}
+\newblock \emph{Journal of Computational and Graphical Statistics},
+  \textbf{12}(3), 475--511.
+\newblock \doi{10.1198/1061860032238}.
+
+\bibitem[{Schneider and Wagemann(2012)}]{Schneider:2012}
+Schneider CQ, Wagemann C (2012).
+\newblock \emph{Set-Theoretic Methods: A User's Guide for Qualitative
+  Comparative Analysis ({QCA}) and Fuzzy-Sets in the Social Sciences}.
+\newblock Cambridge University Press, Cambridge.
+
+\bibitem[{Schwender and Tietz(2020)}]{logicFS}
+Schwender H, Tietz T (2020).
+\newblock \emph{\pkg{logicFS}: Identification of SNP Interactions}.
+\newblock \proglang{R} package version 2.8.0.
+\newblock\urlprefix\url{https://bioconductor.org/packages/logicFS/}.
+
+\bibitem[{Simon(1954)}]{simon1954}
+Simon HA (1954).
+\newblock \enquote{Spurious Correlation: A Causal Interpretation.}
+\newblock \emph{Journal of the American Statistical Association},
+  \textbf{49}(267), 467--479.
+
+\bibitem[{Spirtes \emph{et~al.}(2000)Spirtes, Glymour, and
+  Scheines}]{Spirtes2000}
+Spirtes P, Glymour C, Scheines R (2000).
+\newblock \emph{Causation, Prediction, and Search}.
+\newblock 2 edition. MIT Press, Cambridge.
+
+\bibitem[{Thiem(2018)}]{Thiem2018}
+Thiem A (2018).
+\newblock \emph{\pkg{QCApro}: Advanced Functionality for Performing and
+  Evaluating {Q}ualitative {C}omparative {A}nalysis}.
+\newblock \textsf{R} Package Version 1.1-2.
+\newblock \urlprefix\url{http://www.alrik-thiem.net/software/}.
+
+\bibitem[{Thiem and Du\c{s}a(2013)}]{Thiem:2013}
+Thiem A, Du\c{s}a A (2013).
+\newblock \emph{Qualitative Comparative Analysis with {R}: A User's Guide}.
+\newblock Springer, New York, NY.
+
+\bibitem[{VanderWeele and Robins(2009)}]{vanderweele2009}
+VanderWeele TJ, Robins JM (2009).
+\newblock \enquote{Minimal Sufficient Causation and Directed Acyclic Graphs.}
+\newblock \emph{Ann. Statist.}, \textbf{37}(3), 1437--1465.
+\newblock \doi{10.1214/08-AOS613}.
+
+
+\bibitem[{{Wensink} \emph{et~al.}(2014){Wensink}, {Westendorp}, and
+  {Baudisch}}]{Wensink:2014}
+{Wensink} M, {Westendorp} RG, {Baudisch} A (2014).
+\newblock \enquote{The Causal Pie Model: An Epidemiological Method Applied to
+  Evolutionary Biology and Ecology.}
+\newblock \emph{Ecology and Evolution}, \textbf{4}, 1924--1930.
+
+\bibitem[{Yakovchenko \emph{et~al.}(2020)Yakovchenko, Miech, Chinman, Chartier,
+  Gonzalez, Kirchner, Morgan, Park, Powell, Proctor, Ross, Waltz, and
+  Rogal}]{Yakovchenko:2020}
+Yakovchenko V, Miech EJ, Chinman MJ \emph{et~al.} (2020).
+\newblock \enquote{Strategy Configurations Directly Linked to Higher Hepatitis
+  C Virus Treatment Starts: An Applied Use of Configurational Comparative
+  Methods.}
+\newblock \emph{Medical Care}, \textbf{58}(5).
+
+\end{thebibliography}
+
+
+
+
+\end{document}

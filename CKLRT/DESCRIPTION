@@ -1,0 +1,19 @@
+Package: CKLRT
+Type: Package
+Title: Composite Kernel Machine Regression Based on Likelihood Ratio
+        Test
+Version: 0.2.3
+Author: Ni Zhao [aut], Haoyu Zhang [aut, cre]
+Maintainer: Haoyu Zhang <andrew.haoyu@gmail.com>
+Description: Composite Kernel Machine Regression based on Likelihood Ratio Test (CKLRT): in this package, we develop a kernel machine regression framework to model the overall genetic effect of a SNP-set, considering the possible GE interaction. Specifically, we use a composite kernel to specify the overall genetic effect via a nonparametric function and we model additional covariates parametrically within the regression framework. The composite kernel is constructed as a weighted average of two kernels, one corresponding to the genetic main effect and one corresponding to the GE interaction effect. We propose a likelihood ratio test (LRT) and a restricted likelihood ratio test (RLRT) for statistical significance. We derive a Monte Carlo approach for the finite sample distributions of LRT and RLRT statistics. (N. Zhao, H. Zhang, J. Clark, A. Maity, M. Wu. Composite Kernel Machine Regression based on Likelihood Ratio Test with Application for Combined Genetic and Gene-environment Interaction Effect (Submitted).) 
+License: GPL-3
+Depends: R (>= 3.1.0),
+Imports: Rcpp (>= 0.12.17), mgcv, MASS, nlme, compiler, stats
+LinkingTo: RcppEigen, Rcpp
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
+NeedsCompilation: yes
+Packaged: 2018-09-13 21:00:37 UTC; haoyuzhang
+Repository: CRAN
+Date/Publication: 2018-09-13 21:40:02 UTC

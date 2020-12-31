@@ -1,0 +1,42 @@
+INFO: Starting fuzzing
+WARNING: No test specified, defaulting to first test defined (iCellR_deepstate_test_jaccard_coeff_test)
+input starts
+EXTERNAL: qs v0.23.4.
+
+idx values: 1.05415e-68 1.86447e-211 4.49059e+17 2.72551e-214 6.53679e-70 2.42643e+241 1.65687e+24
+
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Row index is out of bounds: [index=-1; row extent=1].
+ERROR: Failed: iCellR_deepstate_test_jaccard_coeff_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/iCellR/inst/testfiles/jaccard_coeff/jaccard_coeff_output/a00e1a7f098cfc25038a8ea725887bc1bc0c77b7.fail`
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+idx values: 1.02532e+261 1.12756e-57     nan
+1.46340e+288     inf 4.12846e-51
+5.67165e-306 4.85713e-272     inf
+    nan     inf 61.3403
+5.43908e-105 3.30698e+94 6.30847e-13
+
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Row index is out of bounds: [index=-2147483648; row extent=5].
+ERROR: Failed: iCellR_deepstate_test_jaccard_coeff_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/iCellR/inst/testfiles/jaccard_coeff/jaccard_coeff_output/74c5f235e1d0d7a0d71ef44030a54cbb070f9348.fail`
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+idx values: 3.60909e+224 9.37481e+280 1.27048e-62 4.71376e-48     nan 7.46115e-258 1.41003e-86
+1.11742e+83 3.07504e-136 2.13410e-145 1.75062e-260 2.90402e-286 5.01413e+184 1.93644e+180
+1.97870e+143 1.01645e-124 2.01769e+47 4.13273e+261 3.56215e-230     nan 1.99326e-62
+    nan 1.00679e-73     nan 7.50348e-71 1.43678e-133 29072.6 1.39816e-16
+
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Row index is out of bounds: [index=-2147483648; row extent=4].
+ERROR: Failed: iCellR_deepstate_test_jaccard_coeff_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/iCellR/inst/testfiles/jaccard_coeff/jaccard_coeff_output/6968f48a854932d40cbde1933b262218b70ac954.fail`
+INFO: Done fuzzing! Ran 3 tests (1 tests/second) with 3 failed/0 passed/0 abandoned tests

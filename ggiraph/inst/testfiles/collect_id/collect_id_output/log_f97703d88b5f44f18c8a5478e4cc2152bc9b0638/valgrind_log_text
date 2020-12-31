@@ -1,0 +1,15 @@
+WARNING: No test specified, defaulting to first test defined (ggiraph_deepstate_test_collect_id_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/ggiraph/inst/testfiles/collect_id/collect_id_output/f97703d88b5f44f18c8a5478e4cc2152bc9b0638.crash`
+TRACE: Running: ggiraph_deepstate_test_collect_id_test from /home/akhila/fuzzer_packages/fuzzedpackages/ggiraph/inst/testfiles/collect_id/collect_id_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+dn values: -1294723540
+input ends
+==825856==  If you believe this happened as a result of a stack
+==825856==  overflow in your program's main thread (unlikely but
+==825856==  possible), you can try to increase the size of the
+==825856==  main thread stack using the --main-stacksize= flag.
+==825856==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: ggiraph_deepstate_test_collect_id_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/ggiraph/inst/testfiles/collect_id/collect_id_output/f97703d88b5f44f18c8a5478e4cc2152bc9b0638.crash crashed

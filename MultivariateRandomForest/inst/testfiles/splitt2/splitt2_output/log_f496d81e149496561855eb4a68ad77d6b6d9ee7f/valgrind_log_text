@@ -1,0 +1,45 @@
+WARNING: No test specified, defaulting to first test defined (MultivariateRandomForest_deepstate_test_splitt2_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/MultivariateRandomForest/inst/testfiles/splitt2/splitt2_output/f496d81e149496561855eb4a68ad77d6b6d9ee7f.crash`
+TRACE: Running: MultivariateRandomForest_deepstate_test_splitt2_test from /home/akhila/fuzzer_packages/fuzzedpackages/MultivariateRandomForest/inst/testfiles/splitt2/splitt2_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+X values: 1.71990e-51 1.51667e-225 1.86531e+250 1.44529e+91
+4.07917e+165 6.61249e-257 1.02818e-81 4.09428e+146
+11.4127 2.62736e-264 1.83374e-104 8.78821e+143
+5.71162e+62 8.62422e-89 9.93170e-171 1.60646e-158
+3.92548e+14 1.01363e+74 1088.08 2.54096e-21
+4.49653e+83 2.14829e+78 8.88077e+282 2.36295e+123
+8.29783e+300 1.56356e-81 5.10578e-14 1.93465e-43
+1.44694e-22 1.87145e+289 9.71140e-241 0.00892625
+5.24924e+272 4.33714e-104 7.70719e-71 1.30327e+122
+4.59987e+18 8.95062e-07 1.49741e+196 4.33867e+27
+
+Missing value
+Y values: 7.31743e-133 6.48853e-41 1.14491e+298 6.20752 3.30186e-51 1.29041e+91 1.42397e+141 6.55160e+148
+2.94086e+191 2.00758e+28     nan 9.15799e+283 1.78535e+224 3.52618e-252 2.92460e+218 9.43345e+75
+6.95893e+233 9.88060e+145     nan 2.07286e-39 1.62579e-42 3.86293e+281 1.84241e+168     inf
+3.02573e+155 1.77522e-19     nan 2.42337e-231 3.13371e+63 9.83595e-110 1.61386e-28 1.35824e+206
+2.99183e+54 2.88318e-150 2.07832e-289 3.22154e+53 1.29649e+107 6.50612e-137 1.88409e-236 0.00262451
+
+m_feature values: 515820303
+Missing value
+Index values: -5.95911e+123 -8.81075e+220 2.98751e-128 -4.14203e+177 1.16556e-185 -3.07168e-291 -1.09793e+07 -inf 1.91904e+115 11596.7 8.39713e-79 -5.80326e+65 -1.10097e+43 -1.64586e-294 -2.3902e-229 nan 6.88627e-81 8.14517e-29 -1.38686e-28 -5.55964e+86 3.9963e+126 -inf 5.60965e-130 -inf 0
+Inv_Cov_Y values: 2.26376e+241
+8.26334e-148
+7.08942e+155
+2.51388e+162
+3.78855e+57
+6.63665e-05
+
+Command values: 1551682918
+Missing value
+ff values: 4.91556e+38 -3.63523e+91 -2.36985e-12 8.6167e+103 -1.78139e-283 -8.05838e+249 nan 2.46532e-98 nan 2.37046e+297 -inf -1.20845e-77 2.8049e-263 8.90455e-97 -5.21477e+24 -96370.8 nan 1.16325e+293 -1.76081e+296 1.08404e-130 3.28867e+162 -1.61898e+187 2.29703e-39 -6.22288e+104 4.00094e-106 -5.43939e-277 6.01034e-84 -4.62523e-11 3.73463e-65 -6.07549e-218 nan 4.4814e+163 6.6257e+40 3.55519e+83 -4.14588e-75 -3.54068e+169 -8.01954e-154 -1.45925e+139 -8.39211e-234 1.49575e-11 4.75797e-216 0
+input ends
+==302913==  If you believe this happened as a result of a stack
+==302913==  overflow in your program's main thread (unlikely but
+==302913==  possible), you can try to increase the size of the
+==302913==  main thread stack using the --main-stacksize= flag.
+==302913==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: MultivariateRandomForest_deepstate_test_splitt2_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/MultivariateRandomForest/inst/testfiles/splitt2/splitt2_output/f496d81e149496561855eb4a68ad77d6b6d9ee7f.crash crashed

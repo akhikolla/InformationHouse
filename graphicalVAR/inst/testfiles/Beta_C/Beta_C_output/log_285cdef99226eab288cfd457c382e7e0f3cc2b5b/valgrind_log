@@ -1,0 +1,925 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./Beta_C_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_output/285cdef99226eab288cfd457c382e7e0f3cc2b5b.pass</line>
+</preamble>
+
+<pid>828100</pid>
+<ppid>828099</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_output/log_285cdef99226eab288cfd457c382e7e0f3cc2b5b/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./Beta_C_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_output/285cdef99226eab288cfd457c382e7e0f3cc2b5b.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.028 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D2FEC6</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>Beta_C(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, double, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, double, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src</dir>
+      <file>Rothmana.cpp</file>
+      <line>91</line>
+    </frame>
+    <frame>
+      <ip>0x40AB19</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_graphicalVAR_deepstate_test_Beta_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C</dir>
+      <file>Beta_C_DeepState_TestHarness.cpp</file>
+      <line>53</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_graphicalVAR_deepstate_test_Beta_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C</dir>
+      <file>Beta_C_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E9B8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EC59</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41ED34</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xaf7ee48 is 0 bytes after a block of size 264 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x4D3396E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>primitive_range_wrap__impl__nocast&lt;double const*, double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/internal</dir>
+      <file>wrap.h</file>
+      <line>116</line>
+    </frame>
+    <frame>
+      <ip>0x4D3396E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>primitive_range_wrap__impl&lt;double const*, double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/internal</dir>
+      <file>wrap.h</file>
+      <line>167</line>
+    </frame>
+    <frame>
+      <ip>0x4D3396E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>range_wrap_dispatch___impl&lt;double const*, double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/internal</dir>
+      <file>wrap.h</file>
+      <line>179</line>
+    </frame>
+    <frame>
+      <ip>0x4D3396E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>range_wrap_dispatch&lt;double const*, double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/internal</dir>
+      <file>wrap.h</file>
+      <line>419</line>
+    </frame>
+    <frame>
+      <ip>0x4D3396E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>range_wrap&lt;double const*&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/internal</dir>
+      <file>wrap.h</file>
+      <line>429</line>
+    </frame>
+    <frame>
+      <ip>0x4D3396E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>wrap&lt;double const*&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/internal</dir>
+      <file>wrap.h</file>
+      <line>941</line>
+    </frame>
+    <frame>
+      <ip>0x4D3396E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>SEXPREC* Rcpp::RcppArmadillo::arma_wrap&lt;arma::Mat&lt;double&gt; &gt;(arma::Mat&lt;double&gt; const&amp;, Rcpp::Dimension const&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include</dir>
+      <file>RcppArmadilloWrap.h</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D33E14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>SEXPREC* Rcpp::wrap&lt;double&gt;(arma::Mat&lt;double&gt; const&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include</dir>
+      <file>RcppArmadilloWrap.h</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x4D2F807</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>beta_ridge_C(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src</dir>
+      <file>Rothmana.cpp</file>
+      <line>63</line>
+    </frame>
+    <frame>
+      <ip>0x4D2FE59</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>Beta_C(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, double, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, double, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src</dir>
+      <file>Rothmana.cpp</file>
+      <line>87</line>
+    </frame>
+    <frame>
+      <ip>0x40AB19</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_graphicalVAR_deepstate_test_Beta_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C</dir>
+      <file>Beta_C_DeepState_TestHarness.cpp</file>
+      <line>53</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_graphicalVAR_deepstate_test_Beta_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C</dir>
+      <file>Beta_C_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E9B8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EC59</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41ED34</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x1</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D2ED3C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>absfun(double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src</dir>
+      <file>Rothmana.cpp</file>
+      <line>38</line>
+    </frame>
+    <frame>
+      <ip>0x4D2FECF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>Beta_C(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, double, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, double, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src</dir>
+      <file>Rothmana.cpp</file>
+      <line>91</line>
+    </frame>
+    <frame>
+      <ip>0x40AB19</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_graphicalVAR_deepstate_test_Beta_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C</dir>
+      <file>Beta_C_DeepState_TestHarness.cpp</file>
+      <line>53</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_graphicalVAR_deepstate_test_Beta_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C</dir>
+      <file>Beta_C_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E9B8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EC59</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41ED34</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xe</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D2ED01</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>signfun(double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src</dir>
+      <file>Rothmana.cpp</file>
+      <line>23</line>
+    </frame>
+    <frame>
+      <ip>0x4D30256</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>Beta_C(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, double, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, double, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src</dir>
+      <file>Rothmana.cpp</file>
+      <line>111</line>
+    </frame>
+    <frame>
+      <ip>0x40AB19</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_graphicalVAR_deepstate_test_Beta_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C</dir>
+      <file>Beta_C_DeepState_TestHarness.cpp</file>
+      <line>53</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_graphicalVAR_deepstate_test_Beta_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C</dir>
+      <file>Beta_C_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E9B8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EC59</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41ED34</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xf</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D2ED3C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>absfun(double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src</dir>
+      <file>Rothmana.cpp</file>
+      <line>38</line>
+    </frame>
+    <frame>
+      <ip>0x4D302C7</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>Beta_C(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, double, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, double, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src</dir>
+      <file>Rothmana.cpp</file>
+      <line>111</line>
+    </frame>
+    <frame>
+      <ip>0x40AB19</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_graphicalVAR_deepstate_test_Beta_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C</dir>
+      <file>Beta_C_DeepState_TestHarness.cpp</file>
+      <line>53</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_graphicalVAR_deepstate_test_Beta_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C</dir>
+      <file>Beta_C_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E9B8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EC59</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41ED34</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x12</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D30218</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>Beta_C(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, double, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, double, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src</dir>
+      <file>Rothmana.cpp</file>
+      <line>111</line>
+    </frame>
+    <frame>
+      <ip>0x40AB19</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_graphicalVAR_deepstate_test_Beta_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C</dir>
+      <file>Beta_C_DeepState_TestHarness.cpp</file>
+      <line>53</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_graphicalVAR_deepstate_test_Beta_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C</dir>
+      <file>Beta_C_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E9B8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EC59</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41ED34</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x8bd3588 is 0 bytes after a block of size 264 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x4D3396E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>primitive_range_wrap__impl__nocast&lt;double const*, double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/internal</dir>
+      <file>wrap.h</file>
+      <line>116</line>
+    </frame>
+    <frame>
+      <ip>0x4D3396E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>primitive_range_wrap__impl&lt;double const*, double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/internal</dir>
+      <file>wrap.h</file>
+      <line>167</line>
+    </frame>
+    <frame>
+      <ip>0x4D3396E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>range_wrap_dispatch___impl&lt;double const*, double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/internal</dir>
+      <file>wrap.h</file>
+      <line>179</line>
+    </frame>
+    <frame>
+      <ip>0x4D3396E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>range_wrap_dispatch&lt;double const*, double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/internal</dir>
+      <file>wrap.h</file>
+      <line>419</line>
+    </frame>
+    <frame>
+      <ip>0x4D3396E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>range_wrap&lt;double const*&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/internal</dir>
+      <file>wrap.h</file>
+      <line>429</line>
+    </frame>
+    <frame>
+      <ip>0x4D3396E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>wrap&lt;double const*&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/internal</dir>
+      <file>wrap.h</file>
+      <line>941</line>
+    </frame>
+    <frame>
+      <ip>0x4D3396E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>SEXPREC* Rcpp::RcppArmadillo::arma_wrap&lt;arma::Mat&lt;double&gt; &gt;(arma::Mat&lt;double&gt; const&amp;, Rcpp::Dimension const&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include</dir>
+      <file>RcppArmadilloWrap.h</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D33E14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>SEXPREC* Rcpp::wrap&lt;double&gt;(arma::Mat&lt;double&gt; const&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include</dir>
+      <file>RcppArmadilloWrap.h</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x4D2FC8D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>Beta_C(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, double, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, double, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src</dir>
+      <file>Rothmana.cpp</file>
+      <line>83</line>
+    </frame>
+    <frame>
+      <ip>0x40AB19</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_graphicalVAR_deepstate_test_Beta_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C</dir>
+      <file>Beta_C_DeepState_TestHarness.cpp</file>
+      <line>53</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_graphicalVAR_deepstate_test_Beta_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C</dir>
+      <file>Beta_C_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E9B8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EC59</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41ED34</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x14</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D3027D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>Beta_C(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, double, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, double, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src</dir>
+      <file>Rothmana.cpp</file>
+      <line>111</line>
+    </frame>
+    <frame>
+      <ip>0x40AB19</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_graphicalVAR_deepstate_test_Beta_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C</dir>
+      <file>Beta_C_DeepState_TestHarness.cpp</file>
+      <line>53</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_graphicalVAR_deepstate_test_Beta_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C</dir>
+      <file>Beta_C_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E9B8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EC59</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41ED34</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x8bd3588 is 0 bytes after a block of size 264 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D5CB3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x4D3396E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>primitive_range_wrap__impl__nocast&lt;double const*, double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/internal</dir>
+      <file>wrap.h</file>
+      <line>116</line>
+    </frame>
+    <frame>
+      <ip>0x4D3396E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>primitive_range_wrap__impl&lt;double const*, double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/internal</dir>
+      <file>wrap.h</file>
+      <line>167</line>
+    </frame>
+    <frame>
+      <ip>0x4D3396E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>range_wrap_dispatch___impl&lt;double const*, double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/internal</dir>
+      <file>wrap.h</file>
+      <line>179</line>
+    </frame>
+    <frame>
+      <ip>0x4D3396E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>range_wrap_dispatch&lt;double const*, double&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/internal</dir>
+      <file>wrap.h</file>
+      <line>419</line>
+    </frame>
+    <frame>
+      <ip>0x4D3396E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>range_wrap&lt;double const*&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/internal</dir>
+      <file>wrap.h</file>
+      <line>429</line>
+    </frame>
+    <frame>
+      <ip>0x4D3396E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>wrap&lt;double const*&gt;</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/Rcpp/include/Rcpp/internal</dir>
+      <file>wrap.h</file>
+      <line>941</line>
+    </frame>
+    <frame>
+      <ip>0x4D3396E</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>SEXPREC* Rcpp::RcppArmadillo::arma_wrap&lt;arma::Mat&lt;double&gt; &gt;(arma::Mat&lt;double&gt; const&amp;, Rcpp::Dimension const&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include</dir>
+      <file>RcppArmadilloWrap.h</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D33E14</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>SEXPREC* Rcpp::wrap&lt;double&gt;(arma::Mat&lt;double&gt; const&amp;)</fn>
+      <dir>/home/akhila/R/x86_64-pc-linux-gnu-library/4.0/RcppArmadillo/include</dir>
+      <file>RcppArmadilloWrap.h</file>
+      <line>61</line>
+    </frame>
+    <frame>
+      <ip>0x4D2FC8D</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>Beta_C(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, double, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, double, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src</dir>
+      <file>Rothmana.cpp</file>
+      <line>83</line>
+    </frame>
+    <frame>
+      <ip>0x40AB19</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_graphicalVAR_deepstate_test_Beta_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C</dir>
+      <file>Beta_C_DeepState_TestHarness.cpp</file>
+      <line>53</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_graphicalVAR_deepstate_test_Beta_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C</dir>
+      <file>Beta_C_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E9B8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EC59</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41ED34</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x64</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D2ED3C</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>absfun(double)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src</dir>
+      <file>Rothmana.cpp</file>
+      <line>38</line>
+    </frame>
+    <frame>
+      <ip>0x4D303A9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>Beta_C(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, double, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, double, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src</dir>
+      <file>Rothmana.cpp</file>
+      <line>118</line>
+    </frame>
+    <frame>
+      <ip>0x40AB19</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_graphicalVAR_deepstate_test_Beta_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C</dir>
+      <file>Beta_C_DeepState_TestHarness.cpp</file>
+      <line>53</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_graphicalVAR_deepstate_test_Beta_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C</dir>
+      <file>Beta_C_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E9B8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EC59</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41ED34</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x7f</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D30444</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src/graphicalVAR.so</obj>
+      <fn>Beta_C(Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, double, Rcpp::Matrix&lt;14, Rcpp::PreserveStorage&gt;, double, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/src</dir>
+      <file>Rothmana.cpp</file>
+      <line>123</line>
+    </frame>
+    <frame>
+      <ip>0x40AB19</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_graphicalVAR_deepstate_test_Beta_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C</dir>
+      <file>Beta_C_DeepState_TestHarness.cpp</file>
+      <line>53</line>
+    </frame>
+    <frame>
+      <ip>0x409BA8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_graphicalVAR_deepstate_test_Beta_C_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C</dir>
+      <file>Beta_C_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41E9B8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41EC59</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41ED34</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x4076B5</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/graphicalVAR/inst/testfiles/Beta_C/Beta_C_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.833 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>1</count>
+    <unique>0x7f</unique>
+  </pair>
+  <pair>
+    <count>27</count>
+    <unique>0x64</unique>
+  </pair>
+  <pair>
+    <count>27</count>
+    <unique>0xf</unique>
+  </pair>
+  <pair>
+    <count>16</count>
+    <unique>0x14</unique>
+  </pair>
+  <pair>
+    <count>27</count>
+    <unique>0xe</unique>
+  </pair>
+  <pair>
+    <count>16</count>
+    <unique>0x12</unique>
+  </pair>
+  <pair>
+    <count>12</count>
+    <unique>0x0</unique>
+  </pair>
+  <pair>
+    <count>2</count>
+    <unique>0x1</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:09.406 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

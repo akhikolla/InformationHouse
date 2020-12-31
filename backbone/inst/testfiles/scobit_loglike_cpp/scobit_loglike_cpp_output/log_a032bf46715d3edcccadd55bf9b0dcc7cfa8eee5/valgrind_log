@@ -1,0 +1,1608 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./scobit_loglike_cpp_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_output/a032bf46715d3edcccadd55bf9b0dcc7cfa8eee5.pass</line>
+</preamble>
+
+<pid>665109</pid>
+<ppid>665108</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_output/log_a032bf46715d3edcccadd55bf9b0dcc7cfa8eee5/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./scobit_loglike_cpp_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_output/a032bf46715d3edcccadd55bf9b0dcc7cfa8eee5.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.025 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F91D41</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_exp_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_exp.c</file>
+      <line>105</line>
+    </frame>
+    <frame>
+      <ip>0x4F522C2</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>exp@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_exp_template.c</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D25211</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src/backbone.so</obj>
+      <fn>scobit_loglike_cpp(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src</dir>
+      <file>scobit.cpp</file>
+      <line>17</line>
+    </frame>
+    <frame>
+      <ip>0x40A2AB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x1</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F91DE2</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_exp_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_exp.c</file>
+      <line>108</line>
+    </frame>
+    <frame>
+      <ip>0x4F522C2</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>exp@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_exp_template.c</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D25211</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src/backbone.so</obj>
+      <fn>scobit_loglike_cpp(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src</dir>
+      <file>scobit.cpp</file>
+      <line>17</line>
+    </frame>
+    <frame>
+      <ip>0x40A2AB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x2</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F522E5</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>exp@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_exp_template.c</file>
+      <line>33</line>
+    </frame>
+    <frame>
+      <ip>0x4D25211</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src/backbone.so</obj>
+      <fn>scobit_loglike_cpp(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src</dir>
+      <file>scobit.cpp</file>
+      <line>17</line>
+    </frame>
+    <frame>
+      <ip>0x40A2AB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x3</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F522EF</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>exp@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_exp_template.c</file>
+      <line>33</line>
+    </frame>
+    <frame>
+      <ip>0x4D25211</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src/backbone.so</obj>
+      <fn>scobit_loglike_cpp(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src</dir>
+      <file>scobit.cpp</file>
+      <line>17</line>
+    </frame>
+    <frame>
+      <ip>0x40A2AB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x4</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F52300</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>exp@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_exp_template.c</file>
+      <line>33</line>
+    </frame>
+    <frame>
+      <ip>0x4D25211</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src/backbone.so</obj>
+      <fn>scobit_loglike_cpp(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src</dir>
+      <file>scobit.cpp</file>
+      <line>17</line>
+    </frame>
+    <frame>
+      <ip>0x40A2AB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x5</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F9218E</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_pow_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_pow.c</file>
+      <line>292</line>
+    </frame>
+    <frame>
+      <ip>0x4F52207</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>pow@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_pow_template.c</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D25224</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src/backbone.so</obj>
+      <fn>scobit_loglike_cpp(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src</dir>
+      <file>scobit.cpp</file>
+      <line>17</line>
+    </frame>
+    <frame>
+      <ip>0x40A2AB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x6</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F923A6</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_pow_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_pow.c</file>
+      <line>314</line>
+    </frame>
+    <frame>
+      <ip>0x4F52207</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>pow@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_pow_template.c</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D25224</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src/backbone.so</obj>
+      <fn>scobit_loglike_cpp(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src</dir>
+      <file>scobit.cpp</file>
+      <line>17</line>
+    </frame>
+    <frame>
+      <ip>0x40A2AB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x7</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F923B1</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_pow_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_pow.c</file>
+      <line>329</line>
+    </frame>
+    <frame>
+      <ip>0x4F52207</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>pow@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_pow_template.c</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D25224</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src/backbone.so</obj>
+      <fn>scobit_loglike_cpp(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src</dir>
+      <file>scobit.cpp</file>
+      <line>17</line>
+    </frame>
+    <frame>
+      <ip>0x40A2AB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x8</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F923DB</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_pow_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_pow.c</file>
+      <line>343</line>
+    </frame>
+    <frame>
+      <ip>0x4F52207</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>pow@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_pow_template.c</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D25224</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src/backbone.so</obj>
+      <fn>scobit_loglike_cpp(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src</dir>
+      <file>scobit.cpp</file>
+      <line>17</line>
+    </frame>
+    <frame>
+      <ip>0x40A2AB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x9</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F925A4</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_pow_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_pow.c</file>
+      <line>354</line>
+    </frame>
+    <frame>
+      <ip>0x4F52207</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>pow@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_pow_template.c</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D25224</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src/backbone.so</obj>
+      <fn>scobit_loglike_cpp(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src</dir>
+      <file>scobit.cpp</file>
+      <line>17</line>
+    </frame>
+    <frame>
+      <ip>0x40A2AB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xa</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F52248</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>pow@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_pow_template.c</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x4D25224</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src/backbone.so</obj>
+      <fn>scobit_loglike_cpp(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src</dir>
+      <file>scobit.cpp</file>
+      <line>17</line>
+    </frame>
+    <frame>
+      <ip>0x40A2AB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xb</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F91D41</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_exp_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_exp.c</file>
+      <line>105</line>
+    </frame>
+    <frame>
+      <ip>0x4F522C2</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>exp@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_exp_template.c</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D2526F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src/backbone.so</obj>
+      <fn>scobit_loglike_cpp(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src</dir>
+      <file>scobit.cpp</file>
+      <line>17</line>
+    </frame>
+    <frame>
+      <ip>0x40A2AB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xc</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F91DE2</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_exp_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_exp.c</file>
+      <line>108</line>
+    </frame>
+    <frame>
+      <ip>0x4F522C2</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>exp@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_exp_template.c</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D2526F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src/backbone.so</obj>
+      <fn>scobit_loglike_cpp(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src</dir>
+      <file>scobit.cpp</file>
+      <line>17</line>
+    </frame>
+    <frame>
+      <ip>0x40A2AB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xd</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F522E5</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>exp@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_exp_template.c</file>
+      <line>33</line>
+    </frame>
+    <frame>
+      <ip>0x4D2526F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src/backbone.so</obj>
+      <fn>scobit_loglike_cpp(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src</dir>
+      <file>scobit.cpp</file>
+      <line>17</line>
+    </frame>
+    <frame>
+      <ip>0x40A2AB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xe</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F522EF</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>exp@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_exp_template.c</file>
+      <line>33</line>
+    </frame>
+    <frame>
+      <ip>0x4D2526F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src/backbone.so</obj>
+      <fn>scobit_loglike_cpp(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src</dir>
+      <file>scobit.cpp</file>
+      <line>17</line>
+    </frame>
+    <frame>
+      <ip>0x40A2AB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xf</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F52300</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>exp@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_exp_template.c</file>
+      <line>33</line>
+    </frame>
+    <frame>
+      <ip>0x4D2526F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src/backbone.so</obj>
+      <fn>scobit_loglike_cpp(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src</dir>
+      <file>scobit.cpp</file>
+      <line>17</line>
+    </frame>
+    <frame>
+      <ip>0x40A2AB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x10</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F9218E</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_pow_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_pow.c</file>
+      <line>292</line>
+    </frame>
+    <frame>
+      <ip>0x4F52207</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>pow@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_pow_template.c</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D25282</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src/backbone.so</obj>
+      <fn>scobit_loglike_cpp(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src</dir>
+      <file>scobit.cpp</file>
+      <line>17</line>
+    </frame>
+    <frame>
+      <ip>0x40A2AB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x11</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F923A6</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_pow_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_pow.c</file>
+      <line>314</line>
+    </frame>
+    <frame>
+      <ip>0x4F52207</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>pow@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_pow_template.c</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D25282</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src/backbone.so</obj>
+      <fn>scobit_loglike_cpp(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src</dir>
+      <file>scobit.cpp</file>
+      <line>17</line>
+    </frame>
+    <frame>
+      <ip>0x40A2AB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x12</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F923B1</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_pow_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_pow.c</file>
+      <line>329</line>
+    </frame>
+    <frame>
+      <ip>0x4F52207</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>pow@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_pow_template.c</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D25282</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src/backbone.so</obj>
+      <fn>scobit_loglike_cpp(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src</dir>
+      <file>scobit.cpp</file>
+      <line>17</line>
+    </frame>
+    <frame>
+      <ip>0x40A2AB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x13</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F923DB</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_pow_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_pow.c</file>
+      <line>343</line>
+    </frame>
+    <frame>
+      <ip>0x4F52207</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>pow@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_pow_template.c</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D25282</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src/backbone.so</obj>
+      <fn>scobit_loglike_cpp(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src</dir>
+      <file>scobit.cpp</file>
+      <line>17</line>
+    </frame>
+    <frame>
+      <ip>0x40A2AB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x14</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F925A4</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>__ieee754_pow_fma</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/../sysdeps/ieee754/dbl-64</dir>
+      <file>e_pow.c</file>
+      <line>354</line>
+    </frame>
+    <frame>
+      <ip>0x4F52207</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>pow@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_pow_template.c</file>
+      <line>32</line>
+    </frame>
+    <frame>
+      <ip>0x4D25282</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src/backbone.so</obj>
+      <fn>scobit_loglike_cpp(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src</dir>
+      <file>scobit.cpp</file>
+      <line>17</line>
+    </frame>
+    <frame>
+      <ip>0x40A2AB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x15</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4F52248</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libm-2.31.so</obj>
+      <fn>pow@@GLIBC_2.29</fn>
+      <dir>/build/glibc-ZN95T4/glibc-2.31/math/.</dir>
+      <file>w_pow_template.c</file>
+      <line>35</line>
+    </frame>
+    <frame>
+      <ip>0x4D25282</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src/backbone.so</obj>
+      <fn>scobit_loglike_cpp(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/src</dir>
+      <file>scobit.cpp</file>
+      <line>17</line>
+    </frame>
+    <frame>
+      <ip>0x40A2AB</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>34</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_backbone_deepstate_test_scobit_loglike_cpp_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp</dir>
+      <file>scobit_loglike_cpp_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D1D8</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D479</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41D554</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/backbone/inst/testfiles/scobit_loglike_cpp/scobit_loglike_cpp_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:07.865 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>10</count>
+    <unique>0x15</unique>
+  </pair>
+  <pair>
+    <count>10</count>
+    <unique>0x14</unique>
+  </pair>
+  <pair>
+    <count>10</count>
+    <unique>0x13</unique>
+  </pair>
+  <pair>
+    <count>10</count>
+    <unique>0x12</unique>
+  </pair>
+  <pair>
+    <count>10</count>
+    <unique>0x11</unique>
+  </pair>
+  <pair>
+    <count>10</count>
+    <unique>0x10</unique>
+  </pair>
+  <pair>
+    <count>10</count>
+    <unique>0xf</unique>
+  </pair>
+  <pair>
+    <count>10</count>
+    <unique>0xe</unique>
+  </pair>
+  <pair>
+    <count>10</count>
+    <unique>0xd</unique>
+  </pair>
+  <pair>
+    <count>10</count>
+    <unique>0xc</unique>
+  </pair>
+  <pair>
+    <count>10</count>
+    <unique>0xb</unique>
+  </pair>
+  <pair>
+    <count>10</count>
+    <unique>0xa</unique>
+  </pair>
+  <pair>
+    <count>10</count>
+    <unique>0x9</unique>
+  </pair>
+  <pair>
+    <count>10</count>
+    <unique>0x8</unique>
+  </pair>
+  <pair>
+    <count>10</count>
+    <unique>0x7</unique>
+  </pair>
+  <pair>
+    <count>10</count>
+    <unique>0x6</unique>
+  </pair>
+  <pair>
+    <count>10</count>
+    <unique>0x5</unique>
+  </pair>
+  <pair>
+    <count>10</count>
+    <unique>0x4</unique>
+  </pair>
+  <pair>
+    <count>10</count>
+    <unique>0x3</unique>
+  </pair>
+  <pair>
+    <count>10</count>
+    <unique>0x2</unique>
+  </pair>
+  <pair>
+    <count>10</count>
+    <unique>0x1</unique>
+  </pair>
+  <pair>
+    <count>10</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:08.367 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

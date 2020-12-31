@@ -1,0 +1,37 @@
+WARNING: No test specified, defaulting to first test defined (augSIMEX_deepstate_test_scorecloglogcpp_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/augSIMEX/inst/testfiles/scorecloglogcpp/scorecloglogcpp_output/757c087cbadfec5c753e3594bbaa08f8d64deb99.fail`
+TRACE: Running: augSIMEX_deepstate_test_scorecloglogcpp_test from /home/akhila/fuzzer_packages/fuzzedpackages/augSIMEX/inst/testfiles/scorecloglogcpp/scorecloglogcpp_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+beta values: -4.40542e-65 9.93765e+292 2.32003e+83 -3.79864e-121 1.88831e-213 2.454e-127 -5.16834e+138 -6.5185e+234 5.70876e+39 -1925.99 3.4062e+177 3.79125e-141 -3.78689e-26 6.67997e+201 1.95296e-225 3.67122e+174 -6.02247e+297 nan -3.64069e+264 -1.02667e+221 -4.93899e-292 1.18829e+83 4.5494e+83 6.14545e-207 2.68266e+268 -1.49404e+247 7.68739e-208 nan -1.21096e-290 -9.56765e-120 -1.23782e+306 -6.5868e-128 6.87917e+136 -4.09753e-228 5.93333e-215 2.89107e+289 -1.64629e+219 2.77718e+36 9.30501e-126 -8.40171e-48 -8.72773e-222 4.27065e+243 7.56179e+267 1.48525e-139 4.58275e+262 nan -8.23981e-124 -1.61626e-196 inf nan 3.46445e-66 0
+Missing value
+Y values: -4.26536e-172 -4.91159e+144 nan -5.78033e+47 3.14543e+71 1.45707e-150 -1.49647e+55 3.17594e+283 -8.03701e-63 nan -6.87642e+114 nan 6.06514e-274 -inf
+Missing value
+DataM values: 5.75157e+12     nan 5.54533e-219 7.60171e+151 6.58016e-95
+1.50712e-229     inf 3.11164e+235 6.22648e-79 -3.56101e+153
+1.73981e+63 1.80936e+62 2.68896e-45 3.60981e-06 1.25585e-158
+2.70069e-86 2.26976e+185     nan 3.92258e-228 1.34708e+60
+
+DataM0 values: 1.55401e-231 923.433 8.49037e+218
+3.61888e-237 3.18485e-108 4.32614e-143
+
+DataM1 values: 5.92094e-238 1.51777e-136 8.75837e-124 3.19649e+101 1.57141e-294 5.82876e-43 3.14963e-43
+3.65571e-248 1.41173e-170 5.39966e-146 6.46534e+30 7.43159e-151 1.17853e+217 1.37402e-255
+2.98133e+124 1.08604e+77 1.15416e-97 1.91529e+40 9.42040e+225 3.74928e+273 2.18440e+266
+8.23771e+129 4.79378e+268 2.88267e-201 2.88198e-134 2.07492e-254 1.06806e+248 4.55645e-280
+6.07561e+113 1.90932 1.62736e-270 3.39161e+153 2.95153e+23 7.03347e+93 5.70263e-256
+3.53226e-72 9.19771e+111 2.90068e+47 1.42741e-29 2.08311e-37 3.71885e+284 6.72756e+130
+
+phat values: -5.16994e-68 1.50825e+219 0.0393985 -4.92703e+281 -2.78722e-71 2.52322e+250 -8.1082e+280 -6.5738e+75 1.27438e+36 2.96056e+111 2.13132e-07 -2.98575e-290 1.03929e-307 8.62925e-46 1.73226e+31 -5.9235e+237 5.27253e-192
+Missing value
+qhat values: -inf inf
+weight values: 6.0462e-75 -1.15249e-291 -1.01247e+63 7.43646e-206 -1.21537e-252 -2.55776e-77
+Missing value
+offset values: -4.48127e-148 -9.22715e-296 -1.89283e+287 1.0177e+209 -6.71948e+297 -1.77648e-189 7.29334e-83 nan 2.59539e+39 6.20972e-236 1.62209e+154 nan 3.94426e+163 1.25243e-304 nan -2.88522e-123 2.89873e-42 4.63682e+184 nan 1.27573e-22 1.82418e+183 1.07263e+199 1.58036e-74 4.60602e-06 5.12437e-144 7.65483e-19 0
+input ends
+terminate called after throwing an instance of 'Rcpp::index_out_of_bounds'
+  what():  Index out of bounds: [index=2; extent=2].
+ERROR: Failed: augSIMEX_deepstate_test_scorecloglogcpp_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/augSIMEX/inst/testfiles/scorecloglogcpp/scorecloglogcpp_output/757c087cbadfec5c753e3594bbaa08f8d64deb99.fail failed

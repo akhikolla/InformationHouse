@@ -1,0 +1,14 @@
+WARNING: No test specified, defaulting to first test defined (GDINA_deepstate_test_alpha2_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/GDINA/inst/testfiles/alpha2/alpha2_output/0a05f23730069ce4cbb9f5aeebd8070010502976.fail`
+TRACE: Running: GDINA_deepstate_test_alpha2_test from /home/akhila/fuzzer_packages/fuzzedpackages/GDINA/inst/testfiles/alpha2/alpha2_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+K values: -498905818
+input ends
+
+error: Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+terminate called after throwing an instance of 'std::logic_error'
+  what():  Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD
+ERROR: Failed: GDINA_deepstate_test_alpha2_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/GDINA/inst/testfiles/alpha2/alpha2_output/0a05f23730069ce4cbb9f5aeebd8070010502976.fail failed

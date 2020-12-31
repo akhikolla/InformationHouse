@@ -1,0 +1,19 @@
+WARNING: No test specified, defaulting to first test defined (jaccard_deepstate_test_jaccard_mca_rcpp_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/jaccard/inst/testfiles/jaccard_mca_rcpp/jaccard_mca_rcpp_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash`
+TRACE: Running: jaccard_deepstate_test_jaccard_mca_rcpp_test from /home/akhila/fuzzer_packages/fuzzedpackages/jaccard/inst/testfiles/jaccard_mca_rcpp/jaccard_mca_rcpp_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+px values: -2.43318e-187
+py values: -1.64581e+174
+m values: 484058222
+T_observed values: 2.1759e+276
+accuracy values: 8.23909e+275
+input ends
+==619165==  If you believe this happened as a result of a stack
+==619165==  overflow in your program's main thread (unlikely but
+==619165==  possible), you can try to increase the size of the
+==619165==  main thread stack using the --main-stacksize= flag.
+==619165==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: jaccard_deepstate_test_jaccard_mca_rcpp_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/jaccard/inst/testfiles/jaccard_mca_rcpp/jaccard_mca_rcpp_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash crashed

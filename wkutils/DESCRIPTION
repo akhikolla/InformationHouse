@@ -1,0 +1,30 @@
+Package: wkutils
+Title: Utilities for Well-Known Geometry Vectors
+Version: 0.1.0
+Authors@R: 
+    person(given = "Dewey",
+           family = "Dunnington",
+           role = c("aut", "cre"),
+           email = "dewey@fishandwhistle.net",
+           comment = c(ORCID = "0000-0002-9415-4582"))
+Description: Provides extra utilities for well-known formats in the
+  'wk' package that are outside the scope of that package. Utilities
+  to parse coordinates from data frames, plot well-known geometry
+  vectors, extract meta information from well-known geometry vectors,
+  and calculate bounding boxes are provided.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+Imports: wk (>= 0.3.1), Rcpp, tibble, vctrs
+LinkingTo: wk, Rcpp
+Suggests: testthat
+URL: https://paleolimbot.github.io/wkutils,
+        https://github.com/paleolimbot/wkutils
+BugReports: https://github.com/paleolimbot/wkutils/issues
+NeedsCompilation: yes
+Packaged: 2020-07-23 23:33:30 UTC; dewey
+Author: Dewey Dunnington [aut, cre] (<https://orcid.org/0000-0002-9415-4582>)
+Maintainer: Dewey Dunnington <dewey@fishandwhistle.net>
+Repository: CRAN
+Date/Publication: 2020-07-30 09:00:02 UTC

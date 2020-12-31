@@ -1,0 +1,36 @@
+Package: flying
+Type: Package
+Title: Simulation of Bird Flight Range
+Version: 0.1.3
+Authors@R: c(person(family = "Masinde", given = "Brian", role = c("aut", "cre"),
+           email= "masindeb@live.com"), person(family = "Bartoszek", given = "Krzysztof",
+           role = c("ctb", "ths"), email= "krzbar@protonmail.ch"))
+Description: Functions for range estimation in birds based on Pennycuick (2008)
+    and Pennycuick (1975), 'Flight' program which compliments Pennycuick (2008)
+    requires manual entry of birds which can be tedious when there are thousands
+    of birds to estimate. Implemented are two ODE methods discussed in Pennycuick (1975)
+    and time-marching computation method "constant muscle mass" as in Pennycuick (1998).
+    See Pennycuick (1975, ISBN:978-0-12-249405-5), Pennycuick (1998) <doi:10.1006/jtbi.1997.0572>,
+    and Pennycuick (2008, ISBN:9780080557816).
+License: Apache License
+Encoding: UTF-8
+LazyData: true
+Imports: utils, Rcpp (>= 1.0.2), knitr, kableExtra, rmarkdown
+Suggests: testthat, covr
+RoxygenNote: 7.0.0
+Depends: R (>= 2.10)
+VignetteBuilder: knitr
+Collate: 'RcppExports.R' 'birds_documentation.R'
+        'constant_muscle_mass.R' 'constant_specific_power.R'
+        'constant_specific_work.R' 'control.R' 'method_2.R'
+        'method_1.R' 'input_match.R' 'lookup_table2.R'
+        'misc_functions.R' 'flight_simulation.R' 'flying.R' 'migrate.R'
+        'zzz.R'
+LinkingTo: Rcpp
+NeedsCompilation: yes
+Packaged: 2020-02-13 07:58:14 UTC; masinde
+Author: Brian Masinde [aut, cre],
+  Krzysztof Bartoszek [ctb, ths]
+Maintainer: Brian Masinde <masindeb@live.com>
+Repository: CRAN
+Date/Publication: 2020-02-13 15:50:08 UTC

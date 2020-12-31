@@ -1,0 +1,18 @@
+WARNING: No test specified, defaulting to first test defined (jmotif_deepstate_test_find_discords_brute_force_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/jmotif/inst/testfiles/find_discords_brute_force/find_discords_brute_force_output/844c4ca1333e8d869b5b271438a7aa32e7e23836.crash`
+TRACE: Running: jmotif_deepstate_test_find_discords_brute_force_test from /home/akhila/fuzzer_packages/fuzzedpackages/jmotif/inst/testfiles/find_discords_brute_force/find_discords_brute_force_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+ts values: 1.27891e-188 7.52749e+12 -2.14488e+105 inf -2.02048e-44 nan 3.42032e-93 8.27932e-269 -4.36409e-38 inf 0
+w_size values: 2069757405
+discords_num values: -1364041863
+input ends
+==620852==  If you believe this happened as a result of a stack
+==620852==  overflow in your program's main thread (unlikely but
+==620852==  possible), you can try to increase the size of the
+==620852==  main thread stack using the --main-stacksize= flag.
+==620852==  The main thread stack size used in this run was 8388608.
+ERROR: Crashed: jmotif_deepstate_test_find_discords_brute_force_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/jmotif/inst/testfiles/find_discords_brute_force/find_discords_brute_force_output/844c4ca1333e8d869b5b271438a7aa32e7e23836.crash crashed

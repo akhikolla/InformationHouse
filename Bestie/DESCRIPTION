@@ -1,0 +1,17 @@
+Package: Bestie
+Type: Package
+Title: Bayesian Estimation of Intervention Effects
+Version: 0.1.1
+Author: Jack Kuipers [aut,cre] and Giusi Moffa [aut]
+Maintainer: Jack Kuipers <jack.kuipers@bsse.ethz.ch>
+Description: An implementation of intervention effect estimation for DAGs (directed acyclic graphs) learned from binary data. First, parameters are estimated or sampled for the DAG and then interventions on each node (variable) are propagated through the network (do-calculus). Both exact computation (up to around 20 variables) and Monte Carlo schemes (for larger networks) are implemented.
+License: GPL-3
+Imports: BiDAG (>= 1.3.0), Rcpp (>= 1.0.3)
+LinkingTo: Rcpp
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.0
+NeedsCompilation: yes
+Packaged: 2020-03-28 22:01:31 UTC; jack
+Repository: CRAN
+Date/Publication: 2020-03-30 15:30:07 UTC

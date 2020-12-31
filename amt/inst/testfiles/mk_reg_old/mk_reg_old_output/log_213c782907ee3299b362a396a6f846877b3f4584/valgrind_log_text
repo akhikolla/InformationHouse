@@ -1,0 +1,15 @@
+WARNING: No test specified, defaulting to first test defined (amt_deepstate_test_mk_reg_old_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/amt/inst/testfiles/mk_reg_old/mk_reg_old_output/213c782907ee3299b362a396a6f846877b3f4584.crash`
+TRACE: Running: amt_deepstate_test_mk_reg_old_test from /home/akhila/fuzzer_packages/fuzzedpackages/amt/inst/testfiles/mk_reg_old/mk_reg_old_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+relocs_time values: 4.38983e+276 -2.83919e+230 nan -1.5601e+246 inf
+time_dist values: 1315945823
+time_tol values: -1330425665
+start values: 242193156
+input ends
+Inconsistency detected by ld.so: dl-close.c: 181: _dl_close_worker: Assertion `idx == nloaded' failed!
+ERROR: Crashed: amt_deepstate_test_mk_reg_old_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/amt/inst/testfiles/mk_reg_old/mk_reg_old_output/213c782907ee3299b362a396a6f846877b3f4584.crash crashed

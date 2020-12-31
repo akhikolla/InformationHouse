@@ -1,0 +1,225 @@
+                                 _____________________________
+
+                                         SaTScan v9.6
+                                 _____________________________
+
+
+Program run on: Sat Mar  9 07:52:41 2019
+
+Purely Spatial analysis
+scanning for clusters with high rates
+using the Discrete Poisson model.
+_______________________________________________________________________________________________
+
+SUMMARY OF DATA
+
+Study period.......................: 2000/1/1 to 2000/12/31
+Number of locations................: 281
+Population, averaged over time.....: 1057673
+Total number of cases..............: 552
+Annual cases / 100000..............: 52.1
+_______________________________________________________________________________________________
+
+CLUSTERS DETECTED
+
+1.Location IDs included.: 52, 50, 53, 38, 49, 15, 48, 39, 1, 37, 16, 44, 14, 47, 40, 2, 13, 43,
+                          51, 45, 17, 11, 12, 3, 46
+  Coordinates...........: (42.0838,-75.9898)
+  Semiminor axis........: 0.058
+  Semimajor axis........: 0.087
+  Angle (degrees).......: 90.00
+  Shape.................: 1.50
+  Population............: 99685
+  Number of cases.......: 93
+  Expected cases........: 52.03
+  Annual cases / 100000.: 93.1
+  Observed / expected...: 1.79
+  Relative risk.........: 1.95
+  Log likelihood ratio..: 14.772705
+  Test statistic........: 14.474236
+  P-value...............: 0.00019
+
+2.Location IDs included.: 87, 88, 86, 89, 92, 85, 90
+  Coordinates...........: (42.6178,-76.1796)
+  Semiminor axis........: 0.086
+  Semimajor axis........: 0.17
+  Angle (degrees).......: -60.00
+  Shape.................: 2.00
+  Population............: 31491
+  Number of cases.......: 37
+  Expected cases........: 16.44
+  Annual cases / 100000.: 117.3
+  Observed / expected...: 2.25
+  Relative risk.........: 2.34
+  Log likelihood ratio..: 9.860447
+  Test statistic........: 9.296518
+  P-value...............: 0.024
+
+3.Location IDs included.: 115, 116, 114, 111, 117, 113, 123, 120, 110, 122, 112, 118, 121, 124,
+                          220, 133, 131, 119, 130, 125, 132, 219, 126, 127, 135
+  Coordinates...........: (43.0703,-76.1524)
+  Semiminor axis........: 0.019
+  Semimajor axis........: 0.057
+  Angle (degrees).......: 80.00
+  Shape.................: 3.00
+  Population............: 59460
+  Number of cases.......: 57
+  Expected cases........: 31.03
+  Annual cases / 100000.: 95.7
+  Observed / expected...: 1.84
+  Relative risk.........: 1.93
+  Log likelihood ratio..: 9.347892
+  Test statistic........: 8.095512
+  P-value...............: 0.080
+
+4.Location IDs included.: 170, 171, 166, 167
+  Coordinates...........: (43.0068,-76.1412)
+  Semiminor axis........: 0.0072
+  Semimajor axis........: 0.029
+  Angle (degrees).......: -60.00
+  Shape.................: 4.00
+  Population............: 12214
+  Number of cases.......: 17
+  Expected cases........: 6.37
+  Annual cases / 100000.: 138.9
+  Observed / expected...: 2.67
+  Relative risk.........: 2.72
+  Log likelihood ratio..: 6.154083
+  Test statistic........: 4.923266
+  P-value...............: 0.768
+
+5.Location IDs included.: 62, 64, 67, 65
+  Coordinates...........: (42.9637,-76.528)
+  Semiminor axis........: 0.061
+  Semimajor axis........: 0.061
+  Angle (degrees).......: 0
+  Shape.................: 1.00
+  Population............: 24571
+  Number of cases.......: 25
+  Expected cases........: 12.82
+  Annual cases / 100000.: 101.5
+  Observed / expected...: 1.95
+  Relative risk.........: 1.99
+  Log likelihood ratio..: 4.651839
+  Test statistic........: 4.651839
+  P-value...............: 0.845
+
+6.Location IDs included.: 106, 103, 102, 77, 230
+  Coordinates...........: (42.7801,-75.7262)
+  Semiminor axis........: 0.087
+  Semimajor axis........: 0.35
+  Angle (degrees).......: -45.00
+  Shape.................: 4.00
+  Population............: 15576
+  Number of cases.......: 19
+  Expected cases........: 8.13
+  Annual cases / 100000.: 121.7
+  Observed / expected...: 2.34
+  Relative risk.........: 2.38
+  Log likelihood ratio..: 5.369233
+  Test statistic........: 4.295386
+  P-value...............: 0.922
+
+7.Location IDs included.: 266, 281, 265
+  Coordinates...........: (42.4722,-76.4635)
+  Semiminor axis........: 0.017
+  Semimajor axis........: 0.026
+  Angle (degrees).......: 90.00
+  Shape.................: 1.50
+  Population............: 8063
+  Number of cases.......: 11
+  Expected cases........: 4.21
+  Annual cases / 100000.: 136.1
+  Observed / expected...: 2.61
+  Relative risk.........: 2.65
+  Log likelihood ratio..: 3.820132
+  Test statistic........: 3.742950
+  P-value...............: 0.989
+_______________________________________________________________________________________________
+
+PARAMETER SETTINGS
+
+Input
+-----
+  Case File        : /Users/jfrench/Dropbox/Code/GitHub/smerc/tests/satscan_ny_cases.txt
+  Population File  : /Users/jfrench/Dropbox/Code/GitHub/smerc/tests/satscan_ny_pop.txt
+  Time Precision   : Year
+  Start Time       : 2000/1/1
+  End Time         : 2000/12/31
+  Coordinates File : /Users/jfrench/Dropbox/Code/GitHub/smerc/tests/flexscan_ny_coords.txt
+  Coordinates      : Cartesian
+
+Analysis
+--------
+  Type of Analysis    : Purely Spatial
+  Probability Model   : Discrete Poisson
+  Scan for Areas with : High Rates
+
+Output
+------
+  Main Results File : /Users/jfrench/Dropbox/Code/GitHub/smerc/tests/scan_test_ny_poisson_elliptical_ubpop_10percent_penalty_medium.txt
+
+Data Checking
+-------------
+  Temporal Data Check     : Check to ensure that all cases and controls are within the specified temporal study period.
+  Geographical Data Check : Check to ensure that all observations (cases, controls and populations) are within the specified geographical area.
+
+Spatial Neighbors
+-----------------
+  Use Non-Euclidian Neighbors file : No
+  Use Meta Locations File          : No
+  Multiple Coordinates Type        : Allow only one set of coordinates per location ID.
+
+Spatial Window
+--------------
+  Maximum Spatial Cluster Size : 10 percent of population at risk
+  Window Shape                 : Elliptic
+  Non-Compactness Penalty      : Meduim
+  Isotonic Scan                : No
+
+Cluster Restrictions
+--------------------
+  Minimum Cases in Cluster for High Rates : 2
+  Restrict High Rate Clusters             : No
+
+Space And Time Adjustments
+--------------------------
+  Adjust for known relative risks : No
+
+Inference
+---------
+  P-Value Reporting                  : Default Combination
+  Number of Replications             : 999
+  Adjusting for More Likely Clusters : No
+
+Border Analysis
+---------------
+  Report Oliveira's F : No
+
+Spatial Output
+--------------
+  Report Hierarchical Clusters              : Yes
+  Criteria for Reporting Secondary Clusters : No Geographical Overlap
+  Report Gini Optimized Cluster Collection  : No
+  Restrict Reporting to Smaller Clusters    : No
+
+Other Output
+------------
+  Report Critical Values  : No
+  Report Monte Carlo Rank : No
+
+Elliptic Scan
+-------------
+  Ellipse Shapes                          : 1.5, 2, 3, 4, 5
+  Number of Angles for Each Ellipse Shape : 4, 6, 9, 12, 15
+
+Run Options
+-----------
+  Processor Usage   : All Available Processors
+  Suppress Warnings : No
+  Logging Analysis  : No
+_______________________________________________________________________________________________
+
+Program completed  : Sat Mar  9 07:52:42 2019
+Total Running Time : 1 second
+Processor Usage    : 8 processors

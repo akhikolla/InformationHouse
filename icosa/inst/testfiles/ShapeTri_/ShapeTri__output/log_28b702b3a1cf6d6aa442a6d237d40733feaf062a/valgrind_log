@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./ShapeTri__DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/icosa/inst/testfiles/ShapeTri_/ShapeTri__output/28b702b3a1cf6d6aa442a6d237d40733feaf062a.pass</line>
+</preamble>
+
+<pid>887142</pid>
+<ppid>887141</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/icosa/inst/testfiles/ShapeTri_/ShapeTri__output/log_28b702b3a1cf6d6aa442a6d237d40733feaf062a/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./ShapeTri__DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/icosa/inst/testfiles/ShapeTri_/ShapeTri__output/28b702b3a1cf6d6aa442a6d237d40733feaf062a.pass</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.046 </time>
+</status>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:13.356 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:14.049 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

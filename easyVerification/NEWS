@@ -1,0 +1,122 @@
+Changes in version 0.4.4
+  * Added min-fcst threshold for missing value masking (fraction and absolute number of forecasts)
+  * fixed Rcpp dependency problems
+  * fixed NA bug with reference forecasts
+
+Changes in version 0.4.3
+  * improved missing value handling
+  * fixed bug in "EnsRocss"
+
+Changes in version 0.4.2
+
+  * Fixed bug with missing values and na.rm=T in translating to categorical forecasts in `convert2prob`
+  * Fixed issue with limited amount of unique values in `convert2prob`
+
+Changes in version 0.4.1
+
+  * Fixed CRAN NOTE on registration of native routines
+  * Fixed bug in setting up reference forecasts with missing observations
+  * Improved error handling with missing values in forecast
+  * Improve performance of `convert2prob` with reduced baseline
+  * Added missing value support for `count2prob`
+  * Fixed unit test causing episodic errors
+
+Changes in version 0.4.0
+
+  * Adopted to new version of SpecsVerification (0.5.0)
+  * Fully implemented out-of-sample computation of percentile thresholds
+  * Changed to new implementation of AUC in 'SpecsVerification' with standard errors
+
+Changes in version 0.3.0 (2016-09-28)
+
+  * added support for out-of-sample reference forecasts (user-defined or by keyword for a few standard approaches, issues #1 and #2)
+  * added support for difference in scores functions (related to skill scores)
+  * removed onload function to check package version. Updating is now dealt with by update.packages as for other CRAN packages.
+  * removed non-sensical mean error skill score `EnsMess`.
+  * deprecated ill-defined ROC area skill score. In future versions, only the ROC area score will be implemented `EnsRoca`.
+  * Added reliability categorization following Weisheimer et al. (2014).
+  * fixed bug in `convert2prob` for climatological forecasts (reduced set of values to compute percentile boundaries for consistency).
+  * fix for `FairRpss` against climatological reference forecast with category boundaries defined on distribution of verifying observations.
+
+Changes in version 0.2.0 (2016-01-25)
+
+  * Added ignorance score for probability forecasts `EnsIgn` and skill score `EnsIgnss`
+  * replaced `EnsRoca` and `rank.ensembles` in `Ens2AFC` with C++ equivalents that are slightly faster
+  * added documentation for `veriApply` (issue #4)
+  * added multi-model option for relative thresholds to `convert2prob`
+  * added support for named vector output in functions such as `Corr` and `CorrDiff` from `SpecsVerification`
+  * added bug fix from Henrik Bengtsson (pull request #3)
+  * updated documentation also to reflect that package is now available on CRAN
+  * minor bugfixes
+
+Changes in version 0.1.8 (2015-10-25)
+
+  * prepared package for release on CRAN
+
+Changes in version 0.1.7.3
+
+  * added support for ensembles of size 1
+
+Changes in version 0.1.7.2
+
+  * fixed documentation
+  * added new function to convert counts (from `convert2prob`) to probabilities (`count2prob`)
+
+## easyVerificaiton 0.1.7.1
+
+  * additional arguments for parallel processing courtesy of Matteo De Felice
+
+Changes in version 0.1.7.0
+
+  * added parallelization of `veriApply` using the `parallel` package
+  * parallelization is based on FORK nodes, and thus won't work under Windows
+  * under Windows and if `parallel` is not available, the original, unparallelized fallback is used
+  * parallelization will use up to 16 nodes, but will leave one node free for other tasks
+
+Changes in version 0.1.6.0
+
+  * added `toymodel` to produce forecast-observation pairs
+  * added `toyarray` to produce multiple independent forecast-observation pairs, for example at different spatial locations
+
+Changes in version 0.1.5.3
+
+  * Fixed bug in `veriApply` for reformatting output of scores (not affecting skill scores)
+
+Changes in version 0.1.5.2
+
+  * Added ECOMS-UDG / easyVerification vignette
+
+Changes in version 0.1.5.1
+
+  * updated documentation for elementary skill functions
+
+Changes in version 0.1.5
+
+  * probability and absolute thresholds for conversion of continuous forecasts to category forecasts can now be supplied to be forecast specific (e.g. different thresholds for different lead times and spatial locations)
+  * bug fix in `veriApply` with minimal forecast, observation examples
+
+Changes in version 0.1.4.2
+
+  * Fixed bug in missing value treatment with `convert2prob`. This will not affect functions called using `veriApply` as of yet as scores in `veriApply` are only computed for complete forecast and observation pairs
+
+Changes in version 0.1.4.1
+
+  * Bug fix (scaling) of standard error provided in `EnsRocss`
+
+Changes in version 0.1.4
+
+  * Support for dressed metrics from `SpecsVerification`. Only the standard dressing method ("silverman") is supported so far.
+  * Significance for `EnsRocss`
+  * `FairSprErr` Fair spread error ratio
+  * `EnsRocss` allow for arbitrary reference forecasts in ROC area skill score (no significance for reference forecasts with ROC area != 0.5)
+
+Changes in version 0.1.3
+
+  * `Ens2AFC` Added the generalized discrimination score for ensembles.
+
+Changes in version 0.1.2
+
+  * Moved repository to new location on github.com.
+  * Added vignette documenting the basic functionality of the package.
+  * Bugfix for ensembles of size 1.
+  * Removed redundant checks on ensemble size.

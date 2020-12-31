@@ -1,0 +1,50 @@
+#!/bin/bash
+
+## NB: this script prints command-line flags that should be appended to all make commands,
+##     i.e. typical usage will be:  CONFIG_FLAGS=`install-scripts/cwb-config-basic`
+
+platform=""
+siteflags=""
+uname_output=$(uname -a)
+
+if [[ "$uname_output" == Linux* ]]
+then
+    platform="linux"
+    # don't know how to detect opteron?
+    if [[ "$uname_output" == *x86_64* ]]
+    then
+        platform="${platform}-64"
+    fi
+
+elif [[ "$uname_output" == Darwin* ]]
+then
+    if [[ "$uname_output" == *ppc ]]
+    then
+        echo "*** Mac OS X is no longer supported on PowerPC processors ***"
+        exit
+    else
+        # build core2-optimised universal binaries (i386 + x86_64) by default on recent Mac OS X
+        if [[ -f /opt/local/lib/libglib-2.0.dylib || -f /opt/local/lib/libglib-2.0.a ]]
+        then
+            platform="darwin-port-core2" # GLib seems to be provided by MacPorts
+        else
+            platform="darwin-64" # assume that GLib is provided by HomeBrew or has been compiled by user
+        fi
+    fi
+    
+elif [[ "$uname_output" == SunOS* ]]
+then
+    platform="solaris"
+
+elif [[ "$uname_output" == CYGWIN* ]]
+then
+    platform="cygwin"
+    # and force site to be cygwin
+    siteflags="SITE=cygwin"
+
+else
+    # go for generic unix
+    platform="unix"
+fi
+
+echo "PLATFORM=$platform $siteflags"

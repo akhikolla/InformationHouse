@@ -1,0 +1,33 @@
+INFO: Starting fuzzing
+WARNING: No seed provided; using 1608782755
+WARNING: No test specified, defaulting to first test defined (mosum_deepstate_test_mean_help_test)
+input starts
+EXTERNAL: qs v0.23.4.
+
+x values: -1.41284e-199 1.22946e+08 4.9789e+17 -5.4916e-29 inf inf nan -1.91859e-258 1.39162e-260 -1.78874e-255 1.83809e-42 nan 1.67333e+106 0
+l values: -377269203
+r values: -2024518850
+input ends
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Expecting l<=r
+ERROR: Failed: mosum_deepstate_test_mean_help_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/mosum/inst/testfiles/mean_help/mean_help_output/a584d8751c3f62d57292b17bfcea7d323b603e55.fail`
+input starts
+EXTERNAL: qs v0.23.4.
+
+x values: -2.21592e+72 4.97676e+55 -1.10302e+85 -9.58429e+120 -2.46686e+83 1.60044e-156 -5.65888e+89 6.57752e-38 7.22848e+24 1.52349e-134 3.03155e-163 1.49925e-69 5.17719e-216 -5.69985e+119 -7.42396e-11 nan 4.75233e-114 3.13248e+125 -2.21966e-264 -inf 1.03288e-62 -6.93426e+65 -1.18489e+18 -inf 5.19909e+63 1.76532e+166 -1.07989e+237 2.02689e+265 -1.09361e-120 -5.09026e-230 2.8061e+147 1.94084e+285 2.26228e+36 3.97023e-308 7.97414e+124 1.48977e+167 nan 2.86758e+236 1.59625e+174 2.20109e-105 -1.04733e-202 -7.20187e-201 -2.16472e+190 9.12761e-29 -1.6166e-202 -2.27952e-244 -9.75217e-62 2.91099e+07 -5.44115e+237 -1.60364e+242 -2.61935e+253 -2.63128e+278 -8.09554e-224 8.80498e-196 -1.49786e+179 -3.0433e-267 6.90274e-288 2.05305e+51 -1.86006e-87 -2.06962e+301 -2.23992e-128 -5.80189e-184 -5.56034e+187 4.66567e+54 -1.58223e-100 6.35995e+65 -2.64116e-138 -6.95111e-135 1.19009e-260 -6.48229e+188 -5.77194e+49 -1.61502e-153 -3.2054e-186 -4.47824e+204 -3.58193e-274 -8.27289e+91 -1.45318e+261 9.862e+173 2.90188e+177 -4.44723e+182 -2.21615e+17 -2.99879e-170 2.62067e-244 -8.19903e-99 -5.30675e+74 -1.47825e+175 7.39473e+42 -8.46333e+110 -6.43508e+09 1.14754e+157 -1.58329e+289 -1.38711e+292 -4.14853e-255
+l values: -1012662751
+r values: 999777849
+input ends
+ERROR: Crashed: mosum_deepstate_test_mean_help_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/mosum/inst/testfiles/mean_help/mean_help_output/6337f48b5b5098cee378513fd040f2955dc415f6.crash`
+input starts
+EXTERNAL: qs v0.23.4.
+
+x values: 6.8862e+103 nan -1.12166e+50 -1.14776e-242 -inf nan inf 0
+l values: -1196428485
+r values: -870326468
+input ends
+ERROR: Crashed: mosum_deepstate_test_mean_help_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/mosum/inst/testfiles/mean_help/mean_help_output/985c5b0c49f0c59c44daf056bf94df47793d4398.crash`
+INFO: Done fuzzing! Ran 3 tests (1 tests/second) with 3 failed/0 passed/0 abandoned tests

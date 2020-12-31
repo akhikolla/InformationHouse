@@ -1,0 +1,16 @@
+exportPattern("^[[:alpha:]]+")
+importFrom(Rcpp, evalCpp)
+useDynLib(MultivariateRandomForest, .registration = TRUE)
+
+
+export(CrossValidation)
+export(Imputation)
+export(Node_cost)
+export(build_forest_predict)
+export(build_single_tree)
+export(predicting)
+export(single_tree_prediction)
+export(split_node)
+export(splitt2)
+export(variable_importance_measure)
+importFrom(stats, cov)

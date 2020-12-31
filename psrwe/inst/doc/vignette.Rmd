@@ -1,0 +1,144 @@
+---
+title: "psrwe: Propensity Score-Integrated Approaches for Incorporating Real-World Evidence in Clinical Studies "
+author: "Chenguang Wang"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{psrwe: Propensity Score-Integrated Methods for Incorporating Real-World Evidence in Clinical Studies}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r, eval=T, echo=FALSE}
+require(psrwe)
+set.seed(1000)
+```
+
+# Introduction
+
+In the *R* package **psrwe**, we implement a series of approaches for leveraging
+real-world evidence in clinical study design and analysis.
+
+# Propensity score estimation
+
+The approaches implemented in **psrwe** are mostly based on propensity score
+adjustment. Estimation of propensity scores can be done by using the function
+**rwe_ps**.
+
+```{r, eval=T, echo=TRUE}
+data(ex_dta)
+dta_ps <- rwe_ps(ex_dta,
+                 v_covs = paste("V", 1:7, sep = ""),
+                 v_grp = "Group",
+                 cur_grp_level = "current",
+                 nstrata = 5)
+```
+
+It is extremely important to evaluate the propensity score adjustment results.
+In **psrwe**, functions are provided to visualize the balance in covariate
+distributions and propensity score distributions based on propensity score
+stratification.
+
+```{r, echo=TRUE, fig.width=6, fig.height=5}
+plot(dta_ps, "balance")
+```
+
+```{r, echo=TRUE, fig.width=6, fig.height=5}
+plot(dta_ps, "ps")
+```
+
+# PS-integrated power prior approach for single arm studies
+
+For single arm studies when there is one external data source, the function
+**rwe_ps_powerp** allows one to conduct the analysis proposed in Wang et. al.
+(2019). The method uses propensity score to pre-select a subset of real-world
+data containing patients that are similar to those in the current study in terms
+of covariates, and to stratify the selected patients together with those in the
+current study into more homogeneous strata. The power prior approach is then
+applied in each stratum to obtain stratum-specific posterior distributions,
+which are combined to complete the Bayesian inference for the parameters of
+interest.
+
+```{r, eval=T, echo=TRUE}
+ps_dist   <- rwe_ps_dist(dta_ps)
+post_smps <- rwe_ps_powerp(dta_ps,
+                           total_borrow = 40,
+                           v_distance   = ps_dist$Dist[1:dta_ps$nstrata],
+                           outcome_type = "binary",
+                           v_outcome    = "Y")
+
+```
+
+The mixing of posterior samples should be checked to ensure the convergence
+of the posterior sampling.
+```{r, echo=TRUE, fig.width=6, fig.height=5}
+traceplot(post_smps$stan_rst, pars = c("theta", "thetas"))
+```
+
+Results can be further summarized as:
+```{r, eval=T, echo=TRUE}
+summary(post_smps)
+```
+
+# PS-integrated composite likelihood approach for single arm studies
+
+For single arm studies when there is one external data source, the function
+**rwe_ps_cl** allows one to conduct the analysis proposed in Wang et. al.
+(2020). In this approach, within each propensity score stratum, a composite
+likelihood function is specified and utilized to down-weight the information
+contributed by the external data source. Estimates of the stratum-specific
+parameters are obtained by maximizing the composite likelihood function. These
+stratum-specific estimates are then combined to obtain an overall
+population-level estimate of the parameter of interest.
+
+```{r, eval=T, echo=TRUE}
+ps_borrow <- rwe_ps_borrow(total_borrow = 40, ps_dist)
+rst_cl    <- rwe_ps_cl(dta_ps, v_borrow = ps_borrow, v_outcome = "Y")
+summary(rst_cl)
+```
+
+# PS-integrated composite likelihood approach for randomized studies
+
+For randomized studies when there is one external data source that contains
+*control* subjects, the function **rwe_ps_cl2arm** allows one to conduct the
+analysis proposed in Chen et. al. (2020). In this approach, a propensity
+score-integrated composite likelihood approach is developed for augmenting the
+control arm of the two-arm randomized controlled trial with patients from
+the external data source. An example is given below.
+
+```{r, eval=T, echo=TRUE}
+data(ex_dta_rct)
+dta_ps_2arm <- rwe_ps(ex_dta_rct,
+                      v_covs = paste("V", 1:7, sep = ""),
+                      v_grp = "Group",
+                      cur_grp_level = "current",
+                      nstrata = 5)
+
+rst_2arm <- rwe_ps_cl2arm(dta_ps_2arm,
+                          v_arm = "Arm",
+                          trt_arm_level = 1,
+                          outcome_type = "continuous",
+                          v_outcome = "Y",
+                          total_borrow = 40)
+
+print(rst_2arm)
+```
+
+
+# Reference
+
+Chen, W.C., Wang, C., Li, H., Lu, N., Tiwari, R., Xu, Y. and Yue, L.Q., 2020.
+Propensity score-integrated composite likelihood approach for augmenting the
+control arm of a randomized controlled trial by incorporating real-world
+data. Journal of Biopharmaceutical Statistics, 30(3), pp.508-520.
+
+Wang, C., Lu, N., Chen, W. C., Li, H., Tiwari, R., Xu, Y., & Yue, L. Q.
+(2020). Propensity score-integrated composite likelihood approach for
+incorporating real-world evidence in single-arm clinical studies. Journal of
+biopharmaceutical statistics, 30(3), 495-507.
+
+Wang, C., Li, H., Chen, W. C., Lu, N., Tiwari, R., Xu, Y., & Yue, L. Q.
+(2019). Propensity score-integrated power prior approach for incorporating
+real-world evidence in single-arm clinical studies. Journal of
+biopharmaceutical statistics, 29(5), 731-748.

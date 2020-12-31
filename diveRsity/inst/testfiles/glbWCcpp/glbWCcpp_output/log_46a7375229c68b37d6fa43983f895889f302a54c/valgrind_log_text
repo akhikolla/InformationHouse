@@ -1,0 +1,20 @@
+WARNING: No test specified, defaulting to first test defined (diveRsity_deepstate_test_glbWCcpp_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/diveRsity/inst/testfiles/glbWCcpp/glbWCcpp_output/46a7375229c68b37d6fa43983f895889f302a54c.fail`
+TRACE: Running: diveRsity_deepstate_test_glbWCcpp_test from /home/akhila/fuzzer_packages/fuzzedpackages/diveRsity/inst/testfiles/glbWCcpp/glbWCcpp_DeepState_TestHarness.cpp(13)
+input starts
+Missing value
+EXTERNAL: qs v0.23.4.
+
+hsum values: -621726556 -1331494887 1854878590 314985932 1361933119 -1262797933 -1571830262 -555281357 1176038391 -1125445590 2051319948 -555281357 600611799 -2015925719 640758675 -2045256755 818332908 -1294723540 415152419 -1290633258 -568676763 -250049000 1237429200 -645489399 1298265599 889924430 -907775620 -152022060
+af values: 5.96710e+222
+4.04706e+285
+3.76266e-189
+6.43237e+268
+5.39986e+265
+
+indtyp values: -2.18557e+139 -2.63808e-55 -1.77674e-44 -2.03911e+240 6.84064e+216 5.05107e+120 -5.78936e+93 6.89414e+47 2.44539e-86 1.09354e-207 1.38725e-134 1.55249e+275 2.49738e+56 -2.19682e+60 -4.87441e-213 -1.99602e-140 -4.69939e-20 -1.11593e+170 1.82803e+153 3.12842e+187
+input ends
+terminate called after throwing an instance of 'Rcpp::not_compatible'
+  what():  Not compatible with STRSXP: [type=NULL].
+ERROR: Failed: diveRsity_deepstate_test_glbWCcpp_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/diveRsity/inst/testfiles/glbWCcpp/glbWCcpp_output/46a7375229c68b37d6fa43983f895889f302a54c.fail failed

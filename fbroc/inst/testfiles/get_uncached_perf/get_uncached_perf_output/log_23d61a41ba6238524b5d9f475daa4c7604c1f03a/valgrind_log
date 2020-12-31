@@ -1,0 +1,928 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: ./get_uncached_perf_DeepState_TestHarness --input_test_file /home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash</line>
+</preamble>
+
+<pid>808140</pid>
+<ppid>808139</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_output/log_23d61a41ba6238524b5d9f475daa4c7604c1f03a/valgrind_log</arg>
+    <arg>--tool=memcheck</arg>
+    <arg>--leak-check=yes</arg>
+  </vargv>
+  <argv>
+    <exe>./get_uncached_perf_DeepState_TestHarness</exe>
+    <arg>--input_test_file</arg>
+    <arg>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash</arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.028 </time>
+</status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D42FEE</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src/fbroc.so</obj>
+      <fn>ROC::ROC(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src</dir>
+      <file>roc.cpp</file>
+      <line>281</line>
+    </frame>
+    <frame>
+      <ip>0x4D340D6</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src/fbroc.so</obj>
+      <fn>Bootstrapped_ROC::Bootstrapped_ROC(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src</dir>
+      <file>bootstrapper.cpp</file>
+      <line>16</line>
+    </frame>
+    <frame>
+      <ip>0x4D3AF1F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src/fbroc.so</obj>
+      <fn>get_uncached_perf(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src</dir>
+      <file>interface.single.cpp</file>
+      <line>33</line>
+    </frame>
+    <frame>
+      <ip>0x40A521</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_fbroc_deepstate_test_get_uncached_perf_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf</dir>
+      <file>get_uncached_perf_DeepState_TestHarness.cpp</file>
+      <line>40</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_fbroc_deepstate_test_get_uncached_perf_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf</dir>
+      <file>get_uncached_perf_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D708</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D9A9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA84</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x6</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D41D71</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src/fbroc.so</obj>
+      <fn>ROC::find_thresholds(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src</dir>
+      <file>roc.cpp</file>
+      <line>87</line>
+    </frame>
+    <frame>
+      <ip>0x4D430A4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src/fbroc.so</obj>
+      <fn>ROC::ROC(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src</dir>
+      <file>roc.cpp</file>
+      <line>284</line>
+    </frame>
+    <frame>
+      <ip>0x4D340D6</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src/fbroc.so</obj>
+      <fn>Bootstrapped_ROC::Bootstrapped_ROC(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src</dir>
+      <file>bootstrapper.cpp</file>
+      <line>16</line>
+    </frame>
+    <frame>
+      <ip>0x4D3AF1F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src/fbroc.so</obj>
+      <fn>get_uncached_perf(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src</dir>
+      <file>interface.single.cpp</file>
+      <line>33</line>
+    </frame>
+    <frame>
+      <ip>0x40A521</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_fbroc_deepstate_test_get_uncached_perf_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf</dir>
+      <file>get_uncached_perf_DeepState_TestHarness.cpp</file>
+      <line>40</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_fbroc_deepstate_test_get_uncached_perf_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf</dir>
+      <file>get_uncached_perf_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D708</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D9A9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA84</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0xc</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D402E6</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src/fbroc.so</obj>
+      <fn>ROC::build_pred(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src</dir>
+      <file>roc.cpp</file>
+      <line>262</line>
+    </frame>
+    <frame>
+      <ip>0x4D43166</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src/fbroc.so</obj>
+      <fn>ROC::ROC(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src</dir>
+      <file>roc.cpp</file>
+      <line>285</line>
+    </frame>
+    <frame>
+      <ip>0x4D340D6</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src/fbroc.so</obj>
+      <fn>Bootstrapped_ROC::Bootstrapped_ROC(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src</dir>
+      <file>bootstrapper.cpp</file>
+      <line>16</line>
+    </frame>
+    <frame>
+      <ip>0x4D3AF1F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src/fbroc.so</obj>
+      <fn>get_uncached_perf(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src</dir>
+      <file>interface.single.cpp</file>
+      <line>33</line>
+    </frame>
+    <frame>
+      <ip>0x40A521</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_fbroc_deepstate_test_get_uncached_perf_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf</dir>
+      <file>get_uncached_perf_DeepState_TestHarness.cpp</file>
+      <line>40</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_fbroc_deepstate_test_get_uncached_perf_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf</dir>
+      <file>get_uncached_perf_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D708</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D9A9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA84</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x12</unique>
+  <tid>1</tid>
+  <kind>UninitCondition</kind>
+  <what>Conditional jump or move depends on uninitialised value(s)</what>
+  <stack>
+    <frame>
+      <ip>0x4D426C4</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src/fbroc.so</obj>
+      <fn>ROC::build_index(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src</dir>
+      <file>roc.cpp</file>
+      <line>64</line>
+    </frame>
+    <frame>
+      <ip>0x4D432AF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src/fbroc.so</obj>
+      <fn>ROC::ROC(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src</dir>
+      <file>roc.cpp</file>
+      <line>288</line>
+    </frame>
+    <frame>
+      <ip>0x4D340D6</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src/fbroc.so</obj>
+      <fn>Bootstrapped_ROC::Bootstrapped_ROC(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src</dir>
+      <file>bootstrapper.cpp</file>
+      <line>16</line>
+    </frame>
+    <frame>
+      <ip>0x4D3AF1F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src/fbroc.so</obj>
+      <fn>get_uncached_perf(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src</dir>
+      <file>interface.single.cpp</file>
+      <line>33</line>
+    </frame>
+    <frame>
+      <ip>0x40A521</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_fbroc_deepstate_test_get_uncached_perf_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf</dir>
+      <file>get_uncached_perf_DeepState_TestHarness.cpp</file>
+      <line>40</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_fbroc_deepstate_test_get_uncached_perf_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf</dir>
+      <file>get_uncached_perf_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D708</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D9A9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA84</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x31</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D426BE</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src/fbroc.so</obj>
+      <fn>ROC::build_index(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src</dir>
+      <file>roc.cpp</file>
+      <line>64</line>
+    </frame>
+    <frame>
+      <ip>0x4D432AF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src/fbroc.so</obj>
+      <fn>ROC::ROC(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src</dir>
+      <file>roc.cpp</file>
+      <line>288</line>
+    </frame>
+    <frame>
+      <ip>0x4D340D6</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src/fbroc.so</obj>
+      <fn>Bootstrapped_ROC::Bootstrapped_ROC(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src</dir>
+      <file>bootstrapper.cpp</file>
+      <line>16</line>
+    </frame>
+    <frame>
+      <ip>0x4D3AF1F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src/fbroc.so</obj>
+      <fn>get_uncached_perf(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src</dir>
+      <file>interface.single.cpp</file>
+      <line>33</line>
+    </frame>
+    <frame>
+      <ip>0x40A521</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_fbroc_deepstate_test_get_uncached_perf_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf</dir>
+      <file>get_uncached_perf_DeepState_TestHarness.cpp</file>
+      <line>40</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_fbroc_deepstate_test_get_uncached_perf_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf</dir>
+      <file>get_uncached_perf_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D708</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D9A9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA84</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x7ea6178 is 0 bytes after a block of size 7,960 alloc'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x49D42B3</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x49D5EAB</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_allocVector3</fn>
+    </frame>
+    <frame>
+      <ip>0x4A36479</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A35EE4</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A37D31</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>R_Unserialize</fn>
+    </frame>
+    <frame>
+      <ip>0x4A391BC</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4A395DA</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4995455</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_eval</fn>
+    </frame>
+    <frame>
+      <ip>0x499586B</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4995347</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_eval</fn>
+    </frame>
+    <frame>
+      <ip>0x495B0E4</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x3f6</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 4</what>
+  <stack>
+    <frame>
+      <ip>0x4D3F858</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src/fbroc.so</obj>
+      <fn>ROC::get_positives_delta()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src</dir>
+      <file>roc.cpp</file>
+      <line>225</line>
+    </frame>
+    <frame>
+      <ip>0x4D4393A</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src/fbroc.so</obj>
+      <fn>ROC::ROC(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src</dir>
+      <file>roc.cpp</file>
+      <line>301</line>
+    </frame>
+    <frame>
+      <ip>0x4D340D6</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src/fbroc.so</obj>
+      <fn>Bootstrapped_ROC::Bootstrapped_ROC(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src</dir>
+      <file>bootstrapper.cpp</file>
+      <line>16</line>
+    </frame>
+    <frame>
+      <ip>0x4D3AF1F</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src/fbroc.so</obj>
+      <fn>get_uncached_perf(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src</dir>
+      <file>interface.single.cpp</file>
+      <line>33</line>
+    </frame>
+    <frame>
+      <ip>0x40A521</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_fbroc_deepstate_test_get_uncached_perf_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf</dir>
+      <file>get_uncached_perf_DeepState_TestHarness.cpp</file>
+      <line>40</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_fbroc_deepstate_test_get_uncached_perf_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf</dir>
+      <file>get_uncached_perf_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D708</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D9A9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA84</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x92c1208 is 40 bytes inside a block of size 4,096 free'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483CA3F</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>free</fn>
+    </frame>
+    <frame>
+      <ip>0x4AD1AD0</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4AC9CD2</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4AC5915</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x49B2697</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x497A1D0</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4994DD7</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_eval</fn>
+    </frame>
+    <frame>
+      <ip>0x4996C9E</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4997B91</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_applyClosure</fn>
+    </frame>
+    <frame>
+      <ip>0x498450D</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4994DD7</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_eval</fn>
+    </frame>
+    <frame>
+      <ip>0x499586B</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+  </stack>
+  <auxwhat>Block was alloc'd at</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x483B7F3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x4AD1A82</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4AC8A99</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4AC5915</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x49B2697</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x497A1D0</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4994DD7</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_eval</fn>
+    </frame>
+    <frame>
+      <ip>0x4996C9E</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4997B91</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_applyClosure</fn>
+    </frame>
+    <frame>
+      <ip>0x498450D</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+    <frame>
+      <ip>0x4994DD7</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+      <fn>Rf_eval</fn>
+    </frame>
+    <frame>
+      <ip>0x499586B</ip>
+      <obj>/usr/lib/R/lib/libR.so</obj>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x3f8</unique>
+  <tid>1</tid>
+  <kind>UninitValue</kind>
+  <what>Use of uninitialised value of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x4D3F964</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src/fbroc.so</obj>
+      <fn>ROC::strat_shuffle(Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;&amp;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;&amp;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src</dir>
+      <file>roc.cpp</file>
+      <line>180</line>
+    </frame>
+    <frame>
+      <ip>0x4D33F96</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src/fbroc.so</obj>
+      <fn>Bootstrapped_ROC::bootstrap()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src</dir>
+      <file>bootstrapper.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x4D3AFEF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src/fbroc.so</obj>
+      <fn>get_uncached_perf(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src</dir>
+      <file>interface.single.cpp</file>
+      <line>36</line>
+    </frame>
+    <frame>
+      <ip>0x40A521</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_fbroc_deepstate_test_get_uncached_perf_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf</dir>
+      <file>get_uncached_perf_DeepState_TestHarness.cpp</file>
+      <line>40</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_fbroc_deepstate_test_get_uncached_perf_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf</dir>
+      <file>get_uncached_perf_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D708</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D9A9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA84</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x3fe</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 4</what>
+  <stack>
+    <frame>
+      <ip>0x4D3F964</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src/fbroc.so</obj>
+      <fn>ROC::strat_shuffle(Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;&amp;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;&amp;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src</dir>
+      <file>roc.cpp</file>
+      <line>180</line>
+    </frame>
+    <frame>
+      <ip>0x4D33F96</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src/fbroc.so</obj>
+      <fn>Bootstrapped_ROC::bootstrap()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src</dir>
+      <file>bootstrapper.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x4D3AFEF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src/fbroc.so</obj>
+      <fn>get_uncached_perf(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src</dir>
+      <file>interface.single.cpp</file>
+      <line>36</line>
+    </frame>
+    <frame>
+      <ip>0x40A521</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_fbroc_deepstate_test_get_uncached_perf_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf</dir>
+      <file>get_uncached_perf_DeepState_TestHarness.cpp</file>
+      <line>40</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_fbroc_deepstate_test_get_uncached_perf_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf</dir>
+      <file>get_uncached_perf_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D708</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D9A9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA84</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+  <auxwhat>Address 0xfffffffeca218494 is not stack'd, malloc'd or (recently) free'd</auxwhat>
+</error>
+
+<fatal_signal>
+  <tid>1</tid>
+  <signo>11</signo>
+  <signame>SIGSEGV</signame>
+  <sicode>1</sicode>
+  <event>Access not within mapped region</event>
+  <siaddr>0xFFFFFFFECA218494</siaddr>
+  <stack>
+    <frame>
+      <ip>0x4D3F964</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src/fbroc.so</obj>
+      <fn>ROC::strat_shuffle(Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;&amp;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;&amp;)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src</dir>
+      <file>roc.cpp</file>
+      <line>180</line>
+    </frame>
+    <frame>
+      <ip>0x4D33F96</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src/fbroc.so</obj>
+      <fn>Bootstrapped_ROC::bootstrap()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src</dir>
+      <file>bootstrapper.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x4D3AFEF</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src/fbroc.so</obj>
+      <fn>get_uncached_perf(Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;13, Rcpp::PreserveStorage&gt;, Rcpp::Vector&lt;14, Rcpp::PreserveStorage&gt;, int, int)</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/src</dir>
+      <file>interface.single.cpp</file>
+      <line>36</line>
+    </frame>
+    <frame>
+      <ip>0x40A521</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_Test_fbroc_deepstate_test_get_uncached_perf_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf</dir>
+      <file>get_uncached_perf_DeepState_TestHarness.cpp</file>
+      <line>40</line>
+    </frame>
+    <frame>
+      <ip>0x409B58</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_Run_fbroc_deepstate_test_get_uncached_perf_test()</fn>
+      <dir>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf</dir>
+      <file>get_uncached_perf_DeepState_TestHarness.cpp</file>
+      <line>13</line>
+    </frame>
+    <frame>
+      <ip>0x41D708</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_RunTest.isra.0</fn>
+    </frame>
+    <frame>
+      <ip>0x41D9A9</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_ForkAndRunTest</fn>
+    </frame>
+    <frame>
+      <ip>0x41DA84</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>DeepState_RunSavedTestCase</fn>
+    </frame>
+    <frame>
+      <ip>0x407665</ip>
+      <obj>/home/akhila/fuzzer_packages/fuzzedpackages/fbroc/inst/testfiles/get_uncached_perf/get_uncached_perf_DeepState_TestHarness</obj>
+      <fn>main</fn>
+    </frame>
+  </stack>
+</fatal_signal>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:15.407 </time>
+</status>
+
+<errorcounts>
+  <pair>
+    <count>1</count>
+    <unique>0x3fe</unique>
+  </pair>
+  <pair>
+    <count>6</count>
+    <unique>0x3f8</unique>
+  </pair>
+  <pair>
+    <count>2</count>
+    <unique>0x3f6</unique>
+  </pair>
+  <pair>
+    <count>912</count>
+    <unique>0x31</unique>
+  </pair>
+  <pair>
+    <count>84</count>
+    <unique>0x12</unique>
+  </pair>
+  <pair>
+    <count>6</count>
+    <unique>0xc</unique>
+  </pair>
+  <pair>
+    <count>6</count>
+    <unique>0x6</unique>
+  </pair>
+  <pair>
+    <count>6</count>
+    <unique>0x0</unique>
+  </pair>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:27.060 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

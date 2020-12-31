@@ -1,0 +1,129 @@
+---
+title: "Analyzing Networks with gretel"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Analyzing Networks with gretel}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+In analyzing social networks, it is often important to quantify the value of a path in terms of its constituent ties. We may be interested in identifying an optimal path (geodesic) for its own sake, or we may need to identify optimal paths to understand other structural properties such as betweenness centrality, which counts the number of optimal paths that rely on a certain node, or diameter of a network, which reports a 'distance' for the 'longest' (weakest) path in the network. Quotes are used around 'distance' because, except for the binary setting, there is no consensus as to how distance in a network ought to be calculated. *Yang and Knoke* (2001) offer three examples. *Opsahl,* et. al. (2010) offer a general framework containing many more.
+
+Path value - intuitively, some inverted version of distance - shares this pathology, as do other structural properties. In fact, for any structural property of a network, there seem to be numerous proposals in the literature for their calculation. Sometimes, the competing approaches yield substantively different analytic conclusions, and may be published without guidance as to when one or the other calculation ought to be preferred.
+
+Why do we need multiple measures? Is one patently right at the expense of the other? 
+
+**gretel** was developed under the philosophy that a great deal of the discord in measures for certain structural properties can be reduced to a divergence in their approach to evaluating paths. Some measures implicitly describe paths by their weakest links, others by their number of edges, but all structural measures make a decision about how we should understand paths.
+
+Therefore, the dimension of the problem can be greatly reduced. Instead of considering the pantheon of ways any structural property could be measured, we need only consider how we assign value to a path given tie strengths. We choose value over distance for the basis of our discussion because we see it as more fundamental - path values are reported in the same units as elemental tie strength data.
+
+So now we are only left to decide whether there ought to be more than one way to appraise a path's value in terms of its ties. We believe that there should be. Different modeling assumptions about the ties suggest different methods for appraising paths. We believe that the importance of different modelling assumptions is underappreciated. Tie strength data have long been treated as one-dimensional. Granovetter (1973) acknowledged this is an oversimplification, but believed that the various dimensions (frequency, capacity, resource sharing, emotional depth, etc.) are sufficiently correlated that data about tie strength could be collected agnostically. While the facets of tie strength may be highly correlated, they should not necessarily be summarized the same way. For example, the maximum capacity of a path may be very well described by the capacity of the weakest tie, almost independent of its length. However, the resource sharing along a path will almost certainly be influenced by both the number of ties and the tie strengths. Further, the emotional depth of a path could be restricted significantly by the binary distance (number of intervening nodes). The upshot: both the dimension and situation must be considered in deciding how path value ought to be appraised.
+
+**gretel** implements functions that quantify path values and identify optimal paths under a range of appraisal strategies. We extend ideas from *Opsahl*, et al (2010) and L-p spaces of mathematical analysis to develop path value measures parameterized by a real number p between 0 and Infinity. The values assigned to paths are comparable with tie strengths, and - for certain values of p - can be made to recapitulate the path appraisal strategies that underly all of the various structural measures we are aware of.
+
+To illustrate the effect of the parameter p, we give three representative cases:
+
+* p = 0 returns a path value based entirely on the number of edges in a path (relative strength of ties will not matter)
+
+* p = 1 returns a path value that supposes strength is inversely proportional to cost and cost adds linearly. This is equivalent to the interpretation of a network as an electrical circuit and tie strengths as conductivity measures. Further analogies can be drawn to random walk probabilities (*Doyle, Snell* 2000)
+
+* p = Infinity determines path value solely based on the weakest tie in the path. This is equivalent to Peay's 1980 path value measure. A physical analogy is fluid flow, in which bottlenecks place an upper limit on flow, dominating any effect of transport distance/resistance, etc.
+
+Values of p between these represent compromises in the assumptions articulated above.
+
+Here is an example of how different values of p, borne from different assumptions, can affect optimal path identification:
+
+```{r setup}
+library(gretel)
+BuchDarrah19
+```
+
+```{r}
+opt_gpv(BuchDarrah19, source = 1, target = 5, p = 0)
+```
+
+```{r}
+opt_gpv(BuchDarrah19, source = 1, target = 5, p = 1)
+```
+
+```{r}
+opt_gpv(BuchDarrah19, source = 1, target = 5, p = Inf)
+```
+
+We also introduce a new form of path value calculation, probabilistic path value, that extends the desirable probabilistic random walk interpretation of p = 1. This method requires the slightly stricter assumption that, up to a scale factor, tie strengths represent transmission odds (of some information, trend, or contagion) from one node to another, and the transmission events are independent. Using the same sociomatrix as above, suppose that a tie strength of 4 represents even transmission odds. Then we can find the path of optimal transmission 
+
+```{r}
+optimal_path <- opt_ppv(BuchDarrah19, source = 1, target = 5, odds_scale = 4)
+print(optimal_path)
+```
+
+and calculate the transmission odds along the path.
+
+```{r}
+prob_path_value <- ppv(BuchDarrah19, path = optimal_path, odds_scale = 4)
+transmission_odds <- prob_path_value/4
+print(prob_path_value)
+print(transmission_odds)
+```
+
+So if node 1 gets sick, the odds of node 5 getting sick via the optimal path are 1-4. The probability that node 5 will get sick along that path is 0.2.
+
+Finally, the function **generate_proximities** returns a proximity matrix in one of three modes - generalized path value, probabilistic path value, and social conductivity. In the first two modes, the entries represent the values of the optimal paths between any pair of nodes. The third extends the conductivity model associated with p = 1 by evaluating the global conductivity between any two nodes. In all three cases, especially the third, the result is a psuedo-sociomatrix that captures richer, higher order interactions than would tie strengths alone.
+
+```{r}
+generate_proximities(BuchDarrah19, mode = "ogpv", p = 1)
+
+generate_proximities(BuchDarrah19, mode = "oppv", odds_scale = 4)
+
+generate_proximities(BuchDarrah19, mode = "sconductivity")
+```
+
+Below is an example of how **gretel** might be used in a betweenness centrality calculation:
+
+```{r}
+# Suppose we wish to calculate the betweenness centrality of node 3 in 
+# the example sociomatrix 'BuchDarrah19'
+
+# There are n-1 choose 2 pairs of nodes for which neither the source nor the target is 3
+# Since n = 5 in this case, there are 6 pairs of nodes to consider.
+# Therefore, node 3 mediates at most 6 shortest paths.
+# (If this were a directed graph, this number would be 12)
+
+all_paths <- all_opt_gpv(BuchDarrah19, p = 1)
+paths_mediated <- 0
+# We can get away with just looking at half the sociomatrix (below) because this
+# one is undirected.
+for(i in 1:5){
+  for(j in (i+1:5)){
+    shortest_ij <- unpack(all_paths[[i]], i, j)
+    if(3 %in% shortest_ij) paths_mediated <- paths_mediated + 1
+  }
+}
+
+# Print Betweenness Centrality
+print(paths_mediated/6)
+
+
+## What about if p = 0?
+all_paths <- all_opt_gpv(BuchDarrah19, p = 0)
+paths_mediated <- 0
+# We can get away with just looking at half the sociomatrix (below) because this
+# one is undirected.
+for(i in 1:5){
+  for(j in (i+1:5)){
+    shortest_ij <- unpack(all_paths[[i]], i, j)
+    if(3 %in% shortest_ij) paths_mediated <- paths_mediated + 1
+  }
+}
+
+# Print Betweenness Centrality
+print(paths_mediated/6)
+
+```

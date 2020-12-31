@@ -1,0 +1,8 @@
+terminate called after throwing an instance of 'boost::wrapexcept<std::overflow_error>'
+  what():  Error in function boost::math::erfc_inv<long double>(long double, long double): Overflow Error
+==690627==  If you believe this happened as a result of a stack
+==690627==  overflow in your program's main thread (unlikely but
+==690627==  possible), you can try to increase the size of the
+==690627==  main thread stack using the --main-stacksize= flag.
+==690627==  The main thread stack size used in this run was 8388608.
+Segmentation fault (core dumped)

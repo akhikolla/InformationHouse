@@ -1,0 +1,29 @@
+Package: hutilscpp
+Title: Miscellaneous Functions in C++
+Version: 0.5.2
+Authors@R: 
+    person(given = "Hugh",
+           family = "Parsonage",
+           role = c("aut", "cre"),
+           email = "hugh.parsonage@gmail.com")
+Description: Provides utility functions that are simply, frequently used, 
+    but may require higher performance that what can be obtained from base R.
+    Incidentally provides support for 'reverse geocoding', such as matching a point
+    with its nearest neighbour in another array. Used as a complement to package
+    'hutils' by sacrificing compilation or installation time for higher running 
+    speeds. The name is a portmanteau of the author and 'Rcpp'.
+URL: https://github.com/hughparsonage/hutilscpp
+BugReports: https://github.com/hughparsonage/hutilscpp/issues
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+LinkingTo: Rcpp
+Imports: Rcpp, data.table, glue, hutils, magrittr, utils
+RoxygenNote: 7.1.1
+Suggests: bench, parallel, testthat (>= 2.1.0), TeXCheckR, withr, covr
+NeedsCompilation: yes
+Packaged: 2020-10-18 11:18:18 UTC; hughp
+Author: Hugh Parsonage [aut, cre]
+Maintainer: Hugh Parsonage <hugh.parsonage@gmail.com>
+Repository: CRAN
+Date/Publication: 2020-10-20 07:00:12 UTC

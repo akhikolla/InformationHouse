@@ -1,0 +1,17 @@
+WARNING: No test specified, defaulting to first test defined (wk_deepstate_test_cpp_wkt_translate_wkb_test)
+TRACE: Initialized test input buffer with data from `/home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wkb/cpp_wkt_translate_wkb_output/4fcaea9cec7fd9fc0e9d5937160b269766140a1e.fail`
+TRACE: Running: wk_deepstate_test_cpp_wkt_translate_wkb_test from /home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wkb/cpp_wkt_translate_wkb_DeepState_TestHarness.cpp(13)
+input starts
+EXTERNAL: qs v0.23.4.
+
+wkt values: "NA" "bgobpurvacavhln" "qterqunhsyoyrgxyguqe" "vxdcntgugwviqlckmcqs" "mzg" "nbsilul" "zmnlill" "NA" "jkzktbg" "rqclgizxmotxikntswwb" "jmljbgiwjenzzoeoolev" "idpvpfhzfxlfdrdzxekh" "jo" "NA" "qzaxioopcjjee" "tmtzwvwqglmyoznijqbs" "vponncurdqnbh" "NA" "safbzscmzowhzfsyfxer" "qrsywdifbeotxgpwvuem" "NA" "lv" "NA" "NA" "NA" "axiiceupzrqegiy" "qxohmjwazoqghlzusgrj" "NA"
+includeZ values: -295419902
+includeM values: -1609337821
+includeSRID values: 729433903
+endian values: 2050929450
+bufferSize values: 1932357237
+input ends
+terminate called after throwing an instance of 'WKParseException'
+  what():  Expected geometry type or 'SRID=' but found 'bgobpurvacavhln' (:0)
+ERROR: Failed: wk_deepstate_test_cpp_wkt_translate_wkb_test
+ERROR: Test case /home/akhila/fuzzer_packages/fuzzedpackages/wk/inst/testfiles/cpp_wkt_translate_wkb/cpp_wkt_translate_wkb_output/4fcaea9cec7fd9fc0e9d5937160b269766140a1e.fail failed

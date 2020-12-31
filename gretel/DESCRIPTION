@@ -1,0 +1,32 @@
+Package: gretel
+Title: Generalized Path Analysis for Social Networks
+Version: 0.0.1
+Date: 2019-08-09
+Authors@R: person("David", "Buch", email = "davidbuch42@gmail.com", 
+    role = c("aut", "cre"), comment = c(ORCID = "0000-0002-4574-0075"))
+Description: The social network literature features numerous methods for assigning
+    value to paths as a function of their ties. 'gretel' systemizes these approaches,
+    casting them as instances of a generalized path value function indexed by 
+    a penalty parameter. The package also calculates probabilistic path value and
+    identifies optimal paths in either value framework. Finally, proximity 
+    matrices can be generated in these frameworks that capture high-order connections 
+    overlooked in primitive adjacency sociomatrices. Novel methods are described
+    in Buch (2019) <https://davidbuch.github.io/analyzing-networks-with-gretel.html>. 
+    More traditional methods are also implemented, as described in Yang, Knoke (2001) 
+    <doi:10.1016/S0378-8733(01)00043-0>.
+Maintainer: David Buch <davidbuch42@gmail.com>
+URL: https://github.com/davidbuch/gretel
+BugReports: https://github.com/davidbuch/gretel/issues
+License: GPL-3
+Depends: R (>= 3.0)
+Imports: Rcpp (>= 1.0.0), ResistorArray (>= 1.0-32)
+LinkingTo: Rcpp
+Suggests: knitr, rmarkdown, testthat (>= 2.1.0)
+VignetteBuilder: knitr
+LazyData: true
+RoxygenNote: 6.1.1
+NeedsCompilation: yes
+Packaged: 2019-08-21 11:38:45 UTC; Buch
+Author: David Buch [aut, cre] (<https://orcid.org/0000-0002-4574-0075>)
+Repository: CRAN
+Date/Publication: 2019-08-22 12:00:02 UTC

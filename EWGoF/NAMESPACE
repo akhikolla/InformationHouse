@@ -1,0 +1,5 @@
+useDynLib(EWGoF, .registration = TRUE)
+import(Rcpp)
+importFrom("stats", "integrate", "optimize", "sd")
+export("WEDF.test","WNS.test","EDF_NS.test","WPP.test","WLP.test",
+"WLK.test","LK.test","CF.test","LRI.test","MLEst","LSEst","MEst","BLOMEst")

@@ -1,0 +1,24 @@
+INFO: Starting fuzzing
+WARNING: No test specified, defaulting to first test defined (ggiraph_deepstate_test_collect_id_test)
+input starts
+EXTERNAL: qs v0.23.4.
+
+dn values: 467495432
+input ends
+ERROR: Crashed: ggiraph_deepstate_test_collect_id_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/ggiraph/inst/testfiles/collect_id/collect_id_output/23d61a41ba6238524b5d9f475daa4c7604c1f03a.crash`
+input starts
+EXTERNAL: qs v0.23.4.
+
+dn values: 1520036990
+input ends
+ERROR: Crashed: ggiraph_deepstate_test_collect_id_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/ggiraph/inst/testfiles/collect_id/collect_id_output/d54768b7cb0aa48ca59c3cb777a9613367bd064c.crash`
+input starts
+EXTERNAL: qs v0.23.4.
+
+dn values: -1294723540
+input ends
+ERROR: Crashed: ggiraph_deepstate_test_collect_id_test
+INFO: Saved test case in file `/home/akhila/fuzzer_packages/fuzzedpackages/ggiraph/inst/testfiles/collect_id/collect_id_output/f97703d88b5f44f18c8a5478e4cc2152bc9b0638.crash`
+INFO: Done fuzzing! Ran 3 tests (1 tests/second) with 3 failed/0 passed/0 abandoned tests

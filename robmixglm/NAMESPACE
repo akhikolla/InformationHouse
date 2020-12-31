@@ -1,0 +1,76 @@
+useDynLib(robmixglm, .registration=TRUE)
+# exportPattern("^[[:alpha:]]+")
+importFrom(Rcpp, evalCpp)
+
+export(robmixglm)
+export(coef.robmixglm)
+export(summary.robmixglm)
+export(AIC.robmixglm)
+export(BIC.robmixglm)
+export(logLik.robmixglm)
+export(outlierProbs)
+export(outlierProbs.robmixglm)
+export(outlierTest)
+export(outlierTest.robmixglm)
+export(print.outlierTest)
+export(summary.outlierTest)
+export(print.summary.outlierTest)
+export(extractAIC.robmixglm)
+export(fitted.robmixglm)
+export(predict.robmixglm)
+
+# Imported functions
+importFrom("stats", "dbeta", "dnorm", "nlm", "pnorm", "qnorm", "rnorm", "runif","as.formula","fitted","terms","predict")
+importFrom("stats", "AIC", "BIC", "logLik","optim")
+importFrom("stats", "model.extract", "model.matrix", "model.response","weighted.mean")
+importFrom("stats", "dpois", "nlminb", "optimHess", "rbinom", "rgamma", "dbinom", "dgamma", "dnbinom")
+importFrom("stats", "Gamma", "binomial", "constrOptim", "gaussian",
+             "glm.fit", "poisson", "printCoefmat", "rpois","rnbinom","delete.response")
+importFrom("stats", ".getXlevels", "model.frame")
+importFrom("stats", "glm", "lm")
+
+importFrom("MASS", "ginv")
+importFrom("methods", "signature")
+ 
+importFrom("fastGHQuad", "gaussHermiteData")
+
+importFrom("bbmle", "mle2", "parnames", "parnames<-", "coef")
+
+importFrom("VGAM", "vglm", "pospoisson")
+
+importFrom("actuar", "dztpois")
+
+importFrom("graphics", "abline", "dotchart")
+
+importFrom("boot", "boot")
+
+importFrom("numDeriv", "hessian")
+
+importFrom("parallel", "detectCores","makeCluster","stopCluster")
+
+importFrom("doParallel", "registerDoParallel")
+
+importFrom("foreach", "foreach", "%dopar%")
+
+importFrom("doRNG", "%dorng%")
+
+# S3 methods
+S3method(logLik, robmixglm)
+S3method(AIC, robmixglm)
+S3method(BIC, robmixglm)
+S3method(coef, robmixglm)
+S3method(summary, robmixglm)
+S3method(outlierProbs, robmixglm)
+S3method(extractAIC, robmixglm)
+S3method(fitted, robmixglm)
+S3method(residuals, robmixglm)
+S3method(predict, robmixglm)
+
+S3method(plot,outlierProbs)
+
+S3method(print, summary.robmixglm)
+
+S3method(outlierTest, robmixglm)
+S3method(print, outlierTest)
+S3method(summary, outlierTest)
+S3method(print,summary.outlierTest)

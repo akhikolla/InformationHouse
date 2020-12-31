@@ -1,0 +1,215 @@
+---
+title: "About the quartet distance"
+author: "Martin R. Smith"
+date: "`r Sys.Date()`"
+output: 
+  bookdown::pdf_document2:
+    includes:
+      in_header: ../inst/preamble.tex
+  rmarkdown::html_document:
+bibliography: ../inst/REFERENCES.bib
+csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa-old-doi-prefix.csl
+
+vignette: >
+  %\VignetteIndexEntry{About the quartet distance}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r Load package, include=FALSE}
+require('Quartet')
+require('ape') # for plot.phylo
+```
+
+# Partition distances
+
+The Robinson-Foulds (RF or 'partition') metric [@Robinson1981; @Steel1993]
+measures the symmetric difference between two trees by adding
+the number of splits (i.e. groupings) that are present in tree A (but not tree B)
+to the number of splits present in tree B (but not tree A).
+
+It is most useful when the trees to be compared are very similar; it has
+a low range of integer values, and a low maximum value, limiting its ability 
+to distinguish between trees [@Steel1993]; and it treats all splits as 
+equivalent, even though some are more informative than others.
+Various other artefacts and biases limit its performance against a suite of
+real-world benchmarks [@Smith2020;@Smith2021].
+These shortcomings can largely be mitigated through generalizations of the
+Robinson-Foulds distance (see R package 
+'[TreeDist](https://ms609.github.io/TreeDist/)'), but the complementary
+perspective on tree similarity offered by a quartet-centred approach can be
+illuminating.
+
+
+# Quartet distances
+
+Instead of partitions, symmetric differences can be measured by counting the 
+number of four-taxon statements (quartets) that differ between two trees
+[@Estabrook1985;@Day1986].
+
+For any four tips A, B, C and D, a split on a bifurcating tree will separate
+tip A and either B, C or D from the other two tips.  That is to say, removing
+all other tips from the tree will leave one of these three trees:
+
+```{R Three-four-taxon-trees, echo=FALSE, cache=TRUE, fig.width=6, fig.asp=1/3, out.width='66%', fig.align='center'}
+par(mfrow = c(1, 3), mar = c(0.5, 1, 0.5, 1), cex = 1)
+plot(ape::read.tree(text = '((A, B), (C, D));'),
+     tip.color = Ternary::cbPalette8[c(1, 4, 7, 5)], font = 2)
+plot(ape::read.tree(text = '((A, C), (B, D));'),
+     tip.color = Ternary::cbPalette8[c(1, 7, 4, 5)], font = 2)
+plot(ape::read.tree(text = '((A, D), (C, B));'), 
+     tip.color = Ternary::cbPalette8[c(1, 5, 7, 4)], font = 2)
+```
+
+Thus two of the random trees below share the quartet `(A, B), (C, D)`, whereas 
+the third does not; these four tips are divided into `(A, D), (B, C)`.
+
+```{R Plot-a-quartet, echo=FALSE, cache=TRUE, fig.asp=1.3/3, fig.width=6, out.width='80%', fig.align='center'}
+par(mfrow = c(1, 3))
+suppressWarnings(RNGversion("3.5.0")) # Stopgap until R 3.6.0 is widely available 
+set.seed(7)
+trees7 <- lapply(logical(3), function (X) {
+    tr <- ape::rtree(7, br = NULL)
+    tr$edge.length <- rep(1, 12)
+    tr$tip.label <- LETTERS[1:7]
+    tr
+  })
+Quartet::PlotQuartet(trees7, LETTERS[1:4], cex = 1.4, font = 2)
+```
+
+There are $\binom{n}{4}$ groups of four taxa in a tree with $n$ tips;
+for each of these groups, one of the three trees above will be consistent with
+a given tree.  As such, two identical trees will have a quartet distance of
+0, and a random pair of trees will have an expected $\binom{n}{4} / 3$
+quartets in common. Because quartets are not independent of one another,
+no pair of trees with six or more tips can have all $\binom{n}{4}$ quartets in
+common [@Steel1993].
+
+Properties of the quartet distance are explored fully in Steel & Penny
+[-@Steel1993].
+As quartet distances of 1 can only be accomplished for small trees (five or 
+fewer leaves; see below), it is perhaps more appropriate to consider whether or 
+not trees are more dissimilar than a pair of random trees, whose distance will
+be, on average, $\frac{2}{3}$.  (Data from real trees, and comparisons with 
+expected values of other metrics, are available 
+(here)[https://ms609.github.io/TreeDistData/articles/09-expected-similarity.html].)
+
+# Normalization
+
+Whereas counting quartets is simple, accounting for resolution is not.
+Two trees will have few quartet statements in common if they are well resolved
+and differ in many details; or if they are poorly resolved but in perfect
+agreement.
+As such, it is important to normalize quartet distances in a meaningful fashion.
+A number of normalizations have been proposed [@Estabrook1985;@Day1986];
+arguably the most appropriate is the Symmetric Quartet Divergence [@Smith2019],
+which represents the total number of quartets unique to each tree normalized
+against the total number of quartets that could have been resolved.
+The `SimilarityMetrics()` documentation page gives further details.
+
+# Asymmetric differences
+
+Metric distances are necessarily symmetric -- that is, the distance from tree A
+to tree B equals the distance from B to A.
+This behaviour is not necessarily desirable when one tree represents a known
+'reference' -- such as a tree validated by independent data, or a tree used 
+to simulate data in order to test phylogenetic reconstruction techniques.
+
+In such cases, a tree might be evaluated according to the likelihood that a 
+randomly chosen quartet is resolved correctly by the tree, where an uncertain
+resolution in either the reference or comparison tree is taken as having a 
+1/3 chance of being correct (Asher & Smith forthcoming).
+More details are given at the `SimilarityMetrics()` documentation page.
+
+
+## Quartet similarity in a pair of random trees
+
+On average, $\frac{1}{3}$ of the quartets resolved in a pair of random trees 
+will match. This is because there are
+three quartets involving any set of four tips, each of which is equally likely
+to occur on a truly random tree.
+
+The below code calculates the mean proportion of matching quartets between 10
+random trees (90 pairs) with 4 to 20 leaves, and the corresponding standard
+deviation.
+
+```{r mean-proportion}
+round(vapply(4:20, function (nTip) {
+ trees <- lapply(rep(nTip, 10), TreeTools::RandomTree)
+ s <- ManyToManyQuartetAgreement(trees)[, , 's']
+ results <- s[lower.tri(s)] / choose(nTip, 4)
+ c(mean(results), sd(results))
+}, c(mean = 0, sd = 0)), 3)
+```
+
+# Independence
+
+One possible criticism of the quartet distance is that not all individual
+quartet statements are independent.  For example, the quartet statements
+`AB | CD` and `AB | CE` together imply `AB | DE`.
+A simple count of identical quartets therefore includes some redundant
+information.
+This prevents a straightforward information theoretic interpretation of the 
+quartet distance.
+
+
+# Minimum quartet similarity
+
+As a related phenomenon, when there are six or more tips in a bifurcating tree,
+some quartets are necessarily shared between trees.
+
+Consider the tree:
+```{r example-tree}
+tree_a <- ape::read.tree(text = "((1, 2), (3, (4, 5)));")
+```
+```{r plot-trees, fig.height=1.6, fig.width=2, echo=FALSE}
+par(mar = rep(0.3, 4))
+plot(tree_a)
+```
+
+The only trees with no quartets in common with Tree A are symmetric with  
+
+```{r none-in-common}
+tree_b <- ape::read.tree(text = "((1, 5), (3, (2, 4)));")
+```
+```{r plot-tree-b, fig.height=1.6, fig.width=2, echo=FALSE}
+par(mar = rep(0.3, 4))
+plot(tree_b)
+```
+
+Now create Tree C by adding a 6<sup>th</sup> tip as a sister to tip `3` on Tree A.
+
+```{r tree-c}
+tree_c <- ape::read.tree(text="((1, 2), ((3, 6), (4, 5)));")
+```
+```{r Add-tip-6-to-Tree-C, fig.height=1.6, fig.width=2, echo=FALSE}
+par(mar = rep(0.3, 4))
+plot(tree_c, tip.color = c(1,1,1,2,1,1))
+```
+
+There's nowhere to add tip `6` to Tree B without creating a quartet that 
+exists in Tree C.
+
+```{r Adding-tip-6-to-Tree-B-duplicates-a-quartet, fig.height=5, fig.width=2.5, echo=FALSE}
+PlotApeTree <- function (text, quartet) {
+  orig <- TreeTools::RenumberTips(tree_c, as.character(1:6))
+  tree <- ape::read.tree(text = text)
+  PlotQuartet(list(orig, TreeTools::RenumberTips(tree, as.character(1:6))), quartet, overwritePar = FALSE, cex = 0.9)
+}
+
+par(mfrow = c(7, 2), mar = rep(0.4, 4), cex = 0.9)
+PlotApeTree("(((1, 6), 5), (3, (2, 4)));", c(1, 6, 4, 5))
+PlotApeTree("((1, 5), (3, ((2, 6), 4)));", c(2, 6, 4, 5))
+PlotApeTree("((1, 5), ((3, 6), (2, 4)));", c(3, 6, 4, 5))
+PlotApeTree("((1, 5), (3, (2, (4, 6))));", c(4, 6, 1, 2))
+PlotApeTree("((1, (5, 6)), (3, (2, 4)));", c(5, 6, 1, 2))
+PlotApeTree("(((1, 5), 6), (3, (2, 4)));", c(1, 5, 3, 6))
+PlotApeTree("((1, 5), (3, ((2, 4), 6)));", c(4, 2, 3, 6))
+```
+
+As such, the minimum possible quartet similarity is non-zero, and becomes
+increasingly difficult to compute as the number of leaves rises.
+This fact increases the value of comparing low quartet similarity scores to the
+expected similarity of a pair of random trees (i.e. $\frac{1}{3}$), rather than to zero.
+
+# References

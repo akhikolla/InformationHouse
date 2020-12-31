@@ -1,0 +1,28 @@
+Package: GeDS
+Type: Package
+Title: Geometrically Designed Spline Regression
+Version: 0.1.3
+Date: 2017-12-19
+Author: Dimitrina S. Dimitrova <D.Dimitrova@city.ac.uk>,
+  Vladimir K. Kaishev <V.Kaishev@city.ac.uk>,
+  Andrea Lattuada <Andrea.Lattuada@unicatt.it> and
+  Richard J. Verrall <R.J.Verrall@city.ac.uk>
+Maintainer: Andrea Lattuada <Andrea.Lattuada@unicatt.it>
+Description: Geometrically Designed Spline ('GeDS') Regression is a non-parametric geometrically 
+  motivated method for fitting variable knots spline predictor models in one or two independent 
+  variables, in the context of generalized (non-)linear models. 'GeDS' estimates the number and 
+  position of the knots and the order of the spline, assuming the response variable has a 
+  distribution from the exponential family. A description of the method can be found in
+  Kaishev et al. (2016) <doi:10.1007/s00180-015-0621-7> and Dimitrova et al. (2017) <https://openaccess.city.ac.uk/18460>.
+License: GPL-3
+URL: http://github.com/alattuada/GeDS
+BugReports: http://github.com/alattuada/GeDS/issues
+LazyData: TRUE
+Depends: R (>= 3.0.1), Rcpp (>= 0.12.1), splines, stats, utils, Matrix,
+        methods, Rmpfr
+LinkingTo: Rcpp
+RoxygenNote: 5.0.1
+NeedsCompilation: yes
+Packaged: 2017-12-19 10:51:03 UTC; Andrea Lattuada
+Repository: CRAN
+Date/Publication: 2017-12-19 11:12:31 UTC

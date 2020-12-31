@@ -1,0 +1,13 @@
+citHeader("To cite aphid in publications use:")
+
+citEntry(entry = "Article",
+   title = "aphid: an R package for analysis with profile hidden Markov models",
+   author = personList(as.person("Shaun Wilkinson")),
+   url = "https://doi.org/10.1093/bioinformatics/btz159",
+   journal = "Bioinformatics",
+   year   = "2019",
+   doi = "10.1093/bioinformatics/btz159",
+   textVersion =
+   paste("Wilkinson SP (2019) aphid: an R package for analysis with profile hidden Markov models.",
+         "Bioinformatics. https://doi.org/10.1093/bioinformatics/btz159.")
+)
